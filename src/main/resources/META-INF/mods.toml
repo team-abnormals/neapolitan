@@ -1,0 +1,27 @@
+modLoader="javafml"
+loaderVersion="[31,)"
+logoFile="logo.png"
+authors="bageldotjpg"
+credits="my mom"
+
+[[mods]]
+    modId="neopolitan"
+    version="${file.jarVersion}"
+    displayName="Neopolitan"
+    description='''
+    INSERT DESCRIPTION HERE
+    '''
+
+[[dependencies.neopolitan]]
+    modId="forge"
+    mandatory=true
+    versionRange="[31,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.neopolitan]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.15.2]"
+    ordering="NONE"
+    side="BOTH"

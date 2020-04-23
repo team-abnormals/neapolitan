@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "neopolitan:chocolate_block"
+    }
+  ],
+  "result": {
+    "item": "neopolitan:chocolate_bar",
+    "count": 9
+  }
+}

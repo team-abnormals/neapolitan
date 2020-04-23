@@ -1,0 +1,24 @@
+{
+	"block.neopolitan.chocolate_block": "Chocolate Block",
+
+	"block.neopolitan.chocolate_bricks": "Chocolate Bricks",
+	"block.neopolitan.chocolate_brick_slab": "Chocolate Brick Slab",
+	"block.neopolitan.chocolate_brick_stairs": "Chocolate Brick Stairs",
+	"block.neopolitan.chocolate_brick_wall": "Chocolate Brick Wall",
+	"block.neopolitan.chocolate_brick_vertical_slab": "Chocolate Brick Vertical Slab",
+	
+	"block.neopolitan.chocolate_tiles": "Chocolate Tiles",
+	"block.neopolitan.chocolate_tile_slab": "Chocolate Tile Slab",
+	"block.neopolitan.chocolate_tile_stairs": "Chocolate Tile Stairs",
+	"block.neopolitan.chocolate_tile_wall": "Chocolate Tile Wall",
+	"block.neopolitan.chocolate_tile_vertical_slab": "Chocolate Tile Vertical Slab",
+	
+	"block.neopolitan.vanilla": "Vanilla",
+	
+	"item.neopolitan.chocolate_bar": "Chocolate Bar",
+	"item.neopolitan.chocolate_milk_bucket": "Chocolate Milk Bucket",
+	"item.neopolitan.chocolate_strawberry": "Chocolate Strawberry",
+	
+	"item.neopolitan.strawberry": "Strawberry",
+	"item.neopolitan.strawberry_milk_bucket": "Strawberry Milk Bucket"
+}

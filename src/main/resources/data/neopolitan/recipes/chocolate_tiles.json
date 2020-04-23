@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "B",
+        "B"
+    ],
+    "key": {
+        "B": {
+            "item": "neopolitan:chocolate_brick_slab"
+        }
+    },
+    "result": {
+        "item": "neopolitan:chocolate_tiles",
+        "count": 1
+    }
+}
