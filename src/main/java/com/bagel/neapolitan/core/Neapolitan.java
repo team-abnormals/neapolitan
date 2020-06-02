@@ -1,8 +1,6 @@
 package com.bagel.neapolitan.core;
 
-import com.bagel.neapolitan.core.registry.NeapolitanBlocks;
-import com.bagel.neapolitan.core.registry.NeapolitanData;
-import com.bagel.neapolitan.core.registry.NeapolitanItems;
+import com.teamabnormals.abnormals_core.core.utils.RegistryHelper;
 
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -13,17 +11,20 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-@Mod("neapolitan")
-@Mod.EventBusSubscriber(modid = "neapolitan")
+@Mod(Neapolitan.MODID)
+@Mod.EventBusSubscriber(modid = Neapolitan.MODID)
 public class Neapolitan {
 	public static final String MODID = "neapolitan";
 
+	public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MODID);
+	public static final RegistryHelper OVERRIDE_HELPER = new RegistryHelper("minecraft");
+	
     public Neapolitan() {
     	IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
     	
-        NeapolitanBlocks.BLOCKS.register(modEventBus);
-        NeapolitanItems.ITEMS.register(modEventBus);
-        NeapolitanItems.ITEM_OVERRIDES.register(modEventBus);
+    	REGISTRY_HELPER.getDeferredBlockRegister().register(modEventBus);
+    	REGISTRY_HELPER.getDeferredItemRegister().register(modEventBus);
+    	OVERRIDE_HELPER.getDeferredItemRegister().register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
         
@@ -34,10 +35,8 @@ public class Neapolitan {
     }
 
     private void setupCommon(final FMLCommonSetupEvent event) {
-        NeapolitanData.registerBlockData();
     }
     
     private void setupClient(final FMLClientSetupEvent event) {
-    	NeapolitanData.setRenderLayers();
     }
 }
