@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "neopolitan:chocolate_brick_wall",
-    "neopolitan:chocolate_tile_wall"
+    "neapolitan:chocolate_brick_wall",
+    "neapolitan:chocolate_tile_wall"
   ]
 }

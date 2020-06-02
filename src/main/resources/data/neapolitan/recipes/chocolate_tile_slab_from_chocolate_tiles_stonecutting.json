@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "neapolitan:chocolate_tiles"
+  },
+  "result": "neapolitan:chocolate_tile_slab",
+  "count": 2
+}

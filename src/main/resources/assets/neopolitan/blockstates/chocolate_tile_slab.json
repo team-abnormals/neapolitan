@@ -1,7 +1,0 @@
-{
-    "variants": {
-        "type=bottom": { "model": "neopolitan:block/chocolate_tile_slab" },
-        "type=top": { "model": "neopolitan:block/chocolate_tile_slab_top" },
-        "type=double": { "model": "neopolitan:block/chocolate_tiles" }
-    }
-}

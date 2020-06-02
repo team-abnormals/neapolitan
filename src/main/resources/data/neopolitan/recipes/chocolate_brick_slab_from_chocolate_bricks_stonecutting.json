@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "neopolitan:chocolate_bricks"
-  },
-  "result": "neopolitan:chocolate_brick_slab",
-  "count": 2
-}

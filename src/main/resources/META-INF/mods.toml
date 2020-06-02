@@ -5,21 +5,21 @@ authors="bageldotjpg"
 credits="my mom"
 
 [[mods]]
-    modId="neopolitan"
+    modId="neapolitan"
     version="${file.jarVersion}"
-    displayName="Neopolitan"
+    displayName="Neapolitan"
     description='''
     INSERT DESCRIPTION HERE
     '''
 
-[[dependencies.neopolitan]]
+[[dependencies.neapolitan]]
     modId="forge"
     mandatory=true
     versionRange="[31,)"
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.neopolitan]]
+[[dependencies.neapolitan]]
     modId="minecraft"
     mandatory=true
     versionRange="[1.15.2]"

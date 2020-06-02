@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "neopolitan:chocolate_brick_slab",
-    "neopolitan:chocolate_tile_slab"
+    "neapolitan:chocolate_brick_slab",
+    "neapolitan:chocolate_tile_slab"
   ]
 }

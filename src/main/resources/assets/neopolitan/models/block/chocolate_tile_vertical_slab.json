@@ -1,8 +1,0 @@
-{
-    "parent": "neopolitan:block/vertical_slab",
-    "textures": {
-        "side": "neopolitan:block/chocolate_tiles",
-        "top": "neopolitan:block/chocolate_tiles",
-        "bottom": "neopolitan:block/chocolate_tiles"
-    }
-}

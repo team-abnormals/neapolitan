@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+	"## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "neapolitan:chocolate_bricks"
+    }
+  },
+  "result": {
+    "item": "neapolitan:chocolate_brick_stairs",
+    "count": 6
+  }
+}

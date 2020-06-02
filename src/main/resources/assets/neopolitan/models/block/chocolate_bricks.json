@@ -1,6 +1,0 @@
-{
-    "parent": "block/cube_all",
-    "textures": {
-        "all": "neopolitan:block/chocolate_bricks"
-    }
-}

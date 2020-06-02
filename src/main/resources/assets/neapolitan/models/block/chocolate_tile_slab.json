@@ -1,0 +1,8 @@
+{
+    "parent": "block/slab",
+    "textures": {
+        "bottom": "neapolitan:block/chocolate_tiles",
+        "top": "neapolitan:block/chocolate_tiles",
+        "side": "neapolitan:block/chocolate_tiles"
+    }
+}

@@ -1,8 +1,0 @@
-{
-    "parent": "block/stairs",
-    "textures": {
-        "bottom": "neopolitan:block/chocolate_bricks",
-        "top": "neopolitan:block/chocolate_bricks",
-        "side": "neopolitan:block/chocolate_bricks"
-    }
-}
