@@ -21,7 +21,6 @@ public class NeapolitanItems {
 	
 	public static final RegistryObject<Item> CHOCOLATE_BAR	 		= HELPER.createItem("chocolate_bar", () -> new Item(new Item.Properties().food(NeapolitanFoods.CHOCOLATE_BAR).group(ItemGroup.FOOD)));
 //	public static final RegistryObject<Item> STRAWBERRY 			= HELPER.createItem("strawberry", () -> new Item(new Item.Properties().food(NeapolitanFoods.STRAWBERRY).group(ItemGroup.FOOD)));
-//	public static final RegistryObject<Item> CHOCOLATE_STRAWBERRY 	= HELPER.createItem("chocolate_strawberry", () -> new Item(new Item.Properties().food(NeapolitanFoods.CHOCOLATE_STRAWBERRY).group(ItemGroup.FOOD)));
-//	
-	public static final RegistryObject<Item> COOKIE = OVERRIDES.createItem("cookie", () -> new Item((new Item.Properties()).group(ItemGroup.FOOD).food(NeapolitanFoods.COOKIE)));
+//	public static final RegistryObject<Item> CHOCOLATE_STRAWBERRY 	= HELPER.createItem("chocolate_strawberry", () -> new Item(new Item.Properties().food(NeapolitanFoods.CHOCOLATE_STRAWBERRY).group(ItemGroup.FOOD)));	
+	public static final RegistryObject<Item> COOKIE 				= OVERRIDES.createItem("cookie", () -> new Item((new Item.Properties()).group(ItemGroup.FOOD).food(NeapolitanFoods.COOKIE)));
 }
