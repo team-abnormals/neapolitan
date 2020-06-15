@@ -15,7 +15,7 @@ credits="my mom"
 [[dependencies.neapolitan]]
     modId="forge"
     mandatory=true
-    versionRange="[31.1.49,)"
+    versionRange="[31.1.46,)"
     ordering="NONE"
     side="BOTH"
 
@@ -29,6 +29,6 @@ credits="my mom"
 [[dependencies.neapolitan]]
     modId="abnormals_core"
     mandatory=true
-    versionRange="[1.0.5,)"
+    versionRange="[1.0.6,)"
     ordering="AFTER"
     side="BOTH"
