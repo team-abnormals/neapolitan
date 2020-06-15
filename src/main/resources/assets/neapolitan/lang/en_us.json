@@ -15,10 +15,29 @@
 	
 	"block.neapolitan.vanilla": "Vanilla",
 	
+	"block.neapolitan.chocolate_cake": "Chocolate Cake",
+	"block.neapolitan.strawberry_cake": "Strawberry Cake",
+	"block.neapolitan.vanilla_cake": "Vanilla Cake",
+	
 	"item.neapolitan.chocolate_bar": "Chocolate Bar",
 	"item.neapolitan.chocolate_milk_bucket": "Chocolate Milk Bucket",
-	"item.neapolitan.chocolate_strawberry": "Chocolate Strawberry",
+	"item.neapolitan.chocolate_ice_cream": "Chocolate Ice Cream",
 	
-	"item.neapolitan.strawberry": "Strawberry",
-	"item.neapolitan.strawberry_milk_bucket": "Strawberry Milk Bucket"
+	"item.neapolitan.strawberry_pips": "Strawberry Pips",
+	"item.neapolitan.strawberries": "Strawberries",
+	"item.neapolitan.strawberry_milk_bucket": "Strawberry Milk Bucket",
+	"item.neapolitan.strawberry_ice_cream": "Strawberry Ice Cream",
+	"item.neapolitan.strawberry_scones": "Strawberry Scones",
+	"item.neapolitan.strawberry_smoothie": "Strawberry Smoothie",
+	
+	"item.neapolitan.vanilla_beans": "Vanilla Beans",
+	"item.neapolitan.dried_vanilla_beans": "Dried Vanilla Beans",
+	"item.neapolitan.vanilla_ice_cream": "Vanilla Ice Cream",
+	"item.neapolitan.vanilla_pudding": "Vanilla Pudding",
+	
+	"item.neapolitan.chocolate_strawberries": "Chocolate Strawberries",
+	"item.neapolitan.white_strawberries": "White Strawberries",
+	"item.neapolitan.vanilla_chocolate_fingers": "Vanilla Chocolate Fingers",
+	
+	"item.neapolitan.neapolitan_ice_cream": "Neapolitan Ice Cream"
 }

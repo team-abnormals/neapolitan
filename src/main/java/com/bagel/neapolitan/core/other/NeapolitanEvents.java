@@ -1,3 +1,4 @@
+package com.bagel.neapolitan.core.other;
 //package com.bagel.neapolitan.core.registry;
 //
 //import com.bagel.neapolitan.core.Neapolitan;
