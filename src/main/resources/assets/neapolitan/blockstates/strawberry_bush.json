@@ -1,0 +1,14 @@
+{
+    "variants": {
+        "age=0":  { "model": "neapolitan:block/strawberry_bush_stage0" },
+        "age=1":  { "model": "neapolitan:block/strawberry_bush_stage1" },
+        "age=2":  { "model": "neapolitan:block/strawberry_bush_stage2" },
+        "age=3":  { "model": "neapolitan:block/strawberry_bush_stage3" },
+        "age=4":  { "model": "neapolitan:block/strawberry_bush_stage4" },
+        "age=5":  { "model": "neapolitan:block/strawberry_bush_stage5" },
+        "age=6,type=none":  { "model": "neapolitan:block/strawberry_bush_stage6_red" },
+        "age=6,type=red":  { "model": "neapolitan:block/strawberry_bush_stage6_red" },
+        "age=6,type=white":  { "model": "neapolitan:block/strawberry_bush_stage6_white" }
+    }
+}
+

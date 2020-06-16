@@ -1,7 +1,10 @@
 package com.bagel.neapolitan.core;
 
+import com.bagel.neapolitan.core.registry.NeapolitanBlocks;
 import com.teamabnormals.abnormals_core.core.utils.RegistryHelper;
 
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.Foods;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -44,5 +47,8 @@ public class Neapolitan {
     }
     
     private void setupClient(final FMLClientSetupEvent event) {
+    	DeferredWorkQueue.runLater(() -> {
+    		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.STRAWBERRY_BUSH.get(), RenderType.getCutout());
+    	});
     }
 }

@@ -12,7 +12,9 @@ public class BlockProperties {
     public static final Block.Properties CHOCOLATE_BRICKS 	= Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD);
     public static final Block.Properties CHOCOLATE_TILES 	= Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD);
     
-    public static final Block.Properties CHOCOLATE_CAKE = Block.Properties.from(Blocks.CAKE);
-    public static final Block.Properties STRAWBERRY_CAKE = Block.Properties.from(Blocks.CAKE);
-    public static final Block.Properties VANILLA_CAKE = Block.Properties.from(Blocks.CAKE);
+    public static final Block.Properties STRAWBERRY_BUSH 	= Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0F).sound(SoundType.CROP);
+    
+    public static final Block.Properties CHOCOLATE_CAKE 	= Block.Properties.from(Blocks.CAKE);
+    public static final Block.Properties STRAWBERRY_CAKE 	= Block.Properties.from(Blocks.CAKE);
+    public static final Block.Properties VANILLA_CAKE 		= Block.Properties.from(Blocks.CAKE);
 }

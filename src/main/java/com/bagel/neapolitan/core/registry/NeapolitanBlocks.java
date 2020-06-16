@@ -1,6 +1,7 @@
 package com.bagel.neapolitan.core.registry;
 
 import com.bagel.neapolitan.common.block.ChocolateCakeBlock;
+import com.bagel.neapolitan.common.block.StrawberryBushBlock;
 import com.bagel.neapolitan.common.block.StrawberryCakeBlock;
 import com.bagel.neapolitan.common.block.VanillaCakeBlock;
 import com.bagel.neapolitan.core.Neapolitan;
@@ -34,8 +35,9 @@ public class NeapolitanBlocks {
 	public static final RegistryObject<Block> CHOCOLATE_TILE_WALL 			= HELPER.createBlock("chocolate_tile_wall", 			() -> new WallBlock(BlockProperties.CHOCOLATE_TILES), ItemGroup.DECORATIONS);
 	public static final RegistryObject<Block> CHOCOLATE_TILE_VERTICAL_SLAB 	= HELPER.createCompatBlock("quark", "chocolate_tile_vertical_slab",	() -> new VerticalSlabBlock(BlockProperties.CHOCOLATE_TILES), ItemGroup.BUILDING_BLOCKS);
 
-	public static final RegistryObject<Block> CHOCOLATE_CAKE 	= HELPER.createBlock("chocolate_cake", () -> new ChocolateCakeBlock(BlockProperties.CHOCOLATE_CAKE), ItemGroup.FOOD);
-	public static final RegistryObject<Block> STRAWBERRY_CAKE 	= HELPER.createBlock("strawberry_cake", () -> new StrawberryCakeBlock(BlockProperties.STRAWBERRY_CAKE), ItemGroup.FOOD);
-	public static final RegistryObject<Block> VANILLA_CAKE 		= HELPER.createBlock("vanilla_cake", () -> new VanillaCakeBlock(BlockProperties.CHOCOLATE_CAKE), ItemGroup.FOOD);
-
+	public static final RegistryObject<Block> STRAWBERRY_BUSH = HELPER.createBlockNoItem("strawberry_bush", () -> new StrawberryBushBlock(BlockProperties.STRAWBERRY_BUSH));
+	
+	public static final RegistryObject<Block> CHOCOLATE_CAKE 	= HELPER.createBlockNoItem("chocolate_cake", () -> new ChocolateCakeBlock(BlockProperties.CHOCOLATE_CAKE));
+	public static final RegistryObject<Block> STRAWBERRY_CAKE 	= HELPER.createBlockNoItem("strawberry_cake", () -> new StrawberryCakeBlock(BlockProperties.STRAWBERRY_CAKE));
+	public static final RegistryObject<Block> VANILLA_CAKE 		= HELPER.createBlockNoItem("vanilla_cake", () -> new VanillaCakeBlock(BlockProperties.VANILLA_CAKE));
 }
