@@ -1,31 +1,28 @@
 package com.bagel.neapolitan.core.other;
-//package com.bagel.neapolitan.core.registry;
-//
-//import com.bagel.neapolitan.core.Neapolitan;
-//import com.google.common.collect.ImmutableList;
-//
-//import net.minecraft.advancements.CriteriaTriggers;
-//import net.minecraft.entity.LivingEntity;
-//import net.minecraft.entity.passive.CowEntity;
-//import net.minecraft.entity.passive.fish.AbstractFishEntity;
-//import net.minecraft.entity.player.PlayerEntity;
-//import net.minecraft.entity.player.ServerPlayerEntity;
-//import net.minecraft.item.Item;
-//import net.minecraft.item.ItemStack;
-//import net.minecraft.item.Items;
-//import net.minecraft.potion.Effect;
-//import net.minecraft.potion.EffectInstance;
-//import net.minecraft.potion.EffectType;
-//import net.minecraft.potion.Effects;
-//import net.minecraft.stats.Stats;
-//import net.minecraft.util.SoundCategory;
-//import net.minecraft.util.SoundEvents;
-//import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-//import net.minecraftforge.eventbus.api.SubscribeEvent;
-//import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-//
-//@EventBusSubscriber(modid = Neapolitan.MODID)
-//public class NeapolitanEvents {
+
+import com.bagel.neapolitan.common.entity.goals.AvoidBlockGoal;
+import com.bagel.neapolitan.core.Neapolitan;
+import com.bagel.neapolitan.core.registry.NeapolitanBlocks;
+
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.monster.CreeperEntity;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+
+@EventBusSubscriber(modid = Neapolitan.MODID)
+public class NeapolitanEvents {
+	
+	@SuppressWarnings("rawtypes")
+	@SubscribeEvent
+	public static void entityJoinWorldEvent(EntityJoinWorldEvent event) {
+		Entity entity = event.getEntity();
+		if (entity instanceof CreeperEntity) {
+			CreeperEntity creeper = (CreeperEntity)event.getEntity();
+			creeper.goalSelector.addGoal(0, new AvoidBlockGoal(creeper, NeapolitanBlocks.STRAWBERRY_BUSH.get(), 9.0F, 1.05D, 1.05D));
+		}
+	}
+//	
 //	@SubscribeEvent
 //	public static void feedMilk(PlayerInteractEvent.EntityInteractSpecific event) {
 //		if (event.getTarget() instanceof CowEntity || event.getTarget() instanceof AbstractFishEntity) {
@@ -76,4 +73,4 @@ package com.bagel.neapolitan.core.other;
 //			}
 //		}
 //	}
-//}
+}
