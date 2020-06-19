@@ -15,14 +15,14 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '0.1'
-group = 'com.bagel.templatemod'
-archivesBaseName = 'templatemod-1.15.2'
+version = '0.1.0'
+group = 'com.bagel.neapolitan'
+archivesBaseName = 'neapolitan-1.15.2'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
 minecraft {
-    mappings channel: 'snapshot', version: '20200416-1.15.1'
+    mappings channel: 'snapshot', version: '20200618-1.15.1'
     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
     runs {
         client {
@@ -30,7 +30,7 @@ minecraft {
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'debug'
             mods {
-                templatemod {
+                neapolitan {
                     source sourceSets.main
                 }
             }
@@ -40,7 +40,7 @@ minecraft {
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'debug'
             mods {
-                templatemod {
+                neapolitan {
                     source sourceSets.main
                 }
             }
@@ -49,9 +49,9 @@ minecraft {
             workingDirectory project.file('run')
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'debug'
-            args '--mod', 'templatemod', '--all', '--output', file('src/generated/resources/')
+            args '--mod', 'neapolitan', '--all', '--output', file('src/generated/resources/')
             mods {
-                templatemod {
+                neapolitan {
                     source sourceSets.main
                 }
             }
