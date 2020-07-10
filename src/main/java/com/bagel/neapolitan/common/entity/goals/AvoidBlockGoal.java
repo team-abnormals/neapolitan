@@ -14,7 +14,7 @@ import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.util.EntityPredicates;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 
 public class AvoidBlockGoal<T extends LivingEntity> extends Goal {
 	protected final CreatureEntity entity;
@@ -69,7 +69,7 @@ public class AvoidBlockGoal<T extends LivingEntity> extends Goal {
 		if (this.avoidTarget == null) {
 			return false;
 		} else {
-			Vec3d vec3d = RandomPositionGenerator.findRandomTargetBlockAwayFrom(this.entity, 16, 7, new Vec3d(this.avoidTarget.getX(), this.avoidTarget.getY(), this.avoidTarget.getZ()));
+			Vector3d vec3d = RandomPositionGenerator.findRandomTargetBlockAwayFrom(this.entity, 16, 7, new Vector3d(this.avoidTarget.getX(), this.avoidTarget.getY(), this.avoidTarget.getZ()));
 			if (vec3d == null) {
 				return false;
 			} else if (this.avoidTarget.distanceSq(vec3d.x, vec3d.y, vec3d.z, false) < this.avoidTarget.distanceSq(this.entity.getPosX(), this.entity.getPosY(), this.entity.getPosZ(), false)) {

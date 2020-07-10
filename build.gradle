@@ -15,14 +15,14 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '0.1.0'
+version = '1.0.0'
 group = 'com.bagel.neapolitan'
-archivesBaseName = 'neapolitan-1.15.2'
+archivesBaseName = 'Neapolitan-1.16.1'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
 minecraft {
-    mappings channel: 'snapshot', version: '20200618-1.15.1'
+    mappings channel: 'snapshot', version: '20200707-1.16.1'
     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
     runs {
         client {
@@ -60,6 +60,6 @@ minecraft {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.15.2-31.1.46'
-    compile fg.deobf("curse.maven:abnormals-core:2980113")
+    minecraft 'net.minecraftforge:forge:1.16.1-32.0.57'
+    implementation fg.deobf("curse.maven:abnormals-core:2989106")
 }
