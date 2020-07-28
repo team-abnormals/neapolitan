@@ -2,7 +2,7 @@ package com.bagel.neapolitan.core.registry;
 
 import com.bagel.neapolitan.core.Neapolitan;
 import com.bagel.neapolitan.core.other.NeapolitanFoods;
-import com.teamabnormals.abnormals_core.core.utils.RegistryHelper;
+import com.minecraftabnormals.abnormals_core.core.utils.RegistryHelper;
 
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.BlockNamedItem;

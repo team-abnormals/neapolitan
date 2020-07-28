@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[31,)"
+loaderVersion="[32,)"
 logoFile="logo.png"
 authors="bageldotjpg"
 credits="my mom"
@@ -15,7 +15,7 @@ credits="my mom"
 [[dependencies.neapolitan]]
     modId="forge"
     mandatory=true
-    versionRange="[32.0.62,)"
+    versionRange="[32.0.88,)"
     ordering="NONE"
     side="BOTH"
 
@@ -29,6 +29,6 @@ credits="my mom"
 [[dependencies.neapolitan]]
     modId="abnormals_core"
     mandatory=true
-    versionRange="[2.0.0,)"
+    versionRange="[2.1.0,)"
     ordering="AFTER"
     side="BOTH"

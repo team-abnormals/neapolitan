@@ -6,8 +6,8 @@ import com.bagel.neapolitan.common.block.StrawberryCakeBlock;
 import com.bagel.neapolitan.common.block.VanillaCakeBlock;
 import com.bagel.neapolitan.core.Neapolitan;
 import com.bagel.neapolitan.core.util.BlockProperties;
-import com.teamabnormals.abnormals_core.common.blocks.VerticalSlabBlock;
-import com.teamabnormals.abnormals_core.core.utils.RegistryHelper;
+import com.minecraftabnormals.abnormals_core.common.blocks.VerticalSlabBlock;
+import com.minecraftabnormals.abnormals_core.core.utils.RegistryHelper;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.SlabBlock;
