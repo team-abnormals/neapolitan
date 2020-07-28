@@ -1,8 +1,8 @@
 modLoader="javafml"
 loaderVersion="[32,)"
 logoFile="logo.png"
-authors="bageldotjpg"
-credits="my mom"
+authors="bageldotjpg & five"
+license="https://github.com/minecraftabnormals/Neapolitan/blob/master/LICENSE.txt"
 
 [[mods]]
     modId="neapolitan"
