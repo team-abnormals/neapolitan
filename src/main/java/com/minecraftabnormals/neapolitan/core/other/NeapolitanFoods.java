@@ -1,4 +1,4 @@
-package com.bagel.neapolitan.core.other;
+package com.minecraftabnormals.neapolitan.core.other;
 
 import net.minecraft.item.Food;
 

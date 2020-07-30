@@ -1,4 +1,4 @@
-package com.bagel.neapolitan.core.util;
+package com.minecraftabnormals.neapolitan.core.util;
 
 import net.minecraft.util.IStringSerializable;
 

@@ -1,4 +1,4 @@
-package com.bagel.neapolitan.common.entity.goals;
+package com.minecraftabnormals.neapolitan.common.entity.goals;
 
 import java.util.EnumSet;
 import java.util.function.Predicate;

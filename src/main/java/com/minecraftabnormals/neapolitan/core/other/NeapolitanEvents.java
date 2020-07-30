@@ -1,8 +1,8 @@
-package com.bagel.neapolitan.core.other;
+package com.minecraftabnormals.neapolitan.core.other;
 
-import com.bagel.neapolitan.common.entity.goals.AvoidBlockGoal;
-import com.bagel.neapolitan.core.Neapolitan;
-import com.bagel.neapolitan.core.registry.NeapolitanBlocks;
+import com.minecraftabnormals.neapolitan.common.entity.goals.AvoidBlockGoal;
+import com.minecraftabnormals.neapolitan.core.Neapolitan;
+import com.minecraftabnormals.neapolitan.core.registry.NeapolitanBlocks;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.CreeperEntity;

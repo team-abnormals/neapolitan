@@ -1,4 +1,4 @@
-package com.bagel.neapolitan.common.block;
+package com.minecraftabnormals.neapolitan.common.block;
 
 import net.minecraft.block.CakeBlock;
 

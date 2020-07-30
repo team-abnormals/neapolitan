@@ -1,11 +1,11 @@
-package com.bagel.neapolitan.common.block;
+package com.minecraftabnormals.neapolitan.common.block;
 
 import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import com.bagel.neapolitan.core.registry.NeapolitanItems;
-import com.bagel.neapolitan.core.util.StrawberryType;
+import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
+import com.minecraftabnormals.neapolitan.core.util.StrawberryType;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

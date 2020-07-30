@@ -1,7 +1,7 @@
-package com.bagel.neapolitan.core;
+package com.minecraftabnormals.neapolitan.core;
 
-import com.bagel.neapolitan.core.registry.NeapolitanBlocks;
-import com.minecraftabnormals.abnormals_core.core.utils.RegistryHelper;
+import com.minecraftabnormals.neapolitan.core.registry.NeapolitanBlocks;
+import com.teamabnormals.abnormals_core.core.utils.RegistryHelper;
 
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
