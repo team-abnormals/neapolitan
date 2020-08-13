@@ -1,0 +1,10 @@
+{
+  "parent": "block/cake_slice5",
+  "textures": {
+    "particle": "neapolitan:block/strawberry_cake_side",
+    "bottom": "neapolitan:block/strawberry_cake_bottom",
+    "top": "neapolitan:block/strawberry_cake_top",
+    "side": "neapolitan:block/strawberry_cake_side",
+    "inside": "neapolitan:block/strawberry_cake_inner"
+  }
+}
