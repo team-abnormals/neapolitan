@@ -13,6 +13,11 @@
 	"block.neapolitan.chocolate_tile_wall": "Chocolate Tile Wall",
 	"block.neapolitan.chocolate_tile_vertical_slab": "Chocolate Tile Vertical Slab",
 	
+	"block.neapolitan.strawberry_basket": "Strawberry Basket",
+	"block.neapolitan.white_strawberry_basket": "White Strawberry Basket",
+	"block.neapolitan.vanilla_bean_block": "Vanilla Bean Block",
+	"block.neapolitan.dried_vanilla_bean_block": "Dried Vanilla Bean Block",
+	
 	"block.neapolitan.vanilla": "Vanilla",
 	
 	"block.neapolitan.chocolate_cake": "Chocolate Cake",
@@ -21,17 +26,20 @@
 	
 	"item.neapolitan.chocolate_bar": "Chocolate Bar",
 	"item.neapolitan.chocolate_ice_cream": "Chocolate Ice Cream",
+	"item.neapolitan.chocolate_milkshake": "Chocolate Milkshake",
 	
 	"item.neapolitan.strawberry_pips": "Strawberry Pips",
 	"item.neapolitan.strawberries": "Strawberries",
 	"item.neapolitan.strawberry_ice_cream": "Strawberry Ice Cream",
 	"item.neapolitan.strawberry_scones": "Strawberry Scones",
 	"item.neapolitan.strawberry_smoothie": "Strawberry Smoothie",
+  "item.neapolitan.strawberry_milkshake": "Strawberry Milkshake",
 	
 	"item.neapolitan.vanilla_beans": "Vanilla Beans",
 	"item.neapolitan.dried_vanilla_beans": "Dried Vanilla Beans",
 	"item.neapolitan.vanilla_ice_cream": "Vanilla Ice Cream",
 	"item.neapolitan.vanilla_pudding": "Vanilla Pudding",
+  "item.neapolitan.vanilla_milkshake": "Vanilla Milkshake",
 	
 	"item.neapolitan.chocolate_strawberries": "Chocolate Strawberries",
 	"item.neapolitan.white_strawberries": "White Strawberries",
