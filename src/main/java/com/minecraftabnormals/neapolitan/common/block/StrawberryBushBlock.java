@@ -85,7 +85,7 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, IGrowa
 		if (entityIn instanceof LivingEntity) {
 			LivingEntity entity = (LivingEntity) entityIn;
 			if (entity.getCreatureAttribute() == CreatureAttribute.ARTHROPOD && state.get(AGE) > 0) {
-				entity.addPotionEffect(new EffectInstance(Effects.INVISIBILITY, 20, 0, false, true, true));
+				entity.addPotionEffect(new EffectInstance(Effects.INVISIBILITY, 20, 0, false, false, false));
 			}
 		}
 		super.onEntityCollision(state, worldIn, pos, entityIn);
