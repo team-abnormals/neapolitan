@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "neapolitan:white_strawberry_basket"
+    }
+  ],
+  "result": {
+    "item": "neapolitan:white_strawberries",
+    "count": 9
+  },
+  "conditions": [
+    {
+      "type": "abnormals_core:quark_flag",
+      "flag": "berry_sack"
+    }
+  ]
+}

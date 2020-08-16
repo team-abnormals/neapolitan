@@ -27,6 +27,7 @@ public class FlavoredCakeBlock extends CakeBlock {
     public FlavoredCakeBlock(Food food, EffectType effectType, Properties properties) {
         super(properties);
         this.effectType = effectType;
+        this.food = food;
     }
 
     @Override

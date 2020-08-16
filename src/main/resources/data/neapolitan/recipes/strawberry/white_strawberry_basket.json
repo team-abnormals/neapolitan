@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BBB",
+    "BBB",
+    "BBB"
+  ],
+  "key": {
+    "B": {
+      "item": "neapolitan:white_strawberries"
+    }
+  },
+  "result": {
+    "item": "neapolitan:white_strawberry_basket",
+    "count": 1
+  },
+  "conditions": [
+    {
+      "type": "abnormals_core:quark_flag",
+      "flag": "berry_sack"
+    }
+  ]
+}

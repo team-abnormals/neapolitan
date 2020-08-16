@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "neapolitan:vanilla_bean_block"
+    }
+  ],
+  "result": {
+    "item": "neapolitan:vanilla_beans",
+    "count": 9
+  }
+}
