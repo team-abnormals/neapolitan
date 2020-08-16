@@ -33,7 +33,7 @@ public class NeapolitanItems {
     public static final RegistryObject<Item> STRAWBERRY_SMOOTHIE    = HELPER.createItem("strawberry_smoothie", () -> new DrinkItem(new Item.Properties().food(FoodValues.CHOCOLATE_STRAWBERRIES).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> STRAWBERRY_MILKSHAKE   = HELPER.createItem("strawberry_milkshake", () -> new MilkshakeItem(EffectType.BENEFICIAL, new Item.Properties().food(FoodValues.CHOCOLATE_STRAWBERRIES).maxStackSize(16).group(ItemGroup.FOOD)));
 
-    public static final RegistryObject<Item> VANILLA_BEANS          = HELPER.createItem("vanilla_beans", () -> new Item(new Item.Properties().food(FoodValues.CHOCOLATE_STRAWBERRIES).group(ItemGroup.FOOD)));
+    public static final RegistryObject<Item> VANILLA_BEANS          = HELPER.createItem("vanilla_beans", () -> new BlockNamedItem(NeapolitanBlocks.VANILLA_VINE.get(), new Item.Properties().food(FoodValues.CHOCOLATE_STRAWBERRIES).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> DRIED_VANILLA_BEANS    = HELPER.createItem("dried_vanilla_beans", () -> new Item(new Item.Properties().food(FoodValues.CHOCOLATE_STRAWBERRIES).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> VANILLA_ICE_CREAM      = HELPER.createItem("vanilla_ice_cream", () -> new SoupItem(new Item.Properties().food(FoodValues.CHOCOLATE_STRAWBERRIES).containerItem(Items.BOWL).maxStackSize(1).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> VANILLA_CAKE           = HELPER.createItem("vanilla_cake", () -> new BlockItem(NeapolitanBlocks.VANILLA_CAKE.get(), new Item.Properties().group(ItemGroup.FOOD).maxStackSize(1)));

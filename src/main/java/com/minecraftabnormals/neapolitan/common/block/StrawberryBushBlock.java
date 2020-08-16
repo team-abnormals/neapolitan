@@ -5,7 +5,6 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
-import com.minecraftabnormals.neapolitan.core.util.StrawberryType;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -25,6 +24,7 @@ import net.minecraft.state.EnumProperty;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.IItemProvider;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -152,5 +152,22 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, IGrowa
 			i = j;
 		}
 		worldIn.setBlockState(pos, this.withAge(i), 2);
+	}
+	
+	static enum StrawberryType implements IStringSerializable {
+	    NONE("none"), 
+	    RED("red"), 
+	    WHITE("white");
+
+	    private final String name;
+
+	    private StrawberryType(String name) {
+	        this.name = name;
+	    }
+
+	    @Override
+	    public String getString() {
+	        return this.name;
+	    }
 	}
 }

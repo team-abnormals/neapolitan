@@ -49,6 +49,8 @@ public class Neapolitan {
     private void setupClient(final FMLClientSetupEvent event) {
     	DeferredWorkQueue.runLater(() -> {
     		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.STRAWBERRY_BUSH.get(), RenderType.getCutout());
+    		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.VANILLA_VINE.get(), RenderType.getCutout());
+    		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.VANILLA_VINE_PLANT.get(), RenderType.getCutout());
     	});
     }
 }

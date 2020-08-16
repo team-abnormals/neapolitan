@@ -1,9 +1,9 @@
 package com.minecraftabnormals.neapolitan.core.registry;
 
-import com.minecraftabnormals.neapolitan.common.block.ChocolateCakeBlock;
+import com.minecraftabnormals.neapolitan.common.block.FlavoredCakeBlock;
 import com.minecraftabnormals.neapolitan.common.block.StrawberryBushBlock;
-import com.minecraftabnormals.neapolitan.common.block.StrawberryCakeBlock;
-import com.minecraftabnormals.neapolitan.common.block.VanillaCakeBlock;
+import com.minecraftabnormals.neapolitan.common.block.VanillaVineBlock;
+import com.minecraftabnormals.neapolitan.common.block.VanillaVineTopBlock;
 import com.minecraftabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.abnormals_core.common.blocks.VerticalSlabBlock;
 import com.teamabnormals.abnormals_core.core.utils.RegistryHelper;
@@ -19,6 +19,7 @@ import net.minecraft.block.WallBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.potion.EffectType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
 
@@ -42,9 +43,12 @@ public class NeapolitanBlocks {
 
     public static final RegistryObject<Block> STRAWBERRY_BUSH = HELPER.createBlockNoItem("strawberry_bush", () -> new StrawberryBushBlock(Properties.STRAWBERRY_BUSH));
 
-    public static final RegistryObject<Block> CHOCOLATE_CAKE    = HELPER.createBlockNoItem("chocolate_cake", () -> new ChocolateCakeBlock(Properties.CHOCOLATE_CAKE));
-    public static final RegistryObject<Block> STRAWBERRY_CAKE   = HELPER.createBlockNoItem("strawberry_cake", () -> new StrawberryCakeBlock(Properties.STRAWBERRY_CAKE));
-    public static final RegistryObject<Block> VANILLA_CAKE      = HELPER.createBlockNoItem("vanilla_cake", () -> new VanillaCakeBlock(Properties.VANILLA_CAKE));
+    public static final RegistryObject<Block> VANILLA_VINE        = HELPER.createBlockNoItem("vanilla_vine", () -> new VanillaVineTopBlock(AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.LIME).tickRandomly().doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.NETHER_VINE)));
+    public static final RegistryObject<Block> VANILLA_VINE_PLANT  = HELPER.createBlockNoItem("vanilla_vine_plant", () -> new VanillaVineBlock(AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.LIME).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.NETHER_VINE)));
+
+    public static final RegistryObject<Block> CHOCOLATE_CAKE    = HELPER.createBlockNoItem("chocolate_cake", () -> new FlavoredCakeBlock(EffectType.HARMFUL, Properties.CHOCOLATE_CAKE));
+    public static final RegistryObject<Block> STRAWBERRY_CAKE   = HELPER.createBlockNoItem("strawberry_cake", () -> new FlavoredCakeBlock(EffectType.BENEFICIAL, Properties.STRAWBERRY_CAKE));
+    public static final RegistryObject<Block> VANILLA_CAKE      = HELPER.createBlockNoItem("vanilla_cake", () -> new FlavoredCakeBlock(EffectType.NEUTRAL, Properties.VANILLA_CAKE));
     
     public static final RegistryObject<Block> STRAWBERRY_BASKET         = HELPER.createCompatBlock("quark", "strawberry_basket", () -> new Block(Properties.STRAWBERRY_BASKET), ItemGroup.DECORATIONS);
     public static final RegistryObject<Block> WHITE_STRAWBERRY_BASKET   = HELPER.createCompatBlock("quark", "white_strawberry_basket", () -> new Block(Properties.WHITE_STRAWBERRY_BASKET), ItemGroup.DECORATIONS);
