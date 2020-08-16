@@ -1,10 +1,12 @@
 package com.minecraftabnormals.neapolitan.common.block;
 
 import com.google.common.collect.ImmutableList;
+import com.mojang.datafixers.util.Pair;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CakeBlock;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Food;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
@@ -20,8 +22,9 @@ import net.minecraft.world.World;
 
 public class FlavoredCakeBlock extends CakeBlock {
     private EffectType effectType;
-
-    public FlavoredCakeBlock(EffectType effectType, Properties properties) {
+    private Food food;
+    
+    public FlavoredCakeBlock(Food food, EffectType effectType, Properties properties) {
         super(properties);
         this.effectType = effectType;
     }
@@ -47,17 +50,25 @@ public class FlavoredCakeBlock extends CakeBlock {
             return ActionResultType.PASS;
         } else {
             player.addStat(Stats.EAT_CAKE_SLICE);
-            player.getFoodStats().addStats(2, 0.1F);
+            player.getFoodStats().addStats(food.getHealing(), food.getSaturation());
             int i = state.get(BITES);
 
-            ImmutableList<EffectInstance> effects = ImmutableList.copyOf(player.getActivePotionEffects());
-            for (int j = 0; j < effects.size(); ++j) {
-                Effect effect = effects.get(j).getPotion();
-                if (effect.getEffectType() == this.getEffectType() || (this.getEffectType() == EffectType.HARMFUL && effect == Effects.BAD_OMEN) || this.getEffectType() == EffectType.NEUTRAL) {
-                    player.removePotionEffect(effect);
+            if (this.getEffectType() != null) {
+                ImmutableList<EffectInstance> effects = ImmutableList.copyOf(player.getActivePotionEffects());
+                for (int j = 0; j < effects.size(); ++j) {
+                    Effect effect = effects.get(j).getPotion();
+                    if (effect.getEffectType() == this.getEffectType() || (this.getEffectType() == EffectType.HARMFUL && effect == Effects.BAD_OMEN) || this.getEffectType() == EffectType.NEUTRAL) {
+                        player.removePotionEffect(effect);
+                    }
                 }
             }
-
+            
+            for(Pair<EffectInstance, Float> pair : food.getEffects()) {
+                if (!world.isRemote() && pair.getFirst() != null && world.getRandom().nextFloat() < pair.getSecond()) {
+                    player.addPotionEffect(new EffectInstance(pair.getFirst()));
+                }
+             }
+            
             if (i < 6) {
                 world.setBlockState(pos, state.with(BITES, Integer.valueOf(i + 1)), 3);
             } else {
