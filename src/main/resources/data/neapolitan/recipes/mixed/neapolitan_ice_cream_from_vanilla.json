@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "neapolitan:vanilla_ice_cream"
+    },
+    {
+      "item": "neapolitan:chocolate_bar"
+    },
+    {
+      "tag": "forge:fruits/strawberry"
+    }
+  ],
+  "result": {
+    "item": "neapolitan:neapolitan_ice_cream",
+    "count": 1
+  }
+}

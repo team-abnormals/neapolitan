@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "neapolitan:vanilla_milkshake"
+    },
+    {
+      "tag": "forge:fruits/strawberry"
+    },
+    {
+      "tag": "forge:fruits/strawberry"
+    }
+  ],
+  "result": {
+    "item": "neapolitan:strawberry_milkshake",
+    "count": 1
+  }
+}
