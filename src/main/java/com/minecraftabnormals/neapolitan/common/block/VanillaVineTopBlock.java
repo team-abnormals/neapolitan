@@ -25,7 +25,7 @@ public class VanillaVineTopBlock extends AbstractTopPlantBlock {
     @Override
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
         Block block = worldIn.getBlockState(pos.offset(this.growthDirection.getOpposite())).getBlock();
-        return block == this.getTopPlantBlock() || block == this.func_230330_d_() || block.isIn(BlockTags.LEAVES) ;
+        return block == this.getTopPlantBlock() || block == this.func_230330_d_() || block.isIn(BlockTags.LEAVES);
     }
 
     @Override

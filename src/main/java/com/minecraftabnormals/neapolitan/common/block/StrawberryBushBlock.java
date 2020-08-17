@@ -8,6 +8,7 @@ import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.BushBlock;
 import net.minecraft.block.IGrowable;
 import net.minecraft.entity.CreatureAttribute;
@@ -16,16 +17,23 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.monster.RavagerEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
@@ -36,138 +44,150 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.IPlantable;
 
 public class StrawberryBushBlock extends BushBlock implements IPlantable, IGrowable {
-	public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 6);
-	public static final EnumProperty<StrawberryType> TYPE = EnumProperty.create("type", StrawberryType.class);
-	private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[] { 
-			Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 2.0D, 14.0D), 
-			Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 6.0D, 14.0D),
-			Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 8.0D, 14.0D), 
-			Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 10.0D, 14.0D), 
-			Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 12.0D, 14.0D),
-			Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 14.0D, 14.0D), 
-			Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 14.0D, 14.0D) };
+    public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 6);
+    public static final EnumProperty<StrawberryType> TYPE = EnumProperty.create("type", StrawberryType.class);
+    private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[] { Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 2.0D, 14.0D), Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 6.0D, 14.0D), Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 8.0D, 14.0D), Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 10.0D, 14.0D), Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 12.0D, 14.0D), Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 14.0D, 14.0D), Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 14.0D, 14.0D) };
 
-	public StrawberryBushBlock(Properties properties) {
-		super(properties);
-		this.setDefaultState(this.stateContainer.getBaseState().with(AGE, 0).with(TYPE, StrawberryType.NONE));
-	}
+    public StrawberryBushBlock(Properties properties) {
+        super(properties);
+        this.setDefaultState(this.stateContainer.getBaseState().with(AGE, 0).with(TYPE, StrawberryType.NONE));
+    }
 
-	protected int getBonemealAgeIncrease(World worldIn) {
-		return MathHelper.nextInt(worldIn.rand, 2, 5);
-	}
+    @SuppressWarnings("deprecation")
+    @Override
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+        int i = state.get(AGE);
+        boolean flag = i == this.getMaxAge();
+        if (!flag && player.getHeldItem(handIn).getItem() == Items.BONE_MEAL) {
+            return ActionResultType.PASS;
+        } else if (i > 1) {
+            int j = 1 + worldIn.rand.nextInt(2);
+            spawnAsEntity(worldIn, pos, new ItemStack(NeapolitanItems.STRAWBERRIES.get(), j + (flag ? 1 : 0)));
+            worldIn.playSound((PlayerEntity) null, pos, SoundEvents.ITEM_SWEET_BERRIES_PICK_FROM_BUSH, SoundCategory.BLOCKS, 1.0F, 0.8F + worldIn.rand.nextFloat() * 0.4F);
+            worldIn.setBlockState(pos, state.with(AGE, Integer.valueOf(1)), 2);
+            return ActionResultType.func_233537_a_(worldIn.isRemote);
+        } else {
+            return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
+        }
+    }
 
-	public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-		return (worldIn.getLightSubtracted(pos, 0) >= 8 || worldIn.canSeeSky(pos)) && super.isValidPosition(state, worldIn, pos);
-	}
+    protected int getBonemealAgeIncrease(World worldIn) {
+        return MathHelper.nextInt(worldIn.rand, 2, 5);
+    }
 
-	@SuppressWarnings("deprecation")
-	public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-		super.tick(state, worldIn, pos, rand);
-		if (!worldIn.isAreaLoaded(pos, 1)) return; 
-		if (worldIn.getLightSubtracted(pos, 0) >= 13) {
-			int i = this.getAge(state);
-			int growthChance = !worldIn.isRaining() ? 7 : 5;
-			if (i < this.getMaxAge()) {
-				if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt(growthChance) == 0)) {
-					worldIn.setBlockState(pos, this.withAge(i + 1), 2);
-					net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state);
-				}
-			}
-		}
+    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
+        return (worldIn.getLightSubtracted(pos, 0) >= 8 || worldIn.canSeeSky(pos)) && super.isValidPosition(state, worldIn, pos);
+    }
 
-	}
+    @SuppressWarnings("deprecation")
+    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
+        super.tick(state, worldIn, pos, rand);
+        if (!worldIn.isAreaLoaded(pos, 1))
+            return;
+        if (worldIn.getLightSubtracted(pos, 0) >= 13) {
+            int i = this.getAge(state);
+            int j =  worldIn.getBlockState(pos.down()).isIn(Blocks.COARSE_DIRT) ? 2 : this.getMaxAge();
+            int growthChance = !worldIn.isRaining() ? 7 : 5;
+            if (i < j) {
+                if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt(growthChance) == 0)) {
+                    worldIn.setBlockState(pos, this.withAge(i + 1), 2);
+                    net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state);
+                }
+            }
+        }
 
-	@SuppressWarnings("deprecation")
-	public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
-		if (entityIn instanceof RavagerEntity && net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(worldIn, entityIn)) {
-			worldIn.destroyBlock(pos, true, entityIn);
-		}
-		if (entityIn instanceof LivingEntity) {
-			LivingEntity entity = (LivingEntity) entityIn;
-			if (entity.getCreatureAttribute() == CreatureAttribute.ARTHROPOD && state.get(AGE) > 0) {
-				entity.addPotionEffect(new EffectInstance(Effects.INVISIBILITY, 20, 0, false, false, false));
-			}
-		}
-		super.onEntityCollision(state, worldIn, pos, entityIn);
-	}
-	
-	@Nullable
+    }
+
+    @SuppressWarnings("deprecation")
+    public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
+        if (entityIn instanceof RavagerEntity && net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(worldIn, entityIn)) {
+            worldIn.destroyBlock(pos, true, entityIn);
+        }
+        if (entityIn instanceof LivingEntity) {
+            LivingEntity entity = (LivingEntity) entityIn;
+            if (entity.getCreatureAttribute() == CreatureAttribute.ARTHROPOD && state.get(AGE) > 0) {
+                entity.addPotionEffect(new EffectInstance(Effects.INVISIBILITY, 20, 0, false, false, false));
+            }
+        }
+        super.onEntityCollision(state, worldIn, pos, entityIn);
+    }
+
+    @Nullable
     @Override
     public PathNodeType getAiPathNodeType(BlockState state, IBlockReader world, BlockPos pos, @Nullable MobEntity entity) {
-		if(entity instanceof CreeperEntity) return PathNodeType.DANGER_OTHER;
+        if (entity instanceof CreeperEntity)
+            return PathNodeType.DANGER_OTHER;
         return super.getAiPathNodeType(state, world, pos, entity);
     }
 
-	protected IItemProvider getSeedsItem() {
-		return NeapolitanItems.STRAWBERRY_PIPS.get();
-	}
+    protected IItemProvider getSeedsItem() {
+        return NeapolitanItems.STRAWBERRY_PIPS.get();
+    }
 
-	public ItemStack getItem(IBlockReader worldIn, BlockPos pos, BlockState state) {
-		return new ItemStack(this.getSeedsItem());
-	}
+    public ItemStack getItem(IBlockReader worldIn, BlockPos pos, BlockState state) {
+        return new ItemStack(this.getSeedsItem());
+    }
 
-	protected int getAge(BlockState state) {
-		return state.get(this.getAgeProperty());
-	}
+    protected int getAge(BlockState state) {
+        return state.get(this.getAgeProperty());
+    }
 
-	public BlockState withAge(int age) {
-		return this.getDefaultState().with(this.getAgeProperty(), Integer.valueOf(age));
-	}
+    public BlockState withAge(int age) {
+        return this.getDefaultState().with(this.getAgeProperty(), Integer.valueOf(age));
+    }
 
-	public boolean isMaxAge(BlockState state) {
-		return state.get(this.getAgeProperty()) >= this.getMaxAge();
-	}
+    public boolean isMaxAge(BlockState state) {
+        return state.get(this.getAgeProperty()) >= this.getMaxAge();
+    }
 
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-		builder.add(AGE, TYPE);
-	}
+    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+        builder.add(AGE, TYPE);
+    }
 
-	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-		return SHAPE_BY_AGE[state.get(this.getAgeProperty())];
-	}
+    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+        return SHAPE_BY_AGE[state.get(this.getAgeProperty())];
+    }
 
-	public IntegerProperty getAgeProperty() {
-		return AGE;
-	}
+    public IntegerProperty getAgeProperty() {
+        return AGE;
+    }
 
-	public int getMaxAge() {
-		return 6;
-	}
+    public int getMaxAge() {
+        return 6;
+    }
 
-	@Override
-	public boolean canGrow(IBlockReader block, BlockPos pos, BlockState state, boolean isClient) {
-		return !this.isMaxAge(state);
-	}
+    @Override
+    public boolean canGrow(IBlockReader block, BlockPos pos, BlockState state, boolean isClient) {
+        return !this.isMaxAge(state);
+    }
 
-	@Override
-	public boolean canUseBonemeal(World world, Random rand, BlockPos pos, BlockState state) {
-		return true;
-	}
+    @Override
+    public boolean canUseBonemeal(World world, Random rand, BlockPos pos, BlockState state) {
+        return true;
+    }
 
-	@Override
-	public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
-		int i = this.getAge(state) + this.getBonemealAgeIncrease(worldIn);
-		int j = this.getMaxAge();
-		if (i > j) {
-			i = j;
-		}
-		worldIn.setBlockState(pos, this.withAge(i), 2);
-	}
-	
-	static enum StrawberryType implements IStringSerializable {
-	    NONE("none"), 
-	    RED("red"), 
-	    WHITE("white");
+    @Override
+    public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
+        int i = this.getAge(state) + this.getBonemealAgeIncrease(worldIn);
+        int j = this.getMaxAge();
+        if (i > j) {
+            i = j;
+        }
+        worldIn.setBlockState(pos, this.withAge(i), 2);
+    }
 
-	    private final String name;
+    static enum StrawberryType implements IStringSerializable {
+        NONE("none"), RED("red"), WHITE("white");
 
-	    private StrawberryType(String name) {
-	        this.name = name;
-	    }
+        private final String name;
 
-	    @Override
-	    public String getString() {
-	        return this.name;
-	    }
-	}
+        private StrawberryType(String name) {
+            this.name = name;
+        }
+
+        @Override
+        public String getString() {
+            return this.name;
+        }
+    }
 }
