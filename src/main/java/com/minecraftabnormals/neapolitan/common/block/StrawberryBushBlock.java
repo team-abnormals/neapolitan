@@ -18,6 +18,7 @@ import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.monster.RavagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.pathfinding.PathNodeType;
@@ -46,7 +47,15 @@ import net.minecraftforge.common.IPlantable;
 public class StrawberryBushBlock extends BushBlock implements IPlantable, IGrowable {
     public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 6);
     public static final EnumProperty<StrawberryType> TYPE = EnumProperty.create("type", StrawberryType.class);
-    private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[] { Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 2.0D, 14.0D), Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 6.0D, 14.0D), Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 8.0D, 14.0D), Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 10.0D, 14.0D), Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 12.0D, 14.0D), Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 14.0D, 14.0D), Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 14.0D, 14.0D) };
+    private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[] {
+            Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 2.0D, 14.0D), 
+            Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 6.0D, 14.0D), 
+            Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 8.0D, 14.0D), 
+            Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 10.0D, 14.0D), 
+            Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 12.0D, 14.0D), 
+            Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 14.0D, 14.0D), 
+            Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 14.0D, 14.0D)
+    };
 
     public StrawberryBushBlock(Properties properties) {
         super(properties);
@@ -56,13 +65,14 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, IGrowa
     @SuppressWarnings("deprecation")
     @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        int i = state.get(AGE);
-        boolean flag = i == this.getMaxAge();
-        if (!flag && player.getHeldItem(handIn).getItem() == Items.BONE_MEAL) {
+        int age = state.get(AGE);
+        boolean fullyGrown = age == this.getMaxAge();
+        if (!fullyGrown && player.getHeldItem(handIn).getItem() == Items.BONE_MEAL) {
             return ActionResultType.PASS;
-        } else if (i > 1) {
-            int j = 1 + worldIn.rand.nextInt(2);
-            spawnAsEntity(worldIn, pos, new ItemStack(NeapolitanItems.STRAWBERRIES.get(), j + (flag ? 1 : 0)));
+        } else if (fullyGrown) {
+            int strawberryCount = 1 + worldIn.rand.nextInt(3);
+            Item strawberry = state.get(TYPE) == StrawberryType.WHITE ? NeapolitanItems.WHITE_STRAWBERRIES.get() : NeapolitanItems.STRAWBERRIES.get();
+            spawnAsEntity(worldIn, pos, new ItemStack(strawberry, strawberryCount));
             worldIn.playSound((PlayerEntity) null, pos, SoundEvents.ITEM_SWEET_BERRIES_PICK_FROM_BUSH, SoundCategory.BLOCKS, 1.0F, 0.8F + worldIn.rand.nextFloat() * 0.4F);
             worldIn.setBlockState(pos, state.with(AGE, Integer.valueOf(1)), 2);
             return ActionResultType.func_233537_a_(worldIn.isRemote);
@@ -85,12 +95,17 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, IGrowa
         if (!worldIn.isAreaLoaded(pos, 1))
             return;
         if (worldIn.getLightSubtracted(pos, 0) >= 13) {
-            int i = this.getAge(state);
-            int j =  worldIn.getBlockState(pos.down()).isIn(Blocks.COARSE_DIRT) ? 2 : this.getMaxAge();
+            int age = this.getAge(state);
+            int maxAgeForPos =  worldIn.getBlockState(pos.down()).isIn(Blocks.COARSE_DIRT) ? 2 : this.getMaxAge();
             int growthChance = !worldIn.isRaining() ? 7 : 5;
-            if (i < j) {
+            if (age < maxAgeForPos) {
                 if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt(growthChance) == 0)) {
-                    worldIn.setBlockState(pos, this.withAge(i + 1), 2);
+                    boolean white = worldIn.getBiome(pos).isHighHumidity();
+                    if (age != 5) {
+                        worldIn.setBlockState(pos, this.withAge(age + 1), 2);
+                    } else {
+                        worldIn.setBlockState(pos, this.withAge(age + 1).with(TYPE, white ? StrawberryType.WHITE : StrawberryType.RED), 2);
+                    }
                     net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state);
                 }
             }
