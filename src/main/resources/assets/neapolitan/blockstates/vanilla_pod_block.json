@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "neapolitan:block/vanilla_pod_block"
+    },
+    "axis=z": {
+      "model": "neapolitan:block/vanilla_pod_block",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "neapolitan:block/vanilla_pod_block",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

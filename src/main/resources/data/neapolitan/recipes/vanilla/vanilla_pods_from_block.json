@@ -2,11 +2,11 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "neapolitan:vanilla_bean_block"
+      "item": "neapolitan:vanilla_pod_block"
     }
   ],
   "result": {
-    "item": "neapolitan:vanilla_beans",
+    "item": "neapolitan:vanilla_pods",
     "count": 9
   }
 }

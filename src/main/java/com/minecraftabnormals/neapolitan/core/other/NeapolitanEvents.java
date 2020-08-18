@@ -60,16 +60,16 @@ public class NeapolitanEvents {
             }
         }
     }
-    
+
     @SubscribeEvent
     public static void onPotionAdded(PotionEvent.PotionApplicableEvent event) {
-        if(event.getEntityLiving().getActivePotionEffect(NeapolitanEffects.VANILLA_SCENT.get()) != null) {
+        if (event.getEntityLiving().getActivePotionEffect(NeapolitanEffects.VANILLA_SCENT.get()) != null) {
             if (event.getPotionEffect().getPotion() != NeapolitanEffects.VANILLA_SCENT.get()) {
                 event.setResult(Result.DENY);
             }
         }
     }
-    
+
     @SubscribeEvent
     public static void onVillagerTrades(VillagerTradesEvent event) {
         VillagerProfession type = event.getType();
@@ -90,13 +90,14 @@ public class NeapolitanEvents {
             expert.add(new TradeUtils.ItemsForEmeraldsTrade(NeapolitanItems.STRAWBERRY_CAKE.get(), 3, 1, 12, 15));
         }
         if (type == VillagerProfession.BUTCHER) {
-            master.add(new TradeUtils.EmeraldsForItemsTrade(NeapolitanItems.DRIED_VANILLA_BEANS.get(), 16, 1, 16, 30));
+            master.add(new TradeUtils.EmeraldsForItemsTrade(NeapolitanItems.DRIED_VANILLA_PODS.get(), 16, 1, 16, 30));
 
         }
-	}
+    }
+
     @SubscribeEvent
     public static void onWandererTradesEvent(WandererTradesEvent event) {
-    event.getGenericTrades().add(new TradeUtils.ItemsForEmeraldsTrade(NeapolitanItems.VANILLA_BEANS.get(), 1, 3, 4, 1));
-	event.getRareTrades().add(new TradeUtils.ItemsForEmeraldsTrade(NeapolitanItems.WHITE_STRAWBERRIES.get(), 4, 8, 2, 1));
+        event.getGenericTrades().add(new TradeUtils.ItemsForEmeraldsTrade(NeapolitanItems.VANILLA_PODS.get(), 1, 3, 4, 1));
+        event.getRareTrades().add(new TradeUtils.ItemsForEmeraldsTrade(NeapolitanItems.WHITE_STRAWBERRIES.get(), 4, 8, 2, 1));
     }
 }

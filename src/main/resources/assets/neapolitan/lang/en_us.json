@@ -15,8 +15,8 @@
 	
 	"block.neapolitan.strawberry_basket": "Strawberry Basket",
 	"block.neapolitan.white_strawberry_basket": "White Strawberry Basket",
-	"block.neapolitan.vanilla_bean_block": "Vanilla Bean Block",
-	"block.neapolitan.dried_vanilla_bean_block": "Dried Vanilla Bean Block",
+	"block.neapolitan.vanilla_pod_block": "Vanilla Pod Block",
+	"block.neapolitan.dried_vanilla_pod_block": "Dried Vanilla Pod Block",
 	
 	"block.neapolitan.vanilla_vine": "Vanilla Vine",
 	"block.neapolitan.vanilla_vine_plant": "Vanilla Vine",
@@ -37,8 +37,8 @@
 	"item.neapolitan.strawberry_scones": "Strawberry Scones",
   "item.neapolitan.strawberry_milkshake": "Strawberry Milkshake",
 	
-	"item.neapolitan.vanilla_beans": "Vanilla Beans",
-	"item.neapolitan.dried_vanilla_beans": "Dried Vanilla Beans",
+	"item.neapolitan.vanilla_pods": "Vanilla Pods",
+	"item.neapolitan.dried_vanilla_pods": "Dried Vanilla Pods",
 	"item.neapolitan.vanilla_ice_cream": "Vanilla Ice Cream",
 	"item.neapolitan.vanilla_pudding": "Vanilla Pudding",
   "item.neapolitan.vanilla_milkshake": "Vanilla Milkshake",

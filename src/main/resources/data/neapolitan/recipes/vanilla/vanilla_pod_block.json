@@ -7,11 +7,11 @@
   ],
   "key": {
     "#": {
-      "item": "neapolitan:dried_vanilla_beans"
+      "item": "neapolitan:vanilla_pods"
     }
   },
   "result": {
-    "item": "neapolitan:dried_vanilla_bean_block",
+    "item": "neapolitan:vanilla_pod_block",
     "count": 1
   }
 }

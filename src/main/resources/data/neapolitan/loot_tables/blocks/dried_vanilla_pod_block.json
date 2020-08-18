@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "neapolitan:dried_vanilla_bean_block"
+          "name": "neapolitan:dried_vanilla_pod_block"
         }
       ],
       "conditions": [

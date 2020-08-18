@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "neapolitan:vanilla_beans"
+          "name": "neapolitan:vanilla_pods"
         }
       ],
       "conditions": [

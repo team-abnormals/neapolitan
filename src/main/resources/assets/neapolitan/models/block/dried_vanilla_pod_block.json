@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "end": "neapolitan:block/dried_vanilla_pod_block_end",
+    "side": "neapolitan:block/dried_vanilla_pod_block_side"
+  }
+}

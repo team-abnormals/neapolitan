@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "neapolitan:item/vanilla_beans"
+        "layer0": "neapolitan:item/dried_vanilla_pods"
     }
 }

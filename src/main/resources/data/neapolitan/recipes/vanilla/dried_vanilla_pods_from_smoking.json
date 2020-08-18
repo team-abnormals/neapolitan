@@ -1,9 +1,9 @@
 {
   "type": "minecraft:smoking",
   "ingredient": {
-    "item": "neapolitan:vanilla_beans"
+    "item": "neapolitan:vanilla_pods"
   },
-  "result": "neapolitan:dried_vanilla_beans",
+  "result": "neapolitan:dried_vanilla_pods",
   "experience": 0.35,
   "cookingtime": 100
 }

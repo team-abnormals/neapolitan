@@ -52,8 +52,8 @@ public class NeapolitanBlocks {
     
     public static final RegistryObject<Block> STRAWBERRY_BASKET         = HELPER.createCompatBlock("quark", "strawberry_basket", () -> new Block(Properties.STRAWBERRY_BASKET), ItemGroup.DECORATIONS);
     public static final RegistryObject<Block> WHITE_STRAWBERRY_BASKET   = HELPER.createCompatBlock("quark", "white_strawberry_basket", () -> new Block(Properties.WHITE_STRAWBERRY_BASKET), ItemGroup.DECORATIONS);
-    public static final RegistryObject<Block> VANILLA_BEAN_BLOCK        = HELPER.createBlock("vanilla_bean_block", () -> new RotatedPillarBlock(Properties.VANILLA_BEAN_BLOCK), ItemGroup.DECORATIONS);
-    public static final RegistryObject<Block> DRIED_VANILLA_BEAN_BLOCK  = HELPER.createBlock("dried_vanilla_bean_block", () -> new RotatedPillarBlock(Properties.DRIED_VANILLA_BEAN_BLOCK), ItemGroup.DECORATIONS);
+    public static final RegistryObject<Block> VANILLA_POD_BLOCK         = HELPER.createBlock("vanilla_pod_block", () -> new RotatedPillarBlock(Properties.VANILLA_POD_BLOCK), ItemGroup.DECORATIONS);
+    public static final RegistryObject<Block> DRIED_VANILLA_POD_BLOCK   = HELPER.createBlock("dried_vanilla_pod_block", () -> new RotatedPillarBlock(Properties.DRIED_VANILLA_POD_BLOCK), ItemGroup.DECORATIONS);
 
     static class Properties {
         public static final AbstractBlock.Properties VANILLA_VINE       = AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.LIME).tickRandomly().doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.NETHER_VINE);
@@ -69,7 +69,7 @@ public class NeapolitanBlocks {
 
         public static final AbstractBlock.Properties STRAWBERRY_BASKET          = AbstractBlock.Properties.create(Material.WOOD, MaterialColor.RED).hardnessAndResistance(1.5F).sound(SoundType.WOOD);
         public static final AbstractBlock.Properties WHITE_STRAWBERRY_BASKET    = AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WHITE_TERRACOTTA).hardnessAndResistance(1.5F).sound(SoundType.WOOD);
-        public static final AbstractBlock.Properties VANILLA_BEAN_BLOCK         = AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.LIME).harvestTool(ToolType.HOE).hardnessAndResistance(0.5F, 2.5F).sound(SoundType.PLANT);
-        public static final AbstractBlock.Properties DRIED_VANILLA_BEAN_BLOCK   = AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.BROWN).harvestTool(ToolType.HOE).hardnessAndResistance(0.5F, 2.5F).sound(SoundType.PLANT);
+        public static final AbstractBlock.Properties VANILLA_POD_BLOCK          = AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.LIME).harvestTool(ToolType.HOE).hardnessAndResistance(0.5F, 2.5F).sound(SoundType.PLANT);
+        public static final AbstractBlock.Properties DRIED_VANILLA_POD_BLOCK    = AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.BROWN).harvestTool(ToolType.HOE).hardnessAndResistance(0.5F, 2.5F).sound(SoundType.PLANT);
     }
 }

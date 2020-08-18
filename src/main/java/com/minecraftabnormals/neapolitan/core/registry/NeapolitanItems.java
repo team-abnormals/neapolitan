@@ -38,8 +38,8 @@ public class NeapolitanItems {
     public static final RegistryObject<Item> STRAWBERRY_SCONES      = HELPER.createItem("strawberry_scones", () -> new HealingItem(1.0F, new Item.Properties().food(Foods.STRAWBERRY_SCONES).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> STRAWBERRY_MILKSHAKE   = HELPER.createItem("strawberry_milkshake", () -> new MilkshakeItem(EffectType.BENEFICIAL, new Item.Properties().food(Foods.STRAWBERRY_MILKSHAKE).containerItem(Items.GLASS_BOTTLE).maxStackSize(16).group(ItemGroup.FOOD)));
 
-    public static final RegistryObject<Item> VANILLA_BEANS          = HELPER.createItem("vanilla_beans", () -> new BlockNamedItem(NeapolitanBlocks.VANILLA_VINE.get(), new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> DRIED_VANILLA_BEANS    = HELPER.createItem("dried_vanilla_beans", () -> new Item(new Item.Properties().food(Foods.DRIED_VANILLA_BEANS).group(ItemGroup.FOOD)));
+    public static final RegistryObject<Item> VANILLA_PODS           = HELPER.createItem("vanilla_pods", () -> new BlockNamedItem(NeapolitanBlocks.VANILLA_VINE.get(), new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> DRIED_VANILLA_PODS     = HELPER.createItem("dried_vanilla_pods", () -> new Item(new Item.Properties().food(Foods.DRIED_VANILLA_PODS).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> VANILLA_ICE_CREAM      = HELPER.createItem("vanilla_ice_cream", () -> new SoupItem(new Item.Properties().food(Foods.VANILLA_ICE_CREAM).containerItem(Items.BOWL).maxStackSize(1).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> VANILLA_CAKE           = HELPER.createItem("vanilla_cake", () -> new BlockItem(NeapolitanBlocks.VANILLA_CAKE.get(), new Item.Properties().group(ItemGroup.FOOD).maxStackSize(1)));
     public static final RegistryObject<Item> VANILLA_PUDDING        = HELPER.createItem("vanilla_pudding", () -> new SoupItem(new Item.Properties().food(Foods.VANILLA_PUDDING).containerItem(Items.BOWL).maxStackSize(1).group(ItemGroup.FOOD)));
@@ -62,7 +62,7 @@ public class NeapolitanItems {
         public static final Food STRAWBERRY_CAKE        = (new Food.Builder()).hunger(1).saturation(0.1F).build();
         public static final Food STRAWBERRY_MILKSHAKE   = (new Food.Builder()).hunger(3).saturation(0.6F).setAlwaysEdible().build();
         
-        public static final Food DRIED_VANILLA_BEANS    = (new Food.Builder()).hunger(1).saturation(0.15F).effect(() -> new EffectInstance(NeapolitanEffects.VANILLA_SCENT.get(), 200), 1.0F).build();
+        public static final Food DRIED_VANILLA_PODS    = (new Food.Builder()).hunger(1).saturation(0.15F).effect(() -> new EffectInstance(NeapolitanEffects.VANILLA_SCENT.get(), 200), 1.0F).build();
         public static final Food VANILLA_ICE_CREAM      = (new Food.Builder()).hunger(6).saturation(0.42F).effect(() -> new EffectInstance(Effects.SLOWNESS, 100, 2), 1.0F).effect(() -> new EffectInstance(NeapolitanEffects.VANILLA_SCENT.get(), 400), 1.0F).build();
         public static final Food VANILLA_PUDDING        = (new Food.Builder()).hunger(6).saturation(1.2F).effect(() -> new EffectInstance(NeapolitanEffects.VANILLA_SCENT.get(), 300), 1.0F).build();
         public static final Food VANILLA_CAKE           = (new Food.Builder()).hunger(1).saturation(0.1F).effect(() -> new EffectInstance(NeapolitanEffects.VANILLA_SCENT.get(), 100), 1.0F).build();
