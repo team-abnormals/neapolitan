@@ -10,10 +10,18 @@ import com.teamabnormals.abnormals_core.core.utils.TradeUtils;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.entity.merchant.villager.VillagerTrades.ITrade;
 import net.minecraft.entity.monster.CreeperEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.util.DrinkHelper;
+import net.minecraft.util.Hand;
+import net.minecraft.util.SoundEvents;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteractSpecific;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -22,11 +30,29 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class NeapolitanEvents {
 
     @SubscribeEvent
-    public static void entityJoinWorldEvent(EntityJoinWorldEvent event) {
+    public static void onEntityJoinWorld(EntityJoinWorldEvent event) {
         Entity entity = event.getEntity();
         if (entity instanceof CreeperEntity) {
             CreeperEntity creeper = (CreeperEntity) event.getEntity();
             creeper.goalSelector.addGoal(3, new AvoidBlockGoal<>(creeper, NeapolitanBlocks.STRAWBERRY_BUSH.get(), 6.0F, 1.0D, 1.2D));
+        }
+    }
+
+    @SubscribeEvent
+    public static void onEntityInteract(EntityInteractSpecific event) {
+        ItemStack stack = event.getItemStack();
+        Entity entity = event.getTarget();
+        Hand hand = event.getHand();
+        PlayerEntity player = event.getPlayer();
+
+        if (entity.getType().isContained(NeapolitanTags.EntityTypes.MILKABLE)) {
+            boolean notChild = entity instanceof LivingEntity ? !((LivingEntity) entity).isChild() : true;
+            if (stack.getItem() == Items.GLASS_BOTTLE && notChild) {
+                player.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
+                ItemStack itemstack1 = DrinkHelper.func_241445_a_(stack, event.getPlayer(), NeapolitanItems.MILK_BOTTLE.get().getDefaultInstance());
+                player.swingArm(hand);
+                player.setHeldItem(hand, itemstack1);
+            }
         }
     }
 

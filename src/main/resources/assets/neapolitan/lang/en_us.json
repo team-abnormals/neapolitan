@@ -25,6 +25,8 @@
 	"block.neapolitan.strawberry_cake": "Strawberry Cake",
 	"block.neapolitan.vanilla_cake": "Vanilla Cake",
 	
+	"item.neapolitan.milk_bottle": "Milk Bottle",
+	
 	"item.neapolitan.chocolate_bar": "Chocolate Bar",
 	"item.neapolitan.chocolate_ice_cream": "Chocolate Ice Cream",
 	"item.neapolitan.chocolate_milkshake": "Chocolate Milkshake",
@@ -33,7 +35,6 @@
 	"item.neapolitan.strawberries": "Strawberries",
 	"item.neapolitan.strawberry_ice_cream": "Strawberry Ice Cream",
 	"item.neapolitan.strawberry_scones": "Strawberry Scones",
-	"item.neapolitan.strawberry_smoothie": "Strawberry Smoothie",
   "item.neapolitan.strawberry_milkshake": "Strawberry Milkshake",
 	
 	"item.neapolitan.vanilla_beans": "Vanilla Beans",

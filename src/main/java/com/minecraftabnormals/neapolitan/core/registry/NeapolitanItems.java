@@ -1,6 +1,6 @@
 package com.minecraftabnormals.neapolitan.core.registry;
 
-import com.minecraftabnormals.neapolitan.common.item.DrinkItem;
+import com.minecraftabnormals.neapolitan.common.item.MilkBottleItem;
 import com.minecraftabnormals.neapolitan.common.item.MilkshakeItem;
 import com.minecraftabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.abnormals_core.core.utils.RegistryHelper;
@@ -20,6 +20,8 @@ import net.minecraftforge.fml.common.Mod;
 public class NeapolitanItems {
     public static final RegistryHelper HELPER = Neapolitan.REGISTRY_HELPER;
 
+    public static final RegistryObject<Item> MILK_BOTTLE    = HELPER.createItem("milk_bottle", () -> new MilkBottleItem(new Item.Properties().maxStackSize(16).containerItem(Items.GLASS_BOTTLE).group(ItemGroup.FOOD)));
+    
     public static final RegistryObject<Item> CHOCOLATE_BAR          = HELPER.createItem("chocolate_bar", () -> new Item(new Item.Properties().food(Foods.CHOCOLATE_BAR).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> CHOCOLATE_ICE_CREAM    = HELPER.createItem("chocolate_ice_cream", () -> new SoupItem(new Item.Properties().food(Foods.CHOCOLATE_ICE_CREAM).containerItem(Items.BOWL).maxStackSize(1).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> CHOCOLATE_CAKE         = HELPER.createItem("chocolate_cake", () -> new BlockItem(NeapolitanBlocks.CHOCOLATE_CAKE.get(), new Item.Properties().group(ItemGroup.FOOD).maxStackSize(1)));
@@ -30,7 +32,6 @@ public class NeapolitanItems {
     public static final RegistryObject<Item> STRAWBERRY_ICE_CREAM   = HELPER.createItem("strawberry_ice_cream", () -> new SoupItem(new Item.Properties().food(Foods.STRAWBERRY_ICE_CREAM).containerItem(Items.BOWL).maxStackSize(1).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> STRAWBERRY_CAKE        = HELPER.createItem("strawberry_cake", () -> new BlockItem(NeapolitanBlocks.STRAWBERRY_CAKE.get(), new Item.Properties().group(ItemGroup.FOOD).maxStackSize(1)));
     public static final RegistryObject<Item> STRAWBERRY_SCONES      = HELPER.createItem("strawberry_scones", () -> new Item(new Item.Properties().food(Foods.STRAWBERRY_SCONES).group(ItemGroup.FOOD)));
-    public static final RegistryObject<Item> STRAWBERRY_SMOOTHIE    = HELPER.createItem("strawberry_smoothie", () -> new DrinkItem(new Item.Properties().food(Foods.STRAWBERRY_SMOOTHIE).maxStackSize(16).containerItem(Items.GLASS_BOTTLE).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> STRAWBERRY_MILKSHAKE   = HELPER.createItem("strawberry_milkshake", () -> new MilkshakeItem(EffectType.BENEFICIAL, new Item.Properties().food(Foods.STRAWBERRY_MILKSHAKE).containerItem(Items.GLASS_BOTTLE).maxStackSize(16).group(ItemGroup.FOOD)));
 
     public static final RegistryObject<Item> VANILLA_BEANS          = HELPER.createItem("vanilla_beans", () -> new BlockNamedItem(NeapolitanBlocks.VANILLA_VINE.get(), new Item.Properties().food(Foods.VANILLA_BEANS).group(ItemGroup.FOOD)));
@@ -55,7 +56,6 @@ public class NeapolitanItems {
         public static final Food STRAWBERRY_ICE_CREAM   = (new Food.Builder()).hunger(2).saturation(0.1F).build();
         public static final Food STRAWBERRY_CAKE        = (new Food.Builder()).hunger(2).saturation(0.1F).build();
         public static final Food STRAWBERRY_SCONES      = (new Food.Builder()).hunger(2).saturation(0.1F).build();
-        public static final Food STRAWBERRY_SMOOTHIE    = (new Food.Builder()).hunger(2).saturation(0.1F).build();
         public static final Food STRAWBERRY_MILKSHAKE   = (new Food.Builder()).hunger(2).saturation(0.1F).build();
         
         public static final Food VANILLA_BEANS          = (new Food.Builder()).hunger(2).saturation(0.1F).build();
