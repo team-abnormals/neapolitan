@@ -115,6 +115,15 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, IGrowa
 
     @SuppressWarnings("deprecation")
     public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
+        if (worldIn.rand.nextInt(15) == 0) {
+            if (entityIn.lastTickPosX != entityIn.getPosX() || entityIn.lastTickPosZ != entityIn.getPosZ()) {
+                double d0 = Math.abs(entityIn.getPosX() - entityIn.lastTickPosX);
+                double d1 = Math.abs(entityIn.getPosZ() - entityIn.lastTickPosZ);
+                if (d0 >= (double)0.003F || d1 >= (double)0.003F) {
+                    worldIn.playSound((PlayerEntity) null, pos, SoundEvents.BLOCK_GRASS_STEP, SoundCategory.BLOCKS, 1.5F, 0.8F + worldIn.rand.nextFloat() * 0.4F);
+                }
+            }
+        }
         if (entityIn instanceof RavagerEntity && net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(worldIn, entityIn)) {
             worldIn.destroyBlock(pos, true, entityIn);
         }
