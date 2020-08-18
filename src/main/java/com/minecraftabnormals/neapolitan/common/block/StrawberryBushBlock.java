@@ -74,7 +74,7 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, IGrowa
             Item strawberry = state.get(TYPE) == StrawberryType.WHITE ? NeapolitanItems.WHITE_STRAWBERRIES.get() : NeapolitanItems.STRAWBERRIES.get();
             spawnAsEntity(worldIn, pos, new ItemStack(strawberry, strawberryCount));
             worldIn.playSound((PlayerEntity) null, pos, SoundEvents.ITEM_SWEET_BERRIES_PICK_FROM_BUSH, SoundCategory.BLOCKS, 1.0F, 0.8F + worldIn.rand.nextFloat() * 0.4F);
-            worldIn.setBlockState(pos, state.with(AGE, Integer.valueOf(1)), 2);
+            worldIn.setBlockState(pos, state.with(AGE, Integer.valueOf(1)).with(TYPE, StrawberryType.NONE), 2);
             return ActionResultType.func_233537_a_(worldIn.isRemote);
         } else {
             return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
@@ -100,7 +100,7 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, IGrowa
             int growthChance = !worldIn.isRaining() ? 7 : 5;
             if (age < maxAgeForPos) {
                 if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt(growthChance) == 0)) {
-                    boolean white = worldIn.getBiome(pos).isHighHumidity();
+                    boolean white = pos.getY() >= 200;
                     if (age != 5) {
                         worldIn.setBlockState(pos, this.withAge(age + 1), 2);
                     } else {
