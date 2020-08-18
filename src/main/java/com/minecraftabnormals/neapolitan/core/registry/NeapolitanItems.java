@@ -58,7 +58,7 @@ public class NeapolitanItems {
         
         public static final Food STRAWBERRIES           = (new Food.Builder()).hunger(3).saturation(0.03F).build();
         public static final Food STRAWBERRY_ICE_CREAM   = (new Food.Builder()).hunger(6).saturation(0.42F).effect(() -> new EffectInstance(Effects.SLOWNESS, 100, 2), 1.0F).build();
-        public static final Food STRAWBERRY_SCONES      = (new Food.Builder()).hunger(5).saturation(0.03F).build();
+        public static final Food STRAWBERRY_SCONES      = (new Food.Builder()).hunger(5).saturation(0.03F).fastToEat().build();
         public static final Food STRAWBERRY_CAKE        = (new Food.Builder()).hunger(1).saturation(0.1F).build();
         public static final Food STRAWBERRY_MILKSHAKE   = (new Food.Builder()).hunger(3).saturation(0.6F).setAlwaysEdible().build();
         
