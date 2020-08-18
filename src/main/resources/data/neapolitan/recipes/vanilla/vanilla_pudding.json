@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "minecraft:milk_bucket"
+      "item": "neapolitan:milk_bottle"
     },
     {
       "item": "neapolitan:dried_vanilla_beans"

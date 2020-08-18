@@ -2,20 +2,20 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "minecraft:bowl"
-    },
-    {
-      "item": "neapolitan:dried_vanilla_beans"
+      "item": "minecraft:bucket"
     },
     {
       "item": "neapolitan:milk_bottle"
     },
     {
-      "item": "minecraft:ice"
+      "item": "neapolitan:milk_bottle"
+    },
+    {
+      "item": "neapolitan:milk_bottle"
     }
   ],
   "result": {
-    "item": "neapolitan:vanilla_ice_cream",
+    "item": "minecraft:milk_bucket",
     "count": 1
   }
 }
