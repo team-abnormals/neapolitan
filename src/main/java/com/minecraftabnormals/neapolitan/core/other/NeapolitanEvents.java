@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.minecraftabnormals.neapolitan.common.entity.goals.AvoidBlockGoal;
 import com.minecraftabnormals.neapolitan.core.Neapolitan;
+import com.minecraftabnormals.neapolitan.core.NeapolitanConfig;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
 import com.teamabnormals.abnormals_core.core.utils.TradeUtils;
@@ -45,7 +46,7 @@ public class NeapolitanEvents {
         Hand hand = event.getHand();
         PlayerEntity player = event.getPlayer();
 
-        if (entity.getType().isContained(NeapolitanTags.EntityTypes.MILKABLE)) {
+        if (NeapolitanConfig.COMMON.milkingWithGlassBottles.get() && entity.getType().isContained(NeapolitanTags.EntityTypes.MILKABLE)) {
             boolean notChild = entity instanceof LivingEntity ? !((LivingEntity) entity).isChild() : true;
             if (stack.getItem() == Items.GLASS_BOTTLE && notChild) {
                 player.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
