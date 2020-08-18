@@ -6,6 +6,7 @@ import com.minecraftabnormals.neapolitan.common.entity.goals.AvoidBlockGoal;
 import com.minecraftabnormals.neapolitan.core.Neapolitan;
 import com.minecraftabnormals.neapolitan.core.NeapolitanConfig;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanBlocks;
+import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEffects;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
 import com.teamabnormals.abnormals_core.core.utils.TradeUtils;
 
@@ -22,8 +23,10 @@ import net.minecraft.util.DrinkHelper;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvents;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.PotionEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteractSpecific;
 import net.minecraftforge.event.village.VillagerTradesEvent;
+import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
@@ -56,7 +59,16 @@ public class NeapolitanEvents {
             }
         }
     }
-
+    
+    @SubscribeEvent
+    public static void onPotionAdded(PotionEvent.PotionApplicableEvent event) {
+        if(event.getEntityLiving().getActivePotionEffect(NeapolitanEffects.VANILLA_SCENT.get()) != null) {
+            if (event.getPotionEffect().getPotion() != NeapolitanEffects.VANILLA_SCENT.get()) {
+                event.setResult(Result.DENY);
+            }
+        }
+    }
+    
     @SubscribeEvent
     public static void onVillagerTrades(VillagerTradesEvent event) {
         VillagerProfession type = event.getType();
@@ -75,6 +87,5 @@ public class NeapolitanEvents {
             expert.add(new TradeUtils.ItemsForEmeraldsTrade(NeapolitanItems.CHOCOLATE_CAKE.get(), 3, 1, 12, 15));
             expert.add(new TradeUtils.ItemsForEmeraldsTrade(NeapolitanItems.STRAWBERRY_CAKE.get(), 3, 1, 12, 15));
         }
-
     }
 }

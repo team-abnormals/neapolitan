@@ -1,6 +1,7 @@
 package com.minecraftabnormals.neapolitan.common.block;
 
 import com.google.common.collect.ImmutableList;
+import com.minecraftabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.mojang.datafixers.util.Pair;
 
 import net.minecraft.block.BlockState;
@@ -54,6 +55,8 @@ public class FlavoredCakeBlock extends CakeBlock {
             player.getFoodStats().addStats(food.getHealing(), food.getSaturation());
             int i = state.get(BITES);
 
+            if (this == NeapolitanBlocks.STRAWBERRY_CAKE.get()) player.heal(1.0F);
+            
             if (this.getEffectType() != null) {
                 ImmutableList<EffectInstance> effects = ImmutableList.copyOf(player.getActivePotionEffects());
                 for (int j = 0; j < effects.size(); ++j) {

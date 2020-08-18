@@ -1,0 +1,21 @@
+package com.minecraftabnormals.neapolitan.common.item;
+
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+
+public class HealingItem extends Item {
+    private final float healAmount;
+
+    public HealingItem(float healAmount, Properties builder) {
+        super(builder);
+        this.healAmount = healAmount;
+    }
+
+    @Override
+    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity entityLiving) {
+        entityLiving.heal(healAmount);
+        return super.onItemUseFinish(stack, worldIn, entityLiving);
+    }
+}

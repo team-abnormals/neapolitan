@@ -1,6 +1,7 @@
 package com.minecraftabnormals.neapolitan.core;
 
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanBlocks;
+import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEffects;
 import com.teamabnormals.abnormals_core.core.utils.RegistryHelper;
 
 import net.minecraft.client.renderer.RenderType;
@@ -31,6 +32,7 @@ public class Neapolitan {
     	
     	REGISTRY_HELPER.getDeferredBlockRegister().register(modEventBus);
     	REGISTRY_HELPER.getDeferredItemRegister().register(modEventBus);
+    	NeapolitanEffects.EFFECTS.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
         
