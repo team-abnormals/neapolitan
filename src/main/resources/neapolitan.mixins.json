@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "com.minecraftabnormals.neapolitan.core.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "minVersion": "0.8",
+  "refmap": "neapolitan.refmap.json",
+  "mixins": [
+    "MilkBucketItemMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

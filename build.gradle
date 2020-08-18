@@ -3,17 +3,26 @@ buildscript {
         maven { url = 'https://files.minecraftforge.net/maven' }
         jcenter()
         mavenCentral()
+        maven { url = 'https://dist.creeper.host/Sponge/maven' }
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        classpath group: 'org.spongepowered', name: 'mixingradle', version: '0.7-SNAPSHOT'
     }
 }
+
 plugins {
   id "com.wynprice.cursemaven" version "2.1.1"
 }
+
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
+apply plugin: 'org.spongepowered.mixin'
+
+mixin {
+    add sourceSets.main, "nether_extension.refmap.json"
+}
 
 version = '1.0.0'
 group = 'com.minecraftabnormals'
@@ -29,6 +38,7 @@ minecraft {
             workingDirectory project.file('run')
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'debug'
+            arg "-mixin.config=neapolitan.mixins.json"
             mods {
                 neapolitan {
                     source sourceSets.main
@@ -39,6 +49,7 @@ minecraft {
             workingDirectory project.file('run')
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'debug'
+            arg "-mixin.config=neapolitan.mixins.json"
             mods {
                 neapolitan {
                     source sourceSets.main
@@ -69,12 +80,13 @@ jar {
     manifest {
         attributes([
         	"Specification-Title": "Neapolitan",
-            "Specification-Vendor": "Team Abnormals",
-            "Specification-Version": "1",
-            "Implementation-Title": project.name,
-            "Implementation-Version": "${version}",
-            "Implementation-Vendor": "Team Abnormals",
-            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+          "Specification-Vendor": "Team Abnormals",
+          "Specification-Version": "1",
+          "Implementation-Title": project.name,
+          "Implementation-Version": "${version}",
+          "Implementation-Vendor": "Team Abnormals",
+          "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+          "MixinConfigs": "neapolitan.mixins.json"
         ])
     }
 }

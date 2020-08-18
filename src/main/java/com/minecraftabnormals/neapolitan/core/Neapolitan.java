@@ -43,7 +43,6 @@ public class Neapolitan {
     		Foods.COOKIE.fastToEat = true;
         	Foods.COOKIE.saturation = 0.3F;
     	});
-    	
     }
     
     private void setupClient(final FMLClientSetupEvent event) {
