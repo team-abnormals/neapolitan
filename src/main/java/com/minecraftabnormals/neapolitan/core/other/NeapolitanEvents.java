@@ -77,6 +77,7 @@ public class NeapolitanEvents {
         List<ITrade> novice = trades.get(1);
         List<ITrade> journeyman = trades.get(3);
         List<ITrade> expert = trades.get(4);
+        List<ITrade> master = trades.get(5);
 
         if (type == VillagerProfession.FARMER) {
             novice.add(new TradeUtils.EmeraldsForItemsTrade(NeapolitanItems.STRAWBERRIES.get(), 24, 1, 16, 2));
@@ -87,5 +88,14 @@ public class NeapolitanEvents {
             expert.add(new TradeUtils.ItemsForEmeraldsTrade(NeapolitanItems.CHOCOLATE_CAKE.get(), 3, 1, 12, 15));
             expert.add(new TradeUtils.ItemsForEmeraldsTrade(NeapolitanItems.STRAWBERRY_CAKE.get(), 3, 1, 12, 15));
         }
+        if (type == VillagerProfession.BUTCHER) {
+            master.add(new TradeUtils.EmeraldsForItemsTrade(NeapolitanItems.DRIED_VANILLA_BEANS.get(), 16, 1, 16, 30));
+
+        }
+	}
+    @SubscribeEvent
+    public static void onWandererTradesEvent(WandererTradesEvent event) {
+    event.getGenericTrades().add(new TradeUtils.ItemsForEmeraldsTrade(NeapolitanItems.VANILLA_BEANS.get(), 1, 3, 4, 1));
+	event.getRareTrades().add(new TradeUtils.ItemsForEmeraldsTrade(NeapolitanItems.WHITE_STRAWBERRIES.get(), 4, 8, 2, 1));
     }
 }
