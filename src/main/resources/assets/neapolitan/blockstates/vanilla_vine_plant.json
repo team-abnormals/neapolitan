@@ -1,7 +1,30 @@
 {
   "variants": {
-    "": {
+    "facing=down": {
+      "model": "neapolitan:block/vanilla_vine_plant",
+      "x": 180
+    },
+    "facing=up": {
       "model": "neapolitan:block/vanilla_vine_plant"
+    },
+    "facing=north": {
+      "model": "neapolitan:block/vanilla_vine_plant",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "neapolitan:block/vanilla_vine_plant",
+      "x": 90,
+      "y": 180
+    },
+    "facing=west": {
+      "model": "neapolitan:block/vanilla_vine_plant",
+      "x": 90,
+      "y": 270
+    },
+    "facing=east": {
+      "model": "neapolitan:block/vanilla_vine_plant",
+      "x": 90,
+      "y": 90
     }
   }
 }
