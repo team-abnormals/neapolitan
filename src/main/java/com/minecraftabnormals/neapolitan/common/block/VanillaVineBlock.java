@@ -6,6 +6,7 @@ import java.util.Random;
 import com.minecraftabnormals.neapolitan.common.block.api.IPoisonCloud;
 import com.minecraftabnormals.neapolitan.core.other.NeapolitanTags;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanBlocks;
+import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -35,6 +36,7 @@ public class VanillaVineBlock extends Block implements IPoisonCloud, IGrowable {
         super(properties);
     }
 
+    @Override
     public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
         if (!state.isValidPosition(worldIn, pos)) {
             worldIn.destroyBlock(pos, true);
@@ -48,36 +50,44 @@ public class VanillaVineBlock extends Block implements IPoisonCloud, IGrowable {
         return VanillaVineTopBlock.facingSameDirection(state, otherState) || block.isIn(NeapolitanTags.Blocks.VANILLA_PLANTABLE_ON);
     }
 
+
+    @Override
     @SuppressWarnings("deprecation")
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
         if (facing == stateIn.get(FACING).getOpposite() && !stateIn.isValidPosition(worldIn, currentPos)) {
             worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 1);
         }
 
-        VanillaVineTopBlock abstracttopplantblock = (VanillaVineTopBlock) NeapolitanBlocks.VANILLA_VINE.get();
+        VanillaVineTopBlock topVine = (VanillaVineTopBlock) NeapolitanBlocks.VANILLA_VINE.get();
         if (facing == stateIn.get(FACING)) {
             Block block = facingState.getBlock();
-            if (block != this && block != abstracttopplantblock) {
-                return abstracttopplantblock.func_235504_a_(worldIn).with(FACING, stateIn.get(FACING));
+            if (block != this && block != topVine) {
+                return topVine.getDefaultState().with(FACING, stateIn.get(FACING));
             }
         }
 
         return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
+
+    @Override
     public ItemStack getItem(IBlockReader worldIn, BlockPos pos, BlockState state) {
-        return new ItemStack(NeapolitanBlocks.VANILLA_VINE.get());
+        return new ItemStack(NeapolitanItems.VANILLA_PODS.get());
     }
 
+
+    @Override
     public boolean canGrow(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
         Optional<BlockPos> optional = this.nextGrowPosition(worldIn, pos, state);
         return optional.isPresent() && PlantBlockHelper.isAir(worldIn.getBlockState(optional.get().offset(state.get(FACING))));
     }
 
+    @Override
     public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, BlockState state) {
         return true;
     }
 
+    @Override
     public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
         Optional<BlockPos> optional = this.nextGrowPosition(worldIn, pos, state);
         if (optional.isPresent()) {
@@ -102,6 +112,7 @@ public class VanillaVineBlock extends Block implements IPoisonCloud, IGrowable {
         return block == NeapolitanBlocks.VANILLA_VINE.get() ? Optional.of(blockpos) : Optional.empty();
     }
 
+    @Override
     @SuppressWarnings("deprecation")
     public boolean isReplaceable(BlockState state, BlockItemUseContext useContext) {
         boolean flag = super.isReplaceable(state, useContext);
@@ -114,6 +125,7 @@ public class VanillaVineBlock extends Block implements IPoisonCloud, IGrowable {
         this.createPoisonCloud(world, pos, state, player);
     }
 
+    @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         super.fillStateContainer(builder);
         builder.add(FACING);

@@ -14,10 +14,10 @@ import net.minecraft.block.PlantBlockHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
-import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
+import net.minecraft.util.Direction.Axis;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
@@ -29,13 +29,9 @@ import net.minecraft.world.server.ServerWorld;
 public class VanillaVineTopBlock extends Block implements IPoisonCloud, IGrowable {
     protected static final VoxelShape SHAPE = Block.makeCuboidShape(4.0D, 9.0D, 4.0D, 12.0D, 16.0D, 12.0D);
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
-    public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 5);
-    private final double growthChance;
 
     public VanillaVineTopBlock(AbstractBlock.Properties properties) {
         super(properties);
-        this.growthChance = 0.1D;
-        this.setDefaultState(this.stateContainer.getBaseState().with(AGE, Integer.valueOf(0)));
     }
 
     @Override
@@ -66,36 +62,58 @@ public class VanillaVineTopBlock extends Block implements IPoisonCloud, IGrowabl
         this.createPoisonCloud(world, pos, state, player);
     }
 
+    @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         super.fillStateContainer(builder);
-        builder.add(AGE, FACING);
+        builder.add(FACING);
     }
 
-    public BlockState func_235504_a_(IWorld world) {
-        return this.getDefaultState().with(AGE, Integer.valueOf(world.getRandom().nextInt(5)));
-    }
-
+    @Override
     public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
         if (!state.isValidPosition(worldIn, pos)) {
             worldIn.destroyBlock(pos, true);
         }
     }
 
-    public boolean ticksRandomly(BlockState state) {
-        return state.get(AGE) < 5;
-    }
-
+    @Override
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
-        if (state.get(AGE) < 5 && net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos.offset(state.get(FACING)), worldIn.getBlockState(pos.offset(state.get(FACING))), random.nextDouble() < this.growthChance)) {
+        if (this.canGrowUp(state, worldIn, pos.offset(state.get(FACING))) && net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos.offset(state.get(FACING)), worldIn.getBlockState(pos.offset(state.get(FACING))), random.nextDouble() < 0.1D)) {
             BlockPos blockpos = pos.offset(state.get(FACING));
             if (this.canGrowIn(worldIn.getBlockState(blockpos))) {
-                worldIn.setBlockState(blockpos, state.func_235896_a_(AGE));
+                worldIn.setBlockState(blockpos, state);
                 net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, blockpos, worldIn.getBlockState(blockpos));
             }
         }
-
+    }
+    
+    private boolean canGrowUp(BlockState state, ServerWorld world, BlockPos pos) {
+        Direction facing = state.get(FACING);
+        if (Direction.Plane.VERTICAL.test(facing)) {
+            for(Direction direction : Direction.Plane.HORIZONTAL) {
+                if (world.getBlockState(pos.offset(direction)).isSolid()) {
+                    return true;
+                }
+            }
+        } else {
+            for(Direction direction : Direction.Plane.VERTICAL) {
+                if (world.getBlockState(pos.offset(direction)).isSolid()) {
+                    return true;
+                }
+            }
+            
+            for(Direction direction : Direction.Plane.HORIZONTAL) {
+                if (direction.getAxis() != Axis.Y && direction.getAxis() != facing.getAxis()) {
+                    if (world.getBlockState(pos.offset(direction)).isSolid()) {
+                        return true;
+                    }
+                }
+            }
+        }
+        
+        return world.getBlockState(pos.offset(facing.getOpposite(), 2)).isIn(NeapolitanTags.Blocks.VANILLA_PLANTABLE_ON);
     }
 
+    @Override
     @SuppressWarnings("deprecation")
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
         if (facing == stateIn.get(FACING).getOpposite() && !stateIn.isValidPosition(worldIn, currentPos)) {
@@ -108,23 +126,24 @@ public class VanillaVineTopBlock extends Block implements IPoisonCloud, IGrowabl
         }
     }
 
+    @Override
     public boolean canGrow(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
         return this.canGrowIn(worldIn.getBlockState(pos.offset(state.get(FACING))));
     }
 
+    @Override
     public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, BlockState state) {
         return true;
     }
 
+    @Override
     public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
         BlockPos blockpos = pos.offset(state.get(FACING));
-        int i = Math.min(state.get(AGE) + 1, 5);
         int j = this.getGrowthAmount(rand);
 
         for (int k = 0; k < j && this.canGrowIn(worldIn.getBlockState(blockpos)); ++k) {
-            worldIn.setBlockState(blockpos, state.with(AGE, Integer.valueOf(i)));
+            worldIn.setBlockState(blockpos, state);
             blockpos = blockpos.offset(state.get(FACING));
-            i = Math.min(i + 1, 5);
         }
     }
 
