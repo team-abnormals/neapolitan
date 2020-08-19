@@ -1,7 +1,9 @@
 package com.minecraftabnormals.neapolitan.core;
 
+import com.minecraftabnormals.neapolitan.common.world.gen.NeapolitanBiomeFeatures;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEffects;
+import com.minecraftabnormals.neapolitan.core.registry.NeapolitanFeatures;
 import com.teamabnormals.abnormals_core.core.utils.RegistryHelper;
 
 import net.minecraft.client.renderer.RenderType;
@@ -33,6 +35,7 @@ public class Neapolitan {
     	REGISTRY_HELPER.getDeferredBlockRegister().register(modEventBus);
     	REGISTRY_HELPER.getDeferredItemRegister().register(modEventBus);
     	NeapolitanEffects.EFFECTS.register(modEventBus);
+    	NeapolitanFeatures.FEATURES.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
         
@@ -46,6 +49,7 @@ public class Neapolitan {
 
     private void setupCommon(final FMLCommonSetupEvent event) {
     	DeferredWorkQueue.runLater(() -> {
+    	    NeapolitanBiomeFeatures.generateFeatures();
     		Foods.COOKIE.fastToEat = true;
         	Foods.COOKIE.saturation = 0.3F;
     	});

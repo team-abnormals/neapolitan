@@ -200,7 +200,7 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, IGrowa
         worldIn.setBlockState(pos, this.withAge(i), 2);
     }
 
-    static enum StrawberryType implements IStringSerializable {
+    public static enum StrawberryType implements IStringSerializable {
         NONE("none"), RED("red"), WHITE("white");
 
         private final String name;

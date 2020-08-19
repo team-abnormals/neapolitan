@@ -34,6 +34,7 @@ public class VanillaVineBlock extends Block implements IPoisonCloud, IGrowable {
 
     public VanillaVineBlock(AbstractBlock.Properties properties) {
         super(properties);
+        this.setDefaultState(this.getStateContainer().getBaseState().with(FACING, Direction.UP));
     }
 
     @Override
