@@ -9,7 +9,7 @@ license="https://github.com/minecraftabnormals/Neapolitan/blob/master/LICENSE.tx
     logoFile="logo.png"
     authors="bageldotjpg & five"
     displayName="Neapolitan"
-    description='''INSERT DESCRIPTION HERE'''
+    description='''Adds new flavors and fruits to create tasty Ice Creams, Milkshakes, Cakes, and more!'''
 
 [[dependencies.neapolitan]]
     modId="forge"
