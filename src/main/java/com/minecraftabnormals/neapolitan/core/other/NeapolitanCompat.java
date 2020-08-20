@@ -38,6 +38,8 @@ public class NeapolitanCompat {
         DataUtils.registerCompostable(NeapolitanBlocks.CHOCOLATE_BRICK_WALL.get(), 0.85F);
         DataUtils.registerCompostable(NeapolitanBlocks.CHOCOLATE_BRICK_VERTICAL_SLAB.get(), 0.3F);
 		
+        DataUtils.registerCompostable(NeapolitanBlocks.CHISELED_CHOCOLATE_BRICKS.get(), 0.85F);
+        
         DataUtils.registerCompostable(NeapolitanBlocks.CHOCOLATE_TILES.get(), 0.85F);
         DataUtils.registerCompostable(NeapolitanBlocks.CHOCOLATE_TILE_STAIRS.get(), 0.85F);
         DataUtils.registerCompostable(NeapolitanBlocks.CHOCOLATE_TILE_SLAB.get(), 0.3F);
@@ -64,6 +66,8 @@ public class NeapolitanCompat {
         DataUtils.registerFlammable(NeapolitanBlocks.CHOCOLATE_BRICK_WALL.get(), 60, 100);
         DataUtils.registerFlammable(NeapolitanBlocks.CHOCOLATE_BRICK_VERTICAL_SLAB.get(), 60, 100);
 		
+        DataUtils.registerFlammable(NeapolitanBlocks.CHISELED_CHOCOLATE_BRICKS.get(), 60, 100);
+        
         DataUtils.registerFlammable(NeapolitanBlocks.CHOCOLATE_TILES.get(), 60, 100);
         DataUtils.registerFlammable(NeapolitanBlocks.CHOCOLATE_TILE_STAIRS.get(), 60, 100);
         DataUtils.registerFlammable(NeapolitanBlocks.CHOCOLATE_TILE_SLAB.get(), 60, 100);

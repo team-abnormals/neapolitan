@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "neapolitan:chocolate_brick_slab"
+    }
+  },
+  "result": {
+    "item": "neapolitan:chiseled_chocolate_bricks",
+    "count": 1
+  }
+}

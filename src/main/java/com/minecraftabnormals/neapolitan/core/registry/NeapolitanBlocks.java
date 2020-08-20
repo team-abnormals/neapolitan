@@ -35,6 +35,8 @@ public class NeapolitanBlocks {
     public static final RegistryObject<Block> CHOCOLATE_BRICK_WALL          = HELPER.createBlock("chocolate_brick_wall", () -> new WallBlock(Properties.CHOCOLATE_BRICKS), ItemGroup.DECORATIONS);
     public static final RegistryObject<Block> CHOCOLATE_BRICK_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "chocolate_brick_vertical_slab", () -> new VerticalSlabBlock(Properties.CHOCOLATE_BRICKS), ItemGroup.BUILDING_BLOCKS);
 
+    public static final RegistryObject<Block> CHISELED_CHOCOLATE_BRICKS     = HELPER.createBlock("chiseled_chocolate_bricks", () -> new Block(Properties.CHOCOLATE_BRICKS), ItemGroup.BUILDING_BLOCKS);
+
     public static final RegistryObject<Block> CHOCOLATE_TILES               = HELPER.createBlock("chocolate_tiles", () -> new Block(Properties.CHOCOLATE_TILES), ItemGroup.BUILDING_BLOCKS);
     public static final RegistryObject<Block> CHOCOLATE_TILE_SLAB           = HELPER.createBlock("chocolate_tile_slab", () -> new SlabBlock(Properties.CHOCOLATE_TILES), ItemGroup.BUILDING_BLOCKS);
     public static final RegistryObject<Block> CHOCOLATE_TILE_STAIRS         = HELPER.createBlock("chocolate_tile_stairs", () -> new StairsBlock(() -> CHOCOLATE_TILES.get().getDefaultState(), Properties.CHOCOLATE_TILES), ItemGroup.BUILDING_BLOCKS);
