@@ -40,7 +40,7 @@ public class NeapolitanEvents {
         Entity entity = event.getEntity();
         if (entity instanceof CreeperEntity) {
             CreeperEntity creeper = (CreeperEntity) event.getEntity();
-            creeper.goalSelector.addGoal(3, new AvoidBlockGoal<>(creeper, NeapolitanBlocks.STRAWBERRY_BUSH.get(), 6.0F, 1.0D, 1.2D));
+            creeper.goalSelector.addGoal(3, new AvoidBlockGoal<>(creeper, 6, 1.0D, 1.2D));
         }
     }
 
