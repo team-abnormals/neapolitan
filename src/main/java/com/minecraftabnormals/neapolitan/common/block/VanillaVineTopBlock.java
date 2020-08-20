@@ -78,7 +78,7 @@ public class VanillaVineTopBlock extends Block implements IPoisonCloud, IGrowabl
 
     @Override
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
-        if (this.canGrowUp(state, worldIn, pos.offset(state.get(FACING))) && net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos.offset(state.get(FACING)), worldIn.getBlockState(pos.offset(state.get(FACING))), random.nextDouble() < 0.1D)) {
+        if (this.canGrowUp(state, worldIn, pos) && net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos.offset(state.get(FACING)), worldIn.getBlockState(pos.offset(state.get(FACING))), random.nextDouble() < 0.1D)) {
             BlockPos blockpos = pos.offset(state.get(FACING));
             if (this.canGrowIn(worldIn.getBlockState(blockpos))) {
                 worldIn.setBlockState(blockpos, state);

@@ -27,6 +27,7 @@ import net.minecraftforge.event.entity.living.PotionEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteractSpecific;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.event.village.WandererTradesEvent;
+import net.minecraftforge.event.world.ExplosionEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -60,6 +61,17 @@ public class NeapolitanEvents {
             }
         }
     }
+    
+//    @SubscribeEvent
+//    public static void onExplosion(ExplosionEvent.Detonate event) {
+//        if (event.getExplosion().getExplosivePlacedBy() instanceof CreeperEntity) {
+//            CreeperEntity creeper = (CreeperEntity) event.getExplosion().getExplosivePlacedBy();
+//            if(event.getWorld().getBlockState(creeper.getPosition()).getBlock() == NeapolitanBlocks.STRAWBERRY_BUSH.get()) {
+//                event.getAffectedEntities().clear();
+//                event.getAffectedBlocks().clear();
+//            }
+//        }
+//    }
 
     @SubscribeEvent
     public static void onPotionAdded(PotionEvent.PotionApplicableEvent event) {
