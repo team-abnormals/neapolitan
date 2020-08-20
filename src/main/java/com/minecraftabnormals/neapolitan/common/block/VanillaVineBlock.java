@@ -30,9 +30,16 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
 public class VanillaVineBlock extends Block implements IPoisonCloud, IGrowable {
-    protected static final VoxelShape SHAPE = Block.makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D);
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
-
+    public static final VoxelShape[] SHAPES = new VoxelShape[] {
+            Block.makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D), // DOWN
+            Block.makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D), // UP
+            Block.makeCuboidShape(4.0D, 4.0D, 0.0D, 12.0D, 12.0D, 16.0D), // NORTH
+            Block.makeCuboidShape(4.0D, 4.0D, 0.0D, 12.0D, 12.0D, 16.0D), // SOUTH
+            Block.makeCuboidShape(0.0D, 4.0D, 4.0D, 16.0D, 12.0D, 12.0D), // WEST
+            Block.makeCuboidShape(0.0D, 4.0D, 4.0D, 16.0D, 12.0D, 12.0D), // EAST
+    };
+    
     public VanillaVineBlock(AbstractBlock.Properties properties) {
         super(properties);
         this.setDefaultState(this.getStateContainer().getBaseState().with(FACING, Direction.UP));
@@ -45,10 +52,9 @@ public class VanillaVineBlock extends Block implements IPoisonCloud, IGrowable {
         }
     }
     
-    
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        return SHAPE;
+        return SHAPES[state.get(FACING).getIndex()];
     }
 
     @Override
