@@ -4,7 +4,7 @@ import com.minecraftabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
 import com.teamabnormals.abnormals_core.core.utils.DataUtils;
 
-public class NeapolitanData {
+public class NeapolitanCompat {
 
     public static void registerCompostables() {
         DataUtils.registerCompostable(NeapolitanItems.STRAWBERRY_PIPS.get(), 0.3F);
@@ -29,8 +29,8 @@ public class NeapolitanData {
 		
         DataUtils.registerCompostable(NeapolitanBlocks.CHOCOLATE_BLOCK.get(), 1.0F);
 		
-        DataUtils.registerCompostable(NeapolitanItems.STRAWBERRY_BASKET.get(), 1.0F);
-        DataUtils.registerCompostable(NeapolitanItems.WHITE_STRAWBERRY_BASKET.get(), 1.0F);
+        DataUtils.registerCompostable(NeapolitanBlocks.STRAWBERRY_BASKET.get(), 1.0F);
+        DataUtils.registerCompostable(NeapolitanBlocks.WHITE_STRAWBERRY_BASKET.get(), 1.0F);
 		
         DataUtils.registerCompostable(NeapolitanBlocks.CHOCOLATE_BRICKS.get(), 0.85F);
         DataUtils.registerCompostable(NeapolitanBlocks.CHOCOLATE_BRICK_STAIRS.get(), 0.85F);
@@ -46,14 +46,16 @@ public class NeapolitanData {
     }
 
     public static void registerFlammables() {
-        DataUtils.registerFlammable(NeapolitanBlocks.VANILLA_VINE.get(), 5, 10);
-        DataUtils.registerFlammable(NeapolitanBlocks.VANILLA_VINE_PLANT.get(), 5, 10);
+        DataUtils.registerFlammable(NeapolitanBlocks.VANILLA_VINE.get(), 60, 100);
+        DataUtils.registerFlammable(NeapolitanBlocks.VANILLA_VINE_PLANT.get(), 60, 100);
 		
-        DataUtils.registerFlammable(NeapolitanBlocks.VANILLA_POD_BLOCK.get(), 5, 20);
-        DataUtils.registerFlammable(NeapolitanBlocks.DRIED_VANILLA_POD_BLOCK.get(), 5, 20);
+        DataUtils.registerFlammable(NeapolitanBlocks.VANILLA_POD_BLOCK.get(), 30, 60);
+        DataUtils.registerFlammable(NeapolitanBlocks.DRIED_VANILLA_POD_BLOCK.get(), 30, 60);
 		
         DataUtils.registerFlammable(NeapolitanBlocks.STRAWBERRY_BUSH.get(), 60, 100);
-		
+        DataUtils.registerFlammable(NeapolitanBlocks.STRAWBERRY_BASKET.get(), 5, 20);
+        DataUtils.registerFlammable(NeapolitanBlocks.WHITE_STRAWBERRY_BASKET.get(), 5, 20);
+        
         DataUtils.registerFlammable(NeapolitanBlocks.CHOCOLATE_BLOCK.get(), 60, 100);
 		
         DataUtils.registerFlammable(NeapolitanBlocks.CHOCOLATE_BRICKS.get(), 60, 100);
