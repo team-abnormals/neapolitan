@@ -17,6 +17,7 @@ import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.entity.merchant.villager.VillagerTrades.ITrade;
 import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.DrinkHelper;
@@ -72,6 +73,8 @@ public class NeapolitanEvents {
                         LivingEntity livingEntity = ((LivingEntity) entity);
                         livingEntity.heal(5.0F);
                     }
+                    if (entity instanceof ServerPlayerEntity)
+                        NeapolitanCriteriaTriggers.CREEPER_HEAL.trigger((ServerPlayerEntity)entity);
                 }
 
                 event.getAffectedEntities().clear();

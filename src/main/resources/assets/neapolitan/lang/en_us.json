@@ -50,5 +50,17 @@
 	"item.neapolitan.neapolitan_ice_cream": "Neapolitan Ice Cream",
 	
 	"effect.neapolitan.sugar_rush": "Sugar Rush",
-	"effect.neapolitan.vanilla_scent": "Vanilla Scent"
+	"effect.neapolitan.vanilla_scent": "Vanilla Scent",
+	
+	"advancements.husbandry.creeper_heal.title": "Love Bomb",
+  "advancements.husbandry.creeper_heal.description": "Get healed by a Creeper that blew up inside a Strawberry Bush",
+	
+	"advancements.husbandry.vanilla_poison.title": "Killer Vanilla",
+  "advancements.husbandry.vanilla_poison.description": "Break Vanilla without shears, unleashing a harmful aura",
+	
+	"advancements.husbandry.eat_all_chocolates.title": "Great Big Greedy Nincompoop",
+  "advancements.husbandry.eat_all_chocolates.description": "Eat every chocolate releated food",
+  
+  "advancements.husbandry.harvest_white_strawberries.title": "Picnic in the Clouds",
+  "advancements.husbandry.harvest_white_strawberries.description": "Obtain White Strawberries by growing Strawberry Bushes at a high altitude"
 }

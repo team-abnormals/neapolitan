@@ -1,0 +1,29 @@
+{
+  "parent": "neapolitan:husbandry/creeper_heal",
+  "display": {
+    "icon": {
+      "item": "neapolitan:white_strawberries"
+    },
+    "title": {
+      "translate": "advancements.husbandry.harvest_white_strawberries.title"
+    },
+    "description": {
+      "translate": "advancements.husbandry.harvest_white_strawberries.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "harvest_white_strawberries": {
+      "trigger": "neapolitan:harvest_strawberries",
+      "conditions": {
+        "block": "neapolitan:strawberry_bush",
+        "state": {
+          "type": "white"
+        }
+      }
+    }
+  }
+}

@@ -4,6 +4,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import com.minecraftabnormals.neapolitan.core.other.NeapolitanCriteriaTriggers;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
 
 import net.minecraft.block.Block;
@@ -18,6 +19,7 @@ import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.monster.RavagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -76,6 +78,8 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, IGrowa
             spawnAsEntity(worldIn, pos, new ItemStack(strawberry, strawberryCount));
             worldIn.playSound((PlayerEntity) null, pos, SoundEvents.ITEM_SWEET_BERRIES_PICK_FROM_BUSH, SoundCategory.BLOCKS, 1.0F, 0.8F + worldIn.rand.nextFloat() * 0.4F);
             worldIn.setBlockState(pos, state.with(AGE, Integer.valueOf(1)).with(TYPE, StrawberryType.NONE), 2);
+            if (player instanceof ServerPlayerEntity)
+                NeapolitanCriteriaTriggers.HARVEST_STRAWBERRIES.trigger((ServerPlayerEntity)player, state);
             return ActionResultType.func_233537_a_(worldIn.isRemote);
         } else {
             return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);

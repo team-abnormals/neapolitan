@@ -1,0 +1,23 @@
+{
+  "parent": "minecraft:husbandry/plant_seed",
+  "display": {
+    "icon": {
+      "item": "neapolitan:vanilla_pods"
+    },
+    "title": {
+      "translate": "advancements.husbandry.vanilla_poison.title"
+    },
+    "description": {
+      "translate": "advancements.husbandry.vanilla_poison.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "vanilla_poison": {
+      "trigger": "neapolitan:vanilla_poison"
+    }
+  }
+}
