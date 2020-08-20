@@ -57,7 +57,7 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, IGrowa
             Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 14.0D, 14.0D), 
             Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 14.0D, 14.0D)
     };
-
+    
     public StrawberryBushBlock(Properties properties) {
         super(properties);
         this.setDefaultState(this.stateContainer.getBaseState().with(AGE, 0).with(TYPE, StrawberryType.NONE));
@@ -97,15 +97,14 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, IGrowa
             return;
         if (worldIn.getLightSubtracted(pos, 0) >= 13) {
             int age = this.getAge(state);
-            int maxAgeForPos =  worldIn.getBlockState(pos.down()).isIn(Blocks.COARSE_DIRT) ? 2 : this.getMaxAge();
+            int maxAgeForPos = worldIn.getBlockState(pos.down()).isIn(Blocks.COARSE_DIRT) ? 2 : this.getMaxAge();
             int growthChance = !worldIn.isRaining() ? 7 : 5;
             if (age < maxAgeForPos) {
                 if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt(growthChance) == 0)) {
-                    boolean white = pos.getY() >= 200 && worldIn.func_234922_V_() == DimensionType.OVERWORLD;
                     if (age != 5) {
                         worldIn.setBlockState(pos, this.withAge(age + 1), 2);
                     } else {
-                        worldIn.setBlockState(pos, this.withAge(age + 1).with(TYPE, white ? StrawberryType.WHITE : StrawberryType.RED), 2);
+                        worldIn.setBlockState(pos, this.withAge(age + 1).with(TYPE, this.isWhite(worldIn, pos) ? StrawberryType.WHITE : StrawberryType.RED), 2);
                     }
                     net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state);
                 }
@@ -120,7 +119,7 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, IGrowa
             if (entityIn.lastTickPosX != entityIn.getPosX() || entityIn.lastTickPosZ != entityIn.getPosZ()) {
                 double d0 = Math.abs(entityIn.getPosX() - entityIn.lastTickPosX);
                 double d1 = Math.abs(entityIn.getPosZ() - entityIn.lastTickPosZ);
-                if (d0 >= (double)0.003F || d1 >= (double)0.003F) {
+                if (d0 >= (double) 0.003F || d1 >= (double) 0.003F) {
                     worldIn.playSound((PlayerEntity) null, pos, SoundEvents.BLOCK_GRASS_STEP, SoundCategory.BLOCKS, 1.5F, 0.8F + worldIn.rand.nextFloat() * 0.4F);
                 }
             }
@@ -181,6 +180,10 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, IGrowa
         return 6;
     }
 
+    private boolean isWhite(ServerWorld worldIn, BlockPos pos) {
+        return pos.getY() >= 200 && worldIn.func_234922_V_() == DimensionType.OVERWORLD;
+    }
+
     @Override
     public boolean canGrow(IBlockReader block, BlockPos pos, BlockState state, boolean isClient) {
         return !this.isMaxAge(state);
@@ -193,12 +196,12 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, IGrowa
 
     @Override
     public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
-        int i = this.getAge(state) + this.getBonemealAgeIncrease(worldIn);
-        int j = this.getMaxAge();
-        if (i > j) {
-            i = j;
+        int age = Math.min(this.getAge(state) + this.getBonemealAgeIncrease(worldIn), this.getMaxAge());
+        if (age != 6) {
+            worldIn.setBlockState(pos, this.withAge(age), 2);
+        } else {
+            worldIn.setBlockState(pos, this.withAge(age).with(TYPE, this.isWhite(worldIn, pos) ? StrawberryType.WHITE : StrawberryType.RED), 2);
         }
-        worldIn.setBlockState(pos, this.withAge(i), 2);
     }
 
     public static enum StrawberryType implements IStringSerializable {
