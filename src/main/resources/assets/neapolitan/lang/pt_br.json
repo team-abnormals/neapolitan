@@ -7,6 +7,8 @@
 	"block.neapolitan.chocolate_brick_wall": "Muro de tijolos de chocolate",
 	"block.neapolitan.chocolate_brick_vertical_slab": "Laje vertical de tijolos de chocolate",
 	
+	"block.neapolitan.chiseled_chocolate_bricks": "Tijolos de chocolate talhados",
+	
 	"block.neapolitan.chocolate_tiles": "Azulejos de chocolate",
 	"block.neapolitan.chocolate_tile_slab": "Laje de azulejos de chocolate",
 	"block.neapolitan.chocolate_tile_stairs": "Escadas de azulejos de chocolate",
@@ -35,13 +37,13 @@
 	"item.neapolitan.strawberries": "Morangos",
 	"item.neapolitan.strawberry_ice_cream": "Sorvete de morango",
 	"item.neapolitan.strawberry_scones": "Bolinhos de morango",
-  "item.neapolitan.strawberry_milkshake": "Milkshake de morango",
+  	"item.neapolitan.strawberry_milkshake": "Milkshake de morango",
 	
 	"item.neapolitan.vanilla_pods": "Vagens de baunilha",
 	"item.neapolitan.dried_vanilla_pods": "Vagens de baunilha secas",
 	"item.neapolitan.vanilla_ice_cream": "Sorvete de baunilha",
 	"item.neapolitan.vanilla_pudding": "Pudim de baunilha",
-  "item.neapolitan.vanilla_milkshake": "Milkshake de baunilha",
+  	"item.neapolitan.vanilla_milkshake": "Milkshake de baunilha",
 	
 	"item.neapolitan.chocolate_strawberries": "Morangos achocolatados",
 	"item.neapolitan.white_strawberries": "Morangos brancos",
@@ -51,4 +53,16 @@
 	
 	"effect.neapolitan.sugar_rush": "Febre de açúcar",
 	"effect.neapolitan.vanilla_scent": "Cheiro de baunilha"
+	
+	"advancements.husbandry.creeper_heal.title": "Bombardeio de amor",
+  	"advancements.husbandry.creeper_heal.description": "Seja curado por um creeper que explodiu dentro de um arbusto de morangos",
+	
+	"advancements.husbandry.vanilla_poison.title": "Baunilhas assassinas",
+  	"advancements.husbandry.vanilla_poison.description": "Quebre uma planta de baunilha sem tesouras, liberando uma aura nociva",
+	
+	"advancements.husbandry.place_all_chocolate_blocks.title": "Um prédio de pedras marrons",
+  	"advancements.husbandry.place_all_chocolate_blocks.description": "Coloque cada tipo de bloco de chocolate",
+  
+  	"advancements.husbandry.harvest_white_strawberries.title": "Piquenique nas nuvens",
+  	"advancements.husbandry.harvest_white_strawberries.description": "Obtenha morangos brancos ao cultivar arbustos de morango a uma altitude elevada"
 }
