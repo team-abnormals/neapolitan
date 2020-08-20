@@ -111,7 +111,7 @@ public class VanillaVineTopBlock extends Block implements IPoisonCloud, IGrowabl
             }
         }
         
-        return world.getBlockState(pos.offset(facing.getOpposite(), 2)).isIn(NeapolitanTags.Blocks.VANILLA_PLANTABLE_ON);
+        return world.getBlockState(pos.offset(facing.getOpposite())).isIn(NeapolitanTags.Blocks.VANILLA_PLANTABLE_ON);
     }
 
     @Override
