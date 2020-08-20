@@ -38,6 +38,7 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
@@ -100,7 +101,7 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, IGrowa
             int growthChance = !worldIn.isRaining() ? 7 : 5;
             if (age < maxAgeForPos) {
                 if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt(growthChance) == 0)) {
-                    boolean white = pos.getY() >= 200;
+                    boolean white = pos.getY() >= 200 && worldIn.func_234922_V_() == DimensionType.OVERWORLD;
                     if (age != 5) {
                         worldIn.setBlockState(pos, this.withAge(age + 1), 2);
                     } else {
