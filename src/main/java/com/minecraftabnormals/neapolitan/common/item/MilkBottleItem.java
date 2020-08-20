@@ -21,7 +21,7 @@ public class MilkBottleItem extends Item {
 
     @Override
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity entityLiving) {
-        entityLiving.getActivePotionEffects().clear();
+        if (!worldIn.isRemote) entityLiving.clearActivePotions();
 
         if (entityLiving instanceof ServerPlayerEntity) {
             ServerPlayerEntity serverplayerentity = (ServerPlayerEntity) entityLiving;
