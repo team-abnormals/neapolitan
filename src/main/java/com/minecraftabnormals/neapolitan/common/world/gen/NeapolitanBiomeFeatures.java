@@ -24,11 +24,11 @@ public class NeapolitanBiomeFeatures {
 
     public static void generate(Biome biome) {
         if (biome.getCategory() == Biome.Category.PLAINS) {
-            biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NeapolitanFeatures.STRAWBERRY_PATCH.get().withConfiguration(STRAWBERRY_PATCH_CONFIG).withPlacement(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(31))));
+            biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NeapolitanFeatures.STRAWBERRY_PATCH.get().withConfiguration(STRAWBERRY_PATCH_CONFIG).withPlacement(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(34))));
         }
         
         if (biome.getCategory() == Biome.Category.SAVANNA) {
-            biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NeapolitanFeatures.VANILLA_PATCH.get().withConfiguration(VANILLA_VINE_PATCH_CONFIG).withPlacement(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(25))));
+            biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NeapolitanFeatures.VANILLA_PATCH.get().withConfiguration(VANILLA_VINE_PATCH_CONFIG).withPlacement(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(28))));
         }
     }
 }
