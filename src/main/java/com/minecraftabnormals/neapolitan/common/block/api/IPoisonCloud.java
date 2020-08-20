@@ -12,7 +12,7 @@ import net.minecraftforge.common.Tags;
 public interface IPoisonCloud {
     default void createPoisonCloud(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         //FROM: @link CreeperEntity
-        if (!player.getHeldItemMainhand().getItem().isIn(Tags.Items.SHEARS)) {
+        if (!player.getHeldItemMainhand().getItem().isIn(Tags.Items.SHEARS) && !player.abilities.isCreativeMode) {
             AreaEffectCloudEntity areaeffectcloudentity = new AreaEffectCloudEntity(world, pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F);
             areaeffectcloudentity.addEffect(new EffectInstance(new EffectInstance(Effects.POISON, 300)));
             areaeffectcloudentity.setRadius(1.0F);
