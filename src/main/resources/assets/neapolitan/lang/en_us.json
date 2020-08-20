@@ -1,66 +1,64 @@
 {
-	"block.neapolitan.chocolate_block": "Chocolate Block",
-
-	"block.neapolitan.chocolate_bricks": "Chocolate Bricks",
-	"block.neapolitan.chocolate_brick_slab": "Chocolate Brick Slab",
-	"block.neapolitan.chocolate_brick_stairs": "Chocolate Brick Stairs",
-	"block.neapolitan.chocolate_brick_wall": "Chocolate Brick Wall",
-	"block.neapolitan.chocolate_brick_vertical_slab": "Chocolate Brick Vertical Slab",
-	
-	"block.neapolitan.chiseled_chocolate_bricks": "Chiseled Chocolate Bricks",
-	
-	"block.neapolitan.chocolate_tiles": "Chocolate Tiles",
-	"block.neapolitan.chocolate_tile_slab": "Chocolate Tile Slab",
-	"block.neapolitan.chocolate_tile_stairs": "Chocolate Tile Stairs",
-	"block.neapolitan.chocolate_tile_wall": "Chocolate Tile Wall",
-	"block.neapolitan.chocolate_tile_vertical_slab": "Chocolate Tile Vertical Slab",
-	
-	"block.neapolitan.strawberry_basket": "Strawberry Basket",
-	"block.neapolitan.white_strawberry_basket": "White Strawberry Basket",
-	"block.neapolitan.vanilla_pod_block": "Vanilla Pod Block",
-	"block.neapolitan.dried_vanilla_pod_block": "Dried Vanilla Pod Block",
-	
-	"block.neapolitan.vanilla_vine": "Vanilla Vine",
-	"block.neapolitan.vanilla_vine_plant": "Vanilla Vine",
-	
-	"block.neapolitan.chocolate_cake": "Chocolate Cake",
-	"block.neapolitan.strawberry_cake": "Strawberry Cake",
-	"block.neapolitan.vanilla_cake": "Vanilla Cake",
-	
-	"item.neapolitan.milk_bottle": "Milk Bottle",
-	
-	"item.neapolitan.chocolate_bar": "Chocolate Bar",
-	"item.neapolitan.chocolate_ice_cream": "Chocolate Ice Cream",
-	"item.neapolitan.chocolate_milkshake": "Chocolate Milkshake",
-	
-	"item.neapolitan.strawberry_pips": "Strawberry Pips",
-	"item.neapolitan.strawberries": "Strawberries",
-	"item.neapolitan.strawberry_ice_cream": "Strawberry Ice Cream",
-	"item.neapolitan.strawberry_scones": "Strawberry Scones",
+  "block.neapolitan.chocolate_block": "Chocolate Block",
+  "block.neapolitan.chocolate_bricks": "Chocolate Bricks",
+  "block.neapolitan.chocolate_brick_slab": "Chocolate Brick Slab",
+  "block.neapolitan.chocolate_brick_stairs": "Chocolate Brick Stairs",
+  "block.neapolitan.chocolate_brick_wall": "Chocolate Brick Wall",
+  "block.neapolitan.chocolate_brick_vertical_slab": "Chocolate Brick Vertical Slab",
+  
+  "block.neapolitan.chiseled_chocolate_bricks": "Chiseled Chocolate Bricks",
+  
+  "block.neapolitan.chocolate_tiles": "Chocolate Tiles",
+  "block.neapolitan.chocolate_tile_slab": "Chocolate Tile Slab",
+  "block.neapolitan.chocolate_tile_stairs": "Chocolate Tile Stairs",
+  "block.neapolitan.chocolate_tile_wall": "Chocolate Tile Wall",
+  "block.neapolitan.chocolate_tile_vertical_slab": "Chocolate Tile Vertical Slab",
+  
+  "block.neapolitan.strawberry_basket": "Strawberry Basket",
+  "block.neapolitan.white_strawberry_basket": "White Strawberry Basket",
+  "block.neapolitan.vanilla_pod_block": "Vanilla Pod Block",
+  "block.neapolitan.dried_vanilla_pod_block": "Dried Vanilla Pod Block",
+  
+  "block.neapolitan.vanilla_vine": "Vanilla Vine",
+  "block.neapolitan.vanilla_vine_plant": "Vanilla Vine",
+  
+  "block.neapolitan.chocolate_cake": "Chocolate Cake",
+  "block.neapolitan.strawberry_cake": "Strawberry Cake",
+  "block.neapolitan.vanilla_cake": "Vanilla Cake",
+  
+  "item.neapolitan.milk_bottle": "Milk Bottle",
+  
+  "item.neapolitan.chocolate_bar": "Chocolate Bar",
+  "item.neapolitan.chocolate_ice_cream": "Chocolate Ice Cream",
+  "item.neapolitan.chocolate_milkshake": "Chocolate Milkshake",
+  
+  "item.neapolitan.strawberry_pips": "Strawberry Pips",
+  "item.neapolitan.strawberries": "Strawberries",
+  "item.neapolitan.strawberry_ice_cream": "Strawberry Ice Cream",
+  "item.neapolitan.strawberry_scones": "Strawberry Scones",
   "item.neapolitan.strawberry_milkshake": "Strawberry Milkshake",
-	
-	"item.neapolitan.vanilla_pods": "Vanilla Pods",
-	"item.neapolitan.dried_vanilla_pods": "Dried Vanilla Pods",
-	"item.neapolitan.vanilla_ice_cream": "Vanilla Ice Cream",
-	"item.neapolitan.vanilla_pudding": "Vanilla Pudding",
+  
+  "item.neapolitan.vanilla_pods": "Vanilla Pods",
+  "item.neapolitan.dried_vanilla_pods": "Dried Vanilla Pods",
+  "item.neapolitan.vanilla_ice_cream": "Vanilla Ice Cream",
+  "item.neapolitan.vanilla_pudding": "Vanilla Pudding",
   "item.neapolitan.vanilla_milkshake": "Vanilla Milkshake",
-	
-	"item.neapolitan.chocolate_strawberries": "Chocolate Strawberries",
-	"item.neapolitan.white_strawberries": "White Strawberries",
-	"item.neapolitan.vanilla_chocolate_fingers": "Vanilla Chocolate Fingers",
-	
-	"item.neapolitan.neapolitan_ice_cream": "Neapolitan Ice Cream",
-	
-	"effect.neapolitan.sugar_rush": "Sugar Rush",
-	"effect.neapolitan.vanilla_scent": "Vanilla Scent",
-	
-	"advancements.husbandry.creeper_heal.title": "Love Bomb",
+  
+  "item.neapolitan.chocolate_strawberries": "Chocolate Strawberries",
+  "item.neapolitan.white_strawberries": "White Strawberries",
+  "item.neapolitan.vanilla_chocolate_fingers": "Vanilla Chocolate Fingers",
+  "item.neapolitan.neapolitan_ice_cream": "Neapolitan Ice Cream",
+  
+  "effect.neapolitan.sugar_rush": "Sugar Rush",
+  "effect.neapolitan.vanilla_scent": "Vanilla Scent",
+  
+  "advancements.husbandry.creeper_heal.title": "Love Bomb",
   "advancements.husbandry.creeper_heal.description": "Get healed by a Creeper that blew up inside a Strawberry Bush",
-	
-	"advancements.husbandry.vanilla_poison.title": "Killer Vanilla",
+  
+  "advancements.husbandry.vanilla_poison.title": "Killer Vanilla",
   "advancements.husbandry.vanilla_poison.description": "Break Vanilla without shears, unleashing a harmful aura",
-	
-	"advancements.husbandry.place_all_chocolate_blocks.title": "A Brownstone Building",
+  
+  "advancements.husbandry.place_all_chocolate_blocks.title": "A Brownstone Building",
   "advancements.husbandry.place_all_chocolate_blocks.description": "Place every kind of Chocolate block",
   
   "advancements.husbandry.harvest_white_strawberries.title": "Picnic in the Clouds",
