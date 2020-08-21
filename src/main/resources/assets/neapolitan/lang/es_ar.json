@@ -1,54 +1,66 @@
 {
-	"block.neapolitan.chocolate_block": "Bloque de chocolate",
+  "block.neapolitan.chocolate_block": "Bloque de chocolate",
+  "block.neapolitan.chocolate_bricks": "Ladrillos de chocolate",
+  "block.neapolitan.chocolate_brick_slab": "Baldosa de ladrillos de chocolate",
+  "block.neapolitan.chocolate_brick_stairs": "Escaleras de ladrillos de chocolate",
+  "block.neapolitan.chocolate_brick_wall": "Pared de ladrillos de chocolate",
+  "block.neapolitan.chocolate_brick_vertical_slab": "Baldosa vertical de ladrillos de chocolate",
 
-	"block.neapolitan.chocolate_bricks": "Ladrillos de chocolate",
-	"block.neapolitan.chocolate_brick_slab": "Baldosa de ladrillos de chocolate",
-	"block.neapolitan.chocolate_brick_stairs": "Escaleras de ladrillos de chocolate",
-	"block.neapolitan.chocolate_brick_wall": "Pared de ladrillos de chocolate",
-	"block.neapolitan.chocolate_brick_vertical_slab": "Baldosa vertical de ladrillos de chocolate",
-	
-	"block.neapolitan.chocolate_tiles": "Azulejos de chocolate",
-	"block.neapolitan.chocolate_tile_slab": "Baldosa de azulejos de chocolate",
-	"block.neapolitan.chocolate_tile_stairs": "Escaleras de azulejos de chocolate",
-	"block.neapolitan.chocolate_tile_wall": "Pared de azulejos de chocolate",
-	"block.neapolitan.chocolate_tile_vertical_slab": "Baldosa vertical de azulejos de chocolate",
-	
-	"block.neapolitan.strawberry_basket": "Canasta de frutillas",
-	"block.neapolitan.white_strawberry_basket": "Canasta de frutillas blancas",
-	"block.neapolitan.vanilla_pod_block": "Bloque de vainas de vainilla",
-	"block.neapolitan.dried_vanilla_pod_block": "Bloque de vainas de vainilla secas",
-	
-	"block.neapolitan.vanilla_vine": "Enredaderas de vainilla",
-	"block.neapolitan.vanilla_vine_plant": "Enredaderas de vainilla",
-	
-	"block.neapolitan.chocolate_cake": "Torta de chocolate",
-	"block.neapolitan.strawberry_cake": "Torta de frutilla",
-	"block.neapolitan.vanilla_cake": "Torta de vainilla",
-	
-	"item.neapolitan.milk_bottle": "Botella de leche",
-	
-	"item.neapolitan.chocolate_bar": "Barra de chocolate",
-	"item.neapolitan.chocolate_ice_cream": "Helado de chocolate",
-	"item.neapolitan.chocolate_milkshake": "Batido de chocolate",
-	
-	"item.neapolitan.strawberry_pips": "Pepas de frutilla",
-	"item.neapolitan.strawberries": "Frutillas",
-	"item.neapolitan.strawberry_ice_cream": "Helado de frutilla",
-	"item.neapolitan.strawberry_scones": "Scones de frutilla",
+  "block.neapolitan.chiseled_chocolate_bricks": "Ladrillos de chocolate cincelados",
+
+  "block.neapolitan.chocolate_tiles": "Azulejos de chocolate",
+  "block.neapolitan.chocolate_tile_slab": "Baldosa de azulejos de chocolate",
+  "block.neapolitan.chocolate_tile_stairs": "Escaleras de azulejos de chocolate",
+  "block.neapolitan.chocolate_tile_wall": "Pared de azulejos de chocolate",
+  "block.neapolitan.chocolate_tile_vertical_slab": "Baldosa vertical de azulejos de chocolate",
+
+  "block.neapolitan.strawberry_basket": "Canasta de frutillas",
+  "block.neapolitan.white_strawberry_basket": "Canasta de frutillas blancas",
+  "block.neapolitan.vanilla_pod_block": "Bloque de vainas de vainilla",
+  "block.neapolitan.dried_vanilla_pod_block": "Bloque de vainas de vainilla secas",
+
+  "block.neapolitan.vanilla_vine": "Enredaderas de vainilla",
+  "block.neapolitan.vanilla_vine_plant": "Enredaderas de vainilla",
+
+  "block.neapolitan.chocolate_cake": "Torta de chocolate",
+  "block.neapolitan.strawberry_cake": "Torta de frutilla",
+  "block.neapolitan.vanilla_cake": "Torta de vainilla",
+
+  "item.neapolitan.milk_bottle": "Botella de leche",
+
+  "item.neapolitan.chocolate_bar": "Barra de chocolate",
+  "item.neapolitan.chocolate_ice_cream": "Helado de chocolate",
+  "item.neapolitan.chocolate_milkshake": "Batido de chocolate",
+
+  "item.neapolitan.strawberry_pips": "Pepas de frutilla",
+  "item.neapolitan.strawberries": "Frutillas",
+  "item.neapolitan.strawberry_ice_cream": "Helado de frutilla",
+  "item.neapolitan.strawberry_scones": "Scones de frutilla",
   "item.neapolitan.strawberry_milkshake": "Batido de frutilla",
-	
-	"item.neapolitan.vanilla_pods": "Vainas de vainilla",
-	"item.neapolitan.dried_vanilla_pods": "Vainas de vainilla secas",
-	"item.neapolitan.vanilla_ice_cream": "Helado de vainilla",
-	"item.neapolitan.vanilla_pudding": "Budín de vainilla",
+
+  "item.neapolitan.vanilla_pods": "Vainas de vainilla",
+  "item.neapolitan.dried_vanilla_pods": "Vainas de vainilla secas",
+  "item.neapolitan.vanilla_ice_cream": "Helado de vainilla",
+  "item.neapolitan.vanilla_pudding": "Budín de vainilla",
   "item.neapolitan.vanilla_milkshake": "Batido de vainilla",
-	
-	"item.neapolitan.chocolate_strawberries": "Frutillas con chocolate",
-	"item.neapolitan.white_strawberries": "Frutillas blancas",
-	"item.neapolitan.vanilla_chocolate_fingers": "Dedos de vainilla y chocolate",
-	
-	"item.neapolitan.neapolitan_ice_cream": "Helado napolitano",
-	
-	"effect.neapolitan.sugar_rush": "Pico de azúcar",
-	"effect.neapolitan.vanilla_scent": "Aroma de vainilla"
+
+  "item.neapolitan.chocolate_strawberries": "Frutillas con chocolate",
+  "item.neapolitan.white_strawberries": "Frutillas blancas",
+  "item.neapolitan.vanilla_chocolate_fingers": "Dedos de vainilla y chocolate",
+  "item.neapolitan.neapolitan_ice_cream": "Helado napolitano",
+
+  "effect.neapolitan.sugar_rush": "Pico de azúcar",
+  "effect.neapolitan.vanilla_scent": "Aroma de vainilla",
+
+  "advancements.husbandry.creeper_heal.title": "Bomba de amor",
+  "advancements.husbandry.creeper_heal.description": "Dejá que te cure un creeper al explotar en un arbusto de frutillas",
+
+  "advancements.husbandry.vanilla_poison.title": "Vainilla asesina",
+  "advancements.husbandry.vanilla_poison.description": "Rompé vainilla sin tijeras, desatando un aura dañina",
+
+  "advancements.husbandry.place_all_chocolate_blocks.title": "Una construcción chocolatosa",
+  "advancements.husbandry.place_all_chocolate_blocks.description": "Colocá todos los tipos de bloques de chocolate",
+
+  "advancements.husbandry.harvest_white_strawberries.title": "Picnic en las nubes",
+  "advancements.husbandry.harvest_white_strawberries.description": "Conseguí frutillas blancas plantando arbustos de frutilla a grandes alturas"
 }
