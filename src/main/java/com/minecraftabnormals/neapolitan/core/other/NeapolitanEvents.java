@@ -16,12 +16,14 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.entity.merchant.villager.VillagerTrades.ITrade;
 import net.minecraft.entity.monster.CreeperEntity;
+import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.DrinkHelper;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvents;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.PotionEvent;
@@ -32,6 +34,7 @@ import net.minecraftforge.event.world.ExplosionEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.registries.ForgeRegistries;
 
 @EventBusSubscriber(modid = Neapolitan.MODID)
 public class NeapolitanEvents {
@@ -42,6 +45,9 @@ public class NeapolitanEvents {
         if (entity instanceof CreeperEntity) {
             CreeperEntity creeper = (CreeperEntity) event.getEntity();
             creeper.goalSelector.addGoal(3, new AvoidBlockGoal<>(creeper, 6, 1.0D, 1.2D));
+        } else if (entity.getType() == ForgeRegistries.ENTITIES.getValue(new ResourceLocation("savageandravage", "creepie"))) {
+            MonsterEntity creepie = (MonsterEntity) event.getEntity();
+            creepie.goalSelector.addGoal(3, new AvoidBlockGoal<>(creepie, 6, 1.0D, 1.2D));
         }
     }
 
@@ -65,9 +71,9 @@ public class NeapolitanEvents {
 
     @SubscribeEvent
     public static void onExplosion(ExplosionEvent.Detonate event) {
-        if (event.getExplosion().getExplosivePlacedBy() instanceof CreeperEntity) {
-            CreeperEntity creeper = (CreeperEntity) event.getExplosion().getExplosivePlacedBy();
-            if (event.getWorld().getBlockState(creeper.getPosition()).getBlock() == NeapolitanBlocks.STRAWBERRY_BUSH.get()) {
+        LivingEntity source = event.getExplosion().getExplosivePlacedBy();
+        if (source instanceof CreeperEntity || source.getType() == ForgeRegistries.ENTITIES.getValue(new ResourceLocation("savageandravage", "creepie"))) {
+            if (event.getWorld().getBlockState(source.getPosition()).getBlock() == NeapolitanBlocks.STRAWBERRY_BUSH.get()) {
                 for (Entity entity : event.getAffectedEntities()) {
                     if (entity instanceof LivingEntity) {
                         LivingEntity livingEntity = ((LivingEntity) entity);
