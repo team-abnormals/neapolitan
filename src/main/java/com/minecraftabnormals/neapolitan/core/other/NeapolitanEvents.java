@@ -45,7 +45,7 @@ public class NeapolitanEvents {
         if (entity instanceof CreeperEntity) {
             CreeperEntity creeper = (CreeperEntity) event.getEntity();
             creeper.goalSelector.addGoal(3, new AvoidBlockGoal<>(creeper, 6, 1.0D, 1.2D));
-        } else if (entity instanceof MonsterEntity && entity.getType() == ForgeRegistries.ENTITIES.getValue(new ResourceLocation("savageandravage", "creepie"))) {
+        } else if (entity instanceof MonsterEntity && entity.getType() != null && entity.getType() == ForgeRegistries.ENTITIES.getValue(new ResourceLocation("savageandravage", "creepie"))) {
             MonsterEntity creepie = (MonsterEntity) event.getEntity();
             creepie.goalSelector.addGoal(3, new AvoidBlockGoal<>(creepie, 6, 1.0D, 1.2D));
         }
@@ -72,7 +72,7 @@ public class NeapolitanEvents {
     @SubscribeEvent
     public static void onExplosion(ExplosionEvent.Detonate event) {
         LivingEntity source = event.getExplosion().getExplosivePlacedBy();
-        if (source instanceof CreeperEntity || source.getType() == ForgeRegistries.ENTITIES.getValue(new ResourceLocation("savageandravage", "creepie"))) {
+        if (source != null && (source instanceof CreeperEntity || source.getType() == ForgeRegistries.ENTITIES.getValue(new ResourceLocation("savageandravage", "creepie")))) {
             if (event.getWorld().getBlockState(source.getPosition()).getBlock() == NeapolitanBlocks.STRAWBERRY_BUSH.get()) {
                 for (Entity entity : event.getAffectedEntities()) {
                     if (entity instanceof LivingEntity) {
