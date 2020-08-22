@@ -38,14 +38,14 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 @EventBusSubscriber(modid = Neapolitan.MODID)
 public class NeapolitanEvents {
-
+    
     @SubscribeEvent
     public static void onEntityJoinWorld(EntityJoinWorldEvent event) {
         Entity entity = event.getEntity();
         if (entity instanceof CreeperEntity) {
             CreeperEntity creeper = (CreeperEntity) event.getEntity();
             creeper.goalSelector.addGoal(3, new AvoidBlockGoal<>(creeper, 6, 1.0D, 1.2D));
-        } else if (entity.getType() == ForgeRegistries.ENTITIES.getValue(new ResourceLocation("savageandravage", "creepie"))) {
+        } else if (entity instanceof MonsterEntity && entity.getType() == ForgeRegistries.ENTITIES.getValue(new ResourceLocation("savageandravage", "creepie"))) {
             MonsterEntity creepie = (MonsterEntity) event.getEntity();
             creepie.goalSelector.addGoal(3, new AvoidBlockGoal<>(creepie, 6, 1.0D, 1.2D));
         }
