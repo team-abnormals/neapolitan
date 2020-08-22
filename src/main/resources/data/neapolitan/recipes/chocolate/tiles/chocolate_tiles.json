@@ -1,16 +1,16 @@
 {
     "type": "minecraft:crafting_shaped",
     "pattern": [
-        "B",
-        "B"
+        "BB",
+        "BB"
     ],
     "key": {
         "B": {
-            "item": "neapolitan:chocolate_brick_slab"
+            "item": "neapolitan:chocolate_bricks"
         }
     },
     "result": {
         "item": "neapolitan:chocolate_tiles",
-        "count": 1
+        "count": 4
     }
 }
