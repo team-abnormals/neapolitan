@@ -1,0 +1,66 @@
+{
+  "block.neapolitan.chocolate_block": "Schokoladenblock",
+  "block.neapolitan.chocolate_bricks": "Schokoladenziegel",
+  "block.neapolitan.chocolate_brick_slab": "Schokoladenziegelstufe",
+  "block.neapolitan.chocolate_brick_stairs": "Schokoladenziegeltreppe",
+  "block.neapolitan.chocolate_brick_wall": "Schokoladenziegelmauer",
+  "block.neapolitan.chocolate_brick_vertical_slab": "Vertikale Schokoladenziegelstufe",
+  
+  "block.neapolitan.chiseled_chocolate_bricks": "Gemeißelte Schokoladenziegel",
+  
+  "block.neapolitan.chocolate_tiles": "Schokoladenfliesen",
+  "block.neapolitan.chocolate_tile_slab": "Schokoladenfliesenstufe",
+  "block.neapolitan.chocolate_tile_stairs": "Schokoladenfliesentreppe",
+  "block.neapolitan.chocolate_tile_wall": "Schokoladenfliesenmauer",
+  "block.neapolitan.chocolate_tile_vertical_slab": "Vertikale Schokoladenfliesenstufe",
+  
+  "block.neapolitan.strawberry_basket": "Erdbeerkorb",
+  "block.neapolitan.white_strawberry_basket": "Weißer Erdbeerkorb",
+  "block.neapolitan.vanilla_pod_block": "Vanillestangenblock",
+  "block.neapolitan.dried_vanilla_pod_block": "Getrockneter Vanillestangenblock",
+  
+  "block.neapolitan.vanilla_vine": "Vanilleranken",
+  "block.neapolitan.vanilla_vine_plant": "Vanilleranken",
+  
+  "block.neapolitan.chocolate_cake": "Schokoladenkuchen",
+  "block.neapolitan.strawberry_cake": "Erdbeerkuchen",
+  "block.neapolitan.vanilla_cake": "Vanillekuchen",
+  
+  "item.neapolitan.milk_bottle": "Milchflasche",
+  
+  "item.neapolitan.chocolate_bar": "Schokoladentafel",
+  "item.neapolitan.chocolate_ice_cream": "Schokoladeneis",
+  "item.neapolitan.chocolate_milkshake": "Schokoladenmilchshake",
+  
+  "item.neapolitan.strawberry_pips": "Erdbeerkerne",
+  "item.neapolitan.strawberries": "Erdbeeren",
+  "item.neapolitan.strawberry_ice_cream": "Erdbeereis",
+  "item.neapolitan.strawberry_scones": "Erdbeerküchlein",
+  "item.neapolitan.strawberry_milkshake": "Erdbeermilchshake",
+  
+  "item.neapolitan.vanilla_pods": "Vanillestangen",
+  "item.neapolitan.dried_vanilla_pods": "Getrocknete Vanillestangen",
+  "item.neapolitan.vanilla_ice_cream": "Vanilleeis",
+  "item.neapolitan.vanilla_pudding": "Vanillapudding",
+  "item.neapolitan.vanilla_milkshake": "Vanillamilchshake",
+  
+  "item.neapolitan.chocolate_strawberries": "Schokoladenerdbeeren",
+  "item.neapolitan.white_strawberries": "Weiße Erdbeeren",
+  "item.neapolitan.vanilla_chocolate_fingers": "Vanilleschokoladenfinger",
+  "item.neapolitan.neapolitan_ice_cream": "Fürst-Pückler-Eis",
+  
+  "effect.neapolitan.sugar_rush": "Zuckerhigh",
+  "effect.neapolitan.vanilla_scent": "Vanilleparfüm",
+  
+  "advancements.husbandry.creeper_heal.title": "Liebesbombe",
+  "advancements.husbandry.creeper_heal.description": "Verheile dich mit einem Creeper, der in einem Erdbeerstrauch explodiert",
+  
+  "advancements.husbandry.vanilla_poison.title": "Killervanille",
+  "advancements.husbandry.vanilla_poison.description": "Breche Vanilleranken ohne Scheren, um eine schädliche Aura freizusetzen",
+  
+  "advancements.husbandry.place_all_chocolate_blocks.title": "Ein Gebäude aus Braunstein",
+  "advancements.husbandry.place_all_chocolate_blocks.description": "Platziere jede Sorte von Schokoladenblöcken",
+  
+  "advancements.husbandry.harvest_white_strawberries.title": "Ein Picknick in den Wolken",
+  "advancements.husbandry.harvest_white_strawberries.description": "Züchte Erdbeersträucher in größeren Höhen, um weiße Erdbeeren zu beschaffen"
+}
