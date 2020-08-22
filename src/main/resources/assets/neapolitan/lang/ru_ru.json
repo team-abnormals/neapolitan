@@ -1,56 +1,56 @@
 {
-	"block.neapolitan.chocolate_block": "Шоколадный блок",
-
-	"block.neapolitan.chocolate_bricks": "Шоколадные кирпичи",
-	"block.neapolitan.chocolate_brick_slab": "Плита из шоколодных кирпичей",
-	"block.neapolitan.chocolate_brick_stairs": "Ступеньки из шоколадных кирпичей",
-	"block.neapolitan.chocolate_brick_wall": "Стена из шоколадныз кирпичей",
-	"block.neapolitan.chocolate_brick_vertical_slab": "Вертикальная плита из шоколадных кирпичей",
-	
-	"block.neapolitan.chocolate_tiles": "Резной шоколад",
-	"block.neapolitan.chocolate_tile_slab": "Плита из резного шоколада",
-	"block.neapolitan.chocolate_tile_stairs": "Ступеньки из резного шоколада",
-	"block.neapolitan.chocolate_tile_wall": "Стена из резного шоколада",
-	"block.neapolitan.chocolate_tile_vertical_slab": "Вертикальная плита из резного шоколада",
-	
-	"block.neapolitan.strawberry_basket": "Корзина клубники",
-	"block.neapolitan.white_strawberry_basket": "Корзина белой клубники",
-	"block.neapolitan.vanilla_pod_block": "Блок стручков ванили",
-	"block.neapolitan.dried_vanilla_pod_block": "Блок сушёных стручков ванили",
-	
-	"block.neapolitan.vanilla_vine": "Ванильная лоза",
-	"block.neapolitan.vanilla_vine_plant": "Ванильная лоза",
-	
-	"block.neapolitan.chocolate_cake": "Шоколадный торт",
-	"block.neapolitan.strawberry_cake": "Клубничный торт",
-	"block.neapolitan.vanilla_cake": "Ванильный торт",
-	
-	"item.neapolitan.milk_bottle": "Бутылка молока",
-	
-	"item.neapolitan.chocolate_bar": "Плитка шоколада",
-	"item.neapolitan.chocolate_ice_cream": "Шоколадное мороженое",
-	"item.neapolitan.chocolate_milkshake": "Шоколадный молочный коктейль",
-	
-	"item.neapolitan.strawberry_pips": "Косточки клубники",
-	"item.neapolitan.strawberries": "Клубника",
-	"item.neapolitan.strawberry_ice_cream": "Клубничное мороженое",
-	"item.neapolitan.strawberry_scones": "Мороженое с печеньями и клубникой",
+  "block.neapolitan.chocolate_block": "Шоколадный блок",
+  "block.neapolitan.chocolate_bricks": "Шоколадные кирпичи",
+  "block.neapolitan.chocolate_brick_slab": "Плита из шоколодных кирпичей",
+  "block.neapolitan.chocolate_brick_stairs": "Ступеньки из шоколадных кирпичей",
+  "block.neapolitan.chocolate_brick_wall": "Стена из шоколадныз кирпичей",
+  "block.neapolitan.chocolate_brick_vertical_slab": "Вертикальная плита из шоколадных кирпичей",
+  
+  "block.neapolitan.chiseled_chocolate_bricks": "Резные шоколадные кирпичи",
+  
+  "block.neapolitan.chocolate_tiles": "Резной шоколад",
+  "block.neapolitan.chocolate_tile_slab": "Плита из резного шоколада",
+  "block.neapolitan.chocolate_tile_stairs": "Ступеньки из резного шоколада",
+  "block.neapolitan.chocolate_tile_wall": "Стена из резного шоколада",
+  "block.neapolitan.chocolate_tile_vertical_slab": "Вертикальная плита из резного шоколада",
+  
+  "block.neapolitan.strawberry_basket": "Корзина клубники",
+  "block.neapolitan.white_strawberry_basket": "Корзина белой клубники",
+  "block.neapolitan.vanilla_pod_block": "Блок стручков ванили",
+  "block.neapolitan.dried_vanilla_pod_block": "Блок сушёных стручков ванили",
+  
+  "block.neapolitan.vanilla_vine": "Ванильная лоза",
+  "block.neapolitan.vanilla_vine_plant": "Ванильная лоза",
+  
+  "block.neapolitan.chocolate_cake": "Шоколадный торт",
+  "block.neapolitan.strawberry_cake": "Клубничный торт",
+  "block.neapolitan.vanilla_cake": "Ванильный торт",
+  
+  "item.neapolitan.milk_bottle": "Бутылка молока",
+  
+  "item.neapolitan.chocolate_bar": "Плитка шоколада",
+  "item.neapolitan.chocolate_ice_cream": "Шоколадное мороженое",
+  "item.neapolitan.chocolate_milkshake": "Шоколадный молочный коктейль",
+  
+  "item.neapolitan.strawberry_pips": "Косточки клубники",
+  "item.neapolitan.strawberries": "Клубника",
+  "item.neapolitan.strawberry_ice_cream": "Клубничное мороженое",
+  "item.neapolitan.strawberry_scones": "Мороженое с печеньями и клубникой",
   "item.neapolitan.strawberry_milkshake": "Клубничный молочный коктейль",
-	
-	"item.neapolitan.vanilla_pods": "Стручки ванили",
-	"item.neapolitan.dried_vanilla_pods": "Сушёные стручки ванили",
-	"item.neapolitan.vanilla_ice_cream": "Ванильное мороженое",
-	"item.neapolitan.vanilla_pudding": "Ванильный пуддинг",
+  
+  "item.neapolitan.vanilla_pods": "Стручки ванили",
+  "item.neapolitan.dried_vanilla_pods": "Сушёные стручки ванили",
+  "item.neapolitan.vanilla_ice_cream": "Ванильное мороженое,
+  "item.neapolitan.vanilla_pudding": "Ванильный пуддинг",
   "item.neapolitan.vanilla_milkshake": "Ванильный молочный коктейль",
-	
-	"item.neapolitan.chocolate_strawberries": "Клубника в шоколаде",
-	"item.neapolitan.white_strawberries": "Белая клубника",
-	"item.neapolitan.vanilla_chocolate_fingers": "Ванильно-шоколадные пальчики",
-	
-	"item.neapolitan.neapolitan_ice_cream": "Неаполитанское мороженое",
-	
-	"effect.neapolitan.sugar_rush": "Сахарный прилив скорости",
-	"effect.neapolitan.vanilla_scent": "Ванильный аромат",
+  
+  "item.neapolitan.chocolate_strawberries": "Клубника в шоколаде",
+  "item.neapolitan.white_strawberries": "Белая клубника",
+  "item.neapolitan.vanilla_chocolate_fingers": "Ванильно-шоколадные пальчики",
+  "item.neapolitan.neapolitan_ice_cream": "Неаполитанское мороженое",
+  
+  "effect.neapolitan.sugar_rush": "Сахарный прилив скорости",
+  "effect.neapolitan.vanilla_scent": "Ванильный аромат"
   
   "advancements.husbandry.creeper_heal.title": "Любовная бомба",
   "advancements.husbandry.creeper_heal.description": "Вылечитесь от крипера который взорвался в клубничном кусте",
