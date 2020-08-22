@@ -33,11 +33,14 @@ import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.event.world.ExplosionEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.registries.ForgeRegistries;
 
 @EventBusSubscriber(modid = Neapolitan.MODID)
 public class NeapolitanEvents {
+    public static final String SAVAGE_AND_RAVAGE = "savageandravage";
+    public static final ResourceLocation CREEPIE = new ResourceLocation(SAVAGE_AND_RAVAGE, "creepie");
     
     @SubscribeEvent
     public static void onEntityJoinWorld(EntityJoinWorldEvent event) {
@@ -45,7 +48,7 @@ public class NeapolitanEvents {
         if (entity instanceof CreeperEntity) {
             CreeperEntity creeper = (CreeperEntity) event.getEntity();
             creeper.goalSelector.addGoal(3, new AvoidBlockGoal<>(creeper, 6, 1.0D, 1.2D));
-        } else if (entity instanceof MonsterEntity && entity.getType() != null && entity.getType() == ForgeRegistries.ENTITIES.getValue(new ResourceLocation("savageandravage", "creepie"))) {
+        } else if (entity instanceof MonsterEntity && entity.getType() != null && (ModList.get().isLoaded(SAVAGE_AND_RAVAGE) && entity.getType() == ForgeRegistries.ENTITIES.getValue(CREEPIE))) {
             MonsterEntity creepie = (MonsterEntity) event.getEntity();
             creepie.goalSelector.addGoal(3, new AvoidBlockGoal<>(creepie, 6, 1.0D, 1.2D));
         }
@@ -72,7 +75,7 @@ public class NeapolitanEvents {
     @SubscribeEvent
     public static void onExplosion(ExplosionEvent.Detonate event) {
         LivingEntity source = event.getExplosion().getExplosivePlacedBy();
-        if (source != null && (source instanceof CreeperEntity || source.getType() == ForgeRegistries.ENTITIES.getValue(new ResourceLocation("savageandravage", "creepie")))) {
+        if (source != null && (source instanceof CreeperEntity || (ModList.get().isLoaded(SAVAGE_AND_RAVAGE) && source.getType() == ForgeRegistries.ENTITIES.getValue(CREEPIE)))) {
             if (event.getWorld().getBlockState(source.getPosition()).getBlock() == NeapolitanBlocks.STRAWBERRY_BUSH.get()) {
                 for (Entity entity : event.getAffectedEntities()) {
                     if (entity instanceof LivingEntity) {
