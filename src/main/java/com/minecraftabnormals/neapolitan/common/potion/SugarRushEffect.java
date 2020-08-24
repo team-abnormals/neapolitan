@@ -15,7 +15,7 @@ import net.minecraft.potion.EffectType;
 public class SugarRushEffect extends Effect {
 
     public SugarRushEffect() {
-        super(EffectType.NEUTRAL, 15494786);
+        super(EffectType.NEUTRAL, 6739711);
     }
 
     @Override
