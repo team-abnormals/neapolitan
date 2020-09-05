@@ -63,6 +63,11 @@ public class Neapolitan {
     		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.STRAWBERRY_BUSH.get(), RenderType.getCutout());
     		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.VANILLA_VINE.get(), RenderType.getCutout());
     		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.VANILLA_VINE_PLANT.get(), RenderType.getCutout());
+    		
+    		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.FROND_THATCH.get(), RenderType.getCutout());
+    		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.FROND_THATCH_STAIRS.get(), RenderType.getCutout());
+    		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.FROND_THATCH_SLAB.get(), RenderType.getCutout());
+    		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.FROND_THATCH_VERTICAL_SLAB.get(), RenderType.getCutout());
     	});
     }
 }

@@ -14,19 +14,36 @@
   "block.neapolitan.chocolate_tile_wall": "Chocolate Tile Wall",
   "block.neapolitan.chocolate_tile_vertical_slab": "Chocolate Tile Vertical Slab",
   
+  "block.neapolitan.frond_thatch": "Frond Thatch",
+  "block.neapolitan.frond_thatch_stairs": "Frond Thatch Stairs",
+  "block.neapolitan.frond_thatch_slab": "Frond Thatch Slab",
+  "block.neapolitan.frond_thatch_vertical_slab": "Frond Thatch Vertical Slab",
+  
   "block.neapolitan.strawberry_basket": "Strawberry Basket",
   "block.neapolitan.white_strawberry_basket": "White Strawberry Basket",
   "block.neapolitan.vanilla_pod_block": "Vanilla Pod Block",
   "block.neapolitan.dried_vanilla_pod_block": "Dried Vanilla Pod Block",
-  
+  "block.neapolitan.banana_crate": "Banana Crate",
+
+  "block.neapolitan.strawberry_bush": "Strawberry Bush",
+
   "block.neapolitan.vanilla_vine": "Vanilla Vine",
   "block.neapolitan.vanilla_vine_plant": "Vanilla Vine",
+  
+  "block.neapolitan.banana_stalk": "Banana Stalk",
+  "block.neapolitan.banana_bundle": "Banana Bundle",
+  
+  "block.neapolitan.small_banana_frond": "Small Banana Frond",
+  "block.neapolitan.banana_frond": "Banana Frond",
+  "block.neapolitan.large_banana_frond": "Large Banana Frond",
   
   "block.neapolitan.chocolate_cake": "Chocolate Cake",
   "block.neapolitan.strawberry_cake": "Strawberry Cake",
   "block.neapolitan.vanilla_cake": "Vanilla Cake",
+  "block.neapolitan.banana_cake": "Banana Cake",
   
   "item.neapolitan.milk_bottle": "Milk Bottle",
+  "item.neapolitan.ice_cube": "Ice Cube",
   
   "item.neapolitan.chocolate_bar": "Chocolate Bar",
   "item.neapolitan.chocolate_ice_cream": "Chocolate Ice Cream",
@@ -44,13 +61,24 @@
   "item.neapolitan.vanilla_pudding": "Vanilla Pudding",
   "item.neapolitan.vanilla_milkshake": "Vanilla Milkshake",
   
+  "item.neapolitan.banana": "Banana",
+  "item.neapolitan.banana_bunch": "Banana Bunch",
+  "item.neapolitan.dried_banana": "Dried Banana",
+  "item.neapolitan.banana_ice_cream": "Banana Ice Cream",
+  "item.neapolitan.banana_milkshake": "Banana Milkshake",
+  "item.neapolitan.banana_bread": "Banana Bread",
+  "item.neapolitan.bananarrow": "Bananarrow",
+  
   "item.neapolitan.chocolate_strawberries": "Chocolate Strawberries",
   "item.neapolitan.white_strawberries": "White Strawberries",
   "item.neapolitan.vanilla_chocolate_fingers": "Vanilla Chocolate Fingers",
+  "item.neapolitan.strawberry_banana_smoothie": "Strawberry Banana Smoothie",
   "item.neapolitan.neapolitan_ice_cream": "Neapolitan Ice Cream",
   
   "effect.neapolitan.sugar_rush": "Sugar Rush",
   "effect.neapolitan.vanilla_scent": "Vanilla Scent",
+  "effect.neapolitan.agility": "Agility",
+  "effect.neapolitan.slipping": "Slipping",
   
   "advancements.husbandry.creeper_heal.title": "Love Bomb",
   "advancements.husbandry.creeper_heal.description": "Get healed by a Creeper that blew up inside a Strawberry Bush",

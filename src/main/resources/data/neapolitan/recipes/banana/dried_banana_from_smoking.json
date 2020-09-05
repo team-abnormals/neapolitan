@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "neapolitan:banana"
+  },
+  "result": "neapolitan:dried_banana",
+  "experience": 0.35,
+  "cookingtime": 100
+}

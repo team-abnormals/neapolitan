@@ -1,5 +1,7 @@
 package com.minecraftabnormals.neapolitan.core.registry;
 
+import com.minecraftabnormals.neapolitan.common.potion.AgilityEffect;
+import com.minecraftabnormals.neapolitan.common.potion.SlippingEffect;
 import com.minecraftabnormals.neapolitan.common.potion.SugarRushEffect;
 import com.minecraftabnormals.neapolitan.common.potion.VanillaScentEffect;
 import com.minecraftabnormals.neapolitan.core.Neapolitan;
@@ -16,4 +18,6 @@ public class NeapolitanEffects {
 
     public static final RegistryObject<Effect> SUGAR_RUSH       = EFFECTS.register("sugar_rush", () -> new SugarRushEffect().addAttributesModifier(Attributes.MOVEMENT_SPEED, "7107DE5E-7CE8-4030-940E-514C1F160890", (double) 0F, AttributeModifier.Operation.MULTIPLY_TOTAL));
     public static final RegistryObject<Effect> VANILLA_SCENT    = EFFECTS.register("vanilla_scent", () -> new VanillaScentEffect());
+    public static final RegistryObject<Effect> AGILITY			= EFFECTS.register("agility", () -> new AgilityEffect());
+    public static final RegistryObject<Effect> SLIPPING			= EFFECTS.register("slipping", () -> new SlippingEffect());
 }
