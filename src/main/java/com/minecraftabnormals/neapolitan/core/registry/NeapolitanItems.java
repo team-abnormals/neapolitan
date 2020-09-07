@@ -8,6 +8,7 @@ import com.minecraftabnormals.neapolitan.common.item.MilkshakeItem;
 import com.minecraftabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.abnormals_core.core.utils.RegistryHelper;
 
+import net.minecraft.item.BannerPatternItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.BlockNamedItem;
 import net.minecraft.item.Food;
@@ -54,13 +55,15 @@ public class NeapolitanItems {
     public static final RegistryObject<Item> BANANA_MILKSHAKE	= HELPER.createItem("banana_milkshake", () -> new MilkshakeItem(null, new Item.Properties().food(Foods.BANANA_MILKSHAKE).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> BANANA_BREAD		= HELPER.createItem("banana_bread", () -> new Item(new Item.Properties().food(Foods.BANANA_BREAD).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> BANANARROW			= HELPER.createItem("bananarrow", () -> new Item(new Item.Properties().group(ItemGroup.COMBAT)));
-    
+
     public static final RegistryObject<Item> CHOCOLATE_STRAWBERRIES     = HELPER.createItem("chocolate_strawberries", () -> new HealingItem(1.0F, new Item.Properties().food(Foods.CHOCOLATE_STRAWBERRIES).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> WHITE_STRAWBERRIES         = HELPER.createItem("white_strawberries", () -> new HealingItem(4.0F, new Item.Properties().food(Foods.WHITE_STRAWBERRIES).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> VANILLA_CHOCOLATE_FINGERS  = HELPER.createItem("vanilla_chocolate_fingers", () -> new Item(new Item.Properties().food(Foods.VANILLA_CHOCOLATE_FINGERS).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> STRAWBERRY_BANANA_SMOOTHIE = HELPER.createItem("strawberry_banana_smoothie", () -> new Item(new Item.Properties().food(Foods.STRAWBERRY_BANANA_SMOOTHIE).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> NEAPOLITAN_ICE_CREAM       = HELPER.createItem("neapolitan_ice_cream", () -> new HealingSoupItem(2.0F, new Item.Properties().food(Foods.NEAPOLITAN_ICE_CREAM).containerItem(Items.BOWL).maxStackSize(1).group(ItemGroup.FOOD)));
     
+    public static final RegistryObject<Item> MONKEY_BANNNER_PATTERN		= HELPER.createItem("monkey_banner_pattern", () -> new BannerPatternItem(NeapolitanBanners.MONKEY, new Item.Properties().group(ItemGroup.MISC).maxStackSize(1)));
+
     static class Foods {
         public static final Food CHOCOLATE_BAR          = (new Food.Builder()).hunger(4).saturation(0.25F).effect(() -> new EffectInstance(NeapolitanEffects.SUGAR_RUSH.get(), 400, 1), 1.0F).build();
         public static final Food CHOCOLATE_ICE_CREAM    = (new Food.Builder()).hunger(6).saturation(0.42F).effect(() -> new EffectInstance(Effects.SLOWNESS, 100, 2), 1.0F).effect(() -> new EffectInstance(NeapolitanEffects.SUGAR_RUSH.get(), 600, 2), 1.0F).build();

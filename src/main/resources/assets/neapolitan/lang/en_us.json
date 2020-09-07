@@ -75,6 +75,9 @@
   "item.neapolitan.strawberry_banana_smoothie": "Strawberry Banana Smoothie",
   "item.neapolitan.neapolitan_ice_cream": "Neapolitan Ice Cream",
   
+  "item.neapolitan.monkey_banner_pattern": "Banner Pattern",
+  "item.neapolitan.monkey_banner_pattern.desc": "Monkey",
+  
   "effect.neapolitan.sugar_rush": "Sugar Rush",
   "effect.neapolitan.vanilla_scent": "Vanilla Scent",
   "effect.neapolitan.agility": "Agility",
@@ -90,5 +93,22 @@
   "advancements.husbandry.place_all_chocolate_blocks.description": "Place every kind of Chocolate block",
   
   "advancements.husbandry.harvest_white_strawberries.title": "Picnic in the Clouds",
-  "advancements.husbandry.harvest_white_strawberries.description": "Obtain White Strawberries by growing Strawberry Bushes at a high altitude"
+  "advancements.husbandry.harvest_white_strawberries.description": "Obtain White Strawberries by growing Strawberry Bushes at a high altitude",
+  
+  "block.minecraft.banner.mca_monkey.black": "Black Monkey",
+  "block.minecraft.banner.mca_monkey.red": "Red Monkey",
+  "block.minecraft.banner.mca_monkey.green": "Green Monkey",
+  "block.minecraft.banner.mca_monkey.brown": "Brown Monkey",
+  "block.minecraft.banner.mca_monkey.blue": "Blue Monkey",
+  "block.minecraft.banner.mca_monkey.purple": "Purple Monkey",
+  "block.minecraft.banner.mca_monkey.cyan": "Cyan Monkey",
+  "block.minecraft.banner.mca_monkey.silver": "Light Gray Monkey",
+  "block.minecraft.banner.mca_monkey.gray": "Gray Monkey",
+  "block.minecraft.banner.mca_monkey.pink": "Pink Monkey",
+  "block.minecraft.banner.mca_monkey.lime": "Lime Monkey",
+  "block.minecraft.banner.mca_monkey.yellow": "Yellow Monkey",
+  "block.minecraft.banner.mca_monkey.lightBlue": "Light Blue Monkey",
+  "block.minecraft.banner.mca_monkey.magenta": "Magenta Monkey",
+  "block.minecraft.banner.mca_monkey.orange": "Orange Monkey",
+  "block.minecraft.banner.mca_monkey.white": "White Monkey"
 }

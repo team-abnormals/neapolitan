@@ -2,6 +2,7 @@ package com.minecraftabnormals.neapolitan.core;
 
 import com.minecraftabnormals.neapolitan.common.world.gen.NeapolitanBiomeFeatures;
 import com.minecraftabnormals.neapolitan.core.other.NeapolitanCompat;
+import com.minecraftabnormals.neapolitan.core.registry.NeapolitanBanners;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEffects;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanFeatures;
@@ -37,6 +38,7 @@ public class Neapolitan {
     	REGISTRY_HELPER.getDeferredItemRegister().register(modEventBus);
     	NeapolitanEffects.EFFECTS.register(modEventBus);
     	NeapolitanFeatures.FEATURES.register(modEventBus);
+    	NeapolitanBanners.BANNERS.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
         
@@ -50,6 +52,7 @@ public class Neapolitan {
 
     private void setupCommon(final FMLCommonSetupEvent event) {
     	DeferredWorkQueue.runLater(() -> {
+    		NeapolitanBanners.registerBanners();
     	    NeapolitanCompat.registerFlammables();
     	    NeapolitanCompat.registerCompostables();
     	    NeapolitanBiomeFeatures.generateFeatures();
