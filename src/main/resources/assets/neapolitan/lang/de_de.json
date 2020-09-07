@@ -14,19 +14,36 @@
   "block.neapolitan.chocolate_tile_wall": "Schokoladenfliesenmauer",
   "block.neapolitan.chocolate_tile_vertical_slab": "Vertikale Schokoladenfliesenstufe",
   
+  "block.neapolitan.frond_thatch": "Palmblattdachblock",
+  "block.neapolitan.frond_thatch_stairs": "Palmblattdachtreppe",
+  "block.neapolitan.frond_thatch_slab": "Palmblattdachstufe",
+  "block.neapolitan.frond_thatch_vertical_slab": "Vertikale Palmblattdachstufe",
+  
   "block.neapolitan.strawberry_basket": "Erdbeerkorb",
   "block.neapolitan.white_strawberry_basket": "Weißer Erdbeerkorb",
   "block.neapolitan.vanilla_pod_block": "Vanillestangenblock",
   "block.neapolitan.dried_vanilla_pod_block": "Getrockneter Vanillestangenblock",
+  "block.neapolitan.banana_crate": "Bananenkiste",
+
+  "block.neapolitan.strawberry_bush": "Erdbeerstrauch",
   
   "block.neapolitan.vanilla_vine": "Vanilleranken",
   "block.neapolitan.vanilla_vine_plant": "Vanilleranken",
   
+  "block.neapolitan.banana_stalk": "Bananenstängel",
+  "block.neapolitan.banana_bundle": "Bananenbündel",
+
+  "block.neapolitan.small_banana_frond": "Kleiner Bananenwedel",
+  "block.neapolitan.banana_frond": "Bananenwedel",
+  "block.neapolitan.large_banana_frond": "Großer Bananenwedel",
+  
   "block.neapolitan.chocolate_cake": "Schokoladenkuchen",
   "block.neapolitan.strawberry_cake": "Erdbeerkuchen",
   "block.neapolitan.vanilla_cake": "Vanillekuchen",
+  "block.neapolitan.banana_cake": "Bananenkuchen",
   
   "item.neapolitan.milk_bottle": "Milchflasche",
+  "item.neapolitan.ice_cube": "Eiswürfel",
   
   "item.neapolitan.chocolate_bar": "Schokoladentafel",
   "item.neapolitan.chocolate_ice_cream": "Schokoladeneis",
@@ -44,13 +61,24 @@
   "item.neapolitan.vanilla_pudding": "Vanillepudding",
   "item.neapolitan.vanilla_milkshake": "Vanillemilchshake",
   
+  "item.neapolitan.banana": "Banane",
+  "item.neapolitan.banana_bunch": "Bananenbund",
+  "item.neapolitan.dried_banana": "Getrocknete Banane",
+  "item.neapolitan.banana_ice_cream": "Bananeneis",
+  "item.neapolitan.banana_milkshake": "Bananenmilchshake",
+  "item.neapolitan.banana_bread": "Bananenbrot",
+  "item.neapolitan.bananarrow": "Bananenpfeil",
+
   "item.neapolitan.chocolate_strawberries": "Schokoladenerdbeeren",
   "item.neapolitan.white_strawberries": "Weiße Erdbeeren",
   "item.neapolitan.vanilla_chocolate_fingers": "Vanilleschokoladenfinger",
+  "item.neapolitan.strawberry_banana_smoothie": "Erdbeerbananensmoothie",
   "item.neapolitan.neapolitan_ice_cream": "Fürst-Pückler-Eis",
   
   "effect.neapolitan.sugar_rush": "Zuckerhigh",
   "effect.neapolitan.vanilla_scent": "Vanilleparfüm",
+  "effect.neapolitan.agility": "Agilität",
+  "effect.neapolitan.slipping": "Schwindend",
   
   "advancements.husbandry.creeper_heal.title": "Liebesbombe",
   "advancements.husbandry.creeper_heal.description": "Verheile dich mit einem Creeper, der in einem Erdbeerstrauch explodiert",
