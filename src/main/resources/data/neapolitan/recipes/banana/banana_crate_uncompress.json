@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "neapolitan:banana_basket"
+      "item": "neapolitan:banana_crate"
     }
   ],
   "result": {
