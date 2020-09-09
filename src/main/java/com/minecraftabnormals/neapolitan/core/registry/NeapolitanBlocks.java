@@ -30,6 +30,11 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = Neapolitan.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NeapolitanBlocks {
     public static final RegistryHelper HELPER = Neapolitan.REGISTRY_HELPER;
+    
+    public static final RegistryObject<Block> VANILLA_ICE_CREAM_BLOCK 		= HELPER.createBlock("vanilla_ice_cream_block", () -> new Block(Properties.VANILLA_ICE_CREAM_BLOCK), ItemGroup.BUILDING_BLOCKS);
+    public static final RegistryObject<Block> CHOCOLATE_ICE_CREAM_BLOCK 	= HELPER.createBlock("chocolate_ice_cream_block", () -> new Block(Properties.CHOCOLATE_ICE_CREAM_BLOCK), ItemGroup.BUILDING_BLOCKS);
+    public static final RegistryObject<Block> STRAWBERRY_ICE_CREAM_BLOCK 	= HELPER.createBlock("strawberry_ice_cream_block", () -> new Block(Properties.STRAWBERRY_ICE_CREAM_BLOCK), ItemGroup.BUILDING_BLOCKS);
+    public static final RegistryObject<Block> BANANA_ICE_CREAM_BLOCK 		= HELPER.createBlock("banana_ice_cream_block", () -> new Block(Properties.BANANA_ICE_CREAM_BLOCK), ItemGroup.BUILDING_BLOCKS);
 
     public static final RegistryObject<Block> CHOCOLATE_BLOCK = HELPER.createBlock("chocolate_block", () -> new Block(Properties.CHOCOLATE), ItemGroup.BUILDING_BLOCKS);
 
@@ -73,6 +78,11 @@ public class NeapolitanBlocks {
     public static final RegistryObject<Block> BANANA_CRATE				= HELPER.createCompatBlock("quark", "banana_crate", () -> new Block(Properties.BANANA_CRATE), ItemGroup.DECORATIONS);
 
     static class Properties {
+        public static final AbstractBlock.Properties VANILLA_ICE_CREAM_BLOCK	= AbstractBlock.Properties.create(Material.SNOW_BLOCK, MaterialColor.WHITE_TERRACOTTA).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.2F).sound(SoundType.SNOW);
+        public static final AbstractBlock.Properties CHOCOLATE_ICE_CREAM_BLOCK	= AbstractBlock.Properties.create(Material.SNOW_BLOCK, MaterialColor.BROWN).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.2F).sound(SoundType.SNOW);
+        public static final AbstractBlock.Properties STRAWBERRY_ICE_CREAM_BLOCK	= AbstractBlock.Properties.create(Material.SNOW_BLOCK, MaterialColor.PINK).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.2F).sound(SoundType.SNOW);
+        public static final AbstractBlock.Properties BANANA_ICE_CREAM_BLOCK		= AbstractBlock.Properties.create(Material.SNOW_BLOCK, MaterialColor.YELLOW).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.2F).sound(SoundType.SNOW);
+
         public static final AbstractBlock.Properties VANILLA_VINE       = AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.LIME).tickRandomly().doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.NETHER_VINE);
         public static final AbstractBlock.Properties CHOCOLATE          = AbstractBlock.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD);
         public static final AbstractBlock.Properties CHOCOLATE_BRICKS   = AbstractBlock.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD);

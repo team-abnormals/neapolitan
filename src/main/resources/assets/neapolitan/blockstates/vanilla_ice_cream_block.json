@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "": { "model": "neapolitan:block/vanilla_ice_cream_block" }
+    }
+}

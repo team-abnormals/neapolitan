@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SS",
+    "SS"
+  ],
+  "key": {
+    "S": {
+      "item": "neapolitan:strawberry_ice_cream"
+    }
+  },
+  "result": {
+    "item": "neapolitan:strawberry_ice_cream_block",
+    "count": 4
+  }
+}
