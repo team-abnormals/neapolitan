@@ -1,6 +1,7 @@
 package com.minecraftabnormals.neapolitan.core.registry;
 
 import com.minecraftabnormals.neapolitan.common.item.BananaBunchItem;
+import com.minecraftabnormals.neapolitan.common.item.DrinkItem;
 import com.minecraftabnormals.neapolitan.common.item.HealingItem;
 import com.minecraftabnormals.neapolitan.common.item.HealingSoupItem;
 import com.minecraftabnormals.neapolitan.common.item.MilkBottleItem;
@@ -50,7 +51,7 @@ public class NeapolitanItems {
     public static final RegistryObject<Item> BANANA				= HELPER.createItem("banana", () -> new Item(new Item.Properties().food(Foods.BANANA).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> BANANA_BUNCH		= HELPER.createItem("banana_bunch", () -> new BananaBunchItem(new Item.Properties().group(ItemGroup.MISC)));
     public static final RegistryObject<Item> BANANA_ICE_CREAM	= HELPER.createItem("banana_ice_cream", () -> new SoupItem(new Item.Properties().food(Foods.BANANA_ICE_CREAM).group(ItemGroup.FOOD)));
-    public static final RegistryObject<Item> BANANA_CAKE		= HELPER.createItem("banana_cake", () -> new BlockItem(NeapolitanBlocks.BANANA_CAKE.get(), new Item.Properties().food(Foods.BANANA_CAKE).group(ItemGroup.FOOD).maxStackSize(1)));
+    public static final RegistryObject<Item> BANANA_CAKE		= HELPER.createItem("banana_cake", () -> new BlockItem(NeapolitanBlocks.BANANA_CAKE.get(), new Item.Properties().group(ItemGroup.FOOD).maxStackSize(1)));
     public static final RegistryObject<Item> DRIED_BANANA		= HELPER.createItem("dried_banana", () -> new Item(new Item.Properties().food(Foods.DRIED_BANANA).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> BANANA_MILKSHAKE	= HELPER.createItem("banana_milkshake", () -> new MilkshakeItem(null, new Item.Properties().food(Foods.BANANA_MILKSHAKE).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> BANANA_BREAD		= HELPER.createItem("banana_bread", () -> new Item(new Item.Properties().food(Foods.BANANA_BREAD).group(ItemGroup.FOOD)));
@@ -59,7 +60,7 @@ public class NeapolitanItems {
     public static final RegistryObject<Item> CHOCOLATE_STRAWBERRIES     = HELPER.createItem("chocolate_strawberries", () -> new HealingItem(1.0F, new Item.Properties().food(Foods.CHOCOLATE_STRAWBERRIES).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> WHITE_STRAWBERRIES         = HELPER.createItem("white_strawberries", () -> new HealingItem(4.0F, new Item.Properties().food(Foods.WHITE_STRAWBERRIES).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> VANILLA_CHOCOLATE_FINGERS  = HELPER.createItem("vanilla_chocolate_fingers", () -> new Item(new Item.Properties().food(Foods.VANILLA_CHOCOLATE_FINGERS).group(ItemGroup.FOOD)));
-    public static final RegistryObject<Item> STRAWBERRY_BANANA_SMOOTHIE = HELPER.createItem("strawberry_banana_smoothie", () -> new Item(new Item.Properties().food(Foods.STRAWBERRY_BANANA_SMOOTHIE).group(ItemGroup.FOOD)));
+    public static final RegistryObject<Item> STRAWBERRY_BANANA_SMOOTHIE = HELPER.createItem("strawberry_banana_smoothie", () -> new DrinkItem(new Item.Properties().food(Foods.STRAWBERRY_BANANA_SMOOTHIE).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> NEAPOLITAN_ICE_CREAM       = HELPER.createItem("neapolitan_ice_cream", () -> new HealingSoupItem(2.0F, new Item.Properties().food(Foods.NEAPOLITAN_ICE_CREAM).containerItem(Items.BOWL).maxStackSize(1).group(ItemGroup.FOOD)));
     
     public static final RegistryObject<Item> MONKEY_BANNNER_PATTERN		= HELPER.createItem("monkey_banner_pattern", () -> new BannerPatternItem(NeapolitanBanners.MONKEY, new Item.Properties().group(ItemGroup.MISC).maxStackSize(1)));
