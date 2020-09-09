@@ -11,10 +11,10 @@
       "item": "minecraft:glass_bottle"
     },
     {
-      "item": "neapolitan:banana"
+      "tag": "forge:fruits/banana"
     },
     {
-      "item": "neapolitan:banana"
+      "tag": "forge:fruits/banana"
     },
     {
       "item": "neapolitan:vanilla_ice_cream"
@@ -23,7 +23,7 @@
       "item": "neapolitan:dried_vanilla_pods"
     },
     {
-      "item": "neapolitan:milk_bottle"
+      "tag": "forge:milk"
     }
   ],
   "result": {

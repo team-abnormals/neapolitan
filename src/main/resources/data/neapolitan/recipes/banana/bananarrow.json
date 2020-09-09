@@ -7,7 +7,7 @@
   ],
   "key": {
     "#": {
-      "item": "neapolitan:banana"
+      "tag": "forge:fruits/banana"
     },
     "X": {
       "item": "minecraft:arrow"

@@ -8,7 +8,7 @@
       "item": "neapolitan:dried_vanilla_pods"
     },
     {
-      "item": "neapolitan:milk_bottle"
+      "tag": "forge:milk"
     },
     {
       "item": "neapolitan:ice_cubes"

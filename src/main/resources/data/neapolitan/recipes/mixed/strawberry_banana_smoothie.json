@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "neapolitan:banana"
+      "tag": "forge:fruits/banana"
     },
     {
       "tag": "forge:fruits/strawberry"
@@ -11,7 +11,7 @@
       "item": "neapolitan:ice_cubes"
     },
     {
-      "item": "neapolitan:milk_bottle"
+      "tag": "forge:milk"
     }
   ],
   "result": {

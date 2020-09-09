@@ -16,7 +16,7 @@
       "item": "minecraft:wheat"
     },
     "D": {
-      "item": "neapolitan:banana"
+      "tag": "forge:fruits/banana"
     },
     "E": {
       "item": "minecraft:egg"

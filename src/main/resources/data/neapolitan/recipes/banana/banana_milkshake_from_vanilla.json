@@ -5,10 +5,10 @@
       "item": "neapolitan:vanilla_milkshake"
     },
     {
-      "item": "neapolitan:banana"
+      "tag": "forge:fruits/banana"
     },
     {
-      "item": "neapolitan:banana"
+      "tag": "forge:fruits/banana"
     }
   ],
   "result": {

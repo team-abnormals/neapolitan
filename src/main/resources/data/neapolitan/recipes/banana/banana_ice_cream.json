@@ -5,16 +5,16 @@
       "item": "minecraft:bowl"
     },
     {
-      "item": "neapolitan:banana"
+      "tag": "forge:fruits/banana"
     },
     {
-      "item": "neapolitan:banana"
+      "tag": "forge:fruits/banana"
     },
     {
       "item": "neapolitan:dried_vanilla_pods"
     },
     {
-      "item": "neapolitan:milk_bottle"
+      "tag": "forge:milk"
     },
     {
       "item": "neapolitan:ice_cubes"
