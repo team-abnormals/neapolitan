@@ -1,4 +1,9 @@
 {
+  "block.neapolitan.vanilla_ice_cream_block": "Bloque de helado de vainilla",
+  "block.neapolitan.chocolate_ice_cream_block": "Bloque de helado de chocolate",
+  "block.neapolitan.strawberry_ice_cream_block": "Bloque de helado de fresa",
+  "block.neapolitan.banana_ice_cream_block": "Bloque de helado de plátano",
+
   "block.neapolitan.chocolate_block": "Bloque de chocolate",
   "block.neapolitan.chocolate_bricks": "Ladrillos de chocolate",
   "block.neapolitan.chocolate_brick_slab": "Losa de ladrillos de chocolate",
@@ -14,19 +19,36 @@
   "block.neapolitan.chocolate_tile_wall": "Pared de azulejos de chocolate",
   "block.neapolitan.chocolate_tile_vertical_slab": "Losa vertical de azulejos de chocolate",
 
+  "block.neapolitan.frond_thatch": "Cubierta de hojas",
+  "block.neapolitan.frond_thatch_stairs": "Escaleras de cubierta de hojas",
+  "block.neapolitan.frond_thatch_slab": "Losa de cubierta de hojas",
+  "block.neapolitan.frond_thatch_vertical_slab": "Losa vertical de cubierta de hojas",
+
   "block.neapolitan.strawberry_basket": "Canasta de fresas",
   "block.neapolitan.white_strawberry_basket": "Canasta de fresas blancas",
   "block.neapolitan.vanilla_pod_block": "Bloque de vainas de vainilla",
   "block.neapolitan.dried_vanilla_pod_block": "Bloque de vainas de vainilla secas",
+  "block.neapolitan.banana_crate": "Cajón de plátanos",
+
+  "block.neapolitan.strawberry_bush": "Arbusto de fresas",
 
   "block.neapolitan.vanilla_vine": "Lianas de vainilla",
   "block.neapolitan.vanilla_vine_plant": "Lianas de vainilla",
 
+  "block.neapolitan.banana_stalk": "Tallo de platanera",
+  "block.neapolitan.banana_bundle": "Paquete de plátanos",
+
+  "block.neapolitan.small_banana_frond": "Hoja de plátano pequeña",
+  "block.neapolitan.banana_frond": "Hoja de plátano",
+  "block.neapolitan.large_banana_frond": "Hoja de plátano grande",
+
   "block.neapolitan.chocolate_cake": "Pastel de chocolate",
   "block.neapolitan.strawberry_cake": "Pastel de fresa",
   "block.neapolitan.vanilla_cake": "Pastel de vainilla",
+  "block.neapolitan.banana_cake": "Pastel de plátano",
 
   "item.neapolitan.milk_bottle": "Botella de leche",
+  "item.neapolitan.ice_cubes": "Cubos de hielo",
 
   "item.neapolitan.chocolate_bar": "Barra de chocolate",
   "item.neapolitan.chocolate_ice_cream": "Helado de chocolate",
@@ -44,13 +66,27 @@
   "item.neapolitan.vanilla_pudding": "Budín de vainilla",
   "item.neapolitan.vanilla_milkshake": "Batido de vainilla",
 
+  "item.neapolitan.banana": "Plátano",
+  "item.neapolitan.banana_bunch": "Racimo de plátanos",
+  "item.neapolitan.dried_banana": "Plátano seco",
+  "item.neapolitan.banana_ice_cream": "Helado de plátano",
+  "item.neapolitan.banana_milkshake": "Batido de plátano",
+  "item.neapolitan.banana_bread": "Pan de plátano",
+  "item.neapolitan.bananarrow": "Flecha de plátano",
+
   "item.neapolitan.chocolate_strawberries": "Fresas con chocolate",
   "item.neapolitan.white_strawberries": "Fresas blancas",
   "item.neapolitan.vanilla_chocolate_fingers": "Dedos de vainilla y chocolate",
+  "item.neapolitan.strawberry_banana_smoothie": "Smoothie de fresa y plátano",
   "item.neapolitan.neapolitan_ice_cream": "Helado napolitano",
+
+  "item.neapolitan.monkey_banner_pattern": "Diseño de estandarte",
+  "item.neapolitan.monkey_banner_pattern.desc": "Mono",
 
   "effect.neapolitan.sugar_rush": "Pico de azúcar",
   "effect.neapolitan.vanilla_scent": "Aroma de vainilla",
+  "effect.neapolitan.agility": "Agilidad",
+  "effect.neapolitan.slipping": "Resbalón",
 
   "advancements.husbandry.creeper_heal.title": "Bomba de amor",
   "advancements.husbandry.creeper_heal.description": "Deja que te cure un creeper al explotar en un arbusto de fresas",
@@ -62,5 +98,22 @@
   "advancements.husbandry.place_all_chocolate_blocks.description": "Coloca todos los tipos de bloques de chocolate",
 
   "advancements.husbandry.harvest_white_strawberries.title": "Picnic en las nubes",
-  "advancements.husbandry.harvest_white_strawberries.description": "Consigue fresas blancas plantando arbustos de fresas a grandes alturas"
+  "advancements.husbandry.harvest_white_strawberries.description": "Consigue fresas blancas plantando arbustos de fresas a grandes alturas",
+
+  "block.minecraft.banner.mca_monkey.black": "Mono negro",
+  "block.minecraft.banner.mca_monkey.red": "Mono rojo",
+  "block.minecraft.banner.mca_monkey.green": "Mono verde",
+  "block.minecraft.banner.mca_monkey.brown": "Mono café",
+  "block.minecraft.banner.mca_monkey.blue": "Mono azul",
+  "block.minecraft.banner.mca_monkey.purple": "Mono morado",
+  "block.minecraft.banner.mca_monkey.cyan": "Mono cian",
+  "block.minecraft.banner.mca_monkey.silver": "Mono gris claro",
+  "block.minecraft.banner.mca_monkey.gray": "Mono gris",
+  "block.minecraft.banner.mca_monkey.pink": "Mono rosa",
+  "block.minecraft.banner.mca_monkey.lime": "Mono verde lima",
+  "block.minecraft.banner.mca_monkey.yellow": "Mono amarillo",
+  "block.minecraft.banner.mca_monkey.lightBlue": "Mono azul claro",
+  "block.minecraft.banner.mca_monkey.magenta": "Mono magenta",
+  "block.minecraft.banner.mca_monkey.orange": "Mono naranja",
+  "block.minecraft.banner.mca_monkey.white": "Mono blanco"
 }
