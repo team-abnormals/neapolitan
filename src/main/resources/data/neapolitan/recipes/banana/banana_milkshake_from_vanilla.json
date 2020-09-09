@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "neapolitan:vanilla_milkshake"
+    },
+    {
+      "item": "neapolitan:banana"
+    },
+    {
+      "item": "neapolitan:banana"
+    }
+  ],
+  "result": {
+    "item": "neapolitan:banana_milkshake",
+    "count": 1
+  }
+}

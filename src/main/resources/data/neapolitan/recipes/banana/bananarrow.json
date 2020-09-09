@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#X#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "neapolitan:banana"
+    },
+    "X": {
+      "item": "minecraft:arrow"
+    }
+  },
+  "result": {
+    "item": "neapolitan:bananarrow",
+    "count": 2
+  }
+}
