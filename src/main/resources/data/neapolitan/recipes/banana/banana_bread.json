@@ -2,16 +2,13 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "minecraft:bread"
+      "item": "minecraft:wheat"
     },
     {
       "tag": "forge:fruits/banana"
     },
     {
       "item": "minecraft:sugar"
-    },
-    {
-      "item": "minecraft:egg"
     }
   ],
   "result": {
