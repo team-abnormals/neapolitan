@@ -68,9 +68,11 @@ public class FlavoredCakeBlock extends CakeBlock {
                     }
                 }
             } else {
-            	Random rand = new Random();
-            	EffectInstance effectToRemove = effects.get(rand.nextInt(effects.size()));
-            	player.removePotionEffect(effectToRemove.getPotion());
+            	if(effects.size() > 0) {
+            		Random rand = new Random();
+                	EffectInstance effectToRemove = effects.get(rand.nextInt(effects.size()));
+                	player.removePotionEffect(effectToRemove.getPotion());
+            	}
             }
             
             for(Pair<EffectInstance, Float> pair : food.getEffects()) {
