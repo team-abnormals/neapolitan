@@ -62,7 +62,7 @@ public class NeapolitanItems {
     public static final RegistryObject<Item> CHOCOLATE_STRAWBERRIES     = HELPER.createItem("chocolate_strawberries", () -> new HealingItem(1.0F, new Item.Properties().food(Foods.CHOCOLATE_STRAWBERRIES).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> WHITE_STRAWBERRIES         = HELPER.createItem("white_strawberries", () -> new HealingItem(4.0F, new Item.Properties().food(Foods.WHITE_STRAWBERRIES).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> VANILLA_CHOCOLATE_FINGERS  = HELPER.createItem("vanilla_chocolate_fingers", () -> new Item(new Item.Properties().food(Foods.VANILLA_CHOCOLATE_FINGERS).group(ItemGroup.FOOD)));
-    public static final RegistryObject<Item> STRAWBERRY_BANANA_SMOOTHIE = HELPER.createItem("strawberry_banana_smoothie", () -> new HealingDrinkItem(2.0F, new Item.Properties().food(Foods.STRAWBERRY_BANANA_SMOOTHIE).group(ItemGroup.FOOD)));
+    public static final RegistryObject<Item> STRAWBERRY_BANANA_SMOOTHIE = HELPER.createItem("strawberry_banana_smoothie", () -> new HealingDrinkItem(2.0F, new Item.Properties().food(Foods.STRAWBERRY_BANANA_SMOOTHIE).maxStackSize(16).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> NEAPOLITAN_ICE_CREAM       = HELPER.createItem("neapolitan_ice_cream", () -> new HealingSoupItem(2.0F, new Item.Properties().food(Foods.NEAPOLITAN_ICE_CREAM).containerItem(Items.BOWL).maxStackSize(1).group(ItemGroup.FOOD)));
     
     public static final RegistryObject<Item> MONKEY_BANNNER_PATTERN		= HELPER.createItem("monkey_banner_pattern", () -> new BannerPatternItem(NeapolitanBanners.MONKEY, new Item.Properties().group(ItemGroup.MISC).maxStackSize(1)));
