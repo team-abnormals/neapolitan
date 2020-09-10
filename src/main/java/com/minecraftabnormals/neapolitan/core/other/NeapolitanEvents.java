@@ -113,7 +113,8 @@ public class NeapolitanEvents {
 
         if (type == VillagerProfession.FARMER) {
             novice.add(new TradeUtils.EmeraldsForItemsTrade(NeapolitanItems.STRAWBERRIES.get(), 24, 1, 16, 2));
-
+            
+            journeyman.add(new TradeUtils.EmeraldsForItemsTrade(NeapolitanItems.BANANA.get(), 8, 1, 12, 10));
             journeyman.add(new TradeUtils.ItemsForEmeraldsTrade(NeapolitanItems.STRAWBERRY_SCONES.get(), 3, 12, 12, 10));
 
             expert.add(new TradeUtils.ItemsForEmeraldsTrade(NeapolitanItems.VANILLA_CAKE.get(), 3, 1, 12, 15));
@@ -122,7 +123,9 @@ public class NeapolitanEvents {
         }
         if (type == VillagerProfession.BUTCHER) {
             master.add(new TradeUtils.EmeraldsForItemsTrade(NeapolitanItems.DRIED_VANILLA_PODS.get(), 16, 1, 16, 30));
-
+        }
+        if (type == VillagerProfession.FLETCHER) {
+        	expert.add(new TradeUtils.ItemsForEmeraldsTrade(NeapolitanItems.BANANARROW.get(), 1, 4, 12, 15));
         }
     }
 
