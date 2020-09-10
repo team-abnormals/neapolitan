@@ -68,7 +68,7 @@ public class NeapolitanItems {
     public static final RegistryObject<Item> MONKEY_BANNNER_PATTERN		= HELPER.createItem("monkey_banner_pattern", () -> new BannerPatternItem(NeapolitanBanners.MONKEY, new Item.Properties().group(ItemGroup.MISC).maxStackSize(1)));
 
     static class Foods {
-        public static final Food ICE_CUBES	= (new Food.Builder()).build();
+        public static final Food ICE_CUBES	= (new Food.Builder()).setAlwaysEdible().build();
 
         public static final Food CHOCOLATE_BAR          = (new Food.Builder()).hunger(4).saturation(0.25F).effect(() -> new EffectInstance(NeapolitanEffects.SUGAR_RUSH.get(), 400, 1), 1.0F).build();
         public static final Food CHOCOLATE_ICE_CREAM    = (new Food.Builder()).hunger(6).saturation(0.42F).effect(() -> new EffectInstance(Effects.SLOWNESS, 100, 2), 1.0F).effect(() -> new EffectInstance(NeapolitanEffects.SUGAR_RUSH.get(), 600, 2), 1.0F).build();
