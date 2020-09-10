@@ -108,6 +108,10 @@ public class NeapolitanCompat {
 		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.VANILLA_VINE.get(), RenderType.getCutout());
 		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.VANILLA_VINE_PLANT.get(), RenderType.getCutout());
 
+		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.SMALL_BANANA_FROND.get(), RenderType.getCutout());
+		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.BANANA_FROND.get(), RenderType.getCutout());
+		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.LARGE_BANANA_FROND.get(), RenderType.getCutout());
+		
 		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.FROND_THATCH.get(), RenderType.getCutout());
 		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.FROND_THATCH_STAIRS.get(), RenderType.getCutout());
 		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.FROND_THATCH_SLAB.get(), RenderType.getCutout());
