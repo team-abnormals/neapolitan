@@ -72,7 +72,7 @@
   "item.neapolitan.banana_ice_cream": "Helado de plátano",
   "item.neapolitan.banana_milkshake": "Batido de plátano",
   "item.neapolitan.banana_bread": "Pan de plátano",
-  "item.neapolitan.bananarrow": "Flecha de plátano",
+  "item.neapolitan.bananarrow": "Platanaflecha",
 
   "item.neapolitan.chocolate_strawberries": "Fresas con chocolate",
   "item.neapolitan.white_strawberries": "Fresas blancas",
@@ -82,6 +82,10 @@
 
   "item.neapolitan.monkey_banner_pattern": "Diseño de estandarte",
   "item.neapolitan.monkey_banner_pattern.desc": "Mono",
+
+  "entity.neapolitan.banana_peel": "Cáscara de plátano",
+  "entity.neapolitan.monkey": "Mono",
+  "entity.neapolitan.bananarrow": "Platanaflecha",
 
   "effect.neapolitan.sugar_rush": "Pico de azúcar",
   "effect.neapolitan.vanilla_scent": "Aroma de vainilla",
