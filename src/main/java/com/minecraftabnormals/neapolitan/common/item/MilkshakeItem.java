@@ -1,5 +1,7 @@
 package com.minecraftabnormals.neapolitan.common.item;
 
+import java.util.Random;
+
 import com.google.common.collect.ImmutableList;
 
 import net.minecraft.advancements.CriteriaTriggers;
@@ -32,11 +34,17 @@ public class MilkshakeItem extends DrinkItem {
     @Override
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity entityLiving) {
         ImmutableList<EffectInstance> effects = ImmutableList.copyOf(entityLiving.getActivePotionEffects());
-        for (int i = 0; i < effects.size(); ++i) {
-            Effect effect = effects.get(i).getPotion();
-            if (effect.getEffectType() == this.getEffectType() || (this.getEffectType() == EffectType.HARMFUL && effect == Effects.BAD_OMEN) || this.getEffectType() == EffectType.NEUTRAL) {
-                entityLiving.removePotionEffect(effect);
-            }
+        if (this.getEffectType() != null) {
+        	for (int i = 0; i < effects.size(); ++i) {
+        		Effect effect = effects.get(i).getPotion();
+        		if (effect.getEffectType() == this.getEffectType() || (this.getEffectType() == EffectType.HARMFUL && effect == Effects.BAD_OMEN) || this.getEffectType() == EffectType.NEUTRAL) {
+        			entityLiving.removePotionEffect(effect);
+        		}
+        	}
+        } else {
+        	Random rand = new Random();
+        	EffectInstance effectToRemove = effects.get(rand.nextInt(effects.size()));
+        	entityLiving.removePotionEffect(effectToRemove.getPotion());
         }
         return super.onItemUseFinish(stack, worldIn, entityLiving);
     }
@@ -54,11 +62,18 @@ public class MilkshakeItem extends DrinkItem {
         }
 
         ImmutableList<EffectInstance> effects = ImmutableList.copyOf(entity.getActivePotionEffects());
-        for (int i = 0; i < effects.size(); ++i) {
-            Effect effect = effects.get(i).getPotion();
-            if (effect.getEffectType() == this.getEffectType() || (this.getEffectType() == EffectType.HARMFUL && effect == Effects.BAD_OMEN) || this.getEffectType() == EffectType.NEUTRAL) {
-                entity.removePotionEffect(effect);
+        
+        if (this.getEffectType() != null) {
+        	for (int i = 0; i < effects.size(); ++i) {
+                Effect effect = effects.get(i).getPotion();
+                if (effect.getEffectType() == this.getEffectType() || (this.getEffectType() == EffectType.HARMFUL && effect == Effects.BAD_OMEN) || this.getEffectType() == EffectType.NEUTRAL) {
+                    entity.removePotionEffect(effect);
+                }
             }
+        } else {
+        	Random rand = new Random();
+        	EffectInstance effectToRemove = effects.get(rand.nextInt(effects.size()));
+        	entity.removePotionEffect(effectToRemove.getPotion());
         }
 
         if (!player.abilities.isCreativeMode) {

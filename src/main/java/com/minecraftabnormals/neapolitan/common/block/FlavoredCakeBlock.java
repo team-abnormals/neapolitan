@@ -1,5 +1,7 @@
 package com.minecraftabnormals.neapolitan.common.block;
 
+import java.util.Random;
+
 import com.google.common.collect.ImmutableList;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.mojang.datafixers.util.Pair;
@@ -57,14 +59,18 @@ public class FlavoredCakeBlock extends CakeBlock {
 
             if (this == NeapolitanBlocks.STRAWBERRY_CAKE.get()) player.heal(1.0F);
             
+            ImmutableList<EffectInstance> effects = ImmutableList.copyOf(player.getActivePotionEffects());
             if (this.getEffectType() != null) {
-                ImmutableList<EffectInstance> effects = ImmutableList.copyOf(player.getActivePotionEffects());
                 for (int j = 0; j < effects.size(); ++j) {
                     Effect effect = effects.get(j).getPotion();
                     if (effect.getEffectType() == this.getEffectType() || (this.getEffectType() == EffectType.HARMFUL && effect == Effects.BAD_OMEN) || this.getEffectType() == EffectType.NEUTRAL) {
                         player.removePotionEffect(effect);
                     }
                 }
+            } else {
+            	Random rand = new Random();
+            	EffectInstance effectToRemove = effects.get(rand.nextInt(effects.size()));
+            	player.removePotionEffect(effectToRemove.getPotion());
             }
             
             for(Pair<EffectInstance, Float> pair : food.getEffects()) {

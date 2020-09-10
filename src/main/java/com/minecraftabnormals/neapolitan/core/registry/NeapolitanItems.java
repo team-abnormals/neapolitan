@@ -2,7 +2,7 @@ package com.minecraftabnormals.neapolitan.core.registry;
 
 import com.minecraftabnormals.neapolitan.common.item.BananaBunchItem;
 import com.minecraftabnormals.neapolitan.common.item.BananarrowItem;
-import com.minecraftabnormals.neapolitan.common.item.DrinkItem;
+import com.minecraftabnormals.neapolitan.common.item.HealingDrinkItem;
 import com.minecraftabnormals.neapolitan.common.item.HealingItem;
 import com.minecraftabnormals.neapolitan.common.item.HealingSoupItem;
 import com.minecraftabnormals.neapolitan.common.item.MilkBottleItem;
@@ -52,17 +52,17 @@ public class NeapolitanItems {
 
     public static final RegistryObject<Item> BANANA				= HELPER.createItem("banana", () -> new Item(new Item.Properties().food(Foods.BANANA).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> BANANA_BUNCH		= HELPER.createItem("banana_bunch", () -> new BananaBunchItem(new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> BANANA_ICE_CREAM	= HELPER.createItem("banana_ice_cream", () -> new SoupItem(new Item.Properties().food(Foods.BANANA_ICE_CREAM).group(ItemGroup.FOOD)));
+    public static final RegistryObject<Item> BANANA_ICE_CREAM	= HELPER.createItem("banana_ice_cream", () -> new SoupItem(new Item.Properties().food(Foods.BANANA_ICE_CREAM).maxStackSize(1).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> BANANA_CAKE		= HELPER.createItem("banana_cake", () -> new BlockItem(NeapolitanBlocks.BANANA_CAKE.get(), new Item.Properties().group(ItemGroup.FOOD).maxStackSize(1)));
     public static final RegistryObject<Item> DRIED_BANANA		= HELPER.createItem("dried_banana", () -> new Item(new Item.Properties().food(Foods.DRIED_BANANA).group(ItemGroup.FOOD)));
-    public static final RegistryObject<Item> BANANA_MILKSHAKE	= HELPER.createItem("banana_milkshake", () -> new MilkshakeItem(null, new Item.Properties().food(Foods.BANANA_MILKSHAKE).group(ItemGroup.FOOD)));
+    public static final RegistryObject<Item> BANANA_MILKSHAKE	= HELPER.createItem("banana_milkshake", () -> new MilkshakeItem(null, new Item.Properties().food(Foods.BANANA_MILKSHAKE).maxStackSize(16).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> BANANA_BREAD		= HELPER.createItem("banana_bread", () -> new Item(new Item.Properties().food(Foods.BANANA_BREAD).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> BANANARROW			= HELPER.createItem("bananarrow", () -> new BananarrowItem(new Item.Properties().group(ItemGroup.COMBAT)));
 
     public static final RegistryObject<Item> CHOCOLATE_STRAWBERRIES     = HELPER.createItem("chocolate_strawberries", () -> new HealingItem(1.0F, new Item.Properties().food(Foods.CHOCOLATE_STRAWBERRIES).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> WHITE_STRAWBERRIES         = HELPER.createItem("white_strawberries", () -> new HealingItem(4.0F, new Item.Properties().food(Foods.WHITE_STRAWBERRIES).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> VANILLA_CHOCOLATE_FINGERS  = HELPER.createItem("vanilla_chocolate_fingers", () -> new Item(new Item.Properties().food(Foods.VANILLA_CHOCOLATE_FINGERS).group(ItemGroup.FOOD)));
-    public static final RegistryObject<Item> STRAWBERRY_BANANA_SMOOTHIE = HELPER.createItem("strawberry_banana_smoothie", () -> new DrinkItem(new Item.Properties().food(Foods.STRAWBERRY_BANANA_SMOOTHIE).group(ItemGroup.FOOD)));
+    public static final RegistryObject<Item> STRAWBERRY_BANANA_SMOOTHIE = HELPER.createItem("strawberry_banana_smoothie", () -> new HealingDrinkItem(2.0F, new Item.Properties().food(Foods.STRAWBERRY_BANANA_SMOOTHIE).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> NEAPOLITAN_ICE_CREAM       = HELPER.createItem("neapolitan_ice_cream", () -> new HealingSoupItem(2.0F, new Item.Properties().food(Foods.NEAPOLITAN_ICE_CREAM).containerItem(Items.BOWL).maxStackSize(1).group(ItemGroup.FOOD)));
     
     public static final RegistryObject<Item> MONKEY_BANNNER_PATTERN		= HELPER.createItem("monkey_banner_pattern", () -> new BannerPatternItem(NeapolitanBanners.MONKEY, new Item.Properties().group(ItemGroup.MISC).maxStackSize(1)));
@@ -87,17 +87,17 @@ public class NeapolitanItems {
         public static final Food VANILLA_CAKE           = (new Food.Builder()).hunger(1).saturation(0.1F).effect(() -> new EffectInstance(NeapolitanEffects.VANILLA_SCENT.get(), 100), 1.0F).build();
         public static final Food VANILLA_MILKSHAKE      = (new Food.Builder()).hunger(3).saturation(0.6F).setAlwaysEdible().build();
         
-        public static final Food BANANA				= (new Food.Builder()).hunger(0).saturation(0.0F).build();
-        public static final Food BANANA_ICE_CREAM	= (new Food.Builder()).hunger(0).saturation(0.0F).build();
-        public static final Food BANANA_BREAD		= (new Food.Builder()).hunger(0).saturation(0.0F).build();
-        public static final Food DRIED_BANANA		= (new Food.Builder()).hunger(0).saturation(0.0F).build();
-        public static final Food BANANA_MILKSHAKE	= (new Food.Builder()).hunger(0).saturation(0.0F).build();
-        public static final Food BANANA_CAKE		= (new Food.Builder()).hunger(0).saturation(0.0F).build();
+        public static final Food BANANA				= (new Food.Builder()).hunger(2).saturation(0.2F).effect(() -> new EffectInstance(NeapolitanEffects.AGILITY.get(), 600), 1.0F).build();
+        public static final Food BANANA_ICE_CREAM	= (new Food.Builder()).hunger(6).saturation(0.42F).effect(() -> new EffectInstance(NeapolitanEffects.AGILITY.get(), 1200), 1.0F).build();
+        public static final Food BANANA_BREAD		= (new Food.Builder()).hunger(5).saturation(0.6F).effect(() -> new EffectInstance(NeapolitanEffects.AGILITY.get(), 600), 1.0F).build();
+        public static final Food DRIED_BANANA		= (new Food.Builder()).hunger(4).saturation(0.3F).effect(() -> new EffectInstance(NeapolitanEffects.AGILITY.get(), 300), 1.0F).build();
+        public static final Food BANANA_MILKSHAKE	= (new Food.Builder()).hunger(3).saturation(0.6F).build();
+        public static final Food BANANA_CAKE		= (new Food.Builder()).hunger(1).saturation(0.1F).effect(() -> new EffectInstance(NeapolitanEffects.AGILITY.get(), 300), 1.0F).build();
 
         public static final Food CHOCOLATE_STRAWBERRIES     = (new Food.Builder()).hunger(4).saturation(0.025F).effect(() -> new EffectInstance(NeapolitanEffects.SUGAR_RUSH.get(), 200), 1.0F).build();
         public static final Food WHITE_STRAWBERRIES         = (new Food.Builder()).hunger(5).saturation(0.04F).build();
         public static final Food VANILLA_CHOCOLATE_FINGERS  = (new Food.Builder()).hunger(6).saturation(0.55F).effect(() -> new EffectInstance(NeapolitanEffects.SUGAR_RUSH.get(), 200), 1.0F).effect(() -> new EffectInstance(NeapolitanEffects.VANILLA_SCENT.get(), 100), 1.0F).build();
-        public static final Food STRAWBERRY_BANANA_SMOOTHIE = (new Food.Builder()).hunger(0).saturation(0.0F).build();
+        public static final Food STRAWBERRY_BANANA_SMOOTHIE = (new Food.Builder()).hunger(3).saturation(0.04F).effect(() -> new EffectInstance(NeapolitanEffects.AGILITY.get(), 600), 1.0F).build();
         public static final Food NEAPOLITAN_ICE_CREAM       = (new Food.Builder()).hunger(12).saturation(0.42F).effect(() -> new EffectInstance(Effects.SLOWNESS, 100, 2), 1.0F).effect(() -> new EffectInstance(NeapolitanEffects.SUGAR_RUSH.get(), 400, 1), 1.0F).effect(() -> new EffectInstance(NeapolitanEffects.VANILLA_SCENT.get(), 200), 1.0F).build();
     }
 }
