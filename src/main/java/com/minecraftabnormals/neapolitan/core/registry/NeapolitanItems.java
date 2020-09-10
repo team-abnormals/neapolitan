@@ -1,6 +1,7 @@
 package com.minecraftabnormals.neapolitan.core.registry;
 
 import com.minecraftabnormals.neapolitan.common.item.BananaBunchItem;
+import com.minecraftabnormals.neapolitan.common.item.BananarrowItem;
 import com.minecraftabnormals.neapolitan.common.item.DrinkItem;
 import com.minecraftabnormals.neapolitan.common.item.HealingItem;
 import com.minecraftabnormals.neapolitan.common.item.HealingSoupItem;
@@ -56,7 +57,7 @@ public class NeapolitanItems {
     public static final RegistryObject<Item> DRIED_BANANA		= HELPER.createItem("dried_banana", () -> new Item(new Item.Properties().food(Foods.DRIED_BANANA).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> BANANA_MILKSHAKE	= HELPER.createItem("banana_milkshake", () -> new MilkshakeItem(null, new Item.Properties().food(Foods.BANANA_MILKSHAKE).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> BANANA_BREAD		= HELPER.createItem("banana_bread", () -> new Item(new Item.Properties().food(Foods.BANANA_BREAD).group(ItemGroup.FOOD)));
-    public static final RegistryObject<Item> BANANARROW			= HELPER.createItem("bananarrow", () -> new Item(new Item.Properties().group(ItemGroup.COMBAT)));
+    public static final RegistryObject<Item> BANANARROW			= HELPER.createItem("bananarrow", () -> new BananarrowItem(new Item.Properties().group(ItemGroup.COMBAT)));
 
     public static final RegistryObject<Item> CHOCOLATE_STRAWBERRIES     = HELPER.createItem("chocolate_strawberries", () -> new HealingItem(1.0F, new Item.Properties().food(Foods.CHOCOLATE_STRAWBERRIES).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> WHITE_STRAWBERRIES         = HELPER.createItem("white_strawberries", () -> new HealingItem(4.0F, new Item.Properties().food(Foods.WHITE_STRAWBERRIES).group(ItemGroup.FOOD)));

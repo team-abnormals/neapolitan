@@ -3,14 +3,11 @@ package com.minecraftabnormals.neapolitan.core;
 import com.minecraftabnormals.neapolitan.common.world.gen.NeapolitanBiomeFeatures;
 import com.minecraftabnormals.neapolitan.core.other.NeapolitanCompat;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanBanners;
-import com.minecraftabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEffects;
+import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEntities;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanFeatures;
 import com.teamabnormals.abnormals_core.core.utils.RegistryHelper;
 
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.item.Foods;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -36,6 +33,7 @@ public class Neapolitan {
     	
     	REGISTRY_HELPER.getDeferredBlockRegister().register(modEventBus);
     	REGISTRY_HELPER.getDeferredItemRegister().register(modEventBus);
+    	REGISTRY_HELPER.getDeferredEntityRegister().register(modEventBus);
     	NeapolitanEffects.EFFECTS.register(modEventBus);
     	NeapolitanFeatures.FEATURES.register(modEventBus);
     	NeapolitanBanners.BANNERS.register(modEventBus);
@@ -53,24 +51,18 @@ public class Neapolitan {
     private void setupCommon(final FMLCommonSetupEvent event) {
     	DeferredWorkQueue.runLater(() -> {
     		NeapolitanBanners.registerBanners();
+    		NeapolitanCompat.transformCookies();
     	    NeapolitanCompat.registerFlammables();
     	    NeapolitanCompat.registerCompostables();
     	    NeapolitanBiomeFeatures.generateFeatures();
-    		Foods.COOKIE.fastToEat = true;
-        	Foods.COOKIE.saturation = 0.3F;
+    		
     	});
     }
     
     private void setupClient(final FMLClientSetupEvent event) {
     	DeferredWorkQueue.runLater(() -> {
-    		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.STRAWBERRY_BUSH.get(), RenderType.getCutout());
-    		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.VANILLA_VINE.get(), RenderType.getCutout());
-    		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.VANILLA_VINE_PLANT.get(), RenderType.getCutout());
-    		
-    		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.FROND_THATCH.get(), RenderType.getCutout());
-    		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.FROND_THATCH_STAIRS.get(), RenderType.getCutout());
-    		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.FROND_THATCH_SLAB.get(), RenderType.getCutout());
-    		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.FROND_THATCH_VERTICAL_SLAB.get(), RenderType.getCutout());
+    		NeapolitanCompat.registerRenderLayers();
+    		NeapolitanEntities.registerEntityRenderers();
     	});
     }
 }

@@ -83,6 +83,10 @@
   "item.neapolitan.monkey_banner_pattern": "Banner Pattern",
   "item.neapolitan.monkey_banner_pattern.desc": "Monkey",
   
+  "entity.neapolitan.banana_peel": "Banana Peel",
+  "entity.neapolitan.monkey": "Monkey",
+  "entity.neapolitan.bananarrow": "Bananarrow",
+  
   "effect.neapolitan.sugar_rush": "Sugar Rush",
   "effect.neapolitan.vanilla_scent": "Vanilla Scent",
   "effect.neapolitan.agility": "Agility",
