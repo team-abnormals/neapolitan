@@ -20,26 +20,35 @@ public class NeapolitanCompat {
 		DataUtils.registerCompostable(NeapolitanItems.STRAWBERRIES.get(), 0.3F);
 		DataUtils.registerCompostable(NeapolitanItems.WHITE_STRAWBERRIES.get(), 0.65F);
 		DataUtils.registerCompostable(NeapolitanItems.STRAWBERRY_SCONES.get(), 0.65F);
-
 		DataUtils.registerCompostable(NeapolitanItems.STRAWBERRY_CAKE.get(), 1.0F);
-		DataUtils.registerCompostable(NeapolitanItems.CHOCOLATE_CAKE.get(), 1.0F);
-		DataUtils.registerCompostable(NeapolitanItems.VANILLA_CAKE.get(), 1.0F);
-
-		DataUtils.registerCompostable(NeapolitanItems.VANILLA_CHOCOLATE_FINGERS.get(), 0.85F);
-		DataUtils.registerCompostable(NeapolitanItems.CHOCOLATE_STRAWBERRIES.get(), 0.85F);
 
 		DataUtils.registerCompostable(NeapolitanItems.CHOCOLATE_BAR.get(), 0.3F);
+		DataUtils.registerCompostable(NeapolitanItems.CHOCOLATE_CAKE.get(), 1.0F);
 
 		DataUtils.registerCompostable(NeapolitanItems.VANILLA_PODS.get(), 0.3F);
 		DataUtils.registerCompostable(NeapolitanItems.DRIED_VANILLA_PODS.get(), 0.3F);
+		DataUtils.registerCompostable(NeapolitanItems.VANILLA_CAKE.get(), 1.0F);
+		
+		DataUtils.registerCompostable(NeapolitanItems.BANANA.get(), 0.3F);
+		DataUtils.registerCompostable(NeapolitanItems.BANANA_BUNCH.get(), 0.5F);
+		DataUtils.registerCompostable(NeapolitanItems.DRIED_BANANA.get(), 0.5F);
+		DataUtils.registerCompostable(NeapolitanItems.BANANA_BREAD.get(), 0.65F);
+		DataUtils.registerCompostable(NeapolitanItems.BANANA_CAKE.get(), 1.0F);
+
+		DataUtils.registerCompostable(NeapolitanItems.VANILLA_CHOCOLATE_FINGERS.get(), 0.85F);
+		DataUtils.registerCompostable(NeapolitanItems.CHOCOLATE_STRAWBERRIES.get(), 0.85F);
 
 		DataUtils.registerCompostable(NeapolitanBlocks.VANILLA_POD_BLOCK.get(), 0.5F);
 		DataUtils.registerCompostable(NeapolitanBlocks.DRIED_VANILLA_POD_BLOCK.get(), 0.5F);
 
 		DataUtils.registerCompostable(NeapolitanBlocks.CHOCOLATE_BLOCK.get(), 1.0F);
+		
+		DataUtils.registerCompostable(NeapolitanBlocks.BANANA_BUNDLE.get(), 0.85F);
+		DataUtils.registerCompostable(NeapolitanBlocks.BANANA_STALK.get(), 0.85F);
 
 		DataUtils.registerCompostable(NeapolitanBlocks.STRAWBERRY_BASKET.get(), 1.0F);
 		DataUtils.registerCompostable(NeapolitanBlocks.WHITE_STRAWBERRY_BASKET.get(), 1.0F);
+		DataUtils.registerCompostable(NeapolitanBlocks.BANANA_CRATE.get(), 1.0F);
 
 		DataUtils.registerCompostable(NeapolitanBlocks.FROND_THATCH.get(), 0.65F);
 		DataUtils.registerCompostable(NeapolitanBlocks.FROND_THATCH_SLAB.get(), 0.65F);
