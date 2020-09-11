@@ -129,18 +129,18 @@ public class BananaFrondBlock extends BushBlock implements IGrowable {
 
 			if (isAirAt(world, pos, size)) {
 				for (BlockPos blockPos2 : stalks) {
-					world.setBlockState(blockPos2, NeapolitanBlocks.BANANA_STALK.get().getDefaultState());
+					world.setBlockState(blockPos2, NeapolitanBlocks.BANANA_STALK.get().getDefaultState(), 2);
 				}
-				world.setBlockState(upFrond, NeapolitanBlocks.LARGE_BANANA_FROND.get().getDefaultState());
-				world.setBlockState(bundle, NeapolitanBlocks.BANANA_BUNDLE.get().getDefaultState());
+				world.setBlockState(upFrond, NeapolitanBlocks.LARGE_BANANA_FROND.get().getDefaultState(), 2);
+				if(bundle != null)world.setBlockState(bundle, NeapolitanBlocks.BANANA_BUNDLE.get().getDefaultState(), 2);
 				for (BlockPos blockPos2 : smallFronds.keySet()) {
-					world.setBlockState(blockPos2, NeapolitanBlocks.SMALL_BANANA_FROND.get().getDefaultState().with(FACING, smallFronds.get(blockPos2)));
+					world.setBlockState(blockPos2, NeapolitanBlocks.SMALL_BANANA_FROND.get().getDefaultState().with(FACING, smallFronds.get(blockPos2)), 2);
 				}
 				for (BlockPos blockPos2 : fronds.keySet()) {
-					world.setBlockState(blockPos2, NeapolitanBlocks.BANANA_FROND.get().getDefaultState().with(FACING, fronds.get(blockPos2)));
+					world.setBlockState(blockPos2, NeapolitanBlocks.BANANA_FROND.get().getDefaultState().with(FACING, fronds.get(blockPos2)), 2);
 				}
 				for (BlockPos blockPos2 : largeFronds.keySet()) {
-					world.setBlockState(blockPos2, NeapolitanBlocks.LARGE_BANANA_FROND.get().getDefaultState().with(FACING, largeFronds.get(blockPos2)));
+					world.setBlockState(blockPos2, NeapolitanBlocks.LARGE_BANANA_FROND.get().getDefaultState().with(FACING, largeFronds.get(blockPos2)), 2);
 				}
 			}
 		}
