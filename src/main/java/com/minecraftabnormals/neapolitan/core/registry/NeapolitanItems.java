@@ -88,7 +88,7 @@ public class NeapolitanItems {
         public static final Food VANILLA_MILKSHAKE      = (new Food.Builder()).hunger(3).saturation(0.6F).setAlwaysEdible().build();
         
         public static final Food BANANA				= (new Food.Builder()).hunger(2).saturation(0.2F).effect(() -> new EffectInstance(NeapolitanEffects.AGILITY.get(), 300), 1.0F).build();
-        public static final Food BANANA_ICE_CREAM	= (new Food.Builder()).hunger(6).saturation(0.42F).effect(() -> new EffectInstance(NeapolitanEffects.AGILITY.get(), 1200), 1.0F).build();
+        public static final Food BANANA_ICE_CREAM	= (new Food.Builder()).hunger(6).saturation(0.42F).effect(() -> new EffectInstance(Effects.SLOWNESS, 100, 2), 1.0F).effect(() -> new EffectInstance(NeapolitanEffects.AGILITY.get(), 1200), 1.0F).build();
         public static final Food BANANA_BREAD		= (new Food.Builder()).hunger(5).saturation(0.6F).effect(() -> new EffectInstance(NeapolitanEffects.AGILITY.get(), 600), 1.0F).build();
         public static final Food DRIED_BANANA		= (new Food.Builder()).hunger(4).saturation(0.3F).effect(() -> new EffectInstance(NeapolitanEffects.AGILITY.get(), 200), 1.0F).build();
         public static final Food BANANA_MILKSHAKE	= (new Food.Builder()).hunger(3).saturation(0.6F).build();
