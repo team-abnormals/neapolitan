@@ -80,78 +80,83 @@ public class BananaFrondBlock extends BushBlock implements IGrowable {
 	@Override
 	public void grow(ServerWorld world, Random rand, BlockPos pos, BlockState state) {
 		if (rand.nextInt(4) == 0) {
-			int size = getSizeForFrond(rand, this);
-			BlockPos blockPos = pos;
-			List<BlockPos> stalks = new ArrayList<>();
-			BlockPos upFrond = null;
-			BlockPos bundle = null;
-			// MIN:3(2), MAX:6(5)
+			attemptGrowBanana(getSizeForFrond(rand, this), world, rand, pos);
+		}
+	}
+	
+	public static boolean attemptGrowBanana(int size, World world, Random rand, BlockPos pos) {
+		BlockPos blockPos = pos;
+		List<BlockPos> stalks = new ArrayList<>();
+		BlockPos upFrond = null;
+		BlockPos bundle = null;
 
-			Map<BlockPos, Direction> smallFronds = new HashMap<>();
-			Map<BlockPos, Direction> fronds = new HashMap<>();
-			Map<BlockPos, Direction> largeFronds = new HashMap<>();
+		Map<BlockPos, Direction> smallFronds = new HashMap<>();
+		Map<BlockPos, Direction> fronds = new HashMap<>();
+		Map<BlockPos, Direction> largeFronds = new HashMap<>();
 
-			for (int i = 0; i < size; i++) {
-				stalks.add(blockPos);
-				blockPos = blockPos.up();
-			}
-			upFrond = (blockPos);
-			int i = 0;
-			for (BlockPos stalk : stalks) {
-				if (i >= size - 3) {
-					for (Direction direction : Direction.values()) {
-						if (direction.getAxis().isHorizontal()) {
-							if (i == size - 1) {
-								if (rand.nextInt(4) != 0) {
-									largeFronds.put(stalk.offset(direction), direction);
+		for (int i = 0; i < size; i++) {
+			stalks.add(blockPos);
+			blockPos = blockPos.up();
+		}
+		upFrond = (blockPos);
+		int i = 0;
+		for (BlockPos stalk : stalks) {
+			if (i >= size - 3) {
+				for (Direction direction : Direction.values()) {
+					if (direction.getAxis().isHorizontal()) {
+						if (i == size - 1) {
+							if (rand.nextInt(4) != 0) {
+								largeFronds.put(stalk.offset(direction), direction);
+							} else {
+								fronds.put(stalk.offset(direction), direction);
+							}
+						} else if (i == size - 2) {
+							if (rand.nextBoolean()) {
+								fronds.put(stalk.offset(direction), direction);
+							} else {
+								if (rand.nextBoolean() && bundle == null) {
+									bundle = stalk.offset(direction);
 								} else {
-									fronds.put(stalk.offset(direction), direction);
-								}
-							} else if (i == size - 2) {
-								if (rand.nextBoolean()) {
-									fronds.put(stalk.offset(direction), direction);
-								} else {
-									if (rand.nextBoolean() && bundle == null) {
-										bundle = stalk.offset(direction);
-									} else {
-										smallFronds.put(stalk.offset(direction), direction);
-									}
-								}
-							} else if (i == size - 3) {
-								if (rand.nextInt(3) != 0) {
 									smallFronds.put(stalk.offset(direction), direction);
 								}
+							}
+						} else if (i == size - 3) {
+							if (rand.nextInt(3) != 0) {
+								smallFronds.put(stalk.offset(direction), direction);
 							}
 						}
 					}
 				}
-				i += 1;
 			}
-
-			if (isAirAt(world, pos, size)) {
-				for (BlockPos blockPos2 : stalks) {
-					world.setBlockState(blockPos2, NeapolitanBlocks.BANANA_STALK.get().getDefaultState(), 2);
-				}
-				world.setBlockState(upFrond, NeapolitanBlocks.LARGE_BANANA_FROND.get().getDefaultState(), 2);
-				if (bundle != null) world.setBlockState(bundle, NeapolitanBlocks.BANANA_BUNDLE.get().getDefaultState(), 2);
-				for (BlockPos blockPos2 : smallFronds.keySet()) {
-					world.setBlockState(blockPos2, NeapolitanBlocks.SMALL_BANANA_FROND.get().getDefaultState().with(FACING, smallFronds.get(blockPos2)), 2);
-				}
-				for (BlockPos blockPos2 : fronds.keySet()) {
-					world.setBlockState(blockPos2, NeapolitanBlocks.BANANA_FROND.get().getDefaultState().with(FACING, fronds.get(blockPos2)), 2);
-				}
-				for (BlockPos blockPos2 : largeFronds.keySet()) {
-					world.setBlockState(blockPos2, NeapolitanBlocks.LARGE_BANANA_FROND.get().getDefaultState().with(FACING, largeFronds.get(blockPos2)), 2);
-				}
-			}
+			i += 1;
 		}
+
+		if (isAirAt(world, pos, size) && pos.getY() < world.getHeight() - size) {
+			for (BlockPos blockPos2 : stalks) {
+				world.setBlockState(blockPos2, NeapolitanBlocks.BANANA_STALK.get().getDefaultState(), 2);
+			}
+			world.setBlockState(upFrond, NeapolitanBlocks.LARGE_BANANA_FROND.get().getDefaultState(), 2);
+			if (bundle != null) world.setBlockState(bundle, NeapolitanBlocks.BANANA_BUNDLE.get().getDefaultState(), 2);
+			for (BlockPos blockPos2 : smallFronds.keySet()) {
+				world.setBlockState(blockPos2, NeapolitanBlocks.SMALL_BANANA_FROND.get().getDefaultState().with(FACING, smallFronds.get(blockPos2)), 2);
+			}
+			for (BlockPos blockPos2 : fronds.keySet()) {
+				world.setBlockState(blockPos2, NeapolitanBlocks.BANANA_FROND.get().getDefaultState().with(FACING, fronds.get(blockPos2)), 2);
+			}
+			for (BlockPos blockPos2 : largeFronds.keySet()) {
+				world.setBlockState(blockPos2, NeapolitanBlocks.LARGE_BANANA_FROND.get().getDefaultState().with(FACING, largeFronds.get(blockPos2)), 2);
+			}
+			return true;
+		}
+		
+		return false;
 	}
 	
-	private boolean canGrowOn(BlockState state) {
+	public static boolean canGrowOn(BlockState state) {
 		return state.isIn(Blocks.PODZOL) || state.isIn(BlockTags.SAND) || state.isIn(Blocks.GRAVEL);
 	}
 
-	private boolean isAirAt(ServerWorld world, BlockPos pos, int size) {
+	private static boolean isAirAt(World world, BlockPos pos, int size) {
 		BlockPos position = pos.up();
 		for (int i = 0; i < size + 1; i++) {
 			if (!world.isAirBlock(position)) return false;
@@ -165,7 +170,7 @@ public class BananaFrondBlock extends BushBlock implements IGrowable {
 		return true;
 	}
 
-	private int getSizeForFrond(Random rand, Block frond) {
+	private static int getSizeForFrond(Random rand, Block frond) {
 		int extra = 0;
 		if (frond == NeapolitanBlocks.SMALL_BANANA_FROND.get())
 			extra = rand.nextInt(2);
