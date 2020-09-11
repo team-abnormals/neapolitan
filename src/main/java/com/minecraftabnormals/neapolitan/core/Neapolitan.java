@@ -6,7 +6,6 @@ import com.minecraftabnormals.neapolitan.core.registry.NeapolitanBanners;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEffects;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEntities;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanFeatures;
-import com.teamabnormals.abnormals_core.core.utils.RegistryHelper;
 
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -26,7 +25,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 public class Neapolitan {
 	public static final String MODID = "neapolitan";
 
-	public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MODID);
+	public static final NeapolitanRegistryHelper REGISTRY_HELPER = new NeapolitanRegistryHelper(MODID);
 	
     public Neapolitan() {
     	IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();

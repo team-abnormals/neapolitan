@@ -85,6 +85,7 @@ public class NeapolitanCompat {
 		DataUtils.registerFlammable(NeapolitanBlocks.STRAWBERRY_BASKET.get(), 5, 20);
 		DataUtils.registerFlammable(NeapolitanBlocks.WHITE_STRAWBERRY_BASKET.get(), 5, 20);
 
+		DataUtils.registerFlammable(NeapolitanBlocks.BANANA_STALK.get(), 5, 5);
 		DataUtils.registerFlammable(NeapolitanBlocks.SMALL_BANANA_FROND.get(), 60, 100);
 		DataUtils.registerFlammable(NeapolitanBlocks.BANANA_FROND.get(), 60, 100);
 		DataUtils.registerFlammable(NeapolitanBlocks.LARGE_BANANA_FROND.get(), 60, 100);

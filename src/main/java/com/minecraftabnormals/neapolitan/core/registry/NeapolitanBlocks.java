@@ -6,12 +6,12 @@ import com.minecraftabnormals.neapolitan.common.block.StrawberryBushBlock;
 import com.minecraftabnormals.neapolitan.common.block.VanillaVineBlock;
 import com.minecraftabnormals.neapolitan.common.block.VanillaVineTopBlock;
 import com.minecraftabnormals.neapolitan.core.Neapolitan;
+import com.minecraftabnormals.neapolitan.core.NeapolitanRegistryHelper;
 import com.teamabnormals.abnormals_core.common.blocks.VerticalSlabBlock;
 import com.teamabnormals.abnormals_core.common.blocks.thatch.ThatchBlock;
 import com.teamabnormals.abnormals_core.common.blocks.thatch.ThatchSlabBlock;
 import com.teamabnormals.abnormals_core.common.blocks.thatch.ThatchStairsBlock;
 import com.teamabnormals.abnormals_core.common.blocks.thatch.ThatchVerticalSlabBlock;
-import com.teamabnormals.abnormals_core.core.utils.RegistryHelper;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -30,7 +30,7 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = Neapolitan.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NeapolitanBlocks {
-    public static final RegistryHelper HELPER = Neapolitan.REGISTRY_HELPER;
+    public static final NeapolitanRegistryHelper HELPER = Neapolitan.REGISTRY_HELPER;
     
     public static final RegistryObject<Block> VANILLA_ICE_CREAM_BLOCK 		= HELPER.createBlock("vanilla_ice_cream_block", () -> new Block(Properties.VANILLA_ICE_CREAM_BLOCK), ItemGroup.BUILDING_BLOCKS);
     public static final RegistryObject<Block> CHOCOLATE_ICE_CREAM_BLOCK 	= HELPER.createBlock("chocolate_ice_cream_block", () -> new Block(Properties.CHOCOLATE_ICE_CREAM_BLOCK), ItemGroup.BUILDING_BLOCKS);
@@ -63,10 +63,10 @@ public class NeapolitanBlocks {
     public static final RegistryObject<Block> VANILLA_VINE        = HELPER.createBlockNoItem("vanilla_vine", () -> new VanillaVineTopBlock(Properties.VANILLA_VINE));
     public static final RegistryObject<Block> VANILLA_VINE_PLANT  = HELPER.createBlockNoItem("vanilla_vine_plant", () -> new VanillaVineBlock(Properties.VANILLA_VINE));
 
-    public static final RegistryObject<Block> BANANA_STALK 			= HELPER.createBlock("banana_stalk", () -> new RotatedPillarBlock(Properties.BANANA_STALK), ItemGroup.BUILDING_BLOCKS);
-    public static final RegistryObject<Block> SMALL_BANANA_FROND 	= HELPER.createBlock("small_banana_frond", () -> new BananaFrondBlock(Properties.BANANA_FROND), ItemGroup.DECORATIONS);
-    public static final RegistryObject<Block> BANANA_FROND 			= HELPER.createBlock("banana_frond", () -> new BananaFrondBlock(Properties.BANANA_FROND), ItemGroup.DECORATIONS);
-    public static final RegistryObject<Block> LARGE_BANANA_FROND 	= HELPER.createBlock("large_banana_frond", () -> new BananaFrondBlock(Properties.BANANA_FROND), ItemGroup.DECORATIONS);
+    public static final RegistryObject<Block> BANANA_STALK 			= HELPER.createFuelBlock("banana_stalk", () -> new RotatedPillarBlock(Properties.BANANA_STALK), 400, ItemGroup.BUILDING_BLOCKS);
+    public static final RegistryObject<Block> SMALL_BANANA_FROND 	= HELPER.createFuelBlock("small_banana_frond", () -> new BananaFrondBlock(Properties.BANANA_FROND), 150, ItemGroup.DECORATIONS);
+    public static final RegistryObject<Block> BANANA_FROND 			= HELPER.createFuelBlock("banana_frond", () -> new BananaFrondBlock(Properties.BANANA_FROND), 100, ItemGroup.DECORATIONS);
+    public static final RegistryObject<Block> LARGE_BANANA_FROND 	= HELPER.createFuelBlock("large_banana_frond", () -> new BananaFrondBlock(Properties.BANANA_FROND), 50, ItemGroup.DECORATIONS);
 
     public static final RegistryObject<Block> CHOCOLATE_CAKE    = HELPER.createBlockNoItem("chocolate_cake", () -> new FlavoredCakeBlock(NeapolitanItems.Foods.CHOCOLATE_CAKE, EffectType.HARMFUL, Properties.CHOCOLATE_CAKE));
     public static final RegistryObject<Block> STRAWBERRY_CAKE   = HELPER.createBlockNoItem("strawberry_cake", () -> new FlavoredCakeBlock(NeapolitanItems.Foods.STRAWBERRY_CAKE, EffectType.BENEFICIAL, Properties.STRAWBERRY_CAKE));
