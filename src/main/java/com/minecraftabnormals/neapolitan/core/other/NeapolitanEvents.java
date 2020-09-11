@@ -132,6 +132,7 @@ public class NeapolitanEvents {
     @SubscribeEvent
     public static void onWandererTradesEvent(WandererTradesEvent event) {
         event.getGenericTrades().add(new TradeUtils.ItemsForEmeraldsTrade(NeapolitanItems.VANILLA_PODS.get(), 1, 3, 4, 1));
+        event.getGenericTrades().add(new TradeUtils.ItemsForEmeraldsTrade(NeapolitanBlocks.LARGE_BANANA_FROND.get(), 5, 1, 4, 1));
         event.getRareTrades().add(new TradeUtils.ItemsForEmeraldsTrade(NeapolitanItems.WHITE_STRAWBERRIES.get(), 4, 8, 2, 1));
     }
 }

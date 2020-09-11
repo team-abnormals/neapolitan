@@ -46,6 +46,10 @@ public class NeapolitanCompat {
 		DataUtils.registerCompostable(NeapolitanBlocks.BANANA_BUNDLE.get(), 0.85F);
 		DataUtils.registerCompostable(NeapolitanBlocks.BANANA_STALK.get(), 0.85F);
 
+		DataUtils.registerCompostable(NeapolitanBlocks.SMALL_BANANA_FROND.get(), 0.3F);
+		DataUtils.registerCompostable(NeapolitanBlocks.BANANA_FROND.get(), 0.5F);
+		DataUtils.registerCompostable(NeapolitanBlocks.LARGE_BANANA_FROND.get(), 0.65F);
+
 		DataUtils.registerCompostable(NeapolitanBlocks.STRAWBERRY_BASKET.get(), 1.0F);
 		DataUtils.registerCompostable(NeapolitanBlocks.WHITE_STRAWBERRY_BASKET.get(), 1.0F);
 		DataUtils.registerCompostable(NeapolitanBlocks.BANANA_CRATE.get(), 1.0F);
@@ -80,6 +84,10 @@ public class NeapolitanCompat {
 		DataUtils.registerFlammable(NeapolitanBlocks.STRAWBERRY_BUSH.get(), 60, 100);
 		DataUtils.registerFlammable(NeapolitanBlocks.STRAWBERRY_BASKET.get(), 5, 20);
 		DataUtils.registerFlammable(NeapolitanBlocks.WHITE_STRAWBERRY_BASKET.get(), 5, 20);
+
+		DataUtils.registerFlammable(NeapolitanBlocks.SMALL_BANANA_FROND.get(), 60, 100);
+		DataUtils.registerFlammable(NeapolitanBlocks.BANANA_FROND.get(), 60, 100);
+		DataUtils.registerFlammable(NeapolitanBlocks.LARGE_BANANA_FROND.get(), 60, 100);
 
 		DataUtils.registerFlammable(NeapolitanBlocks.FROND_THATCH.get(), 60, 20);
 		DataUtils.registerFlammable(NeapolitanBlocks.FROND_THATCH_STAIRS.get(), 60, 20);
