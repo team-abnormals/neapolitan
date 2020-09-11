@@ -10,6 +10,7 @@ import com.minecraftabnormals.neapolitan.core.registry.NeapolitanBlocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.BushBlock;
 import net.minecraft.block.IGrowable;
 import net.minecraft.item.BlockItemUseContext;
@@ -44,7 +45,7 @@ public class BananaFrondBlock extends BushBlock implements IGrowable {
 
 	@Override
 	protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
-		return state.isIn(Tags.Blocks.DIRT) || state.isIn(BlockTags.LOGS) || state.isIn(NeapolitanBlocks.BANANA_STALK.get()) || state.isIn(NeapolitanBlocks.FROND_THATCH.get()) || state.isIn(NeapolitanBlocks.FROND_THATCH_STAIRS.get()) || state.isIn(NeapolitanBlocks.FROND_THATCH_SLAB.get());
+		return state.isIn(Tags.Blocks.DIRT) || state.isIn(BlockTags.LOGS) || canGrowOn(state) || state.isIn(NeapolitanBlocks.BANANA_STALK.get()) || state.isIn(NeapolitanBlocks.FROND_THATCH.get()) || state.isIn(NeapolitanBlocks.FROND_THATCH_STAIRS.get()) || state.isIn(NeapolitanBlocks.FROND_THATCH_SLAB.get());
 	}
 
 	protected boolean isValidSide(IWorldReader worldIn, BlockPos pos, Direction facing) {
@@ -68,7 +69,7 @@ public class BananaFrondBlock extends BushBlock implements IGrowable {
 
 	@Override
 	public boolean canGrow(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
-		return state.get(FACING) == Direction.UP && worldIn.getBlockState(pos.down()).isIn(Tags.Blocks.DIRT) && worldIn instanceof World && ((World) worldIn).isRainingAt(pos);
+		return state.get(FACING) == Direction.UP && canGrowOn(worldIn.getBlockState(pos.down())) && worldIn instanceof World && ((World) worldIn).isRainingAt(pos);
 	}
 
 	@Override
@@ -132,7 +133,7 @@ public class BananaFrondBlock extends BushBlock implements IGrowable {
 					world.setBlockState(blockPos2, NeapolitanBlocks.BANANA_STALK.get().getDefaultState(), 2);
 				}
 				world.setBlockState(upFrond, NeapolitanBlocks.LARGE_BANANA_FROND.get().getDefaultState(), 2);
-				if(bundle != null)world.setBlockState(bundle, NeapolitanBlocks.BANANA_BUNDLE.get().getDefaultState(), 2);
+				if (bundle != null) world.setBlockState(bundle, NeapolitanBlocks.BANANA_BUNDLE.get().getDefaultState(), 2);
 				for (BlockPos blockPos2 : smallFronds.keySet()) {
 					world.setBlockState(blockPos2, NeapolitanBlocks.SMALL_BANANA_FROND.get().getDefaultState().with(FACING, smallFronds.get(blockPos2)), 2);
 				}
@@ -144,6 +145,10 @@ public class BananaFrondBlock extends BushBlock implements IGrowable {
 				}
 			}
 		}
+	}
+	
+	private boolean canGrowOn(BlockState state) {
+		return state.isIn(Blocks.PODZOL) || state.isIn(BlockTags.SAND) || state.isIn(Blocks.GRAVEL);
 	}
 
 	private boolean isAirAt(ServerWorld world, BlockPos pos, int size) {
