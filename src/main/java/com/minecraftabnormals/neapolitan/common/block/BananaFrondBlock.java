@@ -84,6 +84,16 @@ public class BananaFrondBlock extends BushBlock implements IGrowable {
 		}
 	}
 	
+	@Override
+	public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
+		if (this.canGrow(worldIn, pos, state, worldIn.isRemote())) {
+			if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt(2) == 0)) {
+				attemptGrowBanana(getSizeForFrond(rand, this), worldIn, rand, pos);
+                net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state);
+			}
+		}
+	}
+	
 	public static boolean attemptGrowBanana(int size, World world, Random rand, BlockPos pos) {
 		BlockPos blockPos = pos;
 		List<BlockPos> stalks = new ArrayList<>();
