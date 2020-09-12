@@ -25,6 +25,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.Tags;
 
 public class BananaFrondBlock extends BushBlock implements IGrowable {
 	public static final DirectionProperty FACING = BlockStateProperties.FACING;
@@ -158,7 +159,7 @@ public class BananaFrondBlock extends BushBlock implements IGrowable {
 	}
 	
 	public static boolean canGrowOn(BlockState state) {
-		return state.isIn(Blocks.PODZOL) || state.isIn(BlockTags.SAND) || state.isIn(Blocks.GRAVEL);
+		return state.isIn(Blocks.PODZOL) || state.isIn(Tags.Blocks.SAND) || state.isIn(Tags.Blocks.GRAVEL);
 	}
 
 	private static boolean isAirAt(World world, BlockPos pos, int size) {

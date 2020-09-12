@@ -11,6 +11,7 @@ import com.minecraftabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.mojang.serialization.Codec;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
@@ -46,8 +47,11 @@ public class BananaPlantFeature extends Feature<NoFeatureConfig> {
 		upFrond = (blockPos);
 		int i = 0;
 
-		if (!BananaFrondBlock.canGrowOn(world.getBlockState(pos.down())))
+		BlockState down = world.getBlockState(pos.down());
+		if (!(down.isIn(Blocks.SAND) || down.isIn(Blocks.GRAVEL) || down.isIn(Blocks.DIRT) || down.isIn(Blocks.GRASS_BLOCK) || down.isIn(Blocks.PODZOL)))
 			return false;
+		if (down.isIn(Blocks.GRASS_BLOCK) || down.isIn(Blocks.PODZOL))
+			world.setBlockState(pos.down(), Blocks.GRAVEL.getDefaultState(), 18);
 
 		for (BlockPos stalk : stalks) {
 			if (i >= size - 3) {

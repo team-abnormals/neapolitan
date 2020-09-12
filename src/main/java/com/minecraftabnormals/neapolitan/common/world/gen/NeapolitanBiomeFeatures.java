@@ -5,6 +5,7 @@ import com.minecraftabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanFeatures;
 
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biome.RainType;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
@@ -33,8 +34,12 @@ public class NeapolitanBiomeFeatures {
             biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NeapolitanFeatures.VANILLA_PATCH.get().withConfiguration(VANILLA_VINE_PATCH_CONFIG).withPlacement(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(28))));
         }
         
-        if (biome.getCategory() == Biome.Category.BEACH) {
+        if (biome.getCategory() == Biome.Category.BEACH && biome.getPrecipitation() == RainType.RAIN) {
             biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NeapolitanFeatures.BANANA_PLANT.get().withConfiguration(NoFeatureConfig.field_236559_b_).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(0, 0.2F, 1))));
+        }
+        
+        if (biome.getCategory() == Biome.Category.JUNGLE && biome.getPrecipitation() == RainType.RAIN) {
+            biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NeapolitanFeatures.BANANA_PLANT.get().withConfiguration(NoFeatureConfig.field_236559_b_).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(1, 0.35F, 2))));
         }
     }
 }
