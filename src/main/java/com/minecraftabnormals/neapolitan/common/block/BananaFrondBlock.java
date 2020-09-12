@@ -25,7 +25,6 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.common.Tags;
 
 public class BananaFrondBlock extends BushBlock implements IGrowable {
 	public static final DirectionProperty FACING = BlockStateProperties.FACING;
@@ -40,16 +39,12 @@ public class BananaFrondBlock extends BushBlock implements IGrowable {
 		Direction facing = state.get(FACING);
 		BlockPos blockpos = pos.offset(facing.getOpposite());
 		BlockState blockState = worldIn.getBlockState(blockpos);
-		return (facing.getAxis().isHorizontal() ? this.isValidSide(worldIn, blockpos, facing) : hasEnoughSolidSide(worldIn, blockpos, facing) && this.isValidGround(blockState, worldIn, blockpos));
+		return (hasEnoughSolidSide(worldIn, blockpos, facing) || this.isValidGround(blockState, worldIn, blockpos));
 	}
 
 	@Override
 	protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
-		return state.isIn(Tags.Blocks.DIRT) || state.isIn(BlockTags.LOGS) || canGrowOn(state) || state.isIn(NeapolitanBlocks.BANANA_STALK.get()) || state.isIn(NeapolitanBlocks.FROND_THATCH.get()) || state.isIn(NeapolitanBlocks.FROND_THATCH_STAIRS.get()) || state.isIn(NeapolitanBlocks.FROND_THATCH_SLAB.get());
-	}
-
-	protected boolean isValidSide(IWorldReader worldIn, BlockPos pos, Direction facing) {
-		return hasEnoughSolidSide(worldIn, pos, facing) || worldIn.getBlockState(pos).isIn(BlockTags.LEAVES);
+		return worldIn.getBlockState(pos).isIn(BlockTags.LEAVES);
 	}
 
 	@Override
