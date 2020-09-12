@@ -10,6 +10,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 
 public class BananaBunchItem extends Item {
@@ -37,6 +39,7 @@ public class BananaBunchItem extends Item {
 			playerIn.setHeldItem(handIn, new ItemStack(NeapolitanItems.BANANA.get(), 1 + worldIn.rand.nextInt(3)));
 		} else {
 			ItemStack itemstack = new ItemStack(NeapolitanItems.BANANA.get(), 1 + worldIn.rand.nextInt(3));
+			worldIn.playSound(playerIn, playerIn.getPosition(), SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, SoundCategory.PLAYERS, 1.0F, 1.0F);
 			if (!playerIn.inventory.addItemStackToInventory(itemstack)) {
 				playerIn.dropItem(itemstack, false);
 			}

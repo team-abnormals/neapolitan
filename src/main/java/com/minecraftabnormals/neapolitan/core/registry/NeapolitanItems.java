@@ -28,8 +28,8 @@ import net.minecraftforge.fml.common.Mod;
 public class NeapolitanItems {
     public static final RegistryHelper HELPER = Neapolitan.REGISTRY_HELPER;
 
-    public static final RegistryObject<Item> MILK_BOTTLE    = HELPER.createItem("milk_bottle", () -> new MilkBottleItem(new Item.Properties().maxStackSize(16).containerItem(Items.GLASS_BOTTLE).group(ItemGroup.FOOD)));
-    public static final RegistryObject<Item> ICE_CUBES		= HELPER.createItem("ice_cubes", () -> new Item(new Item.Properties().food(Foods.ICE_CUBES).group(ItemGroup.FOOD)));
+    public static final RegistryObject<Item> MILK_BOTTLE    = HELPER.createItem("milk_bottle", () -> new MilkBottleItem(new Item.Properties().maxStackSize(16).containerItem(Items.GLASS_BOTTLE).group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> ICE_CUBES		= HELPER.createItem("ice_cubes", () -> new Item(new Item.Properties().food(Foods.ICE_CUBES).group(ItemGroup.MISC)));
 
     public static final RegistryObject<Item> CHOCOLATE_BAR          = HELPER.createItem("chocolate_bar", () -> new Item(new Item.Properties().food(Foods.CHOCOLATE_BAR).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> CHOCOLATE_ICE_CREAM    = HELPER.createItem("chocolate_ice_cream", () -> new SoupItem(new Item.Properties().food(Foods.CHOCOLATE_ICE_CREAM).containerItem(Items.BOWL).maxStackSize(1).group(ItemGroup.FOOD)));

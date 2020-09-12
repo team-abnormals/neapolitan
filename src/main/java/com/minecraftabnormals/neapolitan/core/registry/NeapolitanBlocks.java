@@ -105,7 +105,7 @@ public class NeapolitanBlocks {
 
         public static final AbstractBlock.Properties VANILLA_POD_BLOCK          = AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.LIME).harvestTool(ToolType.HOE).hardnessAndResistance(0.5F, 2.5F).sound(SoundType.PLANT);
         public static final AbstractBlock.Properties DRIED_VANILLA_POD_BLOCK    = AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.BROWN).harvestTool(ToolType.HOE).hardnessAndResistance(0.5F, 2.5F).sound(SoundType.PLANT);
-        public static final AbstractBlock.Properties BANANA_BUNDLE				= AbstractBlock.Properties.create(Material.GOURD, MaterialColor.YELLOW).harvestTool(ToolType.HOE).hardnessAndResistance(1.0F).sound(SoundType.WOOD);
+        public static final AbstractBlock.Properties BANANA_BUNDLE				= AbstractBlock.Properties.create(Material.GOURD, MaterialColor.YELLOW).harvestTool(ToolType.HOE).hardnessAndResistance(2.5F).sound(SoundType.WOOD);
 
         public static final AbstractBlock.Properties STRAWBERRY_BASKET          = AbstractBlock.Properties.create(Material.WOOD, MaterialColor.RED).hardnessAndResistance(1.5F).sound(SoundType.WOOD);
         public static final AbstractBlock.Properties WHITE_STRAWBERRY_BASKET    = AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WHITE_TERRACOTTA).hardnessAndResistance(1.5F).sound(SoundType.WOOD);
