@@ -107,12 +107,13 @@ public class NeapolitanEvents {
         Int2ObjectMap<List<ITrade>> trades = event.getTrades();
 
         List<ITrade> novice = trades.get(1);
+        List<ITrade> apprentice = trades.get(2);
         List<ITrade> journeyman = trades.get(3);
         List<ITrade> expert = trades.get(4);
         List<ITrade> master = trades.get(5);
 
         if (type == VillagerProfession.FARMER) {
-            novice.add(new TradeUtils.EmeraldsForItemsTrade(NeapolitanItems.STRAWBERRIES.get(), 24, 1, 16, 2));
+            apprentice.add(new TradeUtils.EmeraldsForItemsTrade(NeapolitanItems.STRAWBERRIES.get(), 24, 1, 16, 2));
             
             journeyman.add(new TradeUtils.EmeraldsForItemsTrade(NeapolitanItems.BANANA.get(), 8, 1, 12, 10));
             journeyman.add(new TradeUtils.ItemsForEmeraldsTrade(NeapolitanItems.STRAWBERRY_SCONES.get(), 3, 12, 12, 10));
