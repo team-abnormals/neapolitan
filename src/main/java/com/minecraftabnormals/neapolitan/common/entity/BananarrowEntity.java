@@ -8,6 +8,8 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.IPacket;
+import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.FMLPlayMessages;
 import net.minecraftforge.fml.network.NetworkHooks;
@@ -28,6 +30,23 @@ public class BananarrowEntity extends AbstractArrowEntity {
 
 	public BananarrowEntity(World worldIn, LivingEntity shooter) {
 		super(NeapolitanEntities.BANANARROW.get(), shooter, worldIn);
+	}
+
+	@Override
+	protected void func_230299_a_(BlockRayTraceResult result) {
+		super.func_230299_a_(result);
+		this.pickupStatus = PickupStatus.DISALLOWED;
+		BananaPeelEntity bananaPeel = NeapolitanEntities.BANANA_PEEL.get().create(world);
+		bananaPeel.setLocationAndAngles(this.getPosX(), this.getPosY(), this.getPosZ(), 0.0F, 0.0F);
+		this.world.addEntity(bananaPeel);
+	}
+
+	@Override
+	protected void onEntityHit(EntityRayTraceResult result) {
+		super.onEntityHit(result);
+		BananaPeelEntity bananaPeel = NeapolitanEntities.BANANA_PEEL.get().create(world);
+		bananaPeel.setLocationAndAngles(this.getPosX(), this.getPosY(), this.getPosZ(), 0.0F, 0.0F);
+		this.world.addEntity(bananaPeel);
 	}
 
 	@Override

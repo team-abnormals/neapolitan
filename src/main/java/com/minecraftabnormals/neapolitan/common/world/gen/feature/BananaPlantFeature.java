@@ -50,8 +50,6 @@ public class BananaPlantFeature extends Feature<NoFeatureConfig> {
 		BlockState down = world.getBlockState(pos.down());
 		if (!(down.isIn(Blocks.SAND) || down.isIn(Blocks.GRAVEL) || down.isIn(Blocks.DIRT) || down.isIn(Blocks.GRASS_BLOCK) || down.isIn(Blocks.PODZOL)))
 			return false;
-		if (down.isIn(Blocks.GRASS_BLOCK) || down.isIn(Blocks.PODZOL))
-			world.setBlockState(pos.down(), Blocks.GRAVEL.getDefaultState(), 18);
 
 		for (BlockPos stalk : stalks) {
 			if (i >= size - 3) {
@@ -100,6 +98,8 @@ public class BananaPlantFeature extends Feature<NoFeatureConfig> {
 			for (BlockPos blockPos2 : largeFronds.keySet()) {
 				world.setBlockState(blockPos2, NeapolitanBlocks.LARGE_BANANA_FROND.get().getDefaultState().with(BananaFrondBlock.FACING, largeFronds.get(blockPos2)), 18);
 			}
+			if (down.isIn(Blocks.GRASS_BLOCK) || down.isIn(Blocks.PODZOL))
+				world.setBlockState(pos.down(), Blocks.DIRT.getDefaultState(), 18);
 			return true;
 		}
 

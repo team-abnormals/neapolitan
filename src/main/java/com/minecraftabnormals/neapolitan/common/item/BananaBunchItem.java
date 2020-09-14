@@ -1,5 +1,7 @@
 package com.minecraftabnormals.neapolitan.common.item;
 
+import com.minecraftabnormals.neapolitan.common.entity.BananaPeelEntity;
+import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEntities;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
 
 import net.minecraft.advancements.CriteriaTriggers;
@@ -24,6 +26,10 @@ public class BananaBunchItem extends Item {
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
 		ItemStack stack = playerIn.getHeldItem(handIn);
 		playerIn.getCooldownTracker().setCooldown(this, 5);
+		
+		BananaPeelEntity bananaPeel = NeapolitanEntities.BANANA_PEEL.get().create(worldIn);
+		bananaPeel.setLocationAndAngles(playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ(), 0.0F, 0.0F);
+		worldIn.addEntity(bananaPeel);
 		
 		if (!playerIn.abilities.isCreativeMode) {
 			stack.shrink(1);

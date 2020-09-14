@@ -106,7 +106,6 @@ public class NeapolitanEvents {
         VillagerProfession type = event.getType();
         Int2ObjectMap<List<ITrade>> trades = event.getTrades();
 
-        List<ITrade> novice = trades.get(1);
         List<ITrade> apprentice = trades.get(2);
         List<ITrade> journeyman = trades.get(3);
         List<ITrade> expert = trades.get(4);

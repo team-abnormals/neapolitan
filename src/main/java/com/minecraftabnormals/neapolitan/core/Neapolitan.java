@@ -6,6 +6,7 @@ import com.minecraftabnormals.neapolitan.core.registry.NeapolitanBanners;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEffects;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEntities;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanFeatures;
+import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
 
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -49,6 +50,7 @@ public class Neapolitan {
 
     private void setupCommon(final FMLCommonSetupEvent event) {
     	DeferredWorkQueue.runLater(() -> {
+    		NeapolitanItems.registerItemProperties();
     		NeapolitanBanners.registerBanners();
     		NeapolitanCompat.transformCookies();
     	    NeapolitanCompat.registerFlammables();
