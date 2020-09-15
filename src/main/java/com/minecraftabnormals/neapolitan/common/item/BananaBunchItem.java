@@ -5,6 +5,8 @@ import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEntities;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
 
 import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.monster.SpiderEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
@@ -30,6 +32,16 @@ public class BananaBunchItem extends Item {
 		BananaPeelEntity bananaPeel = NeapolitanEntities.BANANA_PEEL.get().create(worldIn);
 		bananaPeel.setLocationAndAngles(playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ(), 0.0F, 0.0F);
 		worldIn.addEntity(bananaPeel);
+		
+		if (worldIn.getRandom().nextFloat() <= 0.04F) {
+			SpiderEntity spider = EntityType.SPIDER.create(worldIn);
+			spider.setLocationAndAngles(playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ(), 0.0F, 0.0F);
+			spider.setRevengeTarget(playerIn);
+			worldIn.addEntity(spider);
+			if (worldIn.getRandom().nextFloat() <= 0.1F) {
+				worldIn.addEntity(spider);
+			}
+		}
 		
 		if (!playerIn.abilities.isCreativeMode) {
 			stack.shrink(1);
