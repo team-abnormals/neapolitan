@@ -1,5 +1,6 @@
 package com.minecraftabnormals.neapolitan.common.entity;
 
+import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEffects;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEntities;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
 
@@ -8,6 +9,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.IPacket;
+import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.world.World;
@@ -47,6 +49,9 @@ public class BananarrowEntity extends AbstractArrowEntity {
 		BananaPeelEntity bananaPeel = NeapolitanEntities.BANANA_PEEL.get().create(world);
 		bananaPeel.setLocationAndAngles(this.getPosX(), this.getPosY(), this.getPosZ(), 0.0F, 0.0F);
 		this.world.addEntity(bananaPeel);
+		if (result.getEntity() instanceof LivingEntity) {
+			((LivingEntity) result.getEntity()).addPotionEffect(new EffectInstance(NeapolitanEffects.SLIPPING.get(), 100, 0, false, false, false));
+		}
 	}
 
 	@Override
