@@ -10,7 +10,6 @@ import com.minecraftabnormals.neapolitan.core.registry.NeapolitanBlocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.BushBlock;
 import net.minecraft.block.IGrowable;
 import net.minecraft.item.BlockItemUseContext;
@@ -159,7 +158,7 @@ public class BananaFrondBlock extends BushBlock implements IGrowable {
 	}
 	
 	public static boolean canGrowOn(BlockState state) {
-		return state.isIn(Blocks.PODZOL) || state.isIn(Tags.Blocks.SAND) || state.isIn(Tags.Blocks.GRAVEL);
+		return state.isIn(Tags.Blocks.GRAVEL) || state.isIn(Tags.Blocks.SAND);
 	}
 
 	private static boolean isAirAt(World world, BlockPos pos, int size) {

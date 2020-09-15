@@ -9,18 +9,18 @@ import java.util.Random;
 import com.minecraftabnormals.neapolitan.common.block.BananaFrondBlock;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.mojang.serialization.Codec;
+import com.teamabnormals.abnormals_core.core.utils.TreeUtils;
 
-import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockReader;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.IWorldGenerationBaseReader;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.StructureManager;
+import net.minecraftforge.common.Tags;
 
 public class BananaPlantFeature extends Feature<NoFeatureConfig> {
 	public BananaPlantFeature(Codec<NoFeatureConfig> codec) {
@@ -47,8 +47,7 @@ public class BananaPlantFeature extends Feature<NoFeatureConfig> {
 		upFrond = (blockPos);
 		int i = 0;
 
-		BlockState down = world.getBlockState(pos.down());
-		if (!(down.isIn(Blocks.SAND) || down.isIn(Blocks.GRAVEL) || down.isIn(Blocks.DIRT) || down.isIn(Blocks.GRASS_BLOCK) || down.isIn(Blocks.PODZOL)))
+		if (!(isGrass(world, pos.down())) || isGrowable(world, pos.down()))
 			return false;
 
 		for (BlockPos stalk : stalks) {
@@ -84,22 +83,28 @@ public class BananaPlantFeature extends Feature<NoFeatureConfig> {
 
 		if (isAirAt(world, pos, size) && pos.getY() < world.getHeight() - size) {
 			for (BlockPos blockPos2 : stalks) {
-				world.setBlockState(blockPos2, NeapolitanBlocks.BANANA_STALK.get().getDefaultState(), 18);
+				TreeUtils.setForcedState(world, blockPos2, NeapolitanBlocks.BANANA_STALK.get().getDefaultState());
 			}
-			world.setBlockState(upFrond, NeapolitanBlocks.LARGE_BANANA_FROND.get().getDefaultState(), 18);
+			TreeUtils.setForcedState(world, upFrond, NeapolitanBlocks.LARGE_BANANA_FROND.get().getDefaultState());
 			if (bundle != null)
-				world.setBlockState(bundle, NeapolitanBlocks.BANANA_BUNDLE.get().getDefaultState(), 18);
+				TreeUtils.setForcedState(world, bundle, NeapolitanBlocks.BANANA_BUNDLE.get().getDefaultState());
 			for (BlockPos blockPos2 : smallFronds.keySet()) {
-				world.setBlockState(blockPos2, NeapolitanBlocks.SMALL_BANANA_FROND.get().getDefaultState().with(BananaFrondBlock.FACING, smallFronds.get(blockPos2)), 18);
+				TreeUtils.setForcedState(world, blockPos2, NeapolitanBlocks.SMALL_BANANA_FROND.get().getDefaultState().with(BananaFrondBlock.FACING, smallFronds.get(blockPos2)));
 			}
 			for (BlockPos blockPos2 : fronds.keySet()) {
-				world.setBlockState(blockPos2, NeapolitanBlocks.BANANA_FROND.get().getDefaultState().with(BananaFrondBlock.FACING, fronds.get(blockPos2)), 18);
+				TreeUtils.setForcedState(world, blockPos2, NeapolitanBlocks.BANANA_FROND.get().getDefaultState().with(BananaFrondBlock.FACING, fronds.get(blockPos2)));
 			}
 			for (BlockPos blockPos2 : largeFronds.keySet()) {
-				world.setBlockState(blockPos2, NeapolitanBlocks.LARGE_BANANA_FROND.get().getDefaultState().with(BananaFrondBlock.FACING, largeFronds.get(blockPos2)), 18);
+				TreeUtils.setForcedState(world, blockPos2, NeapolitanBlocks.LARGE_BANANA_FROND.get().getDefaultState().with(BananaFrondBlock.FACING, largeFronds.get(blockPos2)));
 			}
-			if (down.isIn(Blocks.GRASS_BLOCK) || down.isIn(Blocks.PODZOL))
-				world.setBlockState(pos.down(), Blocks.DIRT.getDefaultState(), 18);
+			if (isGrass(world, pos.down())) {
+				TreeUtils.setForcedState(world, pos.down(), Blocks.GRAVEL.getDefaultState());
+				for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.getX() - 3, pos.getY() - 2, pos.getZ() - 3, pos.getX() + 3, pos.getY() + 2, pos.getZ() + 3)) {
+	                if (isGrass(world, blockpos) && random.nextBoolean() && TreeUtils.isAir(world, blockpos.up()))
+	                	TreeUtils.setForcedState(world, blockpos, Blocks.GRAVEL.getDefaultState());
+	            }
+			}
+			
 			return true;
 		}
 
@@ -109,11 +114,11 @@ public class BananaPlantFeature extends Feature<NoFeatureConfig> {
 	private static boolean isAirAt(IWorldGenerationBaseReader world, BlockPos pos, int size) {
 		BlockPos position = pos.up();
 		for (int i = 0; i < size + 1; i++) {
-			if (!isAir(world, position))
+			if (!TreeUtils.isAir(world, position))
 				return false;
 			for (Direction direction : Direction.values()) {
 				if (direction.getAxis().isHorizontal()) {
-					if (!isAir(world, position.offset(direction)))
+					if (!TreeUtils.isAir(world, position.offset(direction)))
 						return false;
 				}
 			}
@@ -121,13 +126,16 @@ public class BananaPlantFeature extends Feature<NoFeatureConfig> {
 		}
 		return true;
 	}
-
-	@SuppressWarnings("deprecation")
-	public static boolean isAir(IWorldGenerationBaseReader world, BlockPos pos) {
-		if (!(world instanceof IBlockReader)) {
-			return world.hasBlockState(pos, BlockState::isAir);
-		} else {
-			return world.hasBlockState(pos, state -> state.isAir((net.minecraft.world.IBlockReader) world, pos));
-		}
-	}
+	
+	public static boolean isGrowable(IWorldGenerationBaseReader worldIn, BlockPos pos) {
+        return worldIn.hasBlockState(pos, (state) -> {
+            return state.isIn(Tags.Blocks.GRAVEL) || state.isIn(Tags.Blocks.SAND);
+        });
+    }
+	
+	public static boolean isGrass(IWorldGenerationBaseReader worldIn, BlockPos pos) {
+        return worldIn.hasBlockState(pos, (state) -> {
+            return state.isIn(Blocks.GRASS_BLOCK);
+        });
+    }
 }
