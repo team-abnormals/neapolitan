@@ -36,14 +36,14 @@ public class NeapolitanBiomeFeatures {
 		}
 
 		if (biome.getCategory() == Biome.Category.BEACH && biome.getPrecipitation() == RainType.RAIN) {
-			biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NeapolitanFeatures.BANANA_PLANT.get().withConfiguration(NoFeatureConfig.field_236559_b_).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(0, 0.1F, 1))));
+			biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NeapolitanFeatures.BANANA_PLANT.get().withConfiguration(NoFeatureConfig.field_236559_b_).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(0, 0.15F, 1))));
 		}
 
 		if (biome.getCategory() == Biome.Category.JUNGLE && biome.getPrecipitation() == RainType.RAIN) {
 			if (biome != Biomes.JUNGLE_EDGE && biome != Biomes.MODIFIED_JUNGLE_EDGE) {
-				biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NeapolitanFeatures.BANANA_PLANT.get().withConfiguration(NoFeatureConfig.field_236559_b_).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(1, 0.1F, 1))));
+				biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NeapolitanFeatures.BANANA_PLANT.get().withConfiguration(NoFeatureConfig.field_236559_b_).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(1, 0.3F, 3))));
 			} else if (biome != Biomes.BAMBOO_JUNGLE && biome != Biomes.BAMBOO_JUNGLE_HILLS) {
-				biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NeapolitanFeatures.BANANA_PLANT.get().withConfiguration(NoFeatureConfig.field_236559_b_).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(1, 0.15F, 3))));
+				biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NeapolitanFeatures.BANANA_PLANT.get().withConfiguration(NoFeatureConfig.field_236559_b_).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(1, 0.15F, 2))));
 			}
 		}
 		

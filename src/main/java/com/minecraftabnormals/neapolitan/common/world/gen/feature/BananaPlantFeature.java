@@ -20,7 +20,6 @@ import net.minecraft.world.gen.IWorldGenerationBaseReader;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.StructureManager;
-import net.minecraftforge.common.Tags;
 
 public class BananaPlantFeature extends Feature<NoFeatureConfig> {
 	public BananaPlantFeature(Codec<NoFeatureConfig> codec) {
@@ -47,7 +46,7 @@ public class BananaPlantFeature extends Feature<NoFeatureConfig> {
 		upFrond = (blockPos);
 		int i = 0;
 
-		if (!(isGrass(world, pos.down())) || isGrowable(world, pos.down()))
+		if (!isValidGround(world, pos.down()))
 			return false;
 
 		for (BlockPos stalk : stalks) {
@@ -129,7 +128,13 @@ public class BananaPlantFeature extends Feature<NoFeatureConfig> {
 	
 	public static boolean isGrowable(IWorldGenerationBaseReader worldIn, BlockPos pos) {
         return worldIn.hasBlockState(pos, (state) -> {
-            return state.isIn(Tags.Blocks.GRAVEL) || state.isIn(Tags.Blocks.SAND);
+            return state.isIn(Blocks.GRAVEL) || state.isIn(Blocks.SAND);
+        });
+    }
+	
+	public static boolean isValidGround(IWorldGenerationBaseReader worldIn, BlockPos pos) {
+        return worldIn.hasBlockState(pos, (state) -> {
+            return state.isIn(Blocks.GRAVEL) || state.isIn(Blocks.SAND) || state.isIn(Blocks.GRASS_BLOCK);
         });
     }
 	

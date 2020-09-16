@@ -66,10 +66,10 @@ public class BananaPeelEntity extends Entity {
 	@Override
 	public void tick() {
 		super.tick();
-		this.setMotion(this.getMotion().mul(0.65F, 0.65F, 0.65F));
+		this.setMotion(this.getMotion().mul(0.65F, 1.0F, 0.65F));
 
 		if (!this.hasNoGravity()) {
-			this.setMotion(this.getMotion().add(0.0D, -0.04D, 0.0D));
+			this.setMotion(this.getMotion().add(0.0D, -0.06D, 0.0D));
 		}
 		this.getMotion().mul(0.9F, 0.9F, 0.9F);
 		this.move(MoverType.SELF, this.getMotion());
