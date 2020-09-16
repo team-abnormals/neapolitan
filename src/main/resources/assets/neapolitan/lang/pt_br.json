@@ -1,6 +1,10 @@
 {
+	"block.neapolitan.vanilla_ice_cream_block": "Bloco de sorvete de baunilha",
+  	"block.neapolitan.chocolate_ice_cream_block": "Bloco de sorvete de chocolate",
+ 	"block.neapolitan.strawberry_ice_cream_block": "Bloco de sorvete de morango",
+  	"block.neapolitan.banana_ice_cream_block": "Bloco de sorvete de banana",
+	
 	"block.neapolitan.chocolate_block": "Bloco de chocolate",
-
 	"block.neapolitan.chocolate_bricks": "Tijolos de chocolate",
 	"block.neapolitan.chocolate_brick_slab": "Laje de tijolos de chocolate",
 	"block.neapolitan.chocolate_brick_stairs": "Escadas de tijolos de chocolate",
@@ -15,19 +19,35 @@
 	"block.neapolitan.chocolate_tile_wall": "Muro de azulejos de chocolate",
 	"block.neapolitan.chocolate_tile_vertical_slab": "Laje vertical de azulejos de chocolate",
 	
+	"block.neapolitan.frond_thatch": "Palha de fronde",
+  	"block.neapolitan.frond_thatch_stairs": "Escadas de palha de fronde",
+  	"block.neapolitan.frond_thatch_slab": "Laje de palha de fronde",
+  	"block.neapolitan.frond_thatch_vertical_slab": "Laje vertical de palha de fronde",
+	
 	"block.neapolitan.strawberry_basket": "Cesto de morangos",
 	"block.neapolitan.white_strawberry_basket": "Cesto de morangos brancos",
 	"block.neapolitan.vanilla_pod_block": "Bloco de vagem de baunilha",
 	"block.neapolitan.dried_vanilla_pod_block": "Bloco de vagem de baunilha seca",
+	"block.neapolitan.banana_crate": "Caixa de bananas",
+	
+	"block.neapolitan.strawberry_bush": "Arbusto de morangos",
 	
 	"block.neapolitan.vanilla_vine": "Trepadeira de baunilha",
 	"block.neapolitan.vanilla_vine_plant": "Trepadeira de baunilha",
+	
+	"block.neapolitan.banana_stalk": "Caule de banana",
+  	"block.neapolitan.banana_bundle": "Pacote de banana",
+  
+  	"block.neapolitan.small_banana_frond": "Fronde de banana pequeno",
+  	"block.neapolitan.banana_frond": "Fronde de banana",
+  	"block.neapolitan.large_banana_frond": "Fronde de banana grande",
 	
 	"block.neapolitan.chocolate_cake": "Bolo de chocolate",
 	"block.neapolitan.strawberry_cake": "Bolo de morango",
 	"block.neapolitan.vanilla_cake": "Bolo de baunilha",
 	
 	"item.neapolitan.milk_bottle": "Garrafa de leite",
+	"item.neapolitan.ice_cubes": "Cubos de gelo",
 	
 	"item.neapolitan.chocolate_bar": "Barra de chocolate",
 	"item.neapolitan.chocolate_ice_cream": "Sorvete de chocolate",
@@ -45,14 +65,31 @@
 	"item.neapolitan.vanilla_pudding": "Pudim de baunilha",
   	"item.neapolitan.vanilla_milkshake": "Milkshake de baunilha",
 	
+	"item.neapolitan.banana": "Banana",
+  	"item.neapolitan.banana_bunch": "Cacho de banana",
+  	"item.neapolitan.dried_banana": "Banana seca",
+  	"item.neapolitan.banana_ice_cream": "Sorvete de banana",
+  	"item.neapolitan.banana_milkshake": "Milkshake de banana",
+  	"item.neapolitan.banana_bread": "Pão de banana",
+  	"item.neapolitan.bananarrow": "Flechanana",
+	
 	"item.neapolitan.chocolate_strawberries": "Morangos achocolatados",
 	"item.neapolitan.white_strawberries": "Morangos brancos",
 	"item.neapolitan.vanilla_chocolate_fingers": "Palitos de baunilha achocolatados",
-	
+	"item.neapolitan.strawberry_banana_smoothie": "Strawberry Banana Smoothie",
 	"item.neapolitan.neapolitan_ice_cream": "Sorvete napolitano",
 	
-	"effect.neapolitan.sugar_rush": "Febre de açúcar",
+	"item.neapolitan.monkey_banner_pattern": "Desenho para estandarte",
+  	"item.neapolitan.monkey_banner_pattern.desc": "Figura de macaco",
+  
+  	"entity.neapolitan.banana_peel": "Casca de banana",
+  	"entity.neapolitan.monkey": "Macaco",
+  	"entity.neapolitan.bananarrow": "Flechanana",
+  
+  	"effect.neapolitan.sugar_rush": "Febre de açúcar",
 	"effect.neapolitan.vanilla_scent": "Cheiro de baunilha",
+  	"effect.neapolitan.agility": "Agilidade",
+  	"effect.neapolitan.slipping": "Escorregando",
 	
 	"advancements.husbandry.creeper_heal.title": "Bombardeio de amor",
   	"advancements.husbandry.creeper_heal.description": "Seja curado por um creeper que explodiu dentro de um arbusto de morangos",
@@ -65,4 +102,21 @@
   
   	"advancements.husbandry.harvest_white_strawberries.title": "Piquenique nas nuvens",
   	"advancements.husbandry.harvest_white_strawberries.description": "Obtenha morangos brancos ao cultivar arbustos de morango a uma altitude elevada"
+	
+	"block.minecraft.banner.mca_monkey.black": "Figura preta de macaco",
+  	"block.minecraft.banner.mca_monkey.red": "Figura vermelha de macaco",
+  	"block.minecraft.banner.mca_monkey.green": "Figura verde de macaco",
+  	"block.minecraft.banner.mca_monkey.brown": "Figura marrom de macaco",
+  	"block.minecraft.banner.mca_monkey.blue": "Figura azul de macaco",
+  	"block.minecraft.banner.mca_monkey.purple": "Figura roxa de macaco",
+  	"block.minecraft.banner.mca_monkey.cyan": "Figura ciano de macaco",
+  	"block.minecraft.banner.mca_monkey.silver": "Figura cinza-clara de macaco",
+  	"block.minecraft.banner.mca_monkey.gray": "Figura cinza de macaco",
+  	"block.minecraft.banner.mca_monkey.pink": "Figura rosa de macaco",
+  	"block.minecraft.banner.mca_monkey.lime": "Figura verde-limão de macaco",
+  	"block.minecraft.banner.mca_monkey.yellow": "Figura amarela de macaco",
+  	"block.minecraft.banner.mca_monkey.lightBlue": "Figura azul-clara de macaco",
+  	"block.minecraft.banner.mca_monkey.magenta": "Figura magenta de macaco",
+  	"block.minecraft.banner.mca_monkey.orange": "Figura laranja de macaco",
+  	"block.minecraft.banner.mca_monkey.white": "Figura branca de macaco"
 }
