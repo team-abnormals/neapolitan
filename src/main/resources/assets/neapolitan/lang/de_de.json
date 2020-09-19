@@ -1,4 +1,9 @@
 {
+  "block.neapolitan.vanilla_ice_cream_block": "Vanilleeisblock",
+  "block.neapolitan.chocolate_ice_cream_block": "Schokoladeneisblock",
+  "block.neapolitan.strawberry_ice_cream_block": "Erdbeereisblock",
+  "block.neapolitan.banana_ice_cream_block": "Bananeneisblock",
+  
   "block.neapolitan.chocolate_block": "Schokoladenblock",
   "block.neapolitan.chocolate_bricks": "Schokoladenziegel",
   "block.neapolitan.chocolate_brick_slab": "Schokoladenziegelstufe",
@@ -14,19 +19,36 @@
   "block.neapolitan.chocolate_tile_wall": "Schokoladenfliesenmauer",
   "block.neapolitan.chocolate_tile_vertical_slab": "Vertikale Schokoladenfliesenstufe",
   
+  "block.neapolitan.frond_thatch": "Palmblattdachblock",
+  "block.neapolitan.frond_thatch_stairs": "Palmblattdachtreppe",
+  "block.neapolitan.frond_thatch_slab": "Palmblattdachstufe",
+  "block.neapolitan.frond_thatch_vertical_slab": "Vertikale Palmblattdachstufe",
+  
   "block.neapolitan.strawberry_basket": "Erdbeerkorb",
   "block.neapolitan.white_strawberry_basket": "Weißer Erdbeerkorb",
   "block.neapolitan.vanilla_pod_block": "Vanillestangenblock",
   "block.neapolitan.dried_vanilla_pod_block": "Getrockneter Vanillestangenblock",
+  "block.neapolitan.banana_crate": "Bananenkiste",
+
+  "block.neapolitan.strawberry_bush": "Erdbeerstrauch",
   
   "block.neapolitan.vanilla_vine": "Vanilleranken",
   "block.neapolitan.vanilla_vine_plant": "Vanilleranken",
   
+  "block.neapolitan.banana_stalk": "Bananenstängel",
+  "block.neapolitan.banana_bundle": "Bananenbündel",
+
+  "block.neapolitan.small_banana_frond": "Kleiner Bananenwedel",
+  "block.neapolitan.banana_frond": "Bananenwedel",
+  "block.neapolitan.large_banana_frond": "Großer Bananenwedel",
+  
   "block.neapolitan.chocolate_cake": "Schokoladenkuchen",
   "block.neapolitan.strawberry_cake": "Erdbeerkuchen",
   "block.neapolitan.vanilla_cake": "Vanillekuchen",
+  "block.neapolitan.banana_cake": "Bananenkuchen",
   
   "item.neapolitan.milk_bottle": "Milchflasche",
+  "item.neapolitan.ice_cubes": "Eiswürfel",
   
   "item.neapolitan.chocolate_bar": "Schokoladentafel",
   "item.neapolitan.chocolate_ice_cream": "Schokoladeneis",
@@ -41,16 +63,34 @@
   "item.neapolitan.vanilla_pods": "Vanillestangen",
   "item.neapolitan.dried_vanilla_pods": "Getrocknete Vanillestangen",
   "item.neapolitan.vanilla_ice_cream": "Vanilleeis",
-  "item.neapolitan.vanilla_pudding": "Vanillapudding",
-  "item.neapolitan.vanilla_milkshake": "Vanillamilchshake",
+  "item.neapolitan.vanilla_pudding": "Vanillepudding",
+  "item.neapolitan.vanilla_milkshake": "Vanillemilchshake",
   
+  "item.neapolitan.banana": "Banane",
+  "item.neapolitan.banana_bunch": "Bananenbund",
+  "item.neapolitan.dried_banana": "Getrocknete Banane",
+  "item.neapolitan.banana_ice_cream": "Bananeneis",
+  "item.neapolitan.banana_milkshake": "Bananenmilchshake",
+  "item.neapolitan.banana_bread": "Bananenbrot",
+  "item.neapolitan.bananarrow": "Bananenpfeil",
+
   "item.neapolitan.chocolate_strawberries": "Schokoladenerdbeeren",
   "item.neapolitan.white_strawberries": "Weiße Erdbeeren",
   "item.neapolitan.vanilla_chocolate_fingers": "Vanilleschokoladenfinger",
+  "item.neapolitan.strawberry_banana_smoothie": "Erdbeerbananensmoothie",
   "item.neapolitan.neapolitan_ice_cream": "Fürst-Pückler-Eis",
+  
+  "item.neapolitan.monkey_banner_pattern": "Bannervorlage",
+  "item.neapolitan.monkey_banner_pattern.desc": "Affe",
+  
+  "entity.neapolitan.banana_peel": "Bananenschale",
+  "entity.neapolitan.monkey": "Affe",
+  "entity.neapolitan.bananarrow": "Bananenpfeil",
   
   "effect.neapolitan.sugar_rush": "Zuckerhigh",
   "effect.neapolitan.vanilla_scent": "Vanilleparfüm",
+  "effect.neapolitan.agility": "Agilität",
+  "effect.neapolitan.slipping": "Schwindend",
   
   "advancements.husbandry.creeper_heal.title": "Liebesbombe",
   "advancements.husbandry.creeper_heal.description": "Verheile dich mit einem Creeper, der in einem Erdbeerstrauch explodiert",
@@ -62,5 +102,22 @@
   "advancements.husbandry.place_all_chocolate_blocks.description": "Platziere jede Sorte von Schokoladenblöcken",
   
   "advancements.husbandry.harvest_white_strawberries.title": "Ein Picknick in den Wolken",
-  "advancements.husbandry.harvest_white_strawberries.description": "Züchte Erdbeersträucher in größeren Höhen, um weiße Erdbeeren zu beschaffen"
+  "advancements.husbandry.harvest_white_strawberries.description": "Züchte Erdbeersträucher in größeren Höhen, um weiße Erdbeeren zu beschaffen",
+
+  "block.minecraft.banner.mca_monkey.black": "Schwarzer Affe",
+  "block.minecraft.banner.mca_monkey.red": "Roter Affe",
+  "block.minecraft.banner.mca_monkey.green": "Grüner Affe",
+  "block.minecraft.banner.mca_monkey.brown": "Brauner Affe",
+  "block.minecraft.banner.mca_monkey.blue": "Blauer Affe",
+  "block.minecraft.banner.mca_monkey.purple": "Violetter Affe",
+  "block.minecraft.banner.mca_monkey.cyan": "Türkiser Affe",
+  "block.minecraft.banner.mca_monkey.silver": "Hellgrauer Affe",
+  "block.minecraft.banner.mca_monkey.gray": "Grauer Affe",
+  "block.minecraft.banner.mca_monkey.pink": "Rosa Affe",
+  "block.minecraft.banner.mca_monkey.lime": "Hellgrüner Affe",
+  "block.minecraft.banner.mca_monkey.yellow": "Gelber Affe",
+  "block.minecraft.banner.mca_monkey.lightBlue": "Hellblauer Affe",
+  "block.minecraft.banner.mca_monkey.magenta": "Magenta Affe",
+  "block.minecraft.banner.mca_monkey.orange": "Oranger Affe",
+  "block.minecraft.banner.mca_monkey.white": "Weißer Affe"
 }
