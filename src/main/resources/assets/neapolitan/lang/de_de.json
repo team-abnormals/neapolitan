@@ -1,4 +1,9 @@
 {
+  "block.neapolitan.vanilla_ice_cream_block": "Vanilleeisblock",
+  "block.neapolitan.chocolate_ice_cream_block": "Schokoladeneisblock",
+  "block.neapolitan.strawberry_ice_cream_block": "Erdbeereisblock",
+  "block.neapolitan.banana_ice_cream_block": "Bananeneisblock",
+  
   "block.neapolitan.chocolate_block": "Schokoladenblock",
   "block.neapolitan.chocolate_bricks": "Schokoladenziegel",
   "block.neapolitan.chocolate_brick_slab": "Schokoladenziegelstufe",
@@ -43,7 +48,7 @@
   "block.neapolitan.banana_cake": "Bananenkuchen",
   
   "item.neapolitan.milk_bottle": "Milchflasche",
-  "item.neapolitan.ice_cube": "Eiswürfel",
+  "item.neapolitan.ice_cubes": "Eiswürfel",
   
   "item.neapolitan.chocolate_bar": "Schokoladentafel",
   "item.neapolitan.chocolate_ice_cream": "Schokoladeneis",
@@ -75,6 +80,13 @@
   "item.neapolitan.strawberry_banana_smoothie": "Erdbeerbananensmoothie",
   "item.neapolitan.neapolitan_ice_cream": "Fürst-Pückler-Eis",
   
+  "item.neapolitan.monkey_banner_pattern": "Bannervorlage",
+  "item.neapolitan.monkey_banner_pattern.desc": "Affe",
+  
+  "entity.neapolitan.banana_peel": "Bananenschale",
+  "entity.neapolitan.monkey": "Affe",
+  "entity.neapolitan.bananarrow": "Bananenpfeil",
+  
   "effect.neapolitan.sugar_rush": "Zuckerhigh",
   "effect.neapolitan.vanilla_scent": "Vanilleparfüm",
   "effect.neapolitan.agility": "Agilität",
@@ -90,5 +102,22 @@
   "advancements.husbandry.place_all_chocolate_blocks.description": "Platziere jede Sorte von Schokoladenblöcken",
   
   "advancements.husbandry.harvest_white_strawberries.title": "Ein Picknick in den Wolken",
-  "advancements.husbandry.harvest_white_strawberries.description": "Züchte Erdbeersträucher in größeren Höhen, um weiße Erdbeeren zu beschaffen"
+  "advancements.husbandry.harvest_white_strawberries.description": "Züchte Erdbeersträucher in größeren Höhen, um weiße Erdbeeren zu beschaffen",
+
+  "block.minecraft.banner.mca_monkey.black": "Schwarzer Affe",
+  "block.minecraft.banner.mca_monkey.red": "Roter Affe",
+  "block.minecraft.banner.mca_monkey.green": "Grüner Affe",
+  "block.minecraft.banner.mca_monkey.brown": "Brauner Affe",
+  "block.minecraft.banner.mca_monkey.blue": "Blauer Affe",
+  "block.minecraft.banner.mca_monkey.purple": "Violetter Affe",
+  "block.minecraft.banner.mca_monkey.cyan": "Türkiser Affe",
+  "block.minecraft.banner.mca_monkey.silver": "Hellgrauer Affe",
+  "block.minecraft.banner.mca_monkey.gray": "Grauer Affe",
+  "block.minecraft.banner.mca_monkey.pink": "Rosa Affe",
+  "block.minecraft.banner.mca_monkey.lime": "Hellgrüner Affe",
+  "block.minecraft.banner.mca_monkey.yellow": "Gelber Affe",
+  "block.minecraft.banner.mca_monkey.lightBlue": "Hellblauer Affe",
+  "block.minecraft.banner.mca_monkey.magenta": "Magenta Affe",
+  "block.minecraft.banner.mca_monkey.orange": "Oranger Affe",
+  "block.minecraft.banner.mca_monkey.white": "Weißer Affe"
 }
