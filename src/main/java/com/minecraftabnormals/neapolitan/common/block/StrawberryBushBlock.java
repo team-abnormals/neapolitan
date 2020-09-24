@@ -65,7 +65,6 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, IGrowa
         this.setDefaultState(this.stateContainer.getBaseState().with(AGE, 0).with(TYPE, StrawberryType.NONE));
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         int age = state.get(AGE);
@@ -94,7 +93,6 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, IGrowa
         return (worldIn.getLightSubtracted(pos, 0) >= 8 || worldIn.canSeeSky(pos)) && super.isValidPosition(state, worldIn, pos);
     }
 
-    @SuppressWarnings("deprecation")
     public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
         super.tick(state, worldIn, pos, rand);
         if (!worldIn.isAreaLoaded(pos, 1))
@@ -117,7 +115,6 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, IGrowa
 
     }
 
-    @SuppressWarnings("deprecation")
     public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
         if (worldIn.rand.nextInt(15) == 0) {
             if (entityIn.lastTickPosX != entityIn.getPosX() || entityIn.lastTickPosZ != entityIn.getPosZ()) {

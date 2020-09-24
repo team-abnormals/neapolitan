@@ -28,6 +28,6 @@ license="https://github.com/minecraftabnormals/Neapolitan/blob/master/LICENSE.tx
 [[dependencies.neapolitan]]
     modId="abnormals_core"
     mandatory=true
-    versionRange="[2.0.3,)"
+    versionRange="[2.0.4,)"
     ordering="AFTER"
     side="BOTH"

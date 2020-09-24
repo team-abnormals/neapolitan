@@ -39,6 +39,7 @@ minecraft {
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'debug'
             arg "-mixin.config=neapolitan.mixins.json"
+            jvmArg "-Dmixin.env.disableRefMap=true"
             mods {
                 neapolitan {
                     source sourceSets.main
@@ -50,6 +51,7 @@ minecraft {
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'debug'
             arg "-mixin.config=neapolitan.mixins.json"
+            jvmArg "-Dmixin.env.disableRefMap=true"
             mods {
                 neapolitan {
                     source sourceSets.main
@@ -72,7 +74,7 @@ minecraft {
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.16.1-32.0.86'
-    implementation fg.deobf("curse.maven:abnormals-core:3043251")
+    implementation fg.deobf("curse.maven:abnormals-core:3063658")
     implementation fg.deobf("curse.maven:jei:2995910")
     implementation fg.deobf("curse.maven:atmospheric:3031563")
 }

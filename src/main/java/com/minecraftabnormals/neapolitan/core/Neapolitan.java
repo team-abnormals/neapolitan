@@ -7,6 +7,7 @@ import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEffects;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEntities;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanFeatures;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
+import com.teamabnormals.abnormals_core.core.utils.RegistryHelper;
 
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -20,13 +21,12 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-@SuppressWarnings("deprecation")
 @Mod(Neapolitan.MODID)
 @Mod.EventBusSubscriber(modid = Neapolitan.MODID)
 public class Neapolitan {
 	public static final String MODID = "neapolitan";
 
-	public static final NeapolitanRegistryHelper REGISTRY_HELPER = new NeapolitanRegistryHelper(MODID);
+	public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MODID);
 	
     public Neapolitan() {
     	IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -36,7 +36,6 @@ public class Neapolitan {
     	REGISTRY_HELPER.getDeferredEntityRegister().register(modEventBus);
     	NeapolitanEffects.EFFECTS.register(modEventBus);
     	NeapolitanFeatures.FEATURES.register(modEventBus);
-    	NeapolitanBanners.BANNERS.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
         
@@ -50,13 +49,11 @@ public class Neapolitan {
 
     private void setupCommon(final FMLCommonSetupEvent event) {
     	DeferredWorkQueue.runLater(() -> {
-    		NeapolitanItems.registerItemProperties();
     		NeapolitanBanners.registerBanners();
     		NeapolitanCompat.transformCookies();
     	    NeapolitanCompat.registerFlammables();
     	    NeapolitanCompat.registerCompostables();
     	    NeapolitanBiomeFeatures.generateFeatures();
-    		
     	});
     }
     
@@ -64,6 +61,7 @@ public class Neapolitan {
     	DeferredWorkQueue.runLater(() -> {
     		NeapolitanCompat.registerRenderLayers();
     		NeapolitanEntities.registerEntityRenderers();
+    		NeapolitanItems.registerItemProperties();
     	});
     }
 }

@@ -40,7 +40,6 @@ public class HarvestStrawberriesCriteraTrigger extends AbstractCriterionTrigger<
         return new HarvestStrawberriesCriteraTrigger.Instance(entityPredicate, block, statepropertiespredicate);
     }
 
-    @SuppressWarnings("deprecation")
     @Nullable
     private static Block deserializeBlock(JsonObject object) {
         if (object.has("block")) {
@@ -74,7 +73,6 @@ public class HarvestStrawberriesCriteraTrigger extends AbstractCriterionTrigger<
         }
 
         @Override
-        @SuppressWarnings("deprecation")
         public JsonObject serialize(ConditionArraySerializer conditions) {
             JsonObject jsonobject = super.serialize(conditions);
             if (this.block != null) {

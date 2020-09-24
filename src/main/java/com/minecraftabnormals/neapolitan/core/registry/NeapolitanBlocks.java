@@ -6,12 +6,12 @@ import com.minecraftabnormals.neapolitan.common.block.StrawberryBushBlock;
 import com.minecraftabnormals.neapolitan.common.block.VanillaVineBlock;
 import com.minecraftabnormals.neapolitan.common.block.VanillaVineTopBlock;
 import com.minecraftabnormals.neapolitan.core.Neapolitan;
-import com.minecraftabnormals.neapolitan.core.NeapolitanRegistryHelper;
 import com.teamabnormals.abnormals_core.common.blocks.VerticalSlabBlock;
 import com.teamabnormals.abnormals_core.common.blocks.thatch.ThatchBlock;
 import com.teamabnormals.abnormals_core.common.blocks.thatch.ThatchSlabBlock;
 import com.teamabnormals.abnormals_core.common.blocks.thatch.ThatchStairsBlock;
 import com.teamabnormals.abnormals_core.common.blocks.thatch.ThatchVerticalSlabBlock;
+import com.teamabnormals.abnormals_core.core.utils.RegistryHelper;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -30,7 +30,7 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = Neapolitan.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NeapolitanBlocks {
-    public static final NeapolitanRegistryHelper HELPER = Neapolitan.REGISTRY_HELPER;
+    public static final RegistryHelper HELPER = Neapolitan.REGISTRY_HELPER;
     
     public static final RegistryObject<Block> VANILLA_ICE_CREAM_BLOCK 		= HELPER.createBlock("vanilla_ice_cream_block", () -> new Block(Properties.VANILLA_ICE_CREAM_BLOCK), ItemGroup.BUILDING_BLOCKS);
     public static final RegistryObject<Block> CHOCOLATE_ICE_CREAM_BLOCK 	= HELPER.createBlock("chocolate_ice_cream_block", () -> new Block(Properties.CHOCOLATE_ICE_CREAM_BLOCK), ItemGroup.BUILDING_BLOCKS);
