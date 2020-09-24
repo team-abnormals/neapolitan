@@ -13,8 +13,8 @@ import net.minecraft.item.MilkBucketItem;
 @Mixin(MilkBucketItem.class)
 public class MilkBucketItemMixin {
 
-    @Inject(at = @At("RETURN"), method = "getUseDuration", cancellable = true)
-    private int getUseDuration(ItemStack stack, CallbackInfoReturnable<Integer> cir) {
-        return NeapolitanConfig.COMMON.milkBucketUseTime.get();
-    }
+	@Inject(at = @At("RETURN"), method = "getUseDuration", cancellable = true)
+	private int getUseDuration(ItemStack stack, CallbackInfoReturnable<Integer> cir) {
+		return NeapolitanConfig.COMMON.milkBucketUseTime.get();
+	}
 }

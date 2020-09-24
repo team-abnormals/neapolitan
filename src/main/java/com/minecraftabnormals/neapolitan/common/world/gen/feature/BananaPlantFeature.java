@@ -99,11 +99,11 @@ public class BananaPlantFeature extends Feature<NoFeatureConfig> {
 			if (isGrass(world, pos.down())) {
 				TreeUtils.setForcedState(world, pos.down(), Blocks.GRAVEL.getDefaultState());
 				for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.getX() - 3, pos.getY() - 2, pos.getZ() - 3, pos.getX() + 3, pos.getY() + 2, pos.getZ() + 3)) {
-	                if (isGrass(world, blockpos) && random.nextInt(4) == 0 && TreeUtils.isAir(world, blockpos.up()))
-	                	TreeUtils.setForcedState(world, blockpos, Blocks.GRAVEL.getDefaultState());
-	            }
+					if (isGrass(world, blockpos) && random.nextInt(4) == 0 && TreeUtils.isAir(world, blockpos.up()))
+						TreeUtils.setForcedState(world, blockpos, Blocks.GRAVEL.getDefaultState());
+				}
 			}
-			
+
 			return true;
 		}
 
@@ -125,22 +125,22 @@ public class BananaPlantFeature extends Feature<NoFeatureConfig> {
 		}
 		return true;
 	}
-	
+
 	public static boolean isGrowable(IWorldGenerationBaseReader worldIn, BlockPos pos) {
-        return worldIn.hasBlockState(pos, (state) -> {
-            return state.isIn(Blocks.GRAVEL) || state.isIn(Blocks.SAND);
-        });
-    }
-	
+		return worldIn.hasBlockState(pos, (state) -> {
+			return state.isIn(Blocks.GRAVEL) || state.isIn(Blocks.SAND);
+		});
+	}
+
 	public static boolean isValidGround(IWorldGenerationBaseReader worldIn, BlockPos pos) {
-        return worldIn.hasBlockState(pos, (state) -> {
-            return state.isIn(Blocks.GRAVEL) || state.isIn(Blocks.SAND) || state.isIn(Blocks.GRASS_BLOCK);
-        });
-    }
-	
+		return worldIn.hasBlockState(pos, (state) -> {
+			return state.isIn(Blocks.GRAVEL) || state.isIn(Blocks.SAND) || state.isIn(Blocks.GRASS_BLOCK);
+		});
+	}
+
 	public static boolean isGrass(IWorldGenerationBaseReader worldIn, BlockPos pos) {
-        return worldIn.hasBlockState(pos, (state) -> {
-            return state.isIn(Blocks.GRASS_BLOCK);
-        });
-    }
+		return worldIn.hasBlockState(pos, (state) -> {
+			return state.isIn(Blocks.GRASS_BLOCK);
+		});
+	}
 }

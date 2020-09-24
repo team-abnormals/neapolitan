@@ -24,74 +24,75 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
 public class FlavoredCakeBlock extends CakeBlock {
-    private EffectType effectType;
-    private Food food;
-    
-    public FlavoredCakeBlock(Food food, EffectType effectType, Properties properties) {
-        super(properties);
-        this.effectType = effectType;
-        this.food = food;
-    }
+	private EffectType effectType;
+	private Food food;
 
-    @Override
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if (worldIn.isRemote) {
-            ItemStack itemstack = player.getHeldItem(handIn);
-            if (this.eatSlice(worldIn, pos, state, player).isSuccessOrConsume()) {
-                return ActionResultType.SUCCESS;
-            }
+	public FlavoredCakeBlock(Food food, EffectType effectType, Properties properties) {
+		super(properties);
+		this.effectType = effectType;
+		this.food = food;
+	}
 
-            if (itemstack.isEmpty()) {
-                return ActionResultType.CONSUME;
-            }
-        }
+	@Override
+	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+		if (worldIn.isRemote) {
+			ItemStack itemstack = player.getHeldItem(handIn);
+			if (this.eatSlice(worldIn, pos, state, player).isSuccessOrConsume()) {
+				return ActionResultType.SUCCESS;
+			}
 
-        return this.eatSlice(worldIn, pos, state, player);
-    }
+			if (itemstack.isEmpty()) {
+				return ActionResultType.CONSUME;
+			}
+		}
 
-    private ActionResultType eatSlice(IWorld world, BlockPos pos, BlockState state, PlayerEntity player) {
-        if (!player.canEat(false)) {
-            return ActionResultType.PASS;
-        } else {
-            player.addStat(Stats.EAT_CAKE_SLICE);
-            player.getFoodStats().addStats(food.getHealing(), food.getSaturation());
-            int i = state.get(BITES);
+		return this.eatSlice(worldIn, pos, state, player);
+	}
 
-            if (this == NeapolitanBlocks.STRAWBERRY_CAKE.get()) player.heal(1.0F);
-            
-            ImmutableList<EffectInstance> effects = ImmutableList.copyOf(player.getActivePotionEffects());
-            if (this.getEffectType() != null) {
-                for (int j = 0; j < effects.size(); ++j) {
-                    Effect effect = effects.get(j).getPotion();
-                    if (effect.getEffectType() == this.getEffectType() || (this.getEffectType() == EffectType.HARMFUL && effect == Effects.BAD_OMEN) || this.getEffectType() == EffectType.NEUTRAL) {
-                        player.removePotionEffect(effect);
-                    }
-                }
-            } else {
-            	if(effects.size() > 0) {
-            		Random rand = new Random();
-                	EffectInstance effectToRemove = effects.get(rand.nextInt(effects.size()));
-                	player.removePotionEffect(effectToRemove.getPotion());
-            	}
-            }
-            
-            for(Pair<EffectInstance, Float> pair : food.getEffects()) {
-                if (!world.isRemote() && pair.getFirst() != null && world.getRandom().nextFloat() < pair.getSecond()) {
-                    player.addPotionEffect(new EffectInstance(pair.getFirst()));
-                }
-             }
-            
-            if (i < 6) {
-                world.setBlockState(pos, state.with(BITES, Integer.valueOf(i + 1)), 3);
-            } else {
-                world.removeBlock(pos, false);
-            }
+	private ActionResultType eatSlice(IWorld world, BlockPos pos, BlockState state, PlayerEntity player) {
+		if (!player.canEat(false)) {
+			return ActionResultType.PASS;
+		} else {
+			player.addStat(Stats.EAT_CAKE_SLICE);
+			player.getFoodStats().addStats(food.getHealing(), food.getSaturation());
+			int i = state.get(BITES);
 
-            return ActionResultType.SUCCESS;
-        }
-    }
+			if (this == NeapolitanBlocks.STRAWBERRY_CAKE.get())
+				player.heal(1.0F);
 
-    public EffectType getEffectType() {
-        return this.effectType;
-    }
+			ImmutableList<EffectInstance> effects = ImmutableList.copyOf(player.getActivePotionEffects());
+			if (this.getEffectType() != null) {
+				for (int j = 0; j < effects.size(); ++j) {
+					Effect effect = effects.get(j).getPotion();
+					if (effect.getEffectType() == this.getEffectType() || (this.getEffectType() == EffectType.HARMFUL && effect == Effects.BAD_OMEN) || this.getEffectType() == EffectType.NEUTRAL) {
+						player.removePotionEffect(effect);
+					}
+				}
+			} else {
+				if (effects.size() > 0) {
+					Random rand = new Random();
+					EffectInstance effectToRemove = effects.get(rand.nextInt(effects.size()));
+					player.removePotionEffect(effectToRemove.getPotion());
+				}
+			}
+
+			for (Pair<EffectInstance, Float> pair : food.getEffects()) {
+				if (!world.isRemote() && pair.getFirst() != null && world.getRandom().nextFloat() < pair.getSecond()) {
+					player.addPotionEffect(new EffectInstance(pair.getFirst()));
+				}
+			}
+
+			if (i < 6) {
+				world.setBlockState(pos, state.with(BITES, Integer.valueOf(i + 1)), 3);
+			} else {
+				world.removeBlock(pos, false);
+			}
+
+			return ActionResultType.SUCCESS;
+		}
+	}
+
+	public EffectType getEffectType() {
+		return this.effectType;
+	}
 }

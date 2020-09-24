@@ -78,17 +78,17 @@ public class BananaFrondBlock extends BushBlock implements IGrowable {
 			attemptGrowBanana(getSizeForFrond(rand, this), world, rand, pos);
 		}
 	}
-	
+
 	@Override
 	public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
 		if (this.canGrow(worldIn, pos, state, worldIn.isRemote())) {
 			if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt(2) == 0)) {
 				attemptGrowBanana(getSizeForFrond(rand, this), worldIn, rand, pos);
-                net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state);
+				net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state);
 			}
 		}
 	}
-	
+
 	public static boolean attemptGrowBanana(int size, World world, Random rand, BlockPos pos) {
 		BlockPos blockPos = pos;
 		List<BlockPos> stalks = new ArrayList<>();
@@ -141,7 +141,8 @@ public class BananaFrondBlock extends BushBlock implements IGrowable {
 				world.setBlockState(blockPos2, NeapolitanBlocks.BANANA_STALK.get().getDefaultState(), 2);
 			}
 			world.setBlockState(upFrond, NeapolitanBlocks.LARGE_BANANA_FROND.get().getDefaultState(), 2);
-			if (bundle != null) world.setBlockState(bundle, NeapolitanBlocks.BANANA_BUNDLE.get().getDefaultState(), 2);
+			if (bundle != null)
+				world.setBlockState(bundle, NeapolitanBlocks.BANANA_BUNDLE.get().getDefaultState(), 2);
 			for (BlockPos blockPos2 : smallFronds.keySet()) {
 				world.setBlockState(blockPos2, NeapolitanBlocks.SMALL_BANANA_FROND.get().getDefaultState().with(FACING, smallFronds.get(blockPos2)), 2);
 			}
@@ -153,10 +154,10 @@ public class BananaFrondBlock extends BushBlock implements IGrowable {
 			}
 			return true;
 		}
-		
+
 		return false;
 	}
-	
+
 	public static boolean canGrowOn(BlockState state) {
 		return state.isIn(Tags.Blocks.GRAVEL) || state.isIn(Tags.Blocks.SAND);
 	}
@@ -164,10 +165,12 @@ public class BananaFrondBlock extends BushBlock implements IGrowable {
 	private static boolean isAirAt(World world, BlockPos pos, int size) {
 		BlockPos position = pos.up();
 		for (int i = 0; i < size + 1; i++) {
-			if (!world.isAirBlock(position)) return false;
+			if (!world.isAirBlock(position))
+				return false;
 			for (Direction direction : Direction.values()) {
 				if (direction.getAxis().isHorizontal()) {
-					if (!world.isAirBlock(position.offset(direction))) return false;
+					if (!world.isAirBlock(position.offset(direction)))
+						return false;
 				}
 			}
 			position = position.up();
