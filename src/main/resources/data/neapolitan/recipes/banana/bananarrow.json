@@ -1,20 +1,15 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    " # ",
-    "#X#",
-    " # "
-  ],
-  "key": {
-    "#": {
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
       "tag": "forge:fruits/banana"
     },
-    "X": {
+    {
       "item": "minecraft:arrow"
     }
-  },
+  ],
   "result": {
     "item": "neapolitan:bananarrow",
-    "count": 2
+    "count": 1
   }
 }

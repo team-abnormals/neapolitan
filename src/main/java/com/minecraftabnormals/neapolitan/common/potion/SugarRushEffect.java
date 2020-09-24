@@ -26,9 +26,7 @@ public class SugarRushEffect extends Effect {
     @Override
     public void applyAttributesModifiersToEntity(LivingEntity entity, AttributeModifierManager attributeMapIn, int amplifier) {
         int duration = entity.getActivePotionEffect(NeapolitanEffects.SUGAR_RUSH.get()).getDuration();
-        //System.out.println(duration);
-        float amount = (duration >= (amplifier + 1) * 5 * 20) ? (amplifier + 2) * 0.5F : -(amplifier + 2) * 1.25F;
-        //System.out.println(amount);
+        float amount = (duration >= (amplifier + 1) * 3.33 * 20) ? (amplifier + 2) * 0.5F : -(amplifier + 2) * 1.25F;
         for (Entry<Attribute, AttributeModifier> entry : this.getAttributeModifierMap().entrySet()) {
             ModifiableAttributeInstance iattributeinstance = attributeMapIn.createInstanceIfAbsent(entry.getKey());
             if (iattributeinstance != null) {

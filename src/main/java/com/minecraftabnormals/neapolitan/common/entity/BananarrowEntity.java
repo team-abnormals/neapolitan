@@ -8,6 +8,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.network.IPacket;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -17,6 +18,7 @@ import net.minecraftforge.fml.network.FMLPlayMessages;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 public class BananarrowEntity extends AbstractArrowEntity {
+	public boolean impacted = false;
 
 	public BananarrowEntity(EntityType<? extends BananarrowEntity> type, World worldIn) {
 		super(type, worldIn);
@@ -37,26 +39,31 @@ public class BananarrowEntity extends AbstractArrowEntity {
 	@Override
 	protected void func_230299_a_(BlockRayTraceResult result) {
 		super.func_230299_a_(result);
-		this.pickupStatus = PickupStatus.DISALLOWED;
-		BananaPeelEntity bananaPeel = NeapolitanEntities.BANANA_PEEL.get().create(world);
-		bananaPeel.setLocationAndAngles(this.getPosX(), this.getPosY(), this.getPosZ(), 0.0F, 0.0F);
-		this.world.addEntity(bananaPeel);
+		if (!impacted) {
+			BananaPeelEntity bananaPeel = NeapolitanEntities.BANANA_PEEL.get().create(world);
+			bananaPeel.setLocationAndAngles(this.getPosX(), this.getPosY(), this.getPosZ(), 0.0F, 0.0F);
+			this.world.addEntity(bananaPeel);
+			this.impacted = true;
+		}
 	}
 
 	@Override
 	protected void onEntityHit(EntityRayTraceResult result) {
 		super.onEntityHit(result);
-		BananaPeelEntity bananaPeel = NeapolitanEntities.BANANA_PEEL.get().create(world);
-		bananaPeel.setLocationAndAngles(this.getPosX(), this.getPosY(), this.getPosZ(), 0.0F, 0.0F);
-		this.world.addEntity(bananaPeel);
-		if (result.getEntity() instanceof LivingEntity) {
-			((LivingEntity) result.getEntity()).addPotionEffect(new EffectInstance(NeapolitanEffects.SLIPPING.get(), 100, 0, false, false, false));
+		if (!impacted) {
+			BananaPeelEntity bananaPeel = NeapolitanEntities.BANANA_PEEL.get().create(world);
+			bananaPeel.setLocationAndAngles(this.getPosX(), this.getPosY(), this.getPosZ(), 0.0F, 0.0F);
+			this.world.addEntity(bananaPeel);
+			this.impacted = true;
+			if (result.getEntity() instanceof LivingEntity) {
+				((LivingEntity) result.getEntity()).addPotionEffect(new EffectInstance(NeapolitanEffects.SLIPPING.get(), 100, 0, false, false, false));
+			}
 		}
 	}
 
 	@Override
 	protected ItemStack getArrowStack() {
-		return new ItemStack(NeapolitanItems.BANANARROW.get());
+		return new ItemStack(!this.impacted ? NeapolitanItems.BANANARROW.get() : Items.ARROW);
 	}
 
 	@Override

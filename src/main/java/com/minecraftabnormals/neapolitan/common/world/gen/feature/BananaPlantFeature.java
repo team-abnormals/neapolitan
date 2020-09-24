@@ -99,7 +99,7 @@ public class BananaPlantFeature extends Feature<NoFeatureConfig> {
 			if (isGrass(world, pos.down())) {
 				TreeUtils.setForcedState(world, pos.down(), Blocks.GRAVEL.getDefaultState());
 				for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.getX() - 3, pos.getY() - 2, pos.getZ() - 3, pos.getX() + 3, pos.getY() + 2, pos.getZ() + 3)) {
-	                if (isGrass(world, blockpos) && random.nextBoolean() && TreeUtils.isAir(world, blockpos.up()))
+	                if (isGrass(world, blockpos) && random.nextInt(4) == 0 && TreeUtils.isAir(world, blockpos.up()))
 	                	TreeUtils.setForcedState(world, blockpos, Blocks.GRAVEL.getDefaultState());
 	            }
 			}
