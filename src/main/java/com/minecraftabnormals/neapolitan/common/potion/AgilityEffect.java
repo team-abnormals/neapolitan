@@ -6,6 +6,6 @@ import net.minecraft.potion.EffectType;
 public class AgilityEffect extends Effect {
 
 	public AgilityEffect() {
-		super(EffectType.NEUTRAL, 0xD4B133);
+		super(EffectType.NEUTRAL, 0xA06951);
 	}
 }
