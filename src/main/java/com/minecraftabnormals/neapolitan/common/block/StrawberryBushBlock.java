@@ -182,7 +182,7 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, IGrowa
 	}
 
 	private boolean isWhite(ServerWorld worldIn, BlockPos pos) {
-		return (pos.getY() >= 200 && worldIn.func_234922_V_() == DimensionType.OVERWORLD) || worldIn.func_234922_V_() == DimensionType.THE_END;
+		return pos.getY() >= 200 && worldIn.func_234922_V_() == DimensionType.OVERWORLD;
 	}
 
 	@Override
