@@ -42,7 +42,6 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.IPlantable;
@@ -87,10 +86,6 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, IGrowa
 
 	protected int getBonemealAgeIncrease(World worldIn) {
 		return MathHelper.nextInt(worldIn.rand, 2, 5);
-	}
-
-	public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-		return (worldIn.getLightSubtracted(pos, 0) >= 8 || worldIn.canSeeSky(pos)) && super.isValidPosition(state, worldIn, pos);
 	}
 
 	public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
