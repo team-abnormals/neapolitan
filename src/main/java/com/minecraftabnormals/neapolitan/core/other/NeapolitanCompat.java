@@ -1,12 +1,19 @@
 package com.minecraftabnormals.neapolitan.core.other;
 
+import com.minecraftabnormals.neapolitan.common.entity.BananarrowEntity;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
 import com.teamabnormals.abnormals_core.core.utils.DataUtils;
 
+import net.minecraft.block.DispenserBlock;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.dispenser.IPosition;
+import net.minecraft.dispenser.ProjectileDispenseBehavior;
+import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.Foods;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 public class NeapolitanCompat {
 
@@ -110,6 +117,15 @@ public class NeapolitanCompat {
 		DataUtils.registerFlammable(NeapolitanBlocks.CHOCOLATE_TILE_SLAB.get(), 60, 100);
 		DataUtils.registerFlammable(NeapolitanBlocks.CHOCOLATE_TILE_WALL.get(), 60, 100);
 		DataUtils.registerFlammable(NeapolitanBlocks.CHOCOLATE_TILE_VERTICAL_SLAB.get(), 60, 100);
+	}
+	
+	public static void registerDispenserBehaviors() {
+		DispenserBlock.registerDispenseBehavior(NeapolitanItems.BANANARROW.get(), new ProjectileDispenseBehavior() {
+			protected ProjectileEntity getProjectileEntity(World worldIn, IPosition position, ItemStack stackIn) {
+				BananarrowEntity arrowentity = new BananarrowEntity(worldIn, position.getX(), position.getY(), position.getZ());
+				return arrowentity;
+			}
+		});
 	}
 
 	public static void registerRenderLayers() {

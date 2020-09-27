@@ -53,6 +53,7 @@ public class Neapolitan {
     		NeapolitanCompat.transformCookies();
     	    NeapolitanCompat.registerFlammables();
     	    NeapolitanCompat.registerCompostables();
+    	    NeapolitanCompat.registerDispenserBehaviors();
     	    NeapolitanBiomeFeatures.generateFeatures();
     	});
     }
