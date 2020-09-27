@@ -64,7 +64,7 @@ public class BananaFrondBlock extends BushBlock implements IGrowable {
 
 	@Override
 	public boolean canGrow(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
-		return state.get(FACING) == Direction.UP && canGrowOn(worldIn.getBlockState(pos.down())) && worldIn instanceof World && ((World) worldIn).isRainingAt(pos);
+		return state.get(FACING) == Direction.UP && worldIn instanceof World && ((World) worldIn).isRainingAt(pos);
 	}
 
 	@Override
@@ -81,7 +81,7 @@ public class BananaFrondBlock extends BushBlock implements IGrowable {
 
 	@Override
 	public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-		if (this.canGrow(worldIn, pos, state, worldIn.isRemote())) {
+		if (this.canGrow(worldIn, pos, state, worldIn.isRemote()) && canGrowOn(worldIn.getBlockState(pos.down()))) {
 			if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt(2) == 0)) {
 				attemptGrowBanana(getSizeForFrond(rand, this), worldIn, rand, pos);
 				net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state);
