@@ -15,6 +15,7 @@ import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
 import net.minecraft.world.gen.placement.ChanceConfig;
 import net.minecraft.world.gen.placement.Placement;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class NeapolitanBiomeFeatures {
@@ -35,20 +36,35 @@ public class NeapolitanBiomeFeatures {
 			biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NeapolitanFeatures.VANILLA_PATCH.get().withConfiguration(VANILLA_VINE_PATCH_CONFIG).withPlacement(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(28))));
 		}
 
-		if (biome.getCategory() == Biome.Category.BEACH && biome.getPrecipitation() == RainType.RAIN) {
-			biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NeapolitanFeatures.BANANA_PLANT.get().withConfiguration(NoFeatureConfig.field_236559_b_).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(0, 0.15F, 1))));
-		}
+		if (biome.getPrecipitation() == RainType.RAIN) {
+			if (biome.getCategory() == Biome.Category.BEACH)
+				addBananaPlants(biome, 0, 0.15F, 1); // Beach Biomes
 
-		if (biome.getCategory() == Biome.Category.JUNGLE && biome.getPrecipitation() == RainType.RAIN) {
-			if (biome != Biomes.JUNGLE_EDGE && biome != Biomes.MODIFIED_JUNGLE_EDGE) {
-				biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NeapolitanFeatures.BANANA_PLANT.get().withConfiguration(NoFeatureConfig.field_236559_b_).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(1, 0.3F, 3))));
-			} else if (biome != Biomes.BAMBOO_JUNGLE && biome != Biomes.BAMBOO_JUNGLE_HILLS) {
-				biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NeapolitanFeatures.BANANA_PLANT.get().withConfiguration(NoFeatureConfig.field_236559_b_).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(1, 0.15F, 2))));
+			if (biome.getCategory() == Biome.Category.JUNGLE) {
+				if (notJungleEdge(biome) && notBambooJungle(biome))
+					addBananaPlants(biome, 1, 0.3F, 3); // Jungle Biomes
+				else if (notBambooJungle(biome))
+					addBananaPlants(biome, 1, 0.15F, 2); // Jungle Edge Biomes
+			}
+
+			if (biome.getRegistryName().getPath().contains("rainforest")) {
+				if (!BiomeDictionary.hasType(biome, BiomeDictionary.Type.FOREST))
+					addBananaPlants(biome, 1, 0.1F, 2); // Rainforest Biomes
+				else
+					addBananaPlants(biome, 0, 0.3F, 1); // Sparse Rainforest Plateau Biomes
 			}
 		}
-		
-		if (biome.getRegistryName().getPath().contains("rainforest")) {
-			biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NeapolitanFeatures.BANANA_PLANT.get().withConfiguration(NoFeatureConfig.field_236559_b_).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(1, 0.1F, 2))));
-		}
+	}
+
+	private static void addBananaPlants(Biome biome, int count, float extraChanceIn, int extraCountIn) {
+		biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NeapolitanFeatures.BANANA_PLANT.get().withConfiguration(NoFeatureConfig.field_236559_b_).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(count, extraChanceIn, extraCountIn))));
+	}
+
+	private static boolean notJungleEdge(Biome biome) {
+		return biome != Biomes.JUNGLE_EDGE && biome != Biomes.MODIFIED_JUNGLE_EDGE;
+	}
+
+	private static boolean notBambooJungle(Biome biome) {
+		return biome != Biomes.BAMBOO_JUNGLE && biome != Biomes.BAMBOO_JUNGLE_HILLS;
 	}
 }
