@@ -128,7 +128,6 @@ public class VanillaVineTopBlock extends Block implements IPoisonCloud, IGrowabl
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
         if (facing == stateIn.get(FACING).getOpposite() && !stateIn.isValidPosition(worldIn, currentPos)) {
             worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 1);

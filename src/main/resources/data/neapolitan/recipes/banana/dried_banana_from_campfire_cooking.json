@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "ingredient": {
+    "tag": "forge:fruits/banana"
+  },
+  "result": "neapolitan:dried_banana",
+  "experience": 0.35,
+  "cookingtime": 600
+}

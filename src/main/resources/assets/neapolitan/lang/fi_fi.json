@@ -1,0 +1,123 @@
+{
+  "block.neapolitan.vanilla_ice_cream_block": "Vaniljajäätelökuutio",
+  "block.neapolitan.chocolate_ice_cream_block": "Suklaajäätelökuutio",
+  "block.neapolitan.strawberry_ice_cream_block": "Mansikkajäätelökuutio",
+  "block.neapolitan.banana_ice_cream_block": "Banaanijäätelökuutio",
+  
+  "block.neapolitan.chocolate_block": "Suklaakuutio",
+  "block.neapolitan.chocolate_bricks": "Suklaatiili",
+  "block.neapolitan.chocolate_brick_slab": "Suklaatiililaatta",
+  "block.neapolitan.chocolate_brick_stairs": "Suklaatiiliportaat",
+  "block.neapolitan.chocolate_brick_wall": "Suklaatiilimuuri",
+  "block.neapolitan.chocolate_brick_vertical_slab": "Pystysuora suklaatiililaatta",
+  
+  "block.neapolitan.chiseled_chocolate_bricks": "Kaiverrettu suklaatiili",
+  
+  "block.neapolitan.chocolate_tiles": "Suklaalevyt",
+  "block.neapolitan.chocolate_tile_slab": "Suklaalevylaatta",
+  "block.neapolitan.chocolate_tile_stairs": "Suklaalevyportaat",
+  "block.neapolitan.chocolate_tile_wall": "Suklaalevymuuri",
+  "block.neapolitan.chocolate_tile_vertical_slab": "Pystysuora suklaalevylaatta",
+  
+  "block.neapolitan.frond_thatch": "Banaaninlehtikuutio",
+  "block.neapolitan.frond_thatch_stairs": "Banaaninlehtiportaat",
+  "block.neapolitan.frond_thatch_slab": "Banaaninlehtilaatta",
+  "block.neapolitan.frond_thatch_vertical_slab": "Pystysuora banaaninlehtilaatta",
+  
+  "block.neapolitan.strawberry_basket": "Kori mansikoita",
+  "block.neapolitan.white_strawberry_basket": "Kori valkoisia mansikoita",
+  "block.neapolitan.vanilla_pod_block": "Vaniljan siemenkotakuutio",
+  "block.neapolitan.dried_vanilla_pod_block": "Kuivattu vaniljan siemenkotakuutio",
+  "block.neapolitan.banana_crate": "Laatikko banaaneja",
+
+  "block.neapolitan.strawberry_bush": "Mansikkapensas",
+
+  "block.neapolitan.vanilla_vine": "Vaniljaköynnös",
+  "block.neapolitan.vanilla_vine_plant": "Vaniljaköynnös",
+  
+  "block.neapolitan.banana_stalk": "Banaanin varsi",
+  "block.neapolitan.banana_bundle": "Banaaniterttukuutio",
+  
+  "block.neapolitan.small_banana_frond": "Pieni banaaninlehti",
+  "block.neapolitan.banana_frond": "Banaaninlehti",
+  "block.neapolitan.large_banana_frond": "Suuri banaaninlehti",
+  
+  "block.neapolitan.chocolate_cake": "Suklaakakku",
+  "block.neapolitan.strawberry_cake": "Mansikkakakku",
+  "block.neapolitan.vanilla_cake": "Vaniljakakku",
+  "block.neapolitan.banana_cake": "Banaanikakku",
+  
+  "item.neapolitan.milk_bottle": "Maitopullo",
+  "item.neapolitan.ice_cubes": "Jääkuutiot",
+  
+  "item.neapolitan.chocolate_bar": "Suklaalevy",
+  "item.neapolitan.chocolate_ice_cream": "Suklaajäätelö",
+  "item.neapolitan.chocolate_milkshake": "Suklaapirtelö",
+  
+  "item.neapolitan.strawberry_pips": "Mansikan siemenet",
+  "item.neapolitan.strawberries": "Mansikoita",
+  "item.neapolitan.strawberry_ice_cream": "Mansikkajäätelö",
+  "item.neapolitan.strawberry_scones": "Mansikkaskonssit",
+  "item.neapolitan.strawberry_milkshake": "Mansikkapirtelö",
+  
+  "item.neapolitan.vanilla_pods": "Vaniljan siemenkodat",
+  "item.neapolitan.dried_vanilla_pods": "Kuivatut vaniljan siemenkodat",
+  "item.neapolitan.vanilla_ice_cream": "Vaniljajäätelö",
+  "item.neapolitan.vanilla_pudding": "Vaniljavanukas",
+  "item.neapolitan.vanilla_milkshake": "Vaniljapirtelö",
+  
+  "item.neapolitan.banana": "Banaani",
+  "item.neapolitan.banana_bunch": "Banaaniterttu",
+  "item.neapolitan.dried_banana": "Kuivattu banaani",
+  "item.neapolitan.banana_ice_cream": "Banaanijäätelö",
+  "item.neapolitan.banana_milkshake": "Banaanipirtelö",
+  "item.neapolitan.banana_bread": "Banaanileipä",
+  "item.neapolitan.bananarrow": "Banaaninuoli",
+  
+  "item.neapolitan.chocolate_strawberries": "Suklaamansikoita",
+  "item.neapolitan.white_strawberries": "Valkoisia mansikoita",
+  "item.neapolitan.vanilla_chocolate_fingers": "Vaniljasuklaatikut",
+  "item.neapolitan.strawberry_banana_smoothie": "Mansikka-banaanismoothie",
+  "item.neapolitan.neapolitan_ice_cream": "Triojäätelö",
+  
+  "item.neapolitan.monkey_banner_pattern": "Viirikuvio",
+  "item.neapolitan.monkey_banner_pattern.desc": "Apina",
+  
+  "entity.neapolitan.banana_peel": "Banaaninkuori",
+  "entity.neapolitan.monkey": "Apina",
+  "entity.neapolitan.bananarrow": "Banaaninuoli",
+  
+  "effect.neapolitan.sugar_rush": "Sokerihumala",
+  "effect.neapolitan.vanilla_scent": "Vaniljan tuoksi",
+  "effect.neapolitan.agility": "Ketteryys",
+  "effect.neapolitan.slipping": "Liukastuminen",
+  
+  "advancements.husbandry.creeper_heal.title": "Rakkauspommi",
+  "advancements.husbandry.creeper_heal.description": "Elvy mansikkapensaassa räjähtäneen creeperin räjähdykestä",
+  
+  "advancements.husbandry.vanilla_poison.title": "Tappajavanilja",
+  "advancements.husbandry.vanilla_poison.description": "Hajota vaniljaköynnös ilman keritsimiä vapauttaen haitallisen auran",
+  
+  "advancements.husbandry.place_all_chocolate_blocks.title": "Suklaatalo",
+  "advancements.husbandry.place_all_chocolate_blocks.description": "Sijoita jokainen suklaakuutio",
+  
+  "advancements.husbandry.harvest_white_strawberries.title": "Eväsretki pilvissä",
+  "advancements.husbandry.harvest_white_strawberries.description": "Saa valkoisia mansikoita kasvattamalla mansikkapensaita korkealla maanpinnasta",
+  
+  "block.minecraft.banner.mca_monkey.black": "Musta apina",
+  "block.minecraft.banner.mca_monkey.red": "Punainen apina",
+  "block.minecraft.banner.mca_monkey.green": "Vihreä apina",
+  "block.minecraft.banner.mca_monkey.brown": "Ruskea apina",
+  "block.minecraft.banner.mca_monkey.blue": "Sininen apina",
+  "block.minecraft.banner.mca_monkey.purple": "Violetti apina",
+  "block.minecraft.banner.mca_monkey.cyan": "Syaani apina",
+  "block.minecraft.banner.mca_monkey.silver": "Vaaleanharmaa apina",
+  "block.minecraft.banner.mca_monkey.gray": "Harmaa apina",
+  "block.minecraft.banner.mca_monkey.pink": "Vaaleanpunainen apina",
+  "block.minecraft.banner.mca_monkey.lime": "Limetinvihreä apina",
+  "block.minecraft.banner.mca_monkey.yellow": "Keltainen apina",
+  "block.minecraft.banner.mca_monkey.lightBlue": "Vaaleansininen apina",
+  "block.minecraft.banner.mca_monkey.magenta": "Purppura apina",
+  "block.minecraft.banner.mca_monkey.orange": "Oranssi apina",
+  "block.minecraft.banner.mca_monkey.white": "Valkoinen apina"
+}

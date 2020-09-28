@@ -1,0 +1,10 @@
+{
+  "parent": "block/cake",
+  "textures": {
+    "particle": "neapolitan:block/banana_cake_side",
+    "bottom": "neapolitan:block/banana_cake_bottom",
+    "top": "neapolitan:block/banana_cake_top",
+    "side": "neapolitan:block/banana_cake_side",
+    "inside": "neapolitan:block/banana_cake_inner"
+  }
+}

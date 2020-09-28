@@ -5,13 +5,13 @@
       "item": "minecraft:bucket"
     },
     {
-      "item": "neapolitan:milk_bottle"
+      "tag": "forge:milk/milk_bottle"
     },
     {
-      "item": "neapolitan:milk_bottle"
+      "tag": "forge:milk/milk_bottle"
     },
     {
-      "item": "neapolitan:milk_bottle"
+      "tag": "forge:milk/milk_bottle"
     }
   ],
   "result": {

@@ -1,0 +1,8 @@
+{
+    "parent": "block/cube_bottom_top",
+    "textures": {
+        "top": "neapolitan:block/banana_crate_top",
+        "bottom": "neapolitan:block/banana_stalk_top",
+        "side": "neapolitan:block/banana_crate_side"
+    }
+}

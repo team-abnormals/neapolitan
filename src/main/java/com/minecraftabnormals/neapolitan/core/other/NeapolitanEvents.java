@@ -33,11 +33,14 @@ import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.event.world.ExplosionEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.registries.ForgeRegistries;
 
 @EventBusSubscriber(modid = Neapolitan.MODID)
 public class NeapolitanEvents {
+    public static final String SAVAGE_AND_RAVAGE = "savageandravage";
+    public static final ResourceLocation CREEPIE = new ResourceLocation(SAVAGE_AND_RAVAGE, "creepie");
     
     @SubscribeEvent
     public static void onEntityJoinWorld(EntityJoinWorldEvent event) {
@@ -45,7 +48,7 @@ public class NeapolitanEvents {
         if (entity instanceof CreeperEntity) {
             CreeperEntity creeper = (CreeperEntity) event.getEntity();
             creeper.goalSelector.addGoal(3, new AvoidBlockGoal<>(creeper, 6, 1.0D, 1.2D));
-        } else if (entity instanceof MonsterEntity && entity.getType() == ForgeRegistries.ENTITIES.getValue(new ResourceLocation("savageandravage", "creepie"))) {
+        } else if (entity instanceof MonsterEntity && entity.getType() != null && (ModList.get().isLoaded(SAVAGE_AND_RAVAGE) && entity.getType() == ForgeRegistries.ENTITIES.getValue(CREEPIE))) {
             MonsterEntity creepie = (MonsterEntity) event.getEntity();
             creepie.goalSelector.addGoal(3, new AvoidBlockGoal<>(creepie, 6, 1.0D, 1.2D));
         }
@@ -72,7 +75,7 @@ public class NeapolitanEvents {
     @SubscribeEvent
     public static void onExplosion(ExplosionEvent.Detonate event) {
         LivingEntity source = event.getExplosion().getExplosivePlacedBy();
-        if (source instanceof CreeperEntity || source.getType() == ForgeRegistries.ENTITIES.getValue(new ResourceLocation("savageandravage", "creepie"))) {
+        if (source != null && (source instanceof CreeperEntity || (ModList.get().isLoaded(SAVAGE_AND_RAVAGE) && source.getType() == ForgeRegistries.ENTITIES.getValue(CREEPIE)))) {
             if (event.getWorld().getBlockState(source.getPosition()).getBlock() == NeapolitanBlocks.STRAWBERRY_BUSH.get()) {
                 for (Entity entity : event.getAffectedEntities()) {
                     if (entity instanceof LivingEntity) {
@@ -103,14 +106,15 @@ public class NeapolitanEvents {
         VillagerProfession type = event.getType();
         Int2ObjectMap<List<ITrade>> trades = event.getTrades();
 
-        List<ITrade> novice = trades.get(1);
+        List<ITrade> apprentice = trades.get(2);
         List<ITrade> journeyman = trades.get(3);
         List<ITrade> expert = trades.get(4);
         List<ITrade> master = trades.get(5);
 
         if (type == VillagerProfession.FARMER) {
-            novice.add(new TradeUtils.EmeraldsForItemsTrade(NeapolitanItems.STRAWBERRIES.get(), 24, 1, 16, 2));
-
+            apprentice.add(new TradeUtils.EmeraldsForItemsTrade(NeapolitanItems.STRAWBERRIES.get(), 24, 1, 16, 2));
+            
+            journeyman.add(new TradeUtils.EmeraldsForItemsTrade(NeapolitanItems.BANANA.get(), 8, 1, 12, 10));
             journeyman.add(new TradeUtils.ItemsForEmeraldsTrade(NeapolitanItems.STRAWBERRY_SCONES.get(), 3, 12, 12, 10));
 
             expert.add(new TradeUtils.ItemsForEmeraldsTrade(NeapolitanItems.VANILLA_CAKE.get(), 3, 1, 12, 15));
@@ -119,13 +123,16 @@ public class NeapolitanEvents {
         }
         if (type == VillagerProfession.BUTCHER) {
             master.add(new TradeUtils.EmeraldsForItemsTrade(NeapolitanItems.DRIED_VANILLA_PODS.get(), 16, 1, 16, 30));
-
+        }
+        if (type == VillagerProfession.FLETCHER) {
+        	expert.add(new TradeUtils.ItemsForEmeraldsTrade(NeapolitanItems.BANANARROW.get(), 1, 4, 12, 15));
         }
     }
 
     @SubscribeEvent
     public static void onWandererTradesEvent(WandererTradesEvent event) {
         event.getGenericTrades().add(new TradeUtils.ItemsForEmeraldsTrade(NeapolitanItems.VANILLA_PODS.get(), 1, 3, 4, 1));
+        event.getGenericTrades().add(new TradeUtils.ItemsForEmeraldsTrade(NeapolitanBlocks.LARGE_BANANA_FROND.get(), 5, 1, 4, 1));
         event.getRareTrades().add(new TradeUtils.ItemsForEmeraldsTrade(NeapolitanItems.WHITE_STRAWBERRIES.get(), 4, 8, 2, 1));
     }
 }

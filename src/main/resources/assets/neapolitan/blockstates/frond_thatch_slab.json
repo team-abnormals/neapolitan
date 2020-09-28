@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "neapolitan:block/frond_thatch_slab" },
+        "type=top": { "model": "neapolitan:block/frond_thatch_slab_top" },
+        "type=double": { "model": "neapolitan:block/frond_thatch" }
+    }
+}

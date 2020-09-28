@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:fruits/banana"
+    },
+    {
+      "tag": "forge:fruits/strawberry"
+    },
+    {
+      "tag": "forge:fruits/strawberry"
+    },
+    {
+      "item": "neapolitan:ice_cubes"
+    },
+    {
+      "tag": "forge:milk"
+    }
+  ],
+  "result": {
+    "item": "neapolitan:strawberry_banana_smoothie",
+    "count": 1
+  }
+}

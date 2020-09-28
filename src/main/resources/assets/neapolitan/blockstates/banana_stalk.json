@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "neapolitan:block/banana_stalk"
+    },
+    "axis=z": {
+      "model": "neapolitan:block/banana_stalk",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "neapolitan:block/banana_stalk",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

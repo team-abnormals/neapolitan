@@ -14,16 +14,10 @@
       "item": "neapolitan:chocolate_bar"
     },
     {
-      "item": "neapolitan:chocolate_bar"
-    },
-    {
       "item": "neapolitan:vanilla_ice_cream"
     },
     {
-      "item": "neapolitan:dried_vanilla_pods"
-    },
-    {
-      "item": "neapolitan:milk_bottle"
+      "tag": "forge:milk"
     }
   ],
   "result": {
