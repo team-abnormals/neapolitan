@@ -5,7 +5,13 @@
       "item": "minecraft:bowl"
     },
     {
+      "item": "neapolitan:chocolate_bar"
+    },
+    {
       "item": "neapolitan:dried_vanilla_pods"
+    },
+    {
+      "tag": "forge:fruits/strawberry"
     },
     {
       "tag": "forge:milk"
@@ -14,10 +20,7 @@
       "item": "neapolitan:ice_cubes"
     },
     {
-      "item": "neapolitan:chocolate_bar"
-    },
-    {
-      "tag": "forge:fruits/strawberry"
+      "item": "minecraft:sugar"
     }
   ],
   "result": {

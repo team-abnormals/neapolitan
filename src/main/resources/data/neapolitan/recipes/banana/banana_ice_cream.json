@@ -8,16 +8,13 @@
       "tag": "forge:fruits/banana"
     },
     {
-      "tag": "forge:fruits/banana"
-    },
-    {
-      "item": "neapolitan:dried_vanilla_pods"
-    },
-    {
       "tag": "forge:milk"
     },
     {
       "item": "neapolitan:ice_cubes"
+    },
+    {
+      "item": "minecraft:sugar"
     }
   ],
   "result": {
