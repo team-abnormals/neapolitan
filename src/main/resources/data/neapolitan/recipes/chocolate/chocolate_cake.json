@@ -19,7 +19,7 @@
       "item": "neapolitan:chocolate_bar"
     },
     "E": {
-      "item": "minecraft:egg"
+      "tag": "forge:eggs"
     }
   },
   "result": {

@@ -19,7 +19,7 @@
       "tag": "forge:fruits/banana"
     },
     "E": {
-      "item": "minecraft:egg"
+      "tag": "forge:eggs"
     }
   },
   "result": {
