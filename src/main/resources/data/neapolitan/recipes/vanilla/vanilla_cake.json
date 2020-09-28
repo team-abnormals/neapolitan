@@ -19,7 +19,7 @@
       "item": "neapolitan:dried_vanilla_pods"
     },
     "E": {
-      "item": "minecraft:egg"
+      "tag": "forge:eggs"
     }
   },
   "result": {
