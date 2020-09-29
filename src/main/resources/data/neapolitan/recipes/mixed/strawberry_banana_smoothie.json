@@ -11,10 +11,7 @@
       "tag": "forge:fruits/strawberry"
     },
     {
-      "item": "neapolitan:ice_cubes"
-    },
-    {
-      "tag": "forge:milk"
+      "item": "minecraft:glass_bottle"
     }
   ],
   "result": {
