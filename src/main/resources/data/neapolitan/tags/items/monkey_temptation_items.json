@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "#neapolitan:monkey_breeding_items",
+    "neapolitan:banana_bread",
+    "neapolitan:dried_banana",
+    "neapolitan:banana"
+  ]
+}

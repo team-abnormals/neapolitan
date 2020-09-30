@@ -83,8 +83,12 @@
   "item.neapolitan.monkey_banner_pattern": "Banner Pattern",
   "item.neapolitan.monkey_banner_pattern.desc": "Monkey",
   
+  "item.neapolitan.monkey_spawn_egg": "Monkey Spawn Egg",
+  "item.neapolitan.plantain_spider_spawn_egg": "Plantain Spider Spawn Egg",
+  
   "entity.neapolitan.banana_peel": "Banana Peel",
   "entity.neapolitan.monkey": "Monkey",
+  "entity.neapolitan.plantain_spider": "Plantain Spider",
   "entity.neapolitan.bananarrow": "Bananarrow",
   
   "effect.neapolitan.sugar_rush": "Sugar Rush",

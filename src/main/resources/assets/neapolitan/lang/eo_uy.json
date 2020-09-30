@@ -16,7 +16,7 @@
   
   "block.neapolitan.strawberry_basket": "Fraga kradkesto",
   "block.neapolitan.white_strawberry_basket": "Blankfraga kradkesto",
-  "block.neapolitan.vanilla_pod_block": Vanila guŝa bloko",
+  "block.neapolitan.vanilla_pod_block": "Vanila guŝa bloko",
   "block.neapolitan.dried_vanilla_pod_block": "Sekigita vanila guŝa bloko",
   
   "block.neapolitan.vanilla_vine": "Vanila hedero",
@@ -61,6 +61,6 @@
   "advancements.husbandry.place_all_chocolate_blocks.title": "Brunŝtona Konstruaĵo",
   "advancements.husbandry.place_all_chocolate_blocks.description": "Metu ĉiun tipon de Ĉokoladbriketo",
   
-  "advancements.husbandry.harvest_white_strawberries.title": ""Pikniko en la Nuboj",
+  "advancements.husbandry.harvest_white_strawberries.title": "Pikniko en la Nuboj",
   "advancements.husbandry.harvest_white_strawberries.description": "Akiru Blankajn Fragojn per kreskigi Fragajn Arbustojn je alta altitudo"
 }

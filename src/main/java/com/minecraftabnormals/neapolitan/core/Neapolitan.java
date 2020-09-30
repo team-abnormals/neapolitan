@@ -10,6 +10,8 @@ import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
 import com.teamabnormals.abnormals_core.core.utils.RegistryHelper;
 
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DeferredWorkQueue;
@@ -27,42 +29,50 @@ public class Neapolitan {
 	public static final String MODID = "neapolitan";
 
 	public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MODID);
-	
-    public Neapolitan() {
-    	IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-    	
-    	REGISTRY_HELPER.getDeferredBlockRegister().register(modEventBus);
-    	REGISTRY_HELPER.getDeferredItemRegister().register(modEventBus);
-    	REGISTRY_HELPER.getDeferredEntityRegister().register(modEventBus);
-    	NeapolitanEffects.EFFECTS.register(modEventBus);
-    	NeapolitanFeatures.FEATURES.register(modEventBus);
 
-        MinecraftForge.EVENT_BUS.register(this);
-        
-        modEventBus.addListener(this::setupCommon);
-    	DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
-        	modEventBus.addListener(this::setupClient);
-        });
-    	
-    	ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, NeapolitanConfig.COMMON_SPEC);
-    }
+	public Neapolitan() {
+		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-    private void setupCommon(final FMLCommonSetupEvent event) {
-    	DeferredWorkQueue.runLater(() -> {
-    		NeapolitanBanners.registerBanners();
-    		NeapolitanCompat.transformCookies();
-    	    NeapolitanCompat.registerFlammables();
-    	    NeapolitanCompat.registerCompostables();
-    	    NeapolitanCompat.registerDispenserBehaviors();
-    	    NeapolitanBiomeFeatures.generateFeatures();
-    	});
-    }
-    
-    private void setupClient(final FMLClientSetupEvent event) {
-    	DeferredWorkQueue.runLater(() -> {
-    		NeapolitanCompat.registerRenderLayers();
-    		NeapolitanEntities.registerEntityRenderers();
-    		NeapolitanItems.registerItemProperties();
-    	});
-    }
+		REGISTRY_HELPER.getDeferredBlockRegister().register(modEventBus);
+		REGISTRY_HELPER.getDeferredItemRegister().register(modEventBus);
+		REGISTRY_HELPER.getDeferredEntityRegister().register(modEventBus);
+		NeapolitanEffects.EFFECTS.register(modEventBus);
+		NeapolitanFeatures.FEATURES.register(modEventBus);
+
+		MinecraftForge.EVENT_BUS.register(this);
+
+		modEventBus.addListener(this::setupCommon);
+		DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
+			modEventBus.addListener(this::setupClient);
+			modEventBus.addListener(this::registerItemColors);
+
+		});
+
+		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, NeapolitanConfig.COMMON_SPEC);
+	}
+
+	private void setupCommon(final FMLCommonSetupEvent event) {
+		DeferredWorkQueue.runLater(() -> {
+			NeapolitanBanners.registerBanners();
+			NeapolitanCompat.transformCookies();
+			NeapolitanCompat.registerFlammables();
+			NeapolitanCompat.registerCompostables();
+			NeapolitanCompat.registerDispenserBehaviors();
+			NeapolitanBiomeFeatures.generateFeatures();
+			NeapolitanEntities.registerEntityAttributes();
+		});
+	}
+
+	private void setupClient(final FMLClientSetupEvent event) {
+		DeferredWorkQueue.runLater(() -> {
+			NeapolitanCompat.registerRenderLayers();
+			NeapolitanEntities.registerEntityRenderers();
+			NeapolitanItems.registerItemProperties();
+		});
+	}
+
+	@OnlyIn(Dist.CLIENT)
+	private void registerItemColors(ColorHandlerEvent.Item event) {
+		REGISTRY_HELPER.processSpawnEggColors(event);
+	}
 }

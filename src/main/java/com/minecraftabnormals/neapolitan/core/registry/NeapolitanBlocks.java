@@ -1,5 +1,6 @@
 package com.minecraftabnormals.neapolitan.core.registry;
 
+import com.minecraftabnormals.neapolitan.common.block.BananaBundleBlock;
 import com.minecraftabnormals.neapolitan.common.block.BananaFrondBlock;
 import com.minecraftabnormals.neapolitan.common.block.FlavoredCakeBlock;
 import com.minecraftabnormals.neapolitan.common.block.StrawberryBushBlock;
@@ -75,7 +76,7 @@ public class NeapolitanBlocks {
 
     public static final RegistryObject<Block> VANILLA_POD_BLOCK         = HELPER.createBlock("vanilla_pod_block", () -> new RotatedPillarBlock(Properties.VANILLA_POD_BLOCK), ItemGroup.DECORATIONS);
     public static final RegistryObject<Block> DRIED_VANILLA_POD_BLOCK   = HELPER.createBlock("dried_vanilla_pod_block", () -> new RotatedPillarBlock(Properties.DRIED_VANILLA_POD_BLOCK), ItemGroup.DECORATIONS);
-    public static final RegistryObject<Block> BANANA_BUNDLE				= HELPER.createBlock("banana_bundle", () -> new Block(Properties.BANANA_BUNDLE), ItemGroup.DECORATIONS);
+    public static final RegistryObject<Block> BANANA_BUNDLE				= HELPER.createBlock("banana_bundle", () -> new BananaBundleBlock(Properties.BANANA_BUNDLE), ItemGroup.DECORATIONS);
 
     public static final RegistryObject<Block> STRAWBERRY_BASKET         = HELPER.createCompatBlock("quark", "strawberry_basket", () -> new Block(Properties.STRAWBERRY_BASKET), ItemGroup.DECORATIONS);
     public static final RegistryObject<Block> WHITE_STRAWBERRY_BASKET   = HELPER.createCompatBlock("quark", "white_strawberry_basket", () -> new Block(Properties.WHITE_STRAWBERRY_BASKET), ItemGroup.DECORATIONS);
