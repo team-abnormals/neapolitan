@@ -60,6 +60,7 @@ public class Neapolitan {
 			NeapolitanCompat.registerDispenserBehaviors();
 			NeapolitanBiomeFeatures.generateFeatures();
 			NeapolitanEntities.registerEntityAttributes();
+			NeapolitanEntities.registerEntitySpawns();
 		});
 	}
 

@@ -2,6 +2,8 @@ package com.minecraftabnormals.neapolitan.common.potion;
 
 import java.util.Random;
 
+import com.minecraftabnormals.neapolitan.core.other.NeapolitanTags;
+
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectType;
@@ -24,7 +26,7 @@ public class SlippingEffect extends Effect {
 			x = amount;
 		else
 			z = amount;
-		if (entity.isOnGround())
+		if (entity.isOnGround() && !NeapolitanTags.EntityTypes.SLIPPING_PROOF.contains(entity.getType()))
 			entity.setMotion(entity.getMotion().add(x, 0.0F, z));
 	}
 

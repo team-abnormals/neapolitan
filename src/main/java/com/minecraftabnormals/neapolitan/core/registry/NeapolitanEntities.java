@@ -12,11 +12,15 @@ import com.minecraftabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.abnormals_core.core.utils.RegistryHelper;
 
 import net.minecraft.entity.EntityClassification;
+import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ForgeRegistries;
 
 @Mod.EventBusSubscriber(modid = Neapolitan.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NeapolitanEntities {
@@ -33,9 +37,20 @@ public class NeapolitanEntities {
 		RenderingRegistry.registerEntityRenderingHandler(NeapolitanEntities.PLANTAIN_SPIDER.get(), PlantainSpiderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(NeapolitanEntities.MONKEY.get(), MonkeyRenderer::new);
 	}
-	
+
 	public static void registerEntityAttributes() {
 		GlobalEntityTypeAttributes.put(PLANTAIN_SPIDER.get(), PlantainSpiderEntity.func_234277_m_().create());
 		GlobalEntityTypeAttributes.put(MONKEY.get(), MonkeyEntity.registerAttributes().create());
+	}
+
+	public static void registerEntitySpawns() {
+		EntitySpawnPlacementRegistry.register(PLANTAIN_SPIDER.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, PlantainSpiderEntity::canPlantainSpiderSpawn);
+		ForgeRegistries.BIOMES.getValues().forEach(NeapolitanEntities::addSpawns);
+	}
+
+	private static void addSpawns(Biome biome) {
+		if (biome.getCategory() == Biome.Category.JUNGLE) {
+			biome.getSpawns(EntityClassification.MONSTER).add(new Biome.SpawnListEntry(PLANTAIN_SPIDER.get(), 120, 3, 5));
+		}
 	}
 }

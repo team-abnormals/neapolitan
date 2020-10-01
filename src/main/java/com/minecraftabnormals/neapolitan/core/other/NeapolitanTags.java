@@ -23,6 +23,7 @@ public class NeapolitanTags {
     
     public static class EntityTypes {
         public static final ITag<EntityType<?>> MILKABLE = EntityTypeTags.func_232896_a_(id("milkable"));
+        public static final ITag<EntityType<?>> SLIPPING_PROOF = EntityTypeTags.func_232896_a_(id("slipping_proof"));
     }
     
     private static String id(String string) {
