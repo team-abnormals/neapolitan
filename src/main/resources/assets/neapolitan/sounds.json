@@ -1,0 +1,59 @@
+{
+  "entity.monkey.angry": {
+    "sounds": [
+      "neapolitan:mob/monkey/angry1",
+      "neapolitan:mob/monkey/angry2"
+    ],
+    "subtitle": "subtitles.neapolitan.entity.monkey.angry"
+  },
+  "entity.monkey.death": {
+    "sounds": [
+      "neapolitan:mob/monkey/death"
+    ],
+    "subtitle": "subtitles.neapolitan.entity.monkey.death"
+  },
+  "entity.monkey.eat": {
+    "sounds": [
+      "neapolitan:mob/monkey/eat1",
+      "neapolitan:mob/monkey/eat2",
+      "neapolitan:mob/monkey/eat3"
+    ],
+    "subtitle": "subtitles.neapolitan.entity.monkey.eat"
+  },
+  "entity.monkey.howl": {
+    "sounds": [
+      "neapolitan:mob/monkey/howl1",
+      "neapolitan:mob/monkey/howl2"
+    ],
+    "subtitle": "subtitles.neapolitan.entity.monkey.howl"
+  },
+  "entity.monkey.hurt": {
+    "sounds": [
+      "neapolitan:mob/monkey/hurt1",
+      "neapolitan:mob/monkey/hurt2"
+    ],
+    "subtitle": "subtitles.neapolitan.entity.monkey.hurt"
+  },
+  "entity.monkey.ambient": {
+    "sounds": [
+      "neapolitan:mob/monkey/ambient1",
+      "neapolitan:mob/monkey/ambient2",
+      "neapolitan:mob/monkey/ambient3",
+      "neapolitan:mob/monkey/ambient4"
+    ],
+    "subtitle": "subtitles.neapolitan.entity.monkey.ambient"
+  },
+  "entity.monkey.step": {
+    "sounds": [
+      "neapolitan:mob/monkey/step1",
+      "neapolitan:mob/monkey/step2"
+    ],
+    "subtitle": "subtitles.neapolitan.entity.monkey.step"
+  },
+  "entity.monkey.swing": {
+    "sounds": [
+      "neapolitan:mob/monkey/swing"
+    ],
+    "subtitle": "subtitles.neapolitan.entity.monkey.swing"
+  }
+}

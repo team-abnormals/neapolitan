@@ -108,6 +108,15 @@
   "advancements.husbandry.harvest_white_strawberries.title": "Picnic in the Clouds",
   "advancements.husbandry.harvest_white_strawberries.description": "Obtain White Strawberries by growing Strawberry Bushes at a high altitude",
   
+  "subtitles.neapolitan.entity.monkey.angry": "Monkey screams",
+  "subtitles.neapolitan.entity.monkey.death": "Monkey dies",
+  "subtitles.neapolitan.entity.monkey.eat": "Monkey eats",
+  "subtitles.neapolitan.entity.monkey.howl": "Monkey howls",
+  "subtitles.neapolitan.entity.monkey.hurt": "Monkey hurts",
+  "subtitles.neapolitan.entity.monkey.ambient": "Monkey ooo-ooo aaa-aaas",
+  "subtitles.neapolitan.entity.monkey.step": "Monkey struts",
+  "subtitles.neapolitan.entity.monkey.swing": "Monkey swings",
+  
   "block.minecraft.banner.mca_monkey.black": "Black Monkey",
   "block.minecraft.banner.mca_monkey.red": "Red Monkey",
   "block.minecraft.banner.mca_monkey.green": "Green Monkey",

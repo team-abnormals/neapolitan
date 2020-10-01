@@ -3,6 +3,7 @@ package com.minecraftabnormals.neapolitan.common.entity;
 import com.minecraftabnormals.neapolitan.core.other.NeapolitanTags;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEntities;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
+import com.minecraftabnormals.neapolitan.core.registry.NeapolitanSoundEvents;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.AgeableEntity;
@@ -24,7 +25,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
@@ -51,19 +51,19 @@ public class MonkeyEntity extends AnimalEntity {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return SoundEvents.ENTITY_COW_AMBIENT;
+		return NeapolitanSoundEvents.ENTITY_MONKEY_AMBIENT.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return SoundEvents.ENTITY_COW_HURT;
+		return NeapolitanSoundEvents.ENTITY_MONKEY_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return SoundEvents.ENTITY_COW_DEATH;
+		return NeapolitanSoundEvents.ENTITY_MONKEY_DEATH.get();
 	}
 
 	protected void playStepSound(BlockPos pos, BlockState blockIn) {
-		this.playSound(SoundEvents.ENTITY_COW_STEP, 0.15F, 1.0F);
+		this.playSound(NeapolitanSoundEvents.ENTITY_MONKEY_STEP.get(), 0.15F, 1.0F);
 	}
 
 	protected float getSoundVolume() {

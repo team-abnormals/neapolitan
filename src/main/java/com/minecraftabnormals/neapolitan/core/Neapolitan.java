@@ -35,7 +35,9 @@ public class Neapolitan {
 
 		REGISTRY_HELPER.getDeferredBlockRegister().register(modEventBus);
 		REGISTRY_HELPER.getDeferredItemRegister().register(modEventBus);
+		REGISTRY_HELPER.getDeferredSoundRegister().register(modEventBus);
 		REGISTRY_HELPER.getDeferredEntityRegister().register(modEventBus);
+		
 		NeapolitanEffects.EFFECTS.register(modEventBus);
 		NeapolitanFeatures.FEATURES.register(modEventBus);
 
