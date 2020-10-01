@@ -83,8 +83,12 @@
   "item.neapolitan.monkey_banner_pattern": "Bannervorlage",
   "item.neapolitan.monkey_banner_pattern.desc": "Affe",
   
+  "item.neapolitan.monkey_spawn_egg": "Affen-Spawn-Ei",
+  "item.neapolitan.plantain_spider_spawn_egg": "Wegerichspinnen-Spawn-Ei",
+  
   "entity.neapolitan.banana_peel": "Bananenschale",
   "entity.neapolitan.monkey": "Affe",
+  "entity.neapolitan.plantain_spider": "Wegerichspinne",
   "entity.neapolitan.bananarrow": "Bananenpfeil",
   
   "effect.neapolitan.sugar_rush": "Zuckerhigh",
