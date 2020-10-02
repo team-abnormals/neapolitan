@@ -29,9 +29,16 @@ public class MonkeyRenderer extends MobRenderer<MonkeyEntity, MonkeyModel<Monkey
 
 	@Override
 	public ResourceLocation getEntityTexture(MonkeyEntity entity) {
-		if (entity.func_233678_J__()) 
-			return HUNGRY_RAINFOREST_MONKEY;
-		return RAINFOREST_MONKEY;
+		if (entity.getMonkeyType() == 1) {
+			if (entity.func_233678_J__()) 
+				return HUNGRY_RAINFOREST_MONKEY;
+			return RAINFOREST_MONKEY;
+		} else {
+			if (entity.func_233678_J__()) 
+				return HUNGRY_MONKEY;
+			return MONKEY;
+		}
+
 	}
 
 	@Override
