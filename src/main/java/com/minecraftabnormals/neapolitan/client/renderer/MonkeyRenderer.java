@@ -18,8 +18,12 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class MonkeyRenderer extends MobRenderer<MonkeyEntity, MonkeyModel<MonkeyEntity>> {
 	public static final ResourceLocation MONKEY = new ResourceLocation(Neapolitan.MODID, "textures/entity/monkey/monkey.png");
 	public static final ResourceLocation HUNGRY_MONKEY = new ResourceLocation(Neapolitan.MODID, "textures/entity/monkey/monkey_hungry.png");
+	
 	public static final ResourceLocation RAINFOREST_MONKEY = new ResourceLocation(Neapolitan.MODID, "textures/entity/monkey/rainforest_monkey.png");
 	public static final ResourceLocation HUNGRY_RAINFOREST_MONKEY = new ResourceLocation(Neapolitan.MODID, "textures/entity/monkey/rainforest_monkey_hungry.png");
+	
+	public static final ResourceLocation BAMBOO_MONKEY = new ResourceLocation(Neapolitan.MODID, "textures/entity/monkey/bamboo_monkey.png");
+	public static final ResourceLocation HUNGRY_BAMBOO_MONKEY = new ResourceLocation(Neapolitan.MODID, "textures/entity/monkey/bamboo_monkey_hungry.png");
 
 	public MonkeyRenderer(EntityRendererManager renderManagerIn) {
 		super(renderManagerIn, new MonkeyModel<>(), 0.4F);
@@ -29,15 +33,12 @@ public class MonkeyRenderer extends MobRenderer<MonkeyEntity, MonkeyModel<Monkey
 
 	@Override
 	public ResourceLocation getEntityTexture(MonkeyEntity entity) {
-		if (entity.getMonkeyType() == 1) {
-			if (entity.func_233678_J__()) 
-				return HUNGRY_RAINFOREST_MONKEY;
-			return RAINFOREST_MONKEY;
-		} else {
-			if (entity.func_233678_J__()) 
-				return HUNGRY_MONKEY;
-			return MONKEY;
-		}
+		int type = entity.getMonkeyType();
+		boolean hungry = entity.func_233678_J__();
+		
+		if (type == 1) return !hungry ? RAINFOREST_MONKEY : HUNGRY_RAINFOREST_MONKEY;
+		if (type == 2) return !hungry ? BAMBOO_MONKEY : HUNGRY_BAMBOO_MONKEY;
+		return !hungry ? MONKEY : HUNGRY_MONKEY;
 
 	}
 

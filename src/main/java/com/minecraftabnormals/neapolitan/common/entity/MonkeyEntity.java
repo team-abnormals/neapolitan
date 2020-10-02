@@ -10,6 +10,7 @@ import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanSoundEvents;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -37,12 +38,15 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.pathfinding.ClimberPathNavigator;
+import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.RangedInteger;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.TickRangeConverter;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -51,6 +55,8 @@ import net.minecraft.world.server.ServerWorld;
 public class MonkeyEntity extends AnimalEntity implements IAngerable {
 	private static final DataParameter<Integer> ANGER_TIME = EntityDataManager.createKey(MonkeyEntity.class, DataSerializers.VARINT);
 	private static final DataParameter<Integer> MONKEY_TYPE = EntityDataManager.createKey(MonkeyEntity.class, DataSerializers.VARINT);
+	private static final DataParameter<Byte> CLIMBING = EntityDataManager.createKey(MonkeyEntity.class, DataSerializers.BYTE);
+
 	private static final RangedInteger ANGER_RANGE = TickRangeConverter.convertRange(20, 39);
 	private UUID lastHurtBy;
 	private int attackTimer;
@@ -64,6 +70,7 @@ public class MonkeyEntity extends AnimalEntity implements IAngerable {
 		super.registerData();
 		this.dataManager.register(ANGER_TIME, 0);
 		this.dataManager.register(MONKEY_TYPE, 0);
+		this.dataManager.register(CLIMBING, (byte) 0);
 	}
 
 	@Override
@@ -119,10 +126,32 @@ public class MonkeyEntity extends AnimalEntity implements IAngerable {
 	}
 
 	@Override
+	protected PathNavigator createNavigator(World worldIn) {
+		return new ClimberPathNavigator(this, worldIn);
+	}
+
+	public void tick() {
+		super.tick();
+		if (!this.world.isRemote) {
+			this.setBesideClimbableBlock(this.collidedHorizontally);
+		}
+	}
+
+	@Override
 	public void livingTick() {
 		super.livingTick();
 		if (this.attackTimer > 0) {
 			--this.attackTimer;
+		}
+	}
+
+	public boolean isOnLadder() {
+		return this.isBesideClimbableBlock();
+	}
+
+	public void setMotionMultiplier(BlockState state, Vector3d motionMultiplierIn) {
+		if (!state.isIn(Blocks.COBWEB)) {
+			super.setMotionMultiplier(state, motionMultiplierIn);
 		}
 	}
 
@@ -144,11 +173,28 @@ public class MonkeyEntity extends AnimalEntity implements IAngerable {
 	public void setTypeForPosition(MonkeyEntity entity, IWorld worldIn) {
 		if (worldIn.getBiome(this.getPosition()).getRegistryName().getPath().contains("rainforest")) {
 			entity.setMonkeyType(1);
+		} else if (worldIn.getBiome(this.getPosition()).getRegistryName().getPath().contains("bamboo")) {
+			entity.setMonkeyType(2);
 		} else {
 			entity.setMonkeyType(0);
 		}
 	}
-	
+
+	public boolean isBesideClimbableBlock() {
+		return (this.dataManager.get(CLIMBING) & 1) != 0;
+	}
+
+	public void setBesideClimbableBlock(boolean climbing) {
+		byte b0 = this.dataManager.get(CLIMBING);
+		if (climbing) {
+			b0 = (byte) (b0 | 1);
+		} else {
+			b0 = (byte) (b0 & -2);
+		}
+
+		this.dataManager.set(CLIMBING, b0);
+	}
+
 	@Override
 	public double getYOffset() {
 		return this.isChild() ? -0.05D : -0.3D;
@@ -213,7 +259,7 @@ public class MonkeyEntity extends AnimalEntity implements IAngerable {
 	public void setAngerTime(int time) {
 		this.dataManager.set(ANGER_TIME, time);
 	}
-	
+
 	public int getMonkeyType() {
 		return this.dataManager.get(MONKEY_TYPE);
 	}
