@@ -12,7 +12,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.HandSide;
 import net.minecraft.util.math.MathHelper;
 
-public class MonkeyModel<E extends MonkeyEntity> extends AgeableModel<E> implements IHasArm, IHasHead {
+public class MonkeyModel<T extends MonkeyEntity> extends AgeableModel<T> implements IHasArm, IHasHead {
 	private final ModelRenderer body;
 	private final ModelRenderer head;
 	private final ModelRenderer rightEar;
@@ -70,26 +70,53 @@ public class MonkeyModel<E extends MonkeyEntity> extends AgeableModel<E> impleme
 	}
 
 	@Override
-	public void setRotationAngles(E entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+	public void setRotationAngles(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.head.rotateAngleY = netHeadYaw * ((float) Math.PI / 180F);
 		this.head.rotateAngleX = headPitch * ((float) Math.PI / 180F);
 
-		float x = 1.0F;
-		this.rightArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 2.0F * limbSwingAmount * 0.5F / x;
-		this.leftArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 2.0F * limbSwingAmount * 0.5F / x;
-		this.rightArm.rotateAngleZ = 0.0F;
-		this.leftArm.rotateAngleZ = 0.0F;
-		this.rightLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount / x;
-		this.leftLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount / x;
+		this.rightLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount / 1.0F;
+		this.leftLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount / 1.0F;
 		this.rightLeg.rotateAngleY = 0.0F;
 		this.leftLeg.rotateAngleY = 0.0F;
 		this.rightLeg.rotateAngleZ = 0.0F;
 		this.leftLeg.rotateAngleZ = 0.0F;
-		
+
+		if (this.isSitting) {
+			this.rightArm.rotateAngleX += (-(float) Math.PI / 5F);
+			this.leftArm.rotateAngleX += (-(float) Math.PI / 5F);
+			this.rightLeg.rotateAngleX = -1.4137167F;
+			this.rightLeg.rotateAngleY = ((float) Math.PI / 10F);
+			this.rightLeg.rotateAngleZ = 0.07853982F;
+			this.leftLeg.rotateAngleX = -1.4137167F;
+			this.leftLeg.rotateAngleY = (-(float) Math.PI / 10F);
+			this.leftLeg.rotateAngleZ = -0.07853982F;
+		}
+
 		this.tail.rotateAngleX = (float) Math.toRadians(30);
 	}
 
-	protected HandSide getMainHand(E entityIn) {
+	@Override
+	public void setLivingAnimations(T entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
+		int i = entityIn.getAttackTimer();
+		if (i > 0) {
+			this.rightArm.rotateAngleX = -2.0F + 1.5F * MathHelper.func_233021_e_((float) i - partialTick, 10.0F);
+			this.leftArm.rotateAngleX = -2.0F + 1.5F * MathHelper.func_233021_e_((float) i - partialTick, 10.0F);
+
+		} else {
+			this.rightArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 2.0F * limbSwingAmount * 0.5F / 1.0F;
+			this.leftArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 2.0F * limbSwingAmount * 0.5F / 1.0F;
+			this.rightArm.rotateAngleZ = 0.0F;
+			this.leftArm.rotateAngleZ = 0.0F;
+			this.rightArm.rotateAngleY = 0.0F;
+			this.leftArm.rotateAngleY = 0.0F;
+			if (this.isSitting) {
+				this.rightArm.rotateAngleX += (-(float) Math.PI / 5F);
+				this.leftArm.rotateAngleX += (-(float) Math.PI / 5F);
+			}
+		}
+	}
+
+	protected HandSide getMainHand(T entityIn) {
 		HandSide handside = entityIn.getPrimaryHand();
 		return entityIn.swingingHand == Hand.MAIN_HAND ? handside : handside.opposite();
 	}
