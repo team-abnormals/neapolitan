@@ -40,6 +40,7 @@ public class Neapolitan {
 		
 		NeapolitanEffects.EFFECTS.register(modEventBus);
 		NeapolitanFeatures.FEATURES.register(modEventBus);
+		NeapolitanBanners.PAINTINGS.register(modEventBus);
 
 		MinecraftForge.EVENT_BUS.register(this);
 
