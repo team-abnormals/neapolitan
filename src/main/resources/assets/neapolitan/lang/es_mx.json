@@ -83,8 +83,12 @@
   "item.neapolitan.monkey_banner_pattern": "Diseño de estandarte",
   "item.neapolitan.monkey_banner_pattern.desc": "Mono",
 
+  "item.neapolitan.monkey_spawn_egg": "Generar mono",
+  "item.neapolitan.plantain_spider_spawn_egg": "Generar platanaraña",
+
   "entity.neapolitan.banana_peel": "Cáscara de plátano",
   "entity.neapolitan.monkey": "Mono",
+  "entity.neapolitan.plantain_spider": "Platanaraña"
   "entity.neapolitan.bananarrow": "Platanaflecha",
 
   "effect.neapolitan.sugar_rush": "Pico de azúcar",
@@ -103,6 +107,15 @@
 
   "advancements.husbandry.harvest_white_strawberries.title": "Picnic en las nubes",
   "advancements.husbandry.harvest_white_strawberries.description": "Consigue fresas blancas plantando arbustos de fresas a grandes alturas",
+
+  "subtitles.neapolitan.entity.monkey.angry": "Mono gritando",
+  "subtitles.neapolitan.entity.monkey.death": "Mono muerto",
+  "subtitles.neapolitan.entity.monkey.eat": "Mono comiendo",
+  "subtitles.neapolitan.entity.monkey.howl": "Mono chillando",
+  "subtitles.neapolitan.entity.monkey.hurt": "Mono herido",
+  "subtitles.neapolitan.entity.monkey.ambient": "Uh-uh ah-ah de mono",
+  "subtitles.neapolitan.entity.monkey.step": "Pasos de mono",
+  "subtitles.neapolitan.entity.monkey.swing": "Mono balanceándose",
 
   "block.minecraft.banner.mca_monkey.black": "Mono negro",
   "block.minecraft.banner.mca_monkey.red": "Mono rojo",
