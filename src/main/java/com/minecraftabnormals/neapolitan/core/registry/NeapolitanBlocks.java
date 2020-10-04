@@ -110,7 +110,7 @@ public class NeapolitanBlocks {
 
         public static final AbstractBlock.Properties STRAWBERRY_BASKET          = AbstractBlock.Properties.create(Material.WOOD, MaterialColor.RED).hardnessAndResistance(1.5F).sound(SoundType.WOOD);
         public static final AbstractBlock.Properties WHITE_STRAWBERRY_BASKET    = AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WHITE_TERRACOTTA).hardnessAndResistance(1.5F).sound(SoundType.WOOD);
-        public static final AbstractBlock.Properties BANANA_CRATE				= AbstractBlock.Properties.create(Material.WOOD, MaterialColor.YELLOW).hardnessAndResistance(1.5F).sound(SoundType.WOOD);
+        public static final AbstractBlock.Properties BANANA_CRATE				= AbstractBlock.Properties.create(Material.WOOD, MaterialColor.YELLOW).hardnessAndResistance(1.5F).sound(SoundType.HYPHAE);
 
     }
 }
