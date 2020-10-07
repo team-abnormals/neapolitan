@@ -107,6 +107,15 @@
   
   "advancements.husbandry.harvest_white_strawberries.title": "Ein Picknick in den Wolken",
   "advancements.husbandry.harvest_white_strawberries.description": "Züchte Erdbeersträucher in größeren Höhen, um weiße Erdbeeren zu beschaffen",
+  
+  "subtitles.neapolitan.entity.monkey.angry": "Affe schreit",
+  "subtitles.neapolitan.entity.monkey.death": "Affe stirbt",
+  "subtitles.neapolitan.entity.monkey.eat": "Affe frisst",
+  "subtitles.neapolitan.entity.monkey.howl": "Affe heult",
+  "subtitles.neapolitan.entity.monkey.hurt": "Affe nimmt Schaden",
+  "subtitles.neapolitan.entity.monkey.ambient": "Affe ooo-ooo aaa-aaa",
+  "subtitles.neapolitan.entity.monkey.step": "Affe läuft",
+  "subtitles.neapolitan.entity.monkey.swing": "Affe pendelt",
 
   "block.minecraft.banner.mca_monkey.black": "Schwarzer Affe",
   "block.minecraft.banner.mca_monkey.red": "Roter Affe",
