@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "neapolitan:banana_stalk"
+    }
+  ],
+  "result": {
+    "item": "minecraft:string",
+    "count": 3
+  }
+}
