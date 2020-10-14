@@ -83,8 +83,12 @@
   "item.neapolitan.monkey_banner_pattern": "Viirikuvio",
   "item.neapolitan.monkey_banner_pattern.desc": "Apina",
   
+  "item.neapolitan.monkey_spawn_egg": "Luo apina",
+  "item.neapolitan.plantain_spider_spawn_egg": "Luo trooppinen hämähäkki",
+  
   "entity.neapolitan.banana_peel": "Banaaninkuori",
   "entity.neapolitan.monkey": "Apina",
+  "entity.neapolitan.plantain_spider": "Trooppinen hämähäkki",
   "entity.neapolitan.bananarrow": "Banaaninuoli",
   
   "effect.neapolitan.sugar_rush": "Sokerihumala",
@@ -103,6 +107,15 @@
   
   "advancements.husbandry.harvest_white_strawberries.title": "Eväsretki pilvissä",
   "advancements.husbandry.harvest_white_strawberries.description": "Saa valkoisia mansikoita kasvattamalla mansikkapensaita korkealla maanpinnasta",
+  
+  "subtitles.neapolitan.entity.monkey.angry": "Apina kiljuu",
+  "subtitles.neapolitan.entity.monkey.death": "Apina kuolee",
+  "subtitles.neapolitan.entity.monkey.eat": "Apina syö",
+  "subtitles.neapolitan.entity.monkey.howl": "Apina ulvoo",
+  "subtitles.neapolitan.entity.monkey.hurt": "Apina vahingoittuu",
+  "subtitles.neapolitan.entity.monkey.ambient": "Apina ääntelee",
+  "subtitles.neapolitan.entity.monkey.step": "Apina astelee",
+  "subtitles.neapolitan.entity.monkey.swing": "Apina heilauttaa",
   
   "block.minecraft.banner.mca_monkey.black": "Musta apina",
   "block.minecraft.banner.mca_monkey.red": "Punainen apina",
