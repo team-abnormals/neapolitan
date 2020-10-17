@@ -55,5 +55,24 @@
       "neapolitan:mob/monkey/swing"
     ],
     "subtitle": "subtitles.neapolitan.entity.monkey.swing"
+  },
+  "item.ice_cubes.eat": {
+    "sounds": [
+      {
+        "name": "neapolitan:item/ice_cubes/eat_ice1"
+      },
+      {
+        "name": "neapolitan:item/ice_cubes/eat_ice2"
+      },
+      {
+        "name": "neapolitan:item/ice_cubes/eat_ice3",
+        "volume": 0.35
+      },
+      {
+        "name": "neapolitan:item/ice_cubes/eat_ice3",
+        "volume": 0.75
+      }
+    ],
+    "subtitle": "subtitles.neapolitan.item.ice_cubes.eat"
   }
 }

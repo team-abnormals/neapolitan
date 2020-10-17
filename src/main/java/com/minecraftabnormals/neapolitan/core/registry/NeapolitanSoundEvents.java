@@ -19,4 +19,6 @@ public class NeapolitanSoundEvents {
 	public static final RegistryObject<SoundEvent> ENTITY_MONKEY_AMBIENT= HELPER.createSoundEvent("entity.monkey.ambient");
 	public static final RegistryObject<SoundEvent> ENTITY_MONKEY_STEP 	= HELPER.createSoundEvent("entity.monkey.step");
 	public static final RegistryObject<SoundEvent> ENTITY_MONKEY_SWING 	= HELPER.createSoundEvent("entity.monkey.swing");
+	
+	public static final RegistryObject<SoundEvent> ITEM_ICE_CUBES_EAT 	= HELPER.createSoundEvent("item.ice_cubes.eat");
 }
