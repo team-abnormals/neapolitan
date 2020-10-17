@@ -129,10 +129,11 @@ public class VanillaVineTopBlock extends Block implements IPoisonCloud, IGrowabl
 
     @Override
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+    	BlockState facingBlock = worldIn.getBlockState(currentPos.offset(stateIn.get(FACING)));
         if (facing == stateIn.get(FACING).getOpposite() && !stateIn.isValidPosition(worldIn, currentPos)) {
             worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 1);
         }
-        if (facing == stateIn.get(FACING) && facingState.isIn(this)) {
+        if (facingBlock.hasProperty(FACING) && facingBlock.get(FACING) == stateIn.get(FACING) && facingState.isIn(this)) {
             return NeapolitanBlocks.VANILLA_VINE_PLANT.get().getDefaultState().with(FACING, stateIn.get(FACING));
         } else {
             return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
