@@ -29,7 +29,7 @@ public class NeapolitanBiomeFeatures {
 
 	public static void generate(Biome biome) {
 		if (biome.getCategory() == Biome.Category.PLAINS) {
-			biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NeapolitanFeatures.STRAWBERRY_PATCH.get().withConfiguration(STRAWBERRY_PATCH_CONFIG).withPlacement(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(34))));
+			biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NeapolitanFeatures.STRAWBERRY_PATCH.get().withConfiguration(STRAWBERRY_PATCH_CONFIG).withPlacement(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(30))));
 		}
 
 		if (biome.getCategory() == Biome.Category.SAVANNA) {
@@ -38,7 +38,7 @@ public class NeapolitanBiomeFeatures {
 
 		if (biome.getPrecipitation() == RainType.RAIN) {
 			if (biome.getCategory() == Biome.Category.BEACH)
-				addBananaPlants(biome, 0, 0.15F, 1); // Beach Biomes
+				addBananaPlants(biome, 0, 0.075F, 1); // Beach Biomes
 
 			if (biome.getCategory() == Biome.Category.JUNGLE) {
 				if (notJungleEdge(biome) && notBambooJungle(biome))
