@@ -15,7 +15,7 @@ public class HealingSoupItem extends SoupItem {
 
     @Override
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity entityLiving) {
-        entityLiving.heal(healAmount);
+		HealingItem.applyHealing(this.healAmount, worldIn, entityLiving);
         return super.onItemUseFinish(stack, worldIn, entityLiving);
     }
 }

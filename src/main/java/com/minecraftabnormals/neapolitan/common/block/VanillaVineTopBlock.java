@@ -2,7 +2,6 @@ package com.minecraftabnormals.neapolitan.common.block;
 
 import java.util.Random;
 
-import com.minecraftabnormals.neapolitan.common.block.api.IPoisonCloud;
 import com.minecraftabnormals.neapolitan.core.other.NeapolitanTags;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanBlocks;
 
@@ -27,7 +26,7 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
-public class VanillaVineTopBlock extends Block implements IPoisonCloud, IGrowable {
+public class VanillaVineTopBlock extends Block implements IGrowable {
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
     public static final VoxelShape[] SHAPES = new VoxelShape[] {
             Block.makeCuboidShape(4.0D, 4.0D, 4.0D, 12.0D, 16.0D, 12.0D), // DOWN
@@ -73,7 +72,7 @@ public class VanillaVineTopBlock extends Block implements IPoisonCloud, IGrowabl
     @Override
     public void onBlockHarvested(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         super.onBlockHarvested(world, pos, state, player);
-        this.createPoisonCloud(world, pos, state, player);
+        VanillaVineBlock.createPoisonCloud(world, pos, state, player);
     }
 
     @Override
