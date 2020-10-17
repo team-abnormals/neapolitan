@@ -36,6 +36,7 @@ public class NeapolitanItems {
     public static final RegistryObject<Item> ICE_CUBES		= HELPER.createItem("ice_cubes", () -> new IceCubesItem(new Item.Properties().food(Foods.ICE_CUBES).group(ItemGroup.MISC)));
 
     public static final RegistryObject<Item> CHOCOLATE_BAR          = HELPER.createItem("chocolate_bar", () -> new Item(new Item.Properties().food(Foods.CHOCOLATE_BAR).group(ItemGroup.FOOD)));
+    public static final RegistryObject<Item> CHOCOLATE_SPIDER_EYE   = HELPER.createItem("chocolate_spider_eye", () -> new Item(new Item.Properties().food(Foods.CHOCOLATE_SPIDER_EYE).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> CHOCOLATE_ICE_CREAM    = HELPER.createItem("chocolate_ice_cream", () -> new SoupItem(new Item.Properties().food(Foods.CHOCOLATE_ICE_CREAM).containerItem(Items.BOWL).maxStackSize(1).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> CHOCOLATE_CAKE         = HELPER.createItem("chocolate_cake", () -> new BlockItem(NeapolitanBlocks.CHOCOLATE_CAKE.get(), new Item.Properties().group(ItemGroup.FOOD).maxStackSize(1)));
     public static final RegistryObject<Item> CHOCOLATE_MILKSHAKE    = HELPER.createItem("chocolate_milkshake", () -> new MilkshakeItem(EffectType.BENEFICIAL, new Item.Properties().food(Foods.CHOCOLATE_MILKSHAKE).containerItem(Items.GLASS_BOTTLE).maxStackSize(16).group(ItemGroup.FOOD)));
@@ -49,6 +50,7 @@ public class NeapolitanItems {
 
     public static final RegistryObject<Item> VANILLA_PODS           = HELPER.createItem("vanilla_pods", () -> new BlockNamedItem(NeapolitanBlocks.VANILLA_VINE.get(), new Item.Properties().group(ItemGroup.MISC)));
     public static final RegistryObject<Item> DRIED_VANILLA_PODS     = HELPER.createItem("dried_vanilla_pods", () -> new Item(new Item.Properties().food(Foods.DRIED_VANILLA_PODS).group(ItemGroup.FOOD)));
+    public static final RegistryObject<Item> VANILLA_FUDGE          = HELPER.createItem("vanilla_fudge", () -> new Item(new Item.Properties().food(Foods.VANILLA_FUDGE).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> VANILLA_ICE_CREAM      = HELPER.createItem("vanilla_ice_cream", () -> new SoupItem(new Item.Properties().food(Foods.VANILLA_ICE_CREAM).containerItem(Items.BOWL).maxStackSize(1).group(ItemGroup.FOOD)));
     public static final RegistryObject<Item> VANILLA_CAKE           = HELPER.createItem("vanilla_cake", () -> new BlockItem(NeapolitanBlocks.VANILLA_CAKE.get(), new Item.Properties().group(ItemGroup.FOOD).maxStackSize(1)));
     public static final RegistryObject<Item> VANILLA_PUDDING        = HELPER.createItem("vanilla_pudding", () -> new SoupItem(new Item.Properties().food(Foods.VANILLA_PUDDING).containerItem(Items.BOWL).maxStackSize(1).group(ItemGroup.FOOD)));
@@ -78,6 +80,7 @@ public class NeapolitanItems {
         public static final Food ICE_CUBES	= (new Food.Builder()).setAlwaysEdible().build();
 
         public static final Food CHOCOLATE_BAR          = (new Food.Builder()).hunger(4).saturation(0.25F).effect(() -> new EffectInstance(NeapolitanEffects.SUGAR_RUSH.get(), 400, 1), 1.0F).build();
+        public static final Food CHOCOLATE_SPIDER_EYE   = (new Food.Builder()).hunger(2).saturation(0.36F).effect(() -> new EffectInstance(NeapolitanEffects.SUGAR_RUSH.get(), 800), 1.0F).effect(() -> new EffectInstance(Effects.POISON, 80), 1.0F).build();
         public static final Food CHOCOLATE_ICE_CREAM    = (new Food.Builder()).hunger(6).saturation(0.42F).effect(() -> new EffectInstance(Effects.SLOWNESS, 100, 2), 1.0F).effect(() -> new EffectInstance(NeapolitanEffects.SUGAR_RUSH.get(), 600, 2), 1.0F).build();
         public static final Food CHOCOLATE_CAKE         = (new Food.Builder()).hunger(1).saturation(0.1F).effect(() -> new EffectInstance(NeapolitanEffects.SUGAR_RUSH.get(), 200), 1.0F).build();
         public static final Food CHOCOLATE_MILKSHAKE    = (new Food.Builder()).hunger(3).saturation(0.6F).setAlwaysEdible().build();
@@ -89,6 +92,7 @@ public class NeapolitanItems {
         public static final Food STRAWBERRY_MILKSHAKE   = (new Food.Builder()).hunger(3).saturation(0.6F).setAlwaysEdible().build();
         
         public static final Food DRIED_VANILLA_PODS    	= (new Food.Builder()).hunger(1).saturation(0.15F).effect(() -> new EffectInstance(NeapolitanEffects.VANILLA_SCENT.get(), 200), 1.0F).build();
+		public static final Food VANILLA_FUDGE       	= (new Food.Builder()).hunger(3).saturation(0.30F).effect(() -> new EffectInstance(NeapolitanEffects.VANILLA_SCENT.get(), 100), 1.0F).build();
         public static final Food VANILLA_ICE_CREAM     	= (new Food.Builder()).hunger(6).saturation(0.42F).effect(() -> new EffectInstance(Effects.SLOWNESS, 100, 2), 1.0F).effect(() -> new EffectInstance(NeapolitanEffects.VANILLA_SCENT.get(), 400), 1.0F).build();
         public static final Food VANILLA_PUDDING        = (new Food.Builder()).hunger(6).saturation(1.2F).effect(() -> new EffectInstance(NeapolitanEffects.VANILLA_SCENT.get(), 300), 1.0F).build();
         public static final Food VANILLA_CAKE           = (new Food.Builder()).hunger(1).saturation(0.1F).effect(() -> new EffectInstance(NeapolitanEffects.VANILLA_SCENT.get(), 100), 1.0F).build();
