@@ -21,6 +21,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.potion.Effect;
 import net.minecraft.util.DrinkHelper;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
@@ -94,10 +95,17 @@ public class NeapolitanEvents {
 
     @SubscribeEvent
     public static void onPotionAdded(PotionEvent.PotionApplicableEvent event) {
-        if (event.getEntityLiving().getActivePotionEffect(NeapolitanEffects.VANILLA_SCENT.get()) != null) {
-            if (event.getPotionEffect().getPotion() != NeapolitanEffects.VANILLA_SCENT.get()) {
+    	Effect effect = event.getPotionEffect().getPotion();
+    	LivingEntity entity = event.getEntityLiving();
+    	
+        if (entity.getActivePotionEffect(NeapolitanEffects.VANILLA_SCENT.get()) != null) {
+            if (effect != NeapolitanEffects.VANILLA_SCENT.get()) {
                 event.setResult(Result.DENY);
             }
+        }
+        
+        if (effect == NeapolitanEffects.SUGAR_RUSH.get() && !entity.world.isRemote) {
+        	entity.getPersistentData().putInt("SugarRushDuration", event.getPotionEffect().getDuration());
         }
     }
 

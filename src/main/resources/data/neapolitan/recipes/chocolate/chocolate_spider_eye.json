@@ -5,11 +5,14 @@
       "item": "minecraft:spider_eye"
     },
     {
-      "item": "minecraft:chocolate_bar"
+      "item": "minecraft:spider_eye"
+    },
+    {
+      "item": "neapolitan:chocolate_bar"
     }
   ],
   "result": {
     "item": "neapolitan:chocolate_spider_eye",
-    "count": 1
+    "count": 2
   }
 }

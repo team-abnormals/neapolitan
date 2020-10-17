@@ -25,15 +25,18 @@ public class SugarRushEffect extends Effect {
 
 	@Override
 	public void applyAttributesModifiersToEntity(LivingEntity entity, AttributeModifierManager attributeMapIn, int amplifier) {
-		int duration = entity.getActivePotionEffect(NeapolitanEffects.SUGAR_RUSH.get()).getDuration();
-		float amount = (duration >= (amplifier + 1) * 3.33 * 20) ? (amplifier + 2) * 0.5F : -(amplifier + 2) * 1.25F;
-		for (Entry<Attribute, AttributeModifier> entry : this.getAttributeModifierMap().entrySet()) {
-			ModifiableAttributeInstance iattributeinstance = attributeMapIn.createInstanceIfAbsent(entry.getKey());
-			if (iattributeinstance != null) {
-				AttributeModifier attributemodifier = entry.getValue();
-				iattributeinstance.removeModifier(attributemodifier);
-				iattributeinstance.applyPersistentModifier(new AttributeModifier(attributemodifier.getID(), this.getName() + " " + amplifier, amount * this.getAttributeModifierAmount(amplifier, attributemodifier), attributemodifier.getOperation()));
-			}
+		if (!entity.world.isRemote) {
+			int duration = entity.getActivePotionEffect(NeapolitanEffects.SUGAR_RUSH.get()).getDuration();
+			int totalDuration = entity.getPersistentData().contains("SugarRushDuration") ? entity.getPersistentData().getInt("SugarRushDuration") : 0;
+			float amount = duration >= totalDuration / 3 ? (amplifier + 2) * 0.5F : -(amplifier + 2) * 1.25F;
+			for (Entry<Attribute, AttributeModifier> entry : this.getAttributeModifierMap().entrySet()) {
+				ModifiableAttributeInstance iattributeinstance = attributeMapIn.createInstanceIfAbsent(entry.getKey());
+				if (iattributeinstance != null) {
+					AttributeModifier attributemodifier = entry.getValue();
+					iattributeinstance.removeModifier(attributemodifier);
+					iattributeinstance.applyPersistentModifier(new AttributeModifier(attributemodifier.getID(), this.getName() + " " + amplifier, amount * this.getAttributeModifierAmount(amplifier, attributemodifier), attributemodifier.getOperation()));
+				}
+			}	
 		}
 	}
 
