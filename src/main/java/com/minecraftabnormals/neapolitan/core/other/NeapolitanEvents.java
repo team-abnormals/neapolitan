@@ -69,20 +69,20 @@ public class NeapolitanEvents {
 	
 	@SubscribeEvent
 	public static void onInjectLoot(LootTableLoadEvent event) {
+		if (SAVANNA_LOOT_INJECTIONS.contains(event.getName())) {
+			LootPool pool = LootPool.builder().addEntry(TableLootEntry.builder(new ResourceLocation(Neapolitan.MODID, "injections/village_savanna_house")).weight(2).quality(0)).name("village_savanna_house").build();
+			event.getTable().addPool(pool);
+		}
 		if (PLAINS_LOOT_INJECTIONS.contains(event.getName())) {
-			LootPool pool = LootPool.builder().addEntry(TableLootEntry.builder(new ResourceLocation(Neapolitan.MODID, "injections/village_savanna_house")).weight(6).quality(0)).name("dvillage_savanna_house").build();
+			LootPool pool = LootPool.builder().addEntry(TableLootEntry.builder(new ResourceLocation(Neapolitan.MODID, "injections/village_plains_house")).weight(2).quality(0)).name("village_plains_house").build();
 			event.getTable().addPool(pool);
 		}
 		if (SNOWY_LOOT_INJECTIONS.contains(event.getName())) {
-			LootPool pool = LootPool.builder().addEntry(TableLootEntry.builder(new ResourceLocation(Neapolitan.MODID, "injections/village_plains_house")).weight(5).quality(0)).name("village_plains_house").build();
-			event.getTable().addPool(pool);
-		}
-		if (SAVANNA_LOOT_INJECTIONS.contains(event.getName())) {
-			LootPool pool = LootPool.builder().addEntry(TableLootEntry.builder(new ResourceLocation(Neapolitan.MODID, "injections/village_snowy_house")).weight(4).quality(0)).name("village_snowy_house").build();
+			LootPool pool = LootPool.builder().addEntry(TableLootEntry.builder(new ResourceLocation(Neapolitan.MODID, "injections/village_snowy_house")).weight(2).quality(0)).name("village_snowy_house").build();
 			event.getTable().addPool(pool);
 		}
 		if (JUNGLE_LOOT_INJECTIONS.contains(event.getName())) {
-			LootPool pool = LootPool.builder().addEntry(TableLootEntry.builder(new ResourceLocation(Neapolitan.MODID, "injections/jungle_temple")).weight(3).quality(0)).name("jungle_temple").build();
+			LootPool pool = LootPool.builder().addEntry(TableLootEntry.builder(new ResourceLocation(Neapolitan.MODID, "injections/jungle_temple")).weight(2).quality(0)).name("jungle_temple").build();
 			event.getTable().addPool(pool);
 		}
 		if (JUNGLE_DISPENSER_LOOT_INJECTIONS.contains(event.getName())) {
