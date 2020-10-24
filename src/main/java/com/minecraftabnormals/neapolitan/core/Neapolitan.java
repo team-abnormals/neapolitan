@@ -61,6 +61,7 @@ public class Neapolitan {
 			NeapolitanCompat.registerFlammables();
 			NeapolitanCompat.registerCompostables();
 			NeapolitanCompat.registerDispenserBehaviors();
+			NeapolitanCompat.registerLootInjectors();
 			NeapolitanBiomeFeatures.generateFeatures();
 			NeapolitanEntities.registerEntityAttributes();
 			NeapolitanEntities.registerEntitySpawns();

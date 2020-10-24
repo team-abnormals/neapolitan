@@ -1,9 +1,7 @@
 package com.minecraftabnormals.neapolitan.core.other;
 
 import java.util.List;
-import java.util.Set;
 
-import com.google.common.collect.Sets;
 import com.minecraftabnormals.neapolitan.common.entity.goals.AvoidBlockGoal;
 import com.minecraftabnormals.neapolitan.core.Neapolitan;
 import com.minecraftabnormals.neapolitan.core.NeapolitanConfig;
@@ -39,10 +37,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.event.LootTableLoadEvent;
-import net.minecraft.loot.LootPool;
-import net.minecraft.loot.LootTables;
-import net.minecraft.loot.TableLootEntry;
 
 @EventBusSubscriber(modid = Neapolitan.MODID)
 public class NeapolitanEvents {
@@ -60,36 +54,6 @@ public class NeapolitanEvents {
             creepie.goalSelector.addGoal(3, new AvoidBlockGoal<>(creepie, 6, 1.0D, 1.2D));
         }
     }
-	
-	private static final Set<ResourceLocation> PLAINS_LOOT_INJECTIONS = Sets.newHashSet(LootTables.CHESTS_VILLAGE_VILLAGE_PLAINS_HOUSE);
-	private static final Set<ResourceLocation> SNOWY_LOOT_INJECTIONS = Sets.newHashSet(LootTables.CHESTS_VILLAGE_VILLAGE_SNOWY_HOUSE);
-	private static final Set<ResourceLocation> SAVANNA_LOOT_INJECTIONS = Sets.newHashSet(LootTables.CHESTS_VILLAGE_VILLAGE_SAVANNA_HOUSE);
-	private static final Set<ResourceLocation> JUNGLE_LOOT_INJECTIONS = Sets.newHashSet(LootTables.CHESTS_JUNGLE_TEMPLE);
-	private static final Set<ResourceLocation> JUNGLE_DISPENSER_LOOT_INJECTIONS = Sets.newHashSet(LootTables.CHESTS_JUNGLE_TEMPLE_DISPENSER);
-	
-	@SubscribeEvent
-	public static void onInjectLoot(LootTableLoadEvent event) {
-		if (SAVANNA_LOOT_INJECTIONS.contains(event.getName())) {
-			LootPool pool = LootPool.builder().addEntry(TableLootEntry.builder(new ResourceLocation(Neapolitan.MODID, "injections/village_savanna_house")).weight(2).quality(0)).name("village_savanna_house").build();
-			event.getTable().addPool(pool);
-		}
-		if (PLAINS_LOOT_INJECTIONS.contains(event.getName())) {
-			LootPool pool = LootPool.builder().addEntry(TableLootEntry.builder(new ResourceLocation(Neapolitan.MODID, "injections/village_plains_house")).weight(2).quality(0)).name("village_plains_house").build();
-			event.getTable().addPool(pool);
-		}
-		if (SNOWY_LOOT_INJECTIONS.contains(event.getName())) {
-			LootPool pool = LootPool.builder().addEntry(TableLootEntry.builder(new ResourceLocation(Neapolitan.MODID, "injections/village_snowy_house")).weight(2).quality(0)).name("village_snowy_house").build();
-			event.getTable().addPool(pool);
-		}
-		if (JUNGLE_LOOT_INJECTIONS.contains(event.getName())) {
-			LootPool pool = LootPool.builder().addEntry(TableLootEntry.builder(new ResourceLocation(Neapolitan.MODID, "injections/jungle_temple")).weight(2).quality(0)).name("jungle_temple").build();
-			event.getTable().addPool(pool);
-		}
-		if (JUNGLE_DISPENSER_LOOT_INJECTIONS.contains(event.getName())) {
-			LootPool pool = LootPool.builder().addEntry(TableLootEntry.builder(new ResourceLocation(Neapolitan.MODID, "injections/jungle_temple_dispenser")).weight(1).quality(0)).name("jungle_temple_dispenser").build();
-			event.getTable().addPool(pool);
-		}
-	}
 
     @SubscribeEvent
     public static void onEntityInteract(EntityInteractSpecific event) {

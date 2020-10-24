@@ -1,8 +1,10 @@
 package com.minecraftabnormals.neapolitan.core.other;
 
 import com.minecraftabnormals.neapolitan.common.entity.BananarrowEntity;
+import com.minecraftabnormals.neapolitan.core.Neapolitan;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
+import com.teamabnormals.abnormals_core.core.registry.LootInjectionRegistry;
 import com.teamabnormals.abnormals_core.core.utils.DataUtils;
 
 import net.minecraft.block.DispenserBlock;
@@ -13,6 +15,7 @@ import net.minecraft.dispenser.ProjectileDispenseBehavior;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.Foods;
 import net.minecraft.item.ItemStack;
+import net.minecraft.loot.LootTables;
 import net.minecraft.world.World;
 
 public class NeapolitanCompat {
@@ -20,6 +23,15 @@ public class NeapolitanCompat {
 	public static void transformCookies() {
 		Foods.COOKIE.fastToEat = true;
 		Foods.COOKIE.saturation = 0.3F;
+	}
+	
+	public static void registerLootInjectors() {
+		LootInjectionRegistry.LootInjector injector = new LootInjectionRegistry.LootInjector(Neapolitan.MODID);
+		injector.registerLootInjection(injector.buildLootBool("village_savanna_house", 2, 0), LootTables.CHESTS_VILLAGE_VILLAGE_SAVANNA_HOUSE);
+		injector.registerLootInjection(injector.buildLootBool("village_plains_house", 2, 0), LootTables.CHESTS_VILLAGE_VILLAGE_PLAINS_HOUSE);
+		injector.registerLootInjection(injector.buildLootBool("village_snowy_house", 2, 0), LootTables.CHESTS_VILLAGE_VILLAGE_SNOWY_HOUSE);
+		injector.registerLootInjection(injector.buildLootBool("jungle_temple", 2, 0), LootTables.CHESTS_JUNGLE_TEMPLE);
+		injector.registerLootInjection(injector.buildLootBool("jungle_temple_dispenser", 1, 0), LootTables.CHESTS_JUNGLE_TEMPLE_DISPENSER);
 	}
 
 	public static void registerCompostables() {
