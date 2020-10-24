@@ -53,8 +53,9 @@
   "item.neapolitan.chocolate_bar": "Barra de chocolate",
   "item.neapolitan.chocolate_ice_cream": "Helado de chocolate",
   "item.neapolitan.chocolate_milkshake": "Batido de chocolate",
+  "item.neapolitan.chocolate_spider_eye": "Ojo de araña de chocolate",
 
-  "item.neapolitan.strawberry_pips": "Pepas de fresa",
+  "item.neapolitan.strawberry_pips": "Pepitas de fresa",
   "item.neapolitan.strawberries": "Fresas",
   "item.neapolitan.strawberry_ice_cream": "Helado de fresa",
   "item.neapolitan.strawberry_scones": "Scones de fresa",
@@ -65,6 +66,7 @@
   "item.neapolitan.vanilla_ice_cream": "Helado de vainilla",
   "item.neapolitan.vanilla_pudding": "Pudin de vainilla",
   "item.neapolitan.vanilla_milkshake": "Batido de vainilla",
+  "item.neapolitan.vanilla_fudge": "Dulce de vainilla",
 
   "item.neapolitan.banana": "Plátano",
   "item.neapolitan.banana_bunch": "Racimo de plátanos",
@@ -116,6 +118,8 @@
   "subtitles.neapolitan.entity.monkey.ambient": "Uh-uh ah-ah de mono",
   "subtitles.neapolitan.entity.monkey.step": "Pasos de mono",
   "subtitles.neapolitan.entity.monkey.swing": "Mono se balancea",
+
+  "subtitles.neapolitan.item.ice_cubes.eat": "Trituración",
 
   "block.minecraft.banner.mca_monkey.black": "Mono negro",
   "block.minecraft.banner.mca_monkey.red": "Mono rojo",
