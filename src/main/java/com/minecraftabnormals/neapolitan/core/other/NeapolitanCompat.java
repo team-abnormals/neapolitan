@@ -27,11 +27,11 @@ public class NeapolitanCompat {
 	
 	public static void registerLootInjectors() {
 		LootInjectionRegistry.LootInjector injector = new LootInjectionRegistry.LootInjector(Neapolitan.MODID);
-		injector.registerLootInjection(injector.buildLootBool("village_savanna_house", 2, 0), LootTables.CHESTS_VILLAGE_VILLAGE_SAVANNA_HOUSE);
-		injector.registerLootInjection(injector.buildLootBool("village_plains_house", 2, 0), LootTables.CHESTS_VILLAGE_VILLAGE_PLAINS_HOUSE);
-		injector.registerLootInjection(injector.buildLootBool("village_snowy_house", 2, 0), LootTables.CHESTS_VILLAGE_VILLAGE_SNOWY_HOUSE);
-		injector.registerLootInjection(injector.buildLootBool("jungle_temple", 2, 0), LootTables.CHESTS_JUNGLE_TEMPLE);
-		injector.registerLootInjection(injector.buildLootBool("jungle_temple_dispenser", 1, 0), LootTables.CHESTS_JUNGLE_TEMPLE_DISPENSER);
+		injector.registerLootInjection(injector.buildLootPool("village_savanna_house", 2, 0), LootTables.CHESTS_VILLAGE_VILLAGE_SAVANNA_HOUSE);
+		injector.registerLootInjection(injector.buildLootPool("village_plains_house", 2, 0), LootTables.CHESTS_VILLAGE_VILLAGE_PLAINS_HOUSE);
+		injector.registerLootInjection(injector.buildLootPool("village_snowy_house", 2, 0), LootTables.CHESTS_VILLAGE_VILLAGE_SNOWY_HOUSE);
+		injector.registerLootInjection(injector.buildLootPool("jungle_temple", 2, 0), LootTables.CHESTS_JUNGLE_TEMPLE);
+		injector.registerLootInjection(injector.buildLootPool("jungle_temple_dispenser", 1, 0), LootTables.CHESTS_JUNGLE_TEMPLE_DISPENSER);
 	}
 
 	public static void registerCompostables() {

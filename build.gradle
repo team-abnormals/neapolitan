@@ -74,7 +74,7 @@ minecraft {
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.16.1-32.0.86'
-    implementation fg.deobf("curse.maven:abnormals-core:3063658")
+    implementation fg.deobf("curse.maven:abnormals-core:3091840")
     implementation fg.deobf("curse.maven:jei:2995910")
     implementation fg.deobf("curse.maven:atmospheric:3031563")
 }

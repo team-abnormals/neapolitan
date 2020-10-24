@@ -1,6 +1,5 @@
 package com.minecraftabnormals.neapolitan.core.registry;
 
-import com.minecraftabnormals.neapolitan.common.item.AbnormalsBannerPatternItem;
 import com.minecraftabnormals.neapolitan.common.item.BananaBunchItem;
 import com.minecraftabnormals.neapolitan.common.item.BananarrowItem;
 import com.minecraftabnormals.neapolitan.common.item.HealingDrinkItem;
@@ -10,6 +9,7 @@ import com.minecraftabnormals.neapolitan.common.item.IceCubesItem;
 import com.minecraftabnormals.neapolitan.common.item.MilkBottleItem;
 import com.minecraftabnormals.neapolitan.common.item.MilkshakeItem;
 import com.minecraftabnormals.neapolitan.core.Neapolitan;
+import com.teamabnormals.abnormals_core.common.items.AbnormalsBannerPatternItem;
 import com.teamabnormals.abnormals_core.core.utils.RegistryHelper;
 
 import net.minecraft.item.BlockItem;
