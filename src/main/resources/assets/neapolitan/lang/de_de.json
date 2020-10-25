@@ -53,6 +53,7 @@
   "item.neapolitan.chocolate_bar": "Schokoladentafel",
   "item.neapolitan.chocolate_ice_cream": "Schokoladeneis",
   "item.neapolitan.chocolate_milkshake": "Schokoladenmilchshake",
+  "item.neapolitan.chocolate_spider_eye": "Schokoladenspinnenauge",
   
   "item.neapolitan.strawberry_pips": "Erdbeerkerne",
   "item.neapolitan.strawberries": "Erdbeeren",
@@ -65,6 +66,7 @@
   "item.neapolitan.vanilla_ice_cream": "Vanilleeis",
   "item.neapolitan.vanilla_pudding": "Vanillepudding",
   "item.neapolitan.vanilla_milkshake": "Vanillemilchshake",
+  "item.neapolitan.vanilla_fudge": "Vanillefudge",
   
   "item.neapolitan.banana": "Banane",
   "item.neapolitan.banana_bunch": "Bananenbund",
@@ -116,6 +118,8 @@
   "subtitles.neapolitan.entity.monkey.ambient": "Affe ooo-ooo aaa-aaa",
   "subtitles.neapolitan.entity.monkey.step": "Affe läuft",
   "subtitles.neapolitan.entity.monkey.swing": "Affe pendelt",
+  
+  "subtitles.neapolitan.item.ice_cubes.eat": "Zersplittern",
 
   "block.minecraft.banner.mca_monkey.black": "Schwarzer Affe",
   "block.minecraft.banner.mca_monkey.red": "Roter Affe",
