@@ -53,6 +53,7 @@
   "item.neapolitan.chocolate_bar": "Schokoladentafel",
   "item.neapolitan.chocolate_ice_cream": "Schokoladeneis",
   "item.neapolitan.chocolate_milkshake": "Schokoladenmilchshake",
+  "item.neapolitan.chocolate_spider_eye": "Schokoladenspinnenauge",
   
   "item.neapolitan.strawberry_pips": "Erdbeerkerne",
   "item.neapolitan.strawberries": "Erdbeeren",
@@ -65,6 +66,7 @@
   "item.neapolitan.vanilla_ice_cream": "Vanilleeis",
   "item.neapolitan.vanilla_pudding": "Vanillepudding",
   "item.neapolitan.vanilla_milkshake": "Vanillemilchshake",
+  "item.neapolitan.vanilla_fudge": "Vanillefudge",
   
   "item.neapolitan.banana": "Banane",
   "item.neapolitan.banana_bunch": "Bananenbund",
@@ -107,6 +109,17 @@
   
   "advancements.husbandry.harvest_white_strawberries.title": "Ein Picknick in den Wolken",
   "advancements.husbandry.harvest_white_strawberries.description": "Züchte Erdbeersträucher in größeren Höhen, um weiße Erdbeeren zu beschaffen",
+  
+  "subtitles.neapolitan.entity.monkey.angry": "Affe schreit",
+  "subtitles.neapolitan.entity.monkey.death": "Affe stirbt",
+  "subtitles.neapolitan.entity.monkey.eat": "Affe frisst",
+  "subtitles.neapolitan.entity.monkey.howl": "Affe heult",
+  "subtitles.neapolitan.entity.monkey.hurt": "Affe nimmt Schaden",
+  "subtitles.neapolitan.entity.monkey.ambient": "Affe ooo-ooo aaa-aaa",
+  "subtitles.neapolitan.entity.monkey.step": "Affe läuft",
+  "subtitles.neapolitan.entity.monkey.swing": "Affe pendelt",
+  
+  "subtitles.neapolitan.item.ice_cubes.eat": "Zersplittern",
 
   "block.minecraft.banner.mca_monkey.black": "Schwarzer Affe",
   "block.minecraft.banner.mca_monkey.red": "Roter Affe",
