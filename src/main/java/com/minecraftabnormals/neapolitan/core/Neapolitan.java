@@ -32,7 +32,8 @@ public class Neapolitan {
 
 	public Neapolitan() {
 		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-
+		MinecraftForge.EVENT_BUS.register(this);
+		
 		REGISTRY_HELPER.getDeferredBlockRegister().register(modEventBus);
 		REGISTRY_HELPER.getDeferredItemRegister().register(modEventBus);
 		REGISTRY_HELPER.getDeferredSoundRegister().register(modEventBus);
@@ -41,14 +42,11 @@ public class Neapolitan {
 		NeapolitanEffects.EFFECTS.register(modEventBus);
 		NeapolitanFeatures.FEATURES.register(modEventBus);
 		NeapolitanBanners.PAINTINGS.register(modEventBus);
-
-		MinecraftForge.EVENT_BUS.register(this);
-
+		
 		modEventBus.addListener(this::setupCommon);
 		DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
 			modEventBus.addListener(this::setupClient);
 			modEventBus.addListener(this::registerItemColors);
-
 		});
 
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, NeapolitanConfig.COMMON_SPEC);
