@@ -53,6 +53,7 @@
   "item.neapolitan.chocolate_bar": "Suklaalevy",
   "item.neapolitan.chocolate_ice_cream": "Suklaajäätelö",
   "item.neapolitan.chocolate_milkshake": "Suklaapirtelö",
+  "item.neapolitan.chocolate_spider_eye": "Suklaahämähäkinsilmä",
   
   "item.neapolitan.strawberry_pips": "Mansikan siemenet",
   "item.neapolitan.strawberries": "Mansikoita",
@@ -65,6 +66,7 @@
   "item.neapolitan.vanilla_ice_cream": "Vaniljajäätelö",
   "item.neapolitan.vanilla_pudding": "Vaniljavanukas",
   "item.neapolitan.vanilla_milkshake": "Vaniljapirtelö",
+  "item.neapolitan.vanilla_fudge": "Vaniljafudge",
   
   "item.neapolitan.banana": "Banaani",
   "item.neapolitan.banana_bunch": "Banaaniterttu",
@@ -116,6 +118,8 @@
   "subtitles.neapolitan.entity.monkey.ambient": "Apina ääntelee",
   "subtitles.neapolitan.entity.monkey.step": "Apina astelee",
   "subtitles.neapolitan.entity.monkey.swing": "Apina heilauttaa",
+  
+  "subtitles.neapolitan.item.ice_cubes.eat": "Rouskutusta",
   
   "block.minecraft.banner.mca_monkey.black": "Musta apina",
   "block.minecraft.banner.mca_monkey.red": "Punainen apina",
