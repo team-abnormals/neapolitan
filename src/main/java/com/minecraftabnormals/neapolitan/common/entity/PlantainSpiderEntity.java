@@ -52,19 +52,8 @@ public class PlantainSpiderEntity extends SpiderEntity {
 		if (super.attackEntityAsMob(entityIn)) {
 			if (entityIn instanceof LivingEntity) {
 				LivingEntity livingEntity = (LivingEntity) entityIn;
-				int i = 0;
-				if (this.world.getDifficulty() == Difficulty.NORMAL) {
-					i = 4;
-				} else if (this.world.getDifficulty() == Difficulty.HARD) {
-					i = 9;
-				}
-
-				if (i > 0) {
-					livingEntity.addPotionEffect(new EffectInstance(Effects.POISON, i * 20, 0));
-				}
-				livingEntity.addPotionEffect(new EffectInstance(NeapolitanEffects.SLIPPING.get(), i * 30, 0));
+				livingEntity.addPotionEffect(new EffectInstance(NeapolitanEffects.SLIPPING.get(), this.world.getDifficulty().getId() * 60, 0));
 			}
-
 			return true;
 		} else {
 			return false;
