@@ -21,16 +21,7 @@
             }
           ],
           "name": "neapolitan:strawberries"
-        }
-      ]
-    },
-    {
-      "rolls": {
-        "min": 0.0,
-        "max": 2.0,
-        "type": "minecraft:uniform"
-      },
-      "entries": [
+        },
         {
           "type": "minecraft:item",
           "functions": [

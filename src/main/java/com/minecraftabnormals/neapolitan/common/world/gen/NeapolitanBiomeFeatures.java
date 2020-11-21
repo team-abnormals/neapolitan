@@ -47,11 +47,11 @@ public class NeapolitanBiomeFeatures {
 					addBananaPlants(biome, 1, 0.15F, 2); // Jungle Edge Biomes
 			}
 
-			if (biome.getRegistryName().getPath().contains("rainforest")) {
-				if (!BiomeDictionary.hasType(biome, BiomeDictionary.Type.FOREST))
+			if (biome.getRegistryName() != null && biome.getRegistryName().getPath().contains("rainforest")) {
+				if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.FOREST))
 					addBananaPlants(biome, 1, 0.1F, 2); // Rainforest Biomes
 				else
-					addBananaPlants(biome, 0, 0.3F, 1); // Sparse Rainforest Plateau Biomes
+					addBananaPlants(biome, 0, 0.15F, 1); // Sparse Rainforest Plateau Biomes
 			}
 		}
 	}
