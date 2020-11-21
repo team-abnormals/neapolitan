@@ -73,8 +73,8 @@ public class NeapolitanItems {
     
     public static final RegistryObject<Item> MONKEY_BANNNER_PATTERN		= HELPER.createItem("monkey_banner_pattern", () -> new AbnormalsBannerPatternItem(NeapolitanBanners.MONKEY, new Item.Properties().group(ItemGroup.MISC).maxStackSize(1)));
     
-    public static final RegistryObject<Item> MONKEY_SPAWN_EGG			= HELPER.createSpawnEggItem("monkey", () -> NeapolitanEntities.MONKEY.get(), 0x1F1626, 0xAD8064);
-    public static final RegistryObject<Item> PLANTAIN_SPIDER_SPAWN_EGG	= HELPER.createSpawnEggItem("plantain_spider", () -> NeapolitanEntities.PLANTAIN_SPIDER.get(), 0xAD870A, 0x33202A);
+    public static final RegistryObject<Item> MONKEY_SPAWN_EGG			= HELPER.createSpawnEggItem("monkey", NeapolitanEntities.MONKEY::get, 0x1F1626, 0xAD8064);
+    public static final RegistryObject<Item> PLANTAIN_SPIDER_SPAWN_EGG	= HELPER.createSpawnEggItem("plantain_spider", NeapolitanEntities.PLANTAIN_SPIDER::get, 0xAD870A, 0x33202A);
 
     static class Foods {
         public static final Food ICE_CUBES	= (new Food.Builder()).setAlwaysEdible().build();

@@ -62,7 +62,7 @@ public class PlantainSpiderEntity extends SpiderEntity {
 				if (i > 0) {
 					livingEntity.addPotionEffect(new EffectInstance(Effects.POISON, i * 20, 0));
 				}
-				livingEntity.addPotionEffect(new EffectInstance(NeapolitanEffects.SLIPPING.get(), i * 30, 0, false, false, false));
+				livingEntity.addPotionEffect(new EffectInstance(NeapolitanEffects.SLIPPING.get(), i * 30, 0));
 			}
 
 			return true;

@@ -49,7 +49,7 @@ public class NeapolitanEntities {
 	}
 
 	private static void addSpawns(Biome biome) {
-		if (biome.getCategory() == Biome.Category.JUNGLE) {
+		if (biome.getCategory() == Biome.Category.JUNGLE || (biome.getRegistryName() != null && biome.getRegistryName().getPath().contains("rainforest"))) {
 			biome.getSpawns(EntityClassification.MONSTER).add(new Biome.SpawnListEntry(PLANTAIN_SPIDER.get(), 120, 3, 5));
 		}
 	}
