@@ -39,7 +39,7 @@ public class NeapolitanEntities {
 	}
 
 	public static void registerEntityAttributes() {
-		GlobalEntityTypeAttributes.put(PLANTAIN_SPIDER.get(), PlantainSpiderEntity.func_234277_m_().create());
+		GlobalEntityTypeAttributes.put(PLANTAIN_SPIDER.get(), PlantainSpiderEntity.registerAttributes().create());
 		GlobalEntityTypeAttributes.put(MONKEY.get(), MonkeyEntity.registerAttributes().create());
 	}
 

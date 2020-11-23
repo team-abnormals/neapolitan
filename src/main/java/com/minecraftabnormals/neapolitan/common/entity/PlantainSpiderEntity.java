@@ -44,8 +44,8 @@ public class PlantainSpiderEntity extends SpiderEntity {
 		return worldIn.getDifficulty() != Difficulty.PEACEFUL && isValidLightLevel(worldIn, pos, randomIn) && pos.getY() > 60 && canSpawnOn(type, worldIn, reason, pos, randomIn);
 	}
 
-	public static AttributeModifierMap.MutableAttribute func_234277_m_() {
-		return SpiderEntity.func_234305_eI_().createMutableAttribute(Attributes.MAX_HEALTH, 10.0D);
+	public static AttributeModifierMap.MutableAttribute registerAttributes() {
+		return SpiderEntity.func_234305_eI_().createMutableAttribute(Attributes.MAX_HEALTH, 8.0D);
 	}
 
 	public boolean attackEntityAsMob(Entity entityIn) {
