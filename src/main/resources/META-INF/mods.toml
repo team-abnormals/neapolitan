@@ -7,7 +7,8 @@ license = "https://github.com/team-abnormals/neapolitan/blob/main/LICENSE.txt"
     modId = "neapolitan"
     version = "${file.jarVersion}"
     logoFile = "logo.png"
-    authors = "bageldotjpg & five"
+    authors = "Team Abnormals"
+    credits = "bageldotjpg, five"
     displayName = "Neapolitan"
     description = '''
     Adds new flavors and fruits to create tasty Ice Creams, Milkshakes, Cakes, and more!
@@ -21,15 +22,15 @@ license = "https://github.com/team-abnormals/neapolitan/blob/main/LICENSE.txt"
     side = "BOTH"
 
 [[dependencies.neapolitan]]
-    modId = "minecraft"
-    mandatory = true
-    versionRange = "[1.16.1]"
-    ordering = "NONE"
-    side = "BOTH"
-
-[[dependencies.neapolitan]]
     modId = "abnormals_core"
     mandatory = true
     versionRange = "[2.0.7,)"
     ordering = "AFTER"
+    side = "BOTH"
+
+[[dependencies.neapolitan]]
+    modId = "minecraft"
+    mandatory = true
+    versionRange = "[1.16.1]"
+    ordering = "NONE"
     side = "BOTH"
