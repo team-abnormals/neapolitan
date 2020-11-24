@@ -74,7 +74,7 @@ public class BananaFrondBlock extends BushBlock implements IGrowable {
 
 	@Override
 	public void grow(ServerWorld world, Random rand, BlockPos pos, BlockState state) {
-		if (rand.nextInt(4) == 0) {
+		if (rand.nextInt(6) == 0) {
 			attemptGrowBanana(getSizeForFrond(rand, this), world, rand, pos);
 		}
 	}
@@ -163,17 +163,16 @@ public class BananaFrondBlock extends BushBlock implements IGrowable {
 	}
 
 	private static boolean isAirAt(World world, BlockPos pos, int size) {
-		BlockPos position = pos.up();
 		for (int i = 0; i < size + 1; i++) {
-			if (!world.isAirBlock(position))
+			if (i != 0 && !(world.isAirBlock(pos) || world.getBlockState(pos).getMaterial().isReplaceable()))
 				return false;
 			for (Direction direction : Direction.values()) {
 				if (direction.getAxis().isHorizontal()) {
-					if (!world.isAirBlock(position.offset(direction)))
+					if (!(world.isAirBlock(pos.offset(direction)) || world.getBlockState(pos.offset(direction)).getMaterial().isReplaceable()))
 						return false;
 				}
 			}
-			position = position.up();
+			pos = pos.up();
 		}
 		return true;
 	}
