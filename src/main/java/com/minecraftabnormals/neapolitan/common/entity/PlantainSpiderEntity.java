@@ -1,20 +1,8 @@
 package com.minecraftabnormals.neapolitan.common.entity;
 
-import java.util.Random;
-
-import javax.annotation.Nullable;
-
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEffects;
-import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEntities;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
-
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntitySize;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ILivingEntityData;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.Pose;
-import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.monster.MonsterEntity;
@@ -22,26 +10,22 @@ import net.minecraft.entity.monster.SpiderEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.network.FMLPlayMessages;
+
+import javax.annotation.Nullable;
+import java.util.Random;
 
 public class PlantainSpiderEntity extends SpiderEntity {
 	public PlantainSpiderEntity(EntityType<? extends PlantainSpiderEntity> type, World worldIn) {
 		super(type, worldIn);
 	}
 
-	public PlantainSpiderEntity(FMLPlayMessages.SpawnEntity spawnEntity, World world) {
-		this(NeapolitanEntities.PLANTAIN_SPIDER.get(), world);
-	}
-
 	public static boolean canPlantainSpiderSpawn(EntityType<? extends MonsterEntity> type, IWorld worldIn, SpawnReason reason, BlockPos pos, Random randomIn) {
-		return worldIn.getDifficulty() != Difficulty.PEACEFUL && isValidLightLevel(worldIn, pos, randomIn) && pos.getY() > 60 && canSpawnOn(type, worldIn, reason, pos, randomIn);
+		return pos.getY() > 60 && canMonsterSpawnInLight(type, worldIn, reason, pos, randomIn);
 	}
 
 	public static AttributeModifierMap.MutableAttribute registerAttributes() {
@@ -66,7 +50,7 @@ public class PlantainSpiderEntity extends SpiderEntity {
 	}
 
 	protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
-		return 0.45F;
+		return 0.40F;
 	}
 
 	@Override
