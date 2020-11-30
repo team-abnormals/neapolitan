@@ -63,7 +63,7 @@ public class NeapolitanEvents {
         PlayerEntity player = event.getPlayer();
 
         if (NeapolitanConfig.COMMON.milkingWithGlassBottles.get() && entity.getType().isContained(NeapolitanTags.EntityTypes.MILKABLE)) {
-            boolean notChild = entity instanceof LivingEntity ? !((LivingEntity) entity).isChild() : true;
+            boolean notChild = !(entity instanceof LivingEntity) || !((LivingEntity) entity).isChild();
             if (stack.getItem() == Items.GLASS_BOTTLE && notChild) {
                 player.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
                 ItemStack itemstack1 = DrinkHelper.func_241445_a_(stack, event.getPlayer(), NeapolitanItems.MILK_BOTTLE.get().getDefaultInstance());

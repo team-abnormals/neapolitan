@@ -43,9 +43,9 @@ public class NeapolitanBiomeFeatures {
 			if (biome.getCategory() == Biome.Category.JUNGLE) {
 				if (biome != Biomes.BAMBOO_JUNGLE && biome != Biomes.BAMBOO_JUNGLE_HILLS) {
 					if (biome != Biomes.JUNGLE_EDGE && biome != Biomes.MODIFIED_JUNGLE_EDGE)
-						addBananaPlants(biome, 1, 0.3F, 3); // Jungle Biomes
+						addBananaPlants(biome, 1, 0.30F, 3); // Jungle Biomes
 					else
-						addBananaPlants(biome, 1, 0.15F, 2); // Jungle Edge Biomes
+						addBananaPlants(biome, 0, 0.25F, 1); // Jungle Edge Biomes
 				}
 			}
 
