@@ -1,13 +1,11 @@
 package com.minecraftabnormals.neapolitan.core;
 
 import com.minecraftabnormals.abnormals_core.core.util.registry.RegistryHelper;
-import com.minecraftabnormals.neapolitan.common.world.gen.NeapolitanBiomeFeatures;
 import com.minecraftabnormals.neapolitan.core.other.NeapolitanCompat;
 import com.minecraftabnormals.neapolitan.core.registry.*;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -40,7 +38,7 @@ public class Neapolitan {
 	}
 
 	private void setupCommon(final FMLCommonSetupEvent event) {
-		DeferredWorkQueue.runLater(() -> {
+		event.enqueueWork(() -> {
 			NeapolitanBanners.registerBanners();
 			NeapolitanCompat.transformCookies();
 			NeapolitanCompat.registerFlammables();
@@ -54,7 +52,7 @@ public class Neapolitan {
 
 	private void setupClient(final FMLClientSetupEvent event) {
 		NeapolitanEntities.registerEntityRenderers();
-		DeferredWorkQueue.runLater(() -> {
+		event.enqueueWork(() -> {
 			NeapolitanCompat.registerRenderLayers();
 			NeapolitanItems.registerItemProperties();
 		});
