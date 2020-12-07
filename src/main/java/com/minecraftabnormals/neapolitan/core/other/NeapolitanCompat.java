@@ -24,6 +24,13 @@ public class NeapolitanCompat {
 		Foods.COOKIE.fastToEat = true;
 		Foods.COOKIE.saturation = 0.3F;
 	}
+
+	public static void registerCompat() {
+		registerLootInjectors();
+		registerCompostables();
+		registerFlammables();
+		registerDispenserBehaviors();
+	}
 	
 	public static void registerLootInjectors() {
 		LootInjectionRegistry.LootInjector injector = new LootInjectionRegistry.LootInjector(Neapolitan.MOD_ID);

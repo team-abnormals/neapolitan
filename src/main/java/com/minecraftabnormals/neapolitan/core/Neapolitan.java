@@ -1,6 +1,7 @@
 package com.minecraftabnormals.neapolitan.core;
 
 import com.minecraftabnormals.abnormals_core.core.util.registry.RegistryHelper;
+import com.minecraftabnormals.neapolitan.common.world.gen.NeapolitanBiomeFeatures;
 import com.minecraftabnormals.neapolitan.core.other.NeapolitanCompat;
 import com.minecraftabnormals.neapolitan.core.registry.*;
 import net.minecraftforge.api.distmarker.Dist;
@@ -41,12 +42,10 @@ public class Neapolitan {
 		event.enqueueWork(() -> {
 			NeapolitanBanners.registerBanners();
 			NeapolitanCompat.transformCookies();
-			NeapolitanCompat.registerFlammables();
-			NeapolitanCompat.registerCompostables();
-			NeapolitanCompat.registerDispenserBehaviors();
-			NeapolitanCompat.registerLootInjectors();
+			NeapolitanCompat.registerCompat();
 			NeapolitanEntities.registerEntityAttributes();
 			NeapolitanEntities.registerEntitySpawns();
+			NeapolitanBiomeFeatures.Configs.registerConfiguredFeatures();
 		});
 	}
 

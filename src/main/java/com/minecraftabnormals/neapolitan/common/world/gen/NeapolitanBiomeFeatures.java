@@ -71,21 +71,31 @@ public class NeapolitanBiomeFeatures {
 		return false;
 	}
 
-	private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String name, ConfiguredFeature<FC, ?> configuredFeature) {
-		return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, new ResourceLocation(Neapolitan.MOD_ID, name), configuredFeature);
-	}
-
 	public static final class Configs {
 		public static final BlockClusterFeatureConfig STRAWBERRY_PATCH_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(NeapolitanBlocks.STRAWBERRY_BUSH.get().getDefaultState().with(StrawberryBushBlock.TYPE, StrawberryBushBlock.StrawberryType.RED)), SimpleBlockPlacer.PLACER)).tries(512).build();
 		public static final BlockClusterFeatureConfig VANILLA_VINE_PATCH_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(NeapolitanBlocks.VANILLA_VINE.get().getDefaultState()), SimpleBlockPlacer.PLACER)).tries(64).build();
 
-		public static final ConfiguredFeature<?, ?> STRAWBERRY_PATCH = register("banana_plant", NeapolitanFeatures.STRAWBERRY_PATCH.get().withConfiguration(STRAWBERRY_PATCH_CONFIG).withPlacement(Placement.CHANCE.configure(new ChanceConfig(30))));
-		public static final ConfiguredFeature<?, ?> VANILLA_VINE_PATCH = register("banana_plant", NeapolitanFeatures.VANILLA_VINE_PATCH.get().withConfiguration(VANILLA_VINE_PATCH_CONFIG).withPlacement(Placement.CHANCE.configure(new ChanceConfig(28))));
+		public static final ConfiguredFeature<?, ?> STRAWBERRY_PATCH = NeapolitanFeatures.STRAWBERRY_PATCH.get().withConfiguration(STRAWBERRY_PATCH_CONFIG).withPlacement(Placement.CHANCE.configure(new ChanceConfig(30)));
+		public static final ConfiguredFeature<?, ?> VANILLA_VINE_PATCH = NeapolitanFeatures.VANILLA_VINE_PATCH.get().withConfiguration(VANILLA_VINE_PATCH_CONFIG).withPlacement(Placement.CHANCE.configure(new ChanceConfig(28)));
 
-		public static final ConfiguredFeature<?, ?> BANANA_PLANT = register("banana_plant", NeapolitanFeatures.BANANA_PLANT.get().withConfiguration(NoFeatureConfig.field_236559_b_)).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT);
-		public static final ConfiguredFeature<?, ?> BANANA_PLANT_BEACH = register("banana_plant_beach", BANANA_PLANT.withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(0, 0.075F, 1))));
-		public static final ConfiguredFeature<?, ?> BANANA_PLANT_JUNGLE = register("banana_plant_jungle", BANANA_PLANT.withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(1, 0.30F, 3))));
-		public static final ConfiguredFeature<?, ?> BANANA_PLANT_RARE = register("banana_plant_rare", BANANA_PLANT.withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(0, 0.25F, 1))));
-		public static final ConfiguredFeature<?, ?> BANANA_PLANT_VERY_RARE = register("banana_plant_very_rare", BANANA_PLANT.withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(0, 0.15F, 1))));
+		public static final ConfiguredFeature<?, ?> BANANA_PLANT = NeapolitanFeatures.BANANA_PLANT.get().withConfiguration(NoFeatureConfig.field_236559_b_).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT);
+		public static final ConfiguredFeature<?, ?> BANANA_PLANT_BEACH = BANANA_PLANT.withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(0, 0.075F, 1)));
+		public static final ConfiguredFeature<?, ?> BANANA_PLANT_JUNGLE = BANANA_PLANT.withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(1, 0.30F, 3)));
+		public static final ConfiguredFeature<?, ?> BANANA_PLANT_RARE = BANANA_PLANT.withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(0, 0.25F, 1)));
+		public static final ConfiguredFeature<?, ?> BANANA_PLANT_VERY_RARE = BANANA_PLANT.withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(0, 0.15F, 1)));
+
+		private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String name, ConfiguredFeature<FC, ?> configuredFeature) {
+			return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, new ResourceLocation(Neapolitan.MOD_ID, name), configuredFeature);
+		}
+
+		public static void registerConfiguredFeatures() {
+			register("strawberry_patch", STRAWBERRY_PATCH);
+			register("vanilla_vine_patch", VANILLA_VINE_PATCH);
+			register("banana_plant", BANANA_PLANT);
+			register("banana_plant_beach", BANANA_PLANT_BEACH);
+			register("banana_plant_jungle", BANANA_PLANT_JUNGLE);
+			register("banana_plant_rare", BANANA_PLANT_RARE);
+			register("banana_plant_very_rare", BANANA_PLANT_VERY_RARE);
+		}
 	}
 }
