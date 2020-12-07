@@ -1,35 +1,14 @@
 package com.minecraftabnormals.neapolitan.common.entity;
 
-import java.util.UUID;
-
-import javax.annotation.Nullable;
-
 import com.minecraftabnormals.neapolitan.core.other.NeapolitanTags;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEntities;
-import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanSoundEvents;
-
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.AgeableEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.IAngerable;
-import net.minecraft.entity.ILivingEntityData;
-import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.BreedGoal;
-import net.minecraft.entity.ai.goal.FollowParentGoal;
-import net.minecraft.entity.ai.goal.HurtByTargetGoal;
-import net.minecraft.entity.ai.goal.LookAtGoal;
-import net.minecraft.entity.ai.goal.LookRandomlyGoal;
-import net.minecraft.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
-import net.minecraft.entity.ai.goal.ResetAngerGoal;
-import net.minecraft.entity.ai.goal.SwimGoal;
-import net.minecraft.entity.ai.goal.TemptGoal;
-import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
+import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -45,13 +24,18 @@ import net.minecraft.util.RangedInteger;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.TickRangeConverter;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+
+import javax.annotation.Nullable;
+import java.util.UUID;
 
 public class MonkeyEntity extends AnimalEntity implements IAngerable {
 	private static final DataParameter<Integer> ANGER_TIME = EntityDataManager.createKey(MonkeyEntity.class, DataSerializers.VARINT);
@@ -61,6 +45,9 @@ public class MonkeyEntity extends AnimalEntity implements IAngerable {
 	private static final RangedInteger ANGER_RANGE = TickRangeConverter.convertRange(20, 39);
 	private UUID lastHurtBy;
 	private int attackTimer;
+
+	private float climbAnim;
+	private float prevClimbAnim;
 
 	public MonkeyEntity(EntityType<? extends AnimalEntity> type, World worldIn) {
 		super(type, worldIn);
@@ -144,12 +131,36 @@ public class MonkeyEntity extends AnimalEntity implements IAngerable {
 		if (this.attackTimer > 0) {
 			--this.attackTimer;
 		}
+
+		this.prevClimbAnim = this.climbAnim;
+		if (this.isClimbing()) {
+			this.climbAnim = Math.min(this.climbAnim + 1, 4.0F);
+		} else {
+			this.climbAnim = Math.max(this.climbAnim - 1, 0.0F);
+		}
 	}
 
+	@Override
+	public void func_233629_a_(LivingEntity entity, boolean isFlying) {
+		this.prevLimbSwingAmount = this.limbSwingAmount;
+		double d0 = this.getPosX() - this.prevPosX;
+		double d1 = this.isClimbing() ? this.getPosY() - this.prevPosY : 0.0D;
+		double d2 = this.getPosZ() - this.prevPosZ;
+		float f = MathHelper.sqrt(d0 * d0 + d1 * d1 + d2 * d2) * 4.0F;
+		if (f > 1.0F) {
+			f = 1.0F;
+		}
+
+		this.limbSwingAmount += (f - this.limbSwingAmount) * 0.4F;
+		this.limbSwing += this.limbSwingAmount;
+	}
+
+	@Override
 	public boolean isOnLadder() {
 		return this.isBesideClimbableBlock();
 	}
 
+	@Override
 	public void setMotionMultiplier(BlockState state, Vector3d motionMultiplierIn) {
 		if (!state.isIn(Blocks.COBWEB)) {
 			super.setMotionMultiplier(state, motionMultiplierIn);
@@ -163,6 +174,11 @@ public class MonkeyEntity extends AnimalEntity implements IAngerable {
 		} else {
 			super.handleStatusUpdate(id);
 		}
+	}
+
+	@OnlyIn(Dist.CLIENT)
+	public float getClimbingAnimationScale(float partialTicks) {
+		return MathHelper.lerp(partialTicks, this.prevClimbAnim, this.climbAnim) / 4.0F;
 	}
 
 	@Override
@@ -206,6 +222,11 @@ public class MonkeyEntity extends AnimalEntity implements IAngerable {
 	}
 
 	@Override
+	public boolean onLivingFall(float distance, float damageMultiplier) {
+		return false;
+	}
+
+	@Override
 	protected SoundEvent getAmbientSound() {
 		return this.func_233678_J__() ? NeapolitanSoundEvents.ENTITY_MONKEY_ANGRY.get() : NeapolitanSoundEvents.ENTITY_MONKEY_AMBIENT.get();
 	}
@@ -232,6 +253,10 @@ public class MonkeyEntity extends AnimalEntity implements IAngerable {
 
 	public int getAttackTimer() {
 		return this.attackTimer;
+	}
+
+	public boolean isClimbing() {
+		return !this.onGround && this.isBesideClimbableBlock();
 	}
 
 	@Override
