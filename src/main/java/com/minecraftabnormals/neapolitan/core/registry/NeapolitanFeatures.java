@@ -4,7 +4,6 @@ import com.minecraftabnormals.neapolitan.common.world.gen.feature.BananaPlantFea
 import com.minecraftabnormals.neapolitan.common.world.gen.feature.StrawberryPatchFeature;
 import com.minecraftabnormals.neapolitan.common.world.gen.feature.VanillaPatchFeature;
 import com.minecraftabnormals.neapolitan.core.Neapolitan;
-
 import net.minecraft.world.gen.feature.BlockClusterFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
@@ -13,8 +12,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class NeapolitanFeatures {
-    public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, Neapolitan.MODID);
-    public static final RegistryObject<Feature<BlockClusterFeatureConfig>> STRAWBERRY_PATCH = FEATURES.register("strawberry_patch", () -> new StrawberryPatchFeature(BlockClusterFeatureConfig.field_236587_a_));
-    public static final RegistryObject<Feature<BlockClusterFeatureConfig>> VANILLA_PATCH    = FEATURES.register("vanilla_patch", () -> new VanillaPatchFeature(BlockClusterFeatureConfig.field_236587_a_));
-    public static final RegistryObject<Feature<NoFeatureConfig>> BANANA_PLANT    			= FEATURES.register("banana_plant", () -> new BananaPlantFeature(NoFeatureConfig.field_236558_a_));
+	public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, Neapolitan.MOD_ID);
+	public static final RegistryObject<Feature<BlockClusterFeatureConfig>> STRAWBERRY_PATCH = FEATURES.register("strawberry_patch", () -> new StrawberryPatchFeature(BlockClusterFeatureConfig.field_236587_a_));
+	public static final RegistryObject<Feature<BlockClusterFeatureConfig>> VANILLA_VINE_PATCH = FEATURES.register("vanilla_patch", () -> new VanillaPatchFeature(BlockClusterFeatureConfig.field_236587_a_));
+	public static final RegistryObject<Feature<NoFeatureConfig>> BANANA_PLANT = FEATURES.register("banana_plant", () -> new BananaPlantFeature(NoFeatureConfig.field_236558_a_));
 }

@@ -1,26 +1,11 @@
 package com.minecraftabnormals.neapolitan.core.registry;
 
-import com.minecraftabnormals.neapolitan.common.item.BananaBunchItem;
-import com.minecraftabnormals.neapolitan.common.item.BananarrowItem;
-import com.minecraftabnormals.neapolitan.common.item.HealingDrinkItem;
-import com.minecraftabnormals.neapolitan.common.item.HealingItem;
-import com.minecraftabnormals.neapolitan.common.item.HealingSoupItem;
-import com.minecraftabnormals.neapolitan.common.item.IceCubesItem;
-import com.minecraftabnormals.neapolitan.common.item.MilkBottleItem;
-import com.minecraftabnormals.neapolitan.common.item.MilkshakeItem;
+import com.minecraftabnormals.abnormals_core.common.items.AbnormalsBannerPatternItem;
+import com.minecraftabnormals.abnormals_core.common.items.AbnormalsSpawnEggItem;
+import com.minecraftabnormals.abnormals_core.core.util.registry.ItemSubRegistryHelper;
+import com.minecraftabnormals.neapolitan.common.item.*;
 import com.minecraftabnormals.neapolitan.core.Neapolitan;
-import com.teamabnormals.abnormals_core.common.items.AbnormalsBannerPatternItem;
-import com.teamabnormals.abnormals_core.core.utils.RegistryHelper;
-
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.BlockNamedItem;
-import net.minecraft.item.CrossbowItem;
-import net.minecraft.item.Food;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemModelsProperties;
-import net.minecraft.item.Items;
-import net.minecraft.item.SoupItem;
+import net.minecraft.item.*;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.potion.Effects;
@@ -28,9 +13,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = Neapolitan.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = Neapolitan.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NeapolitanItems {
-    public static final RegistryHelper HELPER = Neapolitan.REGISTRY_HELPER;
+    public static final ItemSubRegistryHelper HELPER = Neapolitan.REGISTRY_HELPER.getItemSubHelper();
 
     public static final RegistryObject<Item> MILK_BOTTLE    = HELPER.createItem("milk_bottle", () -> new MilkBottleItem(new Item.Properties().maxStackSize(16).containerItem(Items.GLASS_BOTTLE).group(ItemGroup.MISC)));
     public static final RegistryObject<Item> ICE_CUBES		= HELPER.createItem("ice_cubes", () -> new IceCubesItem(new Item.Properties().food(Foods.ICE_CUBES).group(ItemGroup.MISC)));
@@ -73,8 +58,8 @@ public class NeapolitanItems {
     
     public static final RegistryObject<Item> MONKEY_BANNNER_PATTERN		= HELPER.createItem("monkey_banner_pattern", () -> new AbnormalsBannerPatternItem(NeapolitanBanners.MONKEY, new Item.Properties().group(ItemGroup.MISC).maxStackSize(1)));
     
-    public static final RegistryObject<Item> MONKEY_SPAWN_EGG			= HELPER.createSpawnEggItem("monkey", NeapolitanEntities.MONKEY::get, 0x1F1626, 0xAD8064);
-    public static final RegistryObject<Item> PLANTAIN_SPIDER_SPAWN_EGG	= HELPER.createSpawnEggItem("plantain_spider", NeapolitanEntities.PLANTAIN_SPIDER::get, 0xAD870A, 0x33202A);
+    public static final RegistryObject<AbnormalsSpawnEggItem> MONKEY_SPAWN_EGG			= HELPER.createSpawnEggItem("monkey", NeapolitanEntities.MONKEY::get, 0x1F1626, 0xAD8064);
+    public static final RegistryObject<AbnormalsSpawnEggItem> PLANTAIN_SPIDER_SPAWN_EGG	= HELPER.createSpawnEggItem("plantain_spider", NeapolitanEntities.PLANTAIN_SPIDER::get, 0xAD870A, 0x33202A);
 
     static class Foods {
         public static final Food ICE_CUBES	= (new Food.Builder()).setAlwaysEdible().build();
@@ -113,7 +98,7 @@ public class NeapolitanItems {
     }
     
     public static void registerItemProperties() {
-    	ItemModelsProperties.func_239418_a_(Items.CROSSBOW, new ResourceLocation("bananarrow"), (stack, world, entity) -> {
+    	ItemModelsProperties.registerProperty(Items.CROSSBOW, new ResourceLocation("bananarrow"), (stack, world, entity) -> {
 			return entity != null && CrossbowItem.isCharged(stack) && CrossbowItem.hasChargedProjectile(stack, NeapolitanItems.BANANARROW.get()) ? 1.0F : 0.0F;
 		});
     }

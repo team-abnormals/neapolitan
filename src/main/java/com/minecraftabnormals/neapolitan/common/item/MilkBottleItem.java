@@ -59,6 +59,6 @@ public class MilkBottleItem extends Item {
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        return DrinkHelper.func_234707_a_(worldIn, playerIn, handIn);
+        return DrinkHelper.startDrinking(worldIn, playerIn, handIn);
     }
 }

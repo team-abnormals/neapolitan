@@ -48,6 +48,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -165,7 +166,7 @@ public class MonkeyEntity extends AnimalEntity implements IAngerable {
 	}
 
 	@Override
-	public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+	public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
 		setTypeForPosition(this, worldIn);
 		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
@@ -239,13 +240,8 @@ public class MonkeyEntity extends AnimalEntity implements IAngerable {
 	}
 
 	@Override
-	public ItemStack getPickedResult(RayTraceResult target) {
-		return new ItemStack(NeapolitanItems.MONKEY_SPAWN_EGG.get());
-	}
-
-	@Override
-	public MonkeyEntity createChild(AgeableEntity ageableEntity) {
-		MonkeyEntity baby = NeapolitanEntities.MONKEY.get().create(this.world);
+	public MonkeyEntity func_241840_a(ServerWorld world, AgeableEntity ageableEntity) {
+		MonkeyEntity baby = NeapolitanEntities.MONKEY.get().create(world);
 		setTypeForPosition(baby, this.getEntityWorld());
 		return baby;
 	}
@@ -280,6 +276,6 @@ public class MonkeyEntity extends AnimalEntity implements IAngerable {
 
 	@Override
 	public void func_230258_H__() {
-		this.setAngerTime(ANGER_RANGE.func_233018_a_(this.rand));
+		this.setAngerTime(ANGER_RANGE.getRandomWithinRange(this.rand));
 	}
 }

@@ -9,10 +9,12 @@ import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.monster.SpiderEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.rcon.IServer;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
@@ -24,7 +26,7 @@ public class PlantainSpiderEntity extends SpiderEntity {
 		super(type, worldIn);
 	}
 
-	public static boolean canPlantainSpiderSpawn(EntityType<? extends MonsterEntity> type, IWorld worldIn, SpawnReason reason, BlockPos pos, Random randomIn) {
+	public static boolean canPlantainSpiderSpawn(EntityType<? extends MonsterEntity> type, IServerWorld worldIn, SpawnReason reason, BlockPos pos, Random randomIn) {
 		return pos.getY() > 60 && canMonsterSpawnInLight(type, worldIn, reason, pos, randomIn);
 	}
 
@@ -45,7 +47,7 @@ public class PlantainSpiderEntity extends SpiderEntity {
 	}
 
 	@Nullable
-	public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+	public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
 		return spawnDataIn;
 	}
 

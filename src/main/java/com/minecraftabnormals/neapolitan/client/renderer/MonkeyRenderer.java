@@ -16,14 +16,14 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class MonkeyRenderer extends MobRenderer<MonkeyEntity, MonkeyModel<MonkeyEntity>> {
-	public static final ResourceLocation MONKEY = new ResourceLocation(Neapolitan.MODID, "textures/entity/monkey/monkey.png");
-	public static final ResourceLocation HUNGRY_MONKEY = new ResourceLocation(Neapolitan.MODID, "textures/entity/monkey/monkey_hungry.png");
+	public static final ResourceLocation MONKEY = new ResourceLocation(Neapolitan.MOD_ID, "textures/entity/monkey/monkey.png");
+	public static final ResourceLocation HUNGRY_MONKEY = new ResourceLocation(Neapolitan.MOD_ID, "textures/entity/monkey/monkey_hungry.png");
 	
-	public static final ResourceLocation RAINFOREST_MONKEY = new ResourceLocation(Neapolitan.MODID, "textures/entity/monkey/rainforest_monkey.png");
-	public static final ResourceLocation HUNGRY_RAINFOREST_MONKEY = new ResourceLocation(Neapolitan.MODID, "textures/entity/monkey/rainforest_monkey_hungry.png");
+	public static final ResourceLocation RAINFOREST_MONKEY = new ResourceLocation(Neapolitan.MOD_ID, "textures/entity/monkey/rainforest_monkey.png");
+	public static final ResourceLocation HUNGRY_RAINFOREST_MONKEY = new ResourceLocation(Neapolitan.MOD_ID, "textures/entity/monkey/rainforest_monkey_hungry.png");
 	
-	public static final ResourceLocation BAMBOO_MONKEY = new ResourceLocation(Neapolitan.MODID, "textures/entity/monkey/bamboo_monkey.png");
-	public static final ResourceLocation HUNGRY_BAMBOO_MONKEY = new ResourceLocation(Neapolitan.MODID, "textures/entity/monkey/bamboo_monkey_hungry.png");
+	public static final ResourceLocation BAMBOO_MONKEY = new ResourceLocation(Neapolitan.MOD_ID, "textures/entity/monkey/bamboo_monkey.png");
+	public static final ResourceLocation HUNGRY_BAMBOO_MONKEY = new ResourceLocation(Neapolitan.MOD_ID, "textures/entity/monkey/bamboo_monkey_hungry.png");
 
 	public MonkeyRenderer(EntityRendererManager renderManagerIn) {
 		super(renderManagerIn, new MonkeyModel<>(), 0.4F);

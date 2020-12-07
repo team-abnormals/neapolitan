@@ -31,10 +31,4 @@ public class BananaPeelModel extends EntityModel<Entity> {
 	public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
 		bananaPeel.render(matrixStack, buffer, packedLight, packedOverlay);
 	}
-
-	public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-		modelRenderer.rotateAngleX = x;
-		modelRenderer.rotateAngleY = y;
-		modelRenderer.rotateAngleZ = z;
-	}
 }

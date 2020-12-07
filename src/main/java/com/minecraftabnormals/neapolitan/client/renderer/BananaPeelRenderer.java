@@ -30,6 +30,6 @@ public class BananaPeelRenderer extends EntityRenderer<BananaPeelEntity> {
 	}
 
 	public ResourceLocation getEntityTexture(BananaPeelEntity entity) {
-		return new ResourceLocation(Neapolitan.MODID, "textures/entity/banana_peel.png");
+		return new ResourceLocation(Neapolitan.MOD_ID, "textures/entity/banana_peel.png");
 	}
 }

@@ -22,11 +22,11 @@ public class NeapolitanTags {
     }
     
     public static class EntityTypes {
-        public static final ITag<EntityType<?>> MILKABLE = EntityTypeTags.func_232896_a_(id("milkable"));
-        public static final ITag<EntityType<?>> SLIPPING_PROOF = EntityTypeTags.func_232896_a_(id("slipping_proof"));
+        public static final ITag<EntityType<?>> MILKABLE = EntityTypeTags.getTagById(id("milkable"));
+        public static final ITag<EntityType<?>> SLIPPING_PROOF = EntityTypeTags.getTagById(id("slipping_proof"));
     }
     
     private static String id(String string) {
-    	return Neapolitan.MODID + ":" + string;
+    	return Neapolitan.MOD_ID + ":" + string;
     }
 }

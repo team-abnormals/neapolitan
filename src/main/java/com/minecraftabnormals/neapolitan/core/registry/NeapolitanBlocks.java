@@ -1,26 +1,14 @@
 package com.minecraftabnormals.neapolitan.core.registry;
 
-import com.minecraftabnormals.neapolitan.common.block.BananaBundleBlock;
-import com.minecraftabnormals.neapolitan.common.block.BananaFrondBlock;
-import com.minecraftabnormals.neapolitan.common.block.FlavoredCakeBlock;
-import com.minecraftabnormals.neapolitan.common.block.StrawberryBushBlock;
-import com.minecraftabnormals.neapolitan.common.block.VanillaVineBlock;
-import com.minecraftabnormals.neapolitan.common.block.VanillaVineTopBlock;
+import com.minecraftabnormals.abnormals_core.common.blocks.VerticalSlabBlock;
+import com.minecraftabnormals.abnormals_core.common.blocks.thatch.ThatchBlock;
+import com.minecraftabnormals.abnormals_core.common.blocks.thatch.ThatchSlabBlock;
+import com.minecraftabnormals.abnormals_core.common.blocks.thatch.ThatchStairsBlock;
+import com.minecraftabnormals.abnormals_core.common.blocks.thatch.ThatchVerticalSlabBlock;
+import com.minecraftabnormals.abnormals_core.core.util.registry.BlockSubRegistryHelper;
+import com.minecraftabnormals.neapolitan.common.block.*;
 import com.minecraftabnormals.neapolitan.core.Neapolitan;
-import com.teamabnormals.abnormals_core.common.blocks.VerticalSlabBlock;
-import com.teamabnormals.abnormals_core.common.blocks.thatch.ThatchBlock;
-import com.teamabnormals.abnormals_core.common.blocks.thatch.ThatchSlabBlock;
-import com.teamabnormals.abnormals_core.common.blocks.thatch.ThatchStairsBlock;
-import com.teamabnormals.abnormals_core.common.blocks.thatch.ThatchVerticalSlabBlock;
-import com.teamabnormals.abnormals_core.core.utils.RegistryHelper;
-
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.RotatedPillarBlock;
-import net.minecraft.block.SlabBlock;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.StairsBlock;
-import net.minecraft.block.WallBlock;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.ItemGroup;
@@ -29,9 +17,9 @@ import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = Neapolitan.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = Neapolitan.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NeapolitanBlocks {
-    public static final RegistryHelper HELPER = Neapolitan.REGISTRY_HELPER;
+    public static final BlockSubRegistryHelper HELPER = Neapolitan.REGISTRY_HELPER.getBlockSubHelper();
     
     public static final RegistryObject<Block> VANILLA_ICE_CREAM_BLOCK 		= HELPER.createBlock("vanilla_ice_cream_block", () -> new Block(Properties.VANILLA_ICE_CREAM_BLOCK), ItemGroup.BUILDING_BLOCKS);
     public static final RegistryObject<Block> CHOCOLATE_ICE_CREAM_BLOCK 	= HELPER.createBlock("chocolate_ice_cream_block", () -> new Block(Properties.CHOCOLATE_ICE_CREAM_BLOCK), ItemGroup.BUILDING_BLOCKS);

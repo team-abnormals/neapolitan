@@ -20,7 +20,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 
 public class HarvestStrawberriesCriteraTrigger extends AbstractCriterionTrigger<HarvestStrawberriesCriteraTrigger.Instance> {
-	private static final ResourceLocation ID = new ResourceLocation(Neapolitan.MODID, "harvest_strawberries");
+	private static final ResourceLocation ID = new ResourceLocation(Neapolitan.MOD_ID, "harvest_strawberries");
 
 	@Override
 	public ResourceLocation getId() {
@@ -44,7 +44,7 @@ public class HarvestStrawberriesCriteraTrigger extends AbstractCriterionTrigger<
 	private static Block deserializeBlock(JsonObject object) {
 		if (object.has("block")) {
 			ResourceLocation resourcelocation = new ResourceLocation(JSONUtils.getString(object, "block"));
-			return Registry.BLOCK.getValue(resourcelocation).orElseThrow(() -> {
+			return Registry.BLOCK.getOptional(resourcelocation).orElseThrow(() -> {
 				return new JsonSyntaxException("Unknown block type '" + resourcelocation + "'");
 			});
 		} else {

@@ -1,15 +1,14 @@
 package com.minecraftabnormals.neapolitan.core.registry;
 
+import com.minecraftabnormals.abnormals_core.core.util.registry.SoundSubRegistryHelper;
 import com.minecraftabnormals.neapolitan.core.Neapolitan;
-import com.teamabnormals.abnormals_core.core.utils.RegistryHelper;
-
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = Neapolitan.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = Neapolitan.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NeapolitanSoundEvents {
-	public static final RegistryHelper HELPER = Neapolitan.REGISTRY_HELPER;
+	public static final SoundSubRegistryHelper HELPER = Neapolitan.REGISTRY_HELPER.getSoundSubHelper();
 
 	public static final RegistryObject<SoundEvent> ENTITY_MONKEY_ANGRY 	= HELPER.createSoundEvent("entity.monkey.angry");
 	public static final RegistryObject<SoundEvent> ENTITY_MONKEY_DEATH 	= HELPER.createSoundEvent("entity.monkey.death");
