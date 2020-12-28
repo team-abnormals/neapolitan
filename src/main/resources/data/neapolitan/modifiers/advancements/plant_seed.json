@@ -1,0 +1,25 @@
+{
+  "advancement": "minecraft:husbandry/plant_seed",
+  "modifiers": [
+    {
+      "type": "indexed_requirements",
+      "config": {
+        "mode": "modify",
+        "index": 0,
+        "criteria": {
+          "strawberry_bush": {
+            "trigger": "minecraft:placed_block",
+            "conditions": {
+              "block": "neapolitan:strawberry_bush"
+            }
+          }
+        },
+        "requirements": [
+          [
+            "strawberry_bush"
+          ]
+        ]
+      }
+    }
+  ]
+}
