@@ -1,12 +1,11 @@
 package com.minecraftabnormals.neapolitan.core.other;
 
+import com.minecraftabnormals.abnormals_core.core.registry.LootInjectionRegistry;
 import com.minecraftabnormals.abnormals_core.core.util.DataUtil;
 import com.minecraftabnormals.neapolitan.common.entity.BananarrowEntity;
 import com.minecraftabnormals.neapolitan.core.Neapolitan;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
-import com.minecraftabnormals.abnormals_core.core.registry.LootInjectionRegistry;
-
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
@@ -31,7 +30,7 @@ public class NeapolitanCompat {
 		registerFlammables();
 		registerDispenserBehaviors();
 	}
-	
+
 	public static void registerLootInjectors() {
 		LootInjectionRegistry.LootInjector injector = new LootInjectionRegistry.LootInjector(Neapolitan.MOD_ID);
 		injector.addLootInjection(injector.buildLootPool("village_savanna_house", 2, 0), LootTables.CHESTS_VILLAGE_VILLAGE_SAVANNA_HOUSE);
@@ -54,7 +53,7 @@ public class NeapolitanCompat {
 		DataUtil.registerCompostable(NeapolitanItems.VANILLA_PODS.get(), 0.3F);
 		DataUtil.registerCompostable(NeapolitanItems.DRIED_VANILLA_PODS.get(), 0.3F);
 		DataUtil.registerCompostable(NeapolitanItems.VANILLA_CAKE.get(), 1.0F);
-		
+
 		DataUtil.registerCompostable(NeapolitanItems.BANANA.get(), 0.3F);
 		DataUtil.registerCompostable(NeapolitanItems.BANANA_BUNCH.get(), 0.5F);
 		DataUtil.registerCompostable(NeapolitanItems.DRIED_BANANA.get(), 0.5F);
@@ -68,7 +67,7 @@ public class NeapolitanCompat {
 		DataUtil.registerCompostable(NeapolitanBlocks.DRIED_VANILLA_POD_BLOCK.get(), 0.5F);
 
 		DataUtil.registerCompostable(NeapolitanBlocks.CHOCOLATE_BLOCK.get(), 1.0F);
-		
+
 		DataUtil.registerCompostable(NeapolitanBlocks.BANANA_BUNDLE.get(), 0.85F);
 		DataUtil.registerCompostable(NeapolitanBlocks.BANANA_STALK.get(), 0.85F);
 
@@ -137,7 +136,7 @@ public class NeapolitanCompat {
 		DataUtil.registerFlammable(NeapolitanBlocks.CHOCOLATE_TILE_WALL.get(), 60, 100);
 		DataUtil.registerFlammable(NeapolitanBlocks.CHOCOLATE_TILE_VERTICAL_SLAB.get(), 60, 100);
 	}
-	
+
 	public static void registerDispenserBehaviors() {
 		DispenserBlock.registerDispenseBehavior(NeapolitanItems.BANANARROW.get(), new ProjectileDispenseBehavior() {
 			protected ProjectileEntity getProjectileEntity(World worldIn, IPosition position, ItemStack stackIn) {
@@ -155,7 +154,7 @@ public class NeapolitanCompat {
 		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.SMALL_BANANA_FROND.get(), RenderType.getCutout());
 		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.BANANA_FROND.get(), RenderType.getCutout());
 		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.LARGE_BANANA_FROND.get(), RenderType.getCutout());
-		
+
 		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.FROND_THATCH.get(), RenderType.getCutout());
 		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.FROND_THATCH_STAIRS.get(), RenderType.getCutout());
 		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.FROND_THATCH_SLAB.get(), RenderType.getCutout());

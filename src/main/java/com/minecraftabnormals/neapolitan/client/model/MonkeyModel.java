@@ -3,7 +3,6 @@ package com.minecraftabnormals.neapolitan.client.model;
 import com.google.common.collect.ImmutableList;
 import com.minecraftabnormals.neapolitan.common.entity.MonkeyEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
-
 import net.minecraft.client.renderer.entity.model.AgeableModel;
 import net.minecraft.client.renderer.entity.model.IHasArm;
 import net.minecraft.client.renderer.entity.model.IHasHead;
