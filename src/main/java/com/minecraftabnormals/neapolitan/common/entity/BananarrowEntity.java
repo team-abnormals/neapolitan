@@ -54,7 +54,7 @@ public class BananarrowEntity extends AbstractArrowEntity {
 			bananaPeel.setLocationAndAngles(this.getPosX(), this.getPosY(), this.getPosZ(), 0.0F, 0.0F);
 			this.world.addEntity(bananaPeel);
 			this.impacted = true;
-			if (result.getEntity() instanceof LivingEntity) {
+			if (result.getEntity() instanceof LivingEntity && !world.isRemote()) {
 				((LivingEntity) result.getEntity()).addPotionEffect(new EffectInstance(NeapolitanEffects.SLIPPING.get(), 100, 0, false, false, false));
 			}
 		}
