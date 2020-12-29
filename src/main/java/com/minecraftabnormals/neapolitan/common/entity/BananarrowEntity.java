@@ -49,7 +49,7 @@ public class BananarrowEntity extends AbstractArrowEntity {
 	@Override
 	protected void onEntityHit(EntityRayTraceResult result) {
 		super.onEntityHit(result);
-		if (!impacted) {
+		if (!impacted && !(result.getEntity() instanceof BananaPeelEntity)) {
 			BananaPeelEntity bananaPeel = NeapolitanEntities.BANANA_PEEL.get().create(world);
 			bananaPeel.setLocationAndAngles(this.getPosX(), this.getPosY(), this.getPosZ(), 0.0F, 0.0F);
 			this.world.addEntity(bananaPeel);
