@@ -1,4 +1,4 @@
-package com.minecraftabnormals.neapolitan.common.world.gen;
+package com.minecraftabnormals.neapolitan.core.other;
 
 import com.minecraftabnormals.abnormals_core.core.util.DataUtil;
 import com.minecraftabnormals.neapolitan.core.Neapolitan;
@@ -25,6 +25,7 @@ public class NeapolitanBiomeFeatures {
 	public static void onBiomeLoad(BiomeLoadingEvent event) {
 		ResourceLocation biome = event.getName();
 		Biome.Category category = event.getCategory();
+		if (biome != null) return;
 		RegistryKey<Biome> key = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, biome);
 
 		if (category.equals(Biome.Category.JUNGLE) || biome.getPath().contains("rainforest"))

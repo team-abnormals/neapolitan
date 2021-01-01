@@ -40,7 +40,7 @@ public class StrawberryPatchFeature extends Feature<BlockClusterFeatureConfig> {
 			BlockPos downPosition = position.down();
 			BlockState downState = world.getBlockState(downPosition);
 			if ((world.isAirBlock(position) || config.isReplaceable && world.getBlockState(position).getMaterial().isReplaceable()) && strawberryBush.isValidPosition(world, position) && (config.whitelist.isEmpty() || config.whitelist.contains(downState.getBlock())) && !config.blacklist.contains(downState) && (!config.requiresWater || world.getFluidState(downPosition.west()).isTagged(FluidTags.WATER) || world.getFluidState(downPosition.east()).isTagged(FluidTags.WATER) || world.getFluidState(downPosition.north()).isTagged(FluidTags.WATER) || world.getFluidState(downPosition.south()).isTagged(FluidTags.WATER))) {
-				if (random.nextInt(4) != 0) {
+				if (random.nextInt(5) != 0) {
 					int age = world.getBlockState(position.down()).isIn(Blocks.COARSE_DIRT) ? 2 : 6;
 					config.blockPlacer.place(world, position, strawberryBush.with(StrawberryBushBlock.AGE, age), random);
 				} else {

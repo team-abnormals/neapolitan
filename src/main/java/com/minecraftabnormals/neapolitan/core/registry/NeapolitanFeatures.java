@@ -29,7 +29,7 @@ public class NeapolitanFeatures {
 	}
 
 	public static final class Configured {
-		public static final ConfiguredFeature<?, ?> STRAWBERRY_PATCH = NeapolitanFeatures.STRAWBERRY_PATCH.get().withConfiguration(Configs.STRAWBERRY_PATCH_CONFIG).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(22));
+		public static final ConfiguredFeature<?, ?> STRAWBERRY_PATCH = NeapolitanFeatures.STRAWBERRY_PATCH.get().withConfiguration(Configs.STRAWBERRY_PATCH_CONFIG).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(16));
 		public static final ConfiguredFeature<?, ?> VANILLA_VINE_PATCH = NeapolitanFeatures.VANILLA_VINE_PATCH.get().withConfiguration(Configs.VANILLA_VINE_PATCH_CONFIG).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(26));
 
 		public static final ConfiguredFeature<?, ?> BANANA_PLANT = NeapolitanFeatures.BANANA_PLANT.get().withConfiguration(NoFeatureConfig.field_236559_b_).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT);
