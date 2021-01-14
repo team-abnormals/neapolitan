@@ -8,7 +8,7 @@
   "block.neapolitan.chocolate_bricks": "Шоколадные кирпичи",
   "block.neapolitan.chocolate_brick_slab": "Плита из шоколодных кирпичей",
   "block.neapolitan.chocolate_brick_stairs": "Ступеньки из шоколадных кирпичей",
-  "block.neapolitan.chocolate_brick_wall": "Стена из шоколадных кирпичей",
+  "block.neapolitan.chocolate_brick_wall": "Ограда из шоколадных кирпичей",
   "block.neapolitan.chocolate_brick_vertical_slab": "Вертикальная плита из шоколадных кирпичей",
   
   "block.neapolitan.chiseled_chocolate_bricks": "Резные шоколадные кирпичи",
@@ -16,7 +16,7 @@
   "block.neapolitan.chocolate_tiles": "Резной шоколад",
   "block.neapolitan.chocolate_tile_slab": "Плита из резного шоколада",
   "block.neapolitan.chocolate_tile_stairs": "Ступеньки из резного шоколада",
-  "block.neapolitan.chocolate_tile_wall": "Стена из резного шоколада",
+  "block.neapolitan.chocolate_tile_wall": "Ограда из резного шоколада",
   "block.neapolitan.chocolate_tile_vertical_slab": "Вертикальная плита из резного шоколада",
   
   "block.neapolitan.frond_thatch": "Блок банановых листьев",
@@ -35,7 +35,7 @@
   "block.neapolitan.vanilla_vine": "Ванильная лоза",
   "block.neapolitan.vanilla_vine_plant": "Ванильная лоза",
   
-  "block.neapolitan.banana_stalk": "Стебель банана",
+  "block.neapolitan.banana_stalk": "Стебель бананового дерева",
   "block.neapolitan.banana_bundle": "Пучок бананов",
   
   "block.neapolitan.small_banana_frond": "Маленький банановый лист",
@@ -47,12 +47,13 @@
   "block.neapolitan.vanilla_cake": "Ванильный торт",
   "block.neapolitan.banana_cake": "Банановый торт",
   
-  "item.neapolitan.milk_bottle": "Бутылка молока",
+  "item.neapolitan.milk_bottle": "Бутылочка молока",
   "item.neapolitan.ice_cubes": "Кубики льда",
   
   "item.neapolitan.chocolate_bar": "Плитка шоколада",
   "item.neapolitan.chocolate_ice_cream": "Шоколадное мороженое",
   "item.neapolitan.chocolate_milkshake": "Шоколадный молочный коктейль",
+  "item.neapolitan.chocolate_spider_eye": "Паучий глаз в шоколаде",
   
   "item.neapolitan.strawberry_pips": "Косточки клубники",
   "item.neapolitan.strawberries": "Клубника",
@@ -65,6 +66,7 @@
   "item.neapolitan.vanilla_ice_cream": "Ванильное мороженое",
   "item.neapolitan.vanilla_pudding": "Ванильный пуддинг",
   "item.neapolitan.vanilla_milkshake": "Ванильный молочный коктейль",
+  "item.neapolitan.vanilla_fudge": "Ванильная стряпня",
   
   "item.neapolitan.banana": "Банан",
   "item.neapolitan.banana_bunch": "Связка бананов",
@@ -83,39 +85,54 @@
   "item.neapolitan.monkey_banner_pattern": "Узор флага",
   "item.neapolitan.monkey_banner_pattern.desc": "Обезьяна",
   
+  "item.neapolitan.monkey_spawn_egg": "Яйцо призыва обезьяны",
+  "item.neapolitan.plantain_spider_spawn_egg": "Яйцо призыва бананового паука",
+  
   "entity.neapolitan.banana_peel": "Банановая кожура",
   "entity.neapolitan.monkey": "Обезьяна",
+  "entity.neapolitan.plantain_spider": "Банановый паук",
   "entity.neapolitan.bananarrow": "Бананострела",
   
-  "effect.neapolitan.sugar_rush": "Прилив скорости",
+  "effect.neapolitan.sugar_rush": "Сахарный прилив",
   "effect.neapolitan.vanilla_scent": "Ванильный аромат",
   "effect.neapolitan.agility": "Ловкость",
   "effect.neapolitan.slipping": "Скольжение",
   
-  "advancements.husbandry.creeper_heal.title": "Любовная бомба",
-  "advancements.husbandry.creeper_heal.description": "Восстановите себе здоровье, взорвав крипера в кусте клубники",
+  "advancements.husbandry.creeper_heal.title": "Бомба любви",
+  "advancements.husbandry.creeper_heal.description": "Вылечитесь от крипера, который взорвался в клубничном кусте",
   
-  "advancements.husbandry.vanilla_poison.title": "Killer Vanilla",
-  "advancements.husbandry.vanilla_poison.description": "Сломайте ваниль без ножниц, тем самым высвободив вредную ауру",
+  "advancements.husbandry.vanilla_poison.title": "Ваниль-убийца",
+  "advancements.husbandry.vanilla_poison.description": "Сломайте ваниль без ножниц, высвободив вредную ауру",
   
-  "advancements.husbandry.place_all_chocolate_blocks.title": "Постройка из коричневого камня",
+  "advancements.husbandry.place_all_chocolate_blocks.title": "В шоколаде",
   "advancements.husbandry.place_all_chocolate_blocks.description": "Поставьте все виды шоколадных блоков",
   
   "advancements.husbandry.harvest_white_strawberries.title": "Пикник в облаках",
-  "advancements.husbandry.harvest_white_strawberries.description": "Соберите белую клубнику, произрастающую только на больших высотах",
+  "advancements.husbandry.harvest_white_strawberries.description": "Получите белую клубнику вырастив её на большой высоте",
   
-  "block.minecraft.banner.mca_monkey.black": "Черная обезьяна",
+  "subtitles.neapolitan.entity.monkey.angry": "Обезьяна кричит",
+  "subtitles.neapolitan.entity.monkey.death": "Обезьяна умерает",
+  "subtitles.neapolitan.entity.monkey.eat": "Обезьяна ест",
+  "subtitles.neapolitan.entity.monkey.howl": "Обезьяна воет",
+  "subtitles.neapolitan.entity.monkey.hurt": "Обезьяна получает урон",
+  "subtitles.neapolitan.entity.monkey.ambient": "Обезьяна у-у а-акает",
+  "subtitles.neapolitan.entity.monkey.step": "Обезьяна ходит",
+  "subtitles.neapolitan.entity.monkey.swing": "Обезьяна качается",
+  
+  "subtitles.neapolitan.item.ice_cubes.eat": "Хруст",
+  
+  "block.minecraft.banner.mca_monkey.black": "Чёрная обезьяна",
   "block.minecraft.banner.mca_monkey.red": "Красная обезьяна",
-  "block.minecraft.banner.mca_monkey.green": "Зеленая обезьяна",
+  "block.minecraft.banner.mca_monkey.green": "Зелёная обезьяна",
   "block.minecraft.banner.mca_monkey.brown": "Коричневая обезьяна",
   "block.minecraft.banner.mca_monkey.blue": "Синяя обезьяна",
   "block.minecraft.banner.mca_monkey.purple": "Фиолетовая обезьяна",
   "block.minecraft.banner.mca_monkey.cyan": "Бирюзовая обезьяна",
   "block.minecraft.banner.mca_monkey.silver": "Светло-серая обезьяна",
   "block.minecraft.banner.mca_monkey.gray": "Серая обезьяна",
-  "block.minecraft.banner.mca_monkey.pink": "Розовая обезьяна",
+  "block.minecraft.banner.mca_monkey.pink": "Розовая Обезьяна",
   "block.minecraft.banner.mca_monkey.lime": "Лаймовая обезьяна",
-  "block.minecraft.banner.mca_monkey.yellow": "Желтая обезьяна",
+  "block.minecraft.banner.mca_monkey.yellow": "Жёлтая обезьяна",
   "block.minecraft.banner.mca_monkey.lightBlue": "Голубая обезьяна",
   "block.minecraft.banner.mca_monkey.magenta": "Пурпурная обезьяна",
   "block.minecraft.banner.mca_monkey.orange": "Оранжевая обезьяна",
