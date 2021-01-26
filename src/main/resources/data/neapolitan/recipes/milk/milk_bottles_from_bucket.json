@@ -5,13 +5,13 @@
       "item": "minecraft:bucket"
     },
     {
-      "tag": "forge:milk/milk_bottle"
+      "tag": "forge:bottles/milk"
     },
     {
-      "tag": "forge:milk/milk_bottle"
+      "tag": "forge:bottles/milk"
     },
     {
-      "tag": "forge:milk/milk_bottle"
+      "tag": "forge:bottles/milk"
     }
   ],
   "result": {

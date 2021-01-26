@@ -5,7 +5,6 @@ import com.minecraftabnormals.neapolitan.common.entity.BananaPeelEntity;
 import com.minecraftabnormals.neapolitan.core.Neapolitan;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
@@ -30,6 +29,6 @@ public class BananaPeelRenderer extends EntityRenderer<BananaPeelEntity> {
 	}
 
 	public ResourceLocation getEntityTexture(BananaPeelEntity entity) {
-		return new ResourceLocation(Neapolitan.MODID, "textures/entity/banana_peel.png");
+		return new ResourceLocation(Neapolitan.MOD_ID, "textures/entity/banana_peel.png");
 	}
 }

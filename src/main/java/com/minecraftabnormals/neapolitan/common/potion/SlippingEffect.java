@@ -1,12 +1,11 @@
 package com.minecraftabnormals.neapolitan.common.potion;
 
-import java.util.Random;
-
 import com.minecraftabnormals.neapolitan.core.other.NeapolitanTags;
-
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectType;
+
+import java.util.Random;
 
 public class SlippingEffect extends Effect {
 

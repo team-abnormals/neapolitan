@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "#forge:milk/milk",
-    "#forge:milk/milk_bottle"
+    "#forge:buckets/milk",
+    "#forge:bottles/milk"
   ]
 }

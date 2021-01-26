@@ -1,12 +1,11 @@
 package com.minecraftabnormals.neapolitan.client.renderer.layer;
 
+import com.minecraftabnormals.abnormals_core.client.ACRenderTypes;
 import com.minecraftabnormals.neapolitan.client.model.MonkeyModel;
 import com.minecraftabnormals.neapolitan.common.entity.MonkeyEntity;
 import com.minecraftabnormals.neapolitan.core.Neapolitan;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import com.teamabnormals.abnormals_core.client.ACRenderTypes;
-
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.IEntityRenderer;
@@ -18,7 +17,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class MonkeyEyesLayer<T extends MonkeyEntity> extends AbstractEyesLayer<T, MonkeyModel<T>> {
-	private static final RenderType RENDER_TYPE = ACRenderTypes.getEmissiveEntity(new ResourceLocation(Neapolitan.MODID, "textures/entity/monkey/monkey_eyes.png"));
+	private static final RenderType RENDER_TYPE = ACRenderTypes.getEmissiveEntity(new ResourceLocation(Neapolitan.MOD_ID, "textures/entity/monkey/monkey_eyes.png"));
 
 	public MonkeyEyesLayer(IEntityRenderer<T, MonkeyModel<T>> rendererIn) {
 		super(rendererIn);

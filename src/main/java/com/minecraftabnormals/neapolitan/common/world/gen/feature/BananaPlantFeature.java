@@ -1,16 +1,9 @@
 package com.minecraftabnormals.neapolitan.common.world.gen.feature;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-
+import com.minecraftabnormals.abnormals_core.core.util.TreeUtil;
 import com.minecraftabnormals.neapolitan.common.block.BananaFrondBlock;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.mojang.serialization.Codec;
-import com.teamabnormals.abnormals_core.core.utils.TreeUtils;
-
 import net.minecraft.block.Blocks;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -19,7 +12,8 @@ import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.IWorldGenerationBaseReader;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
-import net.minecraft.world.gen.feature.structure.StructureManager;
+
+import java.util.*;
 
 public class BananaPlantFeature extends Feature<NoFeatureConfig> {
 	public BananaPlantFeature(Codec<NoFeatureConfig> codec) {
@@ -27,7 +21,7 @@ public class BananaPlantFeature extends Feature<NoFeatureConfig> {
 	}
 
 	@Override
-	public boolean func_230362_a_(ISeedReader world, StructureManager structureManager, ChunkGenerator chunkGenerator, Random random, BlockPos pos, NoFeatureConfig config) {
+	public boolean generate(ISeedReader world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, NoFeatureConfig config) {
 		BlockPos blockPos = pos;
 		List<BlockPos> stalks = new ArrayList<>();
 		BlockPos upFrond = null;
@@ -82,25 +76,25 @@ public class BananaPlantFeature extends Feature<NoFeatureConfig> {
 
 		if (isAirAt(world, pos, size) && pos.getY() < world.getHeight() - size) {
 			for (BlockPos blockPos2 : stalks) {
-				TreeUtils.setForcedState(world, blockPos2, NeapolitanBlocks.BANANA_STALK.get().getDefaultState());
+				TreeUtil.setForcedState(world, blockPos2, NeapolitanBlocks.BANANA_STALK.get().getDefaultState());
 			}
-			TreeUtils.setForcedState(world, upFrond, NeapolitanBlocks.LARGE_BANANA_FROND.get().getDefaultState());
+			TreeUtil.setForcedState(world, upFrond, NeapolitanBlocks.LARGE_BANANA_FROND.get().getDefaultState());
 			if (bundle != null)
-				TreeUtils.setForcedState(world, bundle, NeapolitanBlocks.BANANA_BUNDLE.get().getDefaultState());
+				TreeUtil.setForcedState(world, bundle, NeapolitanBlocks.BANANA_BUNDLE.get().getDefaultState());
 			for (BlockPos blockPos2 : smallFronds.keySet()) {
-				TreeUtils.setForcedState(world, blockPos2, NeapolitanBlocks.SMALL_BANANA_FROND.get().getDefaultState().with(BananaFrondBlock.FACING, smallFronds.get(blockPos2)));
+				TreeUtil.setForcedState(world, blockPos2, NeapolitanBlocks.SMALL_BANANA_FROND.get().getDefaultState().with(BananaFrondBlock.FACING, smallFronds.get(blockPos2)));
 			}
 			for (BlockPos blockPos2 : fronds.keySet()) {
-				TreeUtils.setForcedState(world, blockPos2, NeapolitanBlocks.BANANA_FROND.get().getDefaultState().with(BananaFrondBlock.FACING, fronds.get(blockPos2)));
+				TreeUtil.setForcedState(world, blockPos2, NeapolitanBlocks.BANANA_FROND.get().getDefaultState().with(BananaFrondBlock.FACING, fronds.get(blockPos2)));
 			}
 			for (BlockPos blockPos2 : largeFronds.keySet()) {
-				TreeUtils.setForcedState(world, blockPos2, NeapolitanBlocks.LARGE_BANANA_FROND.get().getDefaultState().with(BananaFrondBlock.FACING, largeFronds.get(blockPos2)));
+				TreeUtil.setForcedState(world, blockPos2, NeapolitanBlocks.LARGE_BANANA_FROND.get().getDefaultState().with(BananaFrondBlock.FACING, largeFronds.get(blockPos2)));
 			}
 			if (isGrass(world, pos.down())) {
-				TreeUtils.setForcedState(world, pos.down(), Blocks.GRAVEL.getDefaultState());
+				TreeUtil.setForcedState(world, pos.down(), Blocks.GRAVEL.getDefaultState());
 				for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.getX() - 3, pos.getY() - 2, pos.getZ() - 3, pos.getX() + 3, pos.getY() + 2, pos.getZ() + 3)) {
-					if (isGrass(world, blockpos) && random.nextInt(4) == 0 && TreeUtils.isAir(world, blockpos.up()))
-						TreeUtils.setForcedState(world, blockpos, Blocks.GRAVEL.getDefaultState());
+					if (isGrass(world, blockpos) && random.nextInt(4) == 0 && TreeUtil.isAir(world, blockpos.up()))
+						TreeUtil.setForcedState(world, blockpos, Blocks.GRAVEL.getDefaultState());
 				}
 			}
 
@@ -113,11 +107,11 @@ public class BananaPlantFeature extends Feature<NoFeatureConfig> {
 	private static boolean isAirAt(IWorldGenerationBaseReader world, BlockPos pos, int size) {
 		BlockPos position = pos.up();
 		for (int i = 0; i < size + 1; i++) {
-			if (!TreeUtils.isAir(world, position))
+			if (!TreeUtil.isAir(world, position))
 				return false;
 			for (Direction direction : Direction.values()) {
 				if (direction.getAxis().isHorizontal()) {
-					if (!TreeUtils.isAir(world, position.offset(direction)))
+					if (!TreeUtil.isAir(world, position.offset(direction)))
 						return false;
 				}
 			}

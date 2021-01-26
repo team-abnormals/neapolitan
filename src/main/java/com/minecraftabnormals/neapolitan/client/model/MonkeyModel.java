@@ -3,7 +3,6 @@ package com.minecraftabnormals.neapolitan.client.model;
 import com.google.common.collect.ImmutableList;
 import com.minecraftabnormals.neapolitan.common.entity.MonkeyEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
-
 import net.minecraft.client.renderer.entity.model.AgeableModel;
 import net.minecraft.client.renderer.entity.model.IHasArm;
 import net.minecraft.client.renderer.entity.model.IHasHead;
@@ -74,13 +73,6 @@ public class MonkeyModel<T extends MonkeyEntity> extends AgeableModel<T> impleme
 		this.head.rotateAngleY = netHeadYaw * ((float) Math.PI / 180F);
 		this.head.rotateAngleX = headPitch * ((float) Math.PI / 180F);
 
-		this.rightLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount / 1.0F;
-		this.leftLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount / 1.0F;
-		this.rightLeg.rotateAngleY = 0.0F;
-		this.leftLeg.rotateAngleY = 0.0F;
-		this.rightLeg.rotateAngleZ = 0.0F;
-		this.leftLeg.rotateAngleZ = 0.0F;
-
 		if (this.isSitting) {
 			this.rightArm.rotateAngleX += (-(float) Math.PI / 5F);
 			this.leftArm.rotateAngleX += (-(float) Math.PI / 5F);
@@ -103,15 +95,32 @@ public class MonkeyModel<T extends MonkeyEntity> extends AgeableModel<T> impleme
 			this.leftArm.rotateAngleX = -2.0F + 1.5F * MathHelper.func_233021_e_((float) i - partialTick, 10.0F);
 
 		} else {
-			this.rightArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 2.0F * limbSwingAmount * 0.5F / 1.0F;
-			this.leftArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 2.0F * limbSwingAmount * 0.5F / 1.0F;
+			float f = !this.isSitting ? entityIn.getClimbingAnimationScale(partialTick) : 0.0F;
+			float climbanim = -f * (float) Math.PI / 2F;
+
+			this.rightArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 2.0F * limbSwingAmount * 0.5F / 1.0F + climbanim * 1.4F;
+			this.leftArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 2.0F * limbSwingAmount * 0.5F / 1.0F + climbanim * 1.4F;
 			this.rightArm.rotateAngleZ = 0.0F;
 			this.leftArm.rotateAngleZ = 0.0F;
-			this.rightArm.rotateAngleY = 0.0F;
-			this.leftArm.rotateAngleY = 0.0F;
+			this.rightArm.rotateAngleY = -climbanim * 0.4F;
+			this.leftArm.rotateAngleY = climbanim * 0.4F;
+
+			this.rightLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount / 1.0F + climbanim * 0.5F;
+			this.leftLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount / 1.0F + climbanim * 0.5F;
+			this.rightLeg.rotateAngleY = 0.0F;
+			this.leftLeg.rotateAngleY = 0.0F;
+			this.rightLeg.rotateAngleZ = 0.0F;
+			this.leftLeg.rotateAngleZ = 0.0F;
+
 			if (this.isSitting) {
 				this.rightArm.rotateAngleX += (-(float) Math.PI / 5F);
 				this.leftArm.rotateAngleX += (-(float) Math.PI / 5F);
+				this.rightLeg.rotateAngleX = -1.4137167F;
+				this.rightLeg.rotateAngleY = ((float) Math.PI / 10F);
+				this.rightLeg.rotateAngleZ = 0.07853982F;
+				this.leftLeg.rotateAngleX = -1.4137167F;
+				this.leftLeg.rotateAngleY = (-(float) Math.PI / 10F);
+				this.leftLeg.rotateAngleZ = -0.07853982F;
 			}
 		}
 	}
