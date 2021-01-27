@@ -42,10 +42,10 @@ public class NeapolitanBlocks {
 	public static final RegistryObject<Block> CHOCOLATE_TILE_WALL = HELPER.createBlock("chocolate_tile_wall", () -> new WallBlock(Properties.CHOCOLATE_TILES), ItemGroup.DECORATIONS);
 	public static final RegistryObject<Block> CHOCOLATE_TILE_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "chocolate_tile_vertical_slab", () -> new VerticalSlabBlock(Properties.CHOCOLATE_TILES), ItemGroup.BUILDING_BLOCKS);
 
-	public static final RegistryObject<Block> FROND_THATCH = HELPER.createBlock("frond_thatch", () -> new ThatchBlock(Properties.FROND_THATCH), ItemGroup.BUILDING_BLOCKS);
-	public static final RegistryObject<Block> FROND_THATCH_SLAB = HELPER.createBlock("frond_thatch_slab", () -> new ThatchSlabBlock(Properties.FROND_THATCH), ItemGroup.BUILDING_BLOCKS);
-	public static final RegistryObject<Block> FROND_THATCH_STAIRS = HELPER.createBlock("frond_thatch_stairs", () -> new ThatchStairsBlock(FROND_THATCH.get().getDefaultState(), Properties.FROND_THATCH), ItemGroup.BUILDING_BLOCKS);
-	public static final RegistryObject<Block> FROND_THATCH_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "frond_thatch_vertical_slab", () -> new ThatchVerticalSlabBlock(Properties.FROND_THATCH), ItemGroup.BUILDING_BLOCKS);
+	public static final RegistryObject<Block> FROND_THATCH = HELPER.createFuelBlock("frond_thatch", () -> new ThatchBlock(Properties.FROND_THATCH), 200, ItemGroup.BUILDING_BLOCKS);
+	public static final RegistryObject<Block> FROND_THATCH_SLAB = HELPER.createFuelBlock("frond_thatch_slab", () -> new ThatchSlabBlock(Properties.FROND_THATCH), 100, ItemGroup.BUILDING_BLOCKS);
+	public static final RegistryObject<Block> FROND_THATCH_STAIRS = HELPER.createFuelBlock("frond_thatch_stairs", () -> new ThatchStairsBlock(FROND_THATCH.get().getDefaultState(), Properties.FROND_THATCH), 200, ItemGroup.BUILDING_BLOCKS);
+	public static final RegistryObject<Block> FROND_THATCH_VERTICAL_SLAB = HELPER.createCompatFuelBlock("quark", "frond_thatch_vertical_slab", () -> new ThatchVerticalSlabBlock(Properties.FROND_THATCH), 100, ItemGroup.BUILDING_BLOCKS);
 
 	public static final RegistryObject<Block> STRAWBERRY_BUSH = HELPER.createBlockNoItem("strawberry_bush", () -> new StrawberryBushBlock(Properties.STRAWBERRY_BUSH));
 
@@ -53,6 +53,7 @@ public class NeapolitanBlocks {
 	public static final RegistryObject<Block> VANILLA_VINE_PLANT = HELPER.createBlockNoItem("vanilla_vine_plant", () -> new VanillaVineBlock(Properties.VANILLA_VINE));
 
 	public static final RegistryObject<Block> BANANA_STALK = HELPER.createFuelBlock("banana_stalk", () -> new RotatedPillarBlock(Properties.BANANA_STALK), 800, ItemGroup.BUILDING_BLOCKS);
+	public static final RegistryObject<Block> CARVED_BANANA_STALK = HELPER.createFuelBlock("carved_banana_stalk", () -> new RotatedPillarBlock(Properties.BANANA_STALK), 800, ItemGroup.BUILDING_BLOCKS);
 	public static final RegistryObject<Block> SMALL_BANANA_FROND = HELPER.createFuelBlock("small_banana_frond", () -> new BananaFrondBlock(Properties.BANANA_FROND), 50, ItemGroup.DECORATIONS);
 	public static final RegistryObject<Block> BANANA_FROND = HELPER.createFuelBlock("banana_frond", () -> new BananaFrondBlock(Properties.BANANA_FROND), 100, ItemGroup.DECORATIONS);
 	public static final RegistryObject<Block> LARGE_BANANA_FROND = HELPER.createFuelBlock("large_banana_frond", () -> new BananaFrondBlock(Properties.BANANA_FROND), 150, ItemGroup.DECORATIONS);
