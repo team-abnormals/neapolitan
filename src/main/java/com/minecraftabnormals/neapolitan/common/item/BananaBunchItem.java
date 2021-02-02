@@ -3,6 +3,7 @@ package com.minecraftabnormals.neapolitan.common.item;
 import com.minecraftabnormals.neapolitan.common.entity.BananaPeelEntity;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEntities;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
+
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -10,7 +11,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.stats.Stats;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 
 public class BananaBunchItem extends Item {
@@ -29,20 +35,20 @@ public class BananaBunchItem extends Item {
 			return ActionResultType.PASS;
 		}
 	}
-
+	
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
 		this.handleOpening(worldIn, playerIn.getPositionVec().getX(), playerIn.getPositionVec().getY(), playerIn.getPositionVec().getZ(), playerIn, handIn, playerIn.getYaw(1.0F));
 		return ActionResult.resultConsume(playerIn.getHeldItem(handIn));
 	}
-
+	
 	private void handleOpening(World worldIn, double posX, double posY, double posZ, PlayerEntity playerIn, Hand handIn, float yaw) {
 		ItemStack stack = playerIn.getHeldItem(handIn);
 		playerIn.getCooldownTracker().setCooldown(this, 5);
 		BananaPeelEntity bananaPeel = NeapolitanEntities.BANANA_PEEL.get().create(worldIn);
 		bananaPeel.setLocationAndAngles(posX, posY, posZ, yaw, 0.0F);
 		worldIn.addEntity(bananaPeel);
-
+		
 		if (!playerIn.abilities.isCreativeMode) {
 			stack.shrink(1);
 		}

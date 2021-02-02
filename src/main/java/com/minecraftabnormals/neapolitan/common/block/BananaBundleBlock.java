@@ -2,6 +2,7 @@ package com.minecraftabnormals.neapolitan.common.block;
 
 import com.minecraftabnormals.neapolitan.common.entity.PlantainSpiderEntity;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEntities;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;

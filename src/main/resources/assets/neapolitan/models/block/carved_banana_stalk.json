@@ -1,7 +1,0 @@
-{
-  "parent": "block/cube_column",
-  "textures": {
-    "end": "neapolitan:block/carved_banana_stalk_top",
-    "side": "neapolitan:block/carved_banana_stalk"
-  }
-}

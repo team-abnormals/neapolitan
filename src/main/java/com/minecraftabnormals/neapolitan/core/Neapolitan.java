@@ -1,6 +1,7 @@
 package com.minecraftabnormals.neapolitan.core;
 
 import com.minecraftabnormals.abnormals_core.core.util.registry.RegistryHelper;
+import com.minecraftabnormals.neapolitan.common.world.gen.NeapolitanBiomeFeatures;
 import com.minecraftabnormals.neapolitan.core.other.NeapolitanCompat;
 import com.minecraftabnormals.neapolitan.core.registry.*;
 import net.minecraftforge.api.distmarker.Dist;
@@ -23,12 +24,12 @@ public class Neapolitan {
 	public Neapolitan() {
 		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		MinecraftForge.EVENT_BUS.register(this);
-
+		
 		REGISTRY_HELPER.register(modEventBus);
 		NeapolitanEffects.EFFECTS.register(modEventBus);
 		NeapolitanFeatures.FEATURES.register(modEventBus);
 		NeapolitanBanners.PAINTINGS.register(modEventBus);
-
+		
 		modEventBus.addListener(this::setupCommon);
 		DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
 			modEventBus.addListener(this::setupClient);
@@ -44,7 +45,7 @@ public class Neapolitan {
 			NeapolitanCompat.registerCompat();
 			NeapolitanEntities.registerEntityAttributes();
 			NeapolitanEntities.registerEntitySpawns();
-			NeapolitanFeatures.Configured.registerConfiguredFeatures();
+			NeapolitanBiomeFeatures.Configs.registerConfiguredFeatures();
 		});
 	}
 

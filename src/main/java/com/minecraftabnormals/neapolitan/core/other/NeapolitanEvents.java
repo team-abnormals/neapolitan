@@ -137,11 +137,11 @@ public class NeapolitanEvents {
 	public static void onWandererTradesEvent(WandererTradesEvent event) {
 		TradeUtil.addWandererTrades(event,
 				new AbnormalsTrade(1, NeapolitanItems.VANILLA_PODS.get(), 3, 4, 1),
-				new AbnormalsTrade(5, NeapolitanBlocks.LARGE_BANANA_FROND.get().asItem(), 1, 4, 1)
-		);
+                new AbnormalsTrade(5, NeapolitanBlocks.LARGE_BANANA_FROND.get().asItem(), 1, 4, 1)
+        );
 
 		TradeUtil.addRareWandererTrades(event,
-				new AbnormalsTrade(4, NeapolitanItems.WHITE_STRAWBERRIES.get(), 8, 2, 1)
-		);
+                new AbnormalsTrade(4, NeapolitanItems.WHITE_STRAWBERRIES.get(), 8, 2, 1)
+        );
 	}
 }

@@ -1,6 +1,7 @@
 package com.minecraftabnormals.neapolitan.common.item;
 
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanSoundEvents;
+
 import net.minecraft.item.Item;
 import net.minecraft.util.SoundEvent;
 

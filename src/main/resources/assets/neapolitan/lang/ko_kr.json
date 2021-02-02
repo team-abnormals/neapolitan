@@ -9,7 +9,7 @@
   "block.neapolitan.chocolate_brick_slab": "초콜릿 벽돌 반 블록",
   "block.neapolitan.chocolate_brick_stairs": "초콜릿 벽돌 계단",
   "block.neapolitan.chocolate_brick_wall": "초콜릿 벽돌 담장",
-  "block.neapolitan.chocolate_brick_vertical_slab": "초콜릿 벽돌 수직 반 블록",
+  "block.neapolitan.chocolate_brick_vertical_slab": "초콜릿 벽돌 세로 반 블록",
   
   "block.neapolitan.chiseled_chocolate_bricks": "조각된 초콜릿 벽돌",
   
@@ -17,12 +17,12 @@
   "block.neapolitan.chocolate_tile_slab": "초콜릿 타일 반 블록",
   "block.neapolitan.chocolate_tile_stairs": "초콜릿 타일 계단",
   "block.neapolitan.chocolate_tile_wall": "초콜릿 타일 담장",
-  "block.neapolitan.chocolate_tile_vertical_slab": "초콜릿 타일 수직 반 블록",
+  "block.neapolitan.chocolate_tile_vertical_slab": "초콜릿 타일 세로 반 블록",
   
   "block.neapolitan.frond_thatch": "바나나 잎 짚",
   "block.neapolitan.frond_thatch_stairs": "바나나 잎 짚 계단",
   "block.neapolitan.frond_thatch_slab": "바나나 잎 짚 반 블록",
-  "block.neapolitan.frond_thatch_vertical_slab": "바나나 잎 짚 수직 반 블록",
+  "block.neapolitan.frond_thatch_vertical_slab": "바나나 잎 짚 세로 반 블록",
   
   "block.neapolitan.strawberry_basket": "딸기 바구니",
   "block.neapolitan.white_strawberry_basket": "하얀색 딸기 바구니",
@@ -36,7 +36,7 @@
   "block.neapolitan.vanilla_vine_plant": "바닐라 덩굴",
   
   "block.neapolitan.banana_stalk": "바나나 줄기",
-  "block.neapolitan.banana_bundle": "바나나 묶음",
+  "block.neapolitan.banana_bundle": "바나나 다발",
   
   "block.neapolitan.small_banana_frond": "작은 바나나 잎",
   "block.neapolitan.banana_frond": "바나나 잎",
@@ -104,10 +104,10 @@
   "advancements.husbandry.vanilla_poison.title": "사람 잡는 식물",
   "advancements.husbandry.vanilla_poison.description": "바닐라 덩굴을 가위 없이 부수고, 그 위험성을 몸소 느껴보세요",
   
-  "advancements.husbandry.place_all_chocolate_blocks.title": "음식 가지고 장난치지 말랬지?",
+  "advancements.husbandry.place_all_chocolate_blocks.title": "갈색 건축",
   "advancements.husbandry.place_all_chocolate_blocks.description": "모든 종류의 초콜릿 블록을 설치하세요",
   
-  "advancements.husbandry.harvest_white_strawberries.title": "구름 속의 피크닉",
+  "advancements.husbandry.harvest_white_strawberries.title": "구름 위의 피크닉",
   "advancements.husbandry.harvest_white_strawberries.description": "높은 곳에서만 자라는 하얀색 딸기를 얻으세요",
   
   "subtitles.neapolitan.entity.monkey.angry": "원숭이가 소리 지름",

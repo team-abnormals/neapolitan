@@ -1,6 +1,9 @@
 package com.minecraftabnormals.neapolitan.common.potion;
 
+import java.util.Map.Entry;
+
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEffects;
+
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -8,8 +11,6 @@ import net.minecraft.entity.ai.attributes.AttributeModifierManager;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectType;
-
-import java.util.Map.Entry;
 
 public class SugarRushEffect extends Effect {
 
@@ -35,7 +36,7 @@ public class SugarRushEffect extends Effect {
 					iattributeinstance.removeModifier(attributemodifier);
 					iattributeinstance.applyPersistentModifier(new AttributeModifier(attributemodifier.getID(), this.getName() + " " + amplifier, amount * this.getAttributeModifierAmount(amplifier, attributemodifier), attributemodifier.getOperation()));
 				}
-			}
+			}	
 		}
 	}
 

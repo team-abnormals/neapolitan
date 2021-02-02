@@ -1,6 +1,11 @@
 package com.minecraftabnormals.neapolitan.common.entity.goals;
 
+import java.util.EnumSet;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
+
 import com.minecraftabnormals.neapolitan.core.other.NeapolitanTags;
+
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.RandomPositionGenerator;
@@ -11,10 +16,6 @@ import net.minecraft.util.EntityPredicates;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
-
-import java.util.EnumSet;
-import java.util.function.Predicate;
-import java.util.stream.Stream;
 
 public class AvoidBlockGoal<T extends LivingEntity> extends Goal {
 	protected final CreatureEntity entity;
