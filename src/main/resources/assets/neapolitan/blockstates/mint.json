@@ -1,0 +1,45 @@
+{
+  "variants": {
+    "age=0": [
+      {
+        "model": "neapolitan:block/mint_stage0"
+      },
+      {
+        "model": "neapolitan:block/mint_stage0_other"
+      }
+    ],
+    "age=1": [
+      {
+        "model": "neapolitan:block/mint_stage1"
+      },
+      {
+        "model": "neapolitan:block/mint_stage1_other"
+      }
+    ],
+    "age=2": [
+      {
+        "model": "neapolitan:block/mint_stage2"
+      },
+      {
+        "model": "neapolitan:block/mint_stage2_other"
+      }
+    ],
+    "age=3": [
+      {
+        "model": "neapolitan:block/mint_stage3"
+      },
+      {
+        "model": "neapolitan:block/mint_stage3_other"
+      }
+    ],
+    "age=4": [
+      {
+        "model": "neapolitan:block/mint_stage4"
+      },
+      {
+        "model": "neapolitan:block/mint_stage4_other"
+      }
+    ]
+  }
+}
+

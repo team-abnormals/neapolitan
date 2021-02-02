@@ -23,10 +23,10 @@ import net.minecraftforge.fml.common.Mod;
 public class NeapolitanEntities {
 	public static final EntitySubRegistryHelper HELPER = Neapolitan.REGISTRY_HELPER.getEntitySubHelper();
 
-	public static final RegistryObject<EntityType<BananarrowEntity>> 		BANANARROW 		= HELPER.createEntity("bananarrow", BananarrowEntity::new, BananarrowEntity::new, EntityClassification.MISC, 0.5F, 0.5F);
-	public static final RegistryObject<EntityType<BananaPeelEntity>> 		BANANA_PEEL 	= HELPER.createEntity("banana_peel", BananaPeelEntity::new, BananaPeelEntity::new, EntityClassification.MISC, 0.5F, 0.5F);
-	public static final RegistryObject<EntityType<MonkeyEntity>> 			MONKEY 			= HELPER.createLivingEntity("monkey", MonkeyEntity::new, EntityClassification.CREATURE, 0.6F, 1.6F);
-	public static final RegistryObject<EntityType<PlantainSpiderEntity>> 	PLANTAIN_SPIDER = HELPER.createLivingEntity("plantain_spider", PlantainSpiderEntity::new, EntityClassification.MONSTER, 0.65F, 0.55F);
+	public static final RegistryObject<EntityType<BananarrowEntity>> BANANARROW = HELPER.createEntity("bananarrow", BananarrowEntity::new, BananarrowEntity::new, EntityClassification.MISC, 0.5F, 0.5F);
+	public static final RegistryObject<EntityType<BananaPeelEntity>> BANANA_PEEL = HELPER.createEntity("banana_peel", BananaPeelEntity::new, BananaPeelEntity::new, EntityClassification.MISC, 0.5F, 0.5F);
+	public static final RegistryObject<EntityType<MonkeyEntity>> MONKEY = HELPER.createLivingEntity("monkey", MonkeyEntity::new, EntityClassification.CREATURE, 0.6F, 1.6F);
+	public static final RegistryObject<EntityType<PlantainSpiderEntity>> PLANTAIN_SPIDER = HELPER.createLivingEntity("plantain_spider", PlantainSpiderEntity::new, EntityClassification.MONSTER, 0.65F, 0.55F);
 
 	public static void registerEntityRenderers() {
 		RenderingRegistry.registerEntityRenderingHandler(NeapolitanEntities.BANANARROW.get(), BananarrowRenderer::new);

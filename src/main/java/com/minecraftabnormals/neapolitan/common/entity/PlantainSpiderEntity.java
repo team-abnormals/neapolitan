@@ -1,5 +1,6 @@
 package com.minecraftabnormals.neapolitan.common.entity;
 
+import com.minecraftabnormals.neapolitan.core.NeapolitanConfig;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEffects;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
 import net.minecraft.entity.*;
@@ -9,13 +10,11 @@ import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.monster.SpiderEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.rcon.IServer;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -36,7 +35,7 @@ public class PlantainSpiderEntity extends SpiderEntity {
 
 	public boolean attackEntityAsMob(Entity entityIn) {
 		if (super.attackEntityAsMob(entityIn)) {
-			if (entityIn instanceof LivingEntity) {
+			if (entityIn instanceof LivingEntity && NeapolitanConfig.COMMON.plantainSpidersGiveSlipping.get()) {
 				LivingEntity livingEntity = (LivingEntity) entityIn;
 				livingEntity.addPotionEffect(new EffectInstance(NeapolitanEffects.SLIPPING.get(), this.world.getDifficulty().getId() * 60, 0));
 			}

@@ -1,11 +1,8 @@
 package com.minecraftabnormals.neapolitan.common.advancement;
 
-import javax.annotation.Nullable;
-
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
 import com.minecraftabnormals.neapolitan.core.Neapolitan;
-
 import net.minecraft.advancements.criterion.AbstractCriterionTrigger;
 import net.minecraft.advancements.criterion.CriterionInstance;
 import net.minecraft.advancements.criterion.EntityPredicate;
@@ -18,6 +15,8 @@ import net.minecraft.loot.ConditionArraySerializer;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
+
+import javax.annotation.Nullable;
 
 public class HarvestStrawberriesCriteraTrigger extends AbstractCriterionTrigger<HarvestStrawberriesCriteraTrigger.Instance> {
 	private static final ResourceLocation ID = new ResourceLocation(Neapolitan.MOD_ID, "harvest_strawberries");

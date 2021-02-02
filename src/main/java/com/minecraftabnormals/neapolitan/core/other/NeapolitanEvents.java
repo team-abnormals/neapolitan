@@ -18,21 +18,23 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.potion.Effect;
-import net.minecraft.util.DrinkHelper;
-import net.minecraft.util.Hand;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.util.*;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorld;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.PotionEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteractSpecific;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.event.village.WandererTradesEvent;
+import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.ExplosionEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.Random;
 
 @EventBusSubscriber(modid = Neapolitan.MOD_ID)
 public class NeapolitanEvents {
@@ -90,6 +92,24 @@ public class NeapolitanEvents {
 	}
 
 	@SubscribeEvent
+	public static void onGrow(BlockEvent.CropGrowEvent.Pre event) {
+		IWorld world = event.getWorld();
+		Random random = world.getRandom();
+		BlockPos pos = event.getPos();
+
+		if (event.getResult() != Result.DENY) {
+			float chance = 0.0F;
+			for (Direction direction : Direction.values()) {
+				if (world.getBlockState(pos.offset(direction)).isIn(NeapolitanBlocks.MINT.get()))
+					chance += 0.1F;
+			}
+
+			if (random.nextFloat() < chance)
+				event.setResult(Result.ALLOW);
+		}
+	}
+
+	@SubscribeEvent
 	public static void onPotionAdded(PotionEvent.PotionApplicableEvent event) {
 		Effect effect = event.getPotionEffect().getPotion();
 		LivingEntity entity = event.getEntityLiving();
@@ -120,7 +140,9 @@ public class NeapolitanEvents {
 			TradeUtil.addVillagerTrades(event, TradeUtil.EXPERT,
 					new AbnormalsTrade(3, NeapolitanItems.VANILLA_CAKE.get(), 1, 12, 15),
 					new AbnormalsTrade(3, NeapolitanItems.CHOCOLATE_CAKE.get(), 1, 12, 15),
-					new AbnormalsTrade(3, NeapolitanItems.STRAWBERRY_CAKE.get(), 1, 12, 15)
+					new AbnormalsTrade(3, NeapolitanItems.STRAWBERRY_CAKE.get(), 1, 12, 15),
+					new AbnormalsTrade(3, NeapolitanItems.BANANA_CAKE.get(), 1, 12, 15),
+					new AbnormalsTrade(3, NeapolitanItems.MINT_CAKE.get(), 1, 12, 15)
 			);
 		}
 
@@ -137,11 +159,15 @@ public class NeapolitanEvents {
 	public static void onWandererTradesEvent(WandererTradesEvent event) {
 		TradeUtil.addWandererTrades(event,
 				new AbnormalsTrade(1, NeapolitanItems.VANILLA_PODS.get(), 3, 4, 1),
-                new AbnormalsTrade(5, NeapolitanBlocks.LARGE_BANANA_FROND.get().asItem(), 1, 4, 1)
-        );
+				new AbnormalsTrade(5, NeapolitanBlocks.LARGE_BANANA_FROND.get().asItem(), 1, 4, 1),
+				new AbnormalsTrade(1, NeapolitanItems.STRAWBERRY_PIPS.get(), 1, 12, 1),
+				new AbnormalsTrade(2, NeapolitanItems.VANILLA_PODS.get(), 1, 5, 1),
+				new AbnormalsTrade(2, NeapolitanItems.MINT_SPROUT.get(), 1, 5, 1),
+				new AbnormalsTrade(5, NeapolitanBlocks.LARGE_BANANA_FROND.get().asItem(), 1, 4, 1)
+		);
 
 		TradeUtil.addRareWandererTrades(event,
-                new AbnormalsTrade(4, NeapolitanItems.WHITE_STRAWBERRIES.get(), 8, 2, 1)
-        );
+				new AbnormalsTrade(4, NeapolitanItems.WHITE_STRAWBERRIES.get(), 8, 2, 1)
+		);
 	}
 }

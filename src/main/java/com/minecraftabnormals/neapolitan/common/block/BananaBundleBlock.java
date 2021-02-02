@@ -1,8 +1,8 @@
 package com.minecraftabnormals.neapolitan.common.block;
 
 import com.minecraftabnormals.neapolitan.common.entity.PlantainSpiderEntity;
+import com.minecraftabnormals.neapolitan.core.NeapolitanConfig;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEntities;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -19,7 +19,7 @@ public class BananaBundleBlock extends Block {
 	public void onBlockHarvested(World world, BlockPos pos, BlockState state, PlayerEntity player) {
 		super.onBlockHarvested(world, pos, state, player);
 
-		if (world.getRandom().nextFloat() <= 0.05F) {
+		if (world.getRandom().nextFloat() <= 0.05F && NeapolitanConfig.COMMON.plantainSpidersFromBundles.get()) {
 			PlantainSpiderEntity spider = NeapolitanEntities.PLANTAIN_SPIDER.get().create(world);
 			spider.setLocationAndAngles(pos.getX() + 0.5D, pos.getY() + 0.1D, pos.getZ() + 0.5D, 0.0F, 0.0F);
 			spider.setRevengeTarget(player);

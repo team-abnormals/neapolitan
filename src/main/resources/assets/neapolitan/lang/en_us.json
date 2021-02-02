@@ -3,6 +3,7 @@
   "block.neapolitan.chocolate_ice_cream_block": "Chocolate Ice Cream Block",
   "block.neapolitan.strawberry_ice_cream_block": "Strawberry Ice Cream Block",
   "block.neapolitan.banana_ice_cream_block": "Banana Ice Cream Block",
+  "block.neapolitan.mint_ice_cream_block": "Mint Ice Cream Block",
   
   "block.neapolitan.chocolate_block": "Chocolate Block",
   "block.neapolitan.chocolate_bricks": "Chocolate Bricks",
@@ -29,11 +30,12 @@
   "block.neapolitan.vanilla_pod_block": "Vanilla Pod Block",
   "block.neapolitan.dried_vanilla_pod_block": "Dried Vanilla Pod Block",
   "block.neapolitan.banana_crate": "Banana Crate",
+  "block.neapolitan.mint_basket": "Mint Basket",
 
   "block.neapolitan.strawberry_bush": "Strawberry Bush",
-
   "block.neapolitan.vanilla_vine": "Vanilla Vine",
   "block.neapolitan.vanilla_vine_plant": "Vanilla Vine",
+  "block.neapolitan.mint": "Mint",
   
   "block.neapolitan.banana_stalk": "Banana Stalk",
   "block.neapolitan.banana_bundle": "Banana Bundle",
@@ -46,6 +48,7 @@
   "block.neapolitan.strawberry_cake": "Strawberry Cake",
   "block.neapolitan.vanilla_cake": "Vanilla Cake",
   "block.neapolitan.banana_cake": "Banana Cake",
+  "block.neapolitan.mint_cake": "Mint Cake",
   
   "item.neapolitan.milk_bottle": "Milk Bottle",
   "item.neapolitan.ice_cubes": "Ice Cubes",
@@ -75,11 +78,20 @@
   "item.neapolitan.banana_milkshake": "Banana Milkshake",
   "item.neapolitan.banana_bread": "Banana Bread",
   "item.neapolitan.bananarrow": "Bananarrow",
+
+  "item.neapolitan.mint_sprout": "Mint Sprout",
+  "item.neapolitan.mint_leaves": "Mint Leaves",
+  "item.neapolitan.mint_chops": "Raw Mint Chops",
+  "item.neapolitan.cooked_mint_chops": "Cooked Mint Chops",
+  "item.neapolitan.mint_ice_cream": "Mint Ice Cream",
+  "item.neapolitan.mint_milkshake": "Mint Milkshake",
+  "item.neapolitan.mint_candies": "Mint Candies",
   
   "item.neapolitan.chocolate_strawberries": "Chocolate Strawberries",
   "item.neapolitan.white_strawberries": "White Strawberries",
   "item.neapolitan.vanilla_chocolate_fingers": "Vanilla Chocolate Fingers",
   "item.neapolitan.strawberry_banana_smoothie": "Strawberry Banana Smoothie",
+  "item.neapolitan.mint_chocolate": "Mint Chocolate",
   "item.neapolitan.neapolitan_ice_cream": "Neapolitan Ice Cream",
   
   "item.neapolitan.monkey_banner_pattern": "Banner Pattern",
@@ -97,11 +109,12 @@
   "effect.neapolitan.vanilla_scent": "Vanilla Scent",
   "effect.neapolitan.agility": "Agility",
   "effect.neapolitan.slipping": "Slipping",
+  "effect.neapolitan.berserking": "Berserking",
   
   "advancements.husbandry.creeper_heal.title": "Love Bomb",
   "advancements.husbandry.creeper_heal.description": "Get healed by a Creeper that blew up inside a Strawberry Bush",
   
-  "advancements.husbandry.vanilla_poison.title": "Killer Vanilla",
+  "advancements.husbandry.vanillea_poison.title": "Killer Vanilla",
   "advancements.husbandry.vanilla_poison.description": "Break Vanilla without shears, unleashing a harmful aura",
   
   "advancements.husbandry.place_all_chocolate_blocks.title": "A Brownstone Building",

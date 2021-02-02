@@ -1,12 +1,9 @@
 package com.minecraftabnormals.neapolitan.common.block;
 
-import java.util.Random;
-
 import com.google.common.collect.ImmutableList;
 import com.minecraftabnormals.neapolitan.common.item.HealingItem;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.mojang.datafixers.util.Pair;
-
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CakeBlock;
 import net.minecraft.entity.player.PlayerEntity;
@@ -23,6 +20,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class FlavoredCakeBlock extends CakeBlock {
 	private EffectType effectType;

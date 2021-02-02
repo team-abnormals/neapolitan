@@ -1,9 +1,6 @@
 package com.minecraftabnormals.neapolitan.common.item;
 
-import java.util.Random;
-
 import com.google.common.collect.ImmutableList;
-
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -16,12 +13,10 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.potion.Effects;
 import net.minecraft.stats.Stats;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class MilkshakeItem extends DrinkItem {
 	private final EffectType effectType;

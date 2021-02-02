@@ -1,17 +1,8 @@
 package com.minecraftabnormals.neapolitan.common.block;
 
-import java.util.Random;
-
-import javax.annotation.Nullable;
-
 import com.minecraftabnormals.neapolitan.core.other.NeapolitanCriteriaTriggers;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
-
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.BushBlock;
-import net.minecraft.block.IGrowable;
+import net.minecraft.block.*;
 import net.minecraft.entity.CreatureAttribute;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -29,34 +20,31 @@ import net.minecraft.potion.Effects;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.DimensionType;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.IPlantable;
 
+import javax.annotation.Nullable;
+import java.util.Random;
+
 public class StrawberryBushBlock extends BushBlock implements IPlantable, IGrowable {
 	public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 6);
 	public static final EnumProperty<StrawberryType> TYPE = EnumProperty.create("type", StrawberryType.class);
-	private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[] { 
-		Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 2.0D, 14.0D), 
-		Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 6.0D, 14.0D), 
-		Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 8.0D, 14.0D), 
-		Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 10.0D, 14.0D), 
-		Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 12.0D, 14.0D), 
-		Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 14.0D, 14.0D), 
-		Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 14.0D, 14.0D) 
+	private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
+			Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 2.0D, 14.0D),
+			Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 6.0D, 14.0D),
+			Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 8.0D, 14.0D),
+			Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 10.0D, 14.0D),
+			Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 12.0D, 14.0D),
+			Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 14.0D, 14.0D),
+			Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 14.0D, 14.0D)
 	};
 
 	public StrawberryBushBlock(Properties properties) {
@@ -75,7 +63,7 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, IGrowa
 			Item strawberry = state.get(TYPE) == StrawberryType.WHITE ? NeapolitanItems.WHITE_STRAWBERRIES.get() : NeapolitanItems.STRAWBERRIES.get();
 			spawnAsEntity(worldIn, pos, new ItemStack(strawberry, strawberryCount));
 			worldIn.playSound((PlayerEntity) null, pos, SoundEvents.ITEM_SWEET_BERRIES_PICK_FROM_BUSH, SoundCategory.BLOCKS, 1.0F, 0.8F + worldIn.rand.nextFloat() * 0.4F);
-			worldIn.setBlockState(pos, state.with(AGE, Integer.valueOf(1)).with(TYPE, StrawberryType.NONE), 2);
+			worldIn.setBlockState(pos, state.with(AGE, 1).with(TYPE, StrawberryType.NONE), 2);
 			if (player instanceof ServerPlayerEntity)
 				NeapolitanCriteriaTriggers.HARVEST_STRAWBERRIES.trigger((ServerPlayerEntity) player, state);
 			return ActionResultType.func_233537_a_(worldIn.isRemote);
