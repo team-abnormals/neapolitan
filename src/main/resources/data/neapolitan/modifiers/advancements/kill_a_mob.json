@@ -1,0 +1,33 @@
+{
+  "advancement": "minecraft:adventure/kill_a_mob",
+  "modifiers": [
+    {
+      "type": "indexed_requirements",
+      "config": {
+        "mode": "modify",
+        "index": 0,
+        "criteria": {
+          "neapolitan:plantain_spider": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+              "entity": [
+                {
+                  "condition": "minecraft:entity_properties",
+                  "predicate": {
+                    "type": "neapolitan:plantain_spider"
+                  },
+                  "entity": "this"
+                }
+              ]
+            }
+          }
+        },
+        "requirements": [
+          [
+            "neapolitan:plantain_spider"
+          ]
+        ]
+      }
+    }
+  ]
+}

@@ -2,17 +2,14 @@ package com.minecraftabnormals.neapolitan.common.entity;
 
 import com.minecraftabnormals.neapolitan.core.NeapolitanConfig;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEffects;
-import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.monster.SpiderEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
@@ -52,10 +49,5 @@ public class PlantainSpiderEntity extends SpiderEntity {
 
 	protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
 		return 0.40F;
-	}
-
-	@Override
-	public ItemStack getPickedResult(RayTraceResult target) {
-		return new ItemStack(NeapolitanItems.PLANTAIN_SPIDER_SPAWN_EGG.get());
 	}
 }

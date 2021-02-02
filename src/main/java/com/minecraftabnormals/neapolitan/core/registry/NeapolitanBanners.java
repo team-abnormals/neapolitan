@@ -18,6 +18,6 @@ public final class NeapolitanBanners {
 	public static final BannerPattern MONKEY = BannerManager.createPattern("mca", "monkey", "mky");
 
 	public static void registerBanners() {
-		BannerManager.addPattern(MONKEY, NeapolitanItems.MONKEY_BANNNER_PATTERN.get());
+		BannerManager.addPattern(MONKEY, NeapolitanItems.MONKEY_BANNER_PATTERN.get());
 	}
 }
