@@ -52,29 +52,33 @@ public class AvoidBlockGoal<T extends LivingEntity> extends Goal {
 	}
 
 	public boolean shouldExecute() {
-		AxisAlignedBB aabb = entity.getBoundingBox().grow(6.0F, 4.0F, 6.0F);
-		Stream<BlockPos> blocks = BlockPos.getAllInBox(new BlockPos(aabb.minX, aabb.minY, aabb.minZ), new BlockPos(aabb.maxX, aabb.maxY, aabb.maxZ));
-
-		blocks.forEach(blockpos -> {
-			double d0 = Double.MAX_VALUE;
-			double d1 = this.entity.getDistanceSq(blockpos.getX(), blockpos.getY(), blockpos.getZ());
-			if (entity.world.getBlockState(blockpos).getBlock().isIn(NeapolitanTags.Blocks.CREEPER_REPELLENTS) && d1 < d0) {
-				d0 = d1;
-				this.avoidTarget = blockpos;
-			}
-		});
-
-		if (this.avoidTarget == null) {
+		if (NeapolitanTags.Blocks.CREEPER_REPELLENTS.getAllElements().isEmpty()) {
 			return false;
 		} else {
-			Vector3d vec3d = RandomPositionGenerator.findRandomTargetBlockAwayFrom(this.entity, this.avoidDistance, 7, new Vector3d(this.avoidTarget.getX(), this.avoidTarget.getY(), this.avoidTarget.getZ()));
-			if (vec3d == null) {
-				return false;
-			} else if (this.avoidTarget.distanceSq(vec3d.x, vec3d.y, vec3d.z, false) < this.avoidTarget.distanceSq(this.entity.getPosX(), this.entity.getPosY(), this.entity.getPosZ(), false)) {
+			AxisAlignedBB aabb = entity.getBoundingBox().grow(6.0F, 4.0F, 6.0F);
+			Stream<BlockPos> blocks = BlockPos.getAllInBox(new BlockPos(aabb.minX, aabb.minY, aabb.minZ), new BlockPos(aabb.maxX, aabb.maxY, aabb.maxZ));
+
+			blocks.forEach(blockpos -> {
+				double d0 = Double.MAX_VALUE;
+				double d1 = this.entity.getDistanceSq(blockpos.getX(), blockpos.getY(), blockpos.getZ());
+				if (entity.world.getBlockState(blockpos).getBlock().isIn(NeapolitanTags.Blocks.CREEPER_REPELLENTS) && d1 < d0) {
+					d0 = d1;
+					this.avoidTarget = blockpos;
+				}
+			});
+
+			if (this.avoidTarget == null) {
 				return false;
 			} else {
-				this.path = this.navigation.getPathToPos(vec3d.x, vec3d.y, vec3d.z, 0);
-				return this.path != null;
+				Vector3d vec3d = RandomPositionGenerator.findRandomTargetBlockAwayFrom(this.entity, this.avoidDistance, 7, new Vector3d(this.avoidTarget.getX(), this.avoidTarget.getY(), this.avoidTarget.getZ()));
+				if (vec3d == null) {
+					return false;
+				} else if (this.avoidTarget.distanceSq(vec3d.x, vec3d.y, vec3d.z, false) < this.avoidTarget.distanceSq(this.entity.getPosX(), this.entity.getPosY(), this.entity.getPosZ(), false)) {
+					return false;
+				} else {
+					this.path = this.navigation.getPathToPos(vec3d.x, vec3d.y, vec3d.z, 0);
+					return this.path != null;
+				}
 			}
 		}
 	}
