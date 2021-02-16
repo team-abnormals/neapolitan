@@ -1,60 +1,60 @@
 {
-  "entity.monkey.angry": {
+  "entity.chimpanzee.angry": {
     "sounds": [
-      "neapolitan:mob/monkey/angry1",
-      "neapolitan:mob/monkey/angry2"
+      "neapolitan:mob/chimpanzee/angry1",
+      "neapolitan:mob/chimpanzee/angry2"
     ],
-    "subtitle": "subtitles.neapolitan.entity.monkey.angry"
+    "subtitle": "subtitles.neapolitan.entity.chimpanzee.angry"
   },
-  "entity.monkey.death": {
+  "entity.chimpanzee.death": {
     "sounds": [
-      "neapolitan:mob/monkey/death"
+      "neapolitan:mob/chimpanzee/death"
     ],
-    "subtitle": "subtitles.neapolitan.entity.monkey.death"
+    "subtitle": "subtitles.neapolitan.entity.chimpanzee.death"
   },
-  "entity.monkey.eat": {
+  "entity.chimpanzee.eat": {
     "sounds": [
-      "neapolitan:mob/monkey/eat1",
-      "neapolitan:mob/monkey/eat2",
-      "neapolitan:mob/monkey/eat3"
+      "neapolitan:mob/chimpanzee/eat1",
+      "neapolitan:mob/chimpanzee/eat2",
+      "neapolitan:mob/chimpanzee/eat3"
     ],
-    "subtitle": "subtitles.neapolitan.entity.monkey.eat"
+    "subtitle": "subtitles.neapolitan.entity.chimpanzee.eat"
   },
-  "entity.monkey.howl": {
+  "entity.chimpanzee.howl": {
     "sounds": [
-      "neapolitan:mob/monkey/howl1",
-      "neapolitan:mob/monkey/howl2"
+      "neapolitan:mob/chimpanzee/howl1",
+      "neapolitan:mob/chimpanzee/howl2"
     ],
-    "subtitle": "subtitles.neapolitan.entity.monkey.howl"
+    "subtitle": "subtitles.neapolitan.entity.chimpanzee.howl"
   },
-  "entity.monkey.hurt": {
+  "entity.chimpanzee.hurt": {
     "sounds": [
-      "neapolitan:mob/monkey/hurt1",
-      "neapolitan:mob/monkey/hurt2"
+      "neapolitan:mob/chimpanzee/hurt1",
+      "neapolitan:mob/chimpanzee/hurt2"
     ],
-    "subtitle": "subtitles.neapolitan.entity.monkey.hurt"
+    "subtitle": "subtitles.neapolitan.entity.chimpanzee.hurt"
   },
-  "entity.monkey.ambient": {
+  "entity.chimpanzee.ambient": {
     "sounds": [
-      "neapolitan:mob/monkey/ambient1",
-      "neapolitan:mob/monkey/ambient2",
-      "neapolitan:mob/monkey/ambient3",
-      "neapolitan:mob/monkey/ambient4"
+      "neapolitan:mob/chimpanzee/ambient1",
+      "neapolitan:mob/chimpanzee/ambient2",
+      "neapolitan:mob/chimpanzee/ambient3",
+      "neapolitan:mob/chimpanzee/ambient4"
     ],
-    "subtitle": "subtitles.neapolitan.entity.monkey.ambient"
+    "subtitle": "subtitles.neapolitan.entity.chimpanzee.ambient"
   },
-  "entity.monkey.step": {
+  "entity.chimpanzee.step": {
     "sounds": [
-      "neapolitan:mob/monkey/step1",
-      "neapolitan:mob/monkey/step2"
+      "neapolitan:mob/chimpanzee/step1",
+      "neapolitan:mob/chimpanzee/step2"
     ],
-    "subtitle": "subtitles.neapolitan.entity.monkey.step"
+    "subtitle": "subtitles.neapolitan.entity.chimpanzee.step"
   },
-  "entity.monkey.swing": {
+  "entity.chimpanzee.swing": {
     "sounds": [
-      "neapolitan:mob/monkey/swing"
+      "neapolitan:mob/chimpanzee/swing"
     ],
-    "subtitle": "subtitles.neapolitan.entity.monkey.swing"
+    "subtitle": "subtitles.neapolitan.entity.chimpanzee.swing"
   },
   "item.ice_cubes.eat": {
     "sounds": [

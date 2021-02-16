@@ -1,0 +1,7 @@
+{
+    "parent": "neapolitan:block/mint_sprouts_four",
+    "textures": {
+        "texture": "neapolitan:block/mint_stage4",
+        "other": "neapolitan:block/mint_stage4_other"
+    }
+}

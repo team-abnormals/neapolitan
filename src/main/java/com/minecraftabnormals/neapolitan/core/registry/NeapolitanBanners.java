@@ -15,9 +15,9 @@ public final class NeapolitanBanners {
 	public static final RegistryObject<PaintingType> SCREAM = PAINTINGS.register("scream", () -> new PaintingType(32, 32));
 	public static final RegistryObject<PaintingType> CONE = PAINTINGS.register("cone", () -> new PaintingType(16, 32));
 
-	public static final BannerPattern MONKEY = BannerManager.createPattern("mca", "monkey", "mky");
+	public static final BannerPattern CHIMPANZEE = BannerManager.createPattern("mca", "chimpanzee", "mky");
 
 	public static void registerBanners() {
-		BannerManager.addPattern(MONKEY, NeapolitanItems.MONKEY_BANNER_PATTERN.get());
+		BannerManager.addPattern(CHIMPANZEE, NeapolitanItems.CHIMPANZEE_BANNER_PATTERN.get());
 	}
 }

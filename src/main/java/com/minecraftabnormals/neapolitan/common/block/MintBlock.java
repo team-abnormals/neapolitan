@@ -38,7 +38,7 @@ public class MintBlock extends BushBlock implements IPlantable, IGrowable {
 
 	public MintBlock(Properties properties) {
 		super(properties);
-		this.setDefaultState(this.stateContainer.getBaseState().with(AGE, 0));
+		this.setDefaultState(this.stateContainer.getBaseState().with(AGE, 0).with(SPROUTS, 1));
 	}
 
 	@Override
@@ -79,7 +79,7 @@ public class MintBlock extends BushBlock implements IPlantable, IGrowable {
 	}
 
 	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-		builder.add(AGE);
+		builder.add(AGE, SPROUTS);
 	}
 
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {

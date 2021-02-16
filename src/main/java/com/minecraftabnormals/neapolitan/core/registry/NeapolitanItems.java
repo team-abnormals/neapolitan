@@ -66,9 +66,9 @@ public class NeapolitanItems {
 	public static final RegistryObject<Item> MINT_CHOCOLATE = HELPER.createItem("mint_chocolate", () -> new Item(new Item.Properties().food(Foods.MINT_CHOCOLATE).group(ItemGroup.FOOD)));
 	public static final RegistryObject<Item> NEAPOLITAN_ICE_CREAM = HELPER.createItem("neapolitan_ice_cream", () -> new HealingSoupItem(2.0F, new Item.Properties().food(Foods.NEAPOLITAN_ICE_CREAM).containerItem(Items.BOWL).maxStackSize(1).group(ItemGroup.FOOD)));
 
-	public static final RegistryObject<Item> MONKEY_BANNER_PATTERN = HELPER.createItem("monkey_banner_pattern", () -> new AbnormalsBannerPatternItem(NeapolitanBanners.MONKEY, new Item.Properties().group(ItemGroup.MISC).maxStackSize(1)));
+	public static final RegistryObject<Item> CHIMPANZEE_BANNER_PATTERN = HELPER.createItem("chimpanzee_banner_pattern", () -> new AbnormalsBannerPatternItem(NeapolitanBanners.CHIMPANZEE, new Item.Properties().group(ItemGroup.MISC).maxStackSize(1)));
 
-	public static final RegistryObject<AbnormalsSpawnEggItem> MONKEY_SPAWN_EGG = HELPER.createSpawnEggItem("monkey", NeapolitanEntities.MONKEY::get, 0x1F1626, 0xAD8064);
+	public static final RegistryObject<AbnormalsSpawnEggItem> CHIMPANZEE_SPAWN_EGG = HELPER.createSpawnEggItem("chimpanzee", NeapolitanEntities.CHIMPANZEE::get, 0x1F1626, 0xAD8064);
 	public static final RegistryObject<AbnormalsSpawnEggItem> PLANTAIN_SPIDER_SPAWN_EGG = HELPER.createSpawnEggItem("plantain_spider", NeapolitanEntities.PLANTAIN_SPIDER::get, 0xAD870A, 0x33202A);
 
 	static class Foods {

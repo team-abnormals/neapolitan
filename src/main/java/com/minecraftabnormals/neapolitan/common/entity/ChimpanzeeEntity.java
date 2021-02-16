@@ -37,10 +37,10 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-public class MonkeyEntity extends AnimalEntity implements IAngerable {
-	private static final DataParameter<Integer> ANGER_TIME = EntityDataManager.createKey(MonkeyEntity.class, DataSerializers.VARINT);
-	private static final DataParameter<Integer> MONKEY_TYPE = EntityDataManager.createKey(MonkeyEntity.class, DataSerializers.VARINT);
-	private static final DataParameter<Byte> CLIMBING = EntityDataManager.createKey(MonkeyEntity.class, DataSerializers.BYTE);
+public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
+	private static final DataParameter<Integer> ANGER_TIME = EntityDataManager.createKey(ChimpanzeeEntity.class, DataSerializers.VARINT);
+	private static final DataParameter<Integer> CHIMPANZEE_TYPE = EntityDataManager.createKey(ChimpanzeeEntity.class, DataSerializers.VARINT);
+	private static final DataParameter<Byte> CLIMBING = EntityDataManager.createKey(ChimpanzeeEntity.class, DataSerializers.BYTE);
 
 	private static final RangedInteger ANGER_RANGE = TickRangeConverter.convertRange(20, 39);
 	private UUID lastHurtBy;
@@ -49,7 +49,7 @@ public class MonkeyEntity extends AnimalEntity implements IAngerable {
 	private float climbAnim;
 	private float prevClimbAnim;
 
-	public MonkeyEntity(EntityType<? extends AnimalEntity> type, World worldIn) {
+	public ChimpanzeeEntity(EntityType<? extends AnimalEntity> type, World worldIn) {
 		super(type, worldIn);
 	}
 
@@ -57,7 +57,7 @@ public class MonkeyEntity extends AnimalEntity implements IAngerable {
 	protected void registerData() {
 		super.registerData();
 		this.dataManager.register(ANGER_TIME, 0);
-		this.dataManager.register(MONKEY_TYPE, 0);
+		this.dataManager.register(CHIMPANZEE_TYPE, 0);
 		this.dataManager.register(CLIMBING, (byte) 0);
 	}
 
@@ -78,7 +78,7 @@ public class MonkeyEntity extends AnimalEntity implements IAngerable {
 		this.goalSelector.addGoal(0, new SwimGoal(this));
 		this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0D, false));
 		this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
-		this.goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.fromTag(NeapolitanTags.Items.MONKEY_TEMPTATION_ITEMS), false));
+		this.goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.fromTag(NeapolitanTags.Items.CHIMPANZEE_TEMPTATION_ITEMS), false));
 		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
 		this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
 		this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
@@ -187,13 +187,13 @@ public class MonkeyEntity extends AnimalEntity implements IAngerable {
 		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
-	public void setTypeForPosition(MonkeyEntity entity, IWorld worldIn) {
+	public void setTypeForPosition(ChimpanzeeEntity entity, IWorld worldIn) {
 		if (worldIn.getBiome(this.getPosition()).getRegistryName().getPath().contains("rainforest")) {
-			entity.setMonkeyType(1);
+			entity.setChimpanzeeType(1);
 		} else if (worldIn.getBiome(this.getPosition()).getRegistryName().getPath().contains("bamboo")) {
-			entity.setMonkeyType(2);
+			entity.setChimpanzeeType(2);
 		} else {
-			entity.setMonkeyType(0);
+			entity.setChimpanzeeType(0);
 		}
 	}
 
@@ -228,22 +228,22 @@ public class MonkeyEntity extends AnimalEntity implements IAngerable {
 
 	@Override
 	protected SoundEvent getAmbientSound() {
-		return this.func_233678_J__() ? NeapolitanSoundEvents.ENTITY_MONKEY_ANGRY.get() : NeapolitanSoundEvents.ENTITY_MONKEY_AMBIENT.get();
+		return this.func_233678_J__() ? NeapolitanSoundEvents.ENTITY_CHIMPANZEE_ANGRY.get() : NeapolitanSoundEvents.ENTITY_CHIMPANZEE_AMBIENT.get();
 	}
 
 	@Override
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return NeapolitanSoundEvents.ENTITY_MONKEY_HURT.get();
+		return NeapolitanSoundEvents.ENTITY_CHIMPANZEE_HURT.get();
 	}
 
 	@Override
 	protected SoundEvent getDeathSound() {
-		return NeapolitanSoundEvents.ENTITY_MONKEY_DEATH.get();
+		return NeapolitanSoundEvents.ENTITY_CHIMPANZEE_DEATH.get();
 	}
 
 	@Override
 	protected void playStepSound(BlockPos pos, BlockState blockIn) {
-		this.playSound(NeapolitanSoundEvents.ENTITY_MONKEY_STEP.get(), 0.3F, 1.0F);
+		this.playSound(NeapolitanSoundEvents.ENTITY_CHIMPANZEE_STEP.get(), 0.3F, 1.0F);
 	}
 
 	@Override
@@ -261,12 +261,12 @@ public class MonkeyEntity extends AnimalEntity implements IAngerable {
 
 	@Override
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem().isIn(NeapolitanTags.Items.MONKEY_BREEDING_ITEMS);
+		return stack.getItem().isIn(NeapolitanTags.Items.CHIMPANZEE_BREEDING_ITEMS);
 	}
 
 	@Override
-	public MonkeyEntity func_241840_a(ServerWorld world, AgeableEntity ageableEntity) {
-		MonkeyEntity baby = NeapolitanEntities.MONKEY.get().create(world);
+	public ChimpanzeeEntity func_241840_a(ServerWorld world, AgeableEntity ageableEntity) {
+		ChimpanzeeEntity baby = NeapolitanEntities.CHIMPANZEE.get().create(world);
 		setTypeForPosition(baby, this.getEntityWorld());
 		return baby;
 	}
@@ -281,12 +281,12 @@ public class MonkeyEntity extends AnimalEntity implements IAngerable {
 		this.dataManager.set(ANGER_TIME, time);
 	}
 
-	public int getMonkeyType() {
-		return this.dataManager.get(MONKEY_TYPE);
+	public int getChimpanzeeType() {
+		return this.dataManager.get(CHIMPANZEE_TYPE);
 	}
 
-	public void setMonkeyType(int type) {
-		this.dataManager.set(MONKEY_TYPE, type);
+	public void setChimpanzeeType(int type) {
+		this.dataManager.set(CHIMPANZEE_TYPE, type);
 	}
 
 	@Override

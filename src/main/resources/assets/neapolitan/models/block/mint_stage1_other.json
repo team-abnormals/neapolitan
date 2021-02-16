@@ -1,6 +1,0 @@
-{
-    "parent": "neapolitan:block/mint",
-    "textures": {
-        "texture": "neapolitan:block/mint_stage1_other"
-    }
-}

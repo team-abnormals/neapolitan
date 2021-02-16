@@ -1,7 +1,7 @@
 package com.minecraftabnormals.neapolitan.client.model;
 
 import com.google.common.collect.ImmutableList;
-import com.minecraftabnormals.neapolitan.common.entity.MonkeyEntity;
+import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.entity.model.AgeableModel;
 import net.minecraft.client.renderer.entity.model.IHasArm;
@@ -11,7 +11,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.HandSide;
 import net.minecraft.util.math.MathHelper;
 
-public class MonkeyModel<T extends MonkeyEntity> extends AgeableModel<T> implements IHasArm, IHasHead {
+public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends AgeableModel<T> implements IHasArm, IHasHead {
 	private final ModelRenderer body;
 	private final ModelRenderer head;
 	private final ModelRenderer rightEar;
@@ -20,9 +20,8 @@ public class MonkeyModel<T extends MonkeyEntity> extends AgeableModel<T> impleme
 	private final ModelRenderer rightArm;
 	private final ModelRenderer leftLeg;
 	private final ModelRenderer rightLeg;
-	public final ModelRenderer tail;
 
-	public MonkeyModel() {
+	public ChimpanzeeModel() {
 		super(false, 10.0F, 0.0F, 2.0F, 2.0F, 24);
 		textureWidth = 64;
 		textureHeight = 32;
@@ -30,11 +29,6 @@ public class MonkeyModel<T extends MonkeyEntity> extends AgeableModel<T> impleme
 		body = new ModelRenderer(this);
 		body.setRotationPoint(0.0F, 9.0F, 2.0F);
 		body.setTextureOffset(37, 0).addBox(-5.0F, -4.0F, -3.0F, 10.0F, 8.0F, 3.0F, 0.0F, false);
-
-		tail = new ModelRenderer(this);
-		tail.setRotationPoint(0.0F, 3.0F, 0.0F);
-		body.addChild(tail);
-		tail.setTextureOffset(53, 19).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 10.0F, 2.0F, 0.0F, false);
 
 		head = new ModelRenderer(this);
 		head.setRotationPoint(0.0F, 5.0F, 0.5F);
@@ -83,8 +77,6 @@ public class MonkeyModel<T extends MonkeyEntity> extends AgeableModel<T> impleme
 			this.leftLeg.rotateAngleY = (-(float) Math.PI / 10F);
 			this.leftLeg.rotateAngleZ = -0.07853982F;
 		}
-
-		this.tail.rotateAngleX = (float) Math.toRadians(30);
 	}
 
 	@Override
