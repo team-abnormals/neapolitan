@@ -61,11 +61,17 @@ public class NeapolitanCompat {
 		DataUtil.registerCompostable(NeapolitanItems.BANANA_CAKE.get(), 1.0F);
 
 		DataUtil.registerCompostable(NeapolitanItems.MINT_SPROUT.get(), 0.3F);
-		DataUtil.registerCompostable(NeapolitanItems.MINT_LEAVES.get(), 0.3F);
+		DataUtil.registerCompostable(NeapolitanItems.MINT_LEAVES.get(), 0.5F);
 		DataUtil.registerCompostable(NeapolitanItems.MINT_CAKE.get(), 1.0F);
+
+		DataUtil.registerCompostable(NeapolitanItems.ADZUKI_BEANS.get(), 0.3F);
+		DataUtil.registerCompostable(NeapolitanItems.ROASTED_ADZUKI_BEANS.get(), 0.5F);
+		DataUtil.registerCompostable(NeapolitanItems.ADZUKI_BUN.get(), 0.85F);
+		DataUtil.registerCompostable(NeapolitanItems.ADZUKI_CAKE.get(), 1.0F);
 
 		DataUtil.registerCompostable(NeapolitanItems.VANILLA_CHOCOLATE_FINGERS.get(), 0.85F);
 		DataUtil.registerCompostable(NeapolitanItems.CHOCOLATE_STRAWBERRIES.get(), 0.85F);
+		DataUtil.registerCompostable(NeapolitanItems.MINT_CHOCOLATE.get(), 0.85F);
 
 		DataUtil.registerCompostable(NeapolitanBlocks.VANILLA_POD_BLOCK.get(), 0.5F);
 		DataUtil.registerCompostable(NeapolitanBlocks.DRIED_VANILLA_POD_BLOCK.get(), 0.5F);
@@ -84,6 +90,8 @@ public class NeapolitanCompat {
 		DataUtil.registerCompostable(NeapolitanBlocks.WHITE_STRAWBERRY_BASKET.get(), 1.0F);
 		DataUtil.registerCompostable(NeapolitanBlocks.BANANA_CRATE.get(), 1.0F);
 		DataUtil.registerCompostable(NeapolitanBlocks.MINT_BASKET.get(), 1.0F);
+		DataUtil.registerCompostable(NeapolitanBlocks.ADZUKI_CRATE.get(), 1.0F);
+		DataUtil.registerCompostable(NeapolitanBlocks.ROASTED_ADZUKI_CRATE.get(), 1.0F);
 
 		DataUtil.registerCompostable(NeapolitanBlocks.FROND_THATCH.get(), 0.65F);
 		DataUtil.registerCompostable(NeapolitanBlocks.FROND_THATCH_SLAB.get(), 0.65F);
@@ -117,6 +125,11 @@ public class NeapolitanCompat {
 		DataUtil.registerFlammable(NeapolitanBlocks.WHITE_STRAWBERRY_BASKET.get(), 5, 20);
 
 		DataUtil.registerFlammable(NeapolitanBlocks.MINT.get(), 60, 100);
+		DataUtil.registerFlammable(NeapolitanBlocks.MINT_BASKET.get(), 5, 20);
+
+		DataUtil.registerFlammable(NeapolitanBlocks.ADZUKI_SPROUTS.get(), 60, 100);
+		DataUtil.registerFlammable(NeapolitanBlocks.ADZUKI_CRATE.get(), 5, 20);
+		DataUtil.registerFlammable(NeapolitanBlocks.ROASTED_ADZUKI_CRATE.get(), 5, 20);
 
 		DataUtil.registerFlammable(NeapolitanBlocks.BANANA_STALK.get(), 5, 5);
 		DataUtil.registerFlammable(NeapolitanBlocks.SMALL_BANANA_FROND.get(), 60, 100);

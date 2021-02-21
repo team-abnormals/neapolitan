@@ -245,6 +245,46 @@
                 "item": "neapolitan:mint_milkshake"
               }
             }
+          },
+          "neapolitan:roasted_adzuki_beans": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+              "item": {
+                "item": "neapolitan:roasted_adzuki_beans"
+              }
+            }
+          },
+          "neapolitan:adzuki_bun": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+              "item": {
+                "item": "neapolitan:roasted_adzuki_beans"
+              }
+            }
+          },
+          "neapolitan:adzuki_curry": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+              "item": {
+                "item": "neapolitan:roasted_adzuki_beans"
+              }
+            }
+          },
+          "neapolitan:adzuki_ice_cream": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+              "item": {
+                "item": "neapolitan:roasted_adzuki_beans"
+              }
+            }
+          },
+          "neapolitan:adzuki_milkshake": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+              "item": {
+                "item": "neapolitan:roasted_adzuki_beans"
+              }
+            }
           }
         },
         "requirements": [
@@ -337,6 +377,21 @@
           ],
           [
             "neapolitan:mint_milkshake"
+          ],
+          [
+            "neapolitan:roasted_adzuki_beans"
+          ],
+          [
+            "neapolitan:adzuki_bun"
+          ],
+          [
+            "neapolitan:adzuki_curry"
+          ],
+          [
+            "neapolitan:adzuki_ice_cream"
+          ],
+          [
+            "neapolitan:adzuki_milkshake"
           ]
         ]
       }

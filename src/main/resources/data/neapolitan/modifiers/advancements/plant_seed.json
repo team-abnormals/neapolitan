@@ -18,6 +18,12 @@
             "conditions": {
               "block": "neapolitan:mint"
             }
+          },
+          "adzuki_sprouts": {
+            "trigger": "minecraft:placed_block",
+            "conditions": {
+              "block": "neapolitan:adzuki_sprouts"
+            }
           }
         },
         "requirements": [
@@ -26,6 +32,9 @@
           ],
           [
             "mint"
+          ],
+          [
+            "adzuki_sprouts"
           ]
         ]
       }

@@ -104,7 +104,7 @@ public class NeapolitanBlocks {
 
 		public static final AbstractBlock.Properties ADZUKI_SPROUTS = AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0F).sound(SoundType.CROP);
 		public static final AbstractBlock.Properties ADZUKI_SOIL = AbstractBlock.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.GROUND);
-		public static final AbstractBlock.Properties BEANSTALK = AbstractBlock.Properties.create(Material.GOURD, MaterialColor.GREEN).hardnessAndResistance(2.0F).sound(SoundType.HYPHAE);
+		public static final AbstractBlock.Properties BEANSTALK = AbstractBlock.Properties.create(Material.GOURD, MaterialColor.GREEN).hardnessAndResistance(1.0F).harvestTool(ToolType.HOE).sound(SoundType.HYPHAE);
 
 		public static final AbstractBlock.Properties CHOCOLATE_CAKE = AbstractBlock.Properties.create(Material.CAKE, MaterialColor.BROWN).hardnessAndResistance(0.5F).sound(SoundType.CLOTH);
 		public static final AbstractBlock.Properties STRAWBERRY_CAKE = AbstractBlock.Properties.create(Material.CAKE, MaterialColor.PINK).hardnessAndResistance(0.5F).sound(SoundType.CLOTH);
