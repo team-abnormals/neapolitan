@@ -26,6 +26,7 @@ public class NeapolitanBlocks {
 	public static final RegistryObject<Block> STRAWBERRY_ICE_CREAM_BLOCK = HELPER.createBlock("strawberry_ice_cream_block", () -> new Block(Properties.STRAWBERRY_ICE_CREAM_BLOCK), ItemGroup.BUILDING_BLOCKS);
 	public static final RegistryObject<Block> BANANA_ICE_CREAM_BLOCK = HELPER.createBlock("banana_ice_cream_block", () -> new Block(Properties.BANANA_ICE_CREAM_BLOCK), ItemGroup.BUILDING_BLOCKS);
 	public static final RegistryObject<Block> MINT_ICE_CREAM_BLOCK = HELPER.createBlock("mint_ice_cream_block", () -> new Block(Properties.MINT_ICE_CREAM_BLOCK), ItemGroup.BUILDING_BLOCKS);
+	public static final RegistryObject<Block> ADZUKI_ICE_CREAM_BLOCK = HELPER.createBlock("adzuki_ice_cream_block", () -> new Block(Properties.ADZUKI_ICE_CREAM_BLOCK), ItemGroup.BUILDING_BLOCKS);
 
 	public static final RegistryObject<Block> CHOCOLATE_BLOCK = HELPER.createBlock("chocolate_block", () -> new Block(Properties.CHOCOLATE), ItemGroup.BUILDING_BLOCKS);
 
@@ -59,11 +60,16 @@ public class NeapolitanBlocks {
 	public static final RegistryObject<Block> BANANA_FROND = HELPER.createFuelBlock("banana_frond", () -> new BananaFrondBlock(Properties.BANANA_FROND), 100, ItemGroup.DECORATIONS);
 	public static final RegistryObject<Block> LARGE_BANANA_FROND = HELPER.createFuelBlock("large_banana_frond", () -> new BananaFrondBlock(Properties.BANANA_FROND), 150, ItemGroup.DECORATIONS);
 
+	public static final RegistryObject<Block> ADZUKI_SPROUTS = HELPER.createBlockNoItem("adzuki_sprouts", () -> new Block(Properties.ADZUKI_SPROUTS));
+	public static final RegistryObject<Block> ADZUKI_SOIL = HELPER.createBlock("adzuki_soil", () -> new Block(Properties.ADZUKI_SOIL), ItemGroup.BUILDING_BLOCKS);
+	public static final RegistryObject<Block> BEANSTALK = HELPER.createBlock("beanstalk", () -> new RotatedPillarBlock(Properties.BEANSTALK), ItemGroup.BUILDING_BLOCKS);
+
 	public static final RegistryObject<Block> CHOCOLATE_CAKE = HELPER.createBlockNoItem("chocolate_cake", () -> new FlavoredCakeBlock(NeapolitanItems.Foods.CHOCOLATE_CAKE, EffectType.BENEFICIAL, Properties.CHOCOLATE_CAKE));
 	public static final RegistryObject<Block> STRAWBERRY_CAKE = HELPER.createBlockNoItem("strawberry_cake", () -> new FlavoredCakeBlock(NeapolitanItems.Foods.STRAWBERRY_CAKE, EffectType.HARMFUL, Properties.STRAWBERRY_CAKE));
 	public static final RegistryObject<Block> VANILLA_CAKE = HELPER.createBlockNoItem("vanilla_cake", () -> new FlavoredCakeBlock(NeapolitanItems.Foods.VANILLA_CAKE, EffectType.NEUTRAL, Properties.VANILLA_CAKE));
 	public static final RegistryObject<Block> BANANA_CAKE = HELPER.createBlockNoItem("banana_cake", () -> new FlavoredCakeBlock(NeapolitanItems.Foods.BANANA_CAKE, null, Properties.BANANA_CAKE));
 	public static final RegistryObject<Block> MINT_CAKE = HELPER.createBlockNoItem("mint_cake", () -> new FlavoredCakeBlock(NeapolitanItems.Foods.MINT_CAKE, null, Properties.MINT_CAKE));
+	public static final RegistryObject<Block> ADZUKI_CAKE = HELPER.createBlockNoItem("adzuki_cake", () -> new FlavoredCakeBlock(NeapolitanItems.Foods.ADZUKI_CAKE, null, Properties.ADZUKI_CAKE));
 
 	public static final RegistryObject<Block> VANILLA_POD_BLOCK = HELPER.createBlock("vanilla_pod_block", () -> new RotatedPillarBlock(Properties.VANILLA_POD_BLOCK), ItemGroup.DECORATIONS);
 	public static final RegistryObject<Block> DRIED_VANILLA_POD_BLOCK = HELPER.createBlock("dried_vanilla_pod_block", () -> new RotatedPillarBlock(Properties.DRIED_VANILLA_POD_BLOCK), ItemGroup.DECORATIONS);
@@ -73,6 +79,8 @@ public class NeapolitanBlocks {
 	public static final RegistryObject<Block> WHITE_STRAWBERRY_BASKET = HELPER.createCompatBlock("quark", "white_strawberry_basket", () -> new Block(Properties.WHITE_STRAWBERRY_BASKET), ItemGroup.DECORATIONS);
 	public static final RegistryObject<Block> BANANA_CRATE = HELPER.createCompatBlock("quark", "banana_crate", () -> new Block(Properties.BANANA_CRATE), ItemGroup.DECORATIONS);
 	public static final RegistryObject<Block> MINT_BASKET = HELPER.createCompatBlock("quark", "mint_basket", () -> new Block(Properties.MINT_BASKET), ItemGroup.DECORATIONS);
+	public static final RegistryObject<Block> ADZUKI_CRATE = HELPER.createCompatBlock("quark", "adzuki_crate", () -> new Block(Properties.ADZUKI_CRATE), ItemGroup.DECORATIONS);
+	public static final RegistryObject<Block> ROASTED_ADZUKI_CRATE = HELPER.createCompatBlock("quark", "roasted_adzuki_crate", () -> new Block(Properties.ROASTED_ADZUKI_CRATE), ItemGroup.DECORATIONS);
 
 	static class Properties {
 		public static final AbstractBlock.Properties VANILLA_ICE_CREAM_BLOCK = AbstractBlock.Properties.create(Material.SNOW_BLOCK, MaterialColor.WHITE_TERRACOTTA).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.2F).sound(SoundType.SNOW);
@@ -80,6 +88,7 @@ public class NeapolitanBlocks {
 		public static final AbstractBlock.Properties STRAWBERRY_ICE_CREAM_BLOCK = AbstractBlock.Properties.create(Material.SNOW_BLOCK, MaterialColor.PINK).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.2F).sound(SoundType.SNOW);
 		public static final AbstractBlock.Properties BANANA_ICE_CREAM_BLOCK = AbstractBlock.Properties.create(Material.SNOW_BLOCK, MaterialColor.YELLOW).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.2F).sound(SoundType.SNOW);
 		public static final AbstractBlock.Properties MINT_ICE_CREAM_BLOCK = AbstractBlock.Properties.create(Material.SNOW_BLOCK, MaterialColor.LIME).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.2F).sound(SoundType.SNOW);
+		public static final AbstractBlock.Properties ADZUKI_ICE_CREAM_BLOCK = AbstractBlock.Properties.create(Material.SNOW_BLOCK, MaterialColor.RED).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.2F).sound(SoundType.SNOW);
 
 		public static final AbstractBlock.Properties CHOCOLATE = AbstractBlock.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD);
 		public static final AbstractBlock.Properties CHOCOLATE_BRICKS = AbstractBlock.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD);
@@ -93,11 +102,16 @@ public class NeapolitanBlocks {
 		public static final AbstractBlock.Properties BANANA_FROND = AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.LIME).tickRandomly().doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.NETHER_VINE).harvestTool(ToolType.HOE);
 		public static final AbstractBlock.Properties FROND_THATCH = AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.LIME).hardnessAndResistance(0.5F).sound(SoundType.NETHER_SPROUT).harvestTool(ToolType.HOE);
 
+		public static final AbstractBlock.Properties ADZUKI_SPROUTS = AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0F).sound(SoundType.CROP);
+		public static final AbstractBlock.Properties ADZUKI_SOIL = AbstractBlock.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.GROUND);
+		public static final AbstractBlock.Properties BEANSTALK = AbstractBlock.Properties.create(Material.GOURD, MaterialColor.GREEN).hardnessAndResistance(2.0F).sound(SoundType.HYPHAE);
+
 		public static final AbstractBlock.Properties CHOCOLATE_CAKE = AbstractBlock.Properties.create(Material.CAKE, MaterialColor.BROWN).hardnessAndResistance(0.5F).sound(SoundType.CLOTH);
 		public static final AbstractBlock.Properties STRAWBERRY_CAKE = AbstractBlock.Properties.create(Material.CAKE, MaterialColor.PINK).hardnessAndResistance(0.5F).sound(SoundType.CLOTH);
 		public static final AbstractBlock.Properties VANILLA_CAKE = AbstractBlock.Properties.create(Material.CAKE, MaterialColor.WHITE_TERRACOTTA).hardnessAndResistance(0.5F).sound(SoundType.CLOTH);
 		public static final AbstractBlock.Properties BANANA_CAKE = AbstractBlock.Properties.create(Material.CAKE, MaterialColor.YELLOW).hardnessAndResistance(0.5F).sound(SoundType.CLOTH);
 		public static final AbstractBlock.Properties MINT_CAKE = AbstractBlock.Properties.create(Material.CAKE, MaterialColor.LIME).hardnessAndResistance(0.5F).sound(SoundType.CLOTH);
+		public static final AbstractBlock.Properties ADZUKI_CAKE = AbstractBlock.Properties.create(Material.CAKE, MaterialColor.RED).hardnessAndResistance(0.5F).sound(SoundType.CLOTH);
 
 		public static final AbstractBlock.Properties VANILLA_POD_BLOCK = AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.LIME).harvestTool(ToolType.HOE).hardnessAndResistance(0.5F, 2.5F).sound(SoundType.PLANT);
 		public static final AbstractBlock.Properties DRIED_VANILLA_POD_BLOCK = AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.BROWN).harvestTool(ToolType.HOE).hardnessAndResistance(0.5F, 2.5F).sound(SoundType.PLANT);
@@ -107,5 +121,7 @@ public class NeapolitanBlocks {
 		public static final AbstractBlock.Properties WHITE_STRAWBERRY_BASKET = AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WHITE_TERRACOTTA).hardnessAndResistance(1.5F).sound(SoundType.WOOD);
 		public static final AbstractBlock.Properties BANANA_CRATE = AbstractBlock.Properties.create(Material.WOOD, MaterialColor.YELLOW).hardnessAndResistance(1.5F).sound(SoundType.HYPHAE);
 		public static final AbstractBlock.Properties MINT_BASKET = AbstractBlock.Properties.create(Material.WOOD, MaterialColor.LIME).hardnessAndResistance(1.5F).sound(SoundType.WOOD);
+		public static final AbstractBlock.Properties ADZUKI_CRATE = AbstractBlock.Properties.create(Material.WOOD, MaterialColor.RED).hardnessAndResistance(1.5F).sound(SoundType.WOOD);
+		public static final AbstractBlock.Properties ROASTED_ADZUKI_CRATE = AbstractBlock.Properties.create(Material.WOOD, MaterialColor.RED_TERRACOTTA).hardnessAndResistance(1.5F).sound(SoundType.WOOD);
 	}
 }

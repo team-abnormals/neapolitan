@@ -19,4 +19,6 @@ public class NeapolitanEffects {
 	public static final RegistryObject<Effect> AGILITY = EFFECTS.register("agility", () -> new AbnormalsEffect(EffectType.NEUTRAL, 0xA06951));
 	public static final RegistryObject<Effect> SLIPPING = EFFECTS.register("slipping", SlippingEffect::new);
 	public static final RegistryObject<Effect> BERSERKING = EFFECTS.register("berserking", BerserkingEffect::new);
+	public static final RegistryObject<Effect> HARMONY = EFFECTS.register("harmony", () -> new AbnormalsEffect(EffectType.BENEFICIAL, 0xA06951));
+
 }

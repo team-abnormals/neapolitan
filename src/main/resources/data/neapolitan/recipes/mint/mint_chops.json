@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:mutton"
+    },
+    {
+      "item": "neapolitan:mint_leaves"
+    }
+  ],
+  "result": {
+    "item": "neapolitan:mint_chops",
+    "count": 1
+  }
+}
