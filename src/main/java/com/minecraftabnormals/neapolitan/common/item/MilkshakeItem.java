@@ -1,7 +1,10 @@
 package com.minecraftabnormals.neapolitan.common.item;
 
 import com.google.common.collect.ImmutableList;
+import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEffects;
+import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
 import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -16,8 +19,6 @@ import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 
-import java.util.Random;
-
 public class MilkshakeItem extends DrinkItem {
 	private final EffectType effectType;
 
@@ -27,23 +28,9 @@ public class MilkshakeItem extends DrinkItem {
 	}
 
 	@Override
-	public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity entityLiving) {
-		ImmutableList<EffectInstance> effects = ImmutableList.copyOf(entityLiving.getActivePotionEffects());
-		if (this.getEffectType() != null) {
-			for (int i = 0; i < effects.size(); ++i) {
-				Effect effect = effects.get(i).getPotion();
-				if (effect.getEffectType() == this.getEffectType() || (this.getEffectType() == EffectType.HARMFUL && effect == Effects.BAD_OMEN) || this.getEffectType() == EffectType.NEUTRAL) {
-					entityLiving.removePotionEffect(effect);
-				}
-			}
-		} else {
-			if (effects.size() > 0) {
-				Random rand = new Random();
-				EffectInstance effectToRemove = effects.get(rand.nextInt(effects.size()));
-				entityLiving.removePotionEffect(effectToRemove.getPotion());
-			}
-		}
-		return super.onItemUseFinish(stack, worldIn, entityLiving);
+	public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity entity) {
+		handleEffects(entity);
+		return super.onItemUseFinish(stack, worldIn, entity);
 	}
 
 	@Override
@@ -58,22 +45,8 @@ public class MilkshakeItem extends DrinkItem {
 			serverplayerentity.addStat(Stats.ITEM_USED.get(this));
 		}
 
-		ImmutableList<EffectInstance> effects = ImmutableList.copyOf(entity.getActivePotionEffects());
-
-		if (this.getEffectType() != null) {
-			for (int i = 0; i < effects.size(); ++i) {
-				Effect effect = effects.get(i).getPotion();
-				if (effect.getEffectType() == this.getEffectType() || (this.getEffectType() == EffectType.HARMFUL && effect == Effects.BAD_OMEN) || this.getEffectType() == EffectType.NEUTRAL) {
-					entity.removePotionEffect(effect);
-				}
-			}
-		} else {
-			if (effects.size() > 0) {
-				Random rand = new Random();
-				EffectInstance effectToRemove = effects.get(rand.nextInt(effects.size()));
-				entity.removePotionEffect(effectToRemove.getPotion());
-			}
-		}
+		if (entity.getActivePotionEffect(NeapolitanEffects.VANILLA_SCENT.get()) == null)
+			handleEffects(entity);
 
 		if (!player.abilities.isCreativeMode) {
 			stack.shrink(1);
@@ -84,6 +57,35 @@ public class MilkshakeItem extends DrinkItem {
 		}
 
 		return ActionResultType.SUCCESS;
+	}
+
+	private void handleEffects(LivingEntity user) {
+		ImmutableList<EffectInstance> effects = ImmutableList.copyOf(user.getActivePotionEffects());
+		if (this.getEffectType() != null) {
+			for (int i = 0; i < effects.size(); ++i) {
+				Effect effect = effects.get(i).getPotion();
+				if (effect.getEffectType() == this.getEffectType() || (this.getEffectType() == EffectType.HARMFUL && effect == Effects.BAD_OMEN) || this.getEffectType() == EffectType.NEUTRAL) {
+					user.removePotionEffect(effect);
+				}
+			}
+		} else {
+			LivingEntity nearest = user.world.getClosestEntityWithinAABB(LivingEntity.class, EntityPredicate.DEFAULT.setCustomPredicate((living) -> living != user && living.getActivePotionEffect(NeapolitanEffects.VANILLA_SCENT.get()) == null), user, user.getPosX(), user.getPosY(), user.getPosZ(), user.getBoundingBox().grow(6.0D, 2.0D, 6.0D));
+			if (nearest != null) {
+				ImmutableList<EffectInstance> nearestEffects = ImmutableList.copyOf(nearest.getActivePotionEffects());
+				if (this == NeapolitanItems.BANANA_MILKSHAKE.get()) {
+					user.clearActivePotions();
+					nearest.clearActivePotions();
+					effects.forEach(nearest::addPotionEffect);
+					nearestEffects.forEach(user::addPotionEffect);
+				} else if (this == NeapolitanItems.MINT_MILKSHAKE.get()) {
+					nearest.clearActivePotions();
+					nearestEffects.forEach(user::addPotionEffect);
+				} else if (this == NeapolitanItems.ADZUKI_MILKSHAKE.get()) {
+					user.clearActivePotions();
+					effects.forEach(nearest::addPotionEffect);
+				}
+			}
+		}
 	}
 
 	@Override

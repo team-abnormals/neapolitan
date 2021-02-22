@@ -60,22 +60,6 @@ public class FlavoredCakeBlock extends CakeBlock {
 			if (this == NeapolitanBlocks.STRAWBERRY_CAKE.get())
 				HealingItem.applyHealing(1.0F, world, player);
 
-			ImmutableList<EffectInstance> effects = ImmutableList.copyOf(player.getActivePotionEffects());
-			if (this.getEffectType() != null) {
-				for (int j = 0; j < effects.size(); ++j) {
-					Effect effect = effects.get(j).getPotion();
-					if (effect.getEffectType() == this.getEffectType() || (this.getEffectType() == EffectType.HARMFUL && effect == Effects.BAD_OMEN) || this.getEffectType() == EffectType.NEUTRAL) {
-						player.removePotionEffect(effect);
-					}
-				}
-			} else {
-				if (effects.size() > 0) {
-					Random rand = new Random();
-					EffectInstance effectToRemove = effects.get(rand.nextInt(effects.size()));
-					player.removePotionEffect(effectToRemove.getPotion());
-				}
-			}
-
 			for (Pair<EffectInstance, Float> pair : food.getEffects()) {
 				if (!world.isRemote() && pair.getFirst() != null && world.getRandom().nextFloat() < pair.getSecond()) {
 					player.addPotionEffect(new EffectInstance(pair.getFirst()));
@@ -83,7 +67,7 @@ public class FlavoredCakeBlock extends CakeBlock {
 			}
 
 			if (i < 6) {
-				world.setBlockState(pos, state.with(BITES, Integer.valueOf(i + 1)), 3);
+				world.setBlockState(pos, state.with(BITES, i + 1), 3);
 			} else {
 				world.removeBlock(pos, false);
 			}

@@ -32,10 +32,10 @@ public class NeapolitanGeneration {
 		if ((category.equals(Biome.Category.JUNGLE) || biome.getPath().contains("rainforest")) && NeapolitanConfig.COMMON.plantainSpiderSpawning.get())
 			event.getSpawns().withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(NeapolitanEntities.PLANTAIN_SPIDER.get(), 120, 3, 5));
 
-		if (category.equals(Biome.Category.PLAINS) && NeapolitanConfig.COMMON.strawberryBushGeneration.get())
+		if (category.equals(Biome.Category.PLAINS) && NeapolitanConfig.COMMON.strawberryBushGenerationChance.get() > 0)
 			event.getGeneration().withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NeapolitanFeatures.Configured.PATCH_STRAWBERRY_BUSH);
 
-		if (category.equals(Biome.Category.SAVANNA) && NeapolitanConfig.COMMON.vanillaVineGeneration.get())
+		if (category.equals(Biome.Category.SAVANNA) && NeapolitanConfig.COMMON.vanillaVineGenerationChance.get() > 0)
 			event.getGeneration().withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NeapolitanFeatures.Configured.PATCH_VANILLA_VINE);
 
 		if (event.getClimate().precipitation.equals(RainType.RAIN)) {

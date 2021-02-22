@@ -9,8 +9,8 @@ public class NeapolitanConfig {
 		public final ConfigValue<Boolean> milkingWithGlassBottles;
 		public final ConfigValue<Integer> milkBucketUseTime;
 
-		public final ConfigValue<Boolean> strawberryBushGeneration;
-		public final ConfigValue<Boolean> vanillaVineGeneration;
+		public final ConfigValue<Integer> strawberryBushGenerationChance;
+		public final ConfigValue<Integer> vanillaVineGenerationChance;
 		public final ConfigValue<Boolean> bananaPlantBeachGeneration;
 		public final ConfigValue<Boolean> bananaPlantJungleGeneration;
 
@@ -25,8 +25,8 @@ public class NeapolitanConfig {
 			builder.pop();
 			builder.push("worldgen");
 			builder.push("features");
-			strawberryBushGeneration = builder.define("Strawberry Bush generation in Plains", true);
-			vanillaVineGeneration = builder.define("Vanilla Vine generation in Savannas", true);
+			strawberryBushGenerationChance = builder.defineInRange("Strawberry Bush generation chance in Plains", 9, 0, 128);
+			vanillaVineGenerationChance = builder.defineInRange("Vanilla Vine generation chance in Savannas", 6, 0, 128);
 			bananaPlantBeachGeneration = builder.define("Banana Plant generation in Beaches", true);
 			bananaPlantJungleGeneration = builder.define("Banana Plant generation in Jungles", true);
 			builder.pop();

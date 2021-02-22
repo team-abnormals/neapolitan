@@ -19,11 +19,13 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.potion.Effect;
+import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.DrinkHelper;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvents;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.PotionEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteractSpecific;
 import net.minecraftforge.event.village.VillagerTradesEvent;
@@ -71,6 +73,21 @@ public class NeapolitanEvents {
 				ItemStack itemstack1 = DrinkHelper.fill(stack, event.getPlayer(), NeapolitanItems.MILK_BOTTLE.get().getDefaultInstance());
 				player.swingArm(hand);
 				player.setHeldItem(hand, itemstack1);
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public static void onEntityInteract(LivingDeathEvent event) {
+		if (event.getSource().getTrueSource() instanceof LivingEntity) {
+			LivingEntity attacker = (LivingEntity) event.getSource().getTrueSource();
+			if (attacker.getActivePotionEffect(NeapolitanEffects.BERSERKING.get()) != null) {
+				EffectInstance berserking = attacker.getActivePotionEffect(NeapolitanEffects.BERSERKING.get());
+				if (berserking.getAmplifier() < 9) {
+					EffectInstance upgrade = new EffectInstance(berserking.getPotion(), berserking.getDuration(), berserking.getAmplifier() + 1, berserking.isAmbient(), berserking.doesShowParticles(), berserking.isShowIcon());
+					attacker.removeActivePotionEffect(NeapolitanEffects.BERSERKING.get());
+					attacker.addPotionEffect(upgrade);
+				}
 			}
 		}
 	}

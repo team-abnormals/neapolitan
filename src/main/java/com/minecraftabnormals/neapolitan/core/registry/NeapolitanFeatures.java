@@ -5,6 +5,7 @@ import com.minecraftabnormals.neapolitan.common.world.gen.feature.BananaPlantFea
 import com.minecraftabnormals.neapolitan.common.world.gen.feature.StrawberryPatchFeature;
 import com.minecraftabnormals.neapolitan.common.world.gen.feature.VanillaPatchFeature;
 import com.minecraftabnormals.neapolitan.core.Neapolitan;
+import com.minecraftabnormals.neapolitan.core.NeapolitanConfig;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
@@ -24,13 +25,13 @@ public class NeapolitanFeatures {
 	public static final RegistryObject<Feature<NoFeatureConfig>> BANANA_PLANT = FEATURES.register("banana_plant", () -> new BananaPlantFeature(NoFeatureConfig.field_236558_a_));
 
 	public static final class Configs {
-		public static final BlockClusterFeatureConfig STRAWBERRY_PATCH_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(NeapolitanBlocks.STRAWBERRY_BUSH.get().getDefaultState().with(StrawberryBushBlock.TYPE, StrawberryBushBlock.StrawberryType.RED)), SimpleBlockPlacer.PLACER)).func_227317_b_().tries(512).build();
+		public static final BlockClusterFeatureConfig STRAWBERRY_PATCH_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(NeapolitanBlocks.STRAWBERRY_BUSH.get().getDefaultState().with(StrawberryBushBlock.TYPE, StrawberryBushBlock.StrawberryType.RED)), SimpleBlockPlacer.PLACER)).replaceable().func_227317_b_().tries(512).build();
 		public static final BlockClusterFeatureConfig VANILLA_VINE_PATCH_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(NeapolitanBlocks.VANILLA_VINE.get().getDefaultState()), SimpleBlockPlacer.PLACER)).func_227317_b_().tries(64).build();
 	}
 
 	public static final class Configured {
-		public static final ConfiguredFeature<?, ?> PATCH_STRAWBERRY_BUSH = NeapolitanFeatures.STRAWBERRY_PATCH.get().withConfiguration(Configs.STRAWBERRY_PATCH_CONFIG).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(4));
-		public static final ConfiguredFeature<?, ?> PATCH_VANILLA_VINE = NeapolitanFeatures.VANILLA_VINE_PATCH.get().withConfiguration(Configs.VANILLA_VINE_PATCH_CONFIG).withPlacement(Features.Placements.PATCH_PLACEMENT.chance(2));
+		public static final ConfiguredFeature<?, ?> PATCH_STRAWBERRY_BUSH = NeapolitanFeatures.STRAWBERRY_PATCH.get().withConfiguration(Configs.STRAWBERRY_PATCH_CONFIG).withPlacement(Features.Placements.PATCH_PLACEMENT).chance(NeapolitanConfig.COMMON.strawberryBushGenerationChance.get());
+		public static final ConfiguredFeature<?, ?> PATCH_VANILLA_VINE = NeapolitanFeatures.VANILLA_VINE_PATCH.get().withConfiguration(Configs.VANILLA_VINE_PATCH_CONFIG).withPlacement(Features.Placements.PATCH_PLACEMENT).chance(NeapolitanConfig.COMMON.vanillaVineGenerationChance.get());
 
 		public static final ConfiguredFeature<?, ?> BANANA_PLANT = NeapolitanFeatures.BANANA_PLANT.get().withConfiguration(NoFeatureConfig.field_236559_b_).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT);
 		public static final ConfiguredFeature<?, ?> BANANA_PLANT_BEACH = BANANA_PLANT.withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(0, 0.075F, 1)));
