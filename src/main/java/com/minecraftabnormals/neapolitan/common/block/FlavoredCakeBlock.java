@@ -1,6 +1,5 @@
 package com.minecraftabnormals.neapolitan.common.block;
 
-import com.google.common.collect.ImmutableList;
 import com.minecraftabnormals.neapolitan.common.item.HealingItem;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.mojang.datafixers.util.Pair;
@@ -9,10 +8,8 @@ import net.minecraft.block.CakeBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Food;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
-import net.minecraft.potion.Effects;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
@@ -20,8 +17,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-
-import java.util.Random;
 
 public class FlavoredCakeBlock extends CakeBlock {
 	private EffectType effectType;

@@ -3,7 +3,6 @@ package com.minecraftabnormals.neapolitan.core.other;
 import com.minecraftabnormals.abnormals_core.core.util.DataUtil;
 import com.minecraftabnormals.neapolitan.core.Neapolitan;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEntities;
-import com.minecraftabnormals.neapolitan.core.registry.NeapolitanFeatures;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanFeatures.Configured;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.util.RegistryKey;
