@@ -20,10 +20,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
-import net.minecraft.util.DrinkHelper;
-import net.minecraft.util.Hand;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.util.*;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.PotionEvent;
@@ -53,7 +50,7 @@ public class NeapolitanEvents {
 			creepie.goalSelector.addGoal(3, new AvoidBlockGoal<>(creepie, 6, 1.0D, 1.2D));
 		}
 
-		if (entity instanceof MonsterEntity) {
+		if (entity instanceof MonsterEntity && !entity.getType().isContained(NeapolitanTags.EntityTypes.UNAFFECTED_BY_HARMONY)) {
 			MonsterEntity mobEntity = (MonsterEntity) entity;
 			mobEntity.goalSelector.addGoal(0, new AvoidEntityGoal<>(mobEntity, PlayerEntity.class, 12.0F, 1.0D, 1.0D, (player) -> player.getActivePotionEffect(NeapolitanEffects.HARMONY.get()) != null));
 		}
@@ -71,14 +68,16 @@ public class NeapolitanEvents {
 			if (stack.getItem() == Items.GLASS_BOTTLE && notChild) {
 				player.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
 				ItemStack itemstack1 = DrinkHelper.fill(stack, event.getPlayer(), NeapolitanItems.MILK_BOTTLE.get().getDefaultInstance());
-				player.swingArm(hand);
 				player.setHeldItem(hand, itemstack1);
+
+				event.setCanceled(true);
+				event.setCancellationResult(ActionResultType.func_233537_a_(event.getWorld().isRemote()));
 			}
 		}
 	}
 
 	@SubscribeEvent
-	public static void onEntityInteract(LivingDeathEvent event) {
+	public static void onLivingDeath(LivingDeathEvent event) {
 		if (event.getSource().getTrueSource() instanceof LivingEntity) {
 			LivingEntity attacker = (LivingEntity) event.getSource().getTrueSource();
 			if (attacker.getActivePotionEffect(NeapolitanEffects.BERSERKING.get()) != null) {
@@ -169,7 +168,8 @@ public class NeapolitanEvents {
 		);
 
 		TradeUtil.addRareWandererTrades(event,
-				new AbnormalsTrade(4, NeapolitanItems.WHITE_STRAWBERRIES.get(), 8, 2, 1)
+				new AbnormalsTrade(1, NeapolitanItems.WHITE_STRAWBERRIES.get(), 1, 8, 1),
+				new AbnormalsTrade(3, NeapolitanItems.MAGIC_BEANS.get(), 1, 6, 1)
 		);
 	}
 }

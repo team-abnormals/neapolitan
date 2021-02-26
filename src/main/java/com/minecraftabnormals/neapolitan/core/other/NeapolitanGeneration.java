@@ -35,8 +35,14 @@ public class NeapolitanGeneration {
 		if (category.equals(Biome.Category.PLAINS) && NeapolitanConfig.COMMON.strawberryBushGenerationChance.get() > 0)
 			event.getGeneration().withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NeapolitanFeatures.Configured.PATCH_STRAWBERRY_BUSH);
 
+		if (category.equals(Biome.Category.FOREST) && NeapolitanConfig.COMMON.adzukiSproutsGenerationChance.get() > 0)
+			event.getGeneration().withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NeapolitanFeatures.Configured.PATCH_ADZUKI_SPROUTS);
+
 		if (category.equals(Biome.Category.SAVANNA) && NeapolitanConfig.COMMON.vanillaVineGenerationChance.get() > 0)
 			event.getGeneration().withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NeapolitanFeatures.Configured.PATCH_VANILLA_VINE);
+
+		if (category.equals(Biome.Category.EXTREME_HILLS))
+			event.getGeneration().withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NeapolitanFeatures.Configured.MINT_POND);
 
 		if (event.getClimate().precipitation.equals(RainType.RAIN)) {
 			if (category.equals(Biome.Category.BEACH) && NeapolitanConfig.COMMON.bananaPlantBeachGeneration.get())

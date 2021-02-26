@@ -11,6 +11,9 @@ public class NeapolitanConfig {
 
 		public final ConfigValue<Integer> strawberryBushGenerationChance;
 		public final ConfigValue<Integer> vanillaVineGenerationChance;
+		public final ConfigValue<Integer> adzukiSproutsGenerationChance;
+		public final ConfigValue<Integer> mintPondGenerationChance;
+
 		public final ConfigValue<Boolean> bananaPlantBeachGeneration;
 		public final ConfigValue<Boolean> bananaPlantJungleGeneration;
 
@@ -21,12 +24,14 @@ public class NeapolitanConfig {
 		Common(ForgeConfigSpec.Builder builder) {
 			builder.push("items");
 			milkingWithGlassBottles = builder.comment("If milkable mobs can be milked with empty glass bottles").define("Milking with Glass Bottles", false);
-			milkBucketUseTime = builder.comment("The use time for Milk Buckets, in ticks").define("Milk Bucket drink time", 8);
+			milkBucketUseTime = builder.comment("The use time for Milk Buckets, in ticks").define("Milk Bucket drink time", 32);
 			builder.pop();
 			builder.push("worldgen");
 			builder.push("features");
 			strawberryBushGenerationChance = builder.defineInRange("Strawberry Bush generation chance in Plains", 9, 0, 128);
 			vanillaVineGenerationChance = builder.defineInRange("Vanilla Vine generation chance in Savannas", 6, 0, 128);
+			adzukiSproutsGenerationChance = builder.defineInRange("Aduzki Sprouts generation chance in Forests", 7, 0, 128);
+			mintPondGenerationChance = builder.defineInRange("Mint pond generation chance in Mountains", 5, 0, 128);
 			bananaPlantBeachGeneration = builder.define("Banana Plant generation in Beaches", true);
 			bananaPlantJungleGeneration = builder.define("Banana Plant generation in Jungles", true);
 			builder.pop();

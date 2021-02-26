@@ -7,9 +7,11 @@
         "criteria": "all_effects",
         "removes": false,
         "effects": {
+          "neapolitan:vanilla_scent": {},
           "neapolitan:sugar_rush": {},
           "neapolitan:agility": {},
           "neapolitan:slipping": {},
+          "neapolitan:berserking": {},
           "neapolitan:harmony": {}
         }
       }

@@ -2,13 +2,13 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "neapolitan:roasted_adzuki_beans"
+      "item": "neapolitan:adzuki_beans"
     },
     {
-      "item": "neapolitan:roasted_adzuki_beans"
+      "item": "neapolitan:adzuki_beans"
     },
     {
-      "item": "neapolitan:roasted_adzuki_beans"
+      "item": "neapolitan:adzuki_beans"
     },
     {
       "item": "minecraft:fermented_spider_eye"

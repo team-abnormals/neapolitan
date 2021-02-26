@@ -1,5 +1,7 @@
 package com.minecraftabnormals.neapolitan.common.block;
 
+import com.minecraftabnormals.abnormals_core.core.util.NetworkUtil;
+import com.minecraftabnormals.neapolitan.core.other.NeapolitanTags;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -12,11 +14,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.util.ActionResultType;
+import net.minecraft.util.*;
 import net.minecraft.util.Direction.Plane;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -82,16 +81,31 @@ public class MintBlock extends BushBlock implements IPlantable, IGrowable {
 			ForgeHooks.onCropsGrowPost(worldIn, pos, state);
 
 		} else {
+			spawnGrowthParticles(worldIn, pos, random);
 			Plane.HORIZONTAL.getDirectionValues().forEach(direction -> {
 				BlockPos offsetPos = pos.offset(direction);
 				BlockState offsetState = worldIn.getBlockState(offsetPos);
-				if (offsetState.getBlock() instanceof IGrowable && random.nextFloat() <= 0.6F) {
-					IGrowable igrowable = (IGrowable) offsetState.getBlock();
-					if (igrowable.canGrow(worldIn, offsetPos, offsetState, false)) {
-						igrowable.grow(worldIn, worldIn.rand, offsetPos, offsetState);
-					}
-				}
+				if (!offsetState.isIn(NeapolitanTags.Blocks.UNAFFECTED_BY_MINT))
+					offsetState.randomTick(worldIn, offsetPos, random);
 			});
+		}
+	}
+
+	private static void spawnGrowthParticles(ServerWorld worldIn, BlockPos posIn, Random random) {
+		BlockState blockstate = worldIn.getBlockState(posIn);
+		if (!blockstate.isAir(worldIn, posIn)) {
+			double d1 = blockstate.getShape(worldIn, posIn).getEnd(Direction.Axis.Y);
+			for (int i = 0; i < 8; ++i) {
+				double d2 = random.nextGaussian() * 0.02D;
+				double d3 = random.nextGaussian() * 0.02D;
+				double d4 = random.nextGaussian() * 0.02D;
+				double d6 = (double) posIn.getX() + random.nextDouble();
+				double d7 = (double) posIn.getY() + random.nextDouble() * d1;
+				double d8 = (double) posIn.getZ() + random.nextDouble();
+				if (!worldIn.getBlockState((new BlockPos(d6, d7, d8)).down()).isAir()) {
+					NetworkUtil.spawnParticle("neapolitan:mint_boost", d6, d7, d8, d2, d3, d4);
+				}
+			}
 		}
 	}
 

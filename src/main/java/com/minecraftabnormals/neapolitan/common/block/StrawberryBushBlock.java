@@ -62,7 +62,7 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, IGrowa
 			int strawberryCount = 1 + worldIn.rand.nextInt(2);
 			Item strawberry = state.get(TYPE) == StrawberryType.WHITE ? NeapolitanItems.WHITE_STRAWBERRIES.get() : NeapolitanItems.STRAWBERRIES.get();
 			spawnAsEntity(worldIn, pos, new ItemStack(strawberry, strawberryCount));
-			worldIn.playSound((PlayerEntity) null, pos, SoundEvents.ITEM_SWEET_BERRIES_PICK_FROM_BUSH, SoundCategory.BLOCKS, 1.0F, 0.8F + worldIn.rand.nextFloat() * 0.4F);
+			worldIn.playSound(null, pos, SoundEvents.ITEM_SWEET_BERRIES_PICK_FROM_BUSH, SoundCategory.BLOCKS, 1.0F, 0.8F + worldIn.rand.nextFloat() * 0.4F);
 			worldIn.setBlockState(pos, state.with(AGE, 1).with(TYPE, StrawberryType.NONE), 2);
 			if (player instanceof ServerPlayerEntity)
 				NeapolitanCriteriaTriggers.HARVEST_STRAWBERRIES.trigger((ServerPlayerEntity) player, state);

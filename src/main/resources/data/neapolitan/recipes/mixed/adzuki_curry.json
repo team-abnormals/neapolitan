@@ -19,5 +19,14 @@
   ],
   "result": {
     "item": "neapolitan:adzuki_curry"
-  }
+  },
+  "conditions": [
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:mod_loaded",
+        "modid": "abnormals_delight"
+      }
+    }
+  ]
 }

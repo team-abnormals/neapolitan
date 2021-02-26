@@ -86,6 +86,9 @@ public class NeapolitanCompat {
 		DataUtil.registerCompostable(NeapolitanBlocks.BANANA_FROND.get(), 0.5F);
 		DataUtil.registerCompostable(NeapolitanBlocks.LARGE_BANANA_FROND.get(), 0.65F);
 
+		DataUtil.registerCompostable(NeapolitanBlocks.BEANSTALK.get(), 0.65F);
+		DataUtil.registerCompostable(NeapolitanBlocks.BEANSTALK_THORNS.get(), 0.5F);
+
 		DataUtil.registerCompostable(NeapolitanBlocks.STRAWBERRY_BASKET.get(), 1.0F);
 		DataUtil.registerCompostable(NeapolitanBlocks.WHITE_STRAWBERRY_BASKET.get(), 1.0F);
 		DataUtil.registerCompostable(NeapolitanBlocks.BANANA_CRATE.get(), 1.0F);
@@ -172,6 +175,8 @@ public class NeapolitanCompat {
 		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.VANILLA_VINE.get(), RenderType.getCutout());
 		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.VANILLA_VINE_PLANT.get(), RenderType.getCutout());
 		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.MINT.get(), RenderType.getCutout());
+		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.ADZUKI_SPROUTS.get(), RenderType.getCutout());
+		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.BEANSTALK_THORNS.get(), RenderType.getCutout());
 
 		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.SMALL_BANANA_FROND.get(), RenderType.getCutout());
 		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.BANANA_FROND.get(), RenderType.getCutout());

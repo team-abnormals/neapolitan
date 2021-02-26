@@ -5,8 +5,9 @@
   "minVersion": "0.8",
   "refmap": "neapolitan.refmap.json",
   "mixins": [
+    "LivingEntityMixin",
     "MilkBucketItemMixin",
-    "LivingEntityMixin"
+    "SpreadableSnowyDirtBlockMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -39,7 +39,7 @@
   "block.neapolitan.vanilla_vine": "Vanilla Vine",
   "block.neapolitan.vanilla_vine_plant": "Vanilla Vine",
   "block.neapolitan.mint": "Mint",
-  
+
   "block.neapolitan.banana_stalk": "Banana Stalk",
   "block.neapolitan.carved_banana_stalk": "Carved Banana Stalk",
   "block.neapolitan.banana_bundle": "Banana Bundle",
@@ -51,7 +51,7 @@
   "block.neapolitan.adzuki_sprouts": "Adzuki Sprouts",
   "block.neapolitan.adzuki_soil": "Adzuki Soil",
   "block.neapolitan.beanstalk": "Beanstalk",
-  "block.neapolitan.bean_thorns": "Bean Thorns",
+  "block.neapolitan.beanstalk_thorns": "Beanstalk Thorns",
   
   "block.neapolitan.chocolate_cake": "Chocolate Cake",
   "block.neapolitan.strawberry_cake": "Strawberry Cake",
@@ -100,6 +100,7 @@
   "item.neapolitan.adzuki_beans": "Adzuki Beans",
   "item.neapolitan.roasted_adzuki_beans": "Roasted Adzuki Beans",
   "item.neapolitan.adzuki_bun": "Adzuki Bun",
+  "item.neapolitan.adzuki_stew": "Adzuki Stew",
   "item.neapolitan.adzuki_ice_cream": "Adzuki Ice Cream",
   "item.neapolitan.adzuki_milkshake": "Adzuki Milkshake",
   "item.neapolitan.magic_beans": "Magic Beans",
@@ -109,6 +110,7 @@
   "item.neapolitan.vanilla_chocolate_fingers": "Vanilla Chocolate Fingers",
   "item.neapolitan.strawberry_banana_smoothie": "Strawberry Banana Smoothie",
   "item.neapolitan.mint_chocolate": "Mint Chocolate",
+  "item.neapolitan.strawberry_bean_bonbons": "Strawberry Bean Bonbons",
   "item.neapolitan.adzuki_curry": "Adzuki Curry",
   "item.neapolitan.neapolitan_ice_cream": "Neapolitan Ice Cream",
   
@@ -141,7 +143,10 @@
   
   "advancements.husbandry.harvest_white_strawberries.title": "Picnic in the Clouds",
   "advancements.husbandry.harvest_white_strawberries.description": "Obtain White Strawberries by growing Strawberry Bushes at a high altitude",
-  
+
+  "death.attack.neapolitan.beanstalkThorns": "%1$s was poked to death by beanstalk thorns",
+  "death.attack.neapolitan.beanstalkThorns.player": "%1$s was poked to death by beanstalk thorns whilst trying to escape %2$s",
+
   "subtitles.neapolitan.entity.chimpanzee.angry": "Chimpanzee screams",
   "subtitles.neapolitan.entity.chimpanzee.death": "Chimpanzee dies",
   "subtitles.neapolitan.entity.chimpanzee.eat": "Chimpanzee eats",

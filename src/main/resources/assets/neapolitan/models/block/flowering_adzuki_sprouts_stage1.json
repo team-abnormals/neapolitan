@@ -1,0 +1,6 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "neapolitan:block/flowering_adzuki_sprouts_stage1"
+  }
+}

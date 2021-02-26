@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "neapolitan:strawberries"
+    },
+    {
+      "item": "neapolitan:roasted_adzuki_beans"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "result": {
+    "item": "neapolitan:strawberry_bean_bonbons",
+    "count": 1
+  }
+}

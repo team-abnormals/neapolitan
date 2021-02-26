@@ -25,7 +25,7 @@ public class SlippingEffect extends Effect {
 			x = amount;
 		else
 			z = amount;
-		if (entity.isOnGround() && !NeapolitanTags.EntityTypes.SLIPPING_PROOF.contains(entity.getType()))
+		if (entity.isOnGround() && !NeapolitanTags.EntityTypes.UNAFFECTED_BY_SLIPPING.contains(entity.getType()))
 			entity.setMotion(entity.getMotion().add(x, 0.0F, z));
 	}
 

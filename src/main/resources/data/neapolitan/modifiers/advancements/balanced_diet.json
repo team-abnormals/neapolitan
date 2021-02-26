@@ -258,7 +258,15 @@
             "trigger": "minecraft:consume_item",
             "conditions": {
               "item": {
-                "item": "neapolitan:roasted_adzuki_beans"
+                "item": "neapolitan:adzuki_bun"
+              }
+            }
+          },
+          "neapolitan:adzuki_stew": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+              "item": {
+                "item": "neapolitan:adzuki_stew"
               }
             }
           },
@@ -266,7 +274,7 @@
             "trigger": "minecraft:consume_item",
             "conditions": {
               "item": {
-                "item": "neapolitan:roasted_adzuki_beans"
+                "item": "neapolitan:adzuki_curry"
               }
             }
           },
@@ -274,7 +282,7 @@
             "trigger": "minecraft:consume_item",
             "conditions": {
               "item": {
-                "item": "neapolitan:roasted_adzuki_beans"
+                "item": "neapolitan:adzuki_ice_cream"
               }
             }
           },
@@ -282,7 +290,15 @@
             "trigger": "minecraft:consume_item",
             "conditions": {
               "item": {
-                "item": "neapolitan:roasted_adzuki_beans"
+                "item": "neapolitan:adzuki_milkshake"
+              }
+            }
+          },
+          "neapolitan:strawberry_bean_bonbons": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+              "item": {
+                "item": "neapolitan:strawberry_bean_bonbons"
               }
             }
           }
@@ -385,6 +401,9 @@
             "neapolitan:adzuki_bun"
           ],
           [
+            "neapolitan:adzuki_stew"
+          ],
+          [
             "neapolitan:adzuki_curry"
           ],
           [
@@ -392,6 +411,9 @@
           ],
           [
             "neapolitan:adzuki_milkshake"
+          ],
+          [
+            "neapolitan:strawberry_bean_bonbons"
           ]
         ]
       }

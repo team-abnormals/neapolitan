@@ -1,0 +1,6 @@
+{
+  "parent": "neapolitan:block/strawberry_bush",
+  "textures": {
+    "texture": "neapolitan:block/beanstalk_thorns"
+  }
+}

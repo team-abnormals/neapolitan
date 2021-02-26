@@ -21,17 +21,18 @@ public class Neapolitan {
 	public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MOD_ID);
 
 	public Neapolitan() {
-		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 		MinecraftForge.EVENT_BUS.register(this);
 
-		REGISTRY_HELPER.register(modEventBus);
-		NeapolitanEffects.EFFECTS.register(modEventBus);
-		NeapolitanFeatures.FEATURES.register(modEventBus);
-		NeapolitanBanners.PAINTINGS.register(modEventBus);
+		REGISTRY_HELPER.register(bus);
+		NeapolitanEffects.EFFECTS.register(bus);
+		NeapolitanFeatures.FEATURES.register(bus);
+		NeapolitanBanners.PAINTINGS.register(bus);
+		NeapolitanParticles.PARTICLES.register(bus);
 
-		modEventBus.addListener(this::setupCommon);
+		bus.addListener(this::setupCommon);
 		DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
-			modEventBus.addListener(this::setupClient);
+			bus.addListener(this::setupClient);
 		});
 
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, NeapolitanConfig.COMMON_SPEC);

@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "x": 180,
+      "model": "neapolitan:block/beanstalk_thorns"
+    },
+    "facing=east": {
+      "x": 90,
+      "y": 90,
+      "model": "neapolitan:block/beanstalk_thorns"
+    },
+    "facing=north": {
+      "x": 90,
+      "model": "neapolitan:block/beanstalk_thorns"
+    },
+    "facing=south": {
+      "x": 90,
+      "y": 180,
+      "model": "neapolitan:block/beanstalk_thorns"
+    },
+    "facing=up": {
+      "model": "neapolitan:block/beanstalk_thorns"
+    },
+    "facing=west": {
+      "x": 90,
+      "y": 270,
+      "model": "neapolitan:block/beanstalk_thorns"
+    }
+  }
+}
