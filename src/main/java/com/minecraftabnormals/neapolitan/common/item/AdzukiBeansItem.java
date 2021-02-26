@@ -65,6 +65,7 @@ public class AdzukiBeansItem extends Item {
 		List<BlockPos> beanstalkPositions = new ArrayList<>();
 		BlockPos offsetPos = pos.offset(face);
 
+		if (state.getMaterial().isReplaceable()) offsetPos = pos;
 		world.playSound(null, pos, SoundEvents.ITEM_CROP_PLANT, SoundCategory.BLOCKS, 1.0F, 1.0F);
 		if (!world.isRemote() && pos.getY() >= 0) {
 			for (Direction direction : offsetDirections) {
@@ -77,9 +78,7 @@ public class AdzukiBeansItem extends Item {
 			stem:
 			for (int i = 0; i < 3 + random.nextInt(4); ++i) {
 				for (int j = 0; j < 3 + random.nextInt(3); ++j) {
-					if (j != 0)
-						offsetPos = offsetPos.offset(face);
-
+					if (j != 0) offsetPos = offsetPos.offset(face);
 					if (world.getBlockState(offsetPos).getMaterial().isReplaceable())
 						beanstalkPositions.add(offsetPos);
 					else break stem;

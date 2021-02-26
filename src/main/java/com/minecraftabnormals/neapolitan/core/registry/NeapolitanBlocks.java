@@ -99,13 +99,13 @@ public class NeapolitanBlocks {
 		public static final AbstractBlock.Properties VANILLA_VINE = AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.LIME).tickRandomly().doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.NETHER_VINE);
 		public static final AbstractBlock.Properties MINT = AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0F).sound(SoundType.CROP);
 
-		public static final AbstractBlock.Properties BANANA_STALK = AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.BROWN).hardnessAndResistance(1.0F).sound(SoundType.HYPHAE).setSuffocates((state, reader, pos) -> false).harvestTool(ToolType.HOE);
+		public static final AbstractBlock.Properties BANANA_STALK = AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.BROWN).hardnessAndResistance(1.0F).sound(SoundType.HYPHAE).harvestTool(ToolType.HOE);
 		public static final AbstractBlock.Properties BANANA_FROND = AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.LIME).tickRandomly().doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.NETHER_VINE).harvestTool(ToolType.HOE);
 		public static final AbstractBlock.Properties FROND_THATCH = AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.LIME).hardnessAndResistance(0.5F).sound(SoundType.NETHER_SPROUT).harvestTool(ToolType.HOE);
 
 		public static final AbstractBlock.Properties ADZUKI_SPROUTS = AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0F).sound(SoundType.CROP);
-		public static final AbstractBlock.Properties ADZUKI_SOIL = AbstractBlock.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).tickRandomly().sound(SoundType.GROUND);
-		public static final AbstractBlock.Properties BEANSTALK = AbstractBlock.Properties.create(Material.GOURD, MaterialColor.GREEN).hardnessAndResistance(1.0F).harvestTool(ToolType.HOE).sound(SoundType.HYPHAE);
+		public static final AbstractBlock.Properties ADZUKI_SOIL = AbstractBlock.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).tickRandomly().harvestTool(ToolType.SHOVEL).sound(SoundType.GROUND);
+		public static final AbstractBlock.Properties BEANSTALK = AbstractBlock.Properties.create(Material.GOURD, MaterialColor.GREEN).hardnessAndResistance(1.0F).harvestTool(ToolType.HOE).setSuffocates((state, reader, pos) -> false).sound(SoundType.HYPHAE);
 		public static final AbstractBlock.Properties BEANSTALK_THORNS = AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.GREEN).doesNotBlockMovement().hardnessAndResistance(0.2F).harvestTool(ToolType.HOE).sound(SoundType.FUNGUS);
 
 		public static final AbstractBlock.Properties CHOCOLATE_CAKE = AbstractBlock.Properties.create(Material.CAKE, MaterialColor.BROWN).hardnessAndResistance(0.5F).sound(SoundType.CLOTH);

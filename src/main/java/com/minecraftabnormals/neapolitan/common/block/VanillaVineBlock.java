@@ -107,7 +107,6 @@ public class VanillaVineBlock extends Block implements IGrowable {
 			BlockState blockstate = worldIn.getBlockState(optional.get());
 			((VanillaVineTopBlock) blockstate.getBlock()).grow(worldIn, rand, optional.get(), blockstate);
 		}
-
 	}
 
 	private Optional<BlockPos> nextGrowPosition(IBlockReader reader, BlockPos pos, BlockState state) {

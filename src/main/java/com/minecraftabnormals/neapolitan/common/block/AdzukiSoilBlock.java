@@ -5,12 +5,14 @@ import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.IGrowable;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ForgeHooks;
@@ -18,7 +20,7 @@ import net.minecraftforge.common.ToolType;
 
 import java.util.Random;
 
-public class AdzukiSoilBlock extends Block {
+public class AdzukiSoilBlock extends Block implements IGrowable {
 	public AdzukiSoilBlock(Properties properties) {
 		super(properties);
 	}
@@ -44,6 +46,24 @@ public class AdzukiSoilBlock extends Block {
 			worldIn.setBlockState(pos.up(), NeapolitanBlocks.ADZUKI_SPROUTS.get().getDefaultState());
 			worldIn.setBlockState(pos, Blocks.DIRT.getDefaultState());
 			ForgeHooks.onCropsGrowPost(worldIn, pos, state);
+		}
+	}
+
+	@Override
+	public boolean canGrow(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
+		return true;
+	}
+
+	@Override
+	public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, BlockState state) {
+		return true;
+	}
+
+	@Override
+	public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
+		if (worldIn.getBlockState(pos.up()).isAir()) {
+			worldIn.setBlockState(pos.up(), NeapolitanBlocks.ADZUKI_SPROUTS.get().getDefaultState());
+			worldIn.setBlockState(pos, Blocks.DIRT.getDefaultState());
 		}
 	}
 }
