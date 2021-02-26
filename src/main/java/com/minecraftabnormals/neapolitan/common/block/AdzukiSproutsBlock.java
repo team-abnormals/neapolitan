@@ -60,7 +60,6 @@ public class AdzukiSproutsBlock extends BushBlock implements IPlantable, IGrowab
 		int i = state.get(AGE);
 		int speed = state.get(FLOWERING) ? 3 : 6;
 		if (worldIn.getLightSubtracted(pos, 0) >= 9 && !this.isMaxAge(state) && ForgeHooks.onCropsGrowPre(worldIn, pos, state, random.nextInt(speed) == 0)) {
-			if (i == 5) worldIn.setBlockState(pos.down(), Blocks.DIRT.getDefaultState());
 			worldIn.setBlockState(pos, state.with(AGE, i + 1), 2);
 			ForgeHooks.onCropsGrowPost(worldIn, pos, state);
 		}
@@ -70,7 +69,7 @@ public class AdzukiSproutsBlock extends BushBlock implements IPlantable, IGrowab
 	public void onBlockHarvested(World world, BlockPos pos, BlockState state, PlayerEntity player) {
 		super.onBlockHarvested(world, pos, state, player);
 		BlockState downState = world.getBlockState(pos.down());
-		if (downState.isIn(Blocks.DIRT) || downState.isIn(Blocks.COARSE_DIRT) || downState.isIn(Blocks.GRASS_BLOCK))
+		if (this.isMaxAge(state) && (downState.isIn(Blocks.DIRT) || downState.isIn(Blocks.COARSE_DIRT) || downState.isIn(Blocks.GRASS_BLOCK)))
 			world.setBlockState(pos.down(), NeapolitanBlocks.ADZUKI_SOIL.get().getDefaultState());
 	}
 
@@ -99,7 +98,6 @@ public class AdzukiSproutsBlock extends BushBlock implements IPlantable, IGrowab
 	@Override
 	public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
 		int i = Math.min(6, state.get(AGE) + 1);
-		if (i == 6) worldIn.setBlockState(pos.down(), Blocks.DIRT.getDefaultState());
 		worldIn.setBlockState(pos, state.with(AGE, i), 2);
 	}
 

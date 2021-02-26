@@ -79,15 +79,16 @@ public class MintBlock extends BushBlock implements IPlantable, IGrowable {
 		if (worldIn.getLightSubtracted(pos, 0) >= 9 && !this.isMaxAge(state) && ForgeHooks.onCropsGrowPre(worldIn, pos, state, random.nextInt(9) == 0)) {
 			worldIn.setBlockState(pos, state.with(AGE, i + 1), 2);
 			ForgeHooks.onCropsGrowPost(worldIn, pos, state);
-
 		} else {
-			spawnGrowthParticles(worldIn, pos, random);
-			Plane.HORIZONTAL.getDirectionValues().forEach(direction -> {
-				BlockPos offsetPos = pos.offset(direction);
-				BlockState offsetState = worldIn.getBlockState(offsetPos);
-				if (!offsetState.isIn(NeapolitanTags.Blocks.UNAFFECTED_BY_MINT))
-					offsetState.randomTick(worldIn, offsetPos, random);
-			});
+			if (this.isMaxAge(state) && random.nextInt(3) != 0) {
+				spawnGrowthParticles(worldIn, pos, random);
+				Plane.HORIZONTAL.getDirectionValues().forEach(direction -> {
+					BlockPos offsetPos = pos.offset(direction);
+					BlockState offsetState = worldIn.getBlockState(offsetPos);
+					if (!offsetState.isIn(NeapolitanTags.Blocks.UNAFFECTED_BY_MINT))
+						offsetState.randomTick(worldIn, offsetPos, random);
+				});
+			}
 		}
 	}
 

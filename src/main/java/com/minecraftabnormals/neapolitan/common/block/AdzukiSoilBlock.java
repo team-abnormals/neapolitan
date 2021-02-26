@@ -42,6 +42,7 @@ public class AdzukiSoilBlock extends Block {
 		if (!worldIn.isAreaLoaded(pos, 1)) return;
 		if (worldIn.getLightSubtracted(pos.up(), 0) >= 9 && ForgeHooks.onCropsGrowPre(worldIn, pos, state, random.nextInt(4) == 0) && worldIn.getBlockState(pos.up()).isAir()) {
 			worldIn.setBlockState(pos.up(), NeapolitanBlocks.ADZUKI_SPROUTS.get().getDefaultState());
+			worldIn.setBlockState(pos, Blocks.DIRT.getDefaultState());
 			ForgeHooks.onCropsGrowPost(worldIn, pos, state);
 		}
 	}

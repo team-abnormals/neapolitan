@@ -66,8 +66,7 @@ public class AdzukiBeansItem extends Item {
 		BlockPos offsetPos = pos.offset(face);
 
 		world.playSound(null, pos, SoundEvents.ITEM_CROP_PLANT, SoundCategory.BLOCKS, 1.0F, 1.0F);
-		if (player != null && !player.abilities.isCreativeMode) stack.shrink(1);
-		if (!world.isRemote()) {
+		if (!world.isRemote() && pos.getY() >= 0) {
 			for (Direction direction : offsetDirections) {
 				beanstalkPositions.add(offsetPos.offset(direction));
 				BlockPos cornerPos = offsetPos.offset(direction).offset(rotate(face.getAxis(), direction));
@@ -89,9 +88,13 @@ public class AdzukiBeansItem extends Item {
 				offsetPos = offsetPos.offset(startingDirection);
 			}
 
+			int placed = 0;
 			for (BlockPos blockPos : beanstalkPositions) {
-				attemptPlaceBeanstalk(world, blockPos, face);
+				if (attemptPlaceBeanstalk(world, blockPos, face)) placed++;
 			}
+
+
+			if (placed > 0 && player != null && !player.abilities.isCreativeMode) stack.shrink(1);
 
 			for (BlockPos blockPos : beanstalkPositions) {
 				for (Direction direction : Direction.values()) {
@@ -103,13 +106,13 @@ public class AdzukiBeansItem extends Item {
 			}
 		}
 
-
 		return ActionResultType.func_233537_a_(world.isRemote);
 	}
 
-	private static void attemptPlaceBeanstalk(World world, BlockPos pos, Direction direction) {
+	private static boolean attemptPlaceBeanstalk(World world, BlockPos pos, Direction direction) {
 		if (world.getBlockState(pos).getMaterial().isReplaceable())
-			world.setBlockState(pos, NeapolitanBlocks.BEANSTALK.get().getDefaultState().with(RotatedPillarBlock.AXIS, direction.getAxis()));
+			return world.setBlockState(pos, NeapolitanBlocks.BEANSTALK.get().getDefaultState().with(RotatedPillarBlock.AXIS, direction.getAxis()));
+		return false;
 	}
 
 	private static Direction rotate(Axis axis, Direction face) {

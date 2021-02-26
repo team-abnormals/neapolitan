@@ -99,7 +99,7 @@ public class NeapolitanBlocks {
 		public static final AbstractBlock.Properties VANILLA_VINE = AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.LIME).tickRandomly().doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.NETHER_VINE);
 		public static final AbstractBlock.Properties MINT = AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0F).sound(SoundType.CROP);
 
-		public static final AbstractBlock.Properties BANANA_STALK = AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.BROWN).hardnessAndResistance(1.0F).sound(SoundType.HYPHAE).harvestTool(ToolType.HOE);
+		public static final AbstractBlock.Properties BANANA_STALK = AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.BROWN).hardnessAndResistance(1.0F).sound(SoundType.HYPHAE).setSuffocates((state, reader, pos) -> false).harvestTool(ToolType.HOE);
 		public static final AbstractBlock.Properties BANANA_FROND = AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.LIME).tickRandomly().doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.NETHER_VINE).harvestTool(ToolType.HOE);
 		public static final AbstractBlock.Properties FROND_THATCH = AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.LIME).hardnessAndResistance(0.5F).sound(SoundType.NETHER_SPROUT).harvestTool(ToolType.HOE);
 
