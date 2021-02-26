@@ -1,5 +1,6 @@
 package com.minecraftabnormals.neapolitan.common.entity.goals;
 
+import com.minecraftabnormals.neapolitan.core.other.NeapolitanTags;
 import com.minecraftabnormals.neapolitan.core.other.NeapolitanTags.Blocks;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.LivingEntity;
@@ -43,6 +44,7 @@ public class AvoidBlockGoal<T extends LivingEntity> extends Goal {
 	}
 
 	public boolean shouldExecute() {
+		if (NeapolitanTags.Blocks.CREEPER_REPELLENTS.getAllElements().isEmpty()) return false;
 		Optional<BlockPos> optional = findNearestRepellent(this.entity.getEntityWorld(), this.entity);
 		if (!optional.isPresent()) return false;
 
