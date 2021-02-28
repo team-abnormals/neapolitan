@@ -13,16 +13,16 @@
 
   "block.neapolitan.chiseled_chocolate_bricks": "Ladrillos de chocolate cincelados",
 
-  "block.neapolitan.chocolate_tiles": "Azulejos de chocolate",
-  "block.neapolitan.chocolate_tile_slab": "Baldosa de azulejos de chocolate",
-  "block.neapolitan.chocolate_tile_stairs": "Escaleras de azulejos de chocolate",
-  "block.neapolitan.chocolate_tile_wall": "Pared de azulejos de chocolate",
-  "block.neapolitan.chocolate_tile_vertical_slab": "Baldosa vertical de azulejos de chocolate",
+  "block.neapolitan.chocolate_tiles": "Losetas de chocolate",
+  "block.neapolitan.chocolate_tile_slab": "Baldosa de losetas de chocolate",
+  "block.neapolitan.chocolate_tile_stairs": "Escaleras de losetas de chocolate",
+  "block.neapolitan.chocolate_tile_wall": "Pared de losetas de chocolate",
+  "block.neapolitan.chocolate_tile_vertical_slab": "Baldosa vertical de losetas de chocolate",
 
-  "block.neapolitan.frond_thatch": "Paja de hojas",
-  "block.neapolitan.frond_thatch_stairs": "Escaleras de paja de hojas",
-  "block.neapolitan.frond_thatch_slab": "Baldosa de paja de hojas",
-  "block.neapolitan.frond_thatch_vertical_slab": "Baldosa vertical de paja de hojas",
+  "block.neapolitan.frond_thatch": "Paja de hojas de banana",
+  "block.neapolitan.frond_thatch_stairs": "Escaleras de paja de hojas de banana",
+  "block.neapolitan.frond_thatch_slab": "Baldosa de paja de hojas de banana",
+  "block.neapolitan.frond_thatch_vertical_slab": "Baldosa vertical de paja de hojas de banana",
 
   "block.neapolitan.strawberry_basket": "Canasta de frutillas",
   "block.neapolitan.white_strawberry_basket": "Canasta de frutillas blancas",
@@ -52,33 +52,33 @@
 
   "item.neapolitan.chocolate_bar": "Barra de chocolate",
   "item.neapolitan.chocolate_ice_cream": "Helado de chocolate",
-  "item.neapolitan.chocolate_milkshake": "Batido de chocolate",
-  "item.neapolitan.chocolate_spider_eye": "Ojo de araña de chocolate",
+  "item.neapolitan.chocolate_milkshake": "Licuado de chocolate",
+  "item.neapolitan.chocolate_spider_eye": "Ojo de araña con chocolate",
 
   "item.neapolitan.strawberry_pips": "Pepitas de frutilla",
   "item.neapolitan.strawberries": "Frutillas",
   "item.neapolitan.strawberry_ice_cream": "Helado de frutilla",
   "item.neapolitan.strawberry_scones": "Scones de frutilla",
-  "item.neapolitan.strawberry_milkshake": "Batido de frutilla",
+  "item.neapolitan.strawberry_milkshake": "Licuado de frutilla",
 
   "item.neapolitan.vanilla_pods": "Vainas de vainilla",
   "item.neapolitan.dried_vanilla_pods": "Vainas de vainilla secas",
   "item.neapolitan.vanilla_ice_cream": "Helado de vainilla",
   "item.neapolitan.vanilla_pudding": "Budín de vainilla",
-  "item.neapolitan.vanilla_milkshake": "Batido de vainilla",
+  "item.neapolitan.vanilla_milkshake": "Licuado de vainilla",
   "item.neapolitan.vanilla_fudge": "Caramelo de vainilla",
 
   "item.neapolitan.banana": "Banana",
   "item.neapolitan.banana_bunch": "Racimo de bananas",
   "item.neapolitan.dried_banana": "Banana seca",
   "item.neapolitan.banana_ice_cream": "Helado de banana",
-  "item.neapolitan.banana_milkshake": "Batido de banana",
+  "item.neapolitan.banana_milkshake": "Licuado de banana",
   "item.neapolitan.banana_bread": "Pan de banana",
-  "item.neapolitan.bananarrow": "Bananaflecha",
+  "item.neapolitan.bananarrow": "Flechanana",
 
   "item.neapolitan.chocolate_strawberries": "Frutillas con chocolate",
   "item.neapolitan.white_strawberries": "Frutillas blancas",
-  "item.neapolitan.vanilla_chocolate_fingers": "Dedos de vainilla y chocolate",
+  "item.neapolitan.vanilla_chocolate_fingers": "Palitos de vainilla con chocolate",
   "item.neapolitan.strawberry_banana_smoothie": "Smoothie de frutilla y banana",
   "item.neapolitan.neapolitan_ice_cream": "Helado napolitano",
 
@@ -86,29 +86,29 @@
   "item.neapolitan.monkey_banner_pattern.desc": "Mono",
 
   "item.neapolitan.monkey_spawn_egg": "Generar mono",
-  "item.neapolitan.plantain_spider_spawn_egg": "Generar bananaraña",
+  "item.neapolitan.plantain_spider_spawn_egg": "Generar araña bananera",
 
   "entity.neapolitan.banana_peel": "Cáscara de banana",
   "entity.neapolitan.monkey": "Mono",
-  "entity.neapolitan.plantain_spider": "Bananaraña",
-  "entity.neapolitan.bananarrow": "Bananaflecha",
+  "entity.neapolitan.plantain_spider": "Araña bananera",
+  "entity.neapolitan.bananarrow": "Flechanana",
 
-  "effect.neapolitan.sugar_rush": "Pico de azúcar",
+  "effect.neapolitan.sugar_rush": "Subidón de azúcar",
   "effect.neapolitan.vanilla_scent": "Aroma de vainilla",
   "effect.neapolitan.agility": "Agilidad",
-  "effect.neapolitan.slipping": "Resbalón",
+  "effect.neapolitan.slipping": "Desliz",
 
   "advancements.husbandry.creeper_heal.title": "Bomba de amor",
-  "advancements.husbandry.creeper_heal.description": "Dejá que te cure un creeper al explotar en un arbusto de frutillas",
+  "advancements.husbandry.creeper_heal.description": "Sé curado por un creeper que haya explotado en un arbusto de frutillas",
 
   "advancements.husbandry.vanilla_poison.title": "Vainilla asesina",
-  "advancements.husbandry.vanilla_poison.description": "Rompé vainilla sin tijeras, desatando un aura dañina",
+  "advancements.husbandry.vanilla_poison.description": "Rompé una planta de vainilla sin usar tijeras, desatando un aura dañina",
 
   "advancements.husbandry.place_all_chocolate_blocks.title": "Una construcción chocolatosa",
   "advancements.husbandry.place_all_chocolate_blocks.description": "Colocá todos los tipos de bloques de chocolate",
 
   "advancements.husbandry.harvest_white_strawberries.title": "Picnic en las nubes",
-  "advancements.husbandry.harvest_white_strawberries.description": "Conseguí frutillas blancas plantando arbustos de frutilla a grandes alturas",
+  "advancements.husbandry.harvest_white_strawberries.description": "Conseguí frutillas blancas plantando arbustos de frutillas a grandes alturas",
 
   "subtitles.neapolitan.entity.monkey.angry": "Mono grita",
   "subtitles.neapolitan.entity.monkey.death": "Mono muere",
@@ -119,7 +119,7 @@
   "subtitles.neapolitan.entity.monkey.step": "Pasos de mono",
   "subtitles.neapolitan.entity.monkey.swing": "Mono se balancea",
 
-  "subtitles.neapolitan.item.ice_cubes.eat": "Trituración",
+  "subtitles.neapolitan.item.ice_cubes.eat": "Triturando",
 
   "block.minecraft.banner.mca_monkey.black": "Mono negro",
   "block.minecraft.banner.mca_monkey.red": "Mono rojo",
