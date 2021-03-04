@@ -116,17 +116,17 @@ public class NeapolitanItems {
 		public static final Food MINT_ICE_CREAM = (new Food.Builder()).hunger(6).saturation(0.4F).effect(() -> new EffectInstance(Effects.SLOWNESS, 100, 2), 1.0F).effect(() -> new EffectInstance(NeapolitanEffects.BERSERKING.get(), 1600), 1.0F).build();
 		public static final Food MINT_CAKE = (new Food.Builder()).hunger(1).saturation(0.1F).effect(() -> new EffectInstance(NeapolitanEffects.BERSERKING.get(), 300), 1.0F).build();
 
-		public static final Food ROASTED_ADZUKI_BEANS = (new Food.Builder()).hunger(3).saturation(0.4F).effect(() -> new EffectInstance(NeapolitanEffects.HARMONY.get(), 200), 1.0F).build();
-		public static final Food ADZUKI_BUN = (new Food.Builder()).hunger(5).saturation(0.4F).effect(() -> new EffectInstance(NeapolitanEffects.HARMONY.get(), 600), 1.0F).build();
-		public static final Food ADZUKI_STEW = (new Food.Builder()).hunger(8).saturation(0.6F).effect(() -> new EffectInstance(NeapolitanEffects.HARMONY.get(), 900), 1.0F).build();
-		public static final Food ADZUKI_ICE_CREAM = (new Food.Builder()).hunger(6).saturation(0.4F).effect(() -> new EffectInstance(Effects.SLOWNESS, 100, 2), 1.0F).effect(() -> new EffectInstance(NeapolitanEffects.HARMONY.get(), 1200), 1.0F).build();
+		public static final Food ROASTED_ADZUKI_BEANS = (new Food.Builder()).hunger(3).saturation(0.4F).effect(() -> new EffectInstance(NeapolitanEffects.HARMONY.get(), 100), 1.0F).build();
+		public static final Food ADZUKI_BUN = (new Food.Builder()).hunger(5).saturation(0.4F).effect(() -> new EffectInstance(NeapolitanEffects.HARMONY.get(), 300), 1.0F).build();
+		public static final Food ADZUKI_STEW = (new Food.Builder()).hunger(8).saturation(0.6F).effect(() -> new EffectInstance(NeapolitanEffects.HARMONY.get(), 400), 1.0F).build();
+		public static final Food ADZUKI_ICE_CREAM = (new Food.Builder()).hunger(6).saturation(0.4F).effect(() -> new EffectInstance(Effects.SLOWNESS, 100, 2), 1.0F).effect(() -> new EffectInstance(NeapolitanEffects.HARMONY.get(), 600), 1.0F).build();
 		public static final Food ADZUKI_CAKE = (new Food.Builder()).hunger(1).saturation(0.1F).effect(() -> new EffectInstance(NeapolitanEffects.HARMONY.get(), 200), 1.0F).build();
 
 		public static final Food CHOCOLATE_STRAWBERRIES = (new Food.Builder()).hunger(4).saturation(0.1F).effect(() -> new EffectInstance(NeapolitanEffects.SUGAR_RUSH.get(), 200), 1.0F).build();
 		public static final Food VANILLA_CHOCOLATE_FINGERS = (new Food.Builder()).hunger(6).saturation(0.55F).effect(() -> new EffectInstance(NeapolitanEffects.SUGAR_RUSH.get(), 200), 1.0F).effect(() -> new EffectInstance(NeapolitanEffects.VANILLA_SCENT.get(), 100), 1.0F).build();
 		public static final Food STRAWBERRY_BANANA_SMOOTHIE = (new Food.Builder()).hunger(3).saturation(0.05F).effect(() -> new EffectInstance(NeapolitanEffects.AGILITY.get(), 600), 1.0F).build();
 		public static final Food MINT_CHOCOLATE = (new Food.Builder()).hunger(6).saturation(0.55F).effect(() -> new EffectInstance(NeapolitanEffects.SUGAR_RUSH.get(), 200), 1.0F).effect(() -> new EffectInstance(NeapolitanEffects.BERSERKING.get(), 1200), 1.0F).build();
-		public static final Food STRAWBERRY_BEAN_BONBONS = (new Food.Builder()).hunger(4).saturation(0.1F).effect(() -> new EffectInstance(NeapolitanEffects.HARMONY.get(), 400), 1.0F).build();
+		public static final Food STRAWBERRY_BEAN_BONBONS = (new Food.Builder()).hunger(4).saturation(0.1F).effect(() -> new EffectInstance(NeapolitanEffects.HARMONY.get(), 100), 1.0F).build();
 		public static final Food ADZUKI_CURRY = (new Food.Builder()).hunger(6).saturation(1.2F).effect(() -> new EffectInstance(NeapolitanEffects.HARMONY.get(), 300), 1.0F).effect(() -> new EffectInstance(NeapolitanEffects.AGILITY.get(), 300), 1.0F).build();
 		public static final Food NEAPOLITAN_ICE_CREAM = (new Food.Builder()).hunger(12).saturation(0.4F).effect(() -> new EffectInstance(Effects.SLOWNESS, 100, 2), 1.0F).effect(() -> new EffectInstance(NeapolitanEffects.SUGAR_RUSH.get(), 400, 1), 1.0F).effect(() -> new EffectInstance(NeapolitanEffects.VANILLA_SCENT.get(), 200), 1.0F).build();
 	}
