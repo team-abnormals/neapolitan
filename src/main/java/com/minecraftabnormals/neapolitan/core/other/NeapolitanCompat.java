@@ -15,6 +15,7 @@ import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.Foods;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootTables;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 public class NeapolitanCompat {
@@ -38,6 +39,7 @@ public class NeapolitanCompat {
 		injector.addLootInjection(injector.buildLootPool("village_snowy_house", 2, 0), LootTables.CHESTS_VILLAGE_VILLAGE_SNOWY_HOUSE);
 		injector.addLootInjection(injector.buildLootPool("jungle_temple", 2, 0), LootTables.CHESTS_JUNGLE_TEMPLE);
 		injector.addLootInjection(injector.buildLootPool("jungle_temple_dispenser", 1, 0), LootTables.CHESTS_JUNGLE_TEMPLE_DISPENSER);
+		injector.addLootInjection(injector.buildLootPool("ravager", 1, 0), new ResourceLocation("entities/ravager"));
 	}
 
 	public static void registerCompostables() {
