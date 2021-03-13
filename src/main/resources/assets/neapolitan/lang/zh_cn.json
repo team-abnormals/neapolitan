@@ -3,13 +3,15 @@
   "block.neapolitan.chocolate_ice_cream_block": "巧克力味冰激凌方块",
   "block.neapolitan.strawberry_ice_cream_block": "草莓味冰激凌方块",
   "block.neapolitan.banana_ice_cream_block": "香蕉味冰激凌方块",
+  "block.neapolitan.mint_ice_cream_block": "薄荷味冰激凌方块",
+  "block.neapolitan.adzuki_ice_cream_block": "红豆味冰激凌方块",
   
   "block.neapolitan.chocolate_block": "巧克力块",
   "block.neapolitan.chocolate_bricks": "巧克力砖块",
   "block.neapolitan.chocolate_brick_slab": "巧克力砖台阶",
   "block.neapolitan.chocolate_brick_stairs": "巧克力砖楼梯",
   "block.neapolitan.chocolate_brick_wall": "巧克力砖墙",
-  "block.neapolitan.chocolate_brick_vertical_slab": "巧克力砖垂直台阶",
+  "block.neapolitan.chocolate_brick_vertical_slab": "巧克力砖竖直台阶",
   
   "block.neapolitan.chiseled_chocolate_bricks": "錾制巧克力砖块",
   
@@ -17,35 +19,46 @@
   "block.neapolitan.chocolate_tile_slab": "巧克力瓦台阶",
   "block.neapolitan.chocolate_tile_stairs": "巧克力瓦楼梯",
   "block.neapolitan.chocolate_tile_wall": "巧克力瓦墙",
-  "block.neapolitan.chocolate_tile_vertical_slab": "巧克力瓦垂直台阶",
+  "block.neapolitan.chocolate_tile_vertical_slab": "巧克力瓦竖直台阶",
   
   "block.neapolitan.frond_thatch": "蕉叶茅草块",
   "block.neapolitan.frond_thatch_stairs": "蕉叶茅草楼梯",
   "block.neapolitan.frond_thatch_slab": "蕉叶茅草台阶",
-  "block.neapolitan.frond_thatch_vertical_slab": "蕉叶茅草垂直台阶",
+  "block.neapolitan.frond_thatch_vertical_slab": "蕉叶茅草竖直台阶",
   
-  "block.neapolitan.strawberry_basket": "草莓框",
-  "block.neapolitan.white_strawberry_basket": "白草莓框",
+  "block.neapolitan.strawberry_basket": "筐装草莓",
+  "block.neapolitan.white_strawberry_basket": "筐装白草莓",
   "block.neapolitan.vanilla_pod_block": "香草荚块",
   "block.neapolitan.dried_vanilla_pod_block": "干香草荚块",
-  "block.neapolitan.banana_crate": "香蕉板条箱",
+  "block.neapolitan.banana_crate": "箱装香蕉",
+  "block.neapolitan.mint_basket": "筐装薄荷",
+  "block.neapolitan.adzuki_crate": "箱装红豆",
+  "block.neapolitan.roasted_adzuki_crate": "箱装烤红豆",
 
   "block.neapolitan.strawberry_bush": "草莓丛",
-
   "block.neapolitan.vanilla_vine": "香草藤",
   "block.neapolitan.vanilla_vine_plant": "香草藤",
+  "block.neapolitan.mint": "薄荷",
   
   "block.neapolitan.banana_stalk": "香蕉梗",
+  "block.neapolitan.carved_banana_stalk": "雕刻过的香蕉梗",
   "block.neapolitan.banana_bundle": "香蕉捆",
   
   "block.neapolitan.small_banana_frond": "小型蕉叶",
   "block.neapolitan.banana_frond": "蕉叶",
   "block.neapolitan.large_banana_frond": "大型蕉叶",
   
+  "block.neapolitan.adzuki_sprouts": "红豆苗",
+  "block.neapolitan.adzuki_soil": "长有红豆的土壤",
+  "block.neapolitan.beanstalk": "豆梗",
+  "block.neapolitan.beanstalk_thorns": "豆梗上的刺",
+
   "block.neapolitan.chocolate_cake": "巧克力味蛋糕",
   "block.neapolitan.strawberry_cake": "草莓味蛋糕",
   "block.neapolitan.vanilla_cake": "香草蛋糕",
   "block.neapolitan.banana_cake": "香蕉味蛋糕",
+  "block.neapolitan.mint_cake": "薄荷味蛋糕",
+  "block.neapolitan.adzuki_cake": "红豆味蛋糕",
   
   "item.neapolitan.milk_bottle": "牛奶瓶",
   "item.neapolitan.ice_cubes": "冰块",
@@ -76,17 +89,36 @@
   "item.neapolitan.banana_bread": "香蕉面包",
   "item.neapolitan.bananarrow": "香蕉箭",
   
+  "item.neapolitan.mint_sprout": "薄荷苗",
+  "item.neapolitan.mint_leaves": "薄荷叶",
+  "item.neapolitan.mint_chops": "生薄荷肉排",
+  "item.neapolitan.cooked_mint_chops": "熟薄荷肉排",
+  "item.neapolitan.mint_ice_cream": "薄荷味冰淇淋",
+  "item.neapolitan.mint_milkshake": "薄荷味奶昔",
+  "item.neapolitan.mint_candies": "薄荷糖",
+
+  "item.neapolitan.adzuki_beans": "红豆",
+  "item.neapolitan.roasted_adzuki_beans": "烤红豆",
+  "item.neapolitan.adzuki_bun": "豆沙包",
+  "item.neapolitan.adzuki_stew": "红豆煲",
+  "item.neapolitan.adzuki_ice_cream": "红豆味冰淇淋",
+  "item.neapolitan.adzuki_milkshake": "红豆味奶昔",
+  "item.neapolitan.magic_beans": "魔豆",
+  
   "item.neapolitan.chocolate_strawberries": "巧克力草莓",
   "item.neapolitan.white_strawberries": "白草莓",
   "item.neapolitan.vanilla_chocolate_fingers": "香草巧克力条",
   "item.neapolitan.strawberry_banana_smoothie": "草莓香蕉冰沙",
+  "item.neapolitan.mint_chocolate": "薄荷味巧克力",
+  "item.neapolitan.strawberry_bean_bonbons": "草莓红豆夹心糖",
+  "item.neapolitan.adzuki_curry": "红豆咖喱",
   "item.neapolitan.neapolitan_ice_cream": "那不勒斯风味冰激凌",
   
   "item.neapolitan.chimpanzee_banner_pattern": "旗帜图案",
   "item.neapolitan.chimpanzee_banner_pattern.desc": "猴",
   
-  "item.neapolitan.chimpanzee_spawn_egg": "生成 猴子",
-  "item.neapolitan.plantain_spider_spawn_egg": "生成 芭蕉蜘蛛",
+  "item.neapolitan.chimpanzee_spawn_egg": "猴子刷怪蛋",
+  "item.neapolitan.plantain_spider_spawn_egg": "芭蕉蜘蛛刷怪蛋",
   
   "entity.neapolitan.banana_peel": "香蕉皮",
   "entity.neapolitan.chimpanzee": "猴子",
@@ -97,6 +129,8 @@
   "effect.neapolitan.vanilla_scent": "香草芳香",
   "effect.neapolitan.agility": "灵活",
   "effect.neapolitan.slipping": "呲溜",
+  "effect.neapolitan.berserking": "狂暴",
+  "effect.neapolitan.harmony": "和谐",
   
   "advancements.husbandry.creeper_heal.title": "糖衣炸弹",
   "advancements.husbandry.creeper_heal.description": "因在草莓丛中的苦力怕爆炸而被治愈",
@@ -109,6 +143,10 @@
   
   "advancements.husbandry.harvest_white_strawberries.title": "云中野餐",
   "advancements.husbandry.harvest_white_strawberries.description": "通过在较高地区种植草莓以获得白草莓",
+
+  "death.attack.neapolitan.beanstalkThorns": "%1$s被豆梗上的刺戳死了",
+  "death.attack.neapolitan.beanstalkThorns.player": "%1$s在试图逃离%2$s时被豆梗上的刺戳死了",
+
   
   "subtitles.neapolitan.entity.chimpanzee.angry": "猴子：尖叫",
   "subtitles.neapolitan.entity.chimpanzee.death": "猴子：死亡",
