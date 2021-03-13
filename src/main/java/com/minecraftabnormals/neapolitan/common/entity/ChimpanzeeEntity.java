@@ -2,7 +2,7 @@ package com.minecraftabnormals.neapolitan.common.entity;
 
 import com.minecraftabnormals.neapolitan.core.other.NeapolitanTags;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEntities;
-import com.minecraftabnormals.neapolitan.core.registry.NeapolitanSoundEvents;
+import com.minecraftabnormals.neapolitan.core.registry.NeapolitanSounds;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
@@ -228,22 +228,22 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 
 	@Override
 	protected SoundEvent getAmbientSound() {
-		return this.func_233678_J__() ? NeapolitanSoundEvents.ENTITY_CHIMPANZEE_ANGRY.get() : NeapolitanSoundEvents.ENTITY_CHIMPANZEE_AMBIENT.get();
+		return this.func_233678_J__() ? NeapolitanSounds.ENTITY_CHIMPANZEE_ANGRY.get() : NeapolitanSounds.ENTITY_CHIMPANZEE_AMBIENT.get();
 	}
 
 	@Override
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return NeapolitanSoundEvents.ENTITY_CHIMPANZEE_HURT.get();
+		return NeapolitanSounds.ENTITY_CHIMPANZEE_HURT.get();
 	}
 
 	@Override
 	protected SoundEvent getDeathSound() {
-		return NeapolitanSoundEvents.ENTITY_CHIMPANZEE_DEATH.get();
+		return NeapolitanSounds.ENTITY_CHIMPANZEE_DEATH.get();
 	}
 
 	@Override
 	protected void playStepSound(BlockPos pos, BlockState blockIn) {
-		this.playSound(NeapolitanSoundEvents.ENTITY_CHIMPANZEE_STEP.get(), 0.3F, 1.0F);
+		this.playSound(NeapolitanSounds.ENTITY_CHIMPANZEE_STEP.get(), 0.3F, 1.0F);
 	}
 
 	@Override

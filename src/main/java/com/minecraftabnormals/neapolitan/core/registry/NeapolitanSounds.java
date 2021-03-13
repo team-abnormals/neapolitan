@@ -7,8 +7,10 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = Neapolitan.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class NeapolitanSoundEvents {
+public class NeapolitanSounds {
 	public static final SoundSubRegistryHelper HELPER = Neapolitan.REGISTRY_HELPER.getSoundSubHelper();
+
+	public static final RegistryObject<SoundEvent> HULLABALOO = HELPER.createSoundEvent("music.record.hullabaloo");
 
 	public static final RegistryObject<SoundEvent> ENTITY_CHIMPANZEE_ANGRY = HELPER.createSoundEvent("entity.chimpanzee.angry");
 	public static final RegistryObject<SoundEvent> ENTITY_CHIMPANZEE_DEATH = HELPER.createSoundEvent("entity.chimpanzee.death");

@@ -1,4 +1,13 @@
 {
+  "music.record.hullabaloo": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "neapolitan:record/hullabaloo",
+        "stream": true
+      }
+    ]
+  },
   "entity.chimpanzee.angry": {
     "sounds": [
       "neapolitan:mob/chimpanzee/angry1",
