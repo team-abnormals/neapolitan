@@ -78,7 +78,7 @@ public class NeapolitanItems {
 	public static final RegistryObject<Item> ADZUKI_CURRY = HELPER.createItem("adzuki_curry", () -> new SoupItem(new Item.Properties().food(Foods.ADZUKI_CURRY).maxStackSize(1).group(ItemGroup.FOOD)));
 	public static final RegistryObject<Item> NEAPOLITAN_ICE_CREAM = HELPER.createItem("neapolitan_ice_cream", () -> new HealingSoupItem(2.0F, new Item.Properties().food(Foods.NEAPOLITAN_ICE_CREAM).containerItem(Items.BOWL).maxStackSize(1).group(ItemGroup.FOOD)));
 
-	public static final RegistryObject<Item> MUSIC_DISC_HULLABALOO = HELPER.createItem("music_disc_hullabaloo", () -> new AbnormalsMusicDiscItem(18, NeapolitanSounds.HULLABALOO, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)));
+	public static final RegistryObject<Item> MUSIC_DISC_HULLABALOO = HELPER.createItem("music_disc_hullabaloo", () -> new AbnormalsMusicDiscItem(12, NeapolitanSounds.HULLABALOO, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)));
 	public static final RegistryObject<Item> CHIMPANZEE_BANNER_PATTERN = HELPER.createItem("chimpanzee_banner_pattern", () -> new AbnormalsBannerPatternItem(NeapolitanBanners.CHIMPANZEE, new Item.Properties().group(ItemGroup.MISC).maxStackSize(1)));
 
 	public static final RegistryObject<AbnormalsSpawnEggItem> CHIMPANZEE_SPAWN_EGG = HELPER.createSpawnEggItem("chimpanzee", NeapolitanEntities.CHIMPANZEE::get, 0x1F1626, 0xAD8064);
