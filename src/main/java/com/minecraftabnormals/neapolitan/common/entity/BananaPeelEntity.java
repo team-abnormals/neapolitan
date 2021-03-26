@@ -85,7 +85,7 @@ public class BananaPeelEntity extends Entity {
 	public void applyEntityCollision(Entity entityIn) {
 		super.applyEntityCollision(entityIn);
 		if (entityIn instanceof LivingEntity && !this.world.isRemote()) {
-			((LivingEntity) entityIn).addPotionEffect(new EffectInstance(NeapolitanEffects.SLIPPING.get()));
+			((LivingEntity) entityIn).addPotionEffect(new EffectInstance(NeapolitanEffects.SLIPPING.get(), 100));
 		}
 	}
 
