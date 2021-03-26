@@ -12,9 +12,7 @@ import net.minecraft.tags.ItemTags;
 public class NeapolitanTags {
 	public static class Blocks {
 		public static final ITag<Block> VANILLA_PLANTABLE_ON = BlockTags.makeWrapperTag(id("vanilla_plantable_on"));
-		public static final ITag<Block> CREEPER_REPELLENTS = BlockTags.makeWrapperTag(id("creeper_repellents"));
 		public static final ITag<Block> UNAFFECTED_BY_MINT = BlockTags.makeWrapperTag(id("unaffected_by_mint"));
-
 	}
 
 	public static class Items {

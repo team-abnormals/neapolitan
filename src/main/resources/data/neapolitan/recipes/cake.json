@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "ADA",
+    "AAA",
     "BEB",
-    "CDC"
+    "CCC"
   ],
   "key": {
     "A": {
@@ -15,14 +15,11 @@
     "C": {
       "item": "minecraft:wheat"
     },
-    "D": {
-      "item": "neapolitan:dried_vanilla_pods"
-    },
     "E": {
       "tag": "forge:eggs"
     }
   },
   "result": {
-    "item": "neapolitan:vanilla_cake"
+    "item": "minecraft:cake"
   }
 }
