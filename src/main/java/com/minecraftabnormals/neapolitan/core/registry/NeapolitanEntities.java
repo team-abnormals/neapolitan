@@ -42,5 +42,6 @@ public class NeapolitanEntities {
 
 	public static void registerEntitySpawns() {
 		EntitySpawnPlacementRegistry.register(PLANTAIN_SPIDER.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, PlantainSpiderEntity::canPlantainSpiderSpawn);
+		EntitySpawnPlacementRegistry.register(CHIMPANZEE.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING, ChimpanzeeEntity::canChimpanzeeSpawn);
 	}
 }

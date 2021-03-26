@@ -1,0 +1,32 @@
+{
+  "advancement": "minecraft:husbandry/bred_all_animals",
+  "modifiers": [
+    {
+      "type": "criteria",
+      "config": {
+        "mode": "modify",
+        "criteria": {
+          "neapolitan:chimpanzee": {
+            "trigger": "minecraft:bred_animals",
+            "conditions": {
+              "child": [
+                {
+                  "condition": "minecraft:entity_properties",
+                  "predicate": {
+                    "type": "neapolitan:chimpanzee"
+                  },
+                  "entity": "this"
+                }
+              ]
+            }
+          }
+        },
+        "requirements": [
+          [
+            "neapolitan:chimpanzee"
+          ]
+        ]
+      }
+    }
+  ]
+}

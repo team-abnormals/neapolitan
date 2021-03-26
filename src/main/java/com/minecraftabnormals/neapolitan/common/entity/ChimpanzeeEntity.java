@@ -35,6 +35,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
+import java.util.Random;
 import java.util.UUID;
 
 public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
@@ -174,6 +175,10 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		} else {
 			super.handleStatusUpdate(id);
 		}
+	}
+
+	public static boolean canChimpanzeeSpawn(EntityType<ChimpanzeeEntity> entity, IWorld world, SpawnReason reason, BlockPos pos, Random random) {
+		return random.nextInt(3) != 0;
 	}
 
 	@OnlyIn(Dist.CLIENT)

@@ -21,26 +21,31 @@ public class NeapolitanConfig {
 		public final ConfigValue<Boolean> plantainSpidersFromBundles;
 		public final ConfigValue<Boolean> plantainSpidersGiveSlipping;
 
+		public final ConfigValue<Boolean> chimpanzeeSpawning;
+
 		Common(ForgeConfigSpec.Builder builder) {
 			builder.push("items");
 			milkingWithGlassBottles = builder.comment("If milkable mobs can be milked with empty glass bottles").define("Milking with Glass Bottles", false);
 			milkBucketUseTime = builder.comment("The use time for Milk Buckets, in ticks").define("Milk Bucket drink time", 32);
 			builder.pop();
-			builder.push("worldgen");
-			builder.push("features");
-			strawberryBushGenerationChance = builder.defineInRange("Strawberry Bush generation chance in Plains", 8, 0, 128);
-			vanillaVineGenerationChance = builder.defineInRange("Vanilla Vine generation chance in Savannas", 6, 0, 128);
-			adzukiSproutsGenerationChance = builder.defineInRange("Aduzki Sprouts generation chance in Forests", 6, 0, 128);
-			mintPondGenerationChance = builder.defineInRange("Mint pond generation chance in Mountains", 5, 0, 128);
+			builder.push("world");
+			builder.push("generation");
+			strawberryBushGenerationChance = builder.define("Strawberry Bush generation chance in Plains", 7);
+			vanillaVineGenerationChance = builder.define("Vanilla Vine generation chance in Savannas", 6);
+			adzukiSproutsGenerationChance = builder.define("Adzuki Sprouts generation chance in Forests", 6);
+			mintPondGenerationChance = builder.define("Mint pond generation chance in Mountains", 5);
 			bananaPlantBeachGeneration = builder.define("Banana Plant generation in Beaches", true);
 			bananaPlantJungleGeneration = builder.define("Banana Plant generation in Jungles", true);
 			builder.pop();
 			builder.pop();
-			builder.push("entities");
+			builder.push("mobs");
 			builder.push("plantain_spider");
 			plantainSpiderSpawning = builder.define("Plantain Spider spawning in Jungles", true);
 			plantainSpidersFromBundles = builder.define("Plantain Spider spawn from Banana Bundles", true);
 			plantainSpidersGiveSlipping = builder.define("Plantain Spiders give Slipping", true);
+			builder.pop();
+			builder.push("chimpanzee");
+			chimpanzeeSpawning = builder.define("Chimpanzee spawning in Jungles", true);
 			builder.pop();
 			builder.pop();
 		}

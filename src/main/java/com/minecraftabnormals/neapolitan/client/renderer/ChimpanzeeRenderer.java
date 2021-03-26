@@ -1,7 +1,6 @@
 package com.minecraftabnormals.neapolitan.client.renderer;
 
 import com.minecraftabnormals.neapolitan.client.model.ChimpanzeeModel;
-import com.minecraftabnormals.neapolitan.client.renderer.layer.ChimpanzeeEyesLayer;
 import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
 import com.minecraftabnormals.neapolitan.core.Neapolitan;
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -27,7 +26,6 @@ public class ChimpanzeeRenderer extends MobRenderer<ChimpanzeeEntity, Chimpanzee
 	public ChimpanzeeRenderer(EntityRendererManager renderManagerIn) {
 		super(renderManagerIn, new ChimpanzeeModel<>(), 0.4F);
 		this.addLayer(new HeadLayer<>(this));
-		this.addLayer(new ChimpanzeeEyesLayer<>(this));
 	}
 
 	@Override
