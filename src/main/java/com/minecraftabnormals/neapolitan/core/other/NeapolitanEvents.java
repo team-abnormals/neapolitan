@@ -2,7 +2,6 @@ package com.minecraftabnormals.neapolitan.core.other;
 
 import com.minecraftabnormals.abnormals_core.core.util.TradeUtil;
 import com.minecraftabnormals.abnormals_core.core.util.TradeUtil.AbnormalsTrade;
-import com.minecraftabnormals.neapolitan.common.entity.goals.AvoidBlockGoal;
 import com.minecraftabnormals.neapolitan.core.Neapolitan;
 import com.minecraftabnormals.neapolitan.core.NeapolitanConfig;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanBlocks;
@@ -42,14 +41,6 @@ public class NeapolitanEvents {
 	@SubscribeEvent
 	public static void onEntityJoinWorld(EntityJoinWorldEvent event) {
 		Entity entity = event.getEntity();
-		if (entity instanceof CreeperEntity) {
-			CreeperEntity creeper = (CreeperEntity) event.getEntity();
-			creeper.goalSelector.addGoal(3, new AvoidBlockGoal<>(creeper, 6, 1.0D, 1.2D));
-		} else if (entity instanceof MonsterEntity && entity.getType() != null && (ModList.get().isLoaded(SAVAGE_AND_RAVAGE) && entity.getType() == ForgeRegistries.ENTITIES.getValue(CREEPIE))) {
-			MonsterEntity creepie = (MonsterEntity) event.getEntity();
-			creepie.goalSelector.addGoal(3, new AvoidBlockGoal<>(creepie, 6, 1.0D, 1.2D));
-		}
-
 		if (entity instanceof MonsterEntity && !entity.getType().isContained(NeapolitanTags.EntityTypes.UNAFFECTED_BY_HARMONY)) {
 			MonsterEntity mobEntity = (MonsterEntity) entity;
 			mobEntity.goalSelector.addGoal(0, new AvoidEntityGoal<>(mobEntity, PlayerEntity.class, 12.0F, 1.0D, 1.0D, (player) -> player.getActivePotionEffect(NeapolitanEffects.HARMONY.get()) != null));
