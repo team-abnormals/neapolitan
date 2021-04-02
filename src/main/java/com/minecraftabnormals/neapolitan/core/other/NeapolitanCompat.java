@@ -166,8 +166,7 @@ public class NeapolitanCompat {
 	public static void registerDispenserBehaviors() {
 		DispenserBlock.registerDispenseBehavior(NeapolitanItems.BANANARROW.get(), new ProjectileDispenseBehavior() {
 			protected ProjectileEntity getProjectileEntity(World worldIn, IPosition position, ItemStack stackIn) {
-				BananarrowEntity arrowentity = new BananarrowEntity(worldIn, position.getX(), position.getY(), position.getZ());
-				return arrowentity;
+				return new BananarrowEntity(worldIn, position.getX(), position.getY(), position.getZ());
 			}
 		});
 	}

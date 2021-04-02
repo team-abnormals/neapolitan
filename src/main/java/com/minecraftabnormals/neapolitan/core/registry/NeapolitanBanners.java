@@ -16,8 +16,4 @@ public final class NeapolitanBanners {
 	public static final RegistryObject<PaintingType> CONE = PAINTINGS.register("cone", () -> new PaintingType(16, 32));
 
 	public static final BannerPattern CHIMPANZEE = BannerManager.createPattern("mca", "chimpanzee", "mky");
-
-	public static void registerBanners() {
-		BannerManager.addPattern(CHIMPANZEE, NeapolitanItems.CHIMPANZEE_BANNER_PATTERN.get());
-	}
 }

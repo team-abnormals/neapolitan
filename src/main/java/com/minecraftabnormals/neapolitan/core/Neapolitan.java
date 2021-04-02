@@ -40,7 +40,6 @@ public class Neapolitan {
 
 	private void setupCommon(final FMLCommonSetupEvent event) {
 		event.enqueueWork(() -> {
-			NeapolitanBanners.registerBanners();
 			NeapolitanCompat.transformCookies();
 			NeapolitanCompat.registerCompat();
 			NeapolitanEntities.registerEntityAttributes();
