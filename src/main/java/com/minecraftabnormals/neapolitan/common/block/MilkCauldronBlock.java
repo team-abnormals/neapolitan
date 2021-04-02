@@ -175,4 +175,9 @@ public class MilkCauldronBlock extends Block {
 	public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
 		return false;
 	}
+
+	@Override
+	public ItemStack getItem(IBlockReader worldIn, BlockPos pos, BlockState state) {
+		return new ItemStack(Items.CAULDRON);
+	}
 }
