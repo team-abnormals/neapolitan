@@ -114,6 +114,8 @@
   "item.neapolitan.adzuki_curry": "红豆咖喱",
   "item.neapolitan.neapolitan_ice_cream": "那不勒斯风味冰激凌",
   
+  "item.neapolitan.music_disc_hullabaloo": "音乐唱片",
+  "item.neapolitan.music_disc_hullabaloo.desc": "Mista Jub - Hullabaloo",
   "item.neapolitan.chimpanzee_banner_pattern": "旗帜图案",
   "item.neapolitan.chimpanzee_banner_pattern.desc": "猴",
   
@@ -146,7 +148,6 @@
 
   "death.attack.neapolitan.beanstalkThorns": "%1$s被豆梗上的刺戳死了",
   "death.attack.neapolitan.beanstalkThorns.player": "%1$s在试图逃离%2$s时被豆梗上的刺戳死了",
-
   
   "subtitles.neapolitan.entity.chimpanzee.angry": "猴子：尖叫",
   "subtitles.neapolitan.entity.chimpanzee.death": "猴子：死亡",
@@ -168,7 +169,7 @@
   "block.minecraft.banner.mca_chimpanzee.cyan": "青色猴",
   "block.minecraft.banner.mca_chimpanzee.silver": "淡灰色猴",
   "block.minecraft.banner.mca_chimpanzee.gray": "灰色猴",
-  "block.minecraft.banner.mca_chimpanzee.pink": "粉色猴",
+  "block.minecraft.banner.mca_chimpanzee.pink": "粉红色猴",
   "block.minecraft.banner.mca_chimpanzee.lime": "黄绿色猴",
   "block.minecraft.banner.mca_chimpanzee.yellow": "黄色猴",
   "block.minecraft.banner.mca_chimpanzee.lightBlue": "淡蓝色猴",
