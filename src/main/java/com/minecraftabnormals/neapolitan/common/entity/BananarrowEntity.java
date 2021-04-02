@@ -17,8 +17,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.network.FMLPlayMessages;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-import java.util.List;
-
 public class BananarrowEntity extends AbstractArrowEntity {
 	public boolean impacted = false;
 

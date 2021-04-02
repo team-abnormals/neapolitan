@@ -1,6 +1,5 @@
 package com.minecraftabnormals.neapolitan.common.block;
 
-import com.minecraftabnormals.neapolitan.core.Neapolitan;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
 import net.minecraft.block.*;

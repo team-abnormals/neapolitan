@@ -6,8 +6,8 @@ import org.apache.commons.lang3.tuple.Pair;
 
 public class NeapolitanConfig {
 	public static class Common {
+		public final ConfigValue<Boolean> milkCauldron;
 		public final ConfigValue<Boolean> milkingWithGlassBottles;
-		public final ConfigValue<Integer> milkBucketUseTime;
 
 		public final ConfigValue<Integer> strawberryBushGenerationChance;
 		public final ConfigValue<Integer> vanillaVineGenerationChance;
@@ -25,8 +25,10 @@ public class NeapolitanConfig {
 
 		Common(ForgeConfigSpec.Builder builder) {
 			builder.push("items");
+			builder.push("milk_bottles");
+			milkCauldron = builder.comment("If milk can be inserted into cauldrons").define("Milk Cauldron", true);
 			milkingWithGlassBottles = builder.comment("If milkable mobs can be milked with empty glass bottles").define("Milking with Glass Bottles", false);
-			milkBucketUseTime = builder.comment("The use time for Milk Buckets, in ticks").define("Milk Bucket drink time", 32);
+			builder.pop();
 			builder.pop();
 			builder.push("world");
 			builder.push("generation");

@@ -6,7 +6,6 @@
   "refmap": "neapolitan.refmap.json",
   "mixins": [
     "LivingEntityMixin",
-    "MilkBucketItemMixin",
     "SpreadableSnowyDirtBlockMixin"
   ],
   "injectors": {

@@ -2,11 +2,15 @@ package com.minecraftabnormals.neapolitan.core.other;
 
 import com.minecraftabnormals.abnormals_core.core.util.TradeUtil;
 import com.minecraftabnormals.abnormals_core.core.util.TradeUtil.AbnormalsTrade;
+import com.minecraftabnormals.neapolitan.common.block.MilkCauldronBlock;
 import com.minecraftabnormals.neapolitan.core.Neapolitan;
 import com.minecraftabnormals.neapolitan.core.NeapolitanConfig;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEffects;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.CauldronBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.AvoidEntityGoal;
@@ -15,15 +19,20 @@ import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
+import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.PotionEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteractSpecific;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.event.world.ExplosionEvent;
@@ -44,6 +53,56 @@ public class NeapolitanEvents {
 		if (entity instanceof MonsterEntity && !entity.getType().isContained(NeapolitanTags.EntityTypes.UNAFFECTED_BY_HARMONY)) {
 			MonsterEntity mobEntity = (MonsterEntity) entity;
 			mobEntity.goalSelector.addGoal(0, new AvoidEntityGoal<>(mobEntity, PlayerEntity.class, 12.0F, 1.0D, 1.0D, (player) -> player.getActivePotionEffect(NeapolitanEffects.HARMONY.get()) != null));
+		}
+	}
+
+	@SubscribeEvent
+	public static void onRightClickBlock(RightClickBlock event) {
+		BlockPos pos = event.getPos();
+		ItemStack stack = event.getItemStack();
+		World world = event.getWorld();
+		Item item = stack.getItem();
+		BlockState state = event.getWorld().getBlockState(pos);
+		PlayerEntity player = event.getPlayer();
+		Hand hand = event.getHand();
+
+		if (NeapolitanConfig.COMMON.milkCauldron.get() && state.isIn(Blocks.CAULDRON)) {
+			int i = state.get(CauldronBlock.LEVEL);
+			if (item == Items.MILK_BUCKET) {
+				if (i < 3 && !world.isRemote) {
+					if (!player.abilities.isCreativeMode) {
+						player.setHeldItem(hand, new ItemStack(Items.BUCKET));
+					}
+
+					player.addStat(Stats.FILL_CAULDRON);
+					((MilkCauldronBlock) NeapolitanBlocks.MILK_CAULDRON.get()).setMilkLevel(world, pos, 3);
+					world.playSound(null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F, 1.0F);
+				}
+
+				event.setCanceled(true);
+				event.setCancellationResult(ActionResultType.func_233537_a_(world.isRemote));
+			} else if (item == NeapolitanItems.MILK_BOTTLE.get()) {
+				if (i < 3 && !world.isRemote) {
+					if (!player.abilities.isCreativeMode) {
+						stack.shrink(1);
+						ItemStack returnStack = new ItemStack(Items.GLASS_BOTTLE);
+						if (!player.inventory.addItemStackToInventory(returnStack)) {
+							player.dropItem(returnStack, false);
+						}
+
+						player.addStat(Stats.USE_CAULDRON);
+						if (player instanceof ServerPlayerEntity) {
+							((ServerPlayerEntity) player).sendContainerToPlayer(player.container);
+						}
+					}
+
+					world.playSound(null, pos, SoundEvents.ITEM_BOTTLE_EMPTY, SoundCategory.BLOCKS, 1.0F, 1.0F);
+					((MilkCauldronBlock) NeapolitanBlocks.MILK_CAULDRON.get()).setMilkLevel(world, pos, i + 1);
+				}
+
+				event.setCanceled(true);
+				event.setCancellationResult(ActionResultType.func_233537_a_(world.isRemote));
+			}
 		}
 	}
 

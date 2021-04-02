@@ -1,13 +1,10 @@
 package com.minecraftabnormals.neapolitan.common.world.gen.feature;
 
 import com.minecraftabnormals.neapolitan.common.block.AdzukiSproutsBlock;
-import com.minecraftabnormals.neapolitan.common.block.StrawberryBushBlock;
-import com.minecraftabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;

@@ -25,14 +25,7 @@ public class MilkBottleItem extends Item {
 
 	@Override
 	public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity entity) {
-		if (!worldIn.isRemote) {
-			ImmutableList<EffectInstance> effects = ImmutableList.copyOf(entity.getActivePotionEffects());
-			if (effects.size() > 0) {
-				Random rand = new Random();
-				EffectInstance effectToRemove = effects.get(rand.nextInt(effects.size()));
-				entity.removePotionEffect(effectToRemove.getPotion());
-			}
-		}
+		clearRandomEffect(worldIn, entity);
 
 		if (entity instanceof ServerPlayerEntity) {
 			ServerPlayerEntity serverplayerentity = (ServerPlayerEntity) entity;
@@ -55,6 +48,18 @@ public class MilkBottleItem extends Item {
 			}
 
 			return stack;
+		}
+
+	}
+
+	public static void clearRandomEffect(World worldIn, LivingEntity entity) {
+		if (!worldIn.isRemote) {
+			ImmutableList<EffectInstance> effects = ImmutableList.copyOf(entity.getActivePotionEffects());
+			if (effects.size() > 0) {
+				Random rand = new Random();
+				EffectInstance effectToRemove = effects.get(rand.nextInt(effects.size()));
+				entity.removePotionEffect(effectToRemove.getPotion());
+			}
 		}
 	}
 

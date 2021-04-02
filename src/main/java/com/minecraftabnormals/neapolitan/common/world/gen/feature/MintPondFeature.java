@@ -70,8 +70,7 @@ public class MintPondFeature extends Feature<NoFeatureConfig> {
 				if (!spruce && random.nextInt(3) == 0) {
 					Features.SPRUCE.generate(world, chunkGenerator, random, blockPos);
 					spruce = true;
-				}
-				else placeMint(world, blockPos, random);
+				} else placeMint(world, blockPos, random);
 			}
 			++i;
 
