@@ -6,6 +6,8 @@
   "block.neapolitan.mint_ice_cream_block": "Bloque de helado de menta",
   "block.neapolitan.adzuki_ice_cream_block": "Bloque de helado de azuki",
 
+  "block.neapolitan.milk_cauldron": "Caldero con leche",
+
   "block.neapolitan.chocolate_block": "Bloque de chocolate",
   "block.neapolitan.chocolate_bricks": "Ladrillos de chocolate",
   "block.neapolitan.chocolate_brick_slab": "Baldosa de ladrillos de chocolate",
@@ -32,8 +34,8 @@
   "block.neapolitan.dried_vanilla_pod_block": "Bloque de vainas de vainilla secas",
   "block.neapolitan.banana_crate": "Cajón de bananas",
   "block.neapolitan.mint_basket": "Canasta de menta",
-  "block.neapolitan.adzuki_crate": "Cajón de azukis",
-  "block.neapolitan.roasted_adzuki_crate": "Cajón de azukis asados",
+  "block.neapolitan.adzuki_crate": "Cajón de porotos azuki",
+  "block.neapolitan.roasted_adzuki_crate": "Cajón de porotos azuki asados",
 
   "block.neapolitan.strawberry_bush": "Arbusto de frutillas",
   "block.neapolitan.vanilla_vine": "Enredaderas de vainilla",
@@ -116,7 +118,6 @@
 
   "item.neapolitan.music_disc_hullabaloo": "Disco",
   "item.neapolitan.music_disc_hullabaloo.desc": "Mista Jub - Hullabaloo",
-
   "item.neapolitan.chimpanzee_banner_pattern": "Diseño de estandarte",
   "item.neapolitan.chimpanzee_banner_pattern.desc": "Chimpancé",
 
@@ -131,7 +132,7 @@
   "effect.neapolitan.sugar_rush": "Subidón de azúcar",
   "effect.neapolitan.vanilla_scent": "Aroma de vainilla",
   "effect.neapolitan.agility": "Agilidad",
-  "effect.neapolitan.slipping": "Desliz",
+  "effect.neapolitan.slipping": "Resbalón",
   "effect.neapolitan.berserking": "Frenesí",
   "effect.neapolitan.harmony": "Armonía",
 
@@ -146,6 +147,9 @@
 
   "advancements.husbandry.harvest_white_strawberries.title": "Picnic en las nubes",
   "advancements.husbandry.harvest_white_strawberries.description": "Conseguí frutillas blancas plantando arbustos de frutillas a grandes alturas",
+
+  "death.attack.neapolitan.beanstalkThorns": "%1$s se dio con espinas de tallo de poroto",
+  "death.attack.neapolitan.beanstalkThorns.player": "%1$s se dio con espinas de tallo de poroto tratando de escapar de %2$s",
 
   "subtitles.neapolitan.entity.chimpanzee.angry": "Chimpancé grita",
   "subtitles.neapolitan.entity.chimpanzee.death": "Chimpancé muere",
@@ -165,12 +169,12 @@
   "block.minecraft.banner.mca_chimpanzee.blue": "Chimpancé azul",
   "block.minecraft.banner.mca_chimpanzee.purple": "Chimpancé violeta",
   "block.minecraft.banner.mca_chimpanzee.cyan": "Chimpancé cian",
-  "block.minecraft.banner.mca_chimpanzee.silver": "Chimpancé gris claro",
+  "block.minecraft.banner.mca_chimpanzee.light_gray": "Chimpancé gris claro",
   "block.minecraft.banner.mca_chimpanzee.gray": "Chimpancé gris",
   "block.minecraft.banner.mca_chimpanzee.pink": "Chimpancé rosa",
   "block.minecraft.banner.mca_chimpanzee.lime": "Chimpancé verde lima",
   "block.minecraft.banner.mca_chimpanzee.yellow": "Chimpancé amarillo",
-  "block.minecraft.banner.mca_chimpanzee.lightBlue": "Chimpancé azul celeste",
+  "block.minecraft.banner.mca_chimpanzee.light_blue": "Chimpancé azul celeste",
   "block.minecraft.banner.mca_chimpanzee.magenta": "Chimpancé magenta",
   "block.minecraft.banner.mca_chimpanzee.orange": "Chimpancé naranja",
   "block.minecraft.banner.mca_chimpanzee.white": "Chimpancé blanco"
