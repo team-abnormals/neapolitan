@@ -1,9 +1,11 @@
 package com.minecraftabnormals.neapolitan.client.renderer;
 
 import com.minecraftabnormals.neapolitan.client.model.ChimpanzeeModel;
+import com.minecraftabnormals.neapolitan.client.renderer.layer.ChimpanzeeItemlayer;
 import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
 import com.minecraftabnormals.neapolitan.core.Neapolitan;
 import com.mojang.blaze3d.matrix.MatrixStack;
+
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -26,12 +28,13 @@ public class ChimpanzeeRenderer extends MobRenderer<ChimpanzeeEntity, Chimpanzee
 	public ChimpanzeeRenderer(EntityRendererManager renderManagerIn) {
 		super(renderManagerIn, new ChimpanzeeModel<>(), 0.4F);
 		this.addLayer(new HeadLayer<>(this));
+		this.addLayer(new ChimpanzeeItemlayer<>(this));
 	}
 
 	@Override
 	public ResourceLocation getEntityTexture(ChimpanzeeEntity entity) {
 		int type = entity.getChimpanzeeType();
-		boolean hungry = entity.func_233678_J__();
+		boolean hungry = entity.func_233678_J__() || entity.isPartying();
 
 		if (type == 1) return !hungry ? RAINFOREST_CHIMPANZEE : HUNGRY_RAINFOREST_CHIMPANZEE;
 		if (type == 2) return !hungry ? BAMBOO_CHIMPANZEE : HUNGRY_BAMBOO_CHIMPANZEE;

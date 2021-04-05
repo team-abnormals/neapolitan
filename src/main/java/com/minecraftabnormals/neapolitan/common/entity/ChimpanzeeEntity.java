@@ -50,6 +50,9 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	private float climbAnim;
 	private float prevClimbAnim;
 
+	public boolean isPartying = false;
+	BlockPos jukeboxPosition;
+
 	public ChimpanzeeEntity(EntityType<? extends AnimalEntity> type, World worldIn) {
 		super(type, worldIn);
 	}
@@ -133,11 +136,18 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 			--this.attackTimer;
 		}
 
-		this.prevClimbAnim = this.climbAnim;
-		if (this.isClimbing()) {
-			this.climbAnim = Math.min(this.climbAnim + 1, 4.0F);
-		} else {
-			this.climbAnim = Math.max(this.climbAnim - 1, 0.0F);
+		if (this.jukeboxPosition == null || !this.jukeboxPosition.withinDistance(this.getPositionVec(), 3.46D) || this.world.getBlockState(jukeboxPosition).getBlock() != Blocks.JUKEBOX) {
+			this.isPartying = false;
+			this.jukeboxPosition = null;
+		}
+
+		if (this.world.isRemote) {
+			this.prevClimbAnim = this.climbAnim;
+			if (this.getAnimation() == Animation.CLIMBING) {
+				this.climbAnim = Math.min(this.climbAnim + 1, 4.0F);
+			} else {
+				this.climbAnim = Math.max(this.climbAnim - 1, 0.0F);
+			}
 		}
 	}
 
@@ -307,5 +317,34 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	@Override
 	public void func_230258_H__() {
 		this.setAngerTime(ANGER_RANGE.getRandomWithinRange(this.rand));
+	}
+
+	public boolean isPartying() {
+		return this.isPartying;
+	}
+	
+	@Override
+	@OnlyIn(Dist.CLIENT)
+	public void setPartying(BlockPos pos, boolean isPartying) {
+		this.jukeboxPosition = pos;
+		this.isPartying = isPartying;
+	}
+
+	@OnlyIn(Dist.CLIENT)
+	public Animation getAnimation() {
+		if (this.isClimbing()) {
+			return Animation.CLIMBING;
+		} else {
+			return Animation.DEFAULT;
+		}
+	}
+
+	@OnlyIn(Dist.CLIENT)
+	public static enum Animation {
+		CLIMBING,
+		SHAKING,
+		EATING,
+		DRUMMING,
+		DEFAULT;
 	}
 }
