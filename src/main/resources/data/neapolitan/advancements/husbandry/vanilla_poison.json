@@ -5,10 +5,10 @@
       "item": "neapolitan:vanilla_pods"
     },
     "title": {
-      "translate": "advancements.husbandry.vanilla_poison.title"
+      "translate": "advancements.neapolitan.husbandry.vanilla_poison.title"
     },
     "description": {
-      "translate": "advancements.husbandry.vanilla_poison.description"
+      "translate": "advancements.neapolitan.husbandry.vanilla_poison.description"
     },
     "frame": "task",
     "show_toast": true,

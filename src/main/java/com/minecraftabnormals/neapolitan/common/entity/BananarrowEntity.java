@@ -1,11 +1,13 @@
 package com.minecraftabnormals.neapolitan.common.entity;
 
+import com.minecraftabnormals.neapolitan.core.other.NeapolitanCriteriaTriggers;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEffects;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEntities;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -16,6 +18,8 @@ import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.FMLPlayMessages;
 import net.minecraftforge.fml.network.NetworkHooks;
+
+import java.util.List;
 
 public class BananarrowEntity extends AbstractArrowEntity {
 	public boolean impacted = false;
@@ -63,9 +67,13 @@ public class BananarrowEntity extends AbstractArrowEntity {
 
 		if (entity instanceof LivingEntity && !(entity instanceof ChimpanzeeEntity)) {
 			LivingEntity livingEntity = (LivingEntity) entity;
-			for (ChimpanzeeEntity chimp : world.getEntitiesWithinAABB(ChimpanzeeEntity.class, livingEntity.getBoundingBox().grow(16.0D, 6.0D, 16.0D))) {
+			List<ChimpanzeeEntity> chimps = world.getEntitiesWithinAABB(ChimpanzeeEntity.class, livingEntity.getBoundingBox().grow(16.0D, 6.0D, 16.0D));
+			for (ChimpanzeeEntity chimp : chimps) {
 				chimp.setAttackTarget(livingEntity);
 			}
+
+			if (!chimps.isEmpty() && this.func_234616_v_() instanceof ServerPlayerEntity)
+				NeapolitanCriteriaTriggers.CHIMPANZEE_ATTACK.trigger((ServerPlayerEntity) this.func_234616_v_());
 		}
 	}
 

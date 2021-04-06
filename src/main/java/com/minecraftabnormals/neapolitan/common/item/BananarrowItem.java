@@ -21,8 +21,7 @@ public class BananarrowItem extends ArrowItem {
 
 	@Override
 	public AbstractArrowEntity createArrow(World worldIn, ItemStack stack, LivingEntity shooter) {
-		BananarrowEntity arrowentity = new BananarrowEntity(worldIn, shooter);
-		return arrowentity;
+		return new BananarrowEntity(worldIn, shooter);
 	}
 
 	@Override

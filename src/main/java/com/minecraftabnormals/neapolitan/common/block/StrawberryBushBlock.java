@@ -141,7 +141,7 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, IGrowa
 	}
 
 	public BlockState withAge(int age) {
-		return this.getDefaultState().with(this.getAgeProperty(), Integer.valueOf(age));
+		return this.getDefaultState().with(this.getAgeProperty(), age);
 	}
 
 	public boolean isMaxAge(BlockState state) {

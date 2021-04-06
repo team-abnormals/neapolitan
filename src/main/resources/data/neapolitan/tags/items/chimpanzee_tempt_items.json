@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "#neapolitan:chimpanzee_breeding_items",
+    "#neapolitan:chimpanzee_food",
     "neapolitan:banana_bread",
     "neapolitan:dried_banana",
     "neapolitan:banana"

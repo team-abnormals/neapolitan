@@ -52,9 +52,7 @@ public class HarvestStrawberriesCriteraTrigger extends AbstractCriterionTrigger<
 	}
 
 	public void trigger(ServerPlayerEntity player, BlockState state) {
-		this.triggerListeners(player, (instance) -> {
-			return instance.test(state);
-		});
+		this.triggerListeners(player, (instance) -> instance.test(state));
 	}
 
 	public static class Instance extends CriterionInstance {

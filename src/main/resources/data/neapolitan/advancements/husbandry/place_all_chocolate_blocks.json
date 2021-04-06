@@ -5,10 +5,10 @@
       "item": "neapolitan:chocolate_bar"
     },
     "title": {
-      "translate": "advancements.husbandry.place_all_chocolate_blocks.title"
+      "translate": "advancements.neapolitan.husbandry.place_all_chocolate_blocks.title"
     },
     "description": {
-      "translate": "advancements.husbandry.place_all_chocolate_blocks.description"
+      "translate": "advancements.neapolitan.husbandry.place_all_chocolate_blocks.description"
     },
     "frame": "challenge",
     "show_toast": true,

@@ -11,6 +11,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class NeapolitanCriteriaTriggers {
 	public static final EmptyTrigger CREEPER_HEAL = CriteriaTriggers.register(new EmptyTrigger(prefix("creeper_heal")));
 	public static final EmptyTrigger VANILLA_POISON = CriteriaTriggers.register(new EmptyTrigger(prefix("vanilla_poison")));
+	public static final EmptyTrigger CHIMPANZEE_ATTACK = CriteriaTriggers.register(new EmptyTrigger(prefix("chimpanzee_attack")));
 
 	public static final HarvestStrawberriesCriteraTrigger HARVEST_STRAWBERRIES = CriteriaTriggers.register(new HarvestStrawberriesCriteraTrigger());
 
