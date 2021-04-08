@@ -5,10 +5,10 @@
       "item": "neapolitan:white_strawberries"
     },
     "title": {
-      "translate": "advancements.husbandry.harvest_white_strawberries.title"
+      "translate": "advancements.neapolitan.husbandry.harvest_white_strawberries.title"
     },
     "description": {
-      "translate": "advancements.husbandry.harvest_white_strawberries.description"
+      "translate": "advancements.neapolitan.husbandry.harvest_white_strawberries.description"
     },
     "frame": "task",
     "show_toast": true,

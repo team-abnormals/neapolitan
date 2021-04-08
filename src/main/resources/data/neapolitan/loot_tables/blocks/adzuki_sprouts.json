@@ -1,0 +1,48 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "functions": [
+                {
+                  "function": "minecraft:set_count",
+                  "count": {
+                    "min": 2.0,
+                    "max": 3.0,
+                    "type": "minecraft:uniform"
+                  }
+                }
+              ],
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "neapolitan:adzuki_sprouts",
+                  "properties": {
+                    "age": "6",
+                    "flowering": "true"
+                  }
+                }
+              ],
+              "name": "neapolitan:adzuki_beans"
+            },
+            {
+              "type": "minecraft:item",
+              "name": "neapolitan:adzuki_beans"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "functions": [
+    {
+      "function": "minecraft:explosion_decay"
+    }
+  ]
+}

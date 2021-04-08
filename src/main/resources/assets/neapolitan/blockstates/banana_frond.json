@@ -1,0 +1,25 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "neapolitan:block/banana_frond_down"
+    },
+    "facing=north": {
+      "model": "neapolitan:block/banana_frond_wall"
+    },
+    "facing=south": {
+      "model": "neapolitan:block/banana_frond_wall",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "neapolitan:block/banana_frond_wall",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "neapolitan:block/banana_frond_wall",
+      "y": 90
+    },
+    "facing=up": {
+      "model": "neapolitan:block/banana_frond_up"
+    }
+  }
+}

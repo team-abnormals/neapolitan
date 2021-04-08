@@ -8,16 +8,13 @@
       "item": "neapolitan:chocolate_bar"
     },
     {
-      "item": "neapolitan:chocolate_bar"
+      "tag": "forge:milk"
     },
     {
-      "item": "neapolitan:dried_vanilla_pods"
+      "item": "neapolitan:ice_cubes"
     },
     {
-      "item": "neapolitan:milk_bottle"
-    },
-    {
-      "item": "minecraft:ice"
+      "item": "minecraft:sugar"
     }
   ],
   "result": {

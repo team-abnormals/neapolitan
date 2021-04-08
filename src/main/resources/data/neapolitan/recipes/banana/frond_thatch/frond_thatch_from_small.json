@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "neapolitan:small_banana_frond"
+    }
+  },
+  "result": {
+    "item": "neapolitan:frond_thatch",
+    "count": 2
+  }
+}

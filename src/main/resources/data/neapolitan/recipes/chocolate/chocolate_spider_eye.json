@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:spider_eye"
+    },
+    {
+      "item": "minecraft:spider_eye"
+    },
+    {
+      "item": "neapolitan:chocolate_bar"
+    }
+  ],
+  "result": {
+    "item": "neapolitan:chocolate_spider_eye",
+    "count": 2
+  }
+}

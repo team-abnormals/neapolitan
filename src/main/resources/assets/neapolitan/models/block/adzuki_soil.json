@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_top",
+    "textures": {
+        "top": "neapolitan:block/adzuki_soil",
+        "side": "minecraft:block/dirt"
+    }
+}

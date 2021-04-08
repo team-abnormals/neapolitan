@@ -1,0 +1,7 @@
+{
+  "parent": "abnormals_core:block/thatch/thatch",
+  "textures": {
+    "thatch": "neapolitan:block/frond_thatch",
+    "extrudes": "neapolitan:block/frond_thatch_extrudes"
+  }
+}

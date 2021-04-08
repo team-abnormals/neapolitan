@@ -5,10 +5,10 @@
       "item": "neapolitan:strawberries"
     },
     "title": {
-      "translate": "advancements.husbandry.creeper_heal.title"
+      "translate": "advancements.neapolitan.husbandry.creeper_heal.title"
     },
     "description": {
-      "translate": "advancements.husbandry.creeper_heal.description"
+      "translate": "advancements.neapolitan.husbandry.creeper_heal.description"
     },
     "frame": "task",
     "show_toast": true,

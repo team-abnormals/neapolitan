@@ -1,5 +1,5 @@
 {
-	"credit": "Made with Blockbench by five",
+	"credit": "Made with Blockbench",
 	"ambientocclusion": false,
 	"textures": {
 		"particle": "#texture"
@@ -8,6 +8,7 @@
 		{
 			"from": [1, 0, 0],
 			"to": [1, 16, 16],
+			"shade": false,
 			"faces": {
 				"north": {"uv": [0, 0, 0, 16], "texture": "#texture"},
 				"east": {"uv": [0, 0, 16, 16], "texture": "#texture"},
@@ -20,6 +21,7 @@
 		{
 			"from": [5, 0, 0],
 			"to": [5, 16, 16],
+			"shade": false,
 			"faces": {
 				"north": {"uv": [0, 0, 0, 16], "texture": "#texture"},
 				"east": {"uv": [0, 0, 16, 16], "texture": "#texture"},
@@ -30,8 +32,10 @@
 			}
 		},
 		{
-			"from": [12, 0, 0],
-			"to": [12, 16, 16],
+			"from": [11, 0, 0],
+			"to": [11, 16, 16],
+			"shade": false,
+			"rotation": {"angle": 0, "axis": "y", "origin": [7, 8, 8]},
 			"faces": {
 				"north": {"uv": [0, 0, 0, 16], "texture": "#texture"},
 				"east": {"uv": [0, 0, 16, 16], "texture": "#texture"},
@@ -44,6 +48,7 @@
 		{
 			"from": [15, 0, 0],
 			"to": [15, 16, 16],
+			"shade": false,
 			"faces": {
 				"north": {"uv": [0, 0, 0, 16], "texture": "#texture"},
 				"east": {"uv": [0, 0, 16, 16], "texture": "#texture"},
@@ -56,6 +61,7 @@
 		{
 			"from": [0, 0, 15],
 			"to": [16, 16, 15],
+			"shade": false,
 			"faces": {
 				"north": {"uv": [0, 0, 16, 16], "texture": "#texture"},
 				"east": {"uv": [0, 0, 0, 16], "texture": "#texture"},
@@ -66,8 +72,10 @@
 			}
 		},
 		{
-			"from": [0, 0, 12],
-			"to": [16, 16, 12],
+			"from": [0, 0, 11],
+			"to": [16, 16, 11],
+			"shade": false,
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 7]},
 			"faces": {
 				"north": {"uv": [0, 0, 16, 16], "texture": "#texture"},
 				"east": {"uv": [0, 0, 0, 16], "texture": "#texture"},
@@ -78,8 +86,10 @@
 			}
 		},
 		{
-			"from": [0, 0, 4],
-			"to": [16, 16, 4],
+			"from": [0, 0, 5],
+			"to": [16, 16, 5],
+			"shade": false,
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 9]},
 			"faces": {
 				"north": {"uv": [0, 0, 16, 16], "texture": "#texture"},
 				"east": {"uv": [0, 0, 0, 16], "texture": "#texture"},
@@ -92,6 +102,7 @@
 		{
 			"from": [0, 0, 1],
 			"to": [16, 16, 1],
+			"shade": false,
 			"faces": {
 				"north": {"uv": [0, 0, 16, 16], "texture": "#texture"},
 				"east": {"uv": [0, 0, 0, 16], "texture": "#texture"},

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:milk"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "neapolitan:dried_vanilla_pods"
+    },
+    {
+      "item": "neapolitan:dried_vanilla_pods"
+    }
+  ],
+  "result": {
+    "item": "neapolitan:vanilla_fudge",
+    "count": 4
+  }
+}

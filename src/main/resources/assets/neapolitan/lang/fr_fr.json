@@ -1,0 +1,66 @@
+{
+  "block.neapolitan.chocolate_block": "Bloc de Chocolat",
+  "block.neapolitan.chocolate_bricks": "des Briques de Chocolat",
+  "block.neapolitan.chocolate_brick_slab": "Dalle en Briques de chocolat ",
+  "block.neapolitan.chocolate_brick_stairs": "Escalier en Brique de Chocolat",
+  "block.neapolitan.chocolate_brick_wall": "Muret en Brique de Chocolat",
+  "block.neapolitan.chocolate_brick_vertical_slab": "Dalle Vertical en Briques de chocolat",
+  
+  "block.neapolitan.chiseled_chocolate_bricks": "Brique de Chocolat Sculpté",
+  
+  "block.neapolitan.chocolate_tiles": "Carrelage de Chocolat",
+  "block.neapolitan.chocolate_tile_slab": "Dalle en Carrelage de Chocolat",
+  "block.neapolitan.chocolate_tile_stairs": "Escalier en Carrelage de Chocolat",
+  "block.neapolitan.chocolate_tile_wall": "Muret en Carrelage de Chocolat",
+  "block.neapolitan.chocolate_tile_vertical_slab": "Dalle Vertical en Carrelage de Chocolat",
+  
+  "block.neapolitan.strawberry_basket": "Panier de Fraises",
+  "block.neapolitan.white_strawberry_basket": "Panier de Fraises Blanche",
+  "block.neapolitan.vanilla_pod_block": "Bloc de Gousse de Vanille",
+  "block.neapolitan.dried_vanilla_pod_block": "Bloc de Gousse de Vanille Séchée",
+  
+  "block.neapolitan.vanilla_vine": "Vigne de Vanille",
+  "block.neapolitan.vanilla_vine_plant": "Vigne de Vanille",
+  
+  "block.neapolitan.chocolate_cake": "Gateau au chocolat",
+  "block.neapolitan.strawberry_cake": "Gateau à la Fraises",
+  "block.neapolitan.vanilla_cake": "Gateau à la Vanille",
+  
+  "item.neapolitan.milk_bottle": "Bouteille de Lait",
+  
+  "item.neapolitan.chocolate_bar": "Barre de Chocolat",
+  "item.neapolitan.chocolate_ice_cream": "Crème Glacée au Chocolat",
+  "item.neapolitan.chocolate_milkshake": "Milkshake au Chocolat",
+  
+  "item.neapolitan.strawberry_pips": "Pépins de Fraises",
+  "item.neapolitan.strawberries": "Fraises",
+  "item.neapolitan.strawberry_ice_cream": "Crème Glacée à la Fraise",
+  "item.neapolitan.strawberry_scones": "Scones à la Fraises",
+  "item.neapolitan.strawberry_milkshake": "Milkshake à la Fraises",
+  
+  "item.neapolitan.vanilla_pods": "Gousse de Vanille",
+  "item.neapolitan.dried_vanilla_pods": "Gousse de Vanille Séchée",
+  "item.neapolitan.vanilla_ice_cream": "Crème Glacée à la Vanille",
+  "item.neapolitan.vanilla_pudding": "Pudding à la Vanille",
+  "item.neapolitan.vanilla_milkshake": "Milkshake à la Vanille",
+  
+  "item.neapolitan.chocolate_strawberries": "Fraises aux Chocolat",
+  "item.neapolitan.white_strawberries": "Fraises Blanche",
+  "item.neapolitan.vanilla_chocolate_fingers": "Doigts de Chocolat à la Vanille",
+  "item.neapolitan.neapolitan_ice_cream": "Crème Glacée Neapolitan",
+  
+  "effect.neapolitan.sugar_rush": "Sugar Rush",
+  "effect.neapolitan.vanilla_scent": "Parfum de Vanille",
+  
+  "advancements.husbandry.creeper_heal.title": "Bombe d'Amour",
+  "advancements.husbandry.creeper_heal.description": "être guéri par un Creeper qui a explosé dans un arbuste à fraises",
+  
+  "advancements.husbandry.vanilla_poison.title": "Vanille Tueuse",
+  "advancements.husbandry.vanilla_poison.description": "Couper la vanille sans cisaillement, libérant une aura nocive",
+  
+  "advancements.husbandry.place_all_chocolate_blocks.title": "Un Goût Dans La Construction",
+  "advancements.husbandry.place_all_chocolate_blocks.description": "Placez chaque type de bloc de chocolat",
+  
+  "advancements.husbandry.harvest_white_strawberries.title": "Pique-nique dans les Nuages",
+  "advancements.husbandry.harvest_white_strawberries.description": "Obtenez des fraises blanches en cultivant des buissons de fraises à haute altitude"
+}

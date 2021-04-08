@@ -1,0 +1,140 @@
+{
+  "block.neapolitan.vanilla_ice_cream_block": "바닐라 아이스크림 블록",
+  "block.neapolitan.chocolate_ice_cream_block": "초콜릿 아이스크림 블록",
+  "block.neapolitan.strawberry_ice_cream_block": "딸기 아이스크림 블록",
+  "block.neapolitan.banana_ice_cream_block": "바나나 아이스크림 블록",
+  
+  "block.neapolitan.chocolate_block": "초콜릿 블록",
+  "block.neapolitan.chocolate_bricks": "초콜릿 벽돌",
+  "block.neapolitan.chocolate_brick_slab": "초콜릿 벽돌 반 블록",
+  "block.neapolitan.chocolate_brick_stairs": "초콜릿 벽돌 계단",
+  "block.neapolitan.chocolate_brick_wall": "초콜릿 벽돌 담장",
+  "block.neapolitan.chocolate_brick_vertical_slab": "초콜릿 벽돌 세로 반 블록",
+  
+  "block.neapolitan.chiseled_chocolate_bricks": "조각된 초콜릿 벽돌",
+  
+  "block.neapolitan.chocolate_tiles": "초콜릿 타일",
+  "block.neapolitan.chocolate_tile_slab": "초콜릿 타일 반 블록",
+  "block.neapolitan.chocolate_tile_stairs": "초콜릿 타일 계단",
+  "block.neapolitan.chocolate_tile_wall": "초콜릿 타일 담장",
+  "block.neapolitan.chocolate_tile_vertical_slab": "초콜릿 타일 세로 반 블록",
+  
+  "block.neapolitan.frond_thatch": "바나나 잎 짚",
+  "block.neapolitan.frond_thatch_stairs": "바나나 잎 짚 계단",
+  "block.neapolitan.frond_thatch_slab": "바나나 잎 짚 반 블록",
+  "block.neapolitan.frond_thatch_vertical_slab": "바나나 잎 짚 세로 반 블록",
+  
+  "block.neapolitan.strawberry_basket": "딸기 바구니",
+  "block.neapolitan.white_strawberry_basket": "하얀색 딸기 바구니",
+  "block.neapolitan.vanilla_pod_block": "바닐라 꼬투리 블록",
+  "block.neapolitan.dried_vanilla_pod_block": "말린 바닐라 꼬투리 블록",
+  "block.neapolitan.banana_crate": "바나나 상자",
+
+  "block.neapolitan.strawberry_bush": "딸기 덤불",
+
+  "block.neapolitan.vanilla_vine": "바닐라 덩굴",
+  "block.neapolitan.vanilla_vine_plant": "바닐라 덩굴",
+  
+  "block.neapolitan.banana_stalk": "바나나 줄기",
+  "block.neapolitan.banana_bundle": "바나나 다발",
+  
+  "block.neapolitan.small_banana_frond": "작은 바나나 잎",
+  "block.neapolitan.banana_frond": "바나나 잎",
+  "block.neapolitan.large_banana_frond": "큰 바나나 잎",
+  
+  "block.neapolitan.chocolate_cake": "초콜릿 케이크",
+  "block.neapolitan.strawberry_cake": "딸기 케이크",
+  "block.neapolitan.vanilla_cake": "바닐라 케이크",
+  "block.neapolitan.banana_cake": "바나나 케이크",
+  
+  "item.neapolitan.milk_bottle": "우유가 든 병",
+  "item.neapolitan.ice_cubes": "각얼음",
+  
+  "item.neapolitan.chocolate_bar": "초콜릿 바",
+  "item.neapolitan.chocolate_ice_cream": "초콜릿 아이스크림",
+  "item.neapolitan.chocolate_milkshake": "초콜릿 밀크셰이크",
+  "item.neapolitan.chocolate_spider_eye": "초콜릿을 묻힌 거미 눈",
+  
+  "item.neapolitan.strawberry_pips": "딸기 씨앗",
+  "item.neapolitan.strawberries": "딸기",
+  "item.neapolitan.strawberry_ice_cream": "딸기 아이스크림",
+  "item.neapolitan.strawberry_scones": "딸기 스콘",
+  "item.neapolitan.strawberry_milkshake": "딸기 밀크셰이크",
+  
+  "item.neapolitan.vanilla_pods": "바닐라 꼬투리",
+  "item.neapolitan.dried_vanilla_pods": "말린 바닐라 꼬투리",
+  "item.neapolitan.vanilla_ice_cream": "바닐라 아이스크림",
+  "item.neapolitan.vanilla_pudding": "바닐라 푸딩",
+  "item.neapolitan.vanilla_milkshake": "바닐라 밀크셰이크",
+  "item.neapolitan.vanilla_fudge": "바닐라 퍼지",
+  
+  "item.neapolitan.banana": "바나나",
+  "item.neapolitan.banana_bunch": "바나나 묶음",
+  "item.neapolitan.dried_banana": "말린 바나나",
+  "item.neapolitan.banana_ice_cream": "바나나 아이스크림",
+  "item.neapolitan.banana_milkshake": "바나나 밀크셰이크",
+  "item.neapolitan.banana_bread": "바나나 빵",
+  "item.neapolitan.bananarrow": "바나나 화살",
+  
+  "item.neapolitan.chocolate_strawberries": "초콜릿 딸기",
+  "item.neapolitan.white_strawberries": "하얀색 딸기",
+  "item.neapolitan.vanilla_chocolate_fingers": "바닐라 초콜릿 핑거",
+  "item.neapolitan.strawberry_banana_smoothie": "딸기 바나나 스무디",
+  "item.neapolitan.neapolitan_ice_cream": "나폴리 아이스크림",
+  
+  "item.neapolitan.chimpanzee_banner_pattern": "현수막 무늬",
+  "item.neapolitan.chimpanzee_banner_pattern.desc": "원숭이",
+  
+  "item.neapolitan.chimpanzee_spawn_egg": "원숭이 생성 알",
+  "item.neapolitan.plantain_spider_spawn_egg": "바나나 거미 생성 알",
+  
+  "entity.neapolitan.banana_peel": "바나나 껍질",
+  "entity.neapolitan.chimpanzee": "원숭이",
+  "entity.neapolitan.plantain_spider": "바나나 거미",
+  "entity.neapolitan.bananarrow": "바나나 화살",
+  
+  "effect.neapolitan.sugar_rush": "설탕 질주",
+  "effect.neapolitan.vanilla_scent": "바닐라 향",
+  "effect.neapolitan.agility": "날렵함",
+  "effect.neapolitan.slipping": "미끄러움",
+  
+  "advancements.husbandry.creeper_heal.title": "나를 사랑으로 채워줘요",
+  "advancements.husbandry.creeper_heal.description": "딸기 덤불 속에서 폭발하는 크리퍼에게 치유받으세요",
+  
+  "advancements.husbandry.vanilla_poison.title": "사람 잡는 식물",
+  "advancements.husbandry.vanilla_poison.description": "바닐라 덩굴을 가위 없이 부수고, 그 위험성을 몸소 느껴보세요",
+  
+  "advancements.husbandry.place_all_chocolate_blocks.title": "갈색 건축",
+  "advancements.husbandry.place_all_chocolate_blocks.description": "모든 종류의 초콜릿 블록을 설치하세요",
+  
+  "advancements.husbandry.harvest_white_strawberries.title": "구름 위의 피크닉",
+  "advancements.husbandry.harvest_white_strawberries.description": "높은 곳에서만 자라는 하얀색 딸기를 얻으세요",
+  
+  "subtitles.neapolitan.entity.chimpanzee.angry": "원숭이가 소리 지름",
+  "subtitles.neapolitan.entity.chimpanzee.death": "원숭이가 죽음",
+  "subtitles.neapolitan.entity.chimpanzee.eat": "원숭이가 먹이를 먹음",
+  "subtitles.neapolitan.entity.chimpanzee.howl": "원숭이가 울부짖음",
+  "subtitles.neapolitan.entity.chimpanzee.hurt": "원숭이가 상처를 입음",
+  "subtitles.neapolitan.entity.chimpanzee.ambient": "원숭이가 우-우 아-아 거림",
+  "subtitles.neapolitan.entity.chimpanzee.step": "원숭이가 활보함",
+  "subtitles.neapolitan.entity.chimpanzee.swing": "원숭이가 매달려 날아다님",
+  
+  "subtitles.neapolitan.item.ice_cubes.eat": "아작아작 씹는 소리",
+  
+  "block.minecraft.banner.mca_chimpanzee.black": "검은색 원숭이",
+  "block.minecraft.banner.mca_chimpanzee.red": "빨간색 원숭이",
+  "block.minecraft.banner.mca_chimpanzee.green": "초록색 원숭이",
+  "block.minecraft.banner.mca_chimpanzee.brown": "갈색 원숭이",
+  "block.minecraft.banner.mca_chimpanzee.blue": "파란색 원숭이",
+  "block.minecraft.banner.mca_chimpanzee.purple": "보라색 원숭이",
+  "block.minecraft.banner.mca_chimpanzee.cyan": "청록색 원숭이",
+  "block.minecraft.banner.mca_chimpanzee.silver": "회백색 원숭이",
+  "block.minecraft.banner.mca_chimpanzee.gray": "회색 원숭이",
+  "block.minecraft.banner.mca_chimpanzee.pink": "분홍색 원숭이",
+  "block.minecraft.banner.mca_chimpanzee.lime": "연두색 원숭이",
+  "block.minecraft.banner.mca_chimpanzee.yellow": "노란색 원숭이",
+  "block.minecraft.banner.mca_chimpanzee.lightBlue": "하늘색 원숭이",
+  "block.minecraft.banner.mca_chimpanzee.magenta": "자홍색 원숭이",
+  "block.minecraft.banner.mca_chimpanzee.orange": "주황색 원숭이",
+  "block.minecraft.banner.mca_chimpanzee.white": "하얀색 원숭이"
+}

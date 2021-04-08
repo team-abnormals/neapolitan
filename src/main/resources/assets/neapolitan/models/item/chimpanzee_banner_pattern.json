@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "neapolitan:item/chimpanzee_banner_pattern"
+  }
+}

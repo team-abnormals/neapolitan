@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "neapolitan:adzuki_crate"
+    }
+  ],
+  "result": {
+    "item": "neapolitan:adzuki_beans",
+    "count": 9
+  },
+  "conditions": [
+    {
+      "type": "abnormals_core:quark_flag",
+      "flag": "apple_crate"
+    }
+  ]
+}

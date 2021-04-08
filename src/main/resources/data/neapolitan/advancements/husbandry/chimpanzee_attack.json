@@ -1,0 +1,23 @@
+{
+  "parent": "minecraft:adventure/shoot_arrow",
+  "display": {
+    "icon": {
+      "item": "neapolitan:bananarrow"
+    },
+    "title": {
+      "translate": "advancements.neapolitan.adventure.chimpanzee_attack.title"
+    },
+    "description": {
+      "translate": "advancements.neapolitan.adventure.chimpanzee_attack.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "vanilla_poison": {
+      "trigger": "neapolitan:chimpanzee_attack"
+    }
+  }
+}

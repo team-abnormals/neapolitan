@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "neapolitan:roasted_adzuki_beans"
+    },
+    {
+      "item": "neapolitan:dried_banana"
+    },
+    {
+      "item": "minecraft:carrot"
+    },
+    {
+      "tag": "forge:pumpkins"
+    },
+    {
+      "item": "minecraft:bowl"
+    }
+  ],
+  "result": {
+    "item": "neapolitan:adzuki_curry"
+  },
+  "conditions": [
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:mod_loaded",
+        "modid": "abnormals_delight"
+      }
+    }
+  ]
+}

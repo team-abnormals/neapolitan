@@ -1,0 +1,87 @@
+{
+  "music.record.hullabaloo": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "neapolitan:record/hullabaloo",
+        "stream": true
+      }
+    ]
+  },
+  "entity.chimpanzee.angry": {
+    "sounds": [
+      "neapolitan:mob/chimpanzee/angry1",
+      "neapolitan:mob/chimpanzee/angry2"
+    ],
+    "subtitle": "subtitles.neapolitan.entity.chimpanzee.angry"
+  },
+  "entity.chimpanzee.death": {
+    "sounds": [
+      "neapolitan:mob/chimpanzee/death"
+    ],
+    "subtitle": "subtitles.neapolitan.entity.chimpanzee.death"
+  },
+  "entity.chimpanzee.eat": {
+    "sounds": [
+      "neapolitan:mob/chimpanzee/eat1",
+      "neapolitan:mob/chimpanzee/eat2",
+      "neapolitan:mob/chimpanzee/eat3"
+    ],
+    "subtitle": "subtitles.neapolitan.entity.chimpanzee.eat"
+  },
+  "entity.chimpanzee.howl": {
+    "sounds": [
+      "neapolitan:mob/chimpanzee/howl1",
+      "neapolitan:mob/chimpanzee/howl2"
+    ],
+    "subtitle": "subtitles.neapolitan.entity.chimpanzee.howl"
+  },
+  "entity.chimpanzee.hurt": {
+    "sounds": [
+      "neapolitan:mob/chimpanzee/hurt1",
+      "neapolitan:mob/chimpanzee/hurt2"
+    ],
+    "subtitle": "subtitles.neapolitan.entity.chimpanzee.hurt"
+  },
+  "entity.chimpanzee.ambient": {
+    "sounds": [
+      "neapolitan:mob/chimpanzee/ambient1",
+      "neapolitan:mob/chimpanzee/ambient2",
+      "neapolitan:mob/chimpanzee/ambient3",
+      "neapolitan:mob/chimpanzee/ambient4"
+    ],
+    "subtitle": "subtitles.neapolitan.entity.chimpanzee.ambient"
+  },
+  "entity.chimpanzee.step": {
+    "sounds": [
+      "neapolitan:mob/chimpanzee/step1",
+      "neapolitan:mob/chimpanzee/step2"
+    ],
+    "subtitle": "subtitles.neapolitan.entity.chimpanzee.step"
+  },
+  "entity.chimpanzee.swing": {
+    "sounds": [
+      "neapolitan:mob/chimpanzee/swing"
+    ],
+    "subtitle": "subtitles.neapolitan.entity.chimpanzee.swing"
+  },
+  "item.ice_cubes.eat": {
+    "sounds": [
+      {
+        "name": "neapolitan:item/ice_cubes/eat_ice1"
+      },
+      {
+        "name": "neapolitan:item/ice_cubes/eat_ice2"
+      },
+      {
+        "name": "neapolitan:item/ice_cubes/eat_ice3",
+        "volume": 0.35
+      },
+      {
+        "name": "neapolitan:item/ice_cubes/eat_ice3",
+        "volume": 0.75
+      }
+    ],
+    "subtitle": "subtitles.neapolitan.item.ice_cubes.eat"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ADA",
+    "BEB",
+    "CDC"
+  ],
+  "key": {
+    "A": {
+      "tag": "forge:milk"
+    },
+    "B": {
+      "item": "minecraft:sugar"
+    },
+    "C": {
+      "item": "minecraft:wheat"
+    },
+    "D": {
+      "item": "neapolitan:mint_leaves"
+    },
+    "E": {
+      "tag": "forge:eggs"
+    }
+  },
+  "result": {
+    "item": "neapolitan:mint_cake"
+  }
+}

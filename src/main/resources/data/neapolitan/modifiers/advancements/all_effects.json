@@ -1,0 +1,20 @@
+{
+  "advancement": "minecraft:nether/all_effects",
+  "modifiers": [
+    {
+      "type": "effects_changed",
+      "config": {
+        "criteria": "all_effects",
+        "removes": false,
+        "effects": {
+          "neapolitan:vanilla_scent": {},
+          "neapolitan:sugar_rush": {},
+          "neapolitan:agility": {},
+          "neapolitan:slipping": {},
+          "neapolitan:berserking": {},
+          "neapolitan:harmony": {}
+        }
+      }
+    }
+  ]
+}

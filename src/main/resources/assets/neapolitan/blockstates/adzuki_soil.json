@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "neapolitan:block/adzuki_soil"
+      },
+      {
+        "model": "neapolitan:block/adzuki_soil",
+        "y": 90
+      },
+      {
+        "model": "neapolitan:block/adzuki_soil",
+        "y": 180
+      },
+      {
+        "model": "neapolitan:block/adzuki_soil",
+        "y": 270
+      }
+    ]
+  }
+}

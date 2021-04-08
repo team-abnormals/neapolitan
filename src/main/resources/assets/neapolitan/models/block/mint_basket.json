@@ -1,0 +1,8 @@
+{
+    "parent": "block/cube_bottom_top",
+    "textures": {
+        "top": "neapolitan:block/mint_basket_top",
+        "bottom": "neapolitan:block/mint_basket_bottom",
+        "side": "neapolitan:block/mint_basket_side"
+    }
+}

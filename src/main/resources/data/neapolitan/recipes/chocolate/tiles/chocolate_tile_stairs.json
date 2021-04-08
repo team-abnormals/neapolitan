@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "#  ",
-	"## ",
+    "## ",
     "###"
   ],
   "key": {
@@ -12,6 +12,6 @@
   },
   "result": {
     "item": "neapolitan:chocolate_tile_stairs",
-    "count": 6
+    "count": 4
   }
 }

@@ -1,0 +1,47 @@
+{
+  "variants": {
+    "age=0,flowering=false": {
+      "model": "neapolitan:block/adzuki_sprouts_stage0"
+    },
+    "age=1,flowering=false": {
+      "model": "neapolitan:block/adzuki_sprouts_stage1"
+    },
+    "age=2,flowering=false": {
+      "model": "neapolitan:block/adzuki_sprouts_stage2"
+    },
+    "age=3,flowering=false": {
+      "model": "neapolitan:block/adzuki_sprouts_stage3"
+    },
+    "age=4,flowering=false": {
+      "model": "neapolitan:block/adzuki_sprouts_stage4"
+    },
+    "age=5,flowering=false": {
+      "model": "neapolitan:block/adzuki_sprouts_stage5"
+    },
+    "age=6,flowering=false": {
+      "model": "neapolitan:block/adzuki_sprouts_stage6"
+    },
+    "age=0,flowering=true": {
+      "model": "neapolitan:block/flowering_adzuki_sprouts_stage0"
+    },
+    "age=1,flowering=true": {
+      "model": "neapolitan:block/flowering_adzuki_sprouts_stage1"
+    },
+    "age=2,flowering=true": {
+      "model": "neapolitan:block/flowering_adzuki_sprouts_stage2"
+    },
+    "age=3,flowering=true": {
+      "model": "neapolitan:block/flowering_adzuki_sprouts_stage3"
+    },
+    "age=4,flowering=true": {
+      "model": "neapolitan:block/flowering_adzuki_sprouts_stage4"
+    },
+    "age=5,flowering=true": {
+      "model": "neapolitan:block/flowering_adzuki_sprouts_stage5"
+    },
+    "age=6,flowering=true": {
+      "model": "neapolitan:block/flowering_adzuki_sprouts_stage6"
+    }
+  }
+}
+

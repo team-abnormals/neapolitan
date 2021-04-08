@@ -1,7 +1,7 @@
 {
   "type": "minecraft:stonecutting",
   "ingredient": {
-    "item": "neapolitan:chocolate_tiles"
+    "item": "neapolitan:chocolate_bricks"
   },
   "result": "neapolitan:chocolate_tile_vertical_slab",
   "count": 2,

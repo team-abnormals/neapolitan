@@ -1,0 +1,7 @@
+{
+    "parent": "minecraft:block/cube_column",
+    "textures": {
+        "end": "neapolitan:block/beanstalk",
+        "side": "neapolitan:block/beanstalk"
+    }
+}

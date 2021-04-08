@@ -1,0 +1,66 @@
+{
+  "block.neapolitan.chocolate_block": "Ĉokolada bloko",
+  "block.neapolitan.chocolate_bricks": "Ĉokolada briko",
+  "block.neapolitan.chocolate_brick_slab": "Ĉokolada brika ŝtupo",
+  "block.neapolitan.chocolate_brick_stairs": "Ĉokolada brika ŝtuparo",
+  "block.neapolitan.chocolate_brick_wall": "Ĉokolada brika muro",
+  "block.neapolitan.chocolate_brick_vertical_slab": "Ĉokolada brika vertikala ŝtupo",
+  
+  "block.neapolitan.chiseled_chocolate_bricks": "Ĉizita ĉokolada briko",
+  
+  "block.neapolitan.chocolate_tiles": "Ĉokolada kahelaro",
+  "block.neapolitan.chocolate_tile_slab": "Ĉokolada kahela ŝtupo",
+  "block.neapolitan.chocolate_tile_stairs": "Ĉokolada kahela ŝtuparo",
+  "block.neapolitan.chocolate_tile_wall": "Ĉokolada kahela muro",
+  "block.neapolitan.chocolate_tile_vertical_slab": "Ĉokolada kahela vertikala ŝtupo",
+  
+  "block.neapolitan.strawberry_basket": "Fraga kradkesto",
+  "block.neapolitan.white_strawberry_basket": "Blankfraga kradkesto",
+  "block.neapolitan.vanilla_pod_block": "Vanila guŝa bloko",
+  "block.neapolitan.dried_vanilla_pod_block": "Sekigita vanila guŝa bloko",
+  
+  "block.neapolitan.vanilla_vine": "Vanila hedero",
+  "block.neapolitan.vanilla_vine_plant": "Vanila hedero",
+  
+  "block.neapolitan.chocolate_cake": "Ĉokolada kuko",
+  "block.neapolitan.strawberry_cake": "Fraga kuko",
+  "block.neapolitan.vanilla_cake": "Vanila kuko",
+  
+  "item.neapolitan.milk_bottle": "Lakta botelo",
+  
+  "item.neapolitan.chocolate_bar": "Ĉokoladbriketo",
+  "item.neapolitan.chocolate_ice_cream": "Ĉokolada glaciaĵo",
+  "item.neapolitan.chocolate_milkshake": "Ĉokolada laktoskuaĵo",
+  
+  "item.neapolitan.strawberry_pips": "Fragograjnoj",
+  "item.neapolitan.strawberries": "Fragoj",
+  "item.neapolitan.strawberry_ice_cream": "Fraga glaciaĵo",
+  "item.neapolitan.strawberry_scones": "Fragaj skonoj",
+  "item.neapolitan.strawberry_milkshake": "Fraga laktoskuaĵo",
+  
+  "item.neapolitan.vanilla_pods": "Vanilaj guŝoj",
+  "item.neapolitan.dried_vanilla_pods": "Sekigitaj vanilaj guŝoj",
+  "item.neapolitan.vanilla_ice_cream": "Vanila glaciaĵo",
+  "item.neapolitan.vanilla_pudding": "Vanila pudingo",
+  "item.neapolitan.vanilla_milkshake": "Vanila laktoskuaĵo",
+  
+  "item.neapolitan.chocolate_strawberries": "Ĉokoladaj fragoj",
+  "item.neapolitan.white_strawberries": "Blankaj fragoj",
+  "item.neapolitan.vanilla_chocolate_fingers": "Vanilaj ĉokoladaj fingroj",
+  "item.neapolitan.neapolitan_ice_cream": "Napola glaciaĵo",
+  
+  "effect.neapolitan.sugar_rush": "Dekstroza Danco",
+  "effect.neapolitan.vanilla_scent": "Vanila Odoro",
+  
+  "advancements.husbandry.creeper_heal.title": "Amo-bombo",
+  "advancements.husbandry.creeper_heal.description": "Resaniĝu pro Kripero, kiu eksplodis en Fraga Arbusto",
+  
+  "advancements.husbandry.vanilla_poison.title": "Murdila Vanila",
+  "advancements.husbandry.vanilla_poison.description": "Rompu Vanilan Guŝon sen tondilo, ellasante toksan aŭron",
+  
+  "advancements.husbandry.place_all_chocolate_blocks.title": "Brunŝtona Konstruaĵo",
+  "advancements.husbandry.place_all_chocolate_blocks.description": "Metu ĉiun tipon de Ĉokoladbriketo",
+  
+  "advancements.husbandry.harvest_white_strawberries.title": "Pikniko en la Nuboj",
+  "advancements.husbandry.harvest_white_strawberries.description": "Akiru Blankajn Fragojn per kreskigi Fragajn Arbustojn je alta altitudo"
+}

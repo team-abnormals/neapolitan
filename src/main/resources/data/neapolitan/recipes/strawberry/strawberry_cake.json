@@ -7,7 +7,7 @@
   ],
   "key": {
     "A": {
-      "item": "minecraft:milk_bucket"
+      "tag": "forge:milk"
     },
     "B": {
       "item": "minecraft:sugar"
@@ -19,7 +19,7 @@
       "tag": "forge:fruits/strawberry"
     },
     "E": {
-      "item": "minecraft:egg"
+      "tag": "forge:eggs"
     }
   },
   "result": {
