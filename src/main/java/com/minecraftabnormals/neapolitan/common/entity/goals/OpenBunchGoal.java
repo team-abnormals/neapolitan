@@ -51,17 +51,17 @@ public class OpenBunchGoal extends Goal {
 			if (flag) {
 				this.chimpanzee.openBunch(hand);
 				this.chimpanzee.setActionCooldown(40);
-
-				if (!this.chimpanzee.isSwingInProgress) {
-					this.chimpanzee.swingArm(hand);
-				}
+				this.chimpanzee.swingArms();
+				this.chimpanzee.world.setEntityState(this.chimpanzee, (byte)4);
 			}
 		}
 	}
 
 	@Override
 	public boolean shouldContinueExecuting() {
-		if (this.chimpanzee.getHeldItemMainhand().getItem() != NeapolitanItems.BANANA_BUNCH.get() && this.chimpanzee.getHeldItemOffhand().getItem() != NeapolitanItems.BANANA_BUNCH.get()) {
+		if (this.throwTimer < 40 && this.chimpanzee.getHeldItemMainhand().getItem() != NeapolitanItems.BANANA_BUNCH.get() && this.chimpanzee.getHeldItemOffhand().getItem() != NeapolitanItems.BANANA_BUNCH.get()) {
+			return false;
+		} else if (this.throwTimer >= 60) {
 			return false;
 		} else {
 			return !this.chimpanzee.isInWater() && this.chimpanzee.getAction() == ChimpanzeeEntity.Action.DEFAULT;

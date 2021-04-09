@@ -118,17 +118,11 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends AgeableModel<T>
 					HandSide mainhand = entity.getPrimaryHand();
 
 					if (!entity.getHeldItemMainhand().isEmpty()) {
-						this.getArmForSide(mainhand).rotateAngleX -= (float)Math.PI / 10F;
+						this.getArmForSide(mainhand).rotateAngleX -= (float) Math.PI / 10F;
 					}
 					if (!entity.getHeldItemOffhand().isEmpty()) {
-						this.getArmForSide(mainhand.opposite()).rotateAngleX -= (float)Math.PI / 10F;
+						this.getArmForSide(mainhand.opposite()).rotateAngleX -= (float) Math.PI / 10F;
 					}
-				}
-
-				if (!(this.swingProgress <= 0.0F)) {
-					HandSide handside = this.getMainHand(entity);
-					ModelRenderer modelrenderer = this.getArmForSide(handside);
-					modelrenderer.rotateAngleX = MathHelper.sin(this.swingProgress * (float)Math.PI) * 2.0F;
 				}
 			}
 

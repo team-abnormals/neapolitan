@@ -34,14 +34,14 @@ public class EatBananaGoal extends Goal {
 	public void startExecuting() {
 		this.chimpanzee.setAction(ChimpanzeeEntity.Action.EATING);
 		this.chimpanzee.getNavigator().clearPath();
-		this.eatTime = 0;
+		this.eatTime = 80;
 	}
 
 	@Override
 	public void tick() {
-		++this.eatTime;
+		--this.eatTime;
 		
-		if (this.eatTime >= 80) {
+		if (this.eatTime <= 0) {
 			this.chimpanzee.eatFood();
 			this.chimpanzee.setActionCooldown(80);
 			this.chimpanzee.setAction(ChimpanzeeEntity.Action.DEFAULT);
