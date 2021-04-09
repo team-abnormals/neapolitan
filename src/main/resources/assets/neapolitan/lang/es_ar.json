@@ -136,17 +136,20 @@
   "effect.neapolitan.berserking": "Frenesí",
   "effect.neapolitan.harmony": "Armonía",
 
-  "advancements.husbandry.creeper_heal.title": "Bomba de amor",
-  "advancements.husbandry.creeper_heal.description": "Dejá que te cure un creeper al explotar en un arbusto de fresas",
+  "advancements.neapolitan.husbandry.creeper_heal.title": "Bomba de amor",
+  "advancements.neapolitan.husbandry.creeper_heal.description": "Dejá que te cure un creeper al explotar en un arbusto de fresas",
 
-  "advancements.husbandry.vanilla_poison.title": "Vainilla asesina",
-  "advancements.husbandry.vanilla_poison.description": "Rompé una planta de vainilla sin usar tijeras, desatando un aura dañina",
+  "advancements.neapolitan.husbandry.vanilla_poison.title": "Vainilla asesina",
+  "advancements.neapolitan.husbandry.vanilla_poison.description": "Rompé una planta de vainilla con tijeras, evitando que se libere un aura dañina",
 
-  "advancements.husbandry.place_all_chocolate_blocks.title": "Una construcción chocolatosa",
-  "advancements.husbandry.place_all_chocolate_blocks.description": "Colocá todos los tipos de bloques de chocolate",
+  "advancements.neapolitan.husbandry.place_all_chocolate_blocks.title": "Una construcción chocolatosa",
+  "advancements.neapolitan.husbandry.place_all_chocolate_blocks.description": "Colocá todos los tipos de bloques de chocolate",
 
-  "advancements.husbandry.harvest_white_strawberries.title": "Picnic en las nubes",
-  "advancements.husbandry.harvest_white_strawberries.description": "Conseguí frutillas blancas plantando arbustos de frutillas a grandes alturas",
+  "advancements.neapolitan.husbandry.harvest_white_strawberries.title": "Picnic en las nubes",
+  "advancements.neapolitan.husbandry.harvest_white_strawberries.description": "Conseguí frutillas blancas plantando arbustos de frutillas a grandes alturas",
+
+  "advancements.neapolitan.adventure.chimpanzee_attack.title": "Evento coordinado de chimpancés",
+  "advancements.neapolitan.adventure.chimpanzee_attack.description": "Usá una flechanana para enviar un chimpancé tras otra criatura",
 
   "death.attack.neapolitan.beanstalkThorns": "%1$s se dio con espinas de tallo de poroto",
   "death.attack.neapolitan.beanstalkThorns.player": "%1$s se dio con espinas de tallo de poroto tratando de escapar de %2$s",
