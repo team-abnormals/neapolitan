@@ -12,18 +12,20 @@ public class EatBananaGoal extends Goal {
 	private int eatTime;
 
 	public EatBananaGoal(ChimpanzeeEntity chimpanzeeIn) {
-		chimpanzee = chimpanzeeIn;
+		this.chimpanzee = chimpanzeeIn;
 		this.setMutexFlags(EnumSet.of(Goal.Flag.MOVE));
 	}
 
 	@Override
 	public boolean shouldExecute() {
-		ItemStack food = this.chimpanzee.getFood();
-		if (!food.isEmpty() && food.isFood() && !this.chimpanzee.isInWater()) {
-			if (this.chimpanzee.getAction() == ChimpanzeeEntity.Action.EATING) {
-				return true;
-			} else if (this.chimpanzee.getRNG().nextInt(40) == 0 && this.chimpanzee.canDoAction() && this.chimpanzee.getAction() == ChimpanzeeEntity.Action.DEFAULT) {
-				return true;
+		if (this.chimpanzee.isHungry() && !this.chimpanzee.isInWater()) {
+			ItemStack food = this.chimpanzee.getFood();
+			if (!food.isEmpty() && food.isFood() && !this.chimpanzee.isInWater()) {
+				if (this.chimpanzee.getAction() == ChimpanzeeEntity.Action.EATING) {
+					return true;
+				} else if (this.chimpanzee.canDoAction() && this.chimpanzee.getAction().canBeChanged()) {
+					return true;
+				}
 			}
 		}
 
@@ -40,7 +42,7 @@ public class EatBananaGoal extends Goal {
 	@Override
 	public void tick() {
 		--this.eatTime;
-		
+
 		if (this.eatTime <= 0) {
 			this.chimpanzee.eatFood();
 			this.chimpanzee.setActionCooldown(80);
@@ -53,10 +55,10 @@ public class EatBananaGoal extends Goal {
 		ItemStack food = this.chimpanzee.getFood();
 		return !food.isEmpty() && food.isFood() && !this.chimpanzee.isInWater() && this.chimpanzee.getAction() == ChimpanzeeEntity.Action.EATING;
 	}
-	
+
 	@Override
-    public void resetTask() {
+	public void resetTask() {
 		this.chimpanzee.setActionCooldown(80);
 		this.chimpanzee.setAction(ChimpanzeeEntity.Action.DEFAULT);
-     }
+	}
 }

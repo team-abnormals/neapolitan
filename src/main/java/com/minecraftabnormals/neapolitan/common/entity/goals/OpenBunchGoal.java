@@ -13,13 +13,13 @@ public class OpenBunchGoal extends Goal {
 	private int throwTimer;
 
 	public OpenBunchGoal(ChimpanzeeEntity chimpanzeeIn) {
-		chimpanzee = chimpanzeeIn;
+		this.chimpanzee = chimpanzeeIn;
 		this.setMutexFlags(EnumSet.of(Goal.Flag.MOVE));
 	}
 
 	@Override
 	public boolean shouldExecute() {
-		if (this.chimpanzee.getRNG().nextInt(40) == 0 && !this.chimpanzee.isInWater() && this.chimpanzee.getAction() == ChimpanzeeEntity.Action.DEFAULT) {
+		if (this.chimpanzee.isHungry() && !this.chimpanzee.isInWater() && this.chimpanzee.getAction().canBeChanged()) {
 			if (this.chimpanzee.getHeldItemMainhand().getItem() == NeapolitanItems.BANANA_BUNCH.get() || this.chimpanzee.getHeldItemOffhand().getItem() == NeapolitanItems.BANANA_BUNCH.get()) {
 				return true;
 			}
@@ -30,6 +30,7 @@ public class OpenBunchGoal extends Goal {
 
 	@Override
 	public void startExecuting() {
+		this.chimpanzee.setAction(ChimpanzeeEntity.Action.DEFAULT);
 		this.chimpanzee.getNavigator().clearPath();
 		this.throwTimer = 0;
 	}

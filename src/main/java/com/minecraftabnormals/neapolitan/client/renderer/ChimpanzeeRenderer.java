@@ -34,11 +34,11 @@ public class ChimpanzeeRenderer extends MobRenderer<ChimpanzeeEntity, Chimpanzee
 	@Override
 	public ResourceLocation getEntityTexture(ChimpanzeeEntity entity) {
 		int type = entity.getChimpanzeeType();
-		boolean hungry = entity.func_233678_J__() || entity.isPartying();
+		boolean mouthopen = entity.func_233678_J__() || entity.isTempting() || entity.isPartying();
 
-		if (type == 1) return !hungry ? RAINFOREST_CHIMPANZEE : HUNGRY_RAINFOREST_CHIMPANZEE;
-		if (type == 2) return !hungry ? BAMBOO_CHIMPANZEE : HUNGRY_BAMBOO_CHIMPANZEE;
-		return !hungry ? CHIMPANZEE : HUNGRY_CHIMPANZEE;
+		if (type == 1) return !mouthopen ? RAINFOREST_CHIMPANZEE : HUNGRY_RAINFOREST_CHIMPANZEE;
+		if (type == 2) return !mouthopen ? BAMBOO_CHIMPANZEE : HUNGRY_BAMBOO_CHIMPANZEE;
+		return !mouthopen ? CHIMPANZEE : HUNGRY_CHIMPANZEE;
 
 	}
 
