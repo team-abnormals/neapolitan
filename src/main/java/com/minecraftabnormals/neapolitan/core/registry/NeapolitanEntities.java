@@ -13,8 +13,9 @@ import com.minecraftabnormals.neapolitan.core.Neapolitan;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.world.gen.Heightmap;
+import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
@@ -28,20 +29,21 @@ public class NeapolitanEntities {
 	public static final RegistryObject<EntityType<ChimpanzeeEntity>> CHIMPANZEE = HELPER.createLivingEntity("chimpanzee", ChimpanzeeEntity::new, EntityClassification.CREATURE, 0.6F, 1.6F);
 	public static final RegistryObject<EntityType<PlantainSpiderEntity>> PLANTAIN_SPIDER = HELPER.createLivingEntity("plantain_spider", PlantainSpiderEntity::new, EntityClassification.MONSTER, 0.65F, 0.55F);
 
+	public static void registerEntitySpawns() {
+		EntitySpawnPlacementRegistry.register(PLANTAIN_SPIDER.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, PlantainSpiderEntity::canPlantainSpiderSpawn);
+		EntitySpawnPlacementRegistry.register(CHIMPANZEE.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING, ChimpanzeeEntity::canChimpanzeeSpawn);
+	}
+
+	@SubscribeEvent
+	public static void registerEntityAttributes(EntityAttributeCreationEvent event) {
+		event.put(PLANTAIN_SPIDER.get(), PlantainSpiderEntity.registerAttributes().create());
+		event.put(CHIMPANZEE.get(), ChimpanzeeEntity.registerAttributes().create());
+	}
+
 	public static void registerEntityRenderers() {
 		RenderingRegistry.registerEntityRenderingHandler(NeapolitanEntities.BANANARROW.get(), BananarrowRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(NeapolitanEntities.BANANA_PEEL.get(), BananaPeelRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(NeapolitanEntities.PLANTAIN_SPIDER.get(), PlantainSpiderRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(NeapolitanEntities.CHIMPANZEE.get(), ChimpanzeeRenderer::new);
-	}
-
-	public static void registerEntityAttributes() {
-		GlobalEntityTypeAttributes.put(PLANTAIN_SPIDER.get(), PlantainSpiderEntity.registerAttributes().create());
-		GlobalEntityTypeAttributes.put(CHIMPANZEE.get(), ChimpanzeeEntity.registerAttributes().create());
-	}
-
-	public static void registerEntitySpawns() {
-		EntitySpawnPlacementRegistry.register(PLANTAIN_SPIDER.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, PlantainSpiderEntity::canPlantainSpiderSpawn);
-		EntitySpawnPlacementRegistry.register(CHIMPANZEE.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING, ChimpanzeeEntity::canChimpanzeeSpawn);
 	}
 }

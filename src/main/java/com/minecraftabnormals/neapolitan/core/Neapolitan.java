@@ -30,25 +30,24 @@ public class Neapolitan {
 		NeapolitanBanners.PAINTINGS.register(bus);
 		NeapolitanParticles.PARTICLES.register(bus);
 
-		bus.addListener(this::setupCommon);
+		bus.addListener(this::commonSetup);
 		DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
-			bus.addListener(this::setupClient);
+			bus.addListener(this::clientSetup);
 		});
 
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, NeapolitanConfig.COMMON_SPEC);
 	}
 
-	private void setupCommon(final FMLCommonSetupEvent event) {
+	private void commonSetup(FMLCommonSetupEvent event) {
 		event.enqueueWork(() -> {
 			NeapolitanCompat.transformCookies();
 			NeapolitanCompat.registerCompat();
-			NeapolitanEntities.registerEntityAttributes();
 			NeapolitanEntities.registerEntitySpawns();
 			NeapolitanFeatures.Configured.registerConfiguredFeatures();
 		});
 	}
 
-	private void setupClient(final FMLClientSetupEvent event) {
+	private void clientSetup(FMLClientSetupEvent event) {
 		NeapolitanEntities.registerEntityRenderers();
 		event.enqueueWork(() -> {
 			NeapolitanCompat.registerRenderLayers();
