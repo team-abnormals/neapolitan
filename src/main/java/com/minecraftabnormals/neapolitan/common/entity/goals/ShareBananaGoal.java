@@ -108,7 +108,7 @@ public class ShareBananaGoal extends Goal {
 					this.chimpanzee.world.addEntity(itementity);
 
 					this.chimpanzee.setHeldItem(hand, itemstack.split(i - 1));
-					this.chimpanzee.setPickUpTimer(40);
+					this.chimpanzee.setPickUpTimer(80);
 					this.throwTimer = 12;
 					this.lookTimer = 0;
 				}

@@ -9,7 +9,9 @@ import javax.annotation.Nullable;
 
 import com.minecraftabnormals.neapolitan.common.entity.goals.EatBananaGoal;
 import com.minecraftabnormals.neapolitan.common.entity.goals.GrabBananaGoal;
+import com.minecraftabnormals.neapolitan.common.entity.goals.HideFromRainGoal;
 import com.minecraftabnormals.neapolitan.common.entity.goals.OpenBunchGoal;
+import com.minecraftabnormals.neapolitan.common.entity.goals.RestrictRainGoal;
 import com.minecraftabnormals.neapolitan.common.entity.goals.ShareBananaGoal;
 import com.minecraftabnormals.neapolitan.common.entity.goals.TemptBananaGoal;
 import com.minecraftabnormals.neapolitan.common.pathfinding.ChimpanzeePathNavigator;
@@ -133,19 +135,21 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	@Override
 	protected void registerGoals() {
 		this.goalSelector.addGoal(0, new SwimGoal(this));
-		this.goalSelector.addGoal(1, new GrabBananaGoal(this, 1.25D));
-		this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.25D, false));
-		this.goalSelector.addGoal(3, new BreedGoal(this, 1.0D));
-		this.goalSelector.addGoal(4, new EatBananaGoal(this));
-		this.goalSelector.addGoal(5, new OpenBunchGoal(this));
-		this.goalSelector.addGoal(6, new TemptBananaGoal(this, 1.25D));
-		this.goalSelector.addGoal(7, new TemptGoal(this, 1.25D, Ingredient.fromTag(NeapolitanTags.Items.CHIMPANZEE_FOOD), false));
-		this.goalSelector.addGoal(8, new FollowParentGoal(this, 1.25D));
-		this.goalSelector.addGoal(9, new ShareBananaGoal(this, 1.0D));
-		this.goalSelector.addGoal(10, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-		this.goalSelector.addGoal(11, new LookAtGoal(this, PlayerEntity.class, 6.0F));
-		this.goalSelector.addGoal(12, new LookAtGoal(this, ChimpanzeeEntity.class, 6.0F));
-		this.goalSelector.addGoal(13, new LookRandomlyGoal(this));
+		this.goalSelector.addGoal(1, new RestrictRainGoal(this));
+		this.goalSelector.addGoal(2, new GrabBananaGoal(this, 1.25D));
+		this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 1.25D, false));
+		this.goalSelector.addGoal(4, new BreedGoal(this, 1.0D));
+		this.goalSelector.addGoal(5, new EatBananaGoal(this));
+		this.goalSelector.addGoal(6, new OpenBunchGoal(this));
+		this.goalSelector.addGoal(7, new TemptBananaGoal(this, 1.25D));
+		this.goalSelector.addGoal(8, new TemptGoal(this, 1.25D, Ingredient.fromTag(NeapolitanTags.Items.CHIMPANZEE_FOOD), false));
+		this.goalSelector.addGoal(9, new FollowParentGoal(this, 1.25D));
+		this.goalSelector.addGoal(10, new ShareBananaGoal(this, 1.0D));
+		this.goalSelector.addGoal(11, new HideFromRainGoal(this, 1.1D));
+		this.goalSelector.addGoal(12, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+		this.goalSelector.addGoal(13, new LookAtGoal(this, PlayerEntity.class, 6.0F));
+		this.goalSelector.addGoal(14, new LookAtGoal(this, ChimpanzeeEntity.class, 6.0F));
+		this.goalSelector.addGoal(15, new LookRandomlyGoal(this));
 
 		this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10, true, false, this::func_233680_b_));
 		this.targetSelector.addGoal(1, new HurtByTargetGoal(this).setCallsForHelp());
@@ -264,7 +268,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		if (this.attackTimer > 0) {
 			--this.attackTimer;
 		}
-		
+
 		if (this.pickUpTimer > 0) {
 			--this.pickUpTimer;
 		}
@@ -295,7 +299,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	@Override
 	public ActionResultType func_230254_b_(PlayerEntity player, Hand hand) {
 		ItemStack itemstack = player.getHeldItem(hand);
-		if (this.isFood(itemstack) && !this.isBreedingItem(itemstack)) {
+		if (this.isFood(itemstack) && !(this.isBreedingItem(itemstack) && !this.isHungry())) {
 			if (this.getHeldItemMainhand().isEmpty()) {
 				ItemStack itemstack1 = itemstack.copy();
 				itemstack1.setCount(1);
@@ -426,7 +430,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 
 	@Override
 	public boolean canPickUpItem(ItemStack itemstackIn) {
-		if (this.pickUpTimer >= 0) {
+		if (this.pickUpTimer > 0) {
 			return false;
 		} else {
 			EquipmentSlotType equipmentslottype = MobEntity.getSlotForItemStack(itemstackIn);

@@ -19,7 +19,7 @@ public class OpenBunchGoal extends Goal {
 
 	@Override
 	public boolean shouldExecute() {
-		if (this.chimpanzee.isHungry() && !this.chimpanzee.isInWater() && this.chimpanzee.getAction().canBeChanged()) {
+		if (this.chimpanzee.isHungry() && this.chimpanzee.getAction().canBeChanged()) {
 			if (this.chimpanzee.getHeldItemMainhand().getItem() == NeapolitanItems.BANANA_BUNCH.get() || this.chimpanzee.getHeldItemOffhand().getItem() == NeapolitanItems.BANANA_BUNCH.get()) {
 				return true;
 			}
@@ -65,7 +65,7 @@ public class OpenBunchGoal extends Goal {
 		} else if (this.throwTimer >= 60) {
 			return false;
 		} else {
-			return !this.chimpanzee.isInWater() && this.chimpanzee.getAction() == ChimpanzeeEntity.Action.DEFAULT;
+			return this.chimpanzee.getAction() == ChimpanzeeEntity.Action.DEFAULT;
 		}
 	}
 }

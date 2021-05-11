@@ -18,9 +18,9 @@ public class EatBananaGoal extends Goal {
 
 	@Override
 	public boolean shouldExecute() {
-		if (this.chimpanzee.isHungry() && !this.chimpanzee.isInWater()) {
+		if (this.chimpanzee.isHungry()) {
 			ItemStack food = this.chimpanzee.getFood();
-			if (!food.isEmpty() && food.isFood() && !this.chimpanzee.isInWater()) {
+			if (!food.isEmpty() && food.isFood()) {
 				if (this.chimpanzee.getAction() == ChimpanzeeEntity.Action.EATING) {
 					return true;
 				} else if (this.chimpanzee.canDoAction() && this.chimpanzee.getAction().canBeChanged()) {
@@ -53,7 +53,7 @@ public class EatBananaGoal extends Goal {
 	@Override
 	public boolean shouldContinueExecuting() {
 		ItemStack food = this.chimpanzee.getFood();
-		return !food.isEmpty() && food.isFood() && !this.chimpanzee.isInWater() && this.chimpanzee.getAction() == ChimpanzeeEntity.Action.EATING;
+		return !food.isEmpty() && food.isFood() && this.chimpanzee.getAction() == ChimpanzeeEntity.Action.EATING;
 	}
 
 	@Override

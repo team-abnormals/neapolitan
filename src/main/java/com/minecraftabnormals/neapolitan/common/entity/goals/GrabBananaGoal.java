@@ -25,7 +25,7 @@ public class GrabBananaGoal extends Goal {
 	public boolean shouldExecute() {
 		if (!this.chimpanzee.getFood().isEmpty()) {
 			return false;
-		} else if (!this.chimpanzee.isHungry() && this.chimpanzee.getRNG().nextInt(400) > 0) {
+		} else if (!this.chimpanzee.isHungry()) {
 			return false;
 		} else {
 			List<ItemEntity> list = this.chimpanzee.world.getEntitiesWithinAABB(ItemEntity.class, this.chimpanzee.getBoundingBox().grow(12.0D, 4.0D, 12.0D));
