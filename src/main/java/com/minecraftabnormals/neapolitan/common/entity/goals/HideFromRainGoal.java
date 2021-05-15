@@ -7,7 +7,6 @@ import javax.annotation.Nullable;
 
 import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
 
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
@@ -29,9 +28,7 @@ public class HideFromRainGoal extends Goal {
 	public boolean shouldExecute() {
 		if (this.chimpanzee.getAttackTarget() != null) {
 			return false;
-		} else if (!this.world.isRaining()) {
-			return false;
-		} else if (!this.world.canSeeSky(this.chimpanzee.getPosition())) {
+		} else if (!this.world.isRainingAt(this.chimpanzee.getPosition())) {
 			return false;
 		} else {
 			return this.isPossibleShelter();

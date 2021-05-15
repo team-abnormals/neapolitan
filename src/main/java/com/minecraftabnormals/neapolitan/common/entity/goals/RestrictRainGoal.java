@@ -4,6 +4,8 @@ import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.util.GroundPathHelper;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.biome.Biome;
 
 public class RestrictRainGoal extends Goal {
 	private final CreatureEntity entity;
@@ -13,7 +15,13 @@ public class RestrictRainGoal extends Goal {
 	}
 
 	public boolean shouldExecute() {
-		return this.entity.world.isRaining() && GroundPathHelper.isGroundNavigator(this.entity);
+		if (!this.entity.world.isRaining()) {
+			return false;
+		} else {
+			BlockPos position = this.entity.getPosition();
+			Biome biome = this.entity.world.getBiome(position);
+			return biome.getPrecipitation() == Biome.RainType.RAIN && biome.getTemperature(position) >= 0.15F && GroundPathHelper.isGroundNavigator(this.entity);
+		}
 	}
 
 	public void startExecuting() {

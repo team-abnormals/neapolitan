@@ -23,7 +23,7 @@ public class EatBananaGoal extends Goal {
 			if (!food.isEmpty() && food.isFood()) {
 				if (this.chimpanzee.getAction() == ChimpanzeeEntity.Action.EATING) {
 					return true;
-				} else if (this.chimpanzee.canDoAction() && this.chimpanzee.getAction().canBeChanged()) {
+				} else if (this.chimpanzee.canDoAction() && this.chimpanzee.getAction().canBeInterrupted()) {
 					return true;
 				}
 			}

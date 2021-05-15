@@ -19,7 +19,7 @@ public class OpenBunchGoal extends Goal {
 
 	@Override
 	public boolean shouldExecute() {
-		if (this.chimpanzee.isHungry() && this.chimpanzee.getAction().canBeChanged()) {
+		if (this.chimpanzee.isHungry() && this.chimpanzee.getAction().canBeInterrupted()) {
 			if (this.chimpanzee.getHeldItemMainhand().getItem() == NeapolitanItems.BANANA_BUNCH.get() || this.chimpanzee.getHeldItemOffhand().getItem() == NeapolitanItems.BANANA_BUNCH.get()) {
 				return true;
 			}
