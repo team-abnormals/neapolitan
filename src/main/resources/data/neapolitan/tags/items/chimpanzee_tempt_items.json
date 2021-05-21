@@ -2,8 +2,18 @@
   "replace": false,
   "values": [
     "#neapolitan:chimpanzee_food",
+    "neapolitan:banana_bundle",
     "neapolitan:banana_bread",
+    "neapolitan:banana_cake",
+    "neapolitan:banana_ice_cream",
+    "neapolitan:banana_ice_cream_block",
+    "neapolitan:banana_milkshake",
+    "neapolitan:bananaroow",
     "neapolitan:dried_banana",
-    "neapolitan:banana"
+    "neapolitan:banana_crate",
+    "#forge:fruits/banana"
+  ],
+  "optional": [
+    "abnormals_delight:banana_cake_slice"
   ]
 }
