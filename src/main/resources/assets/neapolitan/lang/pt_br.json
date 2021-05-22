@@ -32,14 +32,14 @@
   "block.neapolitan.white_strawberry_basket": "Cesto de morangos brancos",
   "block.neapolitan.vanilla_pod_block": "Bloco de vagem de baunilha",
   "block.neapolitan.dried_vanilla_pod_block": "Bloco de vagem de baunilha seca",
-  "block.neapolitan.banana_crate": "Caixa de bananas",
-  "block.neapolitan.mint_basket": "Cesto de hortelã",
-  "block.neapolitan.adzuki_crate": "Caixa de adzuki",
-  "block.neapolitan.roasted_adzuki_crate": "Caixa de adzuki torrado",
+  "block.neapolitan.banana_crate": "Caixote de bananas",
+  "block.neapolitan.mint_basket": "Cesto de hortelãs",
+  "block.neapolitan.adzuki_crate": "Caixote de adzukis",
+  "block.neapolitan.roasted_adzuki_crate": "Caixote de adzukis torrados",
 	
   "block.neapolitan.strawberry_bush": "Arbusto de morangos",
-  "block.neapolitan.vanilla_vine": "Trepadeira de baunilha",
-  "block.neapolitan.vanilla_vine_plant": "Trepadeira de baunilha",
+  "block.neapolitan.vanilla_vine": "Trepadeiras de baunilha",
+  "block.neapolitan.vanilla_vine_plant": "Trepadeiras de baunilha",
   "block.neapolitan.mint": "Hortelã",
 	
   "block.neapolitan.banana_stalk": "Talo de bananeira",
@@ -93,8 +93,8 @@
 	
   "item.neapolitan.mint_sprout": "Broto de hortelã",
   "item.neapolitan.mint_leaves": "Folhas de hortelã",
-  "item.neapolitan.mint_chops": "Costeletas com hortelã cruas",
-  "item.neapolitan.cooked_mint_chops": "Costeletas com hortelã assadas",
+  "item.neapolitan.mint_chops": "Costelas com hortelã cruas",
+  "item.neapolitan.cooked_mint_chops": "Costelas com hortelã assadas",
   "item.neapolitan.mint_ice_cream": "Sorvete de hortelã",
   "item.neapolitan.mint_milkshake": "Milkshake de hortelã",
   "item.neapolitan.mint_candies": "Balas de hortelã",
@@ -136,7 +136,7 @@
   "effect.neapolitan.berserking": "Furia",
   "effect.neapolitan.harmony": "Harmonia",
 	
-  "advancements.husbandry.creeper_heal.title": "Bombardeio de amor",
+  "advancements.husbandry.creeper_heal.title": "Bomba do amor",
   "advancements.husbandry.creeper_heal.description": "Seja curado por um creeper que explodiu dentro de um arbusto de morangos",
 	
   "advancements.husbandry.vanilla_poison.title": "Venenono, porém saboroso",
