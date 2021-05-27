@@ -113,6 +113,11 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends AgeableModel<T>
 				this.leftArm.rotateAngleX = eatanim * 0.4F - 1.7F;
 				this.rightArm.rotateAngleY = -0.6F;
 				this.leftArm.rotateAngleY = 0.6F;
+			} else if (entity.getAction() == ChimpanzeeEntity.Action.GROOMING) {
+				float groomanim = MathHelper.sin(ageInTicks * 0.5F);
+
+				this.rightArm.rotateAngleX = groomanim * 0.4F - (float) Math.PI / 2F;
+				this.leftArm.rotateAngleX = -groomanim * 0.4F - (float) Math.PI / 2F;
 			} else if (entity.getAction() == ChimpanzeeEntity.Action.DRUMMING) {
 				float drumanim1 = -Math.abs(MathHelper.sin(ageInTicks * 0.3F));
 				float drumanim2 = -Math.abs(MathHelper.sin(ageInTicks * 0.3F + (float) Math.PI / 2F));

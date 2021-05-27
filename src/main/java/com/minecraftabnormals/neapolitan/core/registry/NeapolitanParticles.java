@@ -1,5 +1,6 @@
 package com.minecraftabnormals.neapolitan.core.registry;
 
+import com.minecraftabnormals.neapolitan.client.particle.FlyParticle;
 import com.minecraftabnormals.neapolitan.client.particle.ChimpanzeeHungryParticle;
 import com.minecraftabnormals.neapolitan.client.particle.MintBoostParticle;
 import com.minecraftabnormals.neapolitan.core.Neapolitan;
@@ -21,6 +22,7 @@ public class NeapolitanParticles {
 
 	public static final RegistryObject<BasicParticleType> MINT_BOOST = PARTICLES.register("mint_boost", () -> new BasicParticleType(false));
 	public static final RegistryObject<BasicParticleType> CHIMPANZEE_HUNGRY = PARTICLES.register("chimpanzee_hungry", () -> new BasicParticleType(true));
+	public static final RegistryObject<BasicParticleType> FLY = PARTICLES.register("fly", () -> new BasicParticleType(true));
 
 	@Mod.EventBusSubscriber(modid = Neapolitan.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 	public static class RegisterParticleFactories {
@@ -33,6 +35,9 @@ public class NeapolitanParticles {
 			}
 			if (CHIMPANZEE_HUNGRY.isPresent()) {
 				manager.registerFactory(CHIMPANZEE_HUNGRY.get(), ChimpanzeeHungryParticle.Factory::new);
+			}
+			if (FLY.isPresent()) {
+				manager.registerFactory(FLY.get(), FlyParticle.Factory::new);
 			}
 		}
 	}

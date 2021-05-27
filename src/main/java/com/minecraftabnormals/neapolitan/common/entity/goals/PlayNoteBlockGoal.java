@@ -61,7 +61,7 @@ public class PlayNoteBlockGoal extends MoveToBlockGoal {
 
 		if (this.chimpanzee.getAction() == ChimpanzeeEntity.Action.DRUMMING) {
 			this.chimpanzee.setActionCooldown(80);
-			this.chimpanzee.setAction(ChimpanzeeEntity.Action.DEFAULT);
+			this.chimpanzee.setDefaultAction();
 		}
 		this.chimpanzee.setSitting(false);
 	}
@@ -88,7 +88,7 @@ public class PlayNoteBlockGoal extends MoveToBlockGoal {
 
 			this.hasPlayed = true;
 		} else {
-			this.chimpanzee.setAction(ChimpanzeeEntity.Action.DEFAULT);
+			this.chimpanzee.setDefaultAction();
 			this.chimpanzee.setSitting(false);
 		}
 	}

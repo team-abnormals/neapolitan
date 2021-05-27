@@ -7,8 +7,10 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
+import com.minecraftabnormals.neapolitan.common.entity.goals.BeGroomedGoal;
 import com.minecraftabnormals.neapolitan.common.entity.goals.EatBananaGoal;
 import com.minecraftabnormals.neapolitan.common.entity.goals.GrabBananaGoal;
+import com.minecraftabnormals.neapolitan.common.entity.goals.GroomGoal;
 import com.minecraftabnormals.neapolitan.common.entity.goals.HideFromRainGoal;
 import com.minecraftabnormals.neapolitan.common.entity.goals.OpenBunchGoal;
 import com.minecraftabnormals.neapolitan.common.entity.goals.PlayNoteBlockGoal;
@@ -18,6 +20,7 @@ import com.minecraftabnormals.neapolitan.common.entity.goals.TemptBananaGoal;
 import com.minecraftabnormals.neapolitan.core.other.NeapolitanTags;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEntities;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
+import com.minecraftabnormals.neapolitan.core.registry.NeapolitanParticles;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanSounds;
 
 import net.minecraft.block.BlockState;
@@ -83,6 +86,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	private static final DataParameter<Integer> CHIMPANZEE_TYPE = EntityDataManager.createKey(ChimpanzeeEntity.class, DataSerializers.VARINT);
 	private static final DataParameter<Integer> ANGER_TIME = EntityDataManager.createKey(ChimpanzeeEntity.class, DataSerializers.VARINT);
 	private static final DataParameter<Integer> HUNGER = EntityDataManager.createKey(ChimpanzeeEntity.class, DataSerializers.VARINT);
+	private static final DataParameter<Integer> DIRTINESS = EntityDataManager.createKey(ChimpanzeeEntity.class, DataSerializers.VARINT);
 	private static final DataParameter<Boolean> TEMPTING = EntityDataManager.createKey(ChimpanzeeEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> SITTING = EntityDataManager.createKey(ChimpanzeeEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Byte> ACTION = EntityDataManager.createKey(ChimpanzeeEntity.class, DataSerializers.BYTE);
@@ -97,6 +101,11 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	private int attackTimer;
 	private int actionCooldown;
 	private int pickUpTimer;
+
+	@Nullable
+	private ChimpanzeeEntity groomingTarget;
+	@Nullable
+	private ChimpanzeeEntity groomer;
 
 	private float climbAnim;
 	private float prevClimbAnim;
@@ -122,29 +131,32 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		this.goalSelector.addGoal(7, new TemptBananaGoal(this, 1.25D));
 		this.goalSelector.addGoal(8, new TemptGoal(this, 1.25D, Ingredient.fromTag(NeapolitanTags.Items.CHIMPANZEE_FOOD), false));
 		this.goalSelector.addGoal(9, new FollowParentGoal(this, 1.25D));
-		this.goalSelector.addGoal(10, new ShareBananaGoal(this, 1.0D));
-		this.goalSelector.addGoal(11, new HideFromRainGoal(this, 1.1D));
-		// this.goalSelector.addGoal(12, new PlayNoteBlockGoal(this, 1.0D, 16));
-		this.goalSelector.addGoal(13, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-		this.goalSelector.addGoal(14, new LookAtGoal(this, PlayerEntity.class, 6.0F));
-		this.goalSelector.addGoal(15, new LookAtGoal(this, ChimpanzeeEntity.class, 6.0F));
-		this.goalSelector.addGoal(16, new LookRandomlyGoal(this));
+		this.goalSelector.addGoal(10, new BeGroomedGoal(this));
+		this.goalSelector.addGoal(11, new GroomGoal(this, 1.0D));
+		this.goalSelector.addGoal(12, new ShareBananaGoal(this, 1.0D));
+		this.goalSelector.addGoal(13, new HideFromRainGoal(this, 1.1D));
+		// this.goalSelector.addGoal(14, new PlayNoteBlockGoal(this, 1.0D, 16));
+		this.goalSelector.addGoal(15, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+		this.goalSelector.addGoal(16, new LookAtGoal(this, PlayerEntity.class, 6.0F));
+		this.goalSelector.addGoal(17, new LookAtGoal(this, ChimpanzeeEntity.class, 6.0F));
+		this.goalSelector.addGoal(18, new LookRandomlyGoal(this));
 
 		this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10, true, false, this::func_233680_b_));
 		this.targetSelector.addGoal(1, new HurtByTargetGoal(this).setCallsForHelp());
 		this.targetSelector.addGoal(2, new ResetAngerGoal<>(this, true));
 	}
-	
+
 	public static AttributeModifierMap.MutableAttribute registerAttributes() {
 		return AnimalEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 10.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double) 0.3F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 3.0D);
 	}
-	
+
 	@Override
 	protected void registerData() {
 		super.registerData();
 		this.dataManager.register(CHIMPANZEE_TYPE, 0);
 		this.dataManager.register(ANGER_TIME, 0);
 		this.dataManager.register(HUNGER, 0);
+		this.dataManager.register(DIRTINESS, 0);
 		this.dataManager.register(TEMPTING, false);
 		this.dataManager.register(SITTING, false);
 		this.dataManager.register(ACTION, (byte) 0);
@@ -158,6 +170,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		this.writeAngerNBT(compound);
 		compound.putInt("ChimpanzeeType", this.getChimpanzeeType());
 		compound.putInt("Hunger", this.getHunger());
+		compound.putInt("Dirtiness", this.getDirtiness());
 		compound.putBoolean("Sitting", this.isSitting());
 	}
 
@@ -167,6 +180,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		this.readAngerNBT((ServerWorld) this.world, compound);
 		this.setChimpanzeeType(compound.getInt("ChimpanzeeType"));
 		this.setHunger(compound.getInt("Hunger"));
+		this.setDirtiness(compound.getInt("Dirtiness"));
 		this.setSitting(compound.getBoolean("Sitting"));
 	}
 
@@ -179,7 +193,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	protected PathNavigator createNavigator(World worldIn) {
 		return new ClimberPathNavigator(this, worldIn);
 	}
-	
+
 	@Override
 	protected SoundEvent getAmbientSound() {
 		return this.func_233678_J__() ? NeapolitanSounds.ENTITY_CHIMPANZEE_ANGRY.get() : NeapolitanSounds.ENTITY_CHIMPANZEE_AMBIENT.get();
@@ -218,11 +232,11 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		if (this.func_233678_J__()) {
 			this.recentlyHit = this.ticksExisted;
 		}
-		
+
 		if (!this.canDoAction()) {
 			this.setActionCooldown(this.getActionCooldown() - 1);
 		}
-		
+
 		super.updateAITasks();
 	}
 
@@ -297,6 +311,17 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 				}
 				 */
 			}
+			
+			if (this.needsGrooming()) {
+				if (this.ticksExisted % 6 == 0) {
+					double d0 = ((double) this.rand.nextFloat() + 1.0D) * 0.06D;
+					double d1 = this.rand.nextInt(360) - 360.0D;
+					double d2 = ((double) this.rand.nextFloat() + 1.0D) * 14.0D;
+					d2 *= this.rand.nextBoolean() ? 1.0D : -1.0D;
+					
+					world.addParticle(NeapolitanParticles.FLY.get(), this.getPosXRandom(0.5D), this.getPosYEye() + this.rand.nextDouble() * 0.2D + 0.3D, this.getPosZRandom(0.5D), d0, d1, d2);
+				}
+			}
 
 			if (this.getAction() == ChimpanzeeEntity.Action.EATING) {
 				ItemStack food = this.getFood();
@@ -337,6 +362,10 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		if (!this.world.isRemote) {
 			if (!this.isHungry() && this.getHunger() >= 0) {
 				this.setHunger(this.getHunger() + 1);
+			}
+
+			if (!this.needsGrooming() && this.getDirtiness() >= 0) {
+				this.setDirtiness(this.getDirtiness() + 1);
 			}
 		} else {
 			this.prevClimbAnim = this.climbAnim;
@@ -402,12 +431,12 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	public boolean isClimbing() {
 		return !this.onGround && this.isBesideClimbableBlock();
 	}
-	
+
 	@Override
 	public boolean onLivingFall(float distance, float damageMultiplier) {
 		return false;
 	}
-	
+
 	@Override
 	public void handleStatusUpdate(byte id) {
 		if (id == 4) {
@@ -424,7 +453,8 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	@Override
 	public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
 		this.setTypeForPosition(this, worldIn);
-		this.setHunger(this.rand.nextInt(2400));
+		this.setHunger(this.rand.nextInt(4800));
+		this.setDirtiness(this.rand.nextInt(4800));
 		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
@@ -442,7 +472,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	public float getClimbingAnimationScale(float partialTicks) {
 		return MathHelper.lerp(partialTicks, this.prevClimbAnim, this.climbAnim) / 4.0F;
 	}
-	
+
 	public boolean isBesideClimbableBlock() {
 		return (this.dataManager.get(CLIMBING) & 1) != 0;
 	}
@@ -562,7 +592,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	public boolean isFood(ItemStack stack) {
 		return stack.getItem().isIn(NeapolitanTags.Items.CHIMPANZEE_TEMPT_ITEMS);
 	}
-	
+
 	@Override
 	public ChimpanzeeEntity func_241840_a(ServerWorld world, AgeableEntity ageableEntity) {
 		ChimpanzeeEntity baby = NeapolitanEntities.CHIMPANZEE.get().create(world);
@@ -577,7 +607,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	public void setChimpanzeeType(int type) {
 		this.dataManager.set(CHIMPANZEE_TYPE, type);
 	}
-	
+
 	public int getAttackTimer() {
 		return this.attackTimer;
 	}
@@ -585,7 +615,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	public void swingArms() {
 		this.attackTimer = 10;
 	}
-	
+
 	public boolean isTempting() {
 		return this.dataManager.get(TEMPTING);
 	}
@@ -621,9 +651,37 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	}
 
 	public boolean isHungry() {
-		return this.getHunger() >= 7200;
+		return this.getHunger() >= 9600;
 	}
 
+	public int getDirtiness() {
+		return this.dataManager.get(DIRTINESS);
+	}
+
+	public void setDirtiness(int ticks) {
+		this.dataManager.set(DIRTINESS, ticks);
+	}
+
+	public boolean needsGrooming() {
+		return this.getDirtiness() >= 12000;
+	}
+
+	public ChimpanzeeEntity getGroomingTarget() {
+		return this.groomingTarget;
+	}
+	
+	public void setGroomingTarget(ChimpanzeeEntity target) {
+		this.groomingTarget = target;
+	}
+	
+	public ChimpanzeeEntity getGroomer() {
+		return this.groomer;
+	}
+	
+	public void setGroomer(ChimpanzeeEntity groomerIn) {
+		this.groomer = groomerIn;
+	}
+	
 	public Direction getFacing() {
 		return this.dataManager.get(FACING);
 	}
@@ -646,7 +704,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	public void func_230258_H__() {
 		this.setAngerTime(ANGER_RANGE.getRandomWithinRange(this.rand));
 	}
-
+	
 	public boolean isPartying() {
 		return this.isPartying;
 	}
@@ -678,6 +736,17 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		this.actionCooldown = cooldown;
 	}
 
+	public void setDefaultAction() {
+		boolean flag = !this.isPassenger() && this.isClimbing();
+
+		if (flag) {
+			this.setAction(ChimpanzeeEntity.Action.CLIMBING);
+			this.setSitting(false);
+		} else {
+			this.setAction(ChimpanzeeEntity.Action.DEFAULT);
+		}
+	}
+	
 	public void setPickUpTimer(int time) {
 		this.pickUpTimer = time;
 	}
@@ -686,8 +755,9 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		DEFAULT(0, true),
 		CLIMBING(1, false),
 		EATING(2, false),
-		SHAKING(3,  false),
-		DRUMMING(4, true);
+		GROOMING(3, true),
+		SHAKING(4,  false),
+		DRUMMING(5, true);
 
 		private static final ChimpanzeeEntity.Action[] ACTIONS = Arrays.stream(values()).sorted(Comparator.comparingInt(ChimpanzeeEntity.Action::getIndex)).toArray((p_221102_0_) -> {
 			return new ChimpanzeeEntity.Action[p_221102_0_];

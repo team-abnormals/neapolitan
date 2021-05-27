@@ -65,7 +65,7 @@ public class ShareBananaGoal extends Goal {
 			} 
 		}
 
-		return true;
+		return this.chimpanzee.getDistanceSq(this.buddy) <= 256.0D;
 	}
 
 	@Override
@@ -89,7 +89,7 @@ public class ShareBananaGoal extends Goal {
 
 		if (--this.delayCounter <= 0) {
 			this.delayCounter = 10;
-			
+
 			if (this.lookTimer >= 0) {
 				++this.lookTimer;
 			}
