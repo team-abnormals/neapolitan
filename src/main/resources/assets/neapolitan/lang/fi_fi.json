@@ -5,6 +5,8 @@
   "block.neapolitan.banana_ice_cream_block": "Banaanijäätelökuutio",
   "block.neapolitan.mint_ice_cream_block": "Minttujäätelökuutio",
   "block.neapolitan.adzuki_ice_cream_block": "Adsukijäätelökuutio",
+
+  "block.neapolitan.milk_cauldron": "Maitopata",
   
   "block.neapolitan.chocolate_block": "Suklaakuutio",
   "block.neapolitan.chocolate_bricks": "Suklaatiili",
@@ -134,17 +136,20 @@
   "effect.neapolitan.berserking": "Raivo",
   "effect.neapolitan.harmony": "Harmonia",
   
-  "advancements.husbandry.creeper_heal.title": "Rakkauspommi",
-  "advancements.husbandry.creeper_heal.description": "Elvy mansikkapensaassa räjähtäneen creeperin räjähdykestä",
+  "advancements.neapolitan.husbandry.creeper_heal.title": "Rakkauspommi",
+  "advancements.neapolitan.husbandry.creeper_heal.description": "Elvy mansikkapensaassa räjähtäneen creeperin räjähdykestä",
   
-  "advancements.husbandry.vanilla_poison.title": "Tappajavanilja",
-  "advancements.husbandry.vanilla_poison.description": "Hajota vaniljaköynnös ilman keritsimiä vapauttaen haitallisen auran",
+  "advancements.neapolitan.husbandry.vanilla_poison.title": "Tappajavanilja",
+  "advancements.neapolitan.husbandry.vanilla_poison.description": "Hajota vaniljaköynnös ilman keritsimiä vapauttaen haitallisen auran",
   
-  "advancements.husbandry.place_all_chocolate_blocks.title": "Suklaatalo",
-  "advancements.husbandry.place_all_chocolate_blocks.description": "Sijoita jokainen suklaakuutio",
+  "advancements.neapolitan.husbandry.place_all_chocolate_blocks.title": "Suklaalevytalo",
+  "advancements.neapolitan.husbandry.place_all_chocolate_blocks.description": "Sijoita jokainen suklaakuutio",
   
-  "advancements.husbandry.harvest_white_strawberries.title": "Eväsretki pilvissä",
-  "advancements.husbandry.harvest_white_strawberries.description": "Saa valkoisia mansikoita kasvattamalla mansikkapensaita korkealla maanpinnasta",
+  "advancements.neapolitan.husbandry.harvest_white_strawberries.title": "Eväsretki pilvissä",
+  "advancements.neapolitan.husbandry.harvest_white_strawberries.description": "Saa valkoisia mansikoita kasvattamalla mansikkapensaita korkealla maanpinnasta",
+
+  "advancements.neapolitan.adventure.chimpanzee_attack.title": "Apinakenraali",
+  "advancements.neapolitan.adventure.chimpanzee_attack.description": "Yllytä simpanssi käymään toisen olennon kimppuun banaaninuolen avulla",
 
   "death.attack.neapolitan.beanstalkThorns": "Pavunvarren piikit pistelivät pelaajan %1$s kuoliaaksi",
   "death.attack.neapolitan.beanstalkThorns.player": "Pavunvarren piikit pistelivät pelaajan %1$s kuoliaaksi tämän paetessa olentoa %2$s",
@@ -159,6 +164,7 @@
   "subtitles.neapolitan.entity.chimpanzee.swing": "Simpanssi heilauttaa",
   
   "subtitles.neapolitan.item.ice_cubes.eat": "Rouskutusta",
+  "subtitles.neapolitan.item.banana_bunch.open": "Banaaniterttu avataan",
   
   "block.minecraft.banner.mca_chimpanzee.black": "Musta simpanssi",
   "block.minecraft.banner.mca_chimpanzee.red": "Punainen simpanssi",

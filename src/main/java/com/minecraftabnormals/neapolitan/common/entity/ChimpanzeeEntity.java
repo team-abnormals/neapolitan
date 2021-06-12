@@ -311,14 +311,14 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 				}
 				 */
 			}
-			
+
 			if (this.needsGrooming()) {
 				if (this.ticksExisted % 6 == 0) {
 					double d0 = ((double) this.rand.nextFloat() + 1.0D) * 0.06D;
 					double d1 = this.rand.nextInt(360) - 360.0D;
 					double d2 = ((double) this.rand.nextFloat() + 1.0D) * 14.0D;
 					d2 *= this.rand.nextBoolean() ? 1.0D : -1.0D;
-					
+
 					world.addParticle(NeapolitanParticles.FLY.get(), this.getPosXRandom(0.5D), this.getPosYEye() + this.rand.nextDouble() * 0.2D + 0.3D, this.getPosZRandom(0.5D), d0, d1, d2);
 				}
 			}
@@ -392,6 +392,15 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 				return ActionResultType.func_233537_a_(this.world.isRemote);
 			}
 			return ActionResultType.PASS;
+		}
+
+		if (itemstack.getItem() == NeapolitanItems.BANANA_BUNCH.get()) {
+			if (this.getGrowingAge() > 0 || !this.canFallInLove()) {
+				ActionResultType result = itemstack.interactWithEntity(player, this, hand);
+				if (result.isSuccessOrConsume()) {
+					return result;
+				}
+			}
 		}
 
 		return super.func_230254_b_(player, hand);
@@ -669,19 +678,19 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	public ChimpanzeeEntity getGroomingTarget() {
 		return this.groomingTarget;
 	}
-	
+
 	public void setGroomingTarget(ChimpanzeeEntity target) {
 		this.groomingTarget = target;
 	}
-	
+
 	public ChimpanzeeEntity getGroomer() {
 		return this.groomer;
 	}
-	
+
 	public void setGroomer(ChimpanzeeEntity groomerIn) {
 		this.groomer = groomerIn;
 	}
-	
+
 	public Direction getFacing() {
 		return this.dataManager.get(FACING);
 	}
@@ -704,7 +713,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	public void func_230258_H__() {
 		this.setAngerTime(ANGER_RANGE.getRandomWithinRange(this.rand));
 	}
-	
+
 	public boolean isPartying() {
 		return this.isPartying;
 	}
@@ -746,7 +755,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 			this.setAction(ChimpanzeeEntity.Action.DEFAULT);
 		}
 	}
-	
+
 	public void setPickUpTimer(int time) {
 		this.pickUpTimer = time;
 	}

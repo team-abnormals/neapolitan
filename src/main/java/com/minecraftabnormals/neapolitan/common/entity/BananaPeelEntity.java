@@ -65,7 +65,10 @@ public class BananaPeelEntity extends Entity {
 	@Override
 	public void tick() {
 		super.tick();
-		this.setMotion(this.getMotion().mul(0.65F, 1.0F, 0.65F));
+
+		if (this.onGround) {
+			this.setMotion(this.getMotion().mul(0.65F, 1.0F, 0.65F));
+		}
 
 		if (!this.hasNoGravity()) {
 			this.setMotion(this.getMotion().add(0.0D, -0.06D, 0.0D));
@@ -84,7 +87,7 @@ public class BananaPeelEntity extends Entity {
 	@Override
 	public void applyEntityCollision(Entity entityIn) {
 		super.applyEntityCollision(entityIn);
-		if (entityIn instanceof LivingEntity && !this.world.isRemote()) {
+		if (this.onGround && entityIn instanceof LivingEntity && !(entityIn instanceof ChimpanzeeEntity) && !this.world.isRemote()) {
 			((LivingEntity) entityIn).addPotionEffect(new EffectInstance(NeapolitanEffects.SLIPPING.get(), 100));
 		}
 	}

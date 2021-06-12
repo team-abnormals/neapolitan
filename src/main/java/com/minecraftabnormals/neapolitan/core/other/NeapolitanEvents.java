@@ -3,6 +3,7 @@ package com.minecraftabnormals.neapolitan.core.other;
 import com.minecraftabnormals.abnormals_core.core.util.TradeUtil;
 import com.minecraftabnormals.abnormals_core.core.util.TradeUtil.AbnormalsTrade;
 import com.minecraftabnormals.neapolitan.common.block.MilkCauldronBlock;
+import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
 import com.minecraftabnormals.neapolitan.core.Neapolitan;
 import com.minecraftabnormals.neapolitan.core.NeapolitanConfig;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanBlocks;
@@ -108,6 +109,7 @@ public class NeapolitanEvents {
 
 	@SubscribeEvent
 	public static void onEntityInteract(EntityInteractSpecific event) {
+		World world = event.getWorld();
 		ItemStack stack = event.getItemStack();
 		Entity entity = event.getTarget();
 		Hand hand = event.getHand();
@@ -121,7 +123,15 @@ public class NeapolitanEvents {
 				player.setHeldItem(hand, itemstack1);
 
 				event.setCanceled(true);
-				event.setCancellationResult(ActionResultType.func_233537_a_(event.getWorld().isRemote()));
+				event.setCancellationResult(ActionResultType.func_233537_a_(world.isRemote()));
+			}
+		}
+
+		if (entity instanceof LivingEntity && !(entity instanceof ChimpanzeeEntity) && stack.getItem() == NeapolitanItems.BANANA_BUNCH.get()) {
+			ActionResultType actionresulttype = stack.interactWithEntity(player, (LivingEntity) entity, hand);
+			if (actionresulttype.isSuccessOrConsume()) {
+				event.setCanceled(true);
+				event.setCancellationResult(actionresulttype);
 			}
 		}
 	}
@@ -182,12 +192,12 @@ public class NeapolitanEvents {
 		if (event.getType().equals(VillagerProfession.FARMER)) {
 			TradeUtil.addVillagerTrades(event, TradeUtil.APPRENTICE,
 					new AbnormalsTrade(NeapolitanItems.STRAWBERRIES.get(), 24, 1, 16, 2)
-			);
+					);
 
 			TradeUtil.addVillagerTrades(event, TradeUtil.JOURNEYMAN,
 					new AbnormalsTrade(NeapolitanItems.BANANA.get(), 8, 1, 12, 10),
 					new AbnormalsTrade(3, NeapolitanItems.STRAWBERRY_SCONES.get(), 12, 12, 10)
-			);
+					);
 
 			TradeUtil.addVillagerTrades(event, TradeUtil.EXPERT,
 					new AbnormalsTrade(3, NeapolitanItems.VANILLA_CAKE.get(), 1, 12, 15),
@@ -195,16 +205,16 @@ public class NeapolitanEvents {
 					new AbnormalsTrade(3, NeapolitanItems.STRAWBERRY_CAKE.get(), 1, 12, 15),
 					new AbnormalsTrade(3, NeapolitanItems.BANANA_CAKE.get(), 1, 12, 15),
 					new AbnormalsTrade(3, NeapolitanItems.MINT_CAKE.get(), 1, 12, 15)
-			);
+					);
 		}
 
 		TradeUtil.addVillagerTrades(event, VillagerProfession.BUTCHER, TradeUtil.MASTER,
 				new AbnormalsTrade(NeapolitanItems.MINT_LEAVES.get(), 10, 1, 12, 30)
-		);
+				);
 
 		TradeUtil.addVillagerTrades(event, VillagerProfession.FLETCHER, TradeUtil.EXPERT,
 				new AbnormalsTrade(1, NeapolitanItems.BANANARROW.get(), 4, 12, 15)
-		);
+				);
 	}
 
 	@SubscribeEvent
@@ -215,11 +225,11 @@ public class NeapolitanEvents {
 				new AbnormalsTrade(2, NeapolitanBlocks.BANANA_FROND.get().asItem(), 1, 5, 1),
 				new AbnormalsTrade(2, NeapolitanItems.MINT_SPROUT.get(), 1, 5, 1),
 				new AbnormalsTrade(2, NeapolitanItems.ADZUKI_BEANS.get(), 1, 5, 1)
-		);
+				);
 
 		TradeUtil.addRareWandererTrades(event,
 				new AbnormalsTrade(1, NeapolitanItems.WHITE_STRAWBERRIES.get(), 1, 8, 1),
 				new AbnormalsTrade(3, NeapolitanItems.MAGIC_BEANS.get(), 1, 6, 1)
-		);
+				);
 	}
 }
