@@ -300,32 +300,22 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 				this.setFacing(newfacing);
 			}
 		}
-		else {
-			if (this.isHungry()) {
-				/*
-				if (this.ticksExisted % 20 == 0) {
-					double d0 = this.rand.nextGaussian() * 0.02D;
-					double d1 = this.rand.nextGaussian() * 0.02D;
-					double d2 = this.rand.nextGaussian() * 0.02D;
-					world.addParticle(NeapolitanParticles.CHIMPANZEE_HUNGRY.get(), this.getPosXRandom(1.0D), this.getPosYRandom() + 0.5D, this.getPosZRandom(1.0D), d0, d1, d2);
-				}
-				 */
+
+		if (this.world.isRemote && this.needsGrooming()) {
+			if (this.ticksExisted % 6 == 0) {
+				double d0 = ((double) this.rand.nextFloat() + 1.0D) * 0.06D;
+				double d1 = this.rand.nextInt(360) - 360.0D;
+				double d2 = ((double) this.rand.nextFloat() + 1.0D) * 14.0D;
+				d2 *= this.rand.nextBoolean() ? 1.0D : -1.0D;
+
+				world.addParticle(NeapolitanParticles.FLY.get(), this.getPosXRandom(0.5D), this.getPosYEye() + this.rand.nextDouble() * 0.2D + 0.3D, this.getPosZRandom(0.5D), d0, d1, d2);
 			}
+		}
 
-			if (this.needsGrooming()) {
-				if (this.ticksExisted % 6 == 0) {
-					double d0 = ((double) this.rand.nextFloat() + 1.0D) * 0.06D;
-					double d1 = this.rand.nextInt(360) - 360.0D;
-					double d2 = ((double) this.rand.nextFloat() + 1.0D) * 14.0D;
-					d2 *= this.rand.nextBoolean() ? 1.0D : -1.0D;
-
-					world.addParticle(NeapolitanParticles.FLY.get(), this.getPosXRandom(0.5D), this.getPosYEye() + this.rand.nextDouble() * 0.2D + 0.3D, this.getPosZRandom(0.5D), d0, d1, d2);
-				}
-			}
-
-			if (this.getAction() == ChimpanzeeEntity.Action.EATING) {
-				ItemStack food = this.getFood();
-				if (this.ticksExisted % 10 == 0 && !food.isEmpty()) {
+		if (this.getAction() == ChimpanzeeEntity.Action.EATING) {
+			ItemStack food = this.getFood();
+			if (this.ticksExisted % 10 == 0 && !food.isEmpty()) {
+				if (this.world.isRemote) {
 					for (int i = 0; i < 6; ++i) {
 						Vector3d vector3d = new Vector3d(((double) this.rand.nextFloat() - 0.5D) * 0.1D, Math.random() * 0.1D + 0.1D, ((double) this.rand.nextFloat() - 0.5D) * 0.1D);
 						vector3d = vector3d.rotatePitch(-this.rotationPitch * ((float) Math.PI / 180F));
@@ -337,6 +327,8 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 						this.world.addParticle(new ItemParticleData(ParticleTypes.ITEM, this.getHeldItem(this.getFoodHand())), vector3d1.x, vector3d1.y, vector3d1.z, vector3d.x, vector3d.y + 0.05D, vector3d.z);
 					}
 				}
+
+				this.playSound(NeapolitanSounds.ENTITY_CHIMPANZEE_EAT.get(), 0.25F + 0.5F * (float) this.rand.nextInt(2), (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
 			}
 		}
 	}
@@ -410,7 +402,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		if (!this.world.isRemote) {
 			BananaPeelEntity bananapeel = NeapolitanEntities.BANANA_PEEL.get().create(this.world);
 			bananapeel.setLocationAndAngles(this.getPosX(), this.getPosYEye(), this.getPosZ(), this.rotationYaw, 0.0F);
-			bananapeel.setMotion(this.rand.nextDouble() * 1.4D - 0.7D, 0.4D, this.rand.nextDouble() * 1.4D - 0.7D);
+			bananapeel.setMotion(this.rand.nextDouble() * 0.6D - 0.3D, 0.4D, this.rand.nextDouble() * 0.6D - 0.3D);
 			this.world.addEntity(bananapeel);
 
 			this.setHeldItem(hand, new ItemStack(NeapolitanItems.BANANA.get()));

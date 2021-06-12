@@ -34,7 +34,7 @@ public class ChimpanzeeRenderer extends MobRenderer<ChimpanzeeEntity, Chimpanzee
 	@Override
 	public ResourceLocation getEntityTexture(ChimpanzeeEntity entity) {
 		int type = entity.getChimpanzeeType();
-		boolean mouthopen = entity.func_233678_J__() || entity.isTempting() || entity.isHungry() || entity.isPartying();
+		boolean mouthopen = this.getMouthOpen(entity);
 
 		if (type == 1) return !mouthopen ? RAINFOREST_CHIMPANZEE : HUNGRY_RAINFOREST_CHIMPANZEE;
 		if (type == 2) return !mouthopen ? BAMBOO_CHIMPANZEE : HUNGRY_BAMBOO_CHIMPANZEE;
@@ -45,5 +45,15 @@ public class ChimpanzeeRenderer extends MobRenderer<ChimpanzeeEntity, Chimpanzee
 	@Override
 	public void render(ChimpanzeeEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
 		super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
+	}
+	
+	private boolean getMouthOpen(ChimpanzeeEntity entity) {
+		if (entity.getAction() == ChimpanzeeEntity.Action.EATING) {
+			return Math.sin(Math.PI * entity.ticksExisted * 0.2D) > 0;
+		} else if (entity.func_233678_J__() || entity.isTempting() || entity.isHungry() || entity.isPartying()) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
