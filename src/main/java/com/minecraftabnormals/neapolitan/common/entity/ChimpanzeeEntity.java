@@ -135,7 +135,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		this.goalSelector.addGoal(11, new GroomGoal(this, 1.0D));
 		this.goalSelector.addGoal(12, new ShareBananaGoal(this, 1.0D));
 		this.goalSelector.addGoal(13, new HideFromRainGoal(this, 1.1D));
-		// this.goalSelector.addGoal(14, new PlayNoteBlockGoal(this, 1.0D, 16));
+		this.goalSelector.addGoal(14, new PlayNoteBlockGoal(this, 1.0D, 16));
 		this.goalSelector.addGoal(15, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
 		this.goalSelector.addGoal(16, new LookAtGoal(this, PlayerEntity.class, 6.0F));
 		this.goalSelector.addGoal(17, new LookAtGoal(this, ChimpanzeeEntity.class, 6.0F));

@@ -7,12 +7,13 @@ import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.NoteBlock;
-import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.MoveToBlockGoal;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IWorldReader;
+import net.minecraft.world.World;
 
 public class PlayNoteBlockGoal extends MoveToBlockGoal {
 	private final ChimpanzeeEntity chimpanzee;
@@ -27,12 +28,14 @@ public class PlayNoteBlockGoal extends MoveToBlockGoal {
 
 	@Override
 	public boolean shouldExecute() {
-		return !this.chimpanzee.isPassenger() && this.chimpanzee.canDoAction() && this.chimpanzee.getAction().canBeInterrupted() && super.shouldExecute();
+		return this.chimpanzee.getRNG().nextInt(120) == 0 && !this.chimpanzee.isPassenger() && this.chimpanzee.canDoAction() && this.chimpanzee.getAction().canBeInterrupted() && super.shouldExecute();
 	}
 
 	@Override
 	public boolean shouldContinueExecuting() {
-		if (this.chimpanzee.getAction() != ChimpanzeeEntity.Action.EATING && !this.chimpanzee.getAction().canBeInterrupted()) {
+		if (this.chimpanzee.getRNG().nextInt(200) == 0) {
+			return false;
+		} else if (this.isBlockBeingPlayed(this.chimpanzee.world, this.destinationBlock.up())) {
 			return false;
 		} else if (this.chimpanzee.isPassenger()) {
 			return false;
@@ -48,11 +51,6 @@ public class PlayNoteBlockGoal extends MoveToBlockGoal {
 		super.startExecuting();
 		this.hasPlayed = false;
 		this.noteTime = 20;
-	}
-
-	@Override
-	protected int getRunDelay(CreatureEntity creatureIn) {
-		return 40;
 	}
 
 	@Override
@@ -72,7 +70,7 @@ public class PlayNoteBlockGoal extends MoveToBlockGoal {
 
 		this.chimpanzee.getLookController().setLookPosition(this.destinationBlock.getX() + 0.5D, this.destinationBlock.getY() + 0.5D, this.destinationBlock.getZ() + 0.5D, (float)(this.chimpanzee.getHorizontalFaceSpeed() + 20), (float)this.chimpanzee.getVerticalFaceSpeed());
 
-		if (this.getIsAboveDestination()) {
+		if (this.getIsAboveDestination() && this.chimpanzee.getMotion().x == 0.0D && this.chimpanzee.getMotion().z == 0.0D) {
 			this.chimpanzee.setAction(ChimpanzeeEntity.Action.DRUMMING);
 			this.chimpanzee.setSitting(true);
 
@@ -95,6 +93,12 @@ public class PlayNoteBlockGoal extends MoveToBlockGoal {
 
 	@Override
 	protected boolean shouldMoveTo(IWorldReader worldIn, BlockPos pos) {
-		return worldIn.isAirBlock(pos.up()) && worldIn.isAirBlock(pos.up().up()) && worldIn.getBlockState(pos).getBlock() == Blocks.NOTE_BLOCK;
+		return worldIn.isAirBlock(pos.up()) && worldIn.isAirBlock(pos.up().up()) && worldIn.getBlockState(pos).getBlock() == Blocks.NOTE_BLOCK && !this.isBlockBeingPlayed((World) worldIn, pos);
+	}
+
+	private boolean isBlockBeingPlayed(World worldIn, BlockPos pos) {
+		return !worldIn.getEntitiesWithinAABB(ChimpanzeeEntity.class, new AxisAlignedBB(pos.up()), (chimpanzee) -> {
+			return chimpanzee != this.chimpanzee && chimpanzee.getAction() == ChimpanzeeEntity.Action.DRUMMING;
+		}).isEmpty();
 	}
 }

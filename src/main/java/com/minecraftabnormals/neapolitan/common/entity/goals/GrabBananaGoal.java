@@ -53,7 +53,7 @@ public class GrabBananaGoal extends Goal {
 
 	@Override
 	public boolean shouldContinueExecuting() {
-		return !this.chimpanzee.getFood().isEmpty() && this.itemEntity != null && this.itemEntity.isAlive();
+		return this.chimpanzee.getFood().isEmpty() && this.itemEntity != null && this.itemEntity.isAlive();
 	}
 
 	@Override
