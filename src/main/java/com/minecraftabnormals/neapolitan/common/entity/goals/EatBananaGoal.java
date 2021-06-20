@@ -21,9 +21,7 @@ public class EatBananaGoal extends Goal {
 		if (this.chimpanzee.isHungry()) {
 			ItemStack food = this.chimpanzee.getFood();
 			if (!food.isEmpty() && food.isFood()) {
-				if (this.chimpanzee.getAction() == ChimpanzeeEntity.Action.EATING) {
-					return true;
-				} else if (this.chimpanzee.canDoAction() && this.chimpanzee.getAction().canBeInterrupted()) {
+				if (this.chimpanzee.getAction().canBeInterrupted()) {
 					return true;
 				}
 			}
@@ -36,7 +34,7 @@ public class EatBananaGoal extends Goal {
 	public void startExecuting() {
 		this.chimpanzee.setAction(ChimpanzeeEntity.Action.EATING);
 		this.chimpanzee.getNavigator().clearPath();
-		this.eatTime = 80;
+		this.eatTime = 100;
 	}
 
 	@Override
@@ -45,8 +43,7 @@ public class EatBananaGoal extends Goal {
 
 		if (this.eatTime <= 0) {
 			this.chimpanzee.eatFood();
-			this.chimpanzee.setActionCooldown(80);
-			this.chimpanzee.setAction(ChimpanzeeEntity.Action.DEFAULT);
+			this.chimpanzee.setDefaultAction();
 		}
 	}
 
@@ -58,7 +55,6 @@ public class EatBananaGoal extends Goal {
 
 	@Override
 	public void resetTask() {
-		this.chimpanzee.setActionCooldown(80);
-		this.chimpanzee.setAction(ChimpanzeeEntity.Action.DEFAULT);
+		this.chimpanzee.setDefaultAction();
 	}
 }

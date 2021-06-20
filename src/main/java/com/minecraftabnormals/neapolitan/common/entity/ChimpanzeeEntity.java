@@ -7,16 +7,7 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
-import com.minecraftabnormals.neapolitan.common.entity.goals.BeGroomedGoal;
-import com.minecraftabnormals.neapolitan.common.entity.goals.EatBananaGoal;
-import com.minecraftabnormals.neapolitan.common.entity.goals.GrabBananaGoal;
-import com.minecraftabnormals.neapolitan.common.entity.goals.GroomGoal;
-import com.minecraftabnormals.neapolitan.common.entity.goals.HideFromRainGoal;
-import com.minecraftabnormals.neapolitan.common.entity.goals.OpenBunchGoal;
-import com.minecraftabnormals.neapolitan.common.entity.goals.PlayNoteBlockGoal;
-import com.minecraftabnormals.neapolitan.common.entity.goals.RestrictRainGoal;
-import com.minecraftabnormals.neapolitan.common.entity.goals.ShareBananaGoal;
-import com.minecraftabnormals.neapolitan.common.entity.goals.TemptBananaGoal;
+import com.minecraftabnormals.neapolitan.common.entity.goals.*;
 import com.minecraftabnormals.neapolitan.core.other.NeapolitanTags;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEntities;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
@@ -99,7 +90,6 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	private static final RangedInteger ANGER_RANGE = TickRangeConverter.convertRange(20, 39);
 	private UUID lastHurtBy;
 	private int attackTimer;
-	private int actionCooldown;
 	private int pickUpTimer;
 
 	@Nullable
@@ -126,15 +116,15 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		this.goalSelector.addGoal(2, new GrabBananaGoal(this, 1.25D));
 		this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 1.25D, false));
 		this.goalSelector.addGoal(4, new BreedGoal(this, 1.0D));
-		this.goalSelector.addGoal(5, new EatBananaGoal(this));
-		this.goalSelector.addGoal(6, new OpenBunchGoal(this));
+		this.goalSelector.addGoal(5, new OpenBunchGoal(this));
+		this.goalSelector.addGoal(6, new EatBananaGoal(this));
 		this.goalSelector.addGoal(7, new TemptBananaGoal(this, 1.25D));
 		this.goalSelector.addGoal(8, new TemptGoal(this, 1.25D, Ingredient.fromTag(NeapolitanTags.Items.CHIMPANZEE_FOOD), false));
 		this.goalSelector.addGoal(9, new FollowParentGoal(this, 1.25D));
 		this.goalSelector.addGoal(10, new BeGroomedGoal(this));
 		this.goalSelector.addGoal(11, new GroomGoal(this, 1.0D));
 		this.goalSelector.addGoal(12, new ShareBananaGoal(this, 1.0D));
-		this.goalSelector.addGoal(13, new HideFromRainGoal(this, 1.1D));
+		this.goalSelector.addGoal(13, new HideFromRainGoal(this, 1.1D, 24, 6));
 		this.goalSelector.addGoal(14, new PlayNoteBlockGoal(this, 1.0D, 16));
 		this.goalSelector.addGoal(15, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
 		this.goalSelector.addGoal(16, new LookAtGoal(this, PlayerEntity.class, 6.0F));
@@ -232,9 +222,9 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		if (this.func_233678_J__()) {
 			this.recentlyHit = this.ticksExisted;
 		}
-
-		if (!this.canDoAction()) {
-			this.setActionCooldown(this.getActionCooldown() - 1);
+		
+		if (this.isSitting() && this.getNavigator().hasPath()) {
+			this.setSitting(false);
 		}
 
 		super.updateAITasks();
@@ -261,20 +251,14 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		} else {
 			this.setAction(ChimpanzeeEntity.Action.DEFAULT);
 			this.setSitting(false);
-			this.setActionCooldown(80);
 			return super.attackEntityFrom(source, amount);
 		}
 	}
 
 	public void tick() {
 		if (!this.world.isRemote) {
-			boolean flag = !this.isPassenger() && this.isClimbing();
-
-			if (this.getAction() == ChimpanzeeEntity.Action.DEFAULT && flag) {
-				this.setAction(ChimpanzeeEntity.Action.CLIMBING);
-				this.setSitting(false);
-			} else if (this.getAction() == ChimpanzeeEntity.Action.CLIMBING && !flag) {
-				this.setAction(ChimpanzeeEntity.Action.DEFAULT);
+			if (this.getAction() == ChimpanzeeEntity.Action.DEFAULT || this.getAction() == ChimpanzeeEntity.Action.CLIMBING ) {
+				this.setDefaultAction();
 			}
 		}
 
@@ -379,7 +363,6 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 				this.setHeldItem(Hand.MAIN_HAND, itemstack1);
 				this.consumeItemFromStack(player, itemstack);
 				this.func_241356_K__();
-				this.setActionCooldown(40);
 
 				return ActionResultType.func_233537_a_(this.world.isRemote);
 			}
@@ -549,7 +532,6 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 			itemEntity.remove();
 
 			this.func_241356_K__();
-			this.setActionCooldown(40);
 		}
 	}
 
@@ -725,18 +707,6 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		this.dataManager.set(ACTION, (byte)action.getIndex());
 	}
 
-	public boolean canDoAction() {
-		return this.getActionCooldown() <= 0;
-	}
-
-	public int getActionCooldown() {
-		return this.actionCooldown;
-	}
-
-	public void setActionCooldown(int cooldown) {
-		this.actionCooldown = cooldown;
-	}
-
 	public void setDefaultAction() {
 		boolean flag = !this.isPassenger() && this.isClimbing();
 
@@ -755,9 +725,9 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	public static enum Action {
 		DEFAULT(0, true),
 		CLIMBING(1, false),
-		EATING(2, false),
+		EATING(2, true),
 		GROOMING(3, true),
-		SHAKING(4,  false),
+		SHAKING(4,  true),
 		DRUMMING(5, true);
 
 		private static final ChimpanzeeEntity.Action[] ACTIONS = Arrays.stream(values()).sorted(Comparator.comparingInt(ChimpanzeeEntity.Action::getIndex)).toArray((p_221102_0_) -> {

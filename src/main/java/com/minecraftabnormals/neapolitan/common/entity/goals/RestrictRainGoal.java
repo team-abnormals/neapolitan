@@ -14,6 +14,7 @@ public class RestrictRainGoal extends Goal {
 		this.entity = creature;
 	}
 
+	@Override
 	public boolean shouldExecute() {
 		if (!this.entity.world.isRaining()) {
 			return false;
@@ -24,10 +25,12 @@ public class RestrictRainGoal extends Goal {
 		}
 	}
 
+	@Override
 	public void startExecuting() {
 		((GroundPathNavigator)this.entity.getNavigator()).setAvoidSun(true);
 	}
 
+	@Override
 	public void resetTask() {
 		if (GroundPathHelper.isGroundNavigator(this.entity)) {
 			((GroundPathNavigator)this.entity.getNavigator()).setAvoidSun(false);

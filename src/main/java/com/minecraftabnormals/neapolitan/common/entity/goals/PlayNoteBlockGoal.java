@@ -23,12 +23,12 @@ public class PlayNoteBlockGoal extends MoveToBlockGoal {
 	public PlayNoteBlockGoal(ChimpanzeeEntity chimpanzeeIn, double speed, int length) {
 		super(chimpanzeeIn, speed, length, 6);
 		this.chimpanzee = chimpanzeeIn;
-		this.setMutexFlags(EnumSet.of(Goal.Flag.LOOK, Goal.Flag.MOVE));
+		this.setMutexFlags(EnumSet.of(Goal.Flag.LOOK, Goal.Flag.JUMP, Goal.Flag.MOVE));
 	}
 
 	@Override
 	public boolean shouldExecute() {
-		return this.chimpanzee.getRNG().nextInt(120) == 0 && !this.chimpanzee.isPassenger() && this.chimpanzee.canDoAction() && this.chimpanzee.getAction().canBeInterrupted() && super.shouldExecute();
+		return this.chimpanzee.getRNG().nextInt(120) == 0 && !this.chimpanzee.isPassenger() && super.shouldExecute();
 	}
 
 	@Override
@@ -42,7 +42,7 @@ public class PlayNoteBlockGoal extends MoveToBlockGoal {
 		} else if (this.hasPlayed && !this.getIsAboveDestination()) {
 			return false;
 		} else {
-			return this.chimpanzee.canDoAction() && super.shouldContinueExecuting();
+			return super.shouldContinueExecuting();
 		}
 	}
 
@@ -58,7 +58,6 @@ public class PlayNoteBlockGoal extends MoveToBlockGoal {
 		super.resetTask();
 
 		if (this.chimpanzee.getAction() == ChimpanzeeEntity.Action.DRUMMING) {
-			this.chimpanzee.setActionCooldown(80);
 			this.chimpanzee.setDefaultAction();
 		}
 		this.chimpanzee.setSitting(false);
@@ -70,7 +69,7 @@ public class PlayNoteBlockGoal extends MoveToBlockGoal {
 
 		this.chimpanzee.getLookController().setLookPosition(this.destinationBlock.getX() + 0.5D, this.destinationBlock.getY() + 0.5D, this.destinationBlock.getZ() + 0.5D, (float)(this.chimpanzee.getHorizontalFaceSpeed() + 20), (float)this.chimpanzee.getVerticalFaceSpeed());
 
-		if (this.getIsAboveDestination() && this.chimpanzee.getMotion().x == 0.0D && this.chimpanzee.getMotion().z == 0.0D) {
+		if (this.getIsAboveDestination() && this.chimpanzee.getNavigator().noPath()) {
 			this.chimpanzee.setAction(ChimpanzeeEntity.Action.DRUMMING);
 			this.chimpanzee.setSitting(true);
 

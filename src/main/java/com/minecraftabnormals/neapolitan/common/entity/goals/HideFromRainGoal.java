@@ -1,71 +1,31 @@
 package com.minecraftabnormals.neapolitan.common.entity.goals;
 
-import java.util.EnumSet;
-import java.util.Random;
-
-import javax.annotation.Nullable;
-
 import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
 
-import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.World;
+import net.minecraft.world.IWorldReader;
 
-public class HideFromRainGoal extends Goal {
-	protected final ChimpanzeeEntity chimpanzee;
-	private Vector3d shelterPos;
-	private final double movementSpeed;
-	private final World world;
+public class HideFromRainGoal extends MoveToBlockGoal {
+	private final ChimpanzeeEntity chimpanzee;
 
-	public HideFromRainGoal(ChimpanzeeEntity chimpanzeeIn, double movementSpeedIn) {
+	public HideFromRainGoal(ChimpanzeeEntity chimpanzeeIn, double speed, int length, int yMax) {
+		super(chimpanzeeIn, speed, length, yMax);
 		this.chimpanzee = chimpanzeeIn;
-		this.movementSpeed = movementSpeedIn;
-		this.world = chimpanzeeIn.world;
-		this.setMutexFlags(EnumSet.of(Goal.Flag.MOVE));
 	}
 
+	@Override
 	public boolean shouldExecute() {
-		if (this.chimpanzee.getAttackTarget() != null) {
-			return false;
-		} else if (!this.world.isRainingAt(this.chimpanzee.getPosition())) {
-			return false;
-		} else {
-			return this.isPossibleShelter();
-		}
+		return this.chimpanzee.world.isRainingAt(this.chimpanzee.getPosition()) && super.shouldExecute();
 	}
 
-	protected boolean isPossibleShelter() {
-		Vector3d vector3d = this.findPossibleShelter();
-		if (vector3d == null) {
-			return false;
-		} else {
-			this.shelterPos = vector3d;
-			return true;
-		}
-	}
-
-
+	@Override
 	public boolean shouldContinueExecuting() {
-		return !this.chimpanzee.getNavigator().noPath();
+		return this.chimpanzee.world.isRaining() && !this.destinationBlock.withinDistance(this.chimpanzee.getPositionVec(), 1.0D) && super.shouldContinueExecuting();
 	}
 
-	public void startExecuting() {
-		this.chimpanzee.getNavigator().tryMoveToXYZ(this.shelterPos.x, this.shelterPos.y, this.shelterPos.z, this.movementSpeed);
-	}
-
-	@Nullable
-	protected Vector3d findPossibleShelter() {
-		Random random = this.chimpanzee.getRNG();
-		BlockPos blockpos = this.chimpanzee.getPosition();
-
-		for(int i = 0; i < 10; ++i) {
-			BlockPos blockpos1 = blockpos.add(random.nextInt(20) - 10, random.nextInt(6) - 3, random.nextInt(20) - 10);
-			if (!this.world.canSeeSky(blockpos1) && this.chimpanzee.getBlockPathWeight(blockpos1) < 0.0F) {
-				return Vector3d.copyCenteredHorizontally(blockpos1);
-			}
-		}
-
-		return null;
+	@Override
+	protected boolean shouldMoveTo(IWorldReader worldIn, BlockPos pos) {
+		return worldIn.isAirBlock(pos.up()) && worldIn.isAirBlock(pos.up(2)) && !worldIn.canSeeSky(pos.up()) && worldIn.getBlockState(pos).getMaterial().isSolid();
 	}
 }

@@ -23,8 +23,6 @@ public class GroomGoal extends Goal {
 	public boolean shouldExecute() {
 		if (this.chimpanzee.isChild()) {
 			return false;
-		} else if (!this.chimpanzee.canDoAction() || !this.chimpanzee.getAction().canBeInterrupted())  {
-			return false;
 		} else if (this.chimpanzee.getRNG().nextInt(80) == 0) {
 			List<ChimpanzeeEntity> list = this.chimpanzee.world.getEntitiesWithinAABB(ChimpanzeeEntity.class, this.chimpanzee.getBoundingBox().grow(8.0D, 4.0D, 8.0D));
 			ChimpanzeeEntity chimpanzeeentity = null;
@@ -58,8 +56,6 @@ public class GroomGoal extends Goal {
 			return false;
 		} else if (!target.needsGrooming()) {
 			return false;
-		} else if (!this.chimpanzee.canDoAction())  {
-			return false;
 		} else {
 			return this.chimpanzee.getDistanceSq(target) <= 256.0D;
 		}
@@ -74,7 +70,6 @@ public class GroomGoal extends Goal {
 	@Override
 	public void resetTask() {
 		if (this.chimpanzee.getAction() == ChimpanzeeEntity.Action.GROOMING) {
-			this.chimpanzee.setActionCooldown(80);
 			this.chimpanzee.setDefaultAction();
 		}
 
