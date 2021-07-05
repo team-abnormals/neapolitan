@@ -66,8 +66,8 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends AgeableModel<T>
 	public void setRotationAngles(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 
 		float partialtick = ageInTicks - (float)entity.ticksExisted;
-		float climbscale = entity.getClimbingAnimationScale(partialtick);
-		float climbanim = -climbscale * (float) Math.PI / 2F;
+		float climbanimation1 = entity.getClimbAnimationScale(partialtick);
+		float climbanimation2 = Math.min(climbanimation1 * 2.0F, 1.0F);
 		int attackanim = entity.getAttackTimer();
 
 		if (entity.getAction() != ChimpanzeeEntity.Action.EATING) {
@@ -78,20 +78,26 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends AgeableModel<T>
 		this.head.rotationPointX = 0.0F;
 		this.head.rotationPointY = 5.0F;
 		this.head.rotationPointZ = 0.5F;
-		this.rightArm.rotateAngleX = 0.0F;
-		this.leftArm.rotateAngleX = 0.0F;
 		this.rightArm.rotationPointX = -5.0F;
 		this.leftArm.rotationPointX = 5.0F;
-		this.rightArm.rotateAngleZ = 0.0F;
-		this.leftArm.rotateAngleZ = 0.0F;
 		this.rightArm.rotationPointZ = 0.5F;
 		this.leftArm.rotationPointZ = 0.5F;
 		this.rightArm.rotationPointY = 6.5F;
 		this.leftArm.rotationPointY = 6.5F;
+		this.rightArm.rotateAngleX = 0.0F;
+		this.leftArm.rotateAngleX = 0.0F;
+		this.rightArm.rotateAngleZ = 0.0F;
+		this.leftArm.rotateAngleZ = 0.0F;
 		this.rightArm.rotateAngleY = 0.0F;
 		this.leftArm.rotateAngleY = 0.0F;
 		this.rightLeg.rotationPointY = 13.0F;
 		this.leftLeg.rotationPointY = 13.0F;
+		this.rightLeg.rotationPointZ = 0.5F;
+		this.leftLeg.rotationPointZ = 0.5F;
+		this.rightLeg.rotateAngleY = 0.0F;
+		this.leftLeg.rotateAngleY = 0.0F;
+		this.rightLeg.rotateAngleZ = 0.0F;
+		this.leftLeg.rotateAngleZ = 0.0F;
 		this.body.rotationPointX = 0.0F;
 		this.body.rotationPointY = 9.0F;
 		this.body.rotationPointZ = 2.0F;
@@ -118,6 +124,25 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends AgeableModel<T>
 
 				this.rightArm.rotateAngleX = groomanim * 0.4F - (float) Math.PI / 2F;
 				this.leftArm.rotateAngleX = -groomanim * 0.4F - (float) Math.PI / 2F;
+			} else if (entity.getAction() == ChimpanzeeEntity.Action.SHAKING) {
+				float shakeanimz = MathHelper.sin(ageInTicks * 0.82F) * 1.4F;
+				float shakeanimy = MathHelper.cos(ageInTicks * 0.82F) * 1.8F;
+
+				this.head.rotationPointY += shakeanimy + 1.5F;
+				this.head.rotationPointZ += shakeanimz;
+				this.body.rotationPointY += shakeanimy + 1.5F;
+				this.body.rotationPointZ += shakeanimz;
+				this.rightArm.rotationPointY += 1.5F;
+				this.rightArm.rotationPointZ += shakeanimz * 0.5F;
+				this.leftArm.rotationPointY += 1.5F;
+				this.leftArm.rotationPointZ += shakeanimz * 0.5F;
+				this.rightLeg.rotationPointY += shakeanimy + 1.5F;
+				this.rightLeg.rotationPointZ += shakeanimz;
+				this.leftLeg.rotationPointY += shakeanimy + 1.5F;
+				this.leftLeg.rotationPointZ += shakeanimz;
+				
+				this.rightLeg.rotateAngleX = shakeanimz * 0.35F - (float) Math.PI * 0.1F;
+				this.leftLeg.rotateAngleX = shakeanimz * 0.35F - (float) Math.PI * 0.1F;
 			} else if (entity.getAction() == ChimpanzeeEntity.Action.DRUMMING) {
 				float drumanim1 = -Math.abs(MathHelper.sin(ageInTicks * 0.3F));
 				float drumanim2 = -Math.abs(MathHelper.sin(ageInTicks * 0.3F + (float) Math.PI / 2F));
@@ -128,8 +153,8 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends AgeableModel<T>
 				this.leftArm.rotateAngleY = 0.5F;
 			} else {
 				if (entity.isPartying()) {
-					this.rightArm.rotateAngleX = (1.0F - climbscale) * (float) -Math.PI;
-					this.leftArm.rotateAngleX = (1.0F - climbscale) * (float) -Math.PI;
+					this.rightArm.rotateAngleX = (1.0F - climbanimation2) * (float) -Math.PI;
+					this.leftArm.rotateAngleX = (1.0F - climbanimation2) * (float) -Math.PI;
 				} else {
 					this.rightArm.rotateAngleX = swing1;
 					this.leftArm.rotateAngleX = swing2;
@@ -145,10 +170,10 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends AgeableModel<T>
 				}
 			}
 
-			this.rightArm.rotateAngleX += climbanim * 1.4F;
-			this.leftArm.rotateAngleX += climbanim * 1.4F;
-			this.rightArm.rotateAngleY += -climbanim * 0.4F;
-			this.leftArm.rotateAngleY += climbanim * 0.4F;
+			this.rightArm.rotateAngleX += -climbanimation1 * (float) Math.PI;
+			this.leftArm.rotateAngleX += -climbanimation1 * (float) Math.PI;
+			this.rightArm.rotateAngleY += climbanimation2 * 0.6F;
+			this.leftArm.rotateAngleY += -climbanimation2 * 0.6F;
 		}
 
 		if (entity.isPartying()) {
@@ -200,13 +225,9 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends AgeableModel<T>
 			this.leftLeg.rotateAngleX = -((float) Math.PI / 2F);
 			this.leftLeg.rotateAngleY = (-(float) Math.PI / 10F);
 			this.leftLeg.rotateAngleZ = -0.07853982F;
-		} else {
-			this.rightLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount / 1.0F + climbanim * 0.5F;
-			this.leftLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount / 1.0F + climbanim * 0.5F;
-			this.rightLeg.rotateAngleY = 0.0F;
-			this.leftLeg.rotateAngleY = 0.0F;
-			this.rightLeg.rotateAngleZ = 0.0F;
-			this.leftLeg.rotateAngleZ = 0.0F;
+		} else if (entity.getAction() != ChimpanzeeEntity.Action.SHAKING) {
+			this.rightLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount - climbanimation2 * (float) Math.PI * 0.2F;
+			this.leftLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount - climbanimation2 * (float) Math.PI * 0.2F;
 		}
 	}
 

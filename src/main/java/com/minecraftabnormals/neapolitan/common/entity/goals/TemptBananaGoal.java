@@ -24,7 +24,7 @@ public class TemptBananaGoal extends Goal {
 		this.chimpanzee = chimpanzeeIn;
 		this.speed = speedIn;
 
-		this.setMutexFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
+		this.setMutexFlags(EnumSet.of(Goal.Flag.JUMP, Goal.Flag.MOVE, Goal.Flag.LOOK));
 	}
 
 	@Override

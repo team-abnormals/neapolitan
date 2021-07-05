@@ -11,7 +11,7 @@ public class BeGroomedGoal extends Goal {
 
 	public BeGroomedGoal(ChimpanzeeEntity chimpanzeeIn) {
 		this.chimpanzee = chimpanzeeIn;
-		this.setMutexFlags(EnumSet.of(Goal.Flag.MOVE));
+		this.setMutexFlags(EnumSet.of(Goal.Flag.JUMP, Goal.Flag.MOVE));
 	}
 
 	@Override

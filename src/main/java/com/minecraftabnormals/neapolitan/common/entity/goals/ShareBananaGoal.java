@@ -22,7 +22,7 @@ public class ShareBananaGoal extends Goal {
 	public ShareBananaGoal(ChimpanzeeEntity chimpanzeeIn, double speed) {
 		this.chimpanzee = chimpanzeeIn;
 		this.moveSpeed = speed;
-		this.setMutexFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
+		this.setMutexFlags(EnumSet.of(Goal.Flag.JUMP, Goal.Flag.MOVE, Goal.Flag.LOOK));
 	}
 
 	@Override

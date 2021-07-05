@@ -13,7 +13,7 @@ public class EatBananaGoal extends Goal {
 
 	public EatBananaGoal(ChimpanzeeEntity chimpanzeeIn) {
 		this.chimpanzee = chimpanzeeIn;
-		this.setMutexFlags(EnumSet.of(Goal.Flag.MOVE));
+		this.setMutexFlags(EnumSet.of(Goal.Flag.JUMP, Goal.Flag.MOVE));
 	}
 
 	@Override

@@ -16,8 +16,8 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class ChimpanzeeItemlayer<T extends LivingEntity, M extends EntityModel<T> & IHasArm> extends LayerRenderer<T, M> {
-   public ChimpanzeeItemlayer(IEntityRenderer<T, M> p_i50934_1_) {
+public class ChimpanzeeItemLayer<T extends LivingEntity, M extends EntityModel<T> & IHasArm> extends LayerRenderer<T, M> {
+   public ChimpanzeeItemLayer(IEntityRenderer<T, M> p_i50934_1_) {
       super(p_i50934_1_);
    }
 

@@ -16,7 +16,7 @@ public class GroomGoal extends Goal {
 	public GroomGoal(ChimpanzeeEntity chimpanzeeIn, double speed) {
 		this.chimpanzee = chimpanzeeIn;
 		this.moveSpeed = speed;
-		this.setMutexFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
+		this.setMutexFlags(EnumSet.of(Goal.Flag.JUMP, Goal.Flag.MOVE, Goal.Flag.LOOK));
 	}
 
 	@Override
@@ -69,10 +69,7 @@ public class GroomGoal extends Goal {
 
 	@Override
 	public void resetTask() {
-		if (this.chimpanzee.getAction() == ChimpanzeeEntity.Action.GROOMING) {
-			this.chimpanzee.setDefaultAction();
-		}
-
+		this.chimpanzee.setDefaultAction();
 		this.chimpanzee.getGroomingTarget().setGroomer(null);
 		this.chimpanzee.setGroomingTarget(null);
 	}

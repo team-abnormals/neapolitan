@@ -18,7 +18,7 @@ public class GrabBananaGoal extends Goal {
 	public GrabBananaGoal(ChimpanzeeEntity chimpanzeeIn, double speed) {
 		this.chimpanzee = chimpanzeeIn;
 		this.moveSpeed = speed;
-		this.setMutexFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
+		this.setMutexFlags(EnumSet.of(Goal.Flag.JUMP, Goal.Flag.MOVE, Goal.Flag.LOOK));
 	}
 
 	@Override
@@ -26,6 +26,8 @@ public class GrabBananaGoal extends Goal {
 		if (!this.chimpanzee.getFood().isEmpty()) {
 			return false;
 		} else if (!this.chimpanzee.isHungry()) {
+			return false;
+		} else if (this.chimpanzee.getAction() == ChimpanzeeEntity.Action.SHAKING) {
 			return false;
 		} else {
 			List<ItemEntity> list = this.chimpanzee.world.getEntitiesWithinAABB(ItemEntity.class, this.chimpanzee.getBoundingBox().grow(12.0D, 4.0D, 12.0D));

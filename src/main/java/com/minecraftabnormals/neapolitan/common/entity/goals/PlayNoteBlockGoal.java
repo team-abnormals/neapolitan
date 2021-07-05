@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 
 public class PlayNoteBlockGoal extends MoveToBlockGoal {
 	private final ChimpanzeeEntity chimpanzee;
-	private boolean hasPlayed;
+	private int timePlayed;
 	private int noteTime;
 
 	public PlayNoteBlockGoal(ChimpanzeeEntity chimpanzeeIn, double speed, int length) {
@@ -28,18 +28,18 @@ public class PlayNoteBlockGoal extends MoveToBlockGoal {
 
 	@Override
 	public boolean shouldExecute() {
-		return this.chimpanzee.getRNG().nextInt(120) == 0 && !this.chimpanzee.isPassenger() && super.shouldExecute();
+		return this.chimpanzee.getRNG().nextInt(400) == 0 && !this.chimpanzee.isPassenger() && super.shouldExecute();
 	}
 
 	@Override
 	public boolean shouldContinueExecuting() {
-		if (this.chimpanzee.getRNG().nextInt(200) == 0) {
+		if (this.timePlayed > 320 && this.chimpanzee.getRNG().nextInt(300) == 0) {
 			return false;
 		} else if (this.isBlockBeingPlayed(this.chimpanzee.world, this.destinationBlock.up())) {
 			return false;
 		} else if (this.chimpanzee.isPassenger()) {
 			return false;
-		} else if (this.hasPlayed && !this.getIsAboveDestination()) {
+		} else if (this.timePlayed > 0 && !this.getIsAboveDestination()) {
 			return false;
 		} else {
 			return super.shouldContinueExecuting();
@@ -49,18 +49,14 @@ public class PlayNoteBlockGoal extends MoveToBlockGoal {
 	@Override
 	public void startExecuting() {
 		super.startExecuting();
-		this.hasPlayed = false;
+		this.timePlayed = 0;
 		this.noteTime = 20;
 	}
 
 	@Override
 	public void resetTask() {
 		super.resetTask();
-
-		if (this.chimpanzee.getAction() == ChimpanzeeEntity.Action.DRUMMING) {
-			this.chimpanzee.setDefaultAction();
-		}
-		this.chimpanzee.setSitting(false);
+		this.chimpanzee.setDefaultAction();
 	}
 
 	@Override
@@ -69,24 +65,22 @@ public class PlayNoteBlockGoal extends MoveToBlockGoal {
 
 		this.chimpanzee.getLookController().setLookPosition(this.destinationBlock.getX() + 0.5D, this.destinationBlock.getY() + 0.5D, this.destinationBlock.getZ() + 0.5D, (float)(this.chimpanzee.getHorizontalFaceSpeed() + 20), (float)this.chimpanzee.getVerticalFaceSpeed());
 
-		if (this.getIsAboveDestination() && this.chimpanzee.getNavigator().noPath()) {
+		if (this.getIsAboveDestination() && this.chimpanzee.getNavigator().noPath() && this.chimpanzee.getAction().canBeInterrupted()) {
 			this.chimpanzee.setAction(ChimpanzeeEntity.Action.DRUMMING);
-			this.chimpanzee.setSitting(true);
 
 			if (--this.noteTime <= 0) {
 				BlockState state = this.chimpanzee.world.getBlockState(this.destinationBlock);
 				int note = state.get(NoteBlock.NOTE);
-				note = MathHelper.clamp(note + this.chimpanzee.getRNG().nextInt(5) - 2, 0, 24);
+				note = MathHelper.clamp(note + this.chimpanzee.getRNG().nextInt(7) - 3, 0, 24);
 				this.chimpanzee.world.setBlockState(this.destinationBlock, state.with(NoteBlock.NOTE, note), 3);
 				this.chimpanzee.world.addBlockEvent(this.destinationBlock, Blocks.NOTE_BLOCK, 0, 0);
 
-				this.noteTime = 8 + this.chimpanzee.getRNG().nextInt(7);
+				this.noteTime = 8 + this.chimpanzee.getRNG().nextInt(5);
 			}
 
-			this.hasPlayed = true;
+			++this.timePlayed;
 		} else {
 			this.chimpanzee.setDefaultAction();
-			this.chimpanzee.setSitting(false);
 		}
 	}
 
