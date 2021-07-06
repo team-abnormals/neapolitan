@@ -41,6 +41,7 @@ import net.minecraft.entity.ai.goal.ResetAngerGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.TemptGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
+import net.minecraft.entity.item.BoatEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -68,6 +69,7 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.LightType;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
@@ -78,6 +80,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	private static final DataParameter<Integer> ANGER_TIME = EntityDataManager.createKey(ChimpanzeeEntity.class, DataSerializers.VARINT);
 	private static final DataParameter<Integer> HUNGER = EntityDataManager.createKey(ChimpanzeeEntity.class, DataSerializers.VARINT);
 	private static final DataParameter<Integer> DIRTINESS = EntityDataManager.createKey(ChimpanzeeEntity.class, DataSerializers.VARINT);
+	private static final DataParameter<Integer> PALENESS = EntityDataManager.createKey(ChimpanzeeEntity.class, DataSerializers.VARINT);
 	private static final DataParameter<Boolean> TEMPTING = EntityDataManager.createKey(ChimpanzeeEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Byte> ACTION = EntityDataManager.createKey(ChimpanzeeEntity.class, DataSerializers.BYTE);
 	private static final DataParameter<Byte> CLIMBING = EntityDataManager.createKey(ChimpanzeeEntity.class, DataSerializers.BYTE);
@@ -147,6 +150,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		this.dataManager.register(ANGER_TIME, 0);
 		this.dataManager.register(HUNGER, 0);
 		this.dataManager.register(DIRTINESS, 0);
+		this.dataManager.register(PALENESS, 0);
 		this.dataManager.register(TEMPTING, false);
 		this.dataManager.register(ACTION, (byte) 0);
 		this.dataManager.register(CLIMBING, (byte) 0);
@@ -160,6 +164,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		compound.putInt("ChimpanzeeType", this.getChimpanzeeType());
 		compound.putInt("Hunger", this.getHunger());
 		compound.putInt("Dirtiness", this.getDirtiness());
+		compound.putInt("Paleness", this.getPaleness());
 	}
 
 	@Override
@@ -169,6 +174,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		this.setChimpanzeeType(compound.getInt("ChimpanzeeType"));
 		this.setHunger(compound.getInt("Hunger"));
 		this.setDirtiness(compound.getInt("Dirtiness"));
+		this.setPaleness(compound.getInt("Paleness"));
 	}
 
 	@Override
@@ -277,7 +283,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 			}
 		}
 
-		if (this.world.isRemote && this.needsGrooming()) {
+		if (this.world.isRemote && this.isDirty()) {
 			if (this.ticksExisted % 6 == 0) {
 				double d0 = ((double) this.rand.nextFloat() + 1.0D) * 0.06D;
 				double d1 = this.rand.nextInt(360) - 360.0D;
@@ -332,8 +338,18 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 				this.setHunger(this.getHunger() + 1);
 			}
 
-			if (!this.needsGrooming() && this.getDirtiness() >= 0) {
+			if (!this.isDirty() && this.getDirtiness() >= 0) {
 				this.setDirtiness(this.getDirtiness() + 1);
+			}
+
+			if (this.ticksExisted % 20 == 0 && this.getPaleness() >= 0) {
+				if (this.isInSunlight()) {
+					if (this.getPaleness() >= 0) {
+						this.setPaleness(this.getPaleness() - 1);
+					}
+				} else if (this.getPaleness() < 340) {
+					this.setPaleness(this.getPaleness() + 1);
+				}
 			}
 		} else {
 			this.prevClimbAnim = this.climbAnim;
@@ -446,11 +462,21 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		}
 	}
 
+	public boolean isMouthOpen() {
+		if (this.getAction() == ChimpanzeeEntity.Action.EATING) {
+			return Math.sin(Math.PI * this.ticksExisted * 0.2D) > 0;
+		} else if (this.func_233678_J__() || this.isTempting() || this.isHungry() || this.isPartying()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	@OnlyIn(Dist.CLIENT)
-	public float getClimbAnimationScale(float partialTicks) {
+	public float getClimbingAnimationScale(float partialTicks) {
 		return MathHelper.lerp(partialTicks, this.prevClimbAnim, this.climbAnim) / 8.0F;
 	}
-	
+
 	public boolean isBesideClimbableBlock() {
 		return (this.dataManager.get(CLIMBING) & 1) != 0;
 	}
@@ -615,8 +641,8 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		return this.dataManager.get(HUNGER);
 	}
 
-	public void setHunger(int time) {
-		this.dataManager.set(HUNGER, time);
+	public void setHunger(int amount) {
+		this.dataManager.set(HUNGER, amount);
 	}
 
 	public boolean isHungry() {
@@ -627,12 +653,33 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		return this.dataManager.get(DIRTINESS);
 	}
 
-	public void setDirtiness(int ticks) {
-		this.dataManager.set(DIRTINESS, ticks);
+	public void setDirtiness(int amount) {
+		this.dataManager.set(DIRTINESS, amount);
 	}
 
-	public boolean needsGrooming() {
+	public boolean isDirty() {
 		return this.getDirtiness() >= 12000;
+	}
+
+	public int getPaleness() {
+		return this.dataManager.get(PALENESS);
+	}
+
+	public void setPaleness(int amount) {
+		this.dataManager.set(PALENESS, amount);
+	}
+
+	public boolean needsSunlight() {
+		return this.getPaleness() >= 300;
+	}
+
+	public float getVisiblePaleness() {
+		return MathHelper.clamp((this.getPaleness() - 240.0F) / 60.0F, 0.0F, 1.0F);
+	}
+
+	public boolean isInSunlight() {
+		BlockPos blockpos = this.getRidingEntity() instanceof BoatEntity ? (new BlockPos(this.getPosX(), (double)Math.round(this.getPosY()), this.getPosZ())).up() : new BlockPos(this.getPosX(), (double)Math.round(this.getPosY()), this.getPosZ());
+		return this.world.getLightFor(LightType.SKY, blockpos) > 8;
 	}
 
 	public ChimpanzeeEntity getGroomingTarget() {
@@ -677,7 +724,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	public boolean isSitting() {
 		return this.getAction().shouldSit();
 	}
-	
+
 	public boolean isPartying() {
 		return this.isPartying;
 	}
@@ -748,7 +795,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		public boolean canBeInterrupted() {
 			return this.canBeInterrupted;
 		}
-		
+
 		public boolean shouldSit() {
 			return this.shouldSit;
 		}

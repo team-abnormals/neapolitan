@@ -66,7 +66,7 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends AgeableModel<T>
 	public void setRotationAngles(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 
 		float partialtick = ageInTicks - (float)entity.ticksExisted;
-		float climbanimation1 = entity.getClimbAnimationScale(partialtick);
+		float climbanimation1 = entity.getClimbingAnimationScale(partialtick);
 		float climbanimation2 = Math.min(climbanimation1 * 2.0F, 1.0F);
 		int attackanim = entity.getAttackTimer();
 
