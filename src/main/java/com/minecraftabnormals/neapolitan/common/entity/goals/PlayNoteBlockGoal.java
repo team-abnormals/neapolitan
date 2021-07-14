@@ -3,6 +3,7 @@ package com.minecraftabnormals.neapolitan.common.entity.goals;
 import java.util.EnumSet;
 
 import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
+import com.minecraftabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -66,7 +67,7 @@ public class PlayNoteBlockGoal extends MoveToBlockGoal {
 		this.chimpanzee.getLookController().setLookPosition(this.destinationBlock.getX() + 0.5D, this.destinationBlock.getY() + 0.5D, this.destinationBlock.getZ() + 0.5D, (float)(this.chimpanzee.getHorizontalFaceSpeed() + 20), (float)this.chimpanzee.getVerticalFaceSpeed());
 
 		if (this.getIsAboveDestination() && this.chimpanzee.getNavigator().noPath() && this.chimpanzee.getAction().canBeInterrupted()) {
-			this.chimpanzee.setAction(ChimpanzeeEntity.Action.DRUMMING);
+			this.chimpanzee.setAction(ChimpanzeeAction.DRUMMING);
 
 			if (--this.noteTime <= 0) {
 				BlockState state = this.chimpanzee.world.getBlockState(this.destinationBlock);
@@ -91,7 +92,7 @@ public class PlayNoteBlockGoal extends MoveToBlockGoal {
 
 	private boolean isBlockBeingPlayed(World worldIn, BlockPos pos) {
 		return !worldIn.getEntitiesWithinAABB(ChimpanzeeEntity.class, new AxisAlignedBB(pos.up()), (chimpanzee) -> {
-			return chimpanzee != this.chimpanzee && chimpanzee.getAction() == ChimpanzeeEntity.Action.DRUMMING;
+			return chimpanzee != this.chimpanzee && chimpanzee.getAction() == ChimpanzeeAction.DRUMMING;
 		}).isEmpty();
 	}
 }

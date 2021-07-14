@@ -12,20 +12,18 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class ChimpanzeeHungryParticle extends SpriteTexturedParticle {
-	private ChimpanzeeHungryParticle(ClientWorld world, double x, double y, double z) {
-		super(world, x, y, z, 0.0D, 0.0D, 0.0D);
-		this.motionX *= (double)0.01F;
-		this.motionY *= (double)0.01F;
-		this.motionZ *= (double)0.01F;
-		this.motionY += 0.1D;
-		this.particleScale *= 1.5F;
-		this.maxAge = 16;
-		this.canCollide = false;
-	}
-
-	public IParticleRenderType getRenderType() {
-		return IParticleRenderType.PARTICLE_SHEET_OPAQUE;
+public class TearParticle extends SpriteTexturedParticle {
+	private TearParticle(ClientWorld world, double x, double y, double z, double motionX, double motionY, double motionZ) {
+		super(world, x, y, z, motionX, motionY, motionZ);
+		this.motionX *= (double)0.1F;
+		this.motionY *= (double)0.1F;
+		this.motionZ *= (double)0.1F;
+		this.motionX += motionX * 0.4D;
+		this.motionY += motionY * 0.4D;
+		this.motionZ += motionZ * 0.4D;
+		this.particleScale *= 0.75F;
+		this.particleGravity = 0.06F;
+		this.maxAge = (int) (20.0D / (Math.random() * 0.8D + 0.2D));
 	}
 
 	public float getScale(float scaleFactor) {
@@ -40,20 +38,18 @@ public class ChimpanzeeHungryParticle extends SpriteTexturedParticle {
 			this.setExpired();
 		} else {
 			this.move(this.motionX, this.motionY, this.motionZ);
-			if (this.posY == this.prevPosY) {
-				this.motionX *= 1.1D;
-				this.motionZ *= 1.1D;
-			}
-
-			this.motionX *= (double)0.86F;
-			this.motionY *= (double)0.86F;
-			this.motionZ *= (double)0.86F;
+			this.motionX *= (double)0.7F;
+			this.motionY *= (double)0.7F;
+			this.motionZ *= (double)0.7F;
+			this.motionY -= (double)this.particleGravity;
 			if (this.onGround) {
-				this.motionX *= (double)0.7F;
-				this.motionZ *= (double)0.7F;
+				this.setExpired();
 			}
-
 		}
+	}
+
+	public IParticleRenderType getRenderType() {
+		return IParticleRenderType.PARTICLE_SHEET_OPAQUE;
 	}
 
 	@OnlyIn(Dist.CLIENT)
@@ -65,9 +61,9 @@ public class ChimpanzeeHungryParticle extends SpriteTexturedParticle {
 		}
 
 		public Particle makeParticle(BasicParticleType typeIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-			ChimpanzeeHungryParticle heartparticle = new ChimpanzeeHungryParticle(worldIn, x, y, z);
-			heartparticle.selectSpriteRandomly(this.spriteSet);
-			return heartparticle;
+			TearParticle tearparticle = new TearParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed);
+			tearparticle.selectSpriteRandomly(this.spriteSet);
+			return tearparticle;
 		}
 	}
 }

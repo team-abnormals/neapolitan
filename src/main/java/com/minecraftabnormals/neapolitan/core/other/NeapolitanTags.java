@@ -16,8 +16,8 @@ public class NeapolitanTags {
 	}
 
 	public static class Items {
+		public static final ITag<Item> CHIMPANZEE_BREEDING_ITEMS = ItemTags.makeWrapperTag(id("chimpanzee_breeding_items"));
 		public static final ITag<Item> CHIMPANZEE_FOOD = ItemTags.makeWrapperTag(id("chimpanzee_food"));
-		public static final ITag<Item> CHIMPANZEE_TEMPT_ITEMS = ItemTags.makeWrapperTag(id("chimpanzee_tempt_items"));
 	}
 
 	public static class EntityTypes {

@@ -4,6 +4,7 @@ import java.util.EnumSet;
 import java.util.List;
 
 import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
+import com.minecraftabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
 
 import net.minecraft.entity.ai.goal.Goal;
 
@@ -84,12 +85,10 @@ public class GroomGoal extends Goal {
 			double d0 = this.chimpanzee.getDistanceSq(target);
 
 			if (d0 <= 2.0D && this.chimpanzee.canEntityBeSeen(target)) {
-				if (this.chimpanzee.getAction().canBeInterrupted()) {
-					this.chimpanzee.setAction(ChimpanzeeEntity.Action.GROOMING);
+				this.chimpanzee.setAction(ChimpanzeeAction.GROOMING);
 
-					if (++this.groomTime >= 16) {
-						target.setDirtiness(0);
-					}
+				if (++this.groomTime >= 16) {
+					target.getCleaned();
 				}
 			} else {
 				this.chimpanzee.getNavigator().tryMoveToEntityLiving(target, this.moveSpeed);

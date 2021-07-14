@@ -4,6 +4,7 @@ import java.util.EnumSet;
 import java.util.List;
 
 import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
+import com.minecraftabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
 
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.item.ItemEntity;
@@ -35,7 +36,7 @@ public class ShareBananaGoal extends Goal {
 			double d0 = Double.MAX_VALUE;
 
 			for(ChimpanzeeEntity chimpanzeeentity1 : list) {
-				if (chimpanzeeentity1.isHungry() && chimpanzeeentity1.getFood().isEmpty()) {
+				if (chimpanzeeentity1.isHungry() && chimpanzeeentity1.getFood().isEmpty() && chimpanzeeentity1.getAction() != ChimpanzeeAction.HANGING && chimpanzeeentity1.getAction() != ChimpanzeeAction.SHAKING) {
 					double d1 = this.chimpanzee.getDistanceSq(chimpanzeeentity1);
 					if (!(d1 > d0)) {
 						d0 = d1;
@@ -60,7 +61,7 @@ public class ShareBananaGoal extends Goal {
 		} else if (!this.buddy.isAlive()) {
 			return false;
 		} else if (this.lookTimer < 0) {
-			if (this.chimpanzee.getFood().isEmpty() || !this.buddy.isHungry() || !this.buddy.getFood().isEmpty()) {
+			if (this.chimpanzee.getFood().isEmpty() || !this.buddy.isHungry() || !this.buddy.getFood().isEmpty() || this.buddy.getAction() == ChimpanzeeAction.HANGING || this.buddy.getAction() == ChimpanzeeAction.SHAKING) {
 				return false;
 			} 
 		}

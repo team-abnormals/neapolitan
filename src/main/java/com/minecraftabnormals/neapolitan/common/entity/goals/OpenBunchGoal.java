@@ -3,6 +3,7 @@ package com.minecraftabnormals.neapolitan.common.entity.goals;
 import java.util.EnumSet;
 
 import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
+import com.minecraftabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
 
 import net.minecraft.entity.ai.goal.Goal;
@@ -30,7 +31,7 @@ public class OpenBunchGoal extends Goal {
 
 	@Override
 	public void startExecuting() {
-		this.chimpanzee.setAction(ChimpanzeeEntity.Action.DEFAULT);
+		this.chimpanzee.setAction(ChimpanzeeAction.DEFAULT);
 		this.chimpanzee.getNavigator().clearPath();
 		this.throwTimer = 0;
 	}
@@ -64,7 +65,7 @@ public class OpenBunchGoal extends Goal {
 		} else if (this.throwTimer >= 60) {
 			return false;
 		} else {
-			return this.chimpanzee.getAction() == ChimpanzeeEntity.Action.DEFAULT;
+			return this.chimpanzee.getAction() == ChimpanzeeAction.DEFAULT;
 		}
 	}
 }

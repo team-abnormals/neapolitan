@@ -66,8 +66,6 @@ public class TemptBananaGoal extends Goal {
 		this.forgetTimer = 100;
 		this.patience = 60;
 		this.playerDistance = this.chimpanzee.getDistanceSq(this.closestPlayer);
-		
-		this.chimpanzee.setTempting(true);
 	}
 
 	@Override
@@ -75,7 +73,6 @@ public class TemptBananaGoal extends Goal {
 		this.closestPlayer = null;
 		this.chimpanzee.getNavigator().clearPath();
 		this.delayTemptCounter = 100;
-		this.chimpanzee.setTempting(false);
 	}
 
 	@Override

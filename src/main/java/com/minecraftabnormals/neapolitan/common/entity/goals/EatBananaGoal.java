@@ -3,6 +3,7 @@ package com.minecraftabnormals.neapolitan.common.entity.goals;
 import java.util.EnumSet;
 
 import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
+import com.minecraftabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
 
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.item.ItemStack;
@@ -32,7 +33,7 @@ public class EatBananaGoal extends Goal {
 
 	@Override
 	public void startExecuting() {
-		this.chimpanzee.setAction(ChimpanzeeEntity.Action.EATING);
+		this.chimpanzee.setAction(ChimpanzeeAction.EATING);
 		this.chimpanzee.getNavigator().clearPath();
 		this.eatTime = 100;
 	}
@@ -50,7 +51,7 @@ public class EatBananaGoal extends Goal {
 	@Override
 	public boolean shouldContinueExecuting() {
 		ItemStack food = this.chimpanzee.getFood();
-		return !food.isEmpty() && food.isFood() && this.chimpanzee.getAction() == ChimpanzeeEntity.Action.EATING;
+		return !food.isEmpty() && food.isFood() && this.chimpanzee.getAction() == ChimpanzeeAction.EATING;
 	}
 
 	@Override

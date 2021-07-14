@@ -4,6 +4,7 @@ import java.util.EnumSet;
 
 import com.minecraftabnormals.neapolitan.common.entity.BananaPeelEntity;
 import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
+import com.minecraftabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEntities;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
@@ -30,7 +31,17 @@ public class ShakeBundleGoal extends MoveToBlockGoal {
 
 	@Override
 	public boolean shouldExecute() {
-		return this.chimpanzee.isHungry() && this.chimpanzee.getFood().isEmpty() && !this.chimpanzee.isChild() && super.shouldExecute();
+		if (this.chimpanzee.isDirty() || this.chimpanzee.needsSunlight()) {
+			return false;
+		} else if (!this.chimpanzee.isHungry() || !this.chimpanzee.getFood().isEmpty()) {
+			return false;
+		} else if (this.chimpanzee.isChild()) {
+			return false;
+		} else if (this.chimpanzee.isPassenger()) {
+			return false;
+		} else {
+			return super.shouldExecute();
+		}
 	}
 
 	@Override
@@ -65,7 +76,7 @@ public class ShakeBundleGoal extends MoveToBlockGoal {
 			this.chimpanzee.setMotion(this.chimpanzee.getMotion().mul(0.4D, 0.0D, 0.4D).add(0.0D, 0.1D, 0.0D));
 
 			if (this.shakingTime > 30) {
-				this.chimpanzee.setAction(ChimpanzeeEntity.Action.SHAKING);
+				this.chimpanzee.setAction(ChimpanzeeAction.SHAKING);
 
 				if (this.shakingTime >= this.nextBananaTime) {
 					if (this.chimpanzee.getRNG().nextInt(4) == 0) {
@@ -79,11 +90,11 @@ public class ShakeBundleGoal extends MoveToBlockGoal {
 						itementity.setDefaultPickupDelay();
 						this.chimpanzee.world.addEntity(itementity);
 					}
-					
+
 					this.nextBananaTime = this.shakingTime + this.getNextBananaTime();
 				}
 			} else {
-				this.chimpanzee.setAction(ChimpanzeeEntity.Action.HANGING);
+				this.chimpanzee.setAction(ChimpanzeeAction.HANGING);
 			}
 
 			++this.shakingTime;

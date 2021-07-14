@@ -8,6 +8,7 @@ import java.util.EnumSet;
 import java.util.List;
 
 import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
+import com.minecraftabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
 
 public class GrabBananaGoal extends Goal {
 	private final ChimpanzeeEntity chimpanzee;
@@ -27,7 +28,7 @@ public class GrabBananaGoal extends Goal {
 			return false;
 		} else if (!this.chimpanzee.isHungry()) {
 			return false;
-		} else if (this.chimpanzee.getAction() == ChimpanzeeEntity.Action.SHAKING) {
+		} else if (this.chimpanzee.getAction() == ChimpanzeeAction.SHAKING) {
 			return false;
 		} else {
 			List<ItemEntity> list = this.chimpanzee.world.getEntitiesWithinAABB(ItemEntity.class, this.chimpanzee.getBoundingBox().grow(12.0D, 4.0D, 12.0D));
@@ -61,13 +62,11 @@ public class GrabBananaGoal extends Goal {
 	@Override
 	public void startExecuting() {
 		this.delayCounter = 0;
-		this.chimpanzee.setTempting(true);
 	}
 
 	@Override
 	public void resetTask() {
 		this.itemEntity = null;
-		this.chimpanzee.setTempting(false);
 	}
 
 	@Override
