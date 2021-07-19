@@ -27,7 +27,7 @@ public class ShakeHeadGoal extends Goal {
 			} else if (this.chimpanzee.needsSunlight() && !this.chimpanzee.isInSunlight()) {
 				this.chimpanzee.world.setEntityState(this.chimpanzee, (byte) 7);
 				return true;
-			} else if (this.chimpanzee.isHungry() && this.chimpanzee.getFood().isEmpty()) {
+			} else if (this.chimpanzee.needsFood()) {
 				this.chimpanzee.world.setEntityState(this.chimpanzee, (byte) 8);
 				return true;
 			}

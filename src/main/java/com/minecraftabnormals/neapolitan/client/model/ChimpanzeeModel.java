@@ -68,7 +68,7 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends AgeableModel<T>
 
 		float partialtick = ageInTicks - (float)entity.ticksExisted;
 		float climbanimation1 = entity.getClimbingAnimationScale(partialtick);
-		float climbanimation2 = Math.min(climbanimation1 * 2.0F, 1.0F);
+		float climbanimation2 = Math.min(climbanimation1 * 5.0F / 3.0F, 1.0F);
 		int attackanim = entity.getAttackTimer();
 
 		if (entity.getAction() != ChimpanzeeAction.EATING) {

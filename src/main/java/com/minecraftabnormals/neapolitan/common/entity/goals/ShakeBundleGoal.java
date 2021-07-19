@@ -1,6 +1,8 @@
 package com.minecraftabnormals.neapolitan.common.entity.goals;
 
 import java.util.EnumSet;
+import java.util.List;
+import java.util.function.Predicate;
 
 import com.minecraftabnormals.neapolitan.common.entity.BananaPeelEntity;
 import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
@@ -33,7 +35,7 @@ public class ShakeBundleGoal extends MoveToBlockGoal {
 	public boolean shouldExecute() {
 		if (this.chimpanzee.isDirty() || this.chimpanzee.needsSunlight()) {
 			return false;
-		} else if (!this.chimpanzee.isHungry() || !this.chimpanzee.getFood().isEmpty()) {
+		} else if (!this.chimpanzee.needsFood()) {
 			return false;
 		} else if (this.chimpanzee.isChild()) {
 			return false;
@@ -79,13 +81,16 @@ public class ShakeBundleGoal extends MoveToBlockGoal {
 				this.chimpanzee.setAction(ChimpanzeeAction.SHAKING);
 
 				if (this.shakingTime >= this.nextBananaTime) {
+					double d0 = this.bundlePos.getX() + this.chimpanzee.getRNG().nextDouble() * 0.5D + 0.25D;
+					double d1 = this.bundlePos.getZ() + this.chimpanzee.getRNG().nextDouble() * 0.5D + 0.25D;
+							
 					if (this.chimpanzee.getRNG().nextInt(4) == 0) {
 						BananaPeelEntity bananapeel = NeapolitanEntities.BANANA_PEEL.get().create(this.chimpanzee.world);
-						bananapeel.setLocationAndAngles(this.bundlePos.getX() + this.chimpanzee.getRNG().nextDouble(), this.bundlePos.getY() - 0.5D, this.bundlePos.getZ() + this.chimpanzee.getRNG().nextDouble(), this.chimpanzee.rotationYaw, 0.0F);
+						bananapeel.setLocationAndAngles(d0, this.bundlePos.getY() - 0.5D, d1, this.chimpanzee.rotationYaw, 0.0F);
 						bananapeel.setMotion(this.chimpanzee.getRNG().nextDouble() * 0.4D - 0.2D, -0.1D, this.chimpanzee.getRNG().nextDouble() * 0.4D - 0.2D);
 						this.chimpanzee.world.addEntity(bananapeel);
 					} else {
-						ItemEntity itementity = new ItemEntity(this.chimpanzee.world, this.bundlePos.getX() + this.chimpanzee.getRNG().nextDouble(), this.bundlePos.getY() - 0.25D, this.bundlePos.getZ() + this.chimpanzee.getRNG().nextDouble(), new ItemStack(NeapolitanItems.BANANA_BUNCH.get()));
+						ItemEntity itementity = new ItemEntity(this.chimpanzee.world, d0, this.bundlePos.getY() - 0.25D, d1, new ItemStack(NeapolitanItems.BANANA_BUNCH.get()));
 						itementity.setMotion(this.chimpanzee.getRNG().nextDouble() * 0.4D - 0.2D, -0.1D, this.chimpanzee.getRNG().nextDouble() * 0.4D - 0.2D);
 						itementity.setDefaultPickupDelay();
 						this.chimpanzee.world.addEntity(itementity);

@@ -32,9 +32,7 @@ public class TemptBananaGoal extends Goal {
 		if (this.delayTemptCounter > 0) {
 			--this.delayTemptCounter;
 			return false;
-		} else if (!this.chimpanzee.isHungry()) {
-			return false;
-		} else if (!this.chimpanzee.getFood().isEmpty()) {
+		} else if (!this.chimpanzee.needsFood()) {
 			return false;
 		} else {
 			this.closestPlayer = this.chimpanzee.world.getClosestPlayer(ENTITY_PREDICATE, this.chimpanzee);
@@ -57,7 +55,7 @@ public class TemptBananaGoal extends Goal {
 		} else if (this.closestPlayer == null || !ENTITY_PREDICATE.canTarget(this.chimpanzee, this.closestPlayer)) {
 			return false;
 		} else {
-			return this.chimpanzee.isHungry() && this.chimpanzee.getFood().isEmpty() && ENTITY_PREDICATE.canTarget(this.chimpanzee, this.closestPlayer);
+			return this.chimpanzee.needsFood() && ENTITY_PREDICATE.canTarget(this.chimpanzee, this.closestPlayer);
 		}
 	}
 

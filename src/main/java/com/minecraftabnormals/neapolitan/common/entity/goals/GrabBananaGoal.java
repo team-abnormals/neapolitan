@@ -24,9 +24,7 @@ public class GrabBananaGoal extends Goal {
 
 	@Override
 	public boolean shouldExecute() {
-		if (!this.chimpanzee.getFood().isEmpty()) {
-			return false;
-		} else if (!this.chimpanzee.isHungry()) {
+		if (!this.chimpanzee.needsFood()) {
 			return false;
 		} else if (this.chimpanzee.getAction() == ChimpanzeeAction.SHAKING) {
 			return false;

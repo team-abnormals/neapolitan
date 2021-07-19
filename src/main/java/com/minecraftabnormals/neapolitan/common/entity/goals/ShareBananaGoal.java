@@ -30,7 +30,7 @@ public class ShareBananaGoal extends Goal {
 	public boolean shouldExecute() {
 		if (this.chimpanzee.isChild() || this.chimpanzee.getFood().isEmpty() || this.chimpanzee.isHungry()) {
 			return false;
-		} else if (this.chimpanzee.getRNG().nextInt(80) == 0) {
+		} else if (this.chimpanzee.getRNG().nextInt(100) == 0) {
 			List<ChimpanzeeEntity> list = this.chimpanzee.world.getEntitiesWithinAABB(ChimpanzeeEntity.class, this.chimpanzee.getBoundingBox().grow(8.0D, 4.0D, 8.0D));
 			ChimpanzeeEntity chimpanzeeentity = null;
 			double d0 = Double.MAX_VALUE;
