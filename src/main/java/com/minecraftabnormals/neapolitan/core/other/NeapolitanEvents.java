@@ -127,7 +127,7 @@ public class NeapolitanEvents {
 			}
 		}
 
-		if (entity instanceof LivingEntity && !(entity instanceof ChimpanzeeEntity) && stack.getItem() == NeapolitanItems.BANANA_BUNCH.get()) {
+		if (entity instanceof LivingEntity && !NeapolitanTags.EntityTypes.UNAFFECTED_BY_SLIPPING.contains(entity.getType()) && stack.getItem() == NeapolitanItems.BANANA_BUNCH.get()) {
 			ActionResultType actionresulttype = stack.interactLivingEntity(player, (LivingEntity) entity, hand);
 			if (actionresulttype.consumesAction()) {
 				event.setCanceled(true);

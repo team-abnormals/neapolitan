@@ -66,7 +66,7 @@ public class FollowOthersGoal extends Goal {
 			return false;
 		} else {
 			double d0 = this.chimpanzee.distanceToSqr(this.buddy);
-			return !(d0 < 9.0D) && !(d0 > 256.0D);
+			return !(d0 < 16.0D) && !(d0 > 256.0D);
 		}
 	}
 
@@ -76,6 +76,7 @@ public class FollowOthersGoal extends Goal {
 
 	public void stop() {
 		this.buddy = null;
+		this.chimpanzee.getNavigation().stop();
 	}
 
 	public void tick() {
@@ -86,6 +87,6 @@ public class FollowOthersGoal extends Goal {
 	}
 	
 	private double getFollowDistance(ChimpanzeeEntity chimpanzeeentity) {
-		return chimpanzeeentity.isLeader() && chimpanzeeentity.getNavigation().isInProgress() ? 9.0D : 36.0D;
+		return chimpanzeeentity.isLeader() && chimpanzeeentity.getNavigation().isInProgress() ? 16.0D : 64.0D;
 	}
 }

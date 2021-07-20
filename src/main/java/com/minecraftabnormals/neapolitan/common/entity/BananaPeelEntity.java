@@ -1,5 +1,6 @@
 package com.minecraftabnormals.neapolitan.common.entity;
 
+import com.minecraftabnormals.neapolitan.core.other.NeapolitanTags;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEffects;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEntities;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
@@ -87,7 +88,7 @@ public class BananaPeelEntity extends Entity {
 	@Override
 	public void push(Entity entityIn) {
 		super.push(entityIn);
-		if (this.onGround && entityIn instanceof LivingEntity && !(entityIn instanceof ChimpanzeeEntity) && !this.level.isClientSide()) {
+		if (this.onGround && entityIn instanceof LivingEntity && !NeapolitanTags.EntityTypes.UNAFFECTED_BY_SLIPPING.contains(entityIn.getType()) && !this.level.isClientSide()) {
 			((LivingEntity) entityIn).addEffect(new EffectInstance(NeapolitanEffects.SLIPPING.get(), 100));
 		}
 	}

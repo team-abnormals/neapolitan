@@ -1,6 +1,7 @@
 package com.minecraftabnormals.neapolitan.common.item;
 
 import com.minecraftabnormals.neapolitan.common.entity.BananaPeelEntity;
+import com.minecraftabnormals.neapolitan.core.other.NeapolitanTags;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEntities;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanSounds;
@@ -17,8 +18,6 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
-
-import net.minecraft.item.Item.Properties;
 
 public class BananaBunchItem extends Item {
 
@@ -40,10 +39,14 @@ public class BananaBunchItem extends Item {
 
 	@Override
 	public ActionResultType interactLivingEntity(ItemStack stack, PlayerEntity player, LivingEntity target, Hand hand) {
-		World world = player.level;
-		this.placeBanana(world, target.getX(), target.getY(), target.getZ(), player.getViewYRot(1.0F));
-		this.handleOpening(world, player, hand, stack);
-		return ActionResultType.sidedSuccess(world.isClientSide);
+		if (!NeapolitanTags.EntityTypes.UNAFFECTED_BY_SLIPPING.contains(target.getType())) {
+			World world = player.level;
+			this.placeBanana(world, target.getX(), target.getY(), target.getZ(), player.getViewYRot(1.0F));
+			this.handleOpening(world, player, hand, stack);
+			return ActionResultType.sidedSuccess(world.isClientSide);
+		} else {
+			return super.interactLivingEntity(stack, player, target, hand);
+		}
 	}
 
 	@Override

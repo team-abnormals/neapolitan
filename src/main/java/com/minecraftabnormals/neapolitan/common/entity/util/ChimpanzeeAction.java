@@ -3,8 +3,6 @@ package com.minecraftabnormals.neapolitan.common.entity.util;
 import java.util.Arrays;
 import java.util.Comparator;
 
-import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
-
 public enum ChimpanzeeAction {
 	DEFAULT(0, true, false),
 	CLIMBING(1, false, false),

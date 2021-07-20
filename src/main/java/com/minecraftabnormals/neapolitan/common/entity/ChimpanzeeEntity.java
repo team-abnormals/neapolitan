@@ -87,8 +87,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	private static final DataParameter<Byte> CLIMBING = EntityDataManager.defineId(ChimpanzeeEntity.class, DataSerializers.BYTE);
 	private static final DataParameter<Direction> FACING = EntityDataManager.defineId(ChimpanzeeEntity.class, DataSerializers.DIRECTION);
 
-	public static final EntitySize SIZE_SITTING = EntitySize.fixed(0.6F, 1.0F);
-	public static final EntitySize SIZE_SITTING_CHILD = EntitySize.fixed(0.3F, 0.5F);
+	public static final EntitySize SITTING_DIMENSIONS = EntitySize.fixed(0.6F, 1.0F);
 
 	private static final RangedInteger ANGER_RANGE = TickRangeConverter.rangeOfSeconds(20, 39);
 	private UUID lastHurtBy;
@@ -120,28 +119,26 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	@Override
 	protected void registerGoals() {
 		this.goalSelector.addGoal(0, new SwimGoal(this));
-		this.goalSelector.addGoal(1, new RestrictRainGoal(this));
-		this.goalSelector.addGoal(2, new GrabBananaGoal(this, 1.25D));
-		this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 1.25D, false));
-		this.goalSelector.addGoal(4, new BreedGoal(this, 1.0D));
-		this.goalSelector.addGoal(5, new OpenBunchGoal(this));
-		this.goalSelector.addGoal(6, new EatBananaGoal(this));
-		this.goalSelector.addGoal(7, new TemptBananaGoal(this, 1.25D));
-		this.goalSelector.addGoal(8, new TemptGoal(this, 1.25D, Ingredient.of(NeapolitanTags.Items.CHIMPANZEE_SNACKS), false));
-		this.goalSelector.addGoal(9, new FollowParentGoal(this, 1.25D));
-		this.goalSelector.addGoal(10, new ShakeBundleGoal(this, 1.0D, 32, 12));
-		this.goalSelector.addGoal(11, new ShareBananaGoal(this, 1.0D));
-		this.goalSelector.addGoal(12, new BeGroomedGoal(this));
-		this.goalSelector.addGoal(13, new GroomGoal(this, 1.0D));
-		this.goalSelector.addGoal(14, new FollowOthersGoal(this, 1.0D));
-		this.goalSelector.addGoal(15, new HideFromRainGoal(this, 1.1D, 24, 6));
-		this.goalSelector.addGoal(16, new CryGoal(this));
-		this.goalSelector.addGoal(17, new ShakeHeadGoal(this));
-		this.goalSelector.addGoal(18, new PlayNoteBlockGoal(this, 1.0D, 16));
-		this.goalSelector.addGoal(19, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-		this.goalSelector.addGoal(20, new LookAtGoal(this, PlayerEntity.class, 6.0F));
-		this.goalSelector.addGoal(21, new LookAtGoal(this, ChimpanzeeEntity.class, 6.0F));
-		this.goalSelector.addGoal(22, new LookRandomlyGoal(this));
+		this.goalSelector.addGoal(1, new GrabBananaGoal(this, 1.25D));
+		this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.25D, false));
+		this.goalSelector.addGoal(3, new BreedGoal(this, 1.0D));
+		this.goalSelector.addGoal(4, new OpenBunchGoal(this));
+		this.goalSelector.addGoal(5, new EatBananaGoal(this));
+		this.goalSelector.addGoal(6, new TemptBananaGoal(this, 1.25D));
+		this.goalSelector.addGoal(7, new TemptGoal(this, 1.25D, Ingredient.of(NeapolitanTags.Items.CHIMPANZEE_FOOD), false));
+		this.goalSelector.addGoal(8, new FollowParentGoal(this, 1.25D));
+		this.goalSelector.addGoal(9, new ShakeBundleGoal(this, 1.0D, 32, 12));
+		this.goalSelector.addGoal(10, new ShareBananaGoal(this, 1.0D));
+		this.goalSelector.addGoal(11, new BeGroomedGoal(this));
+		this.goalSelector.addGoal(12, new GroomGoal(this, 1.0D));
+		this.goalSelector.addGoal(13, new FollowOthersGoal(this, 1.0D));
+		this.goalSelector.addGoal(14, new CryGoal(this));
+		this.goalSelector.addGoal(15, new ShakeHeadGoal(this));
+		this.goalSelector.addGoal(16, new PlayNoteBlockGoal(this, 1.0D, 16));
+		this.goalSelector.addGoal(17, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+		this.goalSelector.addGoal(18, new LookAtGoal(this, PlayerEntity.class, 6.0F));
+		this.goalSelector.addGoal(19, new LookAtGoal(this, ChimpanzeeEntity.class, 6.0F));
+		this.goalSelector.addGoal(20, new LookRandomlyGoal(this));
 
 		this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10, true, false, this::isAngryAt));
 		this.targetSelector.addGoal(1, new HurtByTargetGoal(this).setAlertOthers());
@@ -420,15 +417,6 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 			return ActionResultType.PASS;
 		}
 
-		if (itemstack.getItem() == NeapolitanItems.BANANA_BUNCH.get()) {
-			if (this.getAge() > 0 || !this.canFallInLove()) {
-				ActionResultType result = itemstack.interactLivingEntity(player, this, hand);
-				if (result.consumesAction()) {
-					return result;
-				}
-			}
-		}
-
 		return super.mobInteract(player, hand);
 	}
 
@@ -445,6 +433,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 
 	public void eatSnack() {
 		if (!this.getSnack().isEmpty()) {
+			this.heal((float)this.getSnack().getItem().getFoodProperties().getNutrition());
 			this.setItemInHand(this.getSnackHand(), this.getSnack().finishUsingItem(this.level, this));
 		}
 		this.setHunger(0);
@@ -501,7 +490,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	@Override
 	public EntitySize getDimensions(Pose pose) {
 		if (this.isSitting()) {
-			return this.isBaby() ? SIZE_SITTING_CHILD : SIZE_SITTING;
+			return SITTING_DIMENSIONS.scale(this.getScale());
 		} else {
 			return super.getDimensions(pose);
 		}
@@ -575,6 +564,11 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 			return chimpanzeeentity != this && chimpanzeeentity.getAge() >= 0;
 		};
 		List<ChimpanzeeEntity> list = this.level.getEntitiesOfClass(ChimpanzeeEntity.class, this.getBoundingBox().inflate(8.0D, 8.0D, 8.0D), predicate);
+		
+		if (list.isEmpty()) {
+			return false;
+		}
+		
 		int chimpamount = list.size() + 1;
 		int leaderamount = 0;
 		
@@ -596,7 +590,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	// SPAWNING //
 
 	public static boolean canChimpanzeeSpawn(EntityType<ChimpanzeeEntity> entity, IWorld world, SpawnReason reason, BlockPos pos, Random random) {
-		return random.nextInt(3) != 0;
+		return world.getRawBrightness(pos, 0) > 8 && random.nextInt(3) != 0;
 	}
 
 	@Override
@@ -648,6 +642,10 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		this.entityData.set(ANGER_TIME, time);
 	}
 
+	public void setPickUpTimer(int time) {
+		this.pickUpTimer = time;
+	}
+	
 	public ChimpanzeeEntity getGroomingTarget() {
 		return this.groomingTarget;
 	}
@@ -798,10 +796,6 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 
 	// ANIMATION //
 
-	public void setPickUpTimer(int time) {
-		this.pickUpTimer = time;
-	}
-
 	public boolean isPartying() {
 		return this.isPartying;
 	}
@@ -816,8 +810,6 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	public boolean isMouthOpen() {
 		if (this.getAction() == ChimpanzeeAction.EATING) {
 			return Math.sin(Math.PI * this.tickCount * 0.2D) > 0;
-		} else if (this.getAction() == ChimpanzeeAction.HUNCHING) {
-			return false;
 		} else if (this.getAction() == ChimpanzeeAction.CRYING || this.isAngry() || this.isHungry() || this.isPartying()) {
 			return true;
 		} else {
