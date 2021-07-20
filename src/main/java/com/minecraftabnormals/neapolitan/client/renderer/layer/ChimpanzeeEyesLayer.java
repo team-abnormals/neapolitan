@@ -25,14 +25,14 @@ public class ChimpanzeeEyesLayer<T extends ChimpanzeeEntity> extends AbstractEye
 
 	@Override
 	public void render(MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn, T chimpanzee, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
-		if (chimpanzee.world.getLight(chimpanzee.getPosition()) > 5)
+		if (chimpanzee.level.getMaxLocalRawBrightness(chimpanzee.blockPosition()) > 5)
 			return;
-		IVertexBuilder ivertexbuilder = bufferIn.getBuffer(this.getRenderType());
-		this.getEntityModel().render(matrixStackIn, ivertexbuilder, 15728640, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+		IVertexBuilder ivertexbuilder = bufferIn.getBuffer(this.renderType());
+		this.getParentModel().renderToBuffer(matrixStackIn, ivertexbuilder, 15728640, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
 	}
 
 	@Override
-	public RenderType getRenderType() {
+	public RenderType renderType() {
 		return RENDER_TYPE;
 	}
 }

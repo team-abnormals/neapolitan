@@ -19,23 +19,23 @@ public class GrabBananaGoal extends Goal {
 	public GrabBananaGoal(ChimpanzeeEntity chimpanzeeIn, double speed) {
 		this.chimpanzee = chimpanzeeIn;
 		this.moveSpeed = speed;
-		this.setMutexFlags(EnumSet.of(Goal.Flag.JUMP, Goal.Flag.MOVE, Goal.Flag.LOOK));
+		this.setFlags(EnumSet.of(Goal.Flag.JUMP, Goal.Flag.MOVE, Goal.Flag.LOOK));
 	}
 
 	@Override
-	public boolean shouldExecute() {
-		if (!this.chimpanzee.needsFood()) {
+	public boolean canUse() {
+		if (!this.chimpanzee.needsSnack()) {
 			return false;
 		} else if (this.chimpanzee.getAction() == ChimpanzeeAction.SHAKING) {
 			return false;
 		} else {
-			List<ItemEntity> list = this.chimpanzee.world.getEntitiesWithinAABB(ItemEntity.class, this.chimpanzee.getBoundingBox().grow(12.0D, 4.0D, 12.0D));
+			List<ItemEntity> list = this.chimpanzee.level.getEntitiesOfClass(ItemEntity.class, this.chimpanzee.getBoundingBox().inflate(12.0D, 4.0D, 12.0D));
 			ItemEntity item = null;
 			double d0 = Double.MAX_VALUE;
 
 			for (ItemEntity item1 : list) {
 				if (this.chimpanzee.isFood(item1.getItem())) {
-					double d1 = this.chimpanzee.getDistanceSq(item1);
+					double d1 = this.chimpanzee.distanceToSqr(item1);
 					if (d1 < d0) {
 						d0 = d1;
 						item = item1;
@@ -53,17 +53,17 @@ public class GrabBananaGoal extends Goal {
 	}
 
 	@Override
-	public boolean shouldContinueExecuting() {
-		return this.chimpanzee.getFood().isEmpty() && this.itemEntity != null && this.itemEntity.isAlive();
+	public boolean canContinueToUse() {
+		return this.chimpanzee.getSnack().isEmpty() && this.itemEntity != null && this.itemEntity.isAlive();
 	}
 
 	@Override
-	public void startExecuting() {
+	public void start() {
 		this.delayCounter = 0;
 	}
 
 	@Override
-	public void resetTask() {
+	public void stop() {
 		this.itemEntity = null;
 	}
 
@@ -71,10 +71,10 @@ public class GrabBananaGoal extends Goal {
 	public void tick() {
 		if (--this.delayCounter <= 0) {
 			this.delayCounter = 10;
-			this.chimpanzee.getLookController().setLookPositionWithEntity(this.itemEntity, 30.0F, 30.0F);
-			Path path = this.chimpanzee.getNavigator().getPathToEntity(this.itemEntity, 0);
+			this.chimpanzee.getLookControl().setLookAt(this.itemEntity, 30.0F, 30.0F);
+			Path path = this.chimpanzee.getNavigation().createPath(this.itemEntity, 0);
 			if (path != null) {
-				this.chimpanzee.getNavigator().setPath(path, this.moveSpeed);
+				this.chimpanzee.getNavigation().moveTo(path, this.moveSpeed);
 			}
 		}
 	}

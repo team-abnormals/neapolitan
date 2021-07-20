@@ -78,19 +78,19 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
-	private static final DataParameter<Integer> CHIMPANZEE_TYPE = EntityDataManager.createKey(ChimpanzeeEntity.class, DataSerializers.VARINT);
-	private static final DataParameter<Integer> ANGER_TIME = EntityDataManager.createKey(ChimpanzeeEntity.class, DataSerializers.VARINT);
-	private static final DataParameter<Integer> HUNGER = EntityDataManager.createKey(ChimpanzeeEntity.class, DataSerializers.VARINT);
-	private static final DataParameter<Integer> DIRTINESS = EntityDataManager.createKey(ChimpanzeeEntity.class, DataSerializers.VARINT);
-	private static final DataParameter<Integer> PALENESS = EntityDataManager.createKey(ChimpanzeeEntity.class, DataSerializers.VARINT);
-	private static final DataParameter<Byte> ACTION = EntityDataManager.createKey(ChimpanzeeEntity.class, DataSerializers.BYTE);
-	private static final DataParameter<Byte> CLIMBING = EntityDataManager.createKey(ChimpanzeeEntity.class, DataSerializers.BYTE);
-	private static final DataParameter<Direction> FACING = EntityDataManager.createKey(ChimpanzeeEntity.class, DataSerializers.DIRECTION);
+	private static final DataParameter<Integer> CHIMPANZEE_TYPE = EntityDataManager.defineId(ChimpanzeeEntity.class, DataSerializers.INT);
+	private static final DataParameter<Integer> ANGER_TIME = EntityDataManager.defineId(ChimpanzeeEntity.class, DataSerializers.INT);
+	private static final DataParameter<Integer> HUNGER = EntityDataManager.defineId(ChimpanzeeEntity.class, DataSerializers.INT);
+	private static final DataParameter<Integer> DIRTINESS = EntityDataManager.defineId(ChimpanzeeEntity.class, DataSerializers.INT);
+	private static final DataParameter<Integer> PALENESS = EntityDataManager.defineId(ChimpanzeeEntity.class, DataSerializers.INT);
+	private static final DataParameter<Byte> ACTION = EntityDataManager.defineId(ChimpanzeeEntity.class, DataSerializers.BYTE);
+	private static final DataParameter<Byte> CLIMBING = EntityDataManager.defineId(ChimpanzeeEntity.class, DataSerializers.BYTE);
+	private static final DataParameter<Direction> FACING = EntityDataManager.defineId(ChimpanzeeEntity.class, DataSerializers.DIRECTION);
 
 	public static final EntitySize SIZE_SITTING = EntitySize.fixed(0.6F, 1.0F);
 	public static final EntitySize SIZE_SITTING_CHILD = EntitySize.fixed(0.3F, 0.5F);
 
-	private static final RangedInteger ANGER_RANGE = TickRangeConverter.convertRange(20, 39);
+	private static final RangedInteger ANGER_RANGE = TickRangeConverter.rangeOfSeconds(20, 39);
 	private UUID lastHurtBy;
 	private int attackTimer;
 	private int pickUpTimer;
@@ -113,7 +113,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 
 	public ChimpanzeeEntity(EntityType<? extends AnimalEntity> type, World worldIn) {
 		super(type, worldIn);
-		this.lookController = new ChimpanzeeEntity.LookHelperController();
+		this.lookControl = new ChimpanzeeEntity.LookHelperController();
 		this.setCanPickUpLoot(true);
 	}
 
@@ -127,7 +127,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		this.goalSelector.addGoal(5, new OpenBunchGoal(this));
 		this.goalSelector.addGoal(6, new EatBananaGoal(this));
 		this.goalSelector.addGoal(7, new TemptBananaGoal(this, 1.25D));
-		this.goalSelector.addGoal(8, new TemptGoal(this, 1.25D, Ingredient.fromTag(NeapolitanTags.Items.CHIMPANZEE_FOOD), false));
+		this.goalSelector.addGoal(8, new TemptGoal(this, 1.25D, Ingredient.of(NeapolitanTags.Items.CHIMPANZEE_SNACKS), false));
 		this.goalSelector.addGoal(9, new FollowParentGoal(this, 1.25D));
 		this.goalSelector.addGoal(10, new ShakeBundleGoal(this, 1.0D, 32, 12));
 		this.goalSelector.addGoal(11, new ShareBananaGoal(this, 1.0D));
@@ -143,32 +143,32 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		this.goalSelector.addGoal(21, new LookAtGoal(this, ChimpanzeeEntity.class, 6.0F));
 		this.goalSelector.addGoal(22, new LookRandomlyGoal(this));
 
-		this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10, true, false, this::func_233680_b_));
-		this.targetSelector.addGoal(1, new HurtByTargetGoal(this).setCallsForHelp());
+		this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10, true, false, this::isAngryAt));
+		this.targetSelector.addGoal(1, new HurtByTargetGoal(this).setAlertOthers());
 		this.targetSelector.addGoal(2, new ResetAngerGoal<>(this, true));
 	}
 
 	public static AttributeModifierMap.MutableAttribute registerAttributes() {
-		return AnimalEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 10.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double) 0.3F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 3.0D);
+		return AnimalEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 10.0D).add(Attributes.MOVEMENT_SPEED, (double) 0.3F).add(Attributes.ATTACK_DAMAGE, 3.0D);
 	}
 
 	@Override
-	protected void registerData() {
-		super.registerData();
-		this.dataManager.register(CHIMPANZEE_TYPE, 0);
-		this.dataManager.register(ANGER_TIME, 0);
-		this.dataManager.register(HUNGER, 0);
-		this.dataManager.register(DIRTINESS, 0);
-		this.dataManager.register(PALENESS, 0);
-		this.dataManager.register(ACTION, (byte) 0);
-		this.dataManager.register(CLIMBING, (byte) 0);
-		this.dataManager.register(FACING, Direction.DOWN);
+	protected void defineSynchedData() {
+		super.defineSynchedData();
+		this.entityData.define(CHIMPANZEE_TYPE, 0);
+		this.entityData.define(ANGER_TIME, 0);
+		this.entityData.define(HUNGER, 0);
+		this.entityData.define(DIRTINESS, 0);
+		this.entityData.define(PALENESS, 0);
+		this.entityData.define(ACTION, (byte) 0);
+		this.entityData.define(CLIMBING, (byte) 0);
+		this.entityData.define(FACING, Direction.DOWN);
 	}
 
 	@Override
-	public void writeAdditional(CompoundNBT compound) {
-		super.writeAdditional(compound);
-		this.writeAngerNBT(compound);
+	public void addAdditionalSaveData(CompoundNBT compound) {
+		super.addAdditionalSaveData(compound);
+		this.addPersistentAngerSaveData(compound);
 		compound.putInt("ChimpanzeeType", this.getChimpanzeeType());
 		compound.putInt("Hunger", this.getHunger());
 		compound.putInt("Dirtiness", this.getDirtiness());
@@ -176,9 +176,9 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	}
 
 	@Override
-	public void readAdditional(CompoundNBT compound) {
-		super.readAdditional(compound);
-		this.readAngerNBT((ServerWorld) this.world, compound);
+	public void readAdditionalSaveData(CompoundNBT compound) {
+		super.readAdditionalSaveData(compound);
+		this.readPersistentAngerSaveData((ServerWorld) this.level, compound);
 		this.setChimpanzeeType(compound.getInt("ChimpanzeeType"));
 		this.setHunger(compound.getInt("Hunger"));
 		this.setDirtiness(compound.getInt("Dirtiness"));
@@ -186,12 +186,12 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	}
 
 	@Override
-	protected BodyController createBodyController() {
+	protected BodyController createBodyControl() {
 		return new ChimpanzeeEntity.BodyHelperController();
 	}
 
 	@Override
-	protected PathNavigator createNavigator(World worldIn) {
+	protected PathNavigator createNavigation(World worldIn) {
 		return new ClimberPathNavigator(this, worldIn);
 	}
 
@@ -199,7 +199,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 
 	@Override
 	protected SoundEvent getAmbientSound() {
-		return this.func_233678_J__() ? NeapolitanSounds.ENTITY_CHIMPANZEE_ANGRY.get() : NeapolitanSounds.ENTITY_CHIMPANZEE_AMBIENT.get();
+		return this.isAngry() ? NeapolitanSounds.ENTITY_CHIMPANZEE_ANGRY.get() : NeapolitanSounds.ENTITY_CHIMPANZEE_AMBIENT.get();
 	}
 
 	@Override
@@ -219,7 +219,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 
 	@Nullable
 	@Override
-	public SoundEvent getEatSound(ItemStack itemStackIn) {
+	public SoundEvent getEatingSound(ItemStack itemStackIn) {
 		return null;
 	}
 
@@ -231,42 +231,42 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	// AI //
 
 	@Override
-	protected void updateAITasks() {
-		this.func_241359_a_((ServerWorld) this.world, true);
+	protected void customServerAiStep() {
+		this.updatePersistentAnger((ServerWorld) this.level, true);
 
-		if (this.func_233678_J__()) {
-			this.recentlyHit = this.ticksExisted;
+		if (this.isAngry()) {
+			this.lastHurtByPlayerTime = this.tickCount;
 		}
 		
-		super.updateAITasks();
+		super.customServerAiStep();
 	}
 
 	@Override
-	public boolean attackEntityAsMob(Entity entityIn) {
+	public boolean doHurtTarget(Entity entityIn) {
 		this.swingArms();
-		this.world.setEntityState(this, (byte) 4);
+		this.level.broadcastEntityEvent(this, (byte) 4);
 		float f = (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE);
-		float f1 = (int) f > 0 ? f / 2.0F + (float) this.rand.nextInt((int) f) : f;
-		boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), f1);
+		float f1 = (int) f > 0 ? f / 2.0F + (float) this.random.nextInt((int) f) : f;
+		boolean flag = entityIn.hurt(DamageSource.mobAttack(this), f1);
 		if (flag) {
-			this.applyEnchantments(this, entityIn);
+			this.doEnchantDamageEffects(this, entityIn);
 		}
 
 		return flag;
 	}
 
 	@Override
-	public boolean attackEntityFrom(DamageSource source, float amount) {
+	public boolean hurt(DamageSource source, float amount) {
 		if (this.isInvulnerableTo(source)) {
 			return false;
 		} else {
 			this.setAction(ChimpanzeeAction.DEFAULT);
-			return super.attackEntityFrom(source, amount);
+			return super.hurt(source, amount);
 		}
 	}
 
 	public void tick() {
-		if (!this.world.isRemote) {
+		if (!this.level.isClientSide) {
 			if (this.getAction() == ChimpanzeeAction.DEFAULT || this.getAction() == ChimpanzeeAction.CLIMBING) {
 				this.setDefaultAction();
 			}
@@ -274,58 +274,58 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 
 		super.tick();
 
-		if (!this.world.isRemote) {
+		if (!this.level.isClientSide) {
 			this.handleClimbing();
 			
-			if (this.rand.nextInt(60) == 0) {
+			if (this.random.nextInt(60) == 0) {
 				this.setLeader(this.shouldBeLeader());
 			}
 		} else {
 			if (this.isDirty()) {
-				if (this.ticksExisted % 6 == 0) {
-					double d0 = ((double) this.rand.nextFloat() + 1.0D) * 0.06D;
-					double d1 = this.rand.nextInt(360) - 360.0D;
-					double d2 = ((double) this.rand.nextFloat() + 1.0D) * 14.0D;
-					d2 *= this.rand.nextBoolean() ? 1.0D : -1.0D;
+				if (this.tickCount % 6 == 0) {
+					double d0 = ((double) this.random.nextFloat() + 1.0D) * 0.06D;
+					double d1 = this.random.nextInt(360) - 360.0D;
+					double d2 = ((double) this.random.nextFloat() + 1.0D) * 14.0D;
+					d2 *= this.random.nextBoolean() ? 1.0D : -1.0D;
 
-					world.addParticle(NeapolitanParticles.FLY.get(), this.getPosXRandom(0.5D), this.getPosYEye() + this.rand.nextDouble() * 0.2D + 0.3D, this.getPosZRandom(0.5D), d0, d1, d2);
+					level.addParticle(NeapolitanParticles.FLY.get(), this.getRandomX(0.5D), this.getEyeY() + this.random.nextDouble() * 0.2D + 0.3D, this.getRandomZ(0.5D), d0, d1, d2);
 				}
 			}
 		}
 
 		if (this.getAction() == ChimpanzeeAction.EATING) {
-			ItemStack food = this.getFood();
-			if (this.ticksExisted % 10 == 0 && !food.isEmpty()) {
-				if (this.world.isRemote) {
+			ItemStack food = this.getSnack();
+			if (this.tickCount % 10 == 0 && !food.isEmpty()) {
+				if (this.level.isClientSide) {
 					for (int i = 0; i < 6; ++i) {
-						Vector3d vector3d = new Vector3d(((double) this.rand.nextFloat() - 0.5D) * 0.1D, Math.random() * 0.1D + 0.1D, ((double) this.rand.nextFloat() - 0.5D) * 0.1D);
-						vector3d = vector3d.rotatePitch(-this.rotationPitch * ((float) Math.PI / 180F));
-						vector3d = vector3d.rotateYaw(-this.rotationYaw * ((float) Math.PI / 180F));
-						double d0 = (double) (-this.rand.nextFloat()) * 0.2D;
-						Vector3d vector3d1 = new Vector3d(((double) this.rand.nextFloat() - 0.5D) * 0.2D, d0, 0.8D + ((double) this.rand.nextFloat() - 0.5D) * 0.2D);
-						vector3d1 = vector3d1.rotateYaw(-this.renderYawOffset * ((float) Math.PI / 180F));
-						vector3d1 = vector3d1.add(this.getPosX(), this.getPosYEye(), this.getPosZ());
-						this.world.addParticle(new ItemParticleData(ParticleTypes.ITEM, this.getHeldItem(this.getFoodHand())), vector3d1.x, vector3d1.y, vector3d1.z, vector3d.x, vector3d.y + 0.05D, vector3d.z);
+						Vector3d vector3d = new Vector3d(((double) this.random.nextFloat() - 0.5D) * 0.1D, Math.random() * 0.1D + 0.1D, ((double) this.random.nextFloat() - 0.5D) * 0.1D);
+						vector3d = vector3d.xRot(-this.xRot * ((float) Math.PI / 180F));
+						vector3d = vector3d.yRot(-this.yRot * ((float) Math.PI / 180F));
+						double d0 = (double) (-this.random.nextFloat()) * 0.2D;
+						Vector3d vector3d1 = new Vector3d(((double) this.random.nextFloat() - 0.5D) * 0.2D, d0, 0.8D + ((double) this.random.nextFloat() - 0.5D) * 0.2D);
+						vector3d1 = vector3d1.yRot(-this.yBodyRot * ((float) Math.PI / 180F));
+						vector3d1 = vector3d1.add(this.getX(), this.getEyeY(), this.getZ());
+						this.level.addParticle(new ItemParticleData(ParticleTypes.ITEM, this.getItemInHand(this.getSnackHand())), vector3d1.x, vector3d1.y, vector3d1.z, vector3d.x, vector3d.y + 0.05D, vector3d.z);
 					}
 				}
 
-				this.playSound(NeapolitanSounds.ENTITY_CHIMPANZEE_EAT.get(), 0.25F + 0.5F * (float) this.rand.nextInt(2), (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+				this.playSound(NeapolitanSounds.ENTITY_CHIMPANZEE_EAT.get(), 0.25F + 0.5F * (float) this.random.nextInt(2), (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
 			}
 		} else if (this.getAction() == ChimpanzeeAction.CRYING) {
-			if (this.world.isRemote) {
-				if (this.ticksExisted % 2 == 0 && this.rand.nextInt(4) > 0) {
+			if (this.level.isClientSide) {
+				if (this.tickCount % 2 == 0 && this.random.nextInt(4) > 0) {
 					for (int i = 0; i < 2; ++i) {
-						double d0 = i == 0 ? (double) (this.rand.nextFloat()) * 0.15D + 0.1D : (double) (-this.rand.nextFloat()) * 0.15D - 0.1D;
-						double d1 = ((double) this.rand.nextFloat()) * 0.1D + 0.15D;
+						double d0 = i == 0 ? (double) (this.random.nextFloat()) * 0.15D + 0.1D : (double) (-this.random.nextFloat()) * 0.15D - 0.1D;
+						double d1 = ((double) this.random.nextFloat()) * 0.1D + 0.15D;
 						double d2 = i == 0 ? 0.15D : -0.15D;
 
-						Vector3d vector3d = new Vector3d(d0, Math.random() * 0.2D + 0.1D, (double) (this.rand.nextFloat()) * 0.2D + 0.1D);
-						vector3d = vector3d.rotateYaw(-this.renderYawOffset * ((float) Math.PI / 180F));
+						Vector3d vector3d = new Vector3d(d0, Math.random() * 0.2D + 0.1D, (double) (this.random.nextFloat()) * 0.2D + 0.1D);
+						vector3d = vector3d.yRot(-this.yBodyRot * ((float) Math.PI / 180F));
 						Vector3d vector3d1 = new Vector3d(d2, d1, 0.35D);
-						vector3d1 = vector3d1.rotateYaw(-this.renderYawOffset * ((float) Math.PI / 180F));
-						vector3d1 = vector3d1.add(this.getPosX(), this.getPosYEye(), this.getPosZ());
+						vector3d1 = vector3d1.yRot(-this.yBodyRot * ((float) Math.PI / 180F));
+						vector3d1 = vector3d1.add(this.getX(), this.getEyeY(), this.getZ());
 
-						this.world.addParticle(NeapolitanParticles.TEAR.get(), vector3d1.x, vector3d1.y, vector3d1.z, vector3d.x, vector3d.y + 0.05D, vector3d.z);
+						this.level.addParticle(NeapolitanParticles.TEAR.get(), vector3d1.x, vector3d1.y, vector3d1.z, vector3d.x, vector3d.y + 0.05D, vector3d.z);
 					}
 				}
 			}
@@ -333,8 +333,8 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	}
 
 	@Override
-	public void livingTick() {
-		super.livingTick();
+	public void aiStep() {
+		super.aiStep();
 		if (this.attackTimer > 0) {
 			--this.attackTimer;
 		}
@@ -343,14 +343,14 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 			--this.pickUpTimer;
 		}
 
-		if (this.jukeboxPosition == null || !this.jukeboxPosition.withinDistance(this.getPositionVec(), 3.46D) || this.world.getBlockState(jukeboxPosition).getBlock() != Blocks.JUKEBOX) {
+		if (this.jukeboxPosition == null || !this.jukeboxPosition.closerThan(this.position(), 3.46D) || this.level.getBlockState(jukeboxPosition).getBlock() != Blocks.JUKEBOX) {
 			this.isPartying = false;
 			this.jukeboxPosition = null;
 		}
 
-		this.recalculateSize();
+		this.refreshDimensions();
 
-		if (!this.world.isRemote) {
+		if (!this.level.isClientSide) {
 			if (!this.isHungry() && this.getHunger() >= 0) {
 				this.setHunger(this.getHunger() + 1);
 			}
@@ -384,17 +384,17 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	}
 
 	private void handleClimbing() {
-		this.setBesideClimbableBlock(this.collidedHorizontally);
+		this.setBesideClimbableBlock(this.horizontalCollision);
 
 		if (this.getAction() == ChimpanzeeAction.CLIMBING) {
 			Direction newfacing = Direction.DOWN;
 
 			for(Direction direction : Direction.Plane.HORIZONTAL) {
-				Vector3d vector3d = this.getAllowedMovement(Vector3d.copy(direction.getDirectionVec()));
+				Vector3d vector3d = this.collide(Vector3d.atLowerCornerOf(direction.getNormal()));
 
-				if (Math.abs(vector3d.getCoordinate(direction.getAxis())) <= 0.2D ) {
+				if (Math.abs(vector3d.get(direction.getAxis())) <= 0.2D ) {
 					newfacing = direction;
-					if (direction == this.dataManager.get(FACING)) {
+					if (direction == this.entityData.get(FACING)) {
 						break;
 					}
 				}
@@ -405,68 +405,68 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	}
 	
 	@Override
-	public ActionResultType func_230254_b_(PlayerEntity player, Hand hand) {
-		ItemStack itemstack = player.getHeldItem(hand);
-		if (this.isFood(itemstack) && !(this.isBreedingItem(itemstack) && !this.isHungry())) {
-			if (this.getHeldItemMainhand().isEmpty()) {
+	public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
+		ItemStack itemstack = player.getItemInHand(hand);
+		if (this.isSnack(itemstack) && !(this.isFood(itemstack) && !this.isHungry())) {
+			if (this.getMainHandItem().isEmpty()) {
 				ItemStack itemstack1 = itemstack.copy();
 				itemstack1.setCount(1);
-				this.setHeldItem(Hand.MAIN_HAND, itemstack1);
-				this.consumeItemFromStack(player, itemstack);
-				this.func_241356_K__();
+				this.setItemInHand(Hand.MAIN_HAND, itemstack1);
+				this.usePlayerItem(player, itemstack);
+				this.stopBeingAngry();
 
-				return ActionResultType.func_233537_a_(this.world.isRemote);
+				return ActionResultType.sidedSuccess(this.level.isClientSide);
 			}
 			return ActionResultType.PASS;
 		}
 
 		if (itemstack.getItem() == NeapolitanItems.BANANA_BUNCH.get()) {
-			if (this.getGrowingAge() > 0 || !this.canFallInLove()) {
-				ActionResultType result = itemstack.interactWithEntity(player, this, hand);
-				if (result.isSuccessOrConsume()) {
+			if (this.getAge() > 0 || !this.canFallInLove()) {
+				ActionResultType result = itemstack.interactLivingEntity(player, this, hand);
+				if (result.consumesAction()) {
 					return result;
 				}
 			}
 		}
 
-		return super.func_230254_b_(player, hand);
+		return super.mobInteract(player, hand);
 	}
 
 	public void openBunch(Hand hand) {
-		if (!this.world.isRemote) {
-			BananaPeelEntity bananapeel = NeapolitanEntities.BANANA_PEEL.get().create(this.world);
-			bananapeel.setLocationAndAngles(this.getPosX(), this.getPosYEye(), this.getPosZ(), this.rotationYaw, 0.0F);
-			bananapeel.setMotion(this.rand.nextDouble() * 0.4D - 0.2D, 0.4D, this.rand.nextDouble() * 0.4D - 0.2D);
-			this.world.addEntity(bananapeel);
+		if (!this.level.isClientSide) {
+			BananaPeelEntity bananapeel = NeapolitanEntities.BANANA_PEEL.get().create(this.level);
+			bananapeel.moveTo(this.getX(), this.getEyeY(), this.getZ(), this.yRot, 0.0F);
+			bananapeel.setDeltaMovement(this.random.nextDouble() * 0.4D - 0.2D, 0.4D, this.random.nextDouble() * 0.4D - 0.2D);
+			this.level.addFreshEntity(bananapeel);
 
-			this.setHeldItem(hand, new ItemStack(NeapolitanItems.BANANA.get()));
+			this.setItemInHand(hand, new ItemStack(NeapolitanItems.BANANA.get()));
 		}
 	}
 
-	public void eatFood() {
-		if (!this.getFood().isEmpty()) {
-			this.setHeldItem(this.getFoodHand(), this.getFood().onItemUseFinish(this.world, this));
+	public void eatSnack() {
+		if (!this.getSnack().isEmpty()) {
+			this.setItemInHand(this.getSnackHand(), this.getSnack().finishUsingItem(this.level, this));
 		}
 		this.setHunger(0);
 	}
 
 	@Override
-	public void func_233629_a_(LivingEntity entity, boolean isFlying) {
-		this.prevLimbSwingAmount = this.limbSwingAmount;
-		double d0 = this.getPosX() - this.prevPosX;
-		double d1 = this.getAction() == ChimpanzeeAction.CLIMBING ? this.getPosY() - this.prevPosY : 0.0D;
-		double d2 = this.getPosZ() - this.prevPosZ;
+	public void calculateEntityAnimation(LivingEntity entity, boolean isFlying) {
+		this.animationSpeedOld = this.animationSpeed;
+		double d0 = this.getX() - this.xo;
+		double d1 = this.getAction() == ChimpanzeeAction.CLIMBING ? this.getY() - this.yo : 0.0D;
+		double d2 = this.getZ() - this.zo;
 		float f = MathHelper.sqrt(d0 * d0 + d1 * d1 + d2 * d2) * 4.0F;
 		if (f > 1.0F) {
 			f = 1.0F;
 		}
 
-		this.limbSwingAmount += (f - this.limbSwingAmount) * 0.4F;
-		this.limbSwing += this.limbSwingAmount;
+		this.animationSpeed += (f - this.animationSpeed) * 0.4F;
+		this.animationPosition += this.animationSpeed;
 	}
 
 	@Override
-	public boolean isOnLadder() {
+	public boolean onClimbable() {
 		return (this.getAction() == ChimpanzeeAction.DEFAULT || this.getAction() == ChimpanzeeAction.CLIMBING) && this.isBesideClimbableBlock();
 	}
 
@@ -475,23 +475,23 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	}
 
 	@Override
-	public boolean onLivingFall(float distance, float damageMultiplier) {
+	public boolean causeFallDamage(float distance, float damageMultiplier) {
 		return false;
 	}
 
 	public boolean isBesideClimbableBlock() {
-		return (this.dataManager.get(CLIMBING) & 1) != 0;
+		return (this.entityData.get(CLIMBING) & 1) != 0;
 	}
 
 	public void setBesideClimbableBlock(boolean climbing) {
-		byte b0 = this.dataManager.get(CLIMBING);
+		byte b0 = this.entityData.get(CLIMBING);
 		if (climbing) {
 			b0 = (byte) (b0 | 1);
 		} else {
 			b0 = (byte) (b0 & -2);
 		}
 
-		this.dataManager.set(CLIMBING, b0);
+		this.entityData.set(CLIMBING, b0);
 	}
 
 	public boolean isSitting() {
@@ -499,64 +499,64 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	}
 
 	@Override
-	public EntitySize getSize(Pose pose) {
+	public EntitySize getDimensions(Pose pose) {
 		if (this.isSitting()) {
-			return this.isChild() ? SIZE_SITTING_CHILD : SIZE_SITTING;
+			return this.isBaby() ? SIZE_SITTING_CHILD : SIZE_SITTING;
 		} else {
-			return super.getSize(pose);
+			return super.getDimensions(pose);
 		}
 	}
 
 	@Override
-	public double getYOffset() {
-		return this.isChild() ? -0.05D : -0.3D;
+	public double getMyRidingOffset() {
+		return this.isBaby() ? -0.05D : -0.3D;
 	}
 
 	@Override
-	public boolean func_230293_i_(ItemStack itemStack) {
-		return this.isFood(itemStack);
+	public boolean wantsToPickUp(ItemStack itemStack) {
+		return this.isSnack(itemStack);
 	}
 
 	@Override
-	public boolean canPickUpItem(ItemStack itemstackIn) {
+	public boolean canTakeItem(ItemStack itemstackIn) {
 		if (this.pickUpTimer > 0) {
 			return false;
 		} else {
-			EquipmentSlotType equipmentslottype = MobEntity.getSlotForItemStack(itemstackIn);
-			if (!this.getItemStackFromSlot(equipmentslottype).isEmpty()) {
+			EquipmentSlotType equipmentslottype = MobEntity.getEquipmentSlotForItem(itemstackIn);
+			if (!this.getItemBySlot(equipmentslottype).isEmpty()) {
 				return false;
 			} else {
-				return equipmentslottype == EquipmentSlotType.MAINHAND && super.canPickUpItem(itemstackIn);
+				return equipmentslottype == EquipmentSlotType.MAINHAND && super.canTakeItem(itemstackIn);
 			}
 		}
 	}
 
 	@Override
-	public boolean canEquipItem(ItemStack stack) {
-		ItemStack itemstack = this.getItemStackFromSlot(EquipmentSlotType.MAINHAND);
-		return !this.isFood(itemstack) && this.isFood(stack);
+	public boolean canHoldItem(ItemStack stack) {
+		ItemStack itemstack = this.getItemBySlot(EquipmentSlotType.MAINHAND);
+		return !this.isSnack(itemstack) && this.isSnack(stack);
 	}
 
 	@Override
-	protected void updateEquipmentIfNeeded(ItemEntity itemEntity) {
+	protected void pickUpItem(ItemEntity itemEntity) {
 		ItemStack itemstack = itemEntity.getItem();
-		if (this.canEquipItem(itemstack)) {
+		if (this.canHoldItem(itemstack)) {
 			int i = itemstack.getCount();
 			if (i > 1) {
-				ItemEntity itementity = new ItemEntity(this.world, this.getPosX(), this.getPosY(), this.getPosZ(), itemstack.split(i - 1));
-				this.world.addEntity(itementity);
+				ItemEntity itementity = new ItemEntity(this.level, this.getX(), this.getY(), this.getZ(), itemstack.split(i - 1));
+				this.level.addFreshEntity(itementity);
 			}
 
-			ItemEntity itementity1 = new ItemEntity(this.world, this.getPosX(), this.getPosYEye() - (double)0.3F, this.getPosZ(), this.getItemStackFromSlot(EquipmentSlotType.MAINHAND));
-			this.world.addEntity(itementity1);
+			ItemEntity itementity1 = new ItemEntity(this.level, this.getX(), this.getEyeY() - (double)0.3F, this.getZ(), this.getItemBySlot(EquipmentSlotType.MAINHAND));
+			this.level.addFreshEntity(itementity1);
 
-			this.triggerItemPickupTrigger(itemEntity);
-			this.setItemStackToSlot(EquipmentSlotType.MAINHAND, itemstack.split(1));
-			this.inventoryHandsDropChances[EquipmentSlotType.MAINHAND.getIndex()] = 2.0F;
-			this.onItemPickup(itemEntity, itemstack.getCount());
+			this.onItemPickup(itemEntity);
+			this.setItemSlot(EquipmentSlotType.MAINHAND, itemstack.split(1));
+			this.handDropChances[EquipmentSlotType.MAINHAND.getIndex()] = 2.0F;
+			this.take(itemEntity, itemstack.getCount());
 			itemEntity.remove();
 
-			this.func_241356_K__();
+			this.stopBeingAngry();
 		}
 	}
 
@@ -572,9 +572,9 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 
 	private boolean shouldBeLeader() {
 		Predicate<ChimpanzeeEntity> predicate = (chimpanzeeentity) -> {
-			return chimpanzeeentity != this && chimpanzeeentity.getGrowingAge() >= 0;
+			return chimpanzeeentity != this && chimpanzeeentity.getAge() >= 0;
 		};
-		List<ChimpanzeeEntity> list = this.world.getEntitiesWithinAABB(ChimpanzeeEntity.class, this.getBoundingBox().grow(8.0D, 8.0D, 8.0D), predicate);
+		List<ChimpanzeeEntity> list = this.level.getEntitiesOfClass(ChimpanzeeEntity.class, this.getBoundingBox().inflate(8.0D, 8.0D, 8.0D), predicate);
 		int chimpamount = list.size() + 1;
 		int leaderamount = 0;
 		
@@ -584,7 +584,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 			}
 			
 			if (leaderamount * 4 >= chimpamount) {
-				if (!(this.needsFood() && !chimpanzeeentity.needsFood())) {
+				if (!(this.needsSnack() && !chimpanzeeentity.needsSnack())) {
 					return false;
 				}
 			}
@@ -600,17 +600,17 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	}
 
 	@Override
-	public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+	public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
 		this.setTypeForPosition(this, worldIn);
-		this.setHunger(this.rand.nextInt(4800));
-		this.setDirtiness(this.rand.nextInt(4800));
-		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+		this.setHunger(this.random.nextInt(4800));
+		this.setDirtiness(this.random.nextInt(4800));
+		return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
 	public void setTypeForPosition(ChimpanzeeEntity entity, IWorld worldIn) {
-		if (worldIn.getBiome(this.getPosition()).getRegistryName().getPath().contains("rainforest")) {
+		if (worldIn.getBiome(this.blockPosition()).getRegistryName().getPath().contains("rainforest")) {
 			entity.setChimpanzeeType(1);
-		} else if (worldIn.getBiome(this.getPosition()).getRegistryName().getPath().contains("bamboo")) {
+		} else if (worldIn.getBiome(this.blockPosition()).getRegistryName().getPath().contains("bamboo")) {
 			entity.setChimpanzeeType(2);
 		} else {
 			entity.setChimpanzeeType(0);
@@ -618,20 +618,20 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	}
 
 	@Override
-	public ChimpanzeeEntity func_241840_a(ServerWorld world, AgeableEntity ageableEntity) {
+	public ChimpanzeeEntity getBreedOffspring(ServerWorld world, AgeableEntity ageableEntity) {
 		ChimpanzeeEntity baby = NeapolitanEntities.CHIMPANZEE.get().create(world);
-		baby.setChimpanzeeType(this.rand.nextBoolean() ? this.getChimpanzeeType() : ((ChimpanzeeEntity)ageableEntity).getChimpanzeeType());
+		baby.setChimpanzeeType(this.random.nextBoolean() ? this.getChimpanzeeType() : ((ChimpanzeeEntity)ageableEntity).getChimpanzeeType());
 		return baby;
 	}
 
 	// DATA //
 
 	public int getChimpanzeeType() {
-		return MathHelper.clamp(this.dataManager.get(CHIMPANZEE_TYPE), 0, 2);
+		return MathHelper.clamp(this.entityData.get(CHIMPANZEE_TYPE), 0, 2);
 	}
 
 	public void setChimpanzeeType(int type) {
-		this.dataManager.set(CHIMPANZEE_TYPE, type);
+		this.entityData.set(CHIMPANZEE_TYPE, type);
 	}
 
 	public int getAttackTimer() {
@@ -639,13 +639,13 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	}
 
 	@Override
-	public int getAngerTime() {
-		return this.dataManager.get(ANGER_TIME);
+	public int getRemainingPersistentAngerTime() {
+		return this.entityData.get(ANGER_TIME);
 	}
 
 	@Override
-	public void setAngerTime(int time) {
-		this.dataManager.set(ANGER_TIME, time);
+	public void setRemainingPersistentAngerTime(int time) {
+		this.entityData.set(ANGER_TIME, time);
 	}
 
 	public ChimpanzeeEntity getGroomingTarget() {
@@ -665,86 +665,86 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	}
 
 	public Direction getFacing() {
-		return this.dataManager.get(FACING);
+		return this.entityData.get(FACING);
 	}
 
 	public void setFacing(Direction direction) {
-		this.dataManager.set(FACING, direction);
+		this.entityData.set(FACING, direction);
 	}
 
 	@Override
-	public UUID getAngerTarget() {
+	public UUID getPersistentAngerTarget() {
 		return this.lastHurtBy;
 	}
 
 	@Override
-	public void setAngerTarget(UUID target) {
+	public void setPersistentAngerTarget(UUID target) {
 		this.lastHurtBy = target;
 	}
 
 	@Override
-	public void func_230258_H__() {
-		this.setAngerTime(ANGER_RANGE.getRandomWithinRange(this.rand));
+	public void startPersistentAngerTimer() {
+		this.setRemainingPersistentAngerTime(ANGER_RANGE.randomValue(this.random));
 	}
 
 	// NEED STUFF //
 
 	public int getHunger() {
-		return this.dataManager.get(HUNGER);
+		return this.entityData.get(HUNGER);
 	}
 
 	public void setHunger(int amount) {
-		this.dataManager.set(HUNGER, amount);
+		this.entityData.set(HUNGER, amount);
 	}
 
 	public boolean isHungry() {
 		return this.getHunger() >= 9600;
 	}
 
-	public boolean needsFood() {
-		return this.isHungry() && this.getFood().isEmpty();
+	public boolean needsSnack() {
+		return this.isHungry() && this.getSnack().isEmpty();
 	}
 	
-	public Hand getFoodHand() {
-		if (!this.getFood(Hand.MAIN_HAND).isEmpty()) {
+	public Hand getSnackHand() {
+		if (!this.getSnack(Hand.MAIN_HAND).isEmpty()) {
 			return Hand.MAIN_HAND;
 		} else {
 			return Hand.OFF_HAND;
 		}
 	}
 
-	public ItemStack getFood() {
-		if (!this.getFood(Hand.MAIN_HAND).isEmpty()) {
-			return this.getFood(Hand.MAIN_HAND);
-		} else if (!this.getFood(Hand.OFF_HAND).isEmpty()) {
-			return this.getFood(Hand.OFF_HAND);
+	public ItemStack getSnack() {
+		if (!this.getSnack(Hand.MAIN_HAND).isEmpty()) {
+			return this.getSnack(Hand.MAIN_HAND);
+		} else if (!this.getSnack(Hand.OFF_HAND).isEmpty()) {
+			return this.getSnack(Hand.OFF_HAND);
 		}
 		return ItemStack.EMPTY;
 	}
 
-	public ItemStack getFood(Hand hand) {
-		ItemStack food = this.getHeldItem(hand);
-		if (this.isFood(food)) {
+	public ItemStack getSnack(Hand hand) {
+		ItemStack food = this.getItemInHand(hand);
+		if (this.isSnack(food)) {
 			return food;
 		}
 		return ItemStack.EMPTY;
 	}
 
 	@Override
-	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem().isIn(NeapolitanTags.Items.CHIMPANZEE_BREEDING_ITEMS);
+	public boolean isFood(ItemStack stack) {
+		return stack.getItem().is(NeapolitanTags.Items.CHIMPANZEE_FOOD);
 	}
 
-	public boolean isFood(ItemStack stack) {
-		return stack.getItem().isIn(NeapolitanTags.Items.CHIMPANZEE_FOOD);
+	public boolean isSnack(ItemStack stack) {
+		return stack.getItem().is(NeapolitanTags.Items.CHIMPANZEE_SNACKS);
 	}
 
 	public int getDirtiness() {
-		return this.dataManager.get(DIRTINESS);
+		return this.entityData.get(DIRTINESS);
 	}
 
 	public void setDirtiness(int amount) {
-		this.dataManager.set(DIRTINESS, amount);
+		this.entityData.set(DIRTINESS, amount);
 	}
 
 	public boolean isDirty() {
@@ -756,11 +756,11 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	}
 
 	public int getPaleness() {
-		return this.dataManager.get(PALENESS);
+		return this.entityData.get(PALENESS);
 	}
 
 	public void setPaleness(int amount) {
-		this.dataManager.set(PALENESS, amount);
+		this.entityData.set(PALENESS, amount);
 	}
 
 	public boolean needsSunlight() {
@@ -772,18 +772,18 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	}
 
 	public boolean isInSunlight() {
-		BlockPos blockpos = this.getRidingEntity() instanceof BoatEntity ? (new BlockPos(this.getPosX(), (double)Math.round(this.getPosY()), this.getPosZ())).up() : new BlockPos(this.getPosX(), (double)Math.round(this.getPosY()), this.getPosZ());
-		return this.world.getLightFor(LightType.SKY, blockpos) > 8;
+		BlockPos blockpos = this.getVehicle() instanceof BoatEntity ? (new BlockPos(this.getX(), (double)Math.round(this.getY()), this.getZ())).above() : new BlockPos(this.getX(), (double)Math.round(this.getY()), this.getZ());
+		return this.level.getBrightness(LightType.SKY, blockpos) > 8;
 	}
 
 	// ACTION STUFF //
 
 	public ChimpanzeeAction getAction() {
-		return ChimpanzeeAction.byIndex(this.dataManager.get(ACTION));
+		return ChimpanzeeAction.byIndex(this.entityData.get(ACTION));
 	}
 
 	public void setAction(ChimpanzeeAction action) {
-		this.dataManager.set(ACTION, (byte)action.getIndex());
+		this.entityData.set(ACTION, (byte)action.getIndex());
 	}
 
 	public void setDefaultAction() {
@@ -808,17 +808,17 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 
 	@Override
 	@OnlyIn(Dist.CLIENT)
-	public void setPartying(BlockPos pos, boolean isPartying) {
+	public void setRecordPlayingNearby(BlockPos pos, boolean isPartying) {
 		this.jukeboxPosition = pos;
 		this.isPartying = isPartying;
 	}
 
 	public boolean isMouthOpen() {
 		if (this.getAction() == ChimpanzeeAction.EATING) {
-			return Math.sin(Math.PI * this.ticksExisted * 0.2D) > 0;
+			return Math.sin(Math.PI * this.tickCount * 0.2D) > 0;
 		} else if (this.getAction() == ChimpanzeeAction.HUNCHING) {
 			return false;
-		} else if (this.getAction() == ChimpanzeeAction.CRYING || this.func_233678_J__() || this.isHungry() || this.isPartying()) {
+		} else if (this.getAction() == ChimpanzeeAction.CRYING || this.isAngry() || this.isHungry() || this.isPartying()) {
 			return true;
 		} else {
 			return false;
@@ -843,15 +843,15 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		this.headShakeAnim = 40;
 		this.prevHeadShakeAnim = 40;
 
-		double d0 = this.rand.nextGaussian() * 0.02D;
-		double d1 = this.rand.nextGaussian() * 0.02D;
-		double d2 = this.rand.nextGaussian() * 0.02D;
+		double d0 = this.random.nextGaussian() * 0.02D;
+		double d1 = this.random.nextGaussian() * 0.02D;
+		double d2 = this.random.nextGaussian() * 0.02D;
 
-		this.world.addParticle(particleData, this.getPosX(), this.getPosYHeight(1.0D), this.getPosZ(), d0, d1, d2);
+		this.level.addParticle(particleData, this.getX(), this.getY(1.0D), this.getZ(), d0, d1, d2);
 	}
 
 	@Override
-	public void handleStatusUpdate(byte id) {
+	public void handleEntityEvent(byte id) {
 		if (id == 4) {
 			this.swingArms();
 		} else if (id == 6) {
@@ -861,7 +861,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		} else if (id == 8) {
 			this.shakeHead(NeapolitanParticles.CHIMPANZEE_NEEDS_FOOD.get());
 		} else {
-			super.handleStatusUpdate(id);
+			super.handleEntityEvent(id);
 		}
 	}
 
@@ -874,23 +874,23 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		}
 
 		public void tick() {
-			if (this.shouldResetPitch()) {
-				ChimpanzeeEntity.this.rotationPitch = 0.0F;
+			if (this.resetXRotOnTick()) {
+				ChimpanzeeEntity.this.xRot = 0.0F;
 			}
 
-			if (this.isLooking) {
-				this.isLooking = false;
-				ChimpanzeeEntity.this.rotationYawHead = this.clampedRotate(ChimpanzeeEntity.this.rotationYawHead, this.getTargetYaw(), this.deltaLookYaw);
-				ChimpanzeeEntity.this.rotationPitch = this.clampedRotate(ChimpanzeeEntity.this.rotationPitch, this.getTargetPitch(), this.deltaLookPitch);
+			if (this.hasWanted) {
+				this.hasWanted = false;
+				ChimpanzeeEntity.this.yHeadRot = this.rotateTowards(ChimpanzeeEntity.this.yHeadRot, this.getYRotD(), this.yMaxRotSpeed);
+				ChimpanzeeEntity.this.xRot = this.rotateTowards(ChimpanzeeEntity.this.xRot, this.getXRotD(), this.xMaxRotAngle);
 			} else {
-				ChimpanzeeEntity.this.rotationYawHead = this.clampedRotate(ChimpanzeeEntity.this.rotationYawHead, ChimpanzeeEntity.this.renderYawOffset, 10.0F);
+				ChimpanzeeEntity.this.yHeadRot = this.rotateTowards(ChimpanzeeEntity.this.yHeadRot, ChimpanzeeEntity.this.yBodyRot, 10.0F);
 			}
 
 			Direction facing = ChimpanzeeEntity.this.getFacing();
 			if (ChimpanzeeEntity.this.getAction() == ChimpanzeeAction.CLIMBING && facing != Direction.DOWN) {
-				ChimpanzeeEntity.this.rotationYawHead = MathHelper.func_219800_b(ChimpanzeeEntity.this.rotationYawHead, facing.getHorizontalAngle(), (float)ChimpanzeeEntity.this.getHorizontalFaceSpeed());
-			} else if (!ChimpanzeeEntity.this.getNavigator().noPath()) {
-				ChimpanzeeEntity.this.rotationYawHead = MathHelper.func_219800_b(ChimpanzeeEntity.this.rotationYawHead, ChimpanzeeEntity.this.renderYawOffset, (float)ChimpanzeeEntity.this.getHorizontalFaceSpeed());
+				ChimpanzeeEntity.this.yHeadRot = MathHelper.rotateIfNecessary(ChimpanzeeEntity.this.yHeadRot, facing.toYRot(), (float)ChimpanzeeEntity.this.getMaxHeadYRot());
+			} else if (!ChimpanzeeEntity.this.getNavigation().isDone()) {
+				ChimpanzeeEntity.this.yHeadRot = MathHelper.rotateIfNecessary(ChimpanzeeEntity.this.yHeadRot, ChimpanzeeEntity.this.yBodyRot, (float)ChimpanzeeEntity.this.getMaxHeadYRot());
 			}
 		}
 	}
@@ -903,8 +903,8 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 			super(ChimpanzeeEntity.this);
 		}
 
-		public void updateRenderAngles() {
-			super.updateRenderAngles();
+		public void clientTick() {
+			super.clientTick();
 
 			Direction facing = ChimpanzeeEntity.this.getFacing();
 
@@ -918,7 +918,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 				int i = this.bodyRotationTickCounter;
 				float f = MathHelper.clamp((float)i / 10.0F, 0.0F, 1.0F);
 				float f1 = 90.0F * f;
-				ChimpanzeeEntity.this.renderYawOffset = MathHelper.func_219800_b(ChimpanzeeEntity.this.renderYawOffset, facing.getHorizontalAngle(), f1);
+				ChimpanzeeEntity.this.yBodyRot = MathHelper.rotateIfNecessary(ChimpanzeeEntity.this.yBodyRot, facing.toYRot(), f1);
 
 				if (this.bodyRotationTickCounter > 0) {
 					--this.bodyRotationTickCounter;

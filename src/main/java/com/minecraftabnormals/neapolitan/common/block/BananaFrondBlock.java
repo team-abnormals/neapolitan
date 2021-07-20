@@ -21,54 +21,56 @@ import net.minecraftforge.common.Tags;
 
 import java.util.*;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class BananaFrondBlock extends BushBlock implements IGrowable {
 	public static final DirectionProperty FACING = BlockStateProperties.FACING;
 
 	public BananaFrondBlock(Properties properties) {
 		super(properties);
-		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.UP));
+		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.UP));
 	}
 
 	@Override
-	public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-		Direction facing = state.get(FACING);
-		BlockPos blockpos = pos.offset(facing.getOpposite());
+	public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
+		Direction facing = state.getValue(FACING);
+		BlockPos blockpos = pos.relative(facing.getOpposite());
 		BlockState blockState = worldIn.getBlockState(blockpos);
-		return (hasEnoughSolidSide(worldIn, blockpos, facing) || this.isValidGround(blockState, worldIn, blockpos));
+		return (canSupportCenter(worldIn, blockpos, facing) || this.mayPlaceOn(blockState, worldIn, blockpos));
 	}
 
 	@Override
-	protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
-		return worldIn.getBlockState(pos).isIn(BlockTags.LEAVES);
+	protected boolean mayPlaceOn(BlockState state, IBlockReader worldIn, BlockPos pos) {
+		return worldIn.getBlockState(pos).is(BlockTags.LEAVES);
 	}
 
 	@Override
 	public BlockState rotate(BlockState state, Rotation rot) {
-		return state.with(FACING, rot.rotate(state.get(FACING)));
+		return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
 	}
 
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
 		builder.add(FACING);
 	}
 
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		return this.getDefaultState().with(FACING, context.getFace());
+		return this.defaultBlockState().setValue(FACING, context.getClickedFace());
 	}
 
 	@Override
-	public boolean canGrow(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
-		return state.get(FACING) == Direction.UP && worldIn instanceof World && ((World) worldIn).isRainingAt(pos);
+	public boolean isValidBonemealTarget(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
+		return state.getValue(FACING) == Direction.UP && worldIn instanceof World && ((World) worldIn).isRainingAt(pos);
 	}
 
 	@Override
-	public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, BlockState state) {
+	public boolean isBonemealSuccess(World worldIn, Random rand, BlockPos pos, BlockState state) {
 		return true;
 	}
 
 	@Override
-	public void grow(ServerWorld world, Random rand, BlockPos pos, BlockState state) {
+	public void performBonemeal(ServerWorld world, Random rand, BlockPos pos, BlockState state) {
 		if (rand.nextInt(6) == 0) {
 			attemptGrowBanana(getSizeForFrond(rand, this), world, rand, pos);
 		}
@@ -76,7 +78,7 @@ public class BananaFrondBlock extends BushBlock implements IGrowable {
 
 	@Override
 	public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-		if (this.canGrow(worldIn, pos, state, worldIn.isRemote()) && canGrowOn(worldIn.getBlockState(pos.down()))) {
+		if (this.isValidBonemealTarget(worldIn, pos, state, worldIn.isClientSide()) && canGrowOn(worldIn.getBlockState(pos.below()))) {
 			if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt(2) == 0)) {
 				attemptGrowBanana(getSizeForFrond(rand, this), worldIn, rand, pos);
 				net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state);
@@ -96,7 +98,7 @@ public class BananaFrondBlock extends BushBlock implements IGrowable {
 
 		for (int i = 0; i < size; i++) {
 			stalks.add(blockPos);
-			blockPos = blockPos.up();
+			blockPos = blockPos.above();
 		}
 		upFrond = (blockPos);
 		int i = 0;
@@ -106,23 +108,23 @@ public class BananaFrondBlock extends BushBlock implements IGrowable {
 					if (direction.getAxis().isHorizontal()) {
 						if (i == size - 1) {
 							if (rand.nextInt(4) != 0) {
-								largeFronds.put(stalk.offset(direction), direction);
+								largeFronds.put(stalk.relative(direction), direction);
 							} else {
-								fronds.put(stalk.offset(direction), direction);
+								fronds.put(stalk.relative(direction), direction);
 							}
 						} else if (i == size - 2) {
 							if (rand.nextBoolean()) {
-								fronds.put(stalk.offset(direction), direction);
+								fronds.put(stalk.relative(direction), direction);
 							} else {
 								if (rand.nextBoolean() && bundle == null) {
-									bundle = stalk.offset(direction);
+									bundle = stalk.relative(direction);
 								} else {
-									smallFronds.put(stalk.offset(direction), direction);
+									smallFronds.put(stalk.relative(direction), direction);
 								}
 							}
 						} else if (i == size - 3) {
 							if (rand.nextInt(3) != 0) {
-								smallFronds.put(stalk.offset(direction), direction);
+								smallFronds.put(stalk.relative(direction), direction);
 							}
 						}
 					}
@@ -131,21 +133,21 @@ public class BananaFrondBlock extends BushBlock implements IGrowable {
 			i += 1;
 		}
 
-		if (isAirAt(world, pos, size) && pos.getY() < world.getHeight() - size) {
+		if (isAirAt(world, pos, size) && pos.getY() < world.getMaxBuildHeight() - size) {
 			for (BlockPos blockPos2 : stalks) {
-				world.setBlockState(blockPos2, NeapolitanBlocks.BANANA_STALK.get().getDefaultState(), 2);
+				world.setBlock(blockPos2, NeapolitanBlocks.BANANA_STALK.get().defaultBlockState(), 2);
 			}
-			world.setBlockState(upFrond, NeapolitanBlocks.LARGE_BANANA_FROND.get().getDefaultState(), 2);
+			world.setBlock(upFrond, NeapolitanBlocks.LARGE_BANANA_FROND.get().defaultBlockState(), 2);
 			if (bundle != null)
-				world.setBlockState(bundle, NeapolitanBlocks.BANANA_BUNDLE.get().getDefaultState(), 2);
+				world.setBlock(bundle, NeapolitanBlocks.BANANA_BUNDLE.get().defaultBlockState(), 2);
 			for (BlockPos blockPos2 : smallFronds.keySet()) {
-				world.setBlockState(blockPos2, NeapolitanBlocks.SMALL_BANANA_FROND.get().getDefaultState().with(FACING, smallFronds.get(blockPos2)), 2);
+				world.setBlock(blockPos2, NeapolitanBlocks.SMALL_BANANA_FROND.get().defaultBlockState().setValue(FACING, smallFronds.get(blockPos2)), 2);
 			}
 			for (BlockPos blockPos2 : fronds.keySet()) {
-				world.setBlockState(blockPos2, NeapolitanBlocks.BANANA_FROND.get().getDefaultState().with(FACING, fronds.get(blockPos2)), 2);
+				world.setBlock(blockPos2, NeapolitanBlocks.BANANA_FROND.get().defaultBlockState().setValue(FACING, fronds.get(blockPos2)), 2);
 			}
 			for (BlockPos blockPos2 : largeFronds.keySet()) {
-				world.setBlockState(blockPos2, NeapolitanBlocks.LARGE_BANANA_FROND.get().getDefaultState().with(FACING, largeFronds.get(blockPos2)), 2);
+				world.setBlock(blockPos2, NeapolitanBlocks.LARGE_BANANA_FROND.get().defaultBlockState().setValue(FACING, largeFronds.get(blockPos2)), 2);
 			}
 			return true;
 		}
@@ -154,20 +156,20 @@ public class BananaFrondBlock extends BushBlock implements IGrowable {
 	}
 
 	public static boolean canGrowOn(BlockState state) {
-		return state.isIn(Tags.Blocks.GRAVEL) || state.isIn(Tags.Blocks.SAND);
+		return state.is(Tags.Blocks.GRAVEL) || state.is(Tags.Blocks.SAND);
 	}
 
 	private static boolean isAirAt(World world, BlockPos pos, int size) {
 		for (int i = 0; i < size + 1; i++) {
-			if (i != 0 && !(world.isAirBlock(pos) || world.getBlockState(pos).getMaterial().isReplaceable()))
+			if (i != 0 && !(world.isEmptyBlock(pos) || world.getBlockState(pos).getMaterial().isReplaceable()))
 				return false;
 			for (Direction direction : Direction.values()) {
 				if (direction.getAxis().isHorizontal()) {
-					if (!(world.isAirBlock(pos.offset(direction)) || world.getBlockState(pos.offset(direction)).getMaterial().isReplaceable()))
+					if (!(world.isEmptyBlock(pos.relative(direction)) || world.getBlockState(pos.relative(direction)).getMaterial().isReplaceable()))
 						return false;
 				}
 			}
-			pos = pos.up();
+			pos = pos.above();
 		}
 		return true;
 	}

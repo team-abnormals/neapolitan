@@ -33,24 +33,24 @@ public class NeapolitanParticles {
 
 		@SubscribeEvent(priority = EventPriority.LOWEST)
 		public static void registerParticleTypes(ParticleFactoryRegisterEvent event) {
-			ParticleManager manager = Minecraft.getInstance().particles;
+			ParticleManager manager = Minecraft.getInstance().particleEngine;
 			if (MINT_BOOST.isPresent()) {
-				manager.registerFactory(MINT_BOOST.get(), MintBoostParticle.Factory::new);
+				manager.register(MINT_BOOST.get(), MintBoostParticle.Factory::new);
 			}
 			if (CHIMPANZEE_NEEDS_FOOD.isPresent()) {
-				manager.registerFactory(CHIMPANZEE_NEEDS_FOOD.get(), ChimpanzeeNeedParticle.Factory::new);
+				manager.register(CHIMPANZEE_NEEDS_FOOD.get(), ChimpanzeeNeedParticle.Factory::new);
 			}
 			if (CHIMPANZEE_NEEDS_FRIEND.isPresent()) {
-				manager.registerFactory(CHIMPANZEE_NEEDS_FRIEND.get(), ChimpanzeeNeedParticle.Factory::new);
+				manager.register(CHIMPANZEE_NEEDS_FRIEND.get(), ChimpanzeeNeedParticle.Factory::new);
 			}
 			if (CHIMPANZEE_NEEDS_SUN.isPresent()) {
-				manager.registerFactory(CHIMPANZEE_NEEDS_SUN.get(), ChimpanzeeNeedParticle.Factory::new);
+				manager.register(CHIMPANZEE_NEEDS_SUN.get(), ChimpanzeeNeedParticle.Factory::new);
 			}
 			if (FLY.isPresent()) {
-				manager.registerFactory(FLY.get(), FlyParticle.Factory::new);
+				manager.register(FLY.get(), FlyParticle.Factory::new);
 			}
 			if (TEAR.isPresent()) {
-				manager.registerFactory(TEAR.get(), TearParticle.Factory::new);
+				manager.register(TEAR.get(), TearParticle.Factory::new);
 			}
 		}
 	}

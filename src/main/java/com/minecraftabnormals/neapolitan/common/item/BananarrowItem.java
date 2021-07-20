@@ -12,6 +12,8 @@ import net.minecraft.item.Items;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 
+import net.minecraft.item.Item.Properties;
+
 public class BananarrowItem extends ArrowItem {
 	private static final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.SPECTRAL_ARROW);
 
@@ -31,7 +33,7 @@ public class BananarrowItem extends ArrowItem {
 
 
 	@Override
-	public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
+	public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) {
 		FILLER.fillItem(this, group, items);
 	}
 }

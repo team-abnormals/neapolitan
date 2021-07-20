@@ -13,27 +13,29 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.World;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class BeanstalkBlock extends RotatedPillarBlock {
 	public BeanstalkBlock(Properties properties) {
 		super(properties);
 	}
 
 	@Override
-	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-		ItemStack stack = player.getHeldItem(handIn);
-		Direction face = hit.getFace();
-		BlockPos offsetPos = pos.offset(face);
-		System.out.println(worldIn.isRemote());
+	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+		ItemStack stack = player.getItemInHand(handIn);
+		Direction face = hit.getDirection();
+		BlockPos offsetPos = pos.relative(face);
+		System.out.println(worldIn.isClientSide());
 		if (stack.getItem() instanceof BoneMealItem && worldIn.getBlockState(offsetPos).isAir()) {
-			if (!player.abilities.isCreativeMode) stack.shrink(1);
-			worldIn.setBlockState(offsetPos, NeapolitanBlocks.BEANSTALK_THORNS.get().getDefaultState().with(BeanstalkThornsBlock.FACING, face));
-			if (worldIn.isRemote()) {
-				BoneMealItem.spawnBonemealParticles(worldIn, offsetPos, 15);
+			if (!player.abilities.instabuild) stack.shrink(1);
+			worldIn.setBlockAndUpdate(offsetPos, NeapolitanBlocks.BEANSTALK_THORNS.get().defaultBlockState().setValue(BeanstalkThornsBlock.FACING, face));
+			if (worldIn.isClientSide()) {
+				BoneMealItem.addGrowthParticles(worldIn, offsetPos, 15);
 			}
-			return ActionResultType.func_233537_a_(worldIn.isRemote);
+			return ActionResultType.sidedSuccess(worldIn.isClientSide);
 
 		}
 
-		return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
+		return super.use(state, worldIn, pos, player, handIn, hit);
 	}
 }

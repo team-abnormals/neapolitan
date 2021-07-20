@@ -31,20 +31,20 @@ public class BananaPeelEntity extends Entity {
 	}
 
 	@Override
-	public IPacket<?> createSpawnPacket() {
+	public IPacket<?> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 
 	@Override
-	protected void registerData() {
+	protected void defineSynchedData() {
 	}
 
 	@Override
-	protected void readAdditional(CompoundNBT compound) {
+	protected void readAdditionalSaveData(CompoundNBT compound) {
 	}
 
 	@Override
-	protected void writeAdditional(CompoundNBT compound) {
+	protected void addAdditionalSaveData(CompoundNBT compound) {
 	}
 
 	@Override
@@ -53,12 +53,12 @@ public class BananaPeelEntity extends Entity {
 	}
 
 	@Override
-	public boolean canBePushed() {
+	public boolean isPushable() {
 		return true;
 	}
 
 	@Override
-	public boolean canBeCollidedWith() {
+	public boolean isPickable() {
 		return this.isAlive();
 	}
 
@@ -67,16 +67,16 @@ public class BananaPeelEntity extends Entity {
 		super.tick();
 
 		if (this.onGround) {
-			this.setMotion(this.getMotion().mul(0.65F, 1.0F, 0.65F));
+			this.setDeltaMovement(this.getDeltaMovement().multiply(0.65F, 1.0F, 0.65F));
 		}
 
-		if (!this.hasNoGravity()) {
-			this.setMotion(this.getMotion().add(0.0D, -0.06D, 0.0D));
+		if (!this.isNoGravity()) {
+			this.setDeltaMovement(this.getDeltaMovement().add(0.0D, -0.06D, 0.0D));
 		}
-		this.getMotion().mul(0.9F, 0.9F, 0.9F);
-		this.move(MoverType.SELF, this.getMotion());
+		this.getDeltaMovement().multiply(0.9F, 0.9F, 0.9F);
+		this.move(MoverType.SELF, this.getDeltaMovement());
 
-		if (!this.world.isRemote) {
+		if (!this.level.isClientSide) {
 			if (this.age < 0)
 				this.remove();
 			else
@@ -85,22 +85,22 @@ public class BananaPeelEntity extends Entity {
 	}
 
 	@Override
-	public void applyEntityCollision(Entity entityIn) {
-		super.applyEntityCollision(entityIn);
-		if (this.onGround && entityIn instanceof LivingEntity && !(entityIn instanceof ChimpanzeeEntity) && !this.world.isRemote()) {
-			((LivingEntity) entityIn).addPotionEffect(new EffectInstance(NeapolitanEffects.SLIPPING.get(), 100));
+	public void push(Entity entityIn) {
+		super.push(entityIn);
+		if (this.onGround && entityIn instanceof LivingEntity && !(entityIn instanceof ChimpanzeeEntity) && !this.level.isClientSide()) {
+			((LivingEntity) entityIn).addEffect(new EffectInstance(NeapolitanEffects.SLIPPING.get(), 100));
 		}
 	}
 
 	@Override
-	public boolean attackEntityFrom(DamageSource source, float amount) {
+	public boolean hurt(DamageSource source, float amount) {
 		if (this.isInvulnerableTo(source)) {
 			return false;
 		} else {
-			if (this.isAlive() && !this.world.isRemote) {
+			if (this.isAlive() && !this.level.isClientSide) {
 				this.remove();
-				this.markVelocityChanged();
-				this.playSound(SoundEvents.ENTITY_ITEM_FRAME_BREAK, 1.0F, 1.0F);
+				this.markHurt();
+				this.playSound(SoundEvents.ITEM_FRAME_BREAK, 1.0F, 1.0F);
 			}
 			return true;
 		}

@@ -21,14 +21,14 @@ public class BananaPeelRenderer extends EntityRenderer<BananaPeelEntity> {
 	@Override
 	public void render(BananaPeelEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer bufferIn, int packedLightIn) {
 		super.render(entityIn, entityYaw, partialTicks, matrixStack, bufferIn, packedLightIn);
-		matrixStack.push();
+		matrixStack.pushPose();
 		matrixStack.scale(-1.0F, -1.0F, 1.0F);
-		IVertexBuilder ivertexbuilder = bufferIn.getBuffer(this.bananaPeel.getRenderType(this.getEntityTexture(entityIn)));
-		this.bananaPeel.render(matrixStack, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
-		matrixStack.pop();
+		IVertexBuilder ivertexbuilder = bufferIn.getBuffer(this.bananaPeel.renderType(this.getTextureLocation(entityIn)));
+		this.bananaPeel.renderToBuffer(matrixStack, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+		matrixStack.popPose();
 	}
 
-	public ResourceLocation getEntityTexture(BananaPeelEntity entity) {
+	public ResourceLocation getTextureLocation(BananaPeelEntity entity) {
 		return new ResourceLocation(Neapolitan.MOD_ID, "textures/entity/banana_peel.png");
 	}
 }

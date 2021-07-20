@@ -28,8 +28,8 @@ public class ChimpanzeePaleSkinLayer<E extends ChimpanzeeEntity, M extends Chimp
 		float f = chimpanzee.getVisiblePaleness();
 		if (!chimpanzee.isInvisible() && f > 0.0F) {
 			ResourceLocation resourcelocation = chimpanzee.isMouthOpen() ? PALE_SKIN_MOUTH_OPEN : PALE_SKIN;
-			IVertexBuilder ivertexbuilder = bufferIn.getBuffer(RenderType.getEntityTranslucent(resourcelocation));
-			this.getEntityModel().render(matrixStackIn, ivertexbuilder, packedLightIn, LivingRenderer.getPackedOverlay(chimpanzee, 0.0F), 1.0F, 1.0F, 1.0F, f);
+			IVertexBuilder ivertexbuilder = bufferIn.getBuffer(RenderType.entityTranslucent(resourcelocation));
+			this.getParentModel().renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, LivingRenderer.getOverlayCoords(chimpanzee, 0.0F), 1.0F, 1.0F, 1.0F, f);
 		}
 	}
 }

@@ -14,18 +14,18 @@ public class CryGoal extends Goal {
 
 	public CryGoal(ChimpanzeeEntity chimpanzeeIn) {
 		this.chimpanzee = chimpanzeeIn;
-		this.setMutexFlags(EnumSet.of(Goal.Flag.JUMP, Goal.Flag.MOVE, Goal.Flag.LOOK));
+		this.setFlags(EnumSet.of(Goal.Flag.JUMP, Goal.Flag.MOVE, Goal.Flag.LOOK));
 	}
 
 	@Override
-	public boolean shouldExecute() {
-		if (!this.chimpanzee.isChild()) {
+	public boolean canUse() {
+		if (!this.chimpanzee.isBaby()) {
 			return false;
 		} else if (!this.chimpanzee.getAction().canBeInterrupted()) {
 			return false;
-		} else if (!this.chimpanzee.getNavigator().noPath()) {
+		} else if (!this.chimpanzee.getNavigation().isDone()) {
 			return false;
-		} else if (this.chimpanzee.getRNG().nextInt(120) == 0) {
+		} else if (this.chimpanzee.getRandom().nextInt(120) == 0) {
 			return !this.isParentCloseBy();
 		} else {
 			return false;
@@ -33,19 +33,19 @@ public class CryGoal extends Goal {
 	}
 
 	@Override
-	public void startExecuting() {
-		this.cryTimer = 40 + this.chimpanzee.getRNG().nextInt(40);
+	public void start() {
+		this.cryTimer = 40 + this.chimpanzee.getRandom().nextInt(40);
 		this.chimpanzee.setAction(ChimpanzeeAction.CRYING);
-		this.chimpanzee.getNavigator().clearPath();
+		this.chimpanzee.getNavigation().stop();
 	}
 
 	@Override
-	public boolean shouldContinueExecuting() {
+	public boolean canContinueToUse() {
 		return this.cryTimer > 0;
 	}
 
 	@Override
-	public void resetTask() {
+	public void stop() {
 		this.cryTimer = 0;
 		this.chimpanzee.setDefaultAction();
 	}
@@ -56,10 +56,10 @@ public class CryGoal extends Goal {
 	}
 
 	private boolean isParentCloseBy() {
-		List<ChimpanzeeEntity> list = this.chimpanzee.world.getEntitiesWithinAABB(ChimpanzeeEntity.class, this.chimpanzee.getBoundingBox().grow(8.0D, 4.0D, 8.0D));
+		List<ChimpanzeeEntity> list = this.chimpanzee.level.getEntitiesOfClass(ChimpanzeeEntity.class, this.chimpanzee.getBoundingBox().inflate(8.0D, 4.0D, 8.0D));
 
 		for(ChimpanzeeEntity chimpanzeentity : list) {
-			if (chimpanzeentity.getGrowingAge() >= 0) {
+			if (chimpanzeentity.getAge() >= 0) {
 				return true;
 			}
 		}

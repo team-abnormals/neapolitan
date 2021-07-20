@@ -4,6 +4,8 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import net.minecraft.item.Item.Properties;
+
 public class HealingDrinkItem extends DrinkItem {
 	private final float healAmount;
 
@@ -13,8 +15,8 @@ public class HealingDrinkItem extends DrinkItem {
 	}
 
 	@Override
-	public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity entityLiving) {
+	public ItemStack finishUsingItem(ItemStack stack, World worldIn, LivingEntity entityLiving) {
 		HealingItem.applyHealing(this.healAmount, worldIn, entityLiving);
-		return super.onItemUseFinish(stack, worldIn, entityLiving);
+		return super.finishUsingItem(stack, worldIn, entityLiving);
 	}
 }

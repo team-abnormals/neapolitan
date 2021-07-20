@@ -32,80 +32,80 @@ import java.util.Random;
 public class VanillaVineBlock extends Block implements IGrowable {
 	public static final DirectionProperty FACING = BlockStateProperties.FACING;
 	public static final VoxelShape[] SHAPES = new VoxelShape[]{
-			Block.makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D), // DOWN
-			Block.makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D), // UP
-			Block.makeCuboidShape(4.0D, 4.0D, 0.0D, 12.0D, 12.0D, 16.0D), // NORTH
-			Block.makeCuboidShape(4.0D, 4.0D, 0.0D, 12.0D, 12.0D, 16.0D), // SOUTH
-			Block.makeCuboidShape(0.0D, 4.0D, 4.0D, 16.0D, 12.0D, 12.0D), // WEST
-			Block.makeCuboidShape(0.0D, 4.0D, 4.0D, 16.0D, 12.0D, 12.0D), // EAST
+			Block.box(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D), // DOWN
+			Block.box(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D), // UP
+			Block.box(4.0D, 4.0D, 0.0D, 12.0D, 12.0D, 16.0D), // NORTH
+			Block.box(4.0D, 4.0D, 0.0D, 12.0D, 12.0D, 16.0D), // SOUTH
+			Block.box(0.0D, 4.0D, 4.0D, 16.0D, 12.0D, 12.0D), // WEST
+			Block.box(0.0D, 4.0D, 4.0D, 16.0D, 12.0D, 12.0D), // EAST
 	};
 
 	public VanillaVineBlock(AbstractBlock.Properties properties) {
 		super(properties);
-		this.setDefaultState(this.getStateContainer().getBaseState().with(FACING, Direction.UP));
+		this.registerDefaultState(this.getStateDefinition().any().setValue(FACING, Direction.UP));
 	}
 
 	@Override
 	public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-		if (!state.isValidPosition(worldIn, pos)) {
+		if (!state.canSurvive(worldIn, pos)) {
 			worldIn.destroyBlock(pos, true);
 		}
 	}
 
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-		return SHAPES[state.get(FACING).getIndex()];
+		return SHAPES[state.getValue(FACING).get3DDataValue()];
 	}
 
 	@Override
-	public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-		BlockState otherState = worldIn.getBlockState(pos.offset(state.get(FACING).getOpposite()));
+	public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
+		BlockState otherState = worldIn.getBlockState(pos.relative(state.getValue(FACING).getOpposite()));
 		Block block = otherState.getBlock();
-		return VanillaVineTopBlock.facingSameDirection(state, otherState) || block.isIn(NeapolitanTags.Blocks.VANILLA_PLANTABLE_ON);
+		return VanillaVineTopBlock.facingSameDirection(state, otherState) || block.is(NeapolitanTags.Blocks.VANILLA_PLANTABLE_ON);
 	}
 
 
 	@Override
-	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-		if (facing == stateIn.get(FACING).getOpposite() && !stateIn.isValidPosition(worldIn, currentPos)) {
-			worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 1);
+	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+		if (facing == stateIn.getValue(FACING).getOpposite() && !stateIn.canSurvive(worldIn, currentPos)) {
+			worldIn.getBlockTicks().scheduleTick(currentPos, this, 1);
 		}
 
 		VanillaVineTopBlock topVine = (VanillaVineTopBlock) NeapolitanBlocks.VANILLA_VINE.get();
-		if (facing == stateIn.get(FACING)) {
+		if (facing == stateIn.getValue(FACING)) {
 			Block block = facingState.getBlock();
 			if (block != this && block != topVine) {
-				return topVine.getDefaultState().with(FACING, stateIn.get(FACING));
+				return topVine.defaultBlockState().setValue(FACING, stateIn.getValue(FACING));
 			}
 		}
 
-		return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+		return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 	}
 
 
 	@Override
-	public ItemStack getItem(IBlockReader worldIn, BlockPos pos, BlockState state) {
+	public ItemStack getCloneItemStack(IBlockReader worldIn, BlockPos pos, BlockState state) {
 		return new ItemStack(NeapolitanItems.VANILLA_PODS.get());
 	}
 
 
 	@Override
-	public boolean canGrow(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
+	public boolean isValidBonemealTarget(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
 		Optional<BlockPos> optional = this.nextGrowPosition(worldIn, pos, state);
-		return optional.isPresent() && PlantBlockHelper.isAir(worldIn.getBlockState(optional.get().offset(state.get(FACING))));
+		return optional.isPresent() && PlantBlockHelper.isValidGrowthState(worldIn.getBlockState(optional.get().relative(state.getValue(FACING))));
 	}
 
 	@Override
-	public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, BlockState state) {
+	public boolean isBonemealSuccess(World worldIn, Random rand, BlockPos pos, BlockState state) {
 		return true;
 	}
 
 	@Override
-	public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
+	public void performBonemeal(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
 		Optional<BlockPos> optional = this.nextGrowPosition(worldIn, pos, state);
 		if (optional.isPresent()) {
 			BlockState blockstate = worldIn.getBlockState(optional.get());
-			((VanillaVineTopBlock) blockstate.getBlock()).grow(worldIn, rand, optional.get(), blockstate);
+			((VanillaVineTopBlock) blockstate.getBlock()).performBonemeal(worldIn, rand, optional.get(), blockstate);
 		}
 	}
 
@@ -114,7 +114,7 @@ public class VanillaVineBlock extends Block implements IGrowable {
 
 		Block block;
 		while (true) {
-			blockpos = blockpos.offset(state.get(FACING));
+			blockpos = blockpos.relative(state.getValue(FACING));
 			block = reader.getBlockState(blockpos).getBlock();
 			if (block != state.getBlock()) {
 				break;
@@ -125,26 +125,26 @@ public class VanillaVineBlock extends Block implements IGrowable {
 	}
 
 	@Override
-	public boolean isReplaceable(BlockState state, BlockItemUseContext useContext) {
-		boolean flag = super.isReplaceable(state, useContext);
-		return (!flag || useContext.getItem().getItem() != NeapolitanBlocks.VANILLA_VINE.get().asItem()) && flag;
+	public boolean canBeReplaced(BlockState state, BlockItemUseContext useContext) {
+		boolean flag = super.canBeReplaced(state, useContext);
+		return (!flag || useContext.getItemInHand().getItem() != NeapolitanBlocks.VANILLA_VINE.get().asItem()) && flag;
 	}
 
 	@Override
-	public void onBlockHarvested(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-		super.onBlockHarvested(world, pos, state, player);
+	public void playerWillDestroy(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+		super.playerWillDestroy(world, pos, state, player);
 		createPoisonCloud(world, pos, state, player);
 	}
 
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-		super.fillStateContainer(builder);
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+		super.createBlockStateDefinition(builder);
 		builder.add(FACING);
 	}
 
 	public static void createPoisonCloud(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-		if (!player.abilities.isCreativeMode) {
-			if (!player.getHeldItemMainhand().getItem().isIn(Tags.Items.SHEARS)) {
+		if (!player.abilities.instabuild) {
+			if (!player.getMainHandItem().getItem().is(Tags.Items.SHEARS)) {
 				AreaEffectCloudEntity areaeffectcloudentity = new AreaEffectCloudEntity(world, pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F);
 				areaeffectcloudentity.addEffect(new EffectInstance(new EffectInstance(Effects.POISON, 300)));
 				areaeffectcloudentity.setRadius(1.0F);
@@ -153,7 +153,7 @@ public class VanillaVineBlock extends Block implements IGrowable {
 				areaeffectcloudentity.setDuration(areaeffectcloudentity.getDuration() / 2);
 				areaeffectcloudentity.setRadiusPerTick(-areaeffectcloudentity.getRadius() / (float) areaeffectcloudentity.getDuration());
 
-				world.addEntity(areaeffectcloudentity);
+				world.addFreshEntity(areaeffectcloudentity);
 			} else if (player instanceof ServerPlayerEntity)
 				NeapolitanCriteriaTriggers.VANILLA_POISON.trigger((ServerPlayerEntity) player);
 		}

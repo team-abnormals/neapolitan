@@ -1,9 +1,6 @@
 {
   "replace": false,
   "values": [
-    "neapolitan:banana_bunch",
-    "neapolitan:banana_bread",
-    "neapolitan:dried_banana",
-    "neapolitan:banana"
+    "neapolitan:banana_bunch"
   ]
 }

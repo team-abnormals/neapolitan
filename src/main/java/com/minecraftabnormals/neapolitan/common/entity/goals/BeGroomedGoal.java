@@ -12,11 +12,11 @@ public class BeGroomedGoal extends Goal {
 
 	public BeGroomedGoal(ChimpanzeeEntity chimpanzeeIn) {
 		this.chimpanzee = chimpanzeeIn;
-		this.setMutexFlags(EnumSet.of(Goal.Flag.JUMP, Goal.Flag.MOVE));
+		this.setFlags(EnumSet.of(Goal.Flag.JUMP, Goal.Flag.MOVE));
 	}
 
 	@Override
-	public boolean shouldExecute() {
+	public boolean canUse() {
 		if (!this.chimpanzee.getAction().canBeInterrupted())  {
 			return false;
 		} else if (this.chimpanzee.getAction() == ChimpanzeeAction.CRYING || this.chimpanzee.getAction() == ChimpanzeeAction.HUNCHING)  {
@@ -28,18 +28,18 @@ public class BeGroomedGoal extends Goal {
 	}
 
 	@Override
-	public boolean shouldContinueExecuting() {
+	public boolean canContinueToUse() {
 		ChimpanzeeEntity groomer = this.chimpanzee.getGroomer();
 		return groomer != null && groomer.isAlive() && groomer.getGroomingTarget() == this.chimpanzee;
 	}
 
 	@Override
-	public void startExecuting() {
-		this.chimpanzee.getNavigator().clearPath();
+	public void start() {
+		this.chimpanzee.getNavigation().stop();
 	}
 
 	@Override
-	public void resetTask() {
+	public void stop() {
 		this.chimpanzee.setGroomer(null);
 	}
 }

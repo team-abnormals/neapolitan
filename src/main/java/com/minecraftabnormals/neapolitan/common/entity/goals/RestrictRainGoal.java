@@ -15,25 +15,25 @@ public class RestrictRainGoal extends Goal {
 	}
 
 	@Override
-	public boolean shouldExecute() {
-		if (!this.entity.world.isRaining()) {
+	public boolean canUse() {
+		if (!this.entity.level.isRaining()) {
 			return false;
 		} else {
-			BlockPos position = this.entity.getPosition();
-			Biome biome = this.entity.world.getBiome(position);
-			return biome.getPrecipitation() == Biome.RainType.RAIN && biome.getTemperature(position) >= 0.15F && GroundPathHelper.isGroundNavigator(this.entity);
+			BlockPos position = this.entity.blockPosition();
+			Biome biome = this.entity.level.getBiome(position);
+			return biome.getPrecipitation() == Biome.RainType.RAIN && biome.getTemperature(position) >= 0.15F && GroundPathHelper.hasGroundPathNavigation(this.entity);
 		}
 	}
 
 	@Override
-	public void startExecuting() {
-		((GroundPathNavigator)this.entity.getNavigator()).setAvoidSun(true);
+	public void start() {
+		((GroundPathNavigator)this.entity.getNavigation()).setAvoidSun(true);
 	}
 
 	@Override
-	public void resetTask() {
-		if (GroundPathHelper.isGroundNavigator(this.entity)) {
-			((GroundPathNavigator)this.entity.getNavigator()).setAvoidSun(false);
+	public void stop() {
+		if (GroundPathHelper.hasGroundPathNavigation(this.entity)) {
+			((GroundPathNavigator)this.entity.getNavigation()).setAvoidSun(false);
 		}
 	}
 }

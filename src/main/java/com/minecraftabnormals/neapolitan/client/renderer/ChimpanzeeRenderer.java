@@ -30,7 +30,7 @@ public class ChimpanzeeRenderer extends MobRenderer<ChimpanzeeEntity, Chimpanzee
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(ChimpanzeeEntity entity) {
+	public ResourceLocation getTextureLocation(ChimpanzeeEntity entity) {
 		int type = entity.getChimpanzeeType();
 		return entity.isMouthOpen() ? CHIMPANZEE_MOUTH_OPEN_TEXTURES[type] : CHIMPANZEE_TEXTURES[type];
 	}

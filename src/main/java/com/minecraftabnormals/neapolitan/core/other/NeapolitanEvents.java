@@ -51,9 +51,9 @@ public class NeapolitanEvents {
 	@SubscribeEvent
 	public static void onEntityJoinWorld(EntityJoinWorldEvent event) {
 		Entity entity = event.getEntity();
-		if (entity instanceof MonsterEntity && !entity.getType().isContained(NeapolitanTags.EntityTypes.UNAFFECTED_BY_HARMONY)) {
+		if (entity instanceof MonsterEntity && !entity.getType().is(NeapolitanTags.EntityTypes.UNAFFECTED_BY_HARMONY)) {
 			MonsterEntity mobEntity = (MonsterEntity) entity;
-			mobEntity.goalSelector.addGoal(0, new AvoidEntityGoal<>(mobEntity, PlayerEntity.class, 12.0F, 1.0D, 1.0D, (player) -> player.getActivePotionEffect(NeapolitanEffects.HARMONY.get()) != null));
+			mobEntity.goalSelector.addGoal(0, new AvoidEntityGoal<>(mobEntity, PlayerEntity.class, 12.0F, 1.0D, 1.0D, (player) -> player.getEffect(NeapolitanEffects.HARMONY.get()) != null));
 		}
 	}
 
@@ -67,42 +67,42 @@ public class NeapolitanEvents {
 		PlayerEntity player = event.getPlayer();
 		Hand hand = event.getHand();
 
-		if (NeapolitanConfig.COMMON.milkCauldron.get() && state.isIn(Blocks.CAULDRON)) {
-			int i = state.get(CauldronBlock.LEVEL);
+		if (NeapolitanConfig.COMMON.milkCauldron.get() && state.is(Blocks.CAULDRON)) {
+			int i = state.getValue(CauldronBlock.LEVEL);
 			if (item == Items.MILK_BUCKET) {
-				if (i < 3 && !world.isRemote) {
-					if (!player.abilities.isCreativeMode) {
-						player.setHeldItem(hand, new ItemStack(Items.BUCKET));
+				if (i < 3 && !world.isClientSide) {
+					if (!player.abilities.instabuild) {
+						player.setItemInHand(hand, new ItemStack(Items.BUCKET));
 					}
 
-					player.addStat(Stats.FILL_CAULDRON);
+					player.awardStat(Stats.FILL_CAULDRON);
 					((MilkCauldronBlock) NeapolitanBlocks.MILK_CAULDRON.get()).setMilkLevel(world, pos, 3);
-					world.playSound(null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F, 1.0F);
+					world.playSound(null, pos, SoundEvents.BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F, 1.0F);
 				}
 
 				event.setCanceled(true);
-				event.setCancellationResult(ActionResultType.func_233537_a_(world.isRemote));
+				event.setCancellationResult(ActionResultType.sidedSuccess(world.isClientSide));
 			} else if (item == NeapolitanItems.MILK_BOTTLE.get()) {
-				if (i < 3 && !world.isRemote) {
-					if (!player.abilities.isCreativeMode) {
+				if (i < 3 && !world.isClientSide) {
+					if (!player.abilities.instabuild) {
 						stack.shrink(1);
 						ItemStack returnStack = new ItemStack(Items.GLASS_BOTTLE);
-						if (!player.inventory.addItemStackToInventory(returnStack)) {
-							player.dropItem(returnStack, false);
+						if (!player.inventory.add(returnStack)) {
+							player.drop(returnStack, false);
 						}
 
-						player.addStat(Stats.USE_CAULDRON);
+						player.awardStat(Stats.USE_CAULDRON);
 						if (player instanceof ServerPlayerEntity) {
-							((ServerPlayerEntity) player).sendContainerToPlayer(player.container);
+							((ServerPlayerEntity) player).refreshContainer(player.inventoryMenu);
 						}
 					}
 
-					world.playSound(null, pos, SoundEvents.ITEM_BOTTLE_EMPTY, SoundCategory.BLOCKS, 1.0F, 1.0F);
+					world.playSound(null, pos, SoundEvents.BOTTLE_EMPTY, SoundCategory.BLOCKS, 1.0F, 1.0F);
 					((MilkCauldronBlock) NeapolitanBlocks.MILK_CAULDRON.get()).setMilkLevel(world, pos, i + 1);
 				}
 
 				event.setCanceled(true);
-				event.setCancellationResult(ActionResultType.func_233537_a_(world.isRemote));
+				event.setCancellationResult(ActionResultType.sidedSuccess(world.isClientSide));
 			}
 		}
 	}
@@ -115,21 +115,21 @@ public class NeapolitanEvents {
 		Hand hand = event.getHand();
 		PlayerEntity player = event.getPlayer();
 
-		if (NeapolitanConfig.COMMON.milkingWithGlassBottles.get() && entity.getType().isContained(NeapolitanTags.EntityTypes.MILKABLE)) {
-			boolean notChild = !(entity instanceof LivingEntity) || !((LivingEntity) entity).isChild();
+		if (NeapolitanConfig.COMMON.milkingWithGlassBottles.get() && entity.getType().is(NeapolitanTags.EntityTypes.MILKABLE)) {
+			boolean notChild = !(entity instanceof LivingEntity) || !((LivingEntity) entity).isBaby();
 			if (stack.getItem() == Items.GLASS_BOTTLE && notChild) {
-				player.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
-				ItemStack itemstack1 = DrinkHelper.fill(stack, event.getPlayer(), NeapolitanItems.MILK_BOTTLE.get().getDefaultInstance());
-				player.setHeldItem(hand, itemstack1);
+				player.playSound(SoundEvents.COW_MILK, 1.0F, 1.0F);
+				ItemStack itemstack1 = DrinkHelper.createFilledResult(stack, event.getPlayer(), NeapolitanItems.MILK_BOTTLE.get().getDefaultInstance());
+				player.setItemInHand(hand, itemstack1);
 
 				event.setCanceled(true);
-				event.setCancellationResult(ActionResultType.func_233537_a_(world.isRemote()));
+				event.setCancellationResult(ActionResultType.sidedSuccess(world.isClientSide()));
 			}
 		}
 
 		if (entity instanceof LivingEntity && !(entity instanceof ChimpanzeeEntity) && stack.getItem() == NeapolitanItems.BANANA_BUNCH.get()) {
-			ActionResultType actionresulttype = stack.interactWithEntity(player, (LivingEntity) entity, hand);
-			if (actionresulttype.isSuccessOrConsume()) {
+			ActionResultType actionresulttype = stack.interactLivingEntity(player, (LivingEntity) entity, hand);
+			if (actionresulttype.consumesAction()) {
 				event.setCanceled(true);
 				event.setCancellationResult(actionresulttype);
 			}
@@ -138,14 +138,14 @@ public class NeapolitanEvents {
 
 	@SubscribeEvent
 	public static void onLivingDeath(LivingDeathEvent event) {
-		if (event.getSource().getTrueSource() instanceof LivingEntity) {
-			LivingEntity attacker = (LivingEntity) event.getSource().getTrueSource();
-			if (attacker.getActivePotionEffect(NeapolitanEffects.BERSERKING.get()) != null) {
-				EffectInstance berserking = attacker.getActivePotionEffect(NeapolitanEffects.BERSERKING.get());
+		if (event.getSource().getEntity() instanceof LivingEntity) {
+			LivingEntity attacker = (LivingEntity) event.getSource().getEntity();
+			if (attacker.getEffect(NeapolitanEffects.BERSERKING.get()) != null) {
+				EffectInstance berserking = attacker.getEffect(NeapolitanEffects.BERSERKING.get());
 				if (berserking.getAmplifier() < 9) {
-					EffectInstance upgrade = new EffectInstance(berserking.getPotion(), berserking.getDuration(), berserking.getAmplifier() + 1, berserking.isAmbient(), berserking.doesShowParticles(), berserking.isShowIcon());
-					attacker.removeActivePotionEffect(NeapolitanEffects.BERSERKING.get());
-					attacker.addPotionEffect(upgrade);
+					EffectInstance upgrade = new EffectInstance(berserking.getEffect(), berserking.getDuration(), berserking.getAmplifier() + 1, berserking.isAmbient(), berserking.isVisible(), berserking.showIcon());
+					attacker.removeEffectNoUpdate(NeapolitanEffects.BERSERKING.get());
+					attacker.addEffect(upgrade);
 				}
 			}
 		}
@@ -153,9 +153,9 @@ public class NeapolitanEvents {
 
 	@SubscribeEvent
 	public static void onExplosion(ExplosionEvent.Detonate event) {
-		LivingEntity source = event.getExplosion().getExplosivePlacedBy();
+		LivingEntity source = event.getExplosion().getSourceMob();
 		if (source != null && (source instanceof CreeperEntity || (ModList.get().isLoaded(SAVAGE_AND_RAVAGE) && source.getType() == ForgeRegistries.ENTITIES.getValue(CREEPIE)))) {
-			if (event.getWorld().getBlockState(source.getPosition()).getBlock() == NeapolitanBlocks.STRAWBERRY_BUSH.get()) {
+			if (event.getWorld().getBlockState(source.blockPosition()).getBlock() == NeapolitanBlocks.STRAWBERRY_BUSH.get()) {
 				for (Entity entity : event.getAffectedEntities()) {
 					if (entity instanceof LivingEntity) {
 						LivingEntity livingEntity = ((LivingEntity) entity);
@@ -173,16 +173,16 @@ public class NeapolitanEvents {
 
 	@SubscribeEvent
 	public static void onPotionAdded(PotionEvent.PotionApplicableEvent event) {
-		Effect effect = event.getPotionEffect().getPotion();
+		Effect effect = event.getPotionEffect().getEffect();
 		LivingEntity entity = event.getEntityLiving();
 
-		if (entity.getActivePotionEffect(NeapolitanEffects.VANILLA_SCENT.get()) != null) {
+		if (entity.getEffect(NeapolitanEffects.VANILLA_SCENT.get()) != null) {
 			if (effect != NeapolitanEffects.VANILLA_SCENT.get()) {
 				event.setResult(Result.DENY);
 			}
 		}
 
-		if (effect == NeapolitanEffects.SUGAR_RUSH.get() && !entity.world.isRemote) {
+		if (effect == NeapolitanEffects.SUGAR_RUSH.get() && !entity.level.isClientSide) {
 			entity.getPersistentData().putInt("SugarRushDuration", event.getPotionEffect().getDuration());
 		}
 	}

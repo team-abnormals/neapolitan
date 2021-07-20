@@ -15,17 +15,17 @@ public class HideFromRainGoal extends MoveToBlockGoal {
 	}
 
 	@Override
-	public boolean shouldExecute() {
-		return this.chimpanzee.world.isRainingAt(this.chimpanzee.getPosition()) && super.shouldExecute();
+	public boolean canUse() {
+		return this.chimpanzee.level.isRainingAt(this.chimpanzee.blockPosition()) && super.canUse();
 	}
 
 	@Override
-	public boolean shouldContinueExecuting() {
-		return this.chimpanzee.world.isRaining() && !this.destinationBlock.withinDistance(this.chimpanzee.getPositionVec(), 1.0D) && super.shouldContinueExecuting();
+	public boolean canContinueToUse() {
+		return this.chimpanzee.level.isRaining() && !this.blockPos.closerThan(this.chimpanzee.position(), 1.0D) && super.canContinueToUse();
 	}
 
 	@Override
-	protected boolean shouldMoveTo(IWorldReader worldIn, BlockPos pos) {
-		return worldIn.isAirBlock(pos.up()) && worldIn.isAirBlock(pos.up(2)) && !worldIn.canSeeSky(pos.up()) && worldIn.getBlockState(pos).getMaterial().isSolid();
+	protected boolean isValidTarget(IWorldReader worldIn, BlockPos pos) {
+		return worldIn.isEmptyBlock(pos.above()) && worldIn.isEmptyBlock(pos.above(2)) && !worldIn.canSeeSky(pos.above()) && worldIn.getBlockState(pos).getMaterial().isSolid();
 	}
 }

@@ -21,8 +21,8 @@ import net.minecraft.world.World;
 public class NeapolitanCompat {
 
 	public static void transformCookies() {
-		Foods.COOKIE.fastToEat = true;
-		Foods.COOKIE.saturation = 0.3F;
+		Foods.COOKIE.fastFood = true;
+		Foods.COOKIE.saturationModifier = 0.3F;
 	}
 
 	public static void registerCompat() {
@@ -34,11 +34,11 @@ public class NeapolitanCompat {
 
 	public static void registerLootInjectors() {
 		LootInjectionRegistry.LootInjector injector = new LootInjectionRegistry.LootInjector(Neapolitan.MOD_ID);
-		injector.addLootInjection(injector.buildLootPool("village_savanna_house", 2, 0), LootTables.CHESTS_VILLAGE_VILLAGE_SAVANNA_HOUSE);
-		injector.addLootInjection(injector.buildLootPool("village_plains_house", 2, 0), LootTables.CHESTS_VILLAGE_VILLAGE_PLAINS_HOUSE);
-		injector.addLootInjection(injector.buildLootPool("village_snowy_house", 2, 0), LootTables.CHESTS_VILLAGE_VILLAGE_SNOWY_HOUSE);
-		injector.addLootInjection(injector.buildLootPool("jungle_temple", 2, 0), LootTables.CHESTS_JUNGLE_TEMPLE);
-		injector.addLootInjection(injector.buildLootPool("jungle_temple_dispenser", 1, 0), LootTables.CHESTS_JUNGLE_TEMPLE_DISPENSER);
+		injector.addLootInjection(injector.buildLootPool("village_savanna_house", 2, 0), LootTables.VILLAGE_SAVANNA_HOUSE);
+		injector.addLootInjection(injector.buildLootPool("village_plains_house", 2, 0), LootTables.VILLAGE_PLAINS_HOUSE);
+		injector.addLootInjection(injector.buildLootPool("village_snowy_house", 2, 0), LootTables.VILLAGE_SNOWY_HOUSE);
+		injector.addLootInjection(injector.buildLootPool("jungle_temple", 2, 0), LootTables.JUNGLE_TEMPLE);
+		injector.addLootInjection(injector.buildLootPool("jungle_temple_dispenser", 1, 0), LootTables.JUNGLE_TEMPLE_DISPENSER);
 		injector.addLootInjection(injector.buildLootPool("ravager", 1, 0), new ResourceLocation("entities/ravager"));
 	}
 
@@ -164,28 +164,28 @@ public class NeapolitanCompat {
 	}
 
 	public static void registerDispenserBehaviors() {
-		DispenserBlock.registerDispenseBehavior(NeapolitanItems.BANANARROW.get(), new ProjectileDispenseBehavior() {
-			protected ProjectileEntity getProjectileEntity(World worldIn, IPosition position, ItemStack stackIn) {
-				return new BananarrowEntity(worldIn, position.getX(), position.getY(), position.getZ());
+		DispenserBlock.registerBehavior(NeapolitanItems.BANANARROW.get(), new ProjectileDispenseBehavior() {
+			protected ProjectileEntity getProjectile(World worldIn, IPosition position, ItemStack stackIn) {
+				return new BananarrowEntity(worldIn, position.x(), position.y(), position.z());
 			}
 		});
 	}
 
 	public static void registerRenderLayers() {
-		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.STRAWBERRY_BUSH.get(), RenderType.getCutout());
-		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.VANILLA_VINE.get(), RenderType.getCutout());
-		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.VANILLA_VINE_PLANT.get(), RenderType.getCutout());
-		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.MINT.get(), RenderType.getCutout());
-		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.ADZUKI_SPROUTS.get(), RenderType.getCutout());
-		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.BEANSTALK_THORNS.get(), RenderType.getCutout());
+		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.STRAWBERRY_BUSH.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.VANILLA_VINE.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.VANILLA_VINE_PLANT.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.MINT.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.ADZUKI_SPROUTS.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.BEANSTALK_THORNS.get(), RenderType.cutout());
 
-		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.SMALL_BANANA_FROND.get(), RenderType.getCutout());
-		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.BANANA_FROND.get(), RenderType.getCutout());
-		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.LARGE_BANANA_FROND.get(), RenderType.getCutout());
+		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.SMALL_BANANA_FROND.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.BANANA_FROND.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.LARGE_BANANA_FROND.get(), RenderType.cutout());
 
-		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.FROND_THATCH.get(), RenderType.getCutout());
-		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.FROND_THATCH_STAIRS.get(), RenderType.getCutout());
-		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.FROND_THATCH_SLAB.get(), RenderType.getCutout());
-		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.FROND_THATCH_VERTICAL_SLAB.get(), RenderType.getCutout());
+		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.FROND_THATCH.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.FROND_THATCH_STAIRS.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.FROND_THATCH_SLAB.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(NeapolitanBlocks.FROND_THATCH_VERTICAL_SLAB.get(), RenderType.cutout());
 	}
 }

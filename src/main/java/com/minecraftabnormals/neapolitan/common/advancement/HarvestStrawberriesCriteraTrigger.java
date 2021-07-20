@@ -27,11 +27,11 @@ public class HarvestStrawberriesCriteraTrigger extends AbstractCriterionTrigger<
 	}
 
 	@Override
-	public HarvestStrawberriesCriteraTrigger.Instance deserializeTrigger(JsonObject json, EntityPredicate.AndPredicate entityPredicate, ConditionArrayParser conditionsParser) {
+	public HarvestStrawberriesCriteraTrigger.Instance createInstance(JsonObject json, EntityPredicate.AndPredicate entityPredicate, ConditionArrayParser conditionsParser) {
 		Block block = deserializeBlock(json);
-		StatePropertiesPredicate statepropertiespredicate = StatePropertiesPredicate.deserializeProperties(json.get("state"));
+		StatePropertiesPredicate statepropertiespredicate = StatePropertiesPredicate.fromJson(json.get("state"));
 		if (block != null) {
-			statepropertiespredicate.forEachNotPresent(block.getStateContainer(), (p_227148_1_) -> {
+			statepropertiespredicate.checkState(block.getStateDefinition(), (p_227148_1_) -> {
 				throw new JsonSyntaxException("Block " + block + " has no property " + p_227148_1_);
 			});
 		}
@@ -42,7 +42,7 @@ public class HarvestStrawberriesCriteraTrigger extends AbstractCriterionTrigger<
 	@Nullable
 	private static Block deserializeBlock(JsonObject object) {
 		if (object.has("block")) {
-			ResourceLocation resourcelocation = new ResourceLocation(JSONUtils.getString(object, "block"));
+			ResourceLocation resourcelocation = new ResourceLocation(JSONUtils.getAsString(object, "block"));
 			return Registry.BLOCK.getOptional(resourcelocation).orElseThrow(() -> {
 				return new JsonSyntaxException("Unknown block type '" + resourcelocation + "'");
 			});
@@ -52,7 +52,7 @@ public class HarvestStrawberriesCriteraTrigger extends AbstractCriterionTrigger<
 	}
 
 	public void trigger(ServerPlayerEntity player, BlockState state) {
-		this.triggerListeners(player, (instance) -> instance.test(state));
+		this.trigger(player, (instance) -> instance.test(state));
 	}
 
 	public static class Instance extends CriterionInstance {
@@ -66,22 +66,22 @@ public class HarvestStrawberriesCriteraTrigger extends AbstractCriterionTrigger<
 		}
 
 		public static HarvestStrawberriesCriteraTrigger.Instance create(Block block) {
-			return new HarvestStrawberriesCriteraTrigger.Instance(EntityPredicate.AndPredicate.ANY_AND, block, StatePropertiesPredicate.EMPTY);
+			return new HarvestStrawberriesCriteraTrigger.Instance(EntityPredicate.AndPredicate.ANY, block, StatePropertiesPredicate.ANY);
 		}
 
 		@Override
-		public JsonObject serialize(ConditionArraySerializer conditions) {
-			JsonObject jsonobject = super.serialize(conditions);
+		public JsonObject serializeToJson(ConditionArraySerializer conditions) {
+			JsonObject jsonobject = super.serializeToJson(conditions);
 			if (this.block != null) {
 				jsonobject.addProperty("block", Registry.BLOCK.getKey(this.block).toString());
 			}
 
-			jsonobject.add("state", this.stateCondition.toJsonElement());
+			jsonobject.add("state", this.stateCondition.serializeToJson());
 			return jsonobject;
 		}
 
 		public boolean test(BlockState state) {
-			if (this.block != null && !state.isIn(this.block)) {
+			if (this.block != null && !state.is(this.block)) {
 				return false;
 			} else {
 				return this.stateCondition.matches(state);

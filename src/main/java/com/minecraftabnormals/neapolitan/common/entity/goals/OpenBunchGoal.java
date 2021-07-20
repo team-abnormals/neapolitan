@@ -15,13 +15,13 @@ public class OpenBunchGoal extends Goal {
 
 	public OpenBunchGoal(ChimpanzeeEntity chimpanzeeIn) {
 		this.chimpanzee = chimpanzeeIn;
-		this.setMutexFlags(EnumSet.of(Goal.Flag.JUMP, Goal.Flag.MOVE));
+		this.setFlags(EnumSet.of(Goal.Flag.JUMP, Goal.Flag.MOVE));
 	}
 
 	@Override
-	public boolean shouldExecute() {
+	public boolean canUse() {
 		if (this.chimpanzee.isHungry() && this.chimpanzee.getAction().canBeInterrupted()) {
-			if (this.chimpanzee.getHeldItemMainhand().getItem() == NeapolitanItems.BANANA_BUNCH.get() || this.chimpanzee.getHeldItemOffhand().getItem() == NeapolitanItems.BANANA_BUNCH.get()) {
+			if (this.chimpanzee.getMainHandItem().getItem() == NeapolitanItems.BANANA_BUNCH.get() || this.chimpanzee.getOffhandItem().getItem() == NeapolitanItems.BANANA_BUNCH.get()) {
 				return true;
 			}
 		}
@@ -30,9 +30,9 @@ public class OpenBunchGoal extends Goal {
 	}
 
 	@Override
-	public void startExecuting() {
+	public void start() {
 		this.chimpanzee.setAction(ChimpanzeeAction.DEFAULT);
-		this.chimpanzee.getNavigator().clearPath();
+		this.chimpanzee.getNavigation().stop();
 		this.throwTimer = 0;
 	}
 
@@ -43,9 +43,9 @@ public class OpenBunchGoal extends Goal {
 		if (this.throwTimer >= 40) {
 			boolean flag = false;
 			Hand hand = Hand.MAIN_HAND;
-			if (this.chimpanzee.getHeldItemMainhand().getItem() == NeapolitanItems.BANANA_BUNCH.get()) {
+			if (this.chimpanzee.getMainHandItem().getItem() == NeapolitanItems.BANANA_BUNCH.get()) {
 				flag = true;
-			} else if (this.chimpanzee.getHeldItemOffhand().getItem() == NeapolitanItems.BANANA_BUNCH.get()) {
+			} else if (this.chimpanzee.getOffhandItem().getItem() == NeapolitanItems.BANANA_BUNCH.get()) {
 				hand = Hand.OFF_HAND;
 				flag = true;
 			}
@@ -53,14 +53,14 @@ public class OpenBunchGoal extends Goal {
 			if (flag) {
 				this.chimpanzee.openBunch(hand);
 				this.chimpanzee.swingArms();
-				this.chimpanzee.world.setEntityState(this.chimpanzee, (byte)4);
+				this.chimpanzee.level.broadcastEntityEvent(this.chimpanzee, (byte)4);
 			}
 		}
 	}
 
 	@Override
-	public boolean shouldContinueExecuting() {
-		if (this.throwTimer < 40 && this.chimpanzee.getHeldItemMainhand().getItem() != NeapolitanItems.BANANA_BUNCH.get() && this.chimpanzee.getHeldItemOffhand().getItem() != NeapolitanItems.BANANA_BUNCH.get()) {
+	public boolean canContinueToUse() {
+		if (this.throwTimer < 40 && this.chimpanzee.getMainHandItem().getItem() != NeapolitanItems.BANANA_BUNCH.get() && this.chimpanzee.getOffhandItem().getItem() != NeapolitanItems.BANANA_BUNCH.get()) {
 			return false;
 		} else if (this.throwTimer >= 60) {
 			return false;

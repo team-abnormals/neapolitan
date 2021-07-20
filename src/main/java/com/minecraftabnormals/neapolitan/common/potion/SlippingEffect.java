@@ -14,8 +14,8 @@ public class SlippingEffect extends Effect {
 	}
 
 	@Override
-	public void performEffect(LivingEntity entity, int amplifier) {
-		Random rand = entity.getEntityWorld().getRandom();
+	public void applyEffectTick(LivingEntity entity, int amplifier) {
+		Random rand = entity.getCommandSenderWorld().getRandom();
 		float amount = rand.nextFloat() * 0.2F;
 		float x = 0.0F;
 		float z = 0.0F;
@@ -26,11 +26,11 @@ public class SlippingEffect extends Effect {
 		else
 			z = amount;
 		if (entity.isOnGround() && !NeapolitanTags.EntityTypes.UNAFFECTED_BY_SLIPPING.contains(entity.getType()))
-			entity.setMotion(entity.getMotion().add(x, 0.0F, z));
+			entity.setDeltaMovement(entity.getDeltaMovement().add(x, 0.0F, z));
 	}
 
 	@Override
-	public boolean isReady(int duration, int amplifier) {
+	public boolean isDurationEffectTick(int duration, int amplifier) {
 		return true;
 	}
 }

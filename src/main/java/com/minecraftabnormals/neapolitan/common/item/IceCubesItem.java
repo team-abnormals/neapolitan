@@ -4,6 +4,8 @@ import com.minecraftabnormals.neapolitan.core.registry.NeapolitanSounds;
 import net.minecraft.item.Item;
 import net.minecraft.util.SoundEvent;
 
+import net.minecraft.item.Item.Properties;
+
 public class IceCubesItem extends Item {
 
 	public IceCubesItem(Properties properties) {
@@ -11,12 +13,12 @@ public class IceCubesItem extends Item {
 	}
 
 	@Override
-	public SoundEvent getDrinkSound() {
+	public SoundEvent getDrinkingSound() {
 		return NeapolitanSounds.ITEM_ICE_CUBES_EAT.get();
 	}
 
 	@Override
-	public SoundEvent getEatSound() {
+	public SoundEvent getEatingSound() {
 		return NeapolitanSounds.ITEM_ICE_CUBES_EAT.get();
 	}
 }

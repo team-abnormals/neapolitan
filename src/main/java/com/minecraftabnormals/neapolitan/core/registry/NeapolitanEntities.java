@@ -36,8 +36,8 @@ public class NeapolitanEntities {
 
 	@SubscribeEvent
 	public static void registerEntityAttributes(EntityAttributeCreationEvent event) {
-		event.put(PLANTAIN_SPIDER.get(), PlantainSpiderEntity.registerAttributes().create());
-		event.put(CHIMPANZEE.get(), ChimpanzeeEntity.registerAttributes().create());
+		event.put(PLANTAIN_SPIDER.get(), PlantainSpiderEntity.registerAttributes().build());
+		event.put(CHIMPANZEE.get(), ChimpanzeeEntity.registerAttributes().build());
 	}
 
 	public static void registerEntityRenderers() {

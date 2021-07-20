@@ -18,6 +18,8 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class FlavoredCakeBlock extends CakeBlock {
 	private EffectType effectType;
 	private Food food;
@@ -29,10 +31,10 @@ public class FlavoredCakeBlock extends CakeBlock {
 	}
 
 	@Override
-	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-		if (worldIn.isRemote) {
-			ItemStack itemstack = player.getHeldItem(handIn);
-			if (this.eatSlice(worldIn, pos, state, player).isSuccessOrConsume()) {
+	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+		if (worldIn.isClientSide) {
+			ItemStack itemstack = player.getItemInHand(handIn);
+			if (this.eatSlice(worldIn, pos, state, player).consumesAction()) {
 				return ActionResultType.SUCCESS;
 			}
 
@@ -48,21 +50,21 @@ public class FlavoredCakeBlock extends CakeBlock {
 		if (!player.canEat(false)) {
 			return ActionResultType.PASS;
 		} else {
-			player.addStat(Stats.EAT_CAKE_SLICE);
-			player.getFoodStats().addStats(food.getHealing(), food.getSaturation());
-			int i = state.get(BITES);
+			player.awardStat(Stats.EAT_CAKE_SLICE);
+			player.getFoodData().eat(food.getNutrition(), food.getSaturationModifier());
+			int i = state.getValue(BITES);
 
 			if (this == NeapolitanBlocks.STRAWBERRY_CAKE.get())
 				HealingItem.applyHealing(1.0F, world, player);
 
 			for (Pair<EffectInstance, Float> pair : food.getEffects()) {
-				if (!world.isRemote() && pair.getFirst() != null && world.getRandom().nextFloat() < pair.getSecond()) {
-					player.addPotionEffect(new EffectInstance(pair.getFirst()));
+				if (!world.isClientSide() && pair.getFirst() != null && world.getRandom().nextFloat() < pair.getSecond()) {
+					player.addEffect(new EffectInstance(pair.getFirst()));
 				}
 			}
 
 			if (i < 6) {
-				world.setBlockState(pos, state.with(BITES, i + 1), 3);
+				world.setBlock(pos, state.setValue(BITES, i + 1), 3);
 			} else {
 				world.removeBlock(pos, false);
 			}

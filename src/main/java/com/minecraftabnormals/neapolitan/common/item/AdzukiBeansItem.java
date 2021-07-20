@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.item.Item.Properties;
+
 public class AdzukiBeansItem extends Item {
 	private boolean magic;
 
@@ -30,13 +32,13 @@ public class AdzukiBeansItem extends Item {
 		this.magic = magic;
 	}
 
-	public ActionResultType onItemUse(ItemUseContext context) {
-		World world = context.getWorld();
-		BlockPos pos = context.getPos();
+	public ActionResultType useOn(ItemUseContext context) {
+		World world = context.getLevel();
+		BlockPos pos = context.getClickedPos();
 		BlockState state = world.getBlockState(pos);
-		Direction face = context.getFace();
+		Direction face = context.getClickedFace();
 		PlayerEntity player = context.getPlayer();
-		ItemStack stack = context.getItem();
+		ItemStack stack = context.getItemInHand();
 		Random random = world.getRandom();
 
 		List<Direction> offsetDirections = new ArrayList<>();
@@ -51,26 +53,26 @@ public class AdzukiBeansItem extends Item {
 		}
 
 		if (!magic) {
-			if ((state.isIn(Blocks.DIRT) || state.isIn(Blocks.GRASS_BLOCK)) && world.getBlockState(pos.up()).isAir() && face == Direction.UP) {
-				if (!world.isRemote())
-					world.setBlockState(pos, NeapolitanBlocks.ADZUKI_SOIL.get().getDefaultState());
-				world.playSound(null, pos, SoundEvents.ITEM_CROP_PLANT, SoundCategory.BLOCKS, 1.0F, 1.0F);
-				if (player != null && !player.abilities.isCreativeMode) stack.shrink(1);
-				return ActionResultType.func_233537_a_(world.isRemote);
+			if ((state.is(Blocks.DIRT) || state.is(Blocks.GRASS_BLOCK)) && world.getBlockState(pos.above()).isAir() && face == Direction.UP) {
+				if (!world.isClientSide())
+					world.setBlockAndUpdate(pos, NeapolitanBlocks.ADZUKI_SOIL.get().defaultBlockState());
+				world.playSound(null, pos, SoundEvents.CROP_PLANTED, SoundCategory.BLOCKS, 1.0F, 1.0F);
+				if (player != null && !player.abilities.instabuild) stack.shrink(1);
+				return ActionResultType.sidedSuccess(world.isClientSide);
 			}
 
 			return ActionResultType.PASS;
 		}
 
 		List<BlockPos> beanstalkPositions = new ArrayList<>();
-		BlockPos offsetPos = pos.offset(face);
+		BlockPos offsetPos = pos.relative(face);
 
 		if (state.getMaterial().isReplaceable()) offsetPos = pos;
-		world.playSound(null, pos, SoundEvents.ITEM_CROP_PLANT, SoundCategory.BLOCKS, 1.0F, 1.0F);
-		if (!world.isRemote() && pos.getY() >= 0) {
+		world.playSound(null, pos, SoundEvents.CROP_PLANTED, SoundCategory.BLOCKS, 1.0F, 1.0F);
+		if (!world.isClientSide() && pos.getY() >= 0) {
 			for (Direction direction : offsetDirections) {
-				beanstalkPositions.add(offsetPos.offset(direction));
-				BlockPos cornerPos = offsetPos.offset(direction).offset(rotate(face.getAxis(), direction));
+				beanstalkPositions.add(offsetPos.relative(direction));
+				BlockPos cornerPos = offsetPos.relative(direction).relative(rotate(face.getAxis(), direction));
 				if (random.nextInt(3) == 0) beanstalkPositions.add(cornerPos);
 			}
 
@@ -78,13 +80,13 @@ public class AdzukiBeansItem extends Item {
 			stem:
 			for (int i = 0; i < 3 + random.nextInt(4); ++i) {
 				for (int j = 0; j < 3 + random.nextInt(3); ++j) {
-					if (j != 0) offsetPos = offsetPos.offset(face);
+					if (j != 0) offsetPos = offsetPos.relative(face);
 					if (world.getBlockState(offsetPos).getMaterial().isReplaceable())
 						beanstalkPositions.add(offsetPos);
 					else break stem;
 				}
 				startingDirection = rotate(face.getAxis(), startingDirection);
-				offsetPos = offsetPos.offset(startingDirection);
+				offsetPos = offsetPos.relative(startingDirection);
 			}
 
 			int placed = 0;
@@ -93,24 +95,24 @@ public class AdzukiBeansItem extends Item {
 			}
 
 
-			if (placed > 0 && player != null && !player.abilities.isCreativeMode) stack.shrink(1);
+			if (placed > 0 && player != null && !player.abilities.instabuild) stack.shrink(1);
 
 			for (BlockPos blockPos : beanstalkPositions) {
 				for (Direction direction : Direction.values()) {
-					BlockPos thornPos = blockPos.offset(direction);
-					BlockState beanState = NeapolitanBlocks.BEANSTALK_THORNS.get().getDefaultState().with(BeanstalkThornsBlock.FACING, direction).with(BeanstalkThornsBlock.WATERLOGGED, world.getFluidState(thornPos).getFluid() == Fluids.WATER);
-					if (world.getBlockState(blockPos).isIn(NeapolitanBlocks.BEANSTALK.get()) && world.getBlockState(thornPos).getMaterial().isReplaceable() && random.nextInt(4) == 0 && beanState.isValidPosition(world, thornPos))
-						world.setBlockState(thornPos, beanState);
+					BlockPos thornPos = blockPos.relative(direction);
+					BlockState beanState = NeapolitanBlocks.BEANSTALK_THORNS.get().defaultBlockState().setValue(BeanstalkThornsBlock.FACING, direction).setValue(BeanstalkThornsBlock.WATERLOGGED, world.getFluidState(thornPos).getType() == Fluids.WATER);
+					if (world.getBlockState(blockPos).is(NeapolitanBlocks.BEANSTALK.get()) && world.getBlockState(thornPos).getMaterial().isReplaceable() && random.nextInt(4) == 0 && beanState.canSurvive(world, thornPos))
+						world.setBlockAndUpdate(thornPos, beanState);
 				}
 			}
 		}
 
-		return ActionResultType.func_233537_a_(world.isRemote);
+		return ActionResultType.sidedSuccess(world.isClientSide);
 	}
 
 	private static boolean attemptPlaceBeanstalk(World world, BlockPos pos, Direction direction) {
 		if (world.getBlockState(pos).getMaterial().isReplaceable())
-			return world.setBlockState(pos, NeapolitanBlocks.BEANSTALK.get().getDefaultState().with(RotatedPillarBlock.AXIS, direction.getAxis()));
+			return world.setBlockAndUpdate(pos, NeapolitanBlocks.BEANSTALK.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, direction.getAxis()));
 		return false;
 	}
 

@@ -20,6 +20,7 @@ import net.minecraftforge.fml.network.FMLPlayMessages;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 import java.util.List;
+import java.util.Objects;
 
 public class BananarrowEntity extends AbstractArrowEntity {
 	public boolean impacted = false;
@@ -41,49 +42,49 @@ public class BananarrowEntity extends AbstractArrowEntity {
 	}
 
 	@Override
-	protected void func_230299_a_(BlockRayTraceResult result) {
-		super.func_230299_a_(result);
+	protected void onHitBlock(BlockRayTraceResult result) {
+		super.onHitBlock(result);
 		if (!impacted) {
-			BananaPeelEntity bananaPeel = NeapolitanEntities.BANANA_PEEL.get().create(world);
-			bananaPeel.setLocationAndAngles(this.getPosX(), this.getPosY(), this.getPosZ(), 0.0F, 0.0F);
-			this.world.addEntity(bananaPeel);
+			BananaPeelEntity bananaPeel = NeapolitanEntities.BANANA_PEEL.get().create(level);
+			bananaPeel.moveTo(this.getX(), this.getY(), this.getZ(), 0.0F, 0.0F);
+			this.level.addFreshEntity(bananaPeel);
 			this.impacted = true;
 		}
 	}
 
 	@Override
-	protected void onEntityHit(EntityRayTraceResult result) {
-		super.onEntityHit(result);
+	protected void onHitEntity(EntityRayTraceResult result) {
+		super.onHitEntity(result);
 		Entity entity = result.getEntity();
 		if (!impacted && !(entity instanceof BananaPeelEntity)) {
-			BananaPeelEntity bananaPeel = NeapolitanEntities.BANANA_PEEL.get().create(world);
-			bananaPeel.setLocationAndAngles(this.getPosX(), this.getPosY(), this.getPosZ(), 0.0F, 0.0F);
-			this.world.addEntity(bananaPeel);
+			BananaPeelEntity bananaPeel = NeapolitanEntities.BANANA_PEEL.get().create(level);
+			bananaPeel.moveTo(this.getX(), this.getY(), this.getZ(), 0.0F, 0.0F);
+			this.level.addFreshEntity(bananaPeel);
 			this.impacted = true;
-			if (entity instanceof LivingEntity && !world.isRemote()) {
-				((LivingEntity) entity).addPotionEffect(new EffectInstance(NeapolitanEffects.SLIPPING.get(), 100));
+			if (entity instanceof LivingEntity && !level.isClientSide()) {
+				((LivingEntity) entity).addEffect(new EffectInstance(NeapolitanEffects.SLIPPING.get(), 100));
 			}
 		}
 
 		if (entity instanceof LivingEntity && !(entity instanceof ChimpanzeeEntity)) {
 			LivingEntity livingEntity = (LivingEntity) entity;
-			List<ChimpanzeeEntity> chimps = world.getEntitiesWithinAABB(ChimpanzeeEntity.class, livingEntity.getBoundingBox().grow(16.0D, 6.0D, 16.0D));
+			List<ChimpanzeeEntity> chimps = level.getEntitiesOfClass(ChimpanzeeEntity.class, livingEntity.getBoundingBox().inflate(16.0D, 6.0D, 16.0D));
 			for (ChimpanzeeEntity chimp : chimps) {
-				chimp.setAttackTarget(livingEntity);
+				chimp.setTarget(livingEntity);
 			}
 
-			if (!chimps.isEmpty() && this.func_234616_v_() instanceof ServerPlayerEntity)
-				NeapolitanCriteriaTriggers.CHIMPANZEE_ATTACK.trigger((ServerPlayerEntity) this.func_234616_v_());
+			if (!chimps.isEmpty() && this.getOwner() instanceof ServerPlayerEntity)
+				NeapolitanCriteriaTriggers.CHIMPANZEE_ATTACK.trigger((ServerPlayerEntity) Objects.requireNonNull(this.getOwner()));
 		}
 	}
 
 	@Override
-	protected ItemStack getArrowStack() {
+	protected ItemStack getPickupItem() {
 		return new ItemStack(!this.impacted ? NeapolitanItems.BANANARROW.get() : Items.ARROW);
 	}
 
 	@Override
-	public IPacket<?> createSpawnPacket() {
+	public IPacket<?> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 }

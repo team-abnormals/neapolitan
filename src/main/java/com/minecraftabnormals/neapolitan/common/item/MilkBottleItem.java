@@ -24,26 +24,26 @@ public class MilkBottleItem extends Item {
 	}
 
 	@Override
-	public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity entity) {
+	public ItemStack finishUsingItem(ItemStack stack, World worldIn, LivingEntity entity) {
 		clearRandomEffect(worldIn, entity);
 
 		if (entity instanceof ServerPlayerEntity) {
 			ServerPlayerEntity serverplayerentity = (ServerPlayerEntity) entity;
 			CriteriaTriggers.CONSUME_ITEM.trigger(serverplayerentity, stack);
-			serverplayerentity.addStat(Stats.ITEM_USED.get(this));
+			serverplayerentity.awardStat(Stats.ITEM_USED.get(this));
 		}
 
-		if (entity instanceof PlayerEntity && !((PlayerEntity) entity).abilities.isCreativeMode)
+		if (entity instanceof PlayerEntity && !((PlayerEntity) entity).abilities.instabuild)
 			stack.shrink(1);
 
 		if (stack.isEmpty()) {
 			return new ItemStack(Items.GLASS_BOTTLE);
 		} else {
-			if (entity instanceof PlayerEntity && !((PlayerEntity) entity).abilities.isCreativeMode) {
+			if (entity instanceof PlayerEntity && !((PlayerEntity) entity).abilities.instabuild) {
 				ItemStack itemstack = new ItemStack(Items.GLASS_BOTTLE);
 				PlayerEntity playerentity = (PlayerEntity) entity;
-				if (!playerentity.inventory.addItemStackToInventory(itemstack)) {
-					playerentity.dropItem(itemstack, false);
+				if (!playerentity.inventory.add(itemstack)) {
+					playerentity.drop(itemstack, false);
 				}
 			}
 
@@ -53,12 +53,12 @@ public class MilkBottleItem extends Item {
 	}
 
 	public static void clearRandomEffect(World worldIn, LivingEntity entity) {
-		if (!worldIn.isRemote) {
-			ImmutableList<EffectInstance> effects = ImmutableList.copyOf(entity.getActivePotionEffects());
+		if (!worldIn.isClientSide) {
+			ImmutableList<EffectInstance> effects = ImmutableList.copyOf(entity.getActiveEffects());
 			if (effects.size() > 0) {
 				Random rand = new Random();
 				EffectInstance effectToRemove = effects.get(rand.nextInt(effects.size()));
-				entity.removePotionEffect(effectToRemove.getPotion());
+				entity.removeEffect(effectToRemove.getEffect());
 			}
 		}
 	}
@@ -69,12 +69,12 @@ public class MilkBottleItem extends Item {
 	}
 
 	@Override
-	public UseAction getUseAction(ItemStack stack) {
+	public UseAction getUseAnimation(ItemStack stack) {
 		return UseAction.DRINK;
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-		return DrinkHelper.startDrinking(worldIn, playerIn, handIn);
+	public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+		return DrinkHelper.useDrink(worldIn, playerIn, handIn);
 	}
 }

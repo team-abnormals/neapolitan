@@ -7,16 +7,16 @@ import net.minecraft.particles.BasicParticleType;
 public class MintBoostParticle extends SpriteTexturedParticle {
 	public MintBoostParticle(ClientWorld world, double x, double y, double z, double motionX, double motionY, double motionZ) {
 		super(world, x, y, z, motionX, motionY, motionZ);
-		float f = this.rand.nextFloat() * 0.1F + 0.2F;
-		this.particleRed = f;
-		this.particleGreen = f;
-		this.particleBlue = f;
+		float f = this.random.nextFloat() * 0.1F + 0.2F;
+		this.rCol = f;
+		this.gCol = f;
+		this.bCol = f;
 		this.setSize(0.02F, 0.02F);
-		this.particleScale *= this.rand.nextFloat() * 0.6F + 0.5F;
-		this.motionX *= 0.02F;
-		this.motionY *= 0.02F;
-		this.motionZ *= 0.02F;
-		this.maxAge = (int) (20.0D / (Math.random() * 0.8D + 0.2D));
+		this.quadSize *= this.random.nextFloat() * 0.6F + 0.5F;
+		this.xd *= 0.02F;
+		this.yd *= 0.02F;
+		this.zd *= 0.02F;
+		this.lifetime = (int) (20.0D / (Math.random() * 0.8D + 0.2D));
 	}
 
 	public IParticleRenderType getRenderType() {
@@ -24,21 +24,21 @@ public class MintBoostParticle extends SpriteTexturedParticle {
 	}
 
 	public void move(double x, double y, double z) {
-		this.setBoundingBox(this.getBoundingBox().offset(x, y, z));
-		this.resetPositionToBB();
+		this.setBoundingBox(this.getBoundingBox().move(x, y, z));
+		this.setLocationFromBoundingbox();
 	}
 
 	public void tick() {
-		this.prevPosX = this.posX;
-		this.prevPosY = this.posY;
-		this.prevPosZ = this.posZ;
-		if (this.maxAge-- <= 0) {
-			this.setExpired();
+		this.xo = this.x;
+		this.yo = this.y;
+		this.zo = this.z;
+		if (this.lifetime-- <= 0) {
+			this.remove();
 		} else {
-			this.move(this.motionX, this.motionY, this.motionZ);
-			this.motionX *= 0.99D;
-			this.motionY *= 0.99D;
-			this.motionZ *= 0.99D;
+			this.move(this.xd, this.yd, this.zd);
+			this.xd *= 0.99D;
+			this.yd *= 0.99D;
+			this.zd *= 0.99D;
 		}
 	}
 
@@ -49,9 +49,9 @@ public class MintBoostParticle extends SpriteTexturedParticle {
 			this.spriteSet = spriteSet;
 		}
 
-		public Particle makeParticle(BasicParticleType typeIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+		public Particle createParticle(BasicParticleType typeIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
 			MintBoostParticle mintBoostParticle = new MintBoostParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed);
-			mintBoostParticle.selectSpriteRandomly(this.spriteSet);
+			mintBoostParticle.pickSprite(this.spriteSet);
 			mintBoostParticle.setColor(1.0F, 1.0F, 1.0F);
 			return mintBoostParticle;
 		}

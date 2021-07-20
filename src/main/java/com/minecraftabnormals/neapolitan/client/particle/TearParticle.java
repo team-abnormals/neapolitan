@@ -15,35 +15,35 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class TearParticle extends SpriteTexturedParticle {
 	private TearParticle(ClientWorld world, double x, double y, double z, double motionX, double motionY, double motionZ) {
 		super(world, x, y, z, motionX, motionY, motionZ);
-		this.motionX *= (double)0.1F;
-		this.motionY *= (double)0.1F;
-		this.motionZ *= (double)0.1F;
-		this.motionX += motionX * 0.4D;
-		this.motionY += motionY * 0.4D;
-		this.motionZ += motionZ * 0.4D;
-		this.particleScale *= 0.75F;
-		this.particleGravity = 0.06F;
-		this.maxAge = (int) (20.0D / (Math.random() * 0.8D + 0.2D));
+		this.xd *= (double)0.1F;
+		this.yd *= (double)0.1F;
+		this.zd *= (double)0.1F;
+		this.xd += motionX * 0.4D;
+		this.yd += motionY * 0.4D;
+		this.zd += motionZ * 0.4D;
+		this.quadSize *= 0.75F;
+		this.gravity = 0.06F;
+		this.lifetime = (int) (20.0D / (Math.random() * 0.8D + 0.2D));
 	}
 
-	public float getScale(float scaleFactor) {
-		return this.particleScale * MathHelper.clamp(((float)this.age + scaleFactor) / (float)this.maxAge * 32.0F, 0.0F, 1.0F);
+	public float getQuadSize(float scaleFactor) {
+		return this.quadSize * MathHelper.clamp(((float)this.age + scaleFactor) / (float)this.lifetime * 32.0F, 0.0F, 1.0F);
 	}
 
 	public void tick() {
-		this.prevPosX = this.posX;
-		this.prevPosY = this.posY;
-		this.prevPosZ = this.posZ;
-		if (this.age++ >= this.maxAge) {
-			this.setExpired();
+		this.xo = this.x;
+		this.yo = this.y;
+		this.zo = this.z;
+		if (this.age++ >= this.lifetime) {
+			this.remove();
 		} else {
-			this.move(this.motionX, this.motionY, this.motionZ);
-			this.motionX *= (double)0.7F;
-			this.motionY *= (double)0.7F;
-			this.motionZ *= (double)0.7F;
-			this.motionY -= (double)this.particleGravity;
+			this.move(this.xd, this.yd, this.zd);
+			this.xd *= (double)0.7F;
+			this.yd *= (double)0.7F;
+			this.zd *= (double)0.7F;
+			this.yd -= (double)this.gravity;
 			if (this.onGround) {
-				this.setExpired();
+				this.remove();
 			}
 		}
 	}
@@ -60,9 +60,9 @@ public class TearParticle extends SpriteTexturedParticle {
 			this.spriteSet = spriteSet;
 		}
 
-		public Particle makeParticle(BasicParticleType typeIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+		public Particle createParticle(BasicParticleType typeIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
 			TearParticle tearparticle = new TearParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed);
-			tearparticle.selectSpriteRandomly(this.spriteSet);
+			tearparticle.pickSprite(this.spriteSet);
 			return tearparticle;
 		}
 	}

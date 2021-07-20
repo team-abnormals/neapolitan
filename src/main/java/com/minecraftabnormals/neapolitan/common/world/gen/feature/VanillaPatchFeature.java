@@ -22,10 +22,10 @@ public class VanillaPatchFeature extends Feature<BlockClusterFeatureConfig> {
 	}
 
 	@Override
-	public boolean generate(ISeedReader world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, BlockClusterFeatureConfig config) {
+	public boolean place(ISeedReader world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, BlockClusterFeatureConfig config) {
 		BlockPos blockpos;
-		if (config.field_227298_k_) {
-			blockpos = world.getHeight(Heightmap.Type.WORLD_SURFACE_WG, pos);
+		if (config.project) {
+			blockpos = world.getHeightmapPos(Heightmap.Type.WORLD_SURFACE_WG, pos);
 		} else {
 			blockpos = pos;
 		}
@@ -34,20 +34,20 @@ public class VanillaPatchFeature extends Feature<BlockClusterFeatureConfig> {
 		BlockPos.Mutable position = new BlockPos.Mutable();
 
 		for (Direction direction : Direction.values()) {
-			for (int j = 0; j < config.tryCount; ++j) {
-				position.setAndOffset(blockpos, random.nextInt(config.xSpread + 1) - random.nextInt(config.xSpread + 1), random.nextInt(config.ySpread + 1) - random.nextInt(config.ySpread + 1), random.nextInt(config.zSpread + 1) - random.nextInt(config.zSpread + 1));
-				BlockPos downPosition = position.offset(direction.getOpposite());
+			for (int j = 0; j < config.tries; ++j) {
+				position.setWithOffset(blockpos, random.nextInt(config.xspread + 1) - random.nextInt(config.xspread + 1), random.nextInt(config.yspread + 1) - random.nextInt(config.yspread + 1), random.nextInt(config.zspread + 1) - random.nextInt(config.zspread + 1));
+				BlockPos downPosition = position.relative(direction.getOpposite());
 				BlockState downState = world.getBlockState(downPosition);
 
-				BlockState vanillaVine = config.stateProvider.getBlockState(random, pos).with(VanillaVineTopBlock.FACING, direction);
-				BlockState vanillaVinePlant = NeapolitanBlocks.VANILLA_VINE_PLANT.get().getDefaultState().with(VanillaVineBlock.FACING, direction);
+				BlockState vanillaVine = config.stateProvider.getState(random, pos).setValue(VanillaVineTopBlock.FACING, direction);
+				BlockState vanillaVinePlant = NeapolitanBlocks.VANILLA_VINE_PLANT.get().defaultBlockState().setValue(VanillaVineBlock.FACING, direction);
 
-				if ((world.isAirBlock(position) || config.isReplaceable && world.getBlockState(position).getMaterial().isReplaceable()) && vanillaVine.isValidPosition(world, position) && (config.whitelist.isEmpty() || config.whitelist.contains(downState.getBlock())) && !config.blacklist.contains(downState) && (!config.requiresWater || world.getFluidState(downPosition.west()).isTagged(FluidTags.WATER) || world.getFluidState(downPosition.east()).isTagged(FluidTags.WATER) || world.getFluidState(downPosition.north()).isTagged(FluidTags.WATER) || world.getFluidState(downPosition.south()).isTagged(FluidTags.WATER))) {
-					if (!downState.isIn(config.stateProvider.getBlockState(random, pos).getBlock())) {
+				if ((world.isEmptyBlock(position) || config.canReplace && world.getBlockState(position).getMaterial().isReplaceable()) && vanillaVine.canSurvive(world, position) && (config.whitelist.isEmpty() || config.whitelist.contains(downState.getBlock())) && !config.blacklist.contains(downState) && (!config.needWater || world.getFluidState(downPosition.west()).is(FluidTags.WATER) || world.getFluidState(downPosition.east()).is(FluidTags.WATER) || world.getFluidState(downPosition.north()).is(FluidTags.WATER) || world.getFluidState(downPosition.south()).is(FluidTags.WATER))) {
+					if (!downState.is(config.stateProvider.getState(random, pos).getBlock())) {
 						config.blockPlacer.place(world, position, vanillaVine, random);
-						if (world.getBlockState(position.offset(direction)).isAir(world, position.offset(direction))) {
+						if (world.getBlockState(position.relative(direction)).isAir(world, position.relative(direction))) {
 							config.blockPlacer.place(world, position, vanillaVinePlant, random);
-							config.blockPlacer.place(world, position.offset(direction), vanillaVine, random);
+							config.blockPlacer.place(world, position.relative(direction), vanillaVine, random);
 						}
 					}
 					++i;

@@ -14,7 +14,7 @@ public class BananarrowRenderer extends ArrowRenderer<BananarrowEntity> {
 		super(manager);
 	}
 
-	public ResourceLocation getEntityTexture(BananarrowEntity entity) {
+	public ResourceLocation getTextureLocation(BananarrowEntity entity) {
 		return !entity.impacted ? BANANARROW : ARROW;
 	}
 }

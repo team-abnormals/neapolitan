@@ -22,12 +22,12 @@ public class StrawberryPatchFeature extends Feature<BlockClusterFeatureConfig> {
 	}
 
 	@Override
-	public boolean generate(ISeedReader world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, BlockClusterFeatureConfig config) {
-		BlockState strawberryBush = config.stateProvider.getBlockState(random, pos);
+	public boolean place(ISeedReader world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, BlockClusterFeatureConfig config) {
+		BlockState strawberryBush = config.stateProvider.getState(random, pos);
 
 		BlockPos blockpos;
-		if (config.field_227298_k_) {
-			blockpos = world.getHeight(Heightmap.Type.WORLD_SURFACE_WG, pos);
+		if (config.project) {
+			blockpos = world.getHeightmapPos(Heightmap.Type.WORLD_SURFACE_WG, pos);
 		} else {
 			blockpos = pos;
 		}
@@ -35,26 +35,26 @@ public class StrawberryPatchFeature extends Feature<BlockClusterFeatureConfig> {
 		int i = 0;
 		BlockPos.Mutable position = new BlockPos.Mutable();
 
-		for (int j = 0; j < config.tryCount; ++j) {
-			position.setAndOffset(blockpos, random.nextInt(config.xSpread + 1) - random.nextInt(config.xSpread + 1), random.nextInt(config.ySpread + 1) - random.nextInt(config.ySpread + 1), random.nextInt(config.zSpread + 1) - random.nextInt(config.zSpread + 1));
-			BlockPos downPosition = position.down();
+		for (int j = 0; j < config.tries; ++j) {
+			position.setWithOffset(blockpos, random.nextInt(config.xspread + 1) - random.nextInt(config.xspread + 1), random.nextInt(config.yspread + 1) - random.nextInt(config.yspread + 1), random.nextInt(config.zspread + 1) - random.nextInt(config.zspread + 1));
+			BlockPos downPosition = position.below();
 			BlockState downState = world.getBlockState(downPosition);
-			if ((world.isAirBlock(position) || config.isReplaceable && world.getBlockState(position).getMaterial().isReplaceable() && !world.getFluidState(position).isTagged(FluidTags.WATER)) && strawberryBush.isValidPosition(world, position) && (config.whitelist.isEmpty() || config.whitelist.contains(downState.getBlock())) && !config.blacklist.contains(downState) && (!config.requiresWater || world.getFluidState(downPosition.west()).isTagged(FluidTags.WATER) || world.getFluidState(downPosition.east()).isTagged(FluidTags.WATER) || world.getFluidState(downPosition.north()).isTagged(FluidTags.WATER) || world.getFluidState(downPosition.south()).isTagged(FluidTags.WATER))) {
+			if ((world.isEmptyBlock(position) || config.canReplace && world.getBlockState(position).getMaterial().isReplaceable() && !world.getFluidState(position).is(FluidTags.WATER)) && strawberryBush.canSurvive(world, position) && (config.whitelist.isEmpty() || config.whitelist.contains(downState.getBlock())) && !config.blacklist.contains(downState) && (!config.needWater || world.getFluidState(downPosition.west()).is(FluidTags.WATER) || world.getFluidState(downPosition.east()).is(FluidTags.WATER) || world.getFluidState(downPosition.north()).is(FluidTags.WATER) || world.getFluidState(downPosition.south()).is(FluidTags.WATER))) {
 				if (random.nextInt(10) != 0) {
-					int age = world.getBlockState(position.down()).isIn(Blocks.COARSE_DIRT) ? 2 : 6;
-					config.blockPlacer.place(world, position, strawberryBush.with(StrawberryBushBlock.AGE, age), random);
+					int age = world.getBlockState(position.below()).is(Blocks.COARSE_DIRT) ? 2 : 6;
+					config.blockPlacer.place(world, position, strawberryBush.setValue(StrawberryBushBlock.AGE, age), random);
 				} else {
-					config.blockPlacer.place(world, position, strawberryBush.with(StrawberryBushBlock.TYPE, StrawberryBushBlock.StrawberryType.NONE).with(StrawberryBushBlock.AGE, 2), random);
-					config.blockPlacer.place(world, position.down(), Blocks.COARSE_DIRT.getDefaultState(), random);
+					config.blockPlacer.place(world, position, strawberryBush.setValue(StrawberryBushBlock.TYPE, StrawberryBushBlock.StrawberryType.NONE).setValue(StrawberryBushBlock.AGE, 2), random);
+					config.blockPlacer.place(world, position.below(), Blocks.COARSE_DIRT.defaultBlockState(), random);
 				}
 
 				for (Direction direction : Direction.Plane.HORIZONTAL) {
-					BlockState offsetState = world.getBlockState(position.offset(direction));
-					BlockState offsetDownState = world.getBlockState(downPosition.offset(direction));
+					BlockState offsetState = world.getBlockState(position.relative(direction));
+					BlockState offsetDownState = world.getBlockState(downPosition.relative(direction));
 
-					if (!(offsetState.isIn(NeapolitanBlocks.STRAWBERRY_BUSH.get()) && offsetState.get(StrawberryBushBlock.AGE) != 2) && (offsetDownState.isIn(Blocks.DIRT) || offsetDownState.isIn(Blocks.GRASS_BLOCK))) {
+					if (!(offsetState.is(NeapolitanBlocks.STRAWBERRY_BUSH.get()) && offsetState.getValue(StrawberryBushBlock.AGE) != 2) && (offsetDownState.is(Blocks.DIRT) || offsetDownState.is(Blocks.GRASS_BLOCK))) {
 						if (random.nextBoolean()) {
-							config.blockPlacer.place(world, downPosition.offset(direction), Blocks.COARSE_DIRT.getDefaultState(), random);
+							config.blockPlacer.place(world, downPosition.relative(direction), Blocks.COARSE_DIRT.defaultBlockState(), random);
 						}
 					}
 				}

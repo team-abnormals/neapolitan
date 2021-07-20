@@ -23,18 +23,18 @@ public class PlantainSpiderEntity extends SpiderEntity {
 	}
 
 	public static boolean canPlantainSpiderSpawn(EntityType<? extends MonsterEntity> type, IServerWorld worldIn, SpawnReason reason, BlockPos pos, Random randomIn) {
-		return pos.getY() > 60 && canMonsterSpawnInLight(type, worldIn, reason, pos, randomIn);
+		return pos.getY() > 60 && checkMonsterSpawnRules(type, worldIn, reason, pos, randomIn);
 	}
 
 	public static AttributeModifierMap.MutableAttribute registerAttributes() {
-		return SpiderEntity.func_234305_eI_().createMutableAttribute(Attributes.MAX_HEALTH, 8.0D);
+		return SpiderEntity.createAttributes().add(Attributes.MAX_HEALTH, 8.0D);
 	}
 
-	public boolean attackEntityAsMob(Entity entityIn) {
-		if (super.attackEntityAsMob(entityIn)) {
+	public boolean doHurtTarget(Entity entityIn) {
+		if (super.doHurtTarget(entityIn)) {
 			if (entityIn instanceof LivingEntity && NeapolitanConfig.COMMON.plantainSpidersGiveSlipping.get()) {
 				LivingEntity livingEntity = (LivingEntity) entityIn;
-				livingEntity.addPotionEffect(new EffectInstance(NeapolitanEffects.SLIPPING.get(), this.world.getDifficulty().getId() * 60));
+				livingEntity.addEffect(new EffectInstance(NeapolitanEffects.SLIPPING.get(), this.level.getDifficulty().getId() * 60));
 			}
 			return true;
 		} else {
@@ -43,7 +43,7 @@ public class PlantainSpiderEntity extends SpiderEntity {
 	}
 
 	@Nullable
-	public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+	public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
 		return spawnDataIn;
 	}
 

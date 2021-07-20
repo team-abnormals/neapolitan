@@ -20,12 +20,12 @@ public class AdzukiPatchFeature extends Feature<BlockClusterFeatureConfig> {
 	}
 
 	@Override
-	public boolean generate(ISeedReader world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, BlockClusterFeatureConfig config) {
-		BlockState sprouts = config.stateProvider.getBlockState(random, pos);
+	public boolean place(ISeedReader world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, BlockClusterFeatureConfig config) {
+		BlockState sprouts = config.stateProvider.getState(random, pos);
 
 		BlockPos blockpos;
-		if (config.field_227298_k_) {
-			blockpos = world.getHeight(Heightmap.Type.WORLD_SURFACE_WG, pos);
+		if (config.project) {
+			blockpos = world.getHeightmapPos(Heightmap.Type.WORLD_SURFACE_WG, pos);
 		} else {
 			blockpos = pos;
 		}
@@ -33,13 +33,13 @@ public class AdzukiPatchFeature extends Feature<BlockClusterFeatureConfig> {
 		int i = 0;
 		BlockPos.Mutable position = new BlockPos.Mutable();
 
-		for (int j = 0; j < config.tryCount; ++j) {
-			position.setAndOffset(blockpos, random.nextInt(config.xSpread + 1) - random.nextInt(config.xSpread + 1), random.nextInt(config.ySpread + 1) - random.nextInt(config.ySpread + 1), random.nextInt(config.zSpread + 1) - random.nextInt(config.zSpread + 1));
-			BlockPos downPosition = position.down();
+		for (int j = 0; j < config.tries; ++j) {
+			position.setWithOffset(blockpos, random.nextInt(config.xspread + 1) - random.nextInt(config.xspread + 1), random.nextInt(config.yspread + 1) - random.nextInt(config.yspread + 1), random.nextInt(config.zspread + 1) - random.nextInt(config.zspread + 1));
+			BlockPos downPosition = position.below();
 			BlockState downState = world.getBlockState(downPosition);
-			if ((world.isAirBlock(position) || config.isReplaceable && world.getBlockState(position).getMaterial().isReplaceable() && !world.getFluidState(position).isTagged(FluidTags.WATER)) && sprouts.isValidPosition(world, position) && (config.whitelist.isEmpty() || config.whitelist.contains(downState.getBlock())) && !config.blacklist.contains(downState) && (!config.requiresWater || world.getFluidState(downPosition.west()).isTagged(FluidTags.WATER) || world.getFluidState(downPosition.east()).isTagged(FluidTags.WATER) || world.getFluidState(downPosition.north()).isTagged(FluidTags.WATER) || world.getFluidState(downPosition.south()).isTagged(FluidTags.WATER))) {
-				config.blockPlacer.place(world, position, sprouts.with(AdzukiSproutsBlock.AGE, 6), random);
-				config.blockPlacer.place(world, position.down(), Blocks.DIRT.getDefaultState(), random);
+			if ((world.isEmptyBlock(position) || config.canReplace && world.getBlockState(position).getMaterial().isReplaceable() && !world.getFluidState(position).is(FluidTags.WATER)) && sprouts.canSurvive(world, position) && (config.whitelist.isEmpty() || config.whitelist.contains(downState.getBlock())) && !config.blacklist.contains(downState) && (!config.needWater || world.getFluidState(downPosition.west()).is(FluidTags.WATER) || world.getFluidState(downPosition.east()).is(FluidTags.WATER) || world.getFluidState(downPosition.north()).is(FluidTags.WATER) || world.getFluidState(downPosition.south()).is(FluidTags.WATER))) {
+				config.blockPlacer.place(world, position, sprouts.setValue(AdzukiSproutsBlock.AGE, 6), random);
+				config.blockPlacer.place(world, position.below(), Blocks.DIRT.defaultBlockState(), random);
 				++i;
 			}
 		}

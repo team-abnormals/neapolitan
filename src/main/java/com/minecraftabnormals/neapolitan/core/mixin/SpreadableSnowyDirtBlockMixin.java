@@ -13,9 +13,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(SpreadableSnowyDirtBlock.class)
 public abstract class SpreadableSnowyDirtBlockMixin {
 
-	@Inject(at = @At("HEAD"), method = "isSnowyAndNotUnderwater", cancellable = true)
+	@Inject(at = @At("HEAD"), method = "canPropagate", cancellable = true)
 	private static void isSnowyAndNotUnderwater(BlockState state, IWorldReader worldReader, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
-		if (worldReader.getBlockState(pos.up()).isIn(NeapolitanBlocks.ADZUKI_SPROUTS.get()))
+		if (worldReader.getBlockState(pos.above()).is(NeapolitanBlocks.ADZUKI_SPROUTS.get()))
 			cir.setReturnValue(false);
 	}
 }

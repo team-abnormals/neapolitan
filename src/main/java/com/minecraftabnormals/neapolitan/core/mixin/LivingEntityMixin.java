@@ -17,9 +17,9 @@ public abstract class LivingEntityMixin extends Entity {
 		super(entityTypeIn, worldIn);
 	}
 
-	@Inject(at = @At("RETURN"), method = "isOnLadder", cancellable = true)
+	@Inject(at = @At("RETURN"), method = "onClimbable", cancellable = true)
 	private void isClimbing(CallbackInfoReturnable<Boolean> cir) {
-		if (((LivingEntity) this.getEntity()).isPotionActive(NeapolitanEffects.AGILITY.get()) && this.getEntity().collidedHorizontally)
+		if (((LivingEntity) this.getEntity()).hasEffect(NeapolitanEffects.AGILITY.get()) && this.getEntity().horizontalCollision)
 			cir.setReturnValue(true);
 	}
 }

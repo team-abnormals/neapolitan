@@ -15,16 +15,16 @@ public class PlantainSpiderRenderer extends SpiderRenderer<PlantainSpiderEntity>
 
 	public PlantainSpiderRenderer(EntityRendererManager renderManagerIn) {
 		super(renderManagerIn);
-		this.shadowSize *= 0.6F;
+		this.shadowRadius *= 0.6F;
 	}
 
 	@Override
-	protected void preRenderCallback(PlantainSpiderEntity entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
+	protected void scale(PlantainSpiderEntity entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
 		matrixStackIn.scale(0.6F, 0.6F, 0.6F);
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(PlantainSpiderEntity entity) {
+	public ResourceLocation getTextureLocation(PlantainSpiderEntity entity) {
 		return PLANTAIN_SPIDER_TEXTURES;
 	}
 }

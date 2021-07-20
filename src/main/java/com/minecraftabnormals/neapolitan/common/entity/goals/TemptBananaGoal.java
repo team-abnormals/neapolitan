@@ -11,7 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.vector.Vector3d;
 
 public class TemptBananaGoal extends Goal {
-	private static final EntityPredicate ENTITY_PREDICATE = (new EntityPredicate()).setDistance(10.0D).allowInvulnerable().allowFriendlyFire().setSkipAttackChecks().setLineOfSiteRequired();
+	private static final EntityPredicate ENTITY_PREDICATE = (new EntityPredicate()).range(10.0D).allowInvulnerable().allowSameTeam().allowNonAttackable().allowUnseeable();
 	protected final ChimpanzeeEntity chimpanzee;
 	private final double speed;
 	protected PlayerEntity closestPlayer;
@@ -24,22 +24,22 @@ public class TemptBananaGoal extends Goal {
 		this.chimpanzee = chimpanzeeIn;
 		this.speed = speedIn;
 
-		this.setMutexFlags(EnumSet.of(Goal.Flag.JUMP, Goal.Flag.MOVE, Goal.Flag.LOOK));
+		this.setFlags(EnumSet.of(Goal.Flag.JUMP, Goal.Flag.MOVE, Goal.Flag.LOOK));
 	}
 
 	@Override
-	public boolean shouldExecute() {
+	public boolean canUse() {
 		if (this.delayTemptCounter > 0) {
 			--this.delayTemptCounter;
 			return false;
-		} else if (!this.chimpanzee.needsFood()) {
+		} else if (!this.chimpanzee.needsSnack()) {
 			return false;
 		} else {
-			this.closestPlayer = this.chimpanzee.world.getClosestPlayer(ENTITY_PREDICATE, this.chimpanzee);
+			this.closestPlayer = this.chimpanzee.level.getNearestPlayer(ENTITY_PREDICATE, this.chimpanzee);
 			if (this.closestPlayer == null) {
 				return false;
 			} else {
-				return this.isTempting(this.closestPlayer.getHeldItemMainhand()) || this.isTempting(this.closestPlayer.getHeldItemOffhand());
+				return this.isTempting(this.closestPlayer.getMainHandItem()) || this.isTempting(this.closestPlayer.getOffhandItem());
 			}
 		}
 	}
@@ -49,52 +49,52 @@ public class TemptBananaGoal extends Goal {
 	}
 
 	@Override
-	public boolean shouldContinueExecuting() {
+	public boolean canContinueToUse() {
 		if (this.forgetTimer <= 0) {
 			return false;
-		} else if (this.closestPlayer == null || !ENTITY_PREDICATE.canTarget(this.chimpanzee, this.closestPlayer)) {
+		} else if (this.closestPlayer == null || !ENTITY_PREDICATE.test(this.chimpanzee, this.closestPlayer)) {
 			return false;
 		} else {
-			return this.chimpanzee.needsFood() && ENTITY_PREDICATE.canTarget(this.chimpanzee, this.closestPlayer);
+			return this.chimpanzee.needsSnack() && ENTITY_PREDICATE.test(this.chimpanzee, this.closestPlayer);
 		}
 	}
 
 	@Override
-	public void startExecuting() {
+	public void start() {
 		this.forgetTimer = 100;
 		this.patience = 60;
-		this.playerDistance = this.chimpanzee.getDistanceSq(this.closestPlayer);
+		this.playerDistance = this.chimpanzee.distanceToSqr(this.closestPlayer);
 	}
 
 	@Override
-	public void resetTask() {
+	public void stop() {
 		this.closestPlayer = null;
-		this.chimpanzee.getNavigator().clearPath();
+		this.chimpanzee.getNavigation().stop();
 		this.delayTemptCounter = 100;
 	}
 
 	@Override
 	public void tick() {
-		this.chimpanzee.getLookController().setLookPositionWithEntity(this.closestPlayer, (float)(this.chimpanzee.getHorizontalFaceSpeed() + 20), (float)this.chimpanzee.getVerticalFaceSpeed());
-		if (this.chimpanzee.getDistanceSq(this.closestPlayer) < 6.25D) {
-			this.chimpanzee.getNavigator().clearPath();
+		this.chimpanzee.getLookControl().setLookAt(this.closestPlayer, (float)(this.chimpanzee.getMaxHeadYRot() + 20), (float)this.chimpanzee.getMaxHeadXRot());
+		if (this.chimpanzee.distanceToSqr(this.closestPlayer) < 6.25D) {
+			this.chimpanzee.getNavigation().stop();
 		} else {
-			this.chimpanzee.getNavigator().tryMoveToEntityLiving(this.closestPlayer, this.speed);
+			this.chimpanzee.getNavigation().moveTo(this.closestPlayer, this.speed);
 		}
 		
-		double d0 = this.chimpanzee.getDistanceSq(this.closestPlayer);
+		double d0 = this.chimpanzee.distanceToSqr(this.closestPlayer);
 		
-		if (this.playerDistance < d0 && this.closestPlayer.getMotion() != Vector3d.ZERO) {
+		if (this.playerDistance < d0 && this.closestPlayer.getDeltaMovement() != Vector3d.ZERO) {
 			--this.patience;
 		}
 		
 		this.playerDistance = d0;
 		
-		if (!this.chimpanzee.isChild() && this.patience <= 0 && !this.closestPlayer.abilities.isCreativeMode) {
-			this.chimpanzee.setAttackTarget(this.closestPlayer);
+		if (!this.chimpanzee.isBaby() && this.patience <= 0 && !this.closestPlayer.abilities.instabuild) {
+			this.chimpanzee.setTarget(this.closestPlayer);
 		}
 		
-		if (!this.isTempting(this.closestPlayer.getHeldItemMainhand()) && !this.isTempting(this.closestPlayer.getHeldItemOffhand())) {
+		if (!this.isTempting(this.closestPlayer.getMainHandItem()) && !this.isTempting(this.closestPlayer.getOffhandItem())) {
 			--this.forgetTimer;
 		} else {
 			this.forgetTimer = 160;

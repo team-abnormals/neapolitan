@@ -24,9 +24,9 @@ public class MintPondFeature extends Feature<NoFeatureConfig> {
 	}
 
 	@Override
-	public boolean generate(ISeedReader world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, NoFeatureConfig config) {
-		BlockPos blockpos = world.getHeight(Heightmap.Type.WORLD_SURFACE_WG, pos);
-		List<Direction> directions = Direction.Plane.HORIZONTAL.getDirectionValues().collect(Collectors.toList());
+	public boolean place(ISeedReader world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, NoFeatureConfig config) {
+		BlockPos blockpos = world.getHeightmapPos(Heightmap.Type.WORLD_SURFACE_WG, pos);
+		List<Direction> directions = Direction.Plane.HORIZONTAL.stream().collect(Collectors.toList());
 		boolean spruce = false;
 
 		int i = 0;
@@ -34,23 +34,23 @@ public class MintPondFeature extends Feature<NoFeatureConfig> {
 		List<BlockPos> waterPositions = new ArrayList<>();
 		List<BlockPos> mintPositions = new ArrayList<>();
 
-		position.setAndOffset(blockpos, random.nextInt(8) - random.nextInt(8), random.nextInt(4) - random.nextInt(4), random.nextInt(8) - random.nextInt(8));
+		position.setWithOffset(blockpos, random.nextInt(8) - random.nextInt(8), random.nextInt(4) - random.nextInt(4), random.nextInt(8) - random.nextInt(8));
 		if (isSafeSpotForWater(world, position)) {
 			waterPositions.add(position);
 			for (Direction direction : directions) {
-				BlockPos offsetPos = position.offset(direction);
+				BlockPos offsetPos = position.relative(direction);
 				if (isSafeSpotForWater(world, offsetPos)) {
 					waterPositions.add(offsetPos);
-					BlockPos cornerPos = offsetPos.offset(direction.rotateY());
+					BlockPos cornerPos = offsetPos.relative(direction.getClockWise());
 					if (isSafeSpotForWater(world, cornerPos) && random.nextInt(3) != 0) {
 						waterPositions.add(cornerPos);
 					}
 
 					for (Direction direction2 : directions) {
-						BlockPos offsetPos2 = offsetPos.offset(direction);
+						BlockPos offsetPos2 = offsetPos.relative(direction);
 						if (isSafeSpotForWater(world, offsetPos2) && random.nextInt(3) == 0) {
 							waterPositions.add(offsetPos2);
-							BlockPos cornerPos2 = offsetPos2.offset(direction2.rotateY());
+							BlockPos cornerPos2 = offsetPos2.relative(direction2.getClockWise());
 							if (isSafeSpotForWater(world, cornerPos2) && random.nextInt(4) != 0) {
 								waterPositions.add(cornerPos);
 							}
@@ -61,14 +61,14 @@ public class MintPondFeature extends Feature<NoFeatureConfig> {
 
 			for (BlockPos waterPos : waterPositions) {
 				for (Direction direction : directions) {
-					mintPositions.add(waterPos.up().offset(direction));
+					mintPositions.add(waterPos.above().relative(direction));
 				}
 			}
 
 			for (BlockPos blockPos : waterPositions) placeWater(world, blockPos);
 			for (BlockPos blockPos : mintPositions) {
 				if (!spruce && random.nextInt(3) == 0) {
-					Features.SPRUCE.generate(world, chunkGenerator, random, blockPos);
+					Features.SPRUCE.place(world, chunkGenerator, random, blockPos);
 					spruce = true;
 				} else placeMint(world, blockPos, random);
 			}
@@ -80,17 +80,17 @@ public class MintPondFeature extends Feature<NoFeatureConfig> {
 	}
 
 	private static void placeMint(ISeedReader world, BlockPos pos, Random random) {
-		if (world.getBlockState(pos).isAir() && world.getBlockState(pos.down()).isIn(Blocks.GRASS_BLOCK) && random.nextInt(4) == 0)
-			world.setBlockState(pos, NeapolitanBlocks.MINT.get().getDefaultState().with(MintBlock.AGE, 4).with(MintBlock.SPROUTS, 1 + random.nextInt(3)), 2);
+		if (world.getBlockState(pos).isAir() && world.getBlockState(pos.below()).is(Blocks.GRASS_BLOCK) && random.nextInt(4) == 0)
+			world.setBlock(pos, NeapolitanBlocks.MINT.get().defaultBlockState().setValue(MintBlock.AGE, 4).setValue(MintBlock.SPROUTS, 1 + random.nextInt(3)), 2);
 	}
 
 	private static void placeWater(ISeedReader world, BlockPos pos) {
-		world.setBlockState(pos, Blocks.WATER.getDefaultState(), 2);
-		if (world.getBlockState(pos.down()).isIn(Blocks.GRASS_BLOCK) || world.getBlockState(pos.down()).isAir())
-			world.setBlockState(pos.down(), Blocks.DIRT.getDefaultState(), 2);
+		world.setBlock(pos, Blocks.WATER.defaultBlockState(), 2);
+		if (world.getBlockState(pos.below()).is(Blocks.GRASS_BLOCK) || world.getBlockState(pos.below()).isAir())
+			world.setBlock(pos.below(), Blocks.DIRT.defaultBlockState(), 2);
 	}
 
 	private static boolean isSafeSpotForWater(ISeedReader world, BlockPos pos) {
-		return world.getBlockState(pos).isIn(Blocks.GRASS_BLOCK) && !world.getBlockState(pos.west()).isAir() && !world.getBlockState(pos.east()).isAir() && !world.getBlockState(pos.north()).isAir() && !world.getBlockState(pos.south()).isAir();
+		return world.getBlockState(pos).is(Blocks.GRASS_BLOCK) && !world.getBlockState(pos.west()).isAir() && !world.getBlockState(pos.east()).isAir() && !world.getBlockState(pos.north()).isAir() && !world.getBlockState(pos.south()).isAir();
 	}
 }

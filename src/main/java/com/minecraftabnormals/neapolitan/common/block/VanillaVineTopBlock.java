@@ -24,35 +24,35 @@ import java.util.Random;
 public class VanillaVineTopBlock extends Block implements IGrowable {
 	public static final DirectionProperty FACING = BlockStateProperties.FACING;
 	public static final VoxelShape[] SHAPES = new VoxelShape[]{
-			Block.makeCuboidShape(4.0D, 4.0D, 4.0D, 12.0D, 16.0D, 12.0D), // DOWN
-			Block.makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 12.0D, 12.0D), // UP
-			Block.makeCuboidShape(4.0D, 4.0D, 4.0D, 12.0D, 12.0D, 16.0D), // NORTH
-			Block.makeCuboidShape(4.0D, 4.0D, 0.0D, 12.0D, 12.0D, 12.0D), // SOUTH
-			Block.makeCuboidShape(4.0D, 4.0D, 4.0D, 16.0D, 12.0D, 12.0D), // WEST
-			Block.makeCuboidShape(0.0D, 4.0D, 4.0D, 12.0D, 12.0D, 12.0D), // EAST
+			Block.box(4.0D, 4.0D, 4.0D, 12.0D, 16.0D, 12.0D), // DOWN
+			Block.box(4.0D, 0.0D, 4.0D, 12.0D, 12.0D, 12.0D), // UP
+			Block.box(4.0D, 4.0D, 4.0D, 12.0D, 12.0D, 16.0D), // NORTH
+			Block.box(4.0D, 4.0D, 0.0D, 12.0D, 12.0D, 12.0D), // SOUTH
+			Block.box(4.0D, 4.0D, 4.0D, 16.0D, 12.0D, 12.0D), // WEST
+			Block.box(0.0D, 4.0D, 4.0D, 12.0D, 12.0D, 12.0D), // EAST
 	};
 
 	public VanillaVineTopBlock(AbstractBlock.Properties properties) {
 		super(properties);
-		this.setDefaultState(this.getStateContainer().getBaseState().with(FACING, Direction.UP));
+		this.registerDefaultState(this.getStateDefinition().any().setValue(FACING, Direction.UP));
 	}
 
 	@Override
-	public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-		BlockState otherState = worldIn.getBlockState(pos.offset(state.get(FACING).getOpposite()));
+	public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
+		BlockState otherState = worldIn.getBlockState(pos.relative(state.getValue(FACING).getOpposite()));
 		Block block = otherState.getBlock();
-		return facingSameDirection(state, otherState) || block.isIn(NeapolitanTags.Blocks.VANILLA_PLANTABLE_ON);
+		return facingSameDirection(state, otherState) || block.is(NeapolitanTags.Blocks.VANILLA_PLANTABLE_ON);
 	}
 
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-		return SHAPES[state.get(FACING).getIndex()];
+		return SHAPES[state.getValue(FACING).get3DDataValue()];
 	}
 
 	public static boolean facingSameDirection(BlockState state, BlockState otherState) {
 		Block block = otherState.getBlock();
 		if (block == NeapolitanBlocks.VANILLA_VINE.get() || block == NeapolitanBlocks.VANILLA_VINE_PLANT.get()) {
-			if (otherState.get(FACING) == state.get(FACING)) {
+			if (otherState.getValue(FACING) == state.getValue(FACING)) {
 				return true;
 			}
 		}
@@ -65,102 +65,102 @@ public class VanillaVineTopBlock extends Block implements IGrowable {
 	}
 
 	@Override
-	public void onBlockHarvested(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-		super.onBlockHarvested(world, pos, state, player);
+	public void playerWillDestroy(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+		super.playerWillDestroy(world, pos, state, player);
 		VanillaVineBlock.createPoisonCloud(world, pos, state, player);
 	}
 
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-		super.fillStateContainer(builder);
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+		super.createBlockStateDefinition(builder);
 		builder.add(FACING);
 	}
 
 	@Override
 	public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-		if (!state.isValidPosition(worldIn, pos)) {
+		if (!state.canSurvive(worldIn, pos)) {
 			worldIn.destroyBlock(pos, true);
 		}
 	}
 
 	@Override
 	public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
-		if (this.canGrowUp(state, worldIn, pos) && net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos.offset(state.get(FACING)), worldIn.getBlockState(pos.offset(state.get(FACING))), random.nextDouble() < 0.1D)) {
-			BlockPos blockpos = pos.offset(state.get(FACING));
+		if (this.canGrowUp(state, worldIn, pos) && net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos.relative(state.getValue(FACING)), worldIn.getBlockState(pos.relative(state.getValue(FACING))), random.nextDouble() < 0.1D)) {
+			BlockPos blockpos = pos.relative(state.getValue(FACING));
 			if (this.canGrowIn(worldIn.getBlockState(blockpos))) {
-				worldIn.setBlockState(blockpos, state);
+				worldIn.setBlockAndUpdate(blockpos, state);
 				net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, blockpos, worldIn.getBlockState(blockpos));
 			}
 		}
 	}
 
 	private boolean canGrowUp(BlockState state, ServerWorld world, BlockPos pos) {
-		Direction facing = state.get(FACING);
+		Direction facing = state.getValue(FACING);
 		if (Direction.Plane.VERTICAL.test(facing)) {
 			for (Direction direction : Direction.Plane.HORIZONTAL) {
-				if (world.getBlockState(pos.offset(direction)).isSolid()) {
+				if (world.getBlockState(pos.relative(direction)).canOcclude()) {
 					return true;
 				}
 			}
 		} else {
 			for (Direction direction : Direction.Plane.VERTICAL) {
-				if (world.getBlockState(pos.offset(direction)).isSolid()) {
+				if (world.getBlockState(pos.relative(direction)).canOcclude()) {
 					return true;
 				}
 			}
 
 			for (Direction direction : Direction.Plane.HORIZONTAL) {
 				if (direction.getAxis() != Axis.Y && direction.getAxis() != facing.getAxis()) {
-					if (world.getBlockState(pos.offset(direction)).isSolid()) {
+					if (world.getBlockState(pos.relative(direction)).canOcclude()) {
 						return true;
 					}
 				}
 			}
 		}
 
-		return world.getBlockState(pos.offset(facing.getOpposite())).isIn(NeapolitanTags.Blocks.VANILLA_PLANTABLE_ON);
+		return world.getBlockState(pos.relative(facing.getOpposite())).is(NeapolitanTags.Blocks.VANILLA_PLANTABLE_ON);
 	}
 
 	@Override
-	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-		BlockState facingBlock = worldIn.getBlockState(currentPos.offset(stateIn.get(FACING)));
-		if (facing == stateIn.get(FACING).getOpposite() && !stateIn.isValidPosition(worldIn, currentPos)) {
-			worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 1);
+	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+		BlockState facingBlock = worldIn.getBlockState(currentPos.relative(stateIn.getValue(FACING)));
+		if (facing == stateIn.getValue(FACING).getOpposite() && !stateIn.canSurvive(worldIn, currentPos)) {
+			worldIn.getBlockTicks().scheduleTick(currentPos, this, 1);
 		}
-		if (facingBlock.hasProperty(FACING) && facingBlock.get(FACING) == stateIn.get(FACING) && facingState.isIn(this)) {
-			return NeapolitanBlocks.VANILLA_VINE_PLANT.get().getDefaultState().with(FACING, stateIn.get(FACING));
+		if (facingBlock.hasProperty(FACING) && facingBlock.getValue(FACING) == stateIn.getValue(FACING) && facingState.is(this)) {
+			return NeapolitanBlocks.VANILLA_VINE_PLANT.get().defaultBlockState().setValue(FACING, stateIn.getValue(FACING));
 		} else {
-			return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+			return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 		}
 	}
 
 	@Override
-	public boolean canGrow(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
-		return this.canGrowIn(worldIn.getBlockState(pos.offset(state.get(FACING))));
+	public boolean isValidBonemealTarget(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
+		return this.canGrowIn(worldIn.getBlockState(pos.relative(state.getValue(FACING))));
 	}
 
 	@Override
-	public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, BlockState state) {
+	public boolean isBonemealSuccess(World worldIn, Random rand, BlockPos pos, BlockState state) {
 		return true;
 	}
 
 	@Override
-	public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
-		BlockPos blockpos = pos.offset(state.get(FACING));
+	public void performBonemeal(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
+		BlockPos blockpos = pos.relative(state.getValue(FACING));
 		int j = this.getGrowthAmount(rand);
 
 		for (int k = 0; k < j && this.canGrowIn(worldIn.getBlockState(blockpos)); ++k) {
-			worldIn.setBlockState(blockpos, state);
-			blockpos = blockpos.offset(state.get(FACING));
+			worldIn.setBlockAndUpdate(blockpos, state);
+			blockpos = blockpos.relative(state.getValue(FACING));
 		}
 	}
 
 	protected boolean canGrowIn(BlockState state) {
-		return PlantBlockHelper.isAir(state);
+		return PlantBlockHelper.isValidGrowthState(state);
 	}
 
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		return this.getDefaultState().with(FACING, context.getFace());
+		return this.defaultBlockState().setValue(FACING, context.getClickedFace());
 	}
 }

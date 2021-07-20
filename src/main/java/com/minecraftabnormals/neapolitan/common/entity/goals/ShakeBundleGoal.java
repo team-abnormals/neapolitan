@@ -1,8 +1,6 @@
 package com.minecraftabnormals.neapolitan.common.entity.goals;
 
 import java.util.EnumSet;
-import java.util.List;
-import java.util.function.Predicate;
 
 import com.minecraftabnormals.neapolitan.common.entity.BananaPeelEntity;
 import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
@@ -28,43 +26,43 @@ public class ShakeBundleGoal extends MoveToBlockGoal {
 	public ShakeBundleGoal(ChimpanzeeEntity chimpanzeeIn, double speed, int length, int yMax) {
 		super(chimpanzeeIn, speed, length, yMax);
 		this.chimpanzee = chimpanzeeIn;
-		this.setMutexFlags(EnumSet.of(Goal.Flag.LOOK, Goal.Flag.JUMP, Goal.Flag.MOVE));
+		this.setFlags(EnumSet.of(Goal.Flag.LOOK, Goal.Flag.JUMP, Goal.Flag.MOVE));
 	}
 
 	@Override
-	public boolean shouldExecute() {
+	public boolean canUse() {
 		if (this.chimpanzee.isDirty() || this.chimpanzee.needsSunlight()) {
 			return false;
-		} else if (!this.chimpanzee.needsFood()) {
+		} else if (!this.chimpanzee.needsSnack()) {
 			return false;
-		} else if (this.chimpanzee.isChild()) {
+		} else if (this.chimpanzee.isBaby()) {
 			return false;
 		} else if (this.chimpanzee.isPassenger()) {
 			return false;
 		} else {
-			return super.shouldExecute();
+			return super.canUse();
 		}
 	}
 
 	@Override
-	public boolean shouldContinueExecuting() {
+	public boolean canContinueToUse() {
 		if (this.shakingTime > 160) {
 			return false;
 		} else {
-			return super.shouldContinueExecuting();
+			return super.canContinueToUse();
 		}
 	}
 
 	@Override
-	public void startExecuting() {
-		super.startExecuting();
+	public void start() {
+		super.start();
 		this.shakingTime = 0;
 		this.nextBananaTime = 30 + this.getNextBananaTime();
 	}
 
 	@Override
-	public void resetTask() {
-		super.resetTask();
+	public void stop() {
+		super.stop();
 		this.chimpanzee.setDefaultAction();
 	}
 
@@ -72,28 +70,28 @@ public class ShakeBundleGoal extends MoveToBlockGoal {
 	public void tick() {
 		super.tick();
 
-		this.chimpanzee.getLookController().setLookPosition(this.bundlePos.getX() + 0.5D, this.bundlePos.getY() + 0.5D, this.bundlePos.getZ() + 0.5D, (float)(this.chimpanzee.getHorizontalFaceSpeed() + 20), (float)this.chimpanzee.getVerticalFaceSpeed());
+		this.chimpanzee.getLookControl().setLookAt(this.bundlePos.getX() + 0.5D, this.bundlePos.getY() + 0.5D, this.bundlePos.getZ() + 0.5D, (float)(this.chimpanzee.getMaxHeadYRot() + 20), (float)this.chimpanzee.getMaxHeadXRot());
 
-		if (this.chimpanzee.getPosYHeight(1.0D) <= this.bundlePos.getY() && this.bundlePos.withinDistance(this.chimpanzee.getPositionVec().add(new Vector3d(0.0D, this.chimpanzee.getHeight(), 0.0D)), 1.0D)) {
-			this.chimpanzee.setMotion(this.chimpanzee.getMotion().mul(0.4D, 0.0D, 0.4D).add(0.0D, 0.1D, 0.0D));
+		if (this.chimpanzee.getY(1.0D) <= this.bundlePos.getY() && this.bundlePos.closerThan(this.chimpanzee.position().add(new Vector3d(0.0D, this.chimpanzee.getBbHeight(), 0.0D)), 1.0D)) {
+			this.chimpanzee.setDeltaMovement(this.chimpanzee.getDeltaMovement().multiply(0.4D, 0.0D, 0.4D).add(0.0D, 0.1D, 0.0D));
 
 			if (this.shakingTime > 30) {
 				this.chimpanzee.setAction(ChimpanzeeAction.SHAKING);
 
 				if (this.shakingTime >= this.nextBananaTime) {
-					double d0 = this.bundlePos.getX() + this.chimpanzee.getRNG().nextDouble() * 0.5D + 0.25D;
-					double d1 = this.bundlePos.getZ() + this.chimpanzee.getRNG().nextDouble() * 0.5D + 0.25D;
+					double d0 = this.bundlePos.getX() + this.chimpanzee.getRandom().nextDouble() * 0.5D + 0.25D;
+					double d1 = this.bundlePos.getZ() + this.chimpanzee.getRandom().nextDouble() * 0.5D + 0.25D;
 							
-					if (this.chimpanzee.getRNG().nextInt(4) == 0) {
-						BananaPeelEntity bananapeel = NeapolitanEntities.BANANA_PEEL.get().create(this.chimpanzee.world);
-						bananapeel.setLocationAndAngles(d0, this.bundlePos.getY() - 0.5D, d1, this.chimpanzee.rotationYaw, 0.0F);
-						bananapeel.setMotion(this.chimpanzee.getRNG().nextDouble() * 0.4D - 0.2D, -0.1D, this.chimpanzee.getRNG().nextDouble() * 0.4D - 0.2D);
-						this.chimpanzee.world.addEntity(bananapeel);
+					if (this.chimpanzee.getRandom().nextInt(4) == 0) {
+						BananaPeelEntity bananapeel = NeapolitanEntities.BANANA_PEEL.get().create(this.chimpanzee.level);
+						bananapeel.moveTo(d0, this.bundlePos.getY() - 0.5D, d1, this.chimpanzee.yRot, 0.0F);
+						bananapeel.setDeltaMovement(this.chimpanzee.getRandom().nextDouble() * 0.4D - 0.2D, -0.1D, this.chimpanzee.getRandom().nextDouble() * 0.4D - 0.2D);
+						this.chimpanzee.level.addFreshEntity(bananapeel);
 					} else {
-						ItemEntity itementity = new ItemEntity(this.chimpanzee.world, d0, this.bundlePos.getY() - 0.25D, d1, new ItemStack(NeapolitanItems.BANANA_BUNCH.get()));
-						itementity.setMotion(this.chimpanzee.getRNG().nextDouble() * 0.4D - 0.2D, -0.1D, this.chimpanzee.getRNG().nextDouble() * 0.4D - 0.2D);
-						itementity.setDefaultPickupDelay();
-						this.chimpanzee.world.addEntity(itementity);
+						ItemEntity itementity = new ItemEntity(this.chimpanzee.level, d0, this.bundlePos.getY() - 0.25D, d1, new ItemStack(NeapolitanItems.BANANA_BUNCH.get()));
+						itementity.setDeltaMovement(this.chimpanzee.getRandom().nextDouble() * 0.4D - 0.2D, -0.1D, this.chimpanzee.getRandom().nextDouble() * 0.4D - 0.2D);
+						itementity.setDefaultPickUpDelay();
+						this.chimpanzee.level.addFreshEntity(itementity);
 					}
 
 					this.nextBananaTime = this.shakingTime + this.getNextBananaTime();
@@ -104,13 +102,13 @@ public class ShakeBundleGoal extends MoveToBlockGoal {
 
 			++this.shakingTime;
 		} else {
-			if (this.getIsAboveDestination() && this.chimpanzee.getAction().canBeInterrupted() && this.chimpanzee.isOnGround()) {
+			if (this.isReachedTarget() && this.chimpanzee.getAction().canBeInterrupted() && this.chimpanzee.isOnGround()) {
 				this.chimpanzee.setJumping(true);
-				double d0 = this.destinationBlock.getX() + 0.5D - this.chimpanzee.getPosX();
-				double d1 = this.destinationBlock.getZ() + 0.5D - this.chimpanzee.getPosZ();
-				double d2 = this.bundlePos.getY() - this.chimpanzee.getPosY() + 1.0D;
+				double d0 = this.blockPos.getX() + 0.5D - this.chimpanzee.getX();
+				double d1 = this.blockPos.getZ() + 0.5D - this.chimpanzee.getZ();
+				double d2 = this.bundlePos.getY() - this.chimpanzee.getY() + 1.0D;
 				double d3 = 0.8D - d2 * 0.1D;
-				this.chimpanzee.setMotion(this.chimpanzee.getMotion().mul(0.9D, 1.0D, 0.9D).add(d0 * d3, 0.3D + d2 * 0.1D, d1 * d3));
+				this.chimpanzee.setDeltaMovement(this.chimpanzee.getDeltaMovement().multiply(0.9D, 1.0D, 0.9D).add(d0 * d3, 0.3D + d2 * 0.1D, d1 * d3));
 			}
 
 			this.chimpanzee.setDefaultAction();
@@ -120,14 +118,14 @@ public class ShakeBundleGoal extends MoveToBlockGoal {
 	}
 
 	@Override
-	protected boolean shouldMoveTo(IWorldReader worldIn, BlockPos pos) {
-		if (worldIn.getBlockState(pos).hasOpaqueCollisionShape(worldIn, pos)) {
+	protected boolean isValidTarget(IWorldReader worldIn, BlockPos pos) {
+		if (worldIn.getBlockState(pos).isCollisionShapeFullBlock(worldIn, pos)) {
 			for (int i = 1; i < 7; ++i) {
-				BlockPos blockpos = pos.up(i);
+				BlockPos blockpos = pos.above(i);
 				if (i > 2 && worldIn.getBlockState(blockpos).getBlock() == NeapolitanBlocks.BANANA_BUNDLE.get()) {
 					this.bundlePos = blockpos;
 					return true;
-				} else if (worldIn.getBlockState(blockpos).hasOpaqueCollisionShape(worldIn, pos.up(i))) {
+				} else if (worldIn.getBlockState(blockpos).isCollisionShapeFullBlock(worldIn, pos.above(i))) {
 					return false;
 				}
 			}
@@ -137,6 +135,6 @@ public class ShakeBundleGoal extends MoveToBlockGoal {
 	}
 
 	private int getNextBananaTime() {
-		return 5 + this.chimpanzee.getRNG().nextInt(30);
+		return 5 + this.chimpanzee.getRandom().nextInt(30);
 	}
 }

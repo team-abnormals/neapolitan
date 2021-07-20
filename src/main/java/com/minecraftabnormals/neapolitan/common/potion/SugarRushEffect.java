@@ -12,38 +12,38 @@ public class SugarRushEffect extends Effect {
 
 	public SugarRushEffect() {
 		super(EffectType.NEUTRAL, 6739711);
-		this.addAttributesModifier(Attributes.MOVEMENT_SPEED, "7107DE5E-7CE8-4030-940E-514C1F160890", 0.0F, AttributeModifier.Operation.MULTIPLY_TOTAL);
+		this.addAttributeModifier(Attributes.MOVEMENT_SPEED, "7107DE5E-7CE8-4030-940E-514C1F160890", 0.0F, AttributeModifier.Operation.MULTIPLY_TOTAL);
 	}
 
 	@Override
-	public double getAttributeModifierAmount(int amplifier, AttributeModifier modifier) {
+	public double getAttributeModifierValue(int amplifier, AttributeModifier modifier) {
 		return 0.1 * (double) (amplifier + 1);
 	}
 
 	@Override
-	public void applyAttributesModifiersToEntity(LivingEntity entity, AttributeModifierManager attributeMapIn, int amplifier) {
-		if (!entity.world.isRemote) {
-			int duration = entity.getActivePotionEffect(NeapolitanEffects.SUGAR_RUSH.get()).getDuration();
+	public void addAttributeModifiers(LivingEntity entity, AttributeModifierManager attributeMapIn, int amplifier) {
+		if (!entity.level.isClientSide) {
+			int duration = entity.getEffect(NeapolitanEffects.SUGAR_RUSH.get()).getDuration();
 			int totalDuration = entity.getPersistentData().contains("SugarRushDuration") ? entity.getPersistentData().getInt("SugarRushDuration") : 0;
 			float amount = duration >= totalDuration / 3 ? (amplifier + 2) * 0.5F : -(amplifier + 2) * 1.25F;
-			for (Entry<Attribute, AttributeModifier> entry : this.getAttributeModifierMap().entrySet()) {
-				ModifiableAttributeInstance iattributeinstance = attributeMapIn.createInstanceIfAbsent(entry.getKey());
+			for (Entry<Attribute, AttributeModifier> entry : this.getAttributeModifiers().entrySet()) {
+				ModifiableAttributeInstance iattributeinstance = attributeMapIn.getInstance(entry.getKey());
 				if (iattributeinstance != null) {
 					AttributeModifier attributemodifier = entry.getValue();
 					iattributeinstance.removeModifier(attributemodifier);
-					iattributeinstance.applyPersistentModifier(new AttributeModifier(attributemodifier.getID(), this.getName() + " " + amplifier, amount * this.getAttributeModifierAmount(amplifier, attributemodifier), attributemodifier.getOperation()));
+					iattributeinstance.addPermanentModifier(new AttributeModifier(attributemodifier.getId(), this.getDescriptionId() + " " + amplifier, amount * this.getAttributeModifierValue(amplifier, attributemodifier), attributemodifier.getOperation()));
 				}
 			}
 		}
 	}
 
 	@Override
-	public void performEffect(LivingEntity entity, int amplifier) {
-		this.applyAttributesModifiersToEntity(entity, entity.getAttributeManager(), amplifier);
+	public void applyEffectTick(LivingEntity entity, int amplifier) {
+		this.addAttributeModifiers(entity, entity.getAttributes(), amplifier);
 	}
 
 	@Override
-	public boolean isReady(int duration, int amplifier) {
+	public boolean isDurationEffectTick(int duration, int amplifier) {
 		return true;
 	}
 }
