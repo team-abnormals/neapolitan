@@ -37,7 +37,7 @@ public class NeapolitanGeneration {
 			if (NeapolitanConfig.COMMON.plantainSpiderSpawning.get())
 				spawns.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(NeapolitanEntities.PLANTAIN_SPIDER.get(), 120, 3, 5));
 			if (NeapolitanConfig.COMMON.chimpanzeeSpawning.get())
-				spawns.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(NeapolitanEntities.CHIMPANZEE.get(), 45, 3, 5));
+				spawns.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(NeapolitanEntities.CHIMPANZEE.get(), 45, 3, 4));
 		}
 
 		if (category.equals(Biome.Category.PLAINS) && NeapolitanConfig.COMMON.strawberryBushGenerationChance.get() > 0)

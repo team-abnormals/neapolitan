@@ -13,9 +13,11 @@ import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IWorldReader;
+import net.minecraft.world.World;
 
 public class ShakeBundleGoal extends MoveToBlockGoal {
 	private final ChimpanzeeEntity chimpanzee;
@@ -47,6 +49,8 @@ public class ShakeBundleGoal extends MoveToBlockGoal {
 	@Override
 	public boolean canContinueToUse() {
 		if (this.shakingTime > 160) {
+			return false;
+		} else if (this.chimpanzee.isPassenger()) {
 			return false;
 		} else {
 			return super.canContinueToUse();
@@ -81,7 +85,7 @@ public class ShakeBundleGoal extends MoveToBlockGoal {
 				if (this.shakingTime >= this.nextBananaTime) {
 					double d0 = this.bundlePos.getX() + this.chimpanzee.getRandom().nextDouble() * 0.5D + 0.25D;
 					double d1 = this.bundlePos.getZ() + this.chimpanzee.getRandom().nextDouble() * 0.5D + 0.25D;
-							
+
 					if (this.chimpanzee.getRandom().nextInt(4) == 0) {
 						BananaPeelEntity bananapeel = NeapolitanEntities.BANANA_PEEL.get().create(this.chimpanzee.level);
 						bananapeel.moveTo(d0, this.bundlePos.getY() - 0.5D, d1, this.chimpanzee.yRot, 0.0F);
@@ -123,8 +127,12 @@ public class ShakeBundleGoal extends MoveToBlockGoal {
 			for (int i = 1; i < 7; ++i) {
 				BlockPos blockpos = pos.above(i);
 				if (i > 2 && worldIn.getBlockState(blockpos).getBlock() == NeapolitanBlocks.BANANA_BUNDLE.get()) {
-					this.bundlePos = blockpos;
-					return true;
+					if (this.getBlockBeingShaken((World) worldIn, blockpos)) {
+						return false;
+					} else {
+						this.bundlePos = blockpos;
+						return true;
+					}
 				} else if (worldIn.getBlockState(blockpos).isCollisionShapeFullBlock(worldIn, pos.above(i))) {
 					return false;
 				}
@@ -136,5 +144,11 @@ public class ShakeBundleGoal extends MoveToBlockGoal {
 
 	private int getNextBananaTime() {
 		return 5 + this.chimpanzee.getRandom().nextInt(30);
+	}
+
+	private boolean getBlockBeingShaken(World worldIn, BlockPos pos) {
+		return !worldIn.getEntitiesOfClass(ChimpanzeeEntity.class, new AxisAlignedBB(pos.below()), (chimpanzee) -> {
+			return chimpanzee != this.chimpanzee && (chimpanzee.getAction() == ChimpanzeeAction.HANGING || chimpanzee.getAction() == ChimpanzeeAction.SHAKING);
+		}).isEmpty();
 	}
 }

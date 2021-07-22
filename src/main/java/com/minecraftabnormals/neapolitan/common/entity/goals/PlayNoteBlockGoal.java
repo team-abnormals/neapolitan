@@ -36,8 +36,6 @@ public class PlayNoteBlockGoal extends MoveToBlockGoal {
 	public boolean canContinueToUse() {
 		if (this.timePlayed > 320 && this.chimpanzee.getRandom().nextInt(300) == 0) {
 			return false;
-		} else if (this.isBlockBeingPlayed(this.chimpanzee.level, this.blockPos.above())) {
-			return false;
 		} else if (this.chimpanzee.isPassenger()) {
 			return false;
 		} else if (this.timePlayed > 0 && !this.isReachedTarget()) {
@@ -87,10 +85,10 @@ public class PlayNoteBlockGoal extends MoveToBlockGoal {
 
 	@Override
 	protected boolean isValidTarget(IWorldReader worldIn, BlockPos pos) {
-		return worldIn.isEmptyBlock(pos.above()) && worldIn.isEmptyBlock(pos.above().above()) && worldIn.getBlockState(pos).getBlock() == Blocks.NOTE_BLOCK && !this.isBlockBeingPlayed((World) worldIn, pos);
+		return worldIn.isEmptyBlock(pos.above()) && worldIn.isEmptyBlock(pos.above().above()) && worldIn.getBlockState(pos).getBlock() == Blocks.NOTE_BLOCK && !this.getBlockBeingPlayed((World) worldIn, pos);
 	}
 
-	private boolean isBlockBeingPlayed(World worldIn, BlockPos pos) {
+	private boolean getBlockBeingPlayed(World worldIn, BlockPos pos) {
 		return !worldIn.getEntitiesOfClass(ChimpanzeeEntity.class, new AxisAlignedBB(pos.above()), (chimpanzee) -> {
 			return chimpanzee != this.chimpanzee && chimpanzee.getAction() == ChimpanzeeAction.DRUMMING;
 		}).isEmpty();
