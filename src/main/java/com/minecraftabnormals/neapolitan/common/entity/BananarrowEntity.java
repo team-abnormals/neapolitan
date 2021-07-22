@@ -70,7 +70,9 @@ public class BananarrowEntity extends AbstractArrowEntity {
 			LivingEntity livingEntity = (LivingEntity) entity;
 			List<ChimpanzeeEntity> chimps = level.getEntitiesOfClass(ChimpanzeeEntity.class, livingEntity.getBoundingBox().inflate(16.0D, 6.0D, 16.0D));
 			for (ChimpanzeeEntity chimp : chimps) {
-				chimp.setTarget(livingEntity);
+				if (!chimp.isBaby()) {
+					chimp.setTarget(livingEntity);
+				}
 			}
 
 			if (!chimps.isEmpty() && this.getOwner() instanceof ServerPlayerEntity)

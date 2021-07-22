@@ -120,28 +120,29 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	protected void registerGoals() {
 		this.goalSelector.addGoal(0, new SwimGoal(this));
 		this.goalSelector.addGoal(1, new GrabBananaGoal(this, 1.25D));
-		this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.25D, false));
-		this.goalSelector.addGoal(3, new BreedGoal(this, 1.0D));
-		this.goalSelector.addGoal(4, new OpenBunchGoal(this));
-		this.goalSelector.addGoal(5, new EatBananaGoal(this));
-		this.goalSelector.addGoal(6, new TemptBananaGoal(this, 1.25D));
-		this.goalSelector.addGoal(7, new TemptGoal(this, 1.25D, Ingredient.of(NeapolitanTags.Items.CHIMPANZEE_FOOD), false));
-		this.goalSelector.addGoal(8, new FollowParentGoal(this, 1.25D));
-		this.goalSelector.addGoal(9, new ShakeBundleGoal(this, 1.0D, 32, 12));
-		this.goalSelector.addGoal(10, new ShareBananaGoal(this, 1.0D));
-		this.goalSelector.addGoal(11, new BeGroomedGoal(this));
-		this.goalSelector.addGoal(12, new GroomGoal(this, 1.0D));
-		this.goalSelector.addGoal(13, new FollowOthersGoal(this, 1.0D));
-		this.goalSelector.addGoal(14, new CryGoal(this));
-		this.goalSelector.addGoal(15, new ShakeHeadGoal(this));
-		this.goalSelector.addGoal(16, new PlayNoteBlockGoal(this, 1.0D, 16));
-		this.goalSelector.addGoal(17, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-		this.goalSelector.addGoal(18, new LookAtGoal(this, PlayerEntity.class, 6.0F));
-		this.goalSelector.addGoal(19, new LookAtGoal(this, ChimpanzeeEntity.class, 6.0F));
-		this.goalSelector.addGoal(20, new LookRandomlyGoal(this));
+		this.goalSelector.addGoal(2, new ChimpAttackGoal(this, 1.25D));
+		this.goalSelector.addGoal(3, new ChimpPanicGoal(this, 1.25D));
+		this.goalSelector.addGoal(4, new BreedGoal(this, 1.0D));
+		this.goalSelector.addGoal(5, new OpenBunchGoal(this));
+		this.goalSelector.addGoal(6, new EatBananaGoal(this));
+		this.goalSelector.addGoal(7, new TemptBananaGoal(this, 1.25D));
+		this.goalSelector.addGoal(8, new TemptGoal(this, 1.25D, Ingredient.of(NeapolitanTags.Items.CHIMPANZEE_FOOD), false));
+		this.goalSelector.addGoal(9, new FollowParentGoal(this, 1.25D));
+		this.goalSelector.addGoal(10, new ShakeBundleGoal(this, 1.0D, 32, 12));
+		this.goalSelector.addGoal(11, new ShareBananaGoal(this, 1.0D));
+		this.goalSelector.addGoal(12, new BeGroomedGoal(this));
+		this.goalSelector.addGoal(13, new GroomGoal(this, 1.0D));
+		this.goalSelector.addGoal(14, new FollowOthersGoal(this, 1.0D));
+		this.goalSelector.addGoal(15, new CryGoal(this));
+		this.goalSelector.addGoal(16, new ShakeHeadGoal(this));
+		this.goalSelector.addGoal(17, new PlayNoteBlockGoal(this, 1.0D, 16));
+		this.goalSelector.addGoal(18, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+		this.goalSelector.addGoal(19, new LookAtGoal(this, PlayerEntity.class, 6.0F));
+		this.goalSelector.addGoal(20, new LookAtGoal(this, ChimpanzeeEntity.class, 6.0F));
+		this.goalSelector.addGoal(21, new LookRandomlyGoal(this));
 
 		this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10, true, false, this::isAngryAt));
-		this.targetSelector.addGoal(1, new HurtByTargetGoal(this).setAlertOthers());
+		this.targetSelector.addGoal(1, new ChimpHurtByTargetGoal(this).setAlertOthers());
 		this.targetSelector.addGoal(2, new ResetAngerGoal<>(this, true));
 	}
 
@@ -257,7 +258,6 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		if (this.isInvulnerableTo(source)) {
 			return false;
 		} else {
-			this.setAction(ChimpanzeeAction.DEFAULT);
 			return super.hurt(source, amount);
 		}
 	}
