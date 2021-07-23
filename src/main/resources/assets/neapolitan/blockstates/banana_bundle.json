@@ -1,5 +1,30 @@
 {
-    "variants": {
-        "": { "model": "neapolitan:block/banana_bundle" }
+  "variants": {
+    "facing=down": {
+      "model": "neapolitan:block/banana_bundle",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "neapolitan:block/banana_bundle",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "neapolitan:block/banana_bundle",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "neapolitan:block/banana_bundle",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "neapolitan:block/banana_bundle"
+    },
+    "facing=west": {
+      "model": "neapolitan:block/banana_bundle",
+      "x": 90,
+      "y": 270
     }
+  }
 }
