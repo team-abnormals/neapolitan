@@ -9,7 +9,7 @@ license = "https://github.com/team-abnormals/neapolitan/blob/main/LICENSE.txt"
     logoFile = "logo.png"
     authors = "Team Abnormals"
     credits = "bageldotjpg, five, Markus1002"
-    displayURL="https://www.teamabnormals.com/mods/neapolitan"
+    displayURL = "https://www.teamabnormals.com/mods/neapolitan"
     displayName = "Neapolitan"
     description = '''
     Adds new flavors and fruits to create tasty Ice Creams, Milkshakes, Cakes, and more!
