@@ -17,7 +17,7 @@ public class FollowOthersGoal extends Goal {
 	public FollowOthersGoal(ChimpanzeeEntity chimpanzeeIn, double speed) {
 		this.chimpanzee = chimpanzeeIn;
 		this.moveSpeed = speed;
-		this.setFlags(EnumSet.of(Goal.Flag.JUMP, Goal.Flag.MOVE));
+		this.setFlags(EnumSet.of(Goal.Flag.MOVE));
 	}
 
 	public boolean canUse() {

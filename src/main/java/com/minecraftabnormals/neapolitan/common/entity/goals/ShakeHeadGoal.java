@@ -13,7 +13,7 @@ public class ShakeHeadGoal extends Goal {
 
 	public ShakeHeadGoal(ChimpanzeeEntity chimpanzeeIn) {
 		this.chimpanzee = chimpanzeeIn;
-		this.setFlags(EnumSet.of(Goal.Flag.JUMP, Goal.Flag.MOVE, Goal.Flag.LOOK));
+		this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
 	}
 
 	@Override
@@ -22,13 +22,13 @@ public class ShakeHeadGoal extends Goal {
 			return false;
 		} else if (this.chimpanzee.getNavigation().isDone() && this.chimpanzee.getRandom().nextInt(120) == 0) {
 			if (this.chimpanzee.isDirty() && this.chimpanzee.getGroomer() == null) {
-				this.chimpanzee.level.broadcastEntityEvent(this.chimpanzee, (byte) 6);
-				return true;
-			} else if (this.chimpanzee.needsSunlight() && !this.chimpanzee.isInSunlight()) {
 				this.chimpanzee.level.broadcastEntityEvent(this.chimpanzee, (byte) 7);
 				return true;
-			} else if (this.chimpanzee.needsSnack()) {
+			} else if (this.chimpanzee.needsSunlight() && !this.chimpanzee.isInSunlight()) {
 				this.chimpanzee.level.broadcastEntityEvent(this.chimpanzee, (byte) 8);
+				return true;
+			} else if (this.chimpanzee.needsSnack()) {
+				this.chimpanzee.level.broadcastEntityEvent(this.chimpanzee, (byte) 9);
 				return true;
 			}
 		}

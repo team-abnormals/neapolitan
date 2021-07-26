@@ -15,7 +15,7 @@ public class OpenBunchGoal extends Goal {
 
 	public OpenBunchGoal(ChimpanzeeEntity chimpanzeeIn) {
 		this.chimpanzee = chimpanzeeIn;
-		this.setFlags(EnumSet.of(Goal.Flag.JUMP, Goal.Flag.MOVE));
+		this.setFlags(EnumSet.of(Goal.Flag.MOVE));
 	}
 
 	@Override
@@ -60,9 +60,7 @@ public class OpenBunchGoal extends Goal {
 
 	@Override
 	public boolean canContinueToUse() {
-		if (this.throwTimer < 40 && this.chimpanzee.getMainHandItem().getItem() != NeapolitanItems.BANANA_BUNCH.get() && this.chimpanzee.getOffhandItem().getItem() != NeapolitanItems.BANANA_BUNCH.get()) {
-			return false;
-		} else if (this.throwTimer >= 60) {
+		if (this.chimpanzee.getMainHandItem().getItem() != NeapolitanItems.BANANA_BUNCH.get() && this.chimpanzee.getOffhandItem().getItem() != NeapolitanItems.BANANA_BUNCH.get()) {
 			return false;
 		} else {
 			return this.chimpanzee.getAction() == ChimpanzeeAction.DEFAULT;

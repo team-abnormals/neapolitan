@@ -24,7 +24,7 @@ public class TemptBananaGoal extends Goal {
 		this.chimpanzee = chimpanzeeIn;
 		this.speed = speedIn;
 
-		this.setFlags(EnumSet.of(Goal.Flag.JUMP, Goal.Flag.MOVE, Goal.Flag.LOOK));
+		this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
 	}
 
 	@Override
@@ -45,7 +45,7 @@ public class TemptBananaGoal extends Goal {
 	}
 
 	protected boolean isTempting(ItemStack stack) {
-		return this.chimpanzee.isFood(stack);
+		return this.chimpanzee.isSnack(stack);
 	}
 
 	@Override

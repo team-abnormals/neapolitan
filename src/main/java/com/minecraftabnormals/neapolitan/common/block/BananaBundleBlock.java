@@ -6,7 +6,6 @@ import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEntities;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DirectionalBlock;
-import net.minecraft.entity.EntityPredicate;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateContainer;

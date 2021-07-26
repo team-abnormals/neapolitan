@@ -1,4 +1,4 @@
-package com.minecraftabnormals.neapolitan.client.renderer.layer;
+package com.minecraftabnormals.neapolitan.client.renderer.layers;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.Minecraft;

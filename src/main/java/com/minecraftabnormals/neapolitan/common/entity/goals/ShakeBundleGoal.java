@@ -28,7 +28,7 @@ public class ShakeBundleGoal extends MoveToBlockGoal {
 	public ShakeBundleGoal(ChimpanzeeEntity chimpanzeeIn, double speed, int length, int yMax) {
 		super(chimpanzeeIn, speed, length, yMax);
 		this.chimpanzee = chimpanzeeIn;
-		this.setFlags(EnumSet.of(Goal.Flag.LOOK, Goal.Flag.JUMP, Goal.Flag.MOVE));
+		this.setFlags(EnumSet.of(Goal.Flag.LOOK, Goal.Flag.MOVE));
 	}
 
 	@Override

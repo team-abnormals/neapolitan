@@ -19,7 +19,7 @@ public class GrabBananaGoal extends Goal {
 	public GrabBananaGoal(ChimpanzeeEntity chimpanzeeIn, double speed) {
 		this.chimpanzee = chimpanzeeIn;
 		this.moveSpeed = speed;
-		this.setFlags(EnumSet.of(Goal.Flag.JUMP, Goal.Flag.MOVE, Goal.Flag.LOOK));
+		this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
 	}
 
 	@Override
@@ -34,7 +34,7 @@ public class GrabBananaGoal extends Goal {
 			double d0 = Double.MAX_VALUE;
 
 			for (ItemEntity item1 : list) {
-				if (this.chimpanzee.isFood(item1.getItem())) {
+				if (this.chimpanzee.isSnack(item1.getItem())) {
 					double d1 = this.chimpanzee.distanceToSqr(item1);
 					if (d1 < d0) {
 						d0 = d1;

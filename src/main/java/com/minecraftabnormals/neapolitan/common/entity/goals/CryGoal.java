@@ -14,7 +14,7 @@ public class CryGoal extends Goal {
 
 	public CryGoal(ChimpanzeeEntity chimpanzeeIn) {
 		this.chimpanzee = chimpanzeeIn;
-		this.setFlags(EnumSet.of(Goal.Flag.JUMP, Goal.Flag.MOVE, Goal.Flag.LOOK));
+		this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
 	}
 
 	@Override

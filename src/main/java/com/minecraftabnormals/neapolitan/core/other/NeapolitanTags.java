@@ -18,6 +18,8 @@ public class NeapolitanTags {
 	public static class Items {
 		public static final ITag<Item> CHIMPANZEE_FOOD = ItemTags.bind(id("chimpanzee_food"));
 		public static final ITag<Item> CHIMPANZEE_SNACKS = ItemTags.bind(id("chimpanzee_snacks"));
+		public static final ITag<Item> CHIMPANZEE_APE_MODE_ITEMS = ItemTags.bind(id("chimpanzee_ape_mode_items"));
+		public static final ITag<Item> CHIMPANZEE_FAVORITES = ItemTags.bind(id("chimpanzee_favorites"));
 	}
 
 	public static class EntityTypes {

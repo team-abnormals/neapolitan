@@ -1,4 +1,4 @@
-package com.minecraftabnormals.neapolitan.client.renderer.layer;
+package com.minecraftabnormals.neapolitan.client.renderer.layers;
 
 import com.minecraftabnormals.neapolitan.client.model.ChimpanzeeModel;
 import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;

@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "optional": [
+    "atmospheric:warm_monkey_brush",
+    "atmospheric:hot_monkey_brush",
+    "atmospheric:scalding_monkey_brush"
+  ]
+}

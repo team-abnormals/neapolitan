@@ -12,31 +12,32 @@ public enum ChimpanzeeAction {
 	SHAKING(5,  false, false),
 	HUNCHING(6,  true, true),
 	CRYING(7,  true, false),
-	DRUMMING(8, true, true);
+	LOOKING_AT_MAIN_HAND_ITEM(8, true, false),
+	LOOKING_AT_OFF_HAND_ITEM(9, true, false),
+	DRUMMING(10, true, true);
 
-	private static final ChimpanzeeAction[] ACTIONS = Arrays.stream(values()).sorted(Comparator.comparingInt(ChimpanzeeAction::getIndex)).toArray((p_221102_0_) -> {
-		return new ChimpanzeeAction[p_221102_0_];
-	});
-	private final int index;
+	private static final ChimpanzeeAction[] VALUES = Arrays.stream(values()).sorted(Comparator.comparingInt(ChimpanzeeAction::getId)).toArray(ChimpanzeeAction[]::new);
+	
+	private final int id;
 	private final boolean canBeInterrupted;
 	private final boolean shouldSit;
 
-	private ChimpanzeeAction(int indexIn, boolean canBeInterruptedIn, boolean shouldSitIn) {
-		this.index = indexIn;
+	private ChimpanzeeAction(int idIn, boolean canBeInterruptedIn, boolean shouldSitIn) {
+		this.id = idIn;
 		this.canBeInterrupted = canBeInterruptedIn;
 		this.shouldSit = shouldSitIn;
 	}
 
-	public int getIndex() {
-		return this.index;
+	public int getId() {
+		return this.id;
 	}
 
-	public static ChimpanzeeAction byIndex(int indexIn) {
-		if (indexIn < 0 || indexIn >= ACTIONS.length) {
+	public static ChimpanzeeAction byId(int indexIn) {
+		if (indexIn < 0 || indexIn >= VALUES.length) {
 			indexIn = 0;
 		}
 
-		return ACTIONS[indexIn];
+		return VALUES[indexIn];
 	}
 
 	public boolean canBeInterrupted() {

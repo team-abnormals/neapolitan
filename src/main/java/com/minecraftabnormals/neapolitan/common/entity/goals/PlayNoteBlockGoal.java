@@ -24,7 +24,7 @@ public class PlayNoteBlockGoal extends MoveToBlockGoal {
 	public PlayNoteBlockGoal(ChimpanzeeEntity chimpanzeeIn, double speed, int length) {
 		super(chimpanzeeIn, speed, length, 6);
 		this.chimpanzee = chimpanzeeIn;
-		this.setFlags(EnumSet.of(Goal.Flag.LOOK, Goal.Flag.JUMP, Goal.Flag.MOVE));
+		this.setFlags(EnumSet.of(Goal.Flag.LOOK, Goal.Flag.MOVE));
 	}
 
 	@Override
