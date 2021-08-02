@@ -1,5 +1,6 @@
 package com.minecraftabnormals.neapolitan.core;
 
+import com.minecraftabnormals.abnormals_core.core.util.DataUtil;
 import com.minecraftabnormals.abnormals_core.core.util.registry.RegistryHelper;
 import com.minecraftabnormals.neapolitan.core.other.NeapolitanCompat;
 import com.minecraftabnormals.neapolitan.core.registry.*;
@@ -36,6 +37,7 @@ public class Neapolitan {
 		});
 
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, NeapolitanConfig.COMMON_SPEC);
+		DataUtil.registerConfigCondition(Neapolitan.MOD_ID, NeapolitanConfig.COMMON);
 	}
 
 	private void commonSetup(FMLCommonSetupEvent event) {

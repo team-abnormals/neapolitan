@@ -1,26 +1,50 @@
 package com.minecraftabnormals.neapolitan.core;
 
+import com.minecraftabnormals.abnormals_core.core.annotations.ConfigKey;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
 import org.apache.commons.lang3.tuple.Pair;
 
 public class NeapolitanConfig {
 	public static class Common {
+
+		@ConfigKey("milk_cauldron_enabled")
 		public final ConfigValue<Boolean> milkCauldron;
+
+		@ConfigKey("milking_with_glass_bottles_enabled")
 		public final ConfigValue<Boolean> milkingWithGlassBottles;
 
+
+		@ConfigKey("strawberry_bush_generation_chance")
 		public final ConfigValue<Integer> strawberryBushGenerationChance;
+
+		@ConfigKey("vanilla_vine_generation_chance")
 		public final ConfigValue<Integer> vanillaVineGenerationChance;
+
+		@ConfigKey("adzuki_sprouts_generation_chance")
 		public final ConfigValue<Integer> adzukiSproutsGenerationChance;
+
+		@ConfigKey("mint_pond_generation_chance")
 		public final ConfigValue<Integer> mintPondGenerationChance;
 
+
+		@ConfigKey("banana_plants_generate_in_beaches")
 		public final ConfigValue<Boolean> bananaPlantBeachGeneration;
+
+		@ConfigKey("banana_plants_generate_in_jungles")
 		public final ConfigValue<Boolean> bananaPlantJungleGeneration;
 
+		@ConfigKey("plantain_spiders_spawn_in_jungle")
 		public final ConfigValue<Boolean> plantainSpiderSpawning;
+
+		@ConfigKey("plantain_spiders_spawn_from_bundles")
 		public final ConfigValue<Boolean> plantainSpidersFromBundles;
+
+		@ConfigKey("plantain_spiders_give_slipping")
 		public final ConfigValue<Boolean> plantainSpidersGiveSlipping;
 
+
+		@ConfigKey("chimpanzees_spawn_in_jungle")
 		public final ConfigValue<Boolean> chimpanzeeSpawning;
 
 		Common(ForgeConfigSpec.Builder builder) {
