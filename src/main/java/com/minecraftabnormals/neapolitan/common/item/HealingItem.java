@@ -9,8 +9,6 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-import net.minecraft.item.Item.Properties;
-
 public class HealingItem extends Item {
 	private final float healAmount;
 

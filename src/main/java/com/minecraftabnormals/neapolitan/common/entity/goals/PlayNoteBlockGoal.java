@@ -1,10 +1,7 @@
 package com.minecraftabnormals.neapolitan.common.entity.goals;
 
-import java.util.EnumSet;
-
 import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
 import com.minecraftabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
-
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.NoteBlock;
@@ -15,6 +12,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+
+import java.util.EnumSet;
 
 public class PlayNoteBlockGoal extends MoveToBlockGoal {
 	private final ChimpanzeeEntity chimpanzee;

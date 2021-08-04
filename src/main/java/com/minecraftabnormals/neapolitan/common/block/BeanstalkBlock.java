@@ -13,8 +13,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.World;
 
-import net.minecraft.block.AbstractBlock.Properties;
-
 public class BeanstalkBlock extends RotatedPillarBlock {
 	public BeanstalkBlock(Properties properties) {
 		super(properties);

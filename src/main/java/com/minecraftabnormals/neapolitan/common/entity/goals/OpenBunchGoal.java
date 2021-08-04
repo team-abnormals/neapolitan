@@ -1,13 +1,12 @@
 package com.minecraftabnormals.neapolitan.common.entity.goals;
 
-import java.util.EnumSet;
-
 import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
 import com.minecraftabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
-
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.util.Hand;
+
+import java.util.EnumSet;
 
 public class OpenBunchGoal extends Goal {
 	private final ChimpanzeeEntity chimpanzee;

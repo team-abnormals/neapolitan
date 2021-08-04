@@ -20,8 +20,6 @@ import net.minecraftforge.common.ToolType;
 
 import java.util.Random;
 
-import net.minecraft.block.AbstractBlock.Properties;
-
 public class AdzukiSoilBlock extends Block implements IGrowable {
 	public AdzukiSoilBlock(Properties properties) {
 		super(properties);

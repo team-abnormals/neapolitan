@@ -21,8 +21,6 @@ import net.minecraftforge.common.Tags;
 
 import java.util.*;
 
-import net.minecraft.block.AbstractBlock.Properties;
-
 public class BananaFrondBlock extends BushBlock implements IGrowable {
 	public static final DirectionProperty FACING = BlockStateProperties.FACING;
 

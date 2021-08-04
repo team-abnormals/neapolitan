@@ -34,8 +34,6 @@ import net.minecraftforge.common.IPlantable;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-import net.minecraft.block.AbstractBlock.Properties;
-
 public class StrawberryBushBlock extends BushBlock implements IPlantable, IGrowable {
 	public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 6);
 	public static final EnumProperty<StrawberryType> TYPE = EnumProperty.create("type", StrawberryType.class);

@@ -1,14 +1,14 @@
 package com.minecraftabnormals.neapolitan.client.renderer;
 
-import java.util.Locale;
-
 import com.minecraftabnormals.neapolitan.client.model.ChimpanzeeModel;
-import com.minecraftabnormals.neapolitan.client.renderer.layers.*;
+import com.minecraftabnormals.neapolitan.client.renderer.layers.ChimpanzeeDirtLayer;
+import com.minecraftabnormals.neapolitan.client.renderer.layers.ChimpanzeeDyeLayer;
+import com.minecraftabnormals.neapolitan.client.renderer.layers.ChimpanzeeItemLayer;
+import com.minecraftabnormals.neapolitan.client.renderer.layers.ChimpanzeePaleSkinLayer;
 import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
 import com.minecraftabnormals.neapolitan.common.entity.util.ChimpanzeeTypes;
 import com.minecraftabnormals.neapolitan.core.Neapolitan;
 import com.mojang.blaze3d.matrix.MatrixStack;
-
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -16,6 +16,8 @@ import net.minecraft.client.renderer.entity.layers.HeadLayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+
+import java.util.Locale;
 
 @OnlyIn(Dist.CLIENT)
 public class ChimpanzeeRenderer extends MobRenderer<ChimpanzeeEntity, ChimpanzeeModel<ChimpanzeeEntity>> {

@@ -40,7 +40,7 @@ public class NeapolitanEntities {
 		event.put(CHIMPANZEE.get(), ChimpanzeeEntity.registerAttributes().build());
 	}
 
-	public static void registerEntityRenderers() {
+	public static void registerRenderers() {
 		RenderingRegistry.registerEntityRenderingHandler(NeapolitanEntities.BANANARROW.get(), BananarrowRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(NeapolitanEntities.BANANA_PEEL.get(), BananaPeelRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(NeapolitanEntities.PLANTAIN_SPIDER.get(), PlantainSpiderRenderer::new);

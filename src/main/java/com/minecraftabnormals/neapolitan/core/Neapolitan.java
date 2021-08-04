@@ -3,10 +3,8 @@ package com.minecraftabnormals.neapolitan.core;
 import com.minecraftabnormals.abnormals_core.core.util.registry.RegistryHelper;
 import com.minecraftabnormals.neapolitan.core.other.NeapolitanCompat;
 import com.minecraftabnormals.neapolitan.core.registry.*;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -31,9 +29,7 @@ public class Neapolitan {
 		NeapolitanParticles.PARTICLES.register(bus);
 
 		bus.addListener(this::commonSetup);
-		DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
-			bus.addListener(this::clientSetup);
-		});
+		bus.addListener(this::clientSetup);
 
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, NeapolitanConfig.COMMON_SPEC);
 	}
@@ -48,7 +44,7 @@ public class Neapolitan {
 	}
 
 	private void clientSetup(FMLClientSetupEvent event) {
-		NeapolitanEntities.registerEntityRenderers();
+		NeapolitanEntities.registerRenderers();
 		event.enqueueWork(() -> {
 			NeapolitanCompat.registerRenderLayers();
 			NeapolitanItems.registerItemProperties();

@@ -22,8 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import net.minecraft.item.Item.Properties;
-
 public class AdzukiBeansItem extends Item {
 	private boolean magic;
 

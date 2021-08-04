@@ -4,8 +4,6 @@ import com.minecraftabnormals.neapolitan.core.registry.NeapolitanSounds;
 import net.minecraft.item.Item;
 import net.minecraft.util.SoundEvent;
 
-import net.minecraft.item.Item.Properties;
-
 public class IceCubesItem extends Item {
 
 	public IceCubesItem(Properties properties) {

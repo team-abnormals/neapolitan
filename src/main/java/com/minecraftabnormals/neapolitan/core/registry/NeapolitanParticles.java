@@ -1,7 +1,7 @@
 package com.minecraftabnormals.neapolitan.core.registry;
 
-import com.minecraftabnormals.neapolitan.client.particle.FlyParticle;
 import com.minecraftabnormals.neapolitan.client.particle.ChimpanzeeNeedParticle;
+import com.minecraftabnormals.neapolitan.client.particle.FlyParticle;
 import com.minecraftabnormals.neapolitan.client.particle.MintBoostParticle;
 import com.minecraftabnormals.neapolitan.client.particle.TearParticle;
 import com.minecraftabnormals.neapolitan.core.Neapolitan;

@@ -6,6 +6,8 @@ import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEntities;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DirectionalBlock;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateContainer;
@@ -17,8 +19,6 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
 
 public class BananaBundleBlock extends DirectionalBlock {
 	

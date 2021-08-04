@@ -1,13 +1,11 @@
 package com.minecraftabnormals.neapolitan.common.entity.goals;
 
-import javax.annotation.Nullable;
-
 import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
-
-import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.entity.ai.goal.RandomWalkingGoal;
 import net.minecraft.util.math.vector.Vector3d;
+
+import javax.annotation.Nullable;
 
 public class ChimpApeModeGoal extends RandomWalkingGoal {
 	private final ChimpanzeeEntity chimpanzee;

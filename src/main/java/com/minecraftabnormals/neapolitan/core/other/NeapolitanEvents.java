@@ -3,7 +3,6 @@ package com.minecraftabnormals.neapolitan.core.other;
 import com.minecraftabnormals.abnormals_core.core.util.TradeUtil;
 import com.minecraftabnormals.abnormals_core.core.util.TradeUtil.AbnormalsTrade;
 import com.minecraftabnormals.neapolitan.common.block.MilkCauldronBlock;
-import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
 import com.minecraftabnormals.neapolitan.core.Neapolitan;
 import com.minecraftabnormals.neapolitan.core.NeapolitanConfig;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanBlocks;

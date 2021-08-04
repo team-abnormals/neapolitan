@@ -1,7 +1,6 @@
 package com.minecraftabnormals.neapolitan.common.entity.goals;
 
 import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
-
 import net.minecraft.entity.ai.goal.PanicGoal;
 
 public class ChimpPanicGoal extends PanicGoal {

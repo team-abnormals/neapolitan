@@ -1,16 +1,15 @@
 package com.minecraftabnormals.neapolitan.common.entity.goals;
 
-import java.util.EnumSet;
-import java.util.List;
-
 import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
 import com.minecraftabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
-
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.vector.Vector3d;
+
+import java.util.EnumSet;
+import java.util.List;
 
 public class ShareBananaGoal extends Goal {
 	private final ChimpanzeeEntity chimpanzee;

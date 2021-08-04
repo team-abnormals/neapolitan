@@ -1,14 +1,13 @@
 package com.minecraftabnormals.neapolitan.common.entity.goals;
 
+import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
+import com.minecraftabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.pathfinding.Path;
 
 import java.util.EnumSet;
 import java.util.List;
-
-import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
-import com.minecraftabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
 
 public class GrabBananaGoal extends Goal {
 	private final ChimpanzeeEntity chimpanzee;

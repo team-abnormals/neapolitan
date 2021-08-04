@@ -19,8 +19,6 @@ import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 
-import net.minecraft.item.Item.Properties;
-
 public class MilkshakeItem extends DrinkItem {
 	private final EffectType effectType;
 

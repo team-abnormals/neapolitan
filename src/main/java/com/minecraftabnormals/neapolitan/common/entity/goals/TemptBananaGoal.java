@@ -1,14 +1,13 @@
 package com.minecraftabnormals.neapolitan.common.entity.goals;
 
-import java.util.EnumSet;
-
 import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
-
 import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.vector.Vector3d;
+
+import java.util.EnumSet;
 
 public class TemptBananaGoal extends Goal {
 	private static final EntityPredicate ENTITY_PREDICATE = (new EntityPredicate()).range(10.0D).allowInvulnerable().allowSameTeam().allowNonAttackable().allowUnseeable();

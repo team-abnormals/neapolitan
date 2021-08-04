@@ -28,8 +28,6 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.block.AbstractBlock.Properties;
-
 public class BeanstalkThornsBlock extends Block implements IWaterLoggable {
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	public static final DirectionProperty FACING = BlockStateProperties.FACING;

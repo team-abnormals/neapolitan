@@ -1,14 +1,11 @@
 package com.minecraftabnormals.neapolitan.common.entity.goals;
 
-import java.util.EnumSet;
-
 import com.minecraftabnormals.neapolitan.common.entity.BananaPeelEntity;
 import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
 import com.minecraftabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEntities;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
-
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.entity.item.ItemEntity;
@@ -18,6 +15,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+
+import java.util.EnumSet;
 
 public class ShakeBundleGoal extends MoveToBlockGoal {
 	private final ChimpanzeeEntity chimpanzee;

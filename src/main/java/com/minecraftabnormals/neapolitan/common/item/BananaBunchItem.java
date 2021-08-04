@@ -5,7 +5,6 @@ import com.minecraftabnormals.neapolitan.core.other.NeapolitanTags;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEntities;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanSounds;
-
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;

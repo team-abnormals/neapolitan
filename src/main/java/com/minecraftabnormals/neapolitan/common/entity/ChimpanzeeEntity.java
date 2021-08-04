@@ -1,34 +1,13 @@
 package com.minecraftabnormals.neapolitan.common.entity;
 
-import java.util.List;
-import java.util.Random;
-import java.util.UUID;
-import java.util.function.Predicate;
-
-import javax.annotation.Nullable;
-
 import com.minecraftabnormals.neapolitan.common.entity.goals.*;
 import com.minecraftabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
 import com.minecraftabnormals.neapolitan.common.entity.util.ChimpanzeeTypes;
 import com.minecraftabnormals.neapolitan.core.other.NeapolitanTags;
-import com.minecraftabnormals.neapolitan.core.registry.NeapolitanBlocks;
-import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEntities;
-import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
-import com.minecraftabnormals.neapolitan.core.registry.NeapolitanParticles;
-import com.minecraftabnormals.neapolitan.core.registry.NeapolitanSounds;
-
+import com.minecraftabnormals.neapolitan.core.registry.*;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.AgeableEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntitySize;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.IAngerable;
-import net.minecraft.entity.ILivingEntityData;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.Pose;
-import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -41,11 +20,7 @@ import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.DyeColor;
-import net.minecraft.item.DyeItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.item.*;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
@@ -56,25 +31,20 @@ import net.minecraft.particles.ItemParticleData;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.pathfinding.ClimberPathNavigator;
 import net.minecraft.pathfinding.PathNavigator;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.HandSide;
-import net.minecraft.util.RangedInteger;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.TickRangeConverter;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.IServerWorld;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.LightType;
-import net.minecraft.world.World;
+import net.minecraft.world.*;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+
+import javax.annotation.Nullable;
+import java.util.List;
+import java.util.Random;
+import java.util.UUID;
+import java.util.function.Predicate;
 
 public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	private static final UUID SPEED_MODIFIER_APE_MODE_UUID = UUID.fromString("BF89D780-EE23-11EB-85B4-0800200C9A66");

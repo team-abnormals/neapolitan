@@ -29,8 +29,6 @@ import net.minecraftforge.common.IPlantable;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-import net.minecraft.block.AbstractBlock.Properties;
-
 public class MintBlock extends BushBlock implements IPlantable, IGrowable {
 	public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 4);
 	public static final IntegerProperty SPROUTS = IntegerProperty.create("sprouts", 1, 4);

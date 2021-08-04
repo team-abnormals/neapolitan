@@ -22,8 +22,6 @@ import net.minecraftforge.common.IPlantable;
 
 import java.util.Random;
 
-import net.minecraft.block.AbstractBlock.Properties;
-
 public class AdzukiSproutsBlock extends BushBlock implements IPlantable, IGrowable {
 	public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 6);
 	public static final BooleanProperty FLOWERING = BooleanProperty.create("flowering");

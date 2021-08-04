@@ -1,12 +1,11 @@
 package com.minecraftabnormals.neapolitan.common.entity.goals;
 
-import java.util.EnumSet;
-import java.util.List;
-
 import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
 import com.minecraftabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
-
 import net.minecraft.entity.ai.goal.Goal;
+
+import java.util.EnumSet;
+import java.util.List;
 
 public class GroomGoal extends Goal {
 	private final ChimpanzeeEntity chimpanzee;

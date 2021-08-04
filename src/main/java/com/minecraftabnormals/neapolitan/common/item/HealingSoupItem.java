@@ -5,8 +5,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.SoupItem;
 import net.minecraft.world.World;
 
-import net.minecraft.item.Item.Properties;
-
 public class HealingSoupItem extends SoupItem {
 	private final float healAmount;
 

@@ -4,8 +4,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import net.minecraft.item.Item.Properties;
-
 public class HealingDrinkItem extends DrinkItem {
 	private final float healAmount;
 
