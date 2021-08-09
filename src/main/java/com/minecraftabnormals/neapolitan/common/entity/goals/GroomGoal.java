@@ -29,7 +29,7 @@ public class GroomGoal extends Goal {
 			double d0 = Double.MAX_VALUE;
 
 			for(ChimpanzeeEntity chimpanzeeentity1 : list) {
-				if (chimpanzeeentity1 != this.chimpanzee && chimpanzeeentity1.isDirty() && chimpanzeeentity1.getGroomer() == null) {
+				if (chimpanzeeentity1 != this.chimpanzee && chimpanzeeentity1.isOnGround() && chimpanzeeentity1.isDirty() && chimpanzeeentity1.getGroomer() == null) {
 					double d1 = this.chimpanzee.distanceToSqr(chimpanzeeentity1);
 					if (!(d1 > d0)) {
 						d0 = d1;

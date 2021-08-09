@@ -1,22 +1,37 @@
 package com.minecraftabnormals.neapolitan.common.entity.goals;
 
+import java.util.EnumSet;
+
 import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
 import com.minecraftabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
 import com.minecraftabnormals.neapolitan.core.other.NeapolitanTags;
-import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Hand;
 
-import java.util.EnumSet;
+import net.minecraft.entity.ai.RandomPositionGenerator;
+import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.entity.projectile.FireworkRocketEntity;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ArmorItem;
+import net.minecraft.item.CrossbowItem;
+import net.minecraft.item.FireworkRocketItem;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.TieredItem;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.Hand;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.World;
 
 public class LookAtItemGoal extends Goal {
 	private final ChimpanzeeEntity chimpanzee;
-	private Hand itemHand;
-	private ItemStack item;
+	private final World level;
+	private ItemStack itemStack;
 	private int lookTimer;
+	private boolean wasHurt;
 
 	public LookAtItemGoal(ChimpanzeeEntity chimpanzeeIn) {
 		this.chimpanzee = chimpanzeeIn;
+		this.level = chimpanzeeIn.level;
 		this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
 	}
 
@@ -29,13 +44,19 @@ public class LookAtItemGoal extends Goal {
 		} else if (this.chimpanzee.getRandom().nextInt(120) > 0) {
 			return false;
 		} else {
-			for (int i = 0; i < 2; ++i) {
-				Hand hand = i == 0 ? Hand.MAIN_HAND : Hand.OFF_HAND;
-				ItemStack itemstack = this.chimpanzee.getItemInHand(hand);
+			ItemStack mainhanditem = this.chimpanzee.getMainHandItem();
+			ItemStack offhanditem = this.chimpanzee.getOffhandItem();
 
-				if (!itemstack.isEmpty() && !this.chimpanzee.isSnack(itemstack) && !itemstack.getItem().is(NeapolitanTags.Items.CHIMPANZEE_FAVORITES)) {
-					this.itemHand = hand;
-					this.item = itemstack;
+			if (!mainhanditem.isEmpty()) {
+				if (this.shouldLookAtItem(mainhanditem)) {
+					this.itemStack = mainhanditem;
+					return true;
+				}
+			} else if (!offhanditem.isEmpty()) {
+				if (this.shouldLookAtItem(offhanditem)) {
+					this.chimpanzee.setItemInHand(Hand.MAIN_HAND, offhanditem);
+					this.chimpanzee.setItemInHand(Hand.OFF_HAND, ItemStack.EMPTY);
+					this.itemStack = offhanditem;
 					return true;
 				}
 			}
@@ -47,13 +68,14 @@ public class LookAtItemGoal extends Goal {
 	@Override
 	public void start() {
 		this.lookTimer = 60 + this.chimpanzee.getRandom().nextInt(60);
-		this.chimpanzee.setAction(this.getHandAction(this.itemHand));
+		this.wasHurt = false;
+		this.chimpanzee.setAction(ChimpanzeeAction.LOOKING_AT_ITEM);
 		this.chimpanzee.getNavigation().stop();
 	}
 
 	@Override
 	public boolean canContinueToUse() {
-		if (this.chimpanzee.getItemInHand(this.itemHand) != this.item) {
+		if (this.chimpanzee.getMainHandItem() != this.itemStack) {
 			return false;
 		} else {
 			return this.lookTimer > 0;
@@ -62,33 +84,77 @@ public class LookAtItemGoal extends Goal {
 
 	@Override
 	public void stop() {
-		this.lookTimer = 0;
 		this.chimpanzee.setDefaultAction();
-		
-		if (this.chimpanzee.isApeModeItem(this.item) && this.chimpanzee.getApeModeTime() <= 0) {
-			this.chimpanzee.setApeModeTime(1200 + this.chimpanzee.getRandom().nextInt(1200));
-		}
-		
-		if (this.chimpanzee.getItemInHand(this.itemHand) == this.item) {
-			this.chimpanzee.throwHeldItem(this.itemHand);
-			
-			if (this.item.getItem().isEdible() && !this.chimpanzee.isSnack(this.item)) {
-				this.chimpanzee.level.broadcastEntityEvent(this.chimpanzee, (byte) 6);
-			}
-		}
 	}
 
 	@Override
 	public void tick() {
 		--this.lookTimer;
-		
-		if (this.lookTimer == 20 && this.chimpanzee.isApeModeItem(this.item) && this.chimpanzee.getApeModeTime() <= 0) {
-			this.lookTimer = 40;
-			this.chimpanzee.setApeModeTime(1200 + this.chimpanzee.getRandom().nextInt(1200));
+
+		if (this.lookTimer == 4 && this.chimpanzee.getAction() == ChimpanzeeAction.PLAYING_WITH_ITEM) {
+			if (this.itemStack.getItem() instanceof TieredItem) {
+				this.chimpanzee.hurt(DamageSource.GENERIC, 0.0F);
+				this.wasHurt = true;
+			} else if (this.itemStack.getItem() instanceof FireworkRocketItem) {
+				FireworkRocketEntity fireworkrocketentity = new FireworkRocketEntity(this.level, this.chimpanzee, this.chimpanzee.getX(), this.chimpanzee.getEyeY(), this.chimpanzee.getZ(), this.itemStack);
+				this.level.addFreshEntity(fireworkrocketentity);
+				this.chimpanzee.getMainHandItem().shrink(1);
+				this.itemStack = this.chimpanzee.getMainHandItem();
+			}
+		} else if (this.lookTimer == 0) {
+			this.doItemInteraction();
 		}
 	}
 
-	private ChimpanzeeAction getHandAction(Hand hand) {
-		return hand == Hand.MAIN_HAND ? ChimpanzeeAction.LOOKING_AT_MAIN_HAND_ITEM : ChimpanzeeAction.LOOKING_AT_OFF_HAND_ITEM;
+	private void doItemInteraction() {
+		Item item = this.itemStack.getItem();
+
+		if (item.is(NeapolitanTags.Items.CHIMPANZEE_APE_MODE_ITEMS) && this.chimpanzee.getApeModeTime() <= 0) {
+			this.lookTimer = 40;
+			this.chimpanzee.setApeModeTime(1200 + this.chimpanzee.getRandom().nextInt(1200));
+		} else if (this.shouldPlayWithItem(item) && this.chimpanzee.getAction() == ChimpanzeeAction.LOOKING_AT_ITEM) {
+			this.lookTimer = 40 + this.chimpanzee.getRandom().nextInt(40);
+			this.chimpanzee.setAction(ChimpanzeeAction.PLAYING_WITH_ITEM);
+		} else {
+			if (item instanceof ArmorItem && ((ArmorItem)item).getSlot() == EquipmentSlotType.HEAD && this.chimpanzee.getItemBySlot(EquipmentSlotType.HEAD).isEmpty()) {
+				this.chimpanzee.setItemSlot(EquipmentSlotType.HEAD, this.itemStack);
+				this.chimpanzee.setItemInHand(Hand.MAIN_HAND, ItemStack.EMPTY);
+				this.chimpanzee.setDropChance(EquipmentSlotType.HEAD, 2.0F);
+				this.playEquipSound(item);
+			} else {
+				if (this.chimpanzee.getMainHandItem() == this.itemStack) {
+					this.chimpanzee.throwHeldItem(Hand.MAIN_HAND);
+				}
+			}
+
+			if (this.wasHurt) {
+				this.runAway();
+			}
+
+			this.chimpanzee.setDefaultAction();
+		}
+	}
+
+	private void playEquipSound(Item item) {
+		SoundEvent soundevent = ((ArmorItem)item).getMaterial().getEquipSound();
+		this.chimpanzee.playSound(soundevent, 1.0F, 1.0F);
+	}
+
+	private void runAway() {
+		Vector3d vector3d = RandomPositionGenerator.getPos(this.chimpanzee, 10, 5);
+		if (vector3d != null) {
+			this.chimpanzee.getNavigation().moveTo(vector3d.x, vector3d.y, vector3d.z, 1.25D);
+		}
+
+		this.chimpanzee.getJumpControl().jump();
+		this.chimpanzee.playScreamSound();
+	}
+
+	private boolean shouldLookAtItem(ItemStack itemStackIn) {
+		return !this.chimpanzee.isSnack(itemStackIn) && !itemStackIn.getItem().is(NeapolitanTags.Items.CHIMPANZEE_FAVORITES);
+	}
+
+	private boolean shouldPlayWithItem(Item item) {
+		return item instanceof TieredItem || item instanceof FireworkRocketItem;
 	}
 }

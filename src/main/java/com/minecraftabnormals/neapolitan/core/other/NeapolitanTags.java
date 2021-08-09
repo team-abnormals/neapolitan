@@ -13,6 +13,7 @@ public class NeapolitanTags {
 	public static class Blocks {
 		public static final ITag<Block> VANILLA_PLANTABLE_ON = BlockTags.bind(id("vanilla_plantable_on"));
 		public static final ITag<Block> UNAFFECTED_BY_MINT = BlockTags.bind(id("unaffected_by_mint"));
+		public static final ITag<Block> CHIMPANZEE_BOUNCING_BLOCKS = BlockTags.bind(id("chimpanzee_bouncing_blocks"));
 	}
 
 	public static class Items {
@@ -26,6 +27,7 @@ public class NeapolitanTags {
 		public static final ITag<EntityType<?>> MILKABLE = EntityTypeTags.bind(id("milkable"));
 		public static final ITag<EntityType<?>> UNAFFECTED_BY_SLIPPING = EntityTypeTags.bind(id("unaffected_by_slipping"));
 		public static final ITag<EntityType<?>> UNAFFECTED_BY_HARMONY = EntityTypeTags.bind(id("unaffected_by_harmony"));
+		public static final ITag<EntityType<?>> SCARES_CHIMPANZEES = EntityTypeTags.bind(id("scares_chimpanzees"));
 	}
 
 	private static String id(String string) {

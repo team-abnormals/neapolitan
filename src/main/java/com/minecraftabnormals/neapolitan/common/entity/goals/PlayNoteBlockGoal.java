@@ -28,12 +28,12 @@ public class PlayNoteBlockGoal extends MoveToBlockGoal {
 
 	@Override
 	public boolean canUse() {
-		return this.chimpanzee.getRandom().nextInt(400) == 0 && !this.chimpanzee.isPassenger() && super.canUse();
+		return this.chimpanzee.getRandom().nextInt(300) == 0 && !this.chimpanzee.isPassenger() && super.canUse();
 	}
 
 	@Override
 	public boolean canContinueToUse() {
-		if (this.timePlayed > 320 && this.chimpanzee.getRandom().nextInt(300) == 0) {
+		if (this.timePlayed > 320 && this.chimpanzee.getRandom().nextInt(200) == 0) {
 			return false;
 		} else if (this.chimpanzee.isPassenger()) {
 			return false;

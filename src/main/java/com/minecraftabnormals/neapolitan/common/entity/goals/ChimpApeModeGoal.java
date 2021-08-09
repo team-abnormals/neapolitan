@@ -35,8 +35,7 @@ public class ChimpApeModeGoal extends RandomWalkingGoal {
 	public void start() {
 		super.start();
 		if (this.mob.isOnGround()) {
-			this.mob.setDeltaMovement(this.mob.getDeltaMovement().add(new Vector3d(0.0D, 0.6D, 0.0D)));
-			this.mob.setJumping(true);
+			this.chimpanzee.getJumpControl().jump();
 		}
 	}
 }

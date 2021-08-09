@@ -12,6 +12,7 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.entity.layers.BipedArmorLayer;
 import net.minecraft.client.renderer.entity.layers.HeadLayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -24,6 +25,7 @@ public class ChimpanzeeRenderer extends MobRenderer<ChimpanzeeEntity, Chimpanzee
 
 	public ChimpanzeeRenderer(EntityRendererManager renderManagerIn) {
 		super(renderManagerIn, new ChimpanzeeModel<>(), 0.4F);
+		this.addLayer(new BipedArmorLayer<>(this, new ChimpanzeeModel(0.5F, true, true), new ChimpanzeeModel(1.0F, true, false)));
 		this.addLayer(new ChimpanzeePaleSkinLayer<>(this));
 		this.addLayer(new ChimpanzeeDirtLayer<>(this));
 		this.addLayer(new ChimpanzeeDyeLayer<>(this));
