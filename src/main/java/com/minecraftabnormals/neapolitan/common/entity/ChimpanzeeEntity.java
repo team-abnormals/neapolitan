@@ -70,6 +70,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	private UUID lastHurtBy;
 	private int attackTimer;
 	private int pickUpTimer;
+	private int climbingStamina = 100;
 
 	private boolean isLeader;
 
@@ -352,6 +353,12 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 			--this.pickUpTimer;
 		}
 
+		if (this.getAction() == ChimpanzeeAction.CLIMBING && this.verticalCollision) {
+			--this.climbingStamina;
+		} else if (this.onGround) {
+			this.climbingStamina = 100;
+		}
+		
 		if (this.jukeboxPosition == null || !this.jukeboxPosition.closerThan(this.position(), 3.46D) || this.level.getBlockState(jukeboxPosition).getBlock() != Blocks.JUKEBOX) {
 			this.isPartying = false;
 			this.jukeboxPosition = null;
@@ -491,7 +498,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 
 	@Override
 	public boolean onClimbable() {
-		return (this.getAction() == ChimpanzeeAction.DEFAULT || this.getAction() == ChimpanzeeAction.CLIMBING) && this.isBesideClimbableBlock();
+		return (this.getAction() == ChimpanzeeAction.DEFAULT || this.getAction() == ChimpanzeeAction.CLIMBING) && this.isBesideClimbableBlock() && this.climbingStamina > 0;
 	}
 
 	public boolean shouldClimb() {

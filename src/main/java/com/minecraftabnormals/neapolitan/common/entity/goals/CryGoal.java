@@ -20,7 +20,7 @@ public class CryGoal extends Goal {
 	public boolean canUse() {
 		if (!this.chimpanzee.isBaby()) {
 			return false;
-		} else if (!this.chimpanzee.getAction().canBeInterrupted()) {
+		} else if (this.chimpanzee.getAction() != ChimpanzeeAction.DEFAULT) {
 			return false;
 		} else if (!this.chimpanzee.getNavigation().isDone()) {
 			return false;
