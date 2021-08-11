@@ -154,7 +154,7 @@
   "death.attack.neapolitan.beanstalkThorns": "%1$s was poked to death by beanstalk thorns",
   "death.attack.neapolitan.beanstalkThorns.player": "%1$s was poked to death by beanstalk thorns whilst trying to escape %2$s",
 
-  "subtitles.neapolitan.entity.chimpanzee.angry": "Chimpanzee screams",
+  "subtitles.neapolitan.entity.chimpanzee.scream": "Chimpanzee screams",
   "subtitles.neapolitan.entity.chimpanzee.death": "Chimpanzee dies",
   "subtitles.neapolitan.entity.chimpanzee.eat": "Chimpanzee eats",
   "subtitles.neapolitan.entity.chimpanzee.howl": "Chimpanzee howls",

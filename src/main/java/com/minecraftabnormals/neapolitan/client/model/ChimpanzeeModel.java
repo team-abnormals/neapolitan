@@ -150,13 +150,13 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends BipedModel<T> {
 
 		this.leftEar.yRot = -earrot;
 		this.rightEar.yRot = earrot;
-		
+
 		if (this.young) {
 			this.head.y -= 1.6F;
 		}
 
 		// BASE ANIMATIONS //
-		
+
 		this.head.yRot = netHeadYaw * ((float) Math.PI / 180F);
 		this.head.xRot = headPitch * ((float) Math.PI / 180F);
 
@@ -167,14 +167,14 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends BipedModel<T> {
 			this.rightArm.xRot += MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 2F * limbSwingAmount * 0.5F / 1F;
 			this.leftArm.xRot += MathHelper.cos(limbSwing * 0.6662F) * 2F * limbSwingAmount * 0.5F / 1F;
 		}
-		
+
 		if (!entity.getMainHandItem().isEmpty()) {
 			this.getArm(mainhand).xRot -= (float) Math.PI / 10F;
 		}
 		if (!entity.getOffhandItem().isEmpty()) {
 			this.getArm(mainhand.getOpposite()).xRot -= (float) Math.PI / 10F;
 		}
-		
+
 		// ACTION ANIMATIONS //
 
 		if (entity.getAction() == ChimpanzeeAction.EATING) {
@@ -237,7 +237,7 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends BipedModel<T> {
 			}
 		} else if (entity.getAction() == ChimpanzeeAction.PLAYING_WITH_ITEM) {
 			float playanim = MathHelper.sin(ageInTicks * 0.6F);
-			
+
 			this.head.xRot = -0.1F + MathHelper.sin(ageInTicks * 0.6F - 0.5F) * 0.1F;
 
 			if (entity.isLeftHanded()) {
@@ -274,8 +274,10 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends BipedModel<T> {
 		this.leftArm.xRot += -climbanim1 * (float) Math.PI;
 		this.rightArm.yRot += climbanim2 * 0.6F;
 		this.leftArm.yRot += -climbanim2 * 0.6F;
-		
-		ModelHelper.bobArms(this.rightArm, this.leftArm, ageInTicks);
+
+		if (entity.getAction() != ChimpanzeeAction.CLIMBING && entity.getAction() != ChimpanzeeAction.HANGING && entity.getAction() != ChimpanzeeAction.SHAKING) {
+			ModelHelper.bobArms(this.rightArm, this.leftArm, ageInTicks);
+		}
 
 		if (entity.isPartying()) {
 			float partyx = MathHelper.cos(ageInTicks * 0.75F) * 0.5F;
@@ -312,10 +314,10 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends BipedModel<T> {
 			}
 			this.rightLeg.xRot = -1.4137167F;
 			this.rightLeg.yRot = ((float) Math.PI / 10F);
-			this.rightLeg.zRot = 07853982F;
+			this.rightLeg.zRot = 0.07853982F;
 			this.leftLeg.xRot = -1.4137167F;
 			this.leftLeg.yRot = (-(float) Math.PI / 10F);
-			this.leftLeg.zRot = -07853982F;
+			this.leftLeg.zRot = -0.07853982F;
 		} else if (entity.isSitting()) {
 			if (!entity.isPartying()) {
 				this.rightArm.xRot += (-(float) Math.PI / 5F);
@@ -331,10 +333,8 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends BipedModel<T> {
 
 			this.rightLeg.xRot = -((float) Math.PI / 2F);
 			this.rightLeg.yRot = ((float) Math.PI / 10F);
-			this.rightLeg.zRot = 07853982F;
 			this.leftLeg.xRot = -((float) Math.PI / 2F);
 			this.leftLeg.yRot = (-(float) Math.PI / 10F);
-			this.leftLeg.zRot = -07853982F;
 		} else if (entity.getAction() != ChimpanzeeAction.SHAKING) {
 			this.rightLeg.xRot = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount - climbanim2 * (float) Math.PI * 0.2F;
 			this.leftLeg.xRot = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount - climbanim2 * (float) Math.PI * 0.2F;

@@ -200,7 +200,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 
 	@Override
 	protected SoundEvent getAmbientSound() {
-		return this.isAngry() ? NeapolitanSounds.ENTITY_CHIMPANZEE_ANGRY.get() : NeapolitanSounds.ENTITY_CHIMPANZEE_AMBIENT.get();
+		return this.isAngry() ? NeapolitanSounds.ENTITY_CHIMPANZEE_SCREAM.get() : NeapolitanSounds.ENTITY_CHIMPANZEE_AMBIENT.get();
 	}
 
 	@Override
@@ -225,7 +225,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	}
 
 	public void playScreamSound() {
-		this.playSound(NeapolitanSounds.ENTITY_CHIMPANZEE_ANGRY.get(), this.getSoundVolume(), this.getVoicePitch());
+		this.playSound(NeapolitanSounds.ENTITY_CHIMPANZEE_SCREAM.get(), this.getSoundVolume(), this.getVoicePitch());
 	}
 	
 	@Override
@@ -354,9 +354,15 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		}
 
 		if (this.getAction() == ChimpanzeeAction.CLIMBING && this.verticalCollision) {
-			--this.climbingStamina;
+			if (--this.climbingStamina <= 0) {
+				this.climbingStamina = -20;
+			}
 		} else if (this.onGround) {
-			this.climbingStamina = 100;
+			if (this.climbingStamina < 0) {
+				++this.climbingStamina;
+			} else {
+				this.climbingStamina = 100;
+			}
 		}
 		
 		if (this.jukeboxPosition == null || !this.jukeboxPosition.closerThan(this.position(), 3.46D) || this.level.getBlockState(jukeboxPosition).getBlock() != Blocks.JUKEBOX) {
@@ -924,7 +930,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	public boolean isMouthOpen() {
 		if (this.getAction() == ChimpanzeeAction.EATING) {
 			return Math.sin(Math.PI * this.tickCount * 0.2D) > 0;
-		} else if (this.getAction() == ChimpanzeeAction.CRYING || this.getAction() == ChimpanzeeAction.PLAYING_WITH_ITEM || this.getAction() == ChimpanzeeAction.PLAYING_WITH_HELMET) {
+		} else if (this.getAction() == ChimpanzeeAction.CRYING || this.getAction() == ChimpanzeeAction.PLAYING_WITH_ITEM || this.getAction() == ChimpanzeeAction.PLAYING_WITH_HELMET || this.getAction() == ChimpanzeeAction.DRUMMING) {
 			return true;
 		} else if (this.getApeModeTime() > 0 || this.isAngry() || this.isHungry() || this.isPartying()) {
 			return true;

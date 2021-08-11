@@ -22,7 +22,7 @@ public class BeGroomedGoal extends Goal {
 			return false;
 		} else {
 			ChimpanzeeEntity groomer = this.chimpanzee.getGroomer();
-			return groomer != null && groomer.getGroomingTarget() == this.chimpanzee;
+			return groomer != null && this.chimpanzee.distanceToSqr(groomer) < 16.0D && groomer.getGroomingTarget() == this.chimpanzee;
 		}
 	}
 

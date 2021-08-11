@@ -33,7 +33,7 @@ public class PlayNoteBlockGoal extends MoveToBlockGoal {
 
 	@Override
 	public boolean canContinueToUse() {
-		if (this.timePlayed > 320 && this.chimpanzee.getRandom().nextInt(200) == 0) {
+		if (this.timePlayed > 320 && this.chimpanzee.getRandom().nextInt(250) == 0) {
 			return false;
 		} else if (this.chimpanzee.isPassenger()) {
 			return false;

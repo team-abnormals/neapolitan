@@ -8,12 +8,12 @@
       }
     ]
   },
-  "entity.chimpanzee.angry": {
+  "entity.chimpanzee.scream": {
     "sounds": [
-      "neapolitan:mob/chimpanzee/angry1",
-      "neapolitan:mob/chimpanzee/angry2"
+      "neapolitan:mob/chimpanzee/scream1",
+      "neapolitan:mob/chimpanzee/scream2"
     ],
-    "subtitle": "subtitles.neapolitan.entity.chimpanzee.angry"
+    "subtitle": "subtitles.neapolitan.entity.chimpanzee.scream"
   },
   "entity.chimpanzee.death": {
     "sounds": [

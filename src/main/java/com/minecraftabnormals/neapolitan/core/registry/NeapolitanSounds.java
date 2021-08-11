@@ -12,7 +12,7 @@ public class NeapolitanSounds {
 
 	public static final RegistryObject<SoundEvent> HULLABALOO = HELPER.createSoundEvent("music.record.hullabaloo");
 
-	public static final RegistryObject<SoundEvent> ENTITY_CHIMPANZEE_ANGRY = HELPER.createSoundEvent("entity.chimpanzee.angry");
+	public static final RegistryObject<SoundEvent> ENTITY_CHIMPANZEE_SCREAM = HELPER.createSoundEvent("entity.chimpanzee.scream");
 	public static final RegistryObject<SoundEvent> ENTITY_CHIMPANZEE_DEATH = HELPER.createSoundEvent("entity.chimpanzee.death");
 	public static final RegistryObject<SoundEvent> ENTITY_CHIMPANZEE_EAT = HELPER.createSoundEvent("entity.chimpanzee.eat");
 	public static final RegistryObject<SoundEvent> ENTITY_CHIMPANZEE_HOWL = HELPER.createSoundEvent("entity.chimpanzee.howl");

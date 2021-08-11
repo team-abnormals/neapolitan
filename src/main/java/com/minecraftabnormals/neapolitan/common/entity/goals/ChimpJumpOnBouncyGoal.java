@@ -25,7 +25,7 @@ public class ChimpJumpOnBouncyGoal extends MoveToBlockGoal {
 	public boolean canUse() {
 		if (this.chimpanzee.isPassenger()) {
 			return false;
-		} else if (this.chimpanzee.isBaby() && this.chimpanzee.getRandom().nextInt(120) == 0) {
+		} else if (this.chimpanzee.isBaby() && this.chimpanzee.getRandom().nextInt(150) == 0) {
 			return super.canUse();
 		} else if (!this.chimpanzee.isBaby() && this.chimpanzee.getRandom().nextInt(300) == 0) {
 			return super.canUse();
@@ -61,7 +61,7 @@ public class ChimpJumpOnBouncyGoal extends MoveToBlockGoal {
 	public void tick() {
 		super.tick();
 
-		if (this.isReachedTarget() && this.chimpanzee.getAction().canBeInterrupted()) {
+		if (this.isReachedTarget() && this.chimpanzee.isOnGround() && this.chimpanzee.getAction().canBeInterrupted()) {
 			this.mob.getJumpControl().jump();
 
 			++this.jumps;

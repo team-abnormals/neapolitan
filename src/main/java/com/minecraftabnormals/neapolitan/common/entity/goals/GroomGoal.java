@@ -12,6 +12,7 @@ public class GroomGoal extends Goal {
 	private final double moveSpeed;
 	private int delayCounter;
 	private int groomTime;
+	private int forgetTime;
 
 	public GroomGoal(ChimpanzeeEntity chimpanzeeIn, double speed) {
 		this.chimpanzee = chimpanzeeIn;
@@ -52,7 +53,9 @@ public class GroomGoal extends Goal {
 	public boolean canContinueToUse() {
 		ChimpanzeeEntity target = this.chimpanzee.getGroomingTarget();
 
-		if (!target.isAlive()) {
+		if (this.forgetTime <= 0) {
+			return false;
+		} else if (!target.isAlive()) {
 			return false;
 		} else if (!target.isDirty()) {
 			return false;
@@ -65,6 +68,7 @@ public class GroomGoal extends Goal {
 	public void start() {
 		this.delayCounter = 0;
 		this.groomTime = 0;
+		this.forgetTime = 60;
 	}
 
 	@Override
@@ -92,6 +96,7 @@ public class GroomGoal extends Goal {
 			} else {
 				this.chimpanzee.getNavigation().moveTo(target, this.moveSpeed);
 				this.chimpanzee.setDefaultAction();
+				--this.forgetTime;
 			}
 		}
 
