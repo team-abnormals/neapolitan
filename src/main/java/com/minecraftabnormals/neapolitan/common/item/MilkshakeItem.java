@@ -36,7 +36,7 @@ public class MilkshakeItem extends DrinkItem {
 	@Override
 	public ActionResultType interactLivingEntity(ItemStack stack, PlayerEntity player, LivingEntity entity, Hand hand) {
 		if (entity.level.isClientSide)
-			return ActionResultType.PASS;
+			return ActionResultType.CONSUME;
 		entity.level.playSound(null, entity.blockPosition(), SoundEvents.WANDERING_TRADER_DRINK_MILK, SoundCategory.NEUTRAL, 1, 1);
 
 		if (player instanceof ServerPlayerEntity) {

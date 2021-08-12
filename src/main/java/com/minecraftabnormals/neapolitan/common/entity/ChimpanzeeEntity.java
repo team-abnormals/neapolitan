@@ -3,6 +3,7 @@ package com.minecraftabnormals.neapolitan.common.entity;
 import com.minecraftabnormals.neapolitan.common.entity.goals.*;
 import com.minecraftabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
 import com.minecraftabnormals.neapolitan.common.entity.util.ChimpanzeeTypes;
+import com.minecraftabnormals.neapolitan.common.item.MilkshakeItem;
 import com.minecraftabnormals.neapolitan.core.other.NeapolitanTags;
 import com.minecraftabnormals.neapolitan.core.registry.*;
 import net.minecraft.block.BlockState;
@@ -227,7 +228,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	public void playScreamSound() {
 		this.playSound(NeapolitanSounds.ENTITY_CHIMPANZEE_SCREAM.get(), this.getSoundVolume(), this.getVoicePitch());
 	}
-	
+
 	@Override
 	protected float getSoundVolume() {
 		return 0.4F;
@@ -364,7 +365,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 				this.climbingStamina = 100;
 			}
 		}
-		
+
 		if (this.jukeboxPosition == null || !this.jukeboxPosition.closerThan(this.position(), 3.46D) || this.level.getBlockState(jukeboxPosition).getBlock() != Blocks.JUKEBOX) {
 			this.isPartying = false;
 			this.jukeboxPosition = null;
@@ -436,25 +437,35 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	@Override
 	public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
 		ItemStack itemstack = player.getItemInHand(hand);
-		if (!(this.isFood(itemstack) && !this.isHungry())) {
-			if (this.getMainHandItem().isEmpty() || (this.isSnack(itemstack) && !this.isSnack(this.getMainHandItem()))) {
-				if (!this.getMainHandItem().isEmpty()) {
-					this.dropItem(this.getMainHandItem());
+
+		if (!itemstack.isEmpty()) {
+			if (itemstack.getItem() instanceof MilkshakeItem) {
+				ActionResultType actionresulttype = itemstack.interactLivingEntity(player, this, hand);
+				if (actionresulttype.consumesAction()) {
+					return actionresulttype;
 				}
-
-				if (this.isSnack(itemstack)) {
-					this.stopBeingAngry();
-				}
-
-				ItemStack itemstack1 = itemstack.copy();
-				itemstack1.setCount(1);
-				this.setItemInHand(Hand.MAIN_HAND, itemstack1);
-				this.handDropChances[EquipmentSlotType.MAINHAND.getIndex()] = 2.0F;
-				this.usePlayerItem(player, itemstack);
-
-				return ActionResultType.sidedSuccess(this.level.isClientSide);
 			}
-			return ActionResultType.PASS;
+
+			if (!(this.isFood(itemstack) && !this.isHungry())) {
+				if (this.getMainHandItem().isEmpty() || (this.isSnack(itemstack) && !this.isSnack(this.getMainHandItem()))) {
+					if (!this.getMainHandItem().isEmpty()) {
+						this.dropItem(this.getMainHandItem());
+					}
+
+					if (this.isSnack(itemstack)) {
+						this.stopBeingAngry();
+					}
+
+					ItemStack itemstack1 = itemstack.copy();
+					itemstack1.setCount(1);
+					this.setItemInHand(Hand.MAIN_HAND, itemstack1);
+					this.handDropChances[EquipmentSlotType.MAINHAND.getIndex()] = 2.0F;
+					this.usePlayerItem(player, itemstack);
+
+					return ActionResultType.sidedSuccess(this.level.isClientSide);
+				}
+				return ActionResultType.PASS;
+			}
 		}
 
 		return super.mobInteract(player, hand);

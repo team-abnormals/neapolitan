@@ -70,12 +70,15 @@ public class PlayWithHelmetGoal extends Goal {
 
 		if (this.playTimer == 6) {
 			ItemEntity itementity = new ItemEntity(this.chimpanzee.level, this.chimpanzee.getX(), this.chimpanzee.getY(1.0D), this.chimpanzee.getZ(), this.itemStack);
+			Vector3d vector3d = itementity.getDeltaMovement();
+			itementity.setDeltaMovement(vector3d.x * 1.6D, vector3d.y, vector3d.z * 1.6D);
 			itementity.setPickUpDelay(40);
 			itementity.setThrower(this.chimpanzee.getUUID());
 			this.chimpanzee.level.addFreshEntity(itementity);
 			
 			this.chimpanzee.setItemSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
 			this.itemStack = this.chimpanzee.getItemBySlot(EquipmentSlotType.HEAD);
+			this.chimpanzee.setPickUpTimer(80);
 		}
 	}
 }
