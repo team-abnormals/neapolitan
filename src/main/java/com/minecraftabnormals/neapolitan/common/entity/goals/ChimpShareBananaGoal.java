@@ -11,7 +11,7 @@ import net.minecraft.util.math.vector.Vector3d;
 import java.util.EnumSet;
 import java.util.List;
 
-public class ShareBananaGoal extends Goal {
+public class ChimpShareBananaGoal extends Goal {
 	private final ChimpanzeeEntity chimpanzee;
 	private ChimpanzeeEntity buddy;
 	private final double moveSpeed;
@@ -19,7 +19,7 @@ public class ShareBananaGoal extends Goal {
 	private int throwTimer;
 	private int lookTimer;
 
-	public ShareBananaGoal(ChimpanzeeEntity chimpanzeeIn, double speed) {
+	public ChimpShareBananaGoal(ChimpanzeeEntity chimpanzeeIn, double speed) {
 		this.chimpanzee = chimpanzeeIn;
 		this.moveSpeed = speed;
 		this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));

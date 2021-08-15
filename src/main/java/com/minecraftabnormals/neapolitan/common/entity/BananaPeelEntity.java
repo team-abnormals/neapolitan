@@ -88,7 +88,7 @@ public class BananaPeelEntity extends Entity {
 	@Override
 	public void push(Entity entityIn) {
 		super.push(entityIn);
-		if (this.onGround && entityIn instanceof LivingEntity && !NeapolitanTags.EntityTypes.UNAFFECTED_BY_SLIPPING.contains(entityIn.getType()) && !this.level.isClientSide()) {
+		if (this.onGround && !this.isInWater() && entityIn instanceof LivingEntity && !NeapolitanTags.EntityTypes.UNAFFECTED_BY_SLIPPING.contains(entityIn.getType()) && !this.level.isClientSide()) {
 			((LivingEntity) entityIn).addEffect(new EffectInstance(NeapolitanEffects.SLIPPING.get(), 100));
 		}
 	}

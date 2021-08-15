@@ -9,7 +9,7 @@ import net.minecraft.util.math.vector.Vector3d;
 
 import java.util.EnumSet;
 
-public class TemptBananaGoal extends Goal {
+public class ChimpTemptBananaGoal extends Goal {
 	private static final EntityPredicate ENTITY_PREDICATE = (new EntityPredicate()).range(10.0D).allowInvulnerable().allowSameTeam().allowNonAttackable().allowUnseeable();
 	protected final ChimpanzeeEntity chimpanzee;
 	private final double speed;
@@ -19,7 +19,7 @@ public class TemptBananaGoal extends Goal {
 	private int patience;
 	private double playerDistance;
 
-	public TemptBananaGoal(ChimpanzeeEntity chimpanzeeIn, double speedIn) {
+	public ChimpTemptBananaGoal(ChimpanzeeEntity chimpanzeeIn, double speedIn) {
 		this.chimpanzee = chimpanzeeIn;
 		this.speed = speedIn;
 

@@ -12,12 +12,12 @@ import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.vector.Vector3d;
 
-public class PlayWithHelmetGoal extends Goal {
+public class ChimpPlayWithHelmetGoal extends Goal {
 	private final ChimpanzeeEntity chimpanzee;
 	private ItemStack itemStack;
 	private int playTimer;
 
-	public PlayWithHelmetGoal(ChimpanzeeEntity chimpanzeeIn) {
+	public ChimpPlayWithHelmetGoal(ChimpanzeeEntity chimpanzeeIn) {
 		this.chimpanzee = chimpanzeeIn;
 		this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
 	}
@@ -28,7 +28,7 @@ public class PlayWithHelmetGoal extends Goal {
 			return false;
 		} else if (!this.chimpanzee.getNavigation().isDone()) {
 			return false;
-		} else if (this.chimpanzee.getRandom().nextInt(80) > 0) {
+		} else if (this.chimpanzee.getRandom().nextInt(200) > 0) {
 			return false;
 		} else {
 			ItemStack helmet = this.chimpanzee.getItemBySlot(EquipmentSlotType.HEAD);

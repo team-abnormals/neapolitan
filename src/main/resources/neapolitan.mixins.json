@@ -6,7 +6,8 @@
   "refmap": "neapolitan.refmap.json",
   "mixins": [
     "LivingEntityMixin",
-    "SpreadableSnowyDirtBlockMixin"
+    "SpreadableSnowyDirtBlockMixin",
+    "BipedArmorLayerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

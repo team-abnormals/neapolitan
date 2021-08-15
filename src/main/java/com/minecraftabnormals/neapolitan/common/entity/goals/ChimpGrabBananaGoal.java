@@ -9,13 +9,13 @@ import net.minecraft.pathfinding.Path;
 import java.util.EnumSet;
 import java.util.List;
 
-public class GrabBananaGoal extends Goal {
+public class ChimpGrabBananaGoal extends Goal {
 	private final ChimpanzeeEntity chimpanzee;
 	private ItemEntity itemEntity;
 	private final double moveSpeed;
 	private int delayCounter;
 
-	public GrabBananaGoal(ChimpanzeeEntity chimpanzeeIn, double speed) {
+	public ChimpGrabBananaGoal(ChimpanzeeEntity chimpanzeeIn, double speed) {
 		this.chimpanzee = chimpanzeeIn;
 		this.moveSpeed = speed;
 		this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));

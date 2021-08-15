@@ -7,14 +7,14 @@ import net.minecraft.entity.ai.goal.Goal;
 import java.util.EnumSet;
 import java.util.List;
 
-public class GroomGoal extends Goal {
+public class ChimpGroomGoal extends Goal {
 	private final ChimpanzeeEntity chimpanzee;
 	private final double moveSpeed;
 	private int delayCounter;
 	private int groomTime;
 	private int forgetTime;
 
-	public GroomGoal(ChimpanzeeEntity chimpanzeeIn, double speed) {
+	public ChimpGroomGoal(ChimpanzeeEntity chimpanzeeIn, double speed) {
 		this.chimpanzee = chimpanzeeIn;
 		this.moveSpeed = speed;
 		this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));

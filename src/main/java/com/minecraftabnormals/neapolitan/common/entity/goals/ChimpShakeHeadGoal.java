@@ -6,11 +6,11 @@ import net.minecraft.entity.ai.goal.Goal;
 
 import java.util.EnumSet;
 
-public class ShakeHeadGoal extends Goal {
+public class ChimpShakeHeadGoal extends Goal {
 	private final ChimpanzeeEntity chimpanzee;
 	private int headShakeTimer;
 
-	public ShakeHeadGoal(ChimpanzeeEntity chimpanzeeIn) {
+	public ChimpShakeHeadGoal(ChimpanzeeEntity chimpanzeeIn) {
 		this.chimpanzee = chimpanzeeIn;
 		this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
 	}

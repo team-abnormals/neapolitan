@@ -3,6 +3,7 @@ package com.minecraftabnormals.neapolitan.client.model;
 import com.google.common.collect.ImmutableList;
 import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
 import com.minecraftabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
+import com.minecraftabnormals.neapolitan.core.other.NeapolitanTags;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import net.minecraft.client.renderer.entity.model.BipedModel;
@@ -26,6 +27,8 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends BipedModel<T> {
 
 	protected ModelRenderer bodyDefault;
 	protected ModelRenderer headDefault;
+	protected ModelRenderer leftEarDefault;
+	protected ModelRenderer rightEarDefault;
 	protected ModelRenderer leftArmDefault;
 	protected ModelRenderer rightArmDefault;
 	protected ModelRenderer leftLegDefault;
@@ -42,26 +45,22 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends BipedModel<T> {
 
 		if (isArmor) {
 			this.head = new ModelRenderer(this);
-			this.head.setPos(0F, 5F, 0.5F);
+			this.head.setPos(0F, 1F, 0.5F);
 			this.head.texOffs(0, 0).addBox(-4F, -8F, -4F, 8F, 8F, 8F, modelSize);
 
-			if (isInner) {
-				this.body = new ModelRenderer(this);
-				this.body.setPos(0F, 9F, 2F);
-				this.body.texOffs(16, 16).addBox(-4F, -8F, -3.5F, 8F, 12F, 4F, modelSize);
+			this.body = new ModelRenderer(this);
+			this.body.setPos(0F, 5F, 0.5F);
+			this.body.texOffs(16, 16).addBox(-4F, -0F, -2F, 8F, 12F, 4F, modelSize);
 
+			if (isInner) {
 				this.leftLeg = new ModelRenderer(this);
 				this.leftLeg.setPos(2.5F, 13F, 0.5F);
-				this.leftLeg.texOffs(0, 16).addBox(-2.5F, 0F, -2F, 4F, 12F, 4F, modelSize, true);
+				this.leftLeg.texOffs(0, 16).addBox(-2.5F, -1F, -2F, 4F, 12F, 4F, modelSize, true);
 
 				this.rightLeg = new ModelRenderer(this);
 				this.rightLeg.setPos(-2.5F, 13F, 0.5F);
-				this.rightLeg.texOffs(0, 16).addBox(-1.5F, 0F, -2F, 4F, 12F, 4F, modelSize);
+				this.rightLeg.texOffs(0, 16).addBox(-1.5F, -1F, -2F, 4F, 12F, 4F, modelSize);
 			} else {
-				this.body = new ModelRenderer(this);
-				this.body.setPos(0F, 9F, 2F);
-				this.body.texOffs(16, 16).addBox(-4F, -4F, -3.5F, 8F, 12F, 4F, modelSize);
-
 				this.leftLeg = new ModelRenderer(this);
 				this.leftLeg.setPos(2.5F, 13F, 0.5F);
 				this.leftLeg.texOffs(0, 16).addBox(-2.5F, -1F, -2F, 4F, 12F, 4F, modelSize, true);
@@ -89,8 +88,8 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends BipedModel<T> {
 			this.head.texOffs(30, 11).addBox(-2F, -5F, -4F, 4F, 5F, 1F, modelSize);
 
 			this.body = new ModelRenderer(this);
-			this.body.setPos(0F, 9F, 2F);
-			this.body.texOffs(37, 0).addBox(-5F, -4F, -3F, 10F, 8F, 3F, modelSize);
+			this.body.setPos(0F, 5F, 0.5F);
+			this.body.texOffs(37, 0).addBox(-5F, -0F, -1.5F, 10F, 8F, 3F, modelSize);
 
 			this.leftEar = new ModelRenderer(this);
 			this.leftEar.setPos(4F, -5F, 0F);
@@ -123,6 +122,8 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends BipedModel<T> {
 
 		this.bodyDefault = this.body.createShallowCopy();
 		this.headDefault = this.head.createShallowCopy();
+		this.leftEarDefault = this.leftEar.createShallowCopy();
+		this.rightEarDefault = this.rightEar.createShallowCopy();
 		this.leftArmDefault = this.leftArm.createShallowCopy();
 		this.rightArmDefault = this.rightArm.createShallowCopy();
 		this.leftLegDefault = this.leftLeg.createShallowCopy();
@@ -137,19 +138,31 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends BipedModel<T> {
 		float climbanim1 = entity.getClimbingAnimationScale(partialtick);
 		float climbanim2 = Math.min(climbanim1 * 5F / 3F, 1F);
 		int attackanim = entity.getAttackTimer();
-		boolean hashelmet = this.hasHelmet(entity);
-		float earrot = hashelmet ? ((float)Math.PI / 2F) : 0F;
+		int earstate = this.getEarState(entity);
 		HandSide mainhand = entity.getMainArm();
 
 		this.body.copyFrom(this.bodyDefault);
 		this.head.copyFrom(this.headDefault);
+		this.leftEar.copyFrom(this.leftEarDefault);
+		this.rightEar.copyFrom(this.rightEarDefault);
 		this.leftArm.copyFrom(this.leftArmDefault);
 		this.rightArm.copyFrom(this.rightArmDefault);
 		this.leftLeg.copyFrom(this.leftLegDefault);
 		this.rightLeg.copyFrom(this.rightLegDefault);
 
-		this.leftEar.yRot = -earrot;
-		this.rightEar.yRot = earrot;
+		if (earstate == 2) {
+			this.leftEar.visible = false;
+			this.rightEar.visible = false;
+		} else {
+			if (earstate == 1) {
+				this.leftEar.yRot = (float) -Math.PI / 2F;
+				this.leftEar.x -= 0.1F;
+				this.rightEar.yRot = (float) Math.PI / 2F;
+				this.rightEar.x += 0.1F;
+			}
+			this.leftEar.visible = true;
+			this.rightEar.visible = true;
+		}
 
 		if (this.young) {
 			this.head.y -= 1.6F;
@@ -366,18 +379,22 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends BipedModel<T> {
 		this.getArm(sideIn).translateAndRotate(matrixStackIn);
 	}
 
-	private boolean hasHelmet(T entity) {
+	private int getEarState(T entity) {
 		ItemStack itemstack = entity.getItemBySlot(EquipmentSlotType.HEAD);
 		if (itemstack != null) {
 			Item item = itemstack.getItem();
 
-			if (item instanceof BlockItem) {
-				return true;
-			} else if (item instanceof ArmorItem && ((ArmorItem)item).getSlot() == EquipmentSlotType.HEAD) {
-				return true;
+			if (item.is(NeapolitanTags.Items.HIDES_CHIMPANZEE_EARS)) {
+				return 2;
+			} else {
+				if (item instanceof BlockItem) {
+					return 1;
+				} else if (item instanceof ArmorItem && ((ArmorItem)item).getSlot() == EquipmentSlotType.HEAD) {
+					return 1;
+				}
 			}
 		}
 
-		return false;
+		return 0;
 	}
 }

@@ -15,12 +15,12 @@ import net.minecraft.world.World;
 
 import java.util.EnumSet;
 
-public class PlayNoteBlockGoal extends MoveToBlockGoal {
+public class ChimpPlayNoteBlockGoal extends MoveToBlockGoal {
 	private final ChimpanzeeEntity chimpanzee;
 	private int timePlayed;
 	private int noteTime;
 
-	public PlayNoteBlockGoal(ChimpanzeeEntity chimpanzeeIn, double speed, int length) {
+	public ChimpPlayNoteBlockGoal(ChimpanzeeEntity chimpanzeeIn, double speed, int length) {
 		super(chimpanzeeIn, speed, length, 6);
 		this.chimpanzee = chimpanzeeIn;
 		this.setFlags(EnumSet.of(Goal.Flag.LOOK, Goal.Flag.MOVE));

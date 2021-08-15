@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:heads",
+  ],
+  "optional": [
+    "savageandravage:griefer_helmet",
+    "caverns_and_chasms:sanguine_helmet",
+	"environmental:thief_hood"
+  ]
+}

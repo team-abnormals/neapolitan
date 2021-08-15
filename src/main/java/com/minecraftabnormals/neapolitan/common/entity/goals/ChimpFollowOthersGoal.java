@@ -7,13 +7,13 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class FollowOthersGoal extends Goal {
+public class ChimpFollowOthersGoal extends Goal {
 	private final ChimpanzeeEntity chimpanzee;
 	private ChimpanzeeEntity buddy;
 	private final double moveSpeed;
 	private int delayCounter;
 
-	public FollowOthersGoal(ChimpanzeeEntity chimpanzeeIn, double speed) {
+	public ChimpFollowOthersGoal(ChimpanzeeEntity chimpanzeeIn, double speed) {
 		this.chimpanzee = chimpanzeeIn;
 		this.moveSpeed = speed;
 		this.setFlags(EnumSet.of(Goal.Flag.MOVE));

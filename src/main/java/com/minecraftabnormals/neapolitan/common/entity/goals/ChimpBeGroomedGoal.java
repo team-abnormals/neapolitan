@@ -6,10 +6,10 @@ import net.minecraft.entity.ai.goal.Goal;
 
 import java.util.EnumSet;
 
-public class BeGroomedGoal extends Goal {
+public class ChimpBeGroomedGoal extends Goal {
 	private final ChimpanzeeEntity chimpanzee;
 
-	public BeGroomedGoal(ChimpanzeeEntity chimpanzeeIn) {
+	public ChimpBeGroomedGoal(ChimpanzeeEntity chimpanzeeIn) {
 		this.chimpanzee = chimpanzeeIn;
 		this.setFlags(EnumSet.of(Goal.Flag.MOVE));
 	}

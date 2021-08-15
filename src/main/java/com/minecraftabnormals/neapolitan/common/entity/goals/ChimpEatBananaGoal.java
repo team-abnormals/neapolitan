@@ -8,11 +8,11 @@ import net.minecraft.item.ItemStack;
 
 import java.util.EnumSet;
 
-public class EatBananaGoal extends Goal {
+public class ChimpEatBananaGoal extends Goal {
 	private final ChimpanzeeEntity chimpanzee;
 	private int eatTime;
 
-	public EatBananaGoal(ChimpanzeeEntity chimpanzeeIn) {
+	public ChimpEatBananaGoal(ChimpanzeeEntity chimpanzeeIn) {
 		this.chimpanzee = chimpanzeeIn;
 		this.setFlags(EnumSet.of(Goal.Flag.MOVE));
 	}

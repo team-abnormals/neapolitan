@@ -22,14 +22,14 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 
-public class LookAtItemGoal extends Goal {
+public class ChimpLookAtItemGoal extends Goal {
 	private final ChimpanzeeEntity chimpanzee;
 	private final World level;
 	private ItemStack itemStack;
 	private int lookTimer;
 	private boolean wasHurt;
 
-	public LookAtItemGoal(ChimpanzeeEntity chimpanzeeIn) {
+	public ChimpLookAtItemGoal(ChimpanzeeEntity chimpanzeeIn) {
 		this.chimpanzee = chimpanzeeIn;
 		this.level = chimpanzeeIn.level;
 		this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));

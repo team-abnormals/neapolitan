@@ -8,11 +8,11 @@ import net.minecraft.util.Hand;
 
 import java.util.EnumSet;
 
-public class OpenBunchGoal extends Goal {
+public class ChimpOpenBunchGoal extends Goal {
 	private final ChimpanzeeEntity chimpanzee;
 	private int throwTimer;
 
-	public OpenBunchGoal(ChimpanzeeEntity chimpanzeeIn) {
+	public ChimpOpenBunchGoal(ChimpanzeeEntity chimpanzeeIn) {
 		this.chimpanzee = chimpanzeeIn;
 		this.setFlags(EnumSet.of(Goal.Flag.MOVE));
 	}

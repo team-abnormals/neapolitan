@@ -7,11 +7,11 @@ import net.minecraft.entity.ai.goal.Goal;
 import java.util.EnumSet;
 import java.util.List;
 
-public class CryGoal extends Goal {
+public class ChimpCryGoal extends Goal {
 	private final ChimpanzeeEntity chimpanzee;
 	private int cryTimer;
 
-	public CryGoal(ChimpanzeeEntity chimpanzeeIn) {
+	public ChimpCryGoal(ChimpanzeeEntity chimpanzeeIn) {
 		this.chimpanzee = chimpanzeeIn;
 		this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
 	}
