@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "#forge:heads",
+    "#forge:heads"
   ],
   "optional": [
     "savageandravage:griefer_helmet",

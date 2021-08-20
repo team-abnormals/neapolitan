@@ -65,7 +65,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	private static final DataParameter<Byte> CLIMBING = EntityDataManager.defineId(ChimpanzeeEntity.class, DataSerializers.BYTE);
 	private static final DataParameter<Direction> FACING = EntityDataManager.defineId(ChimpanzeeEntity.class, DataSerializers.DIRECTION);
 
-	public static final EntitySize SITTING_DIMENSIONS = EntitySize.fixed(0.6F, 1.0F);
+	public static final EntitySize SITTING_DIMENSIONS = EntitySize.scalable(0.6F, 1.0F);
 
 	private static final RangedInteger ANGER_RANGE = TickRangeConverter.rangeOfSeconds(20, 39);
 	private UUID lastHurtBy;
@@ -80,11 +80,14 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	@Nullable
 	private ChimpanzeeEntity groomer;
 
-	private int climbAnim;
-	private int prevClimbAnim;
+	private int climbAmount;
+	private int prevClimbAmount;
+	
+	private int sittingAmount;
+	private int prevSittingAmount;
 
-	private int headShakeAnim;
-	private int prevHeadShakeAnim;
+	private int headShakeAmount;
+	private int prevHeadShakeAmount;
 
 	public boolean isPartying = false;
 	BlockPos jukeboxPosition;
@@ -397,18 +400,25 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 				}
 			}
 		} else {
-			this.prevClimbAnim = this.climbAnim;
+			this.prevClimbAmount = this.climbAmount;
 			if (this.getAction() == ChimpanzeeAction.CLIMBING) {
-				this.climbAnim = Math.min(this.climbAnim + 1, 6);
+				this.climbAmount = Math.min(this.climbAmount + 1, 6);
 			} else if (this.getAction() == ChimpanzeeAction.HANGING || this.getAction() == ChimpanzeeAction.SHAKING) {
-				this.climbAnim = Math.min(this.climbAnim + 1, 8);
+				this.climbAmount = Math.min(this.climbAmount + 1, 8);
 			} else {
-				this.climbAnim = Math.max(this.climbAnim - 1, 0);
+				this.climbAmount = Math.max(this.climbAmount - 1, 0);
 			}
 
-			this.prevHeadShakeAnim = this.headShakeAnim;
-			if (this.headShakeAnim > 0) {
-				--this.headShakeAnim;
+			this.prevSittingAmount = this.sittingAmount;
+			if (this.isSitting()) {
+				this.sittingAmount = Math.min(this.sittingAmount + 1, 6);
+			} else {
+				this.sittingAmount = Math.max(this.sittingAmount - 1, 0);
+			}
+			
+			this.prevHeadShakeAmount = this.headShakeAmount;
+			if (this.headShakeAmount > 0) {
+				--this.headShakeAmount;
 			}
 		}
 	}
@@ -951,13 +961,18 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	public float getClimbingAnimationScale(float partialTicks) {
-		return MathHelper.lerp(partialTicks, this.prevClimbAnim, this.climbAnim) / 8.0F;
+	public float getClimbingAmount(float partialTicks) {
+		return MathHelper.lerp(partialTicks, this.prevClimbAmount, this.climbAmount) / 8.0F;
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	public float getHeadShakeProgress(float partialTicks) {
-		return MathHelper.lerp(partialTicks, this.prevHeadShakeAnim, this.headShakeAnim);
+	public float getSittingAmount(float partialTicks) {
+		return MathHelper.lerp(partialTicks, this.prevSittingAmount, this.sittingAmount) / 6.0F;
+	}
+
+	@OnlyIn(Dist.CLIENT)
+	public float getHeadShakeAmount(float partialTicks) {
+		return MathHelper.lerp(partialTicks, this.prevHeadShakeAmount, this.headShakeAmount);
 	}
 
 	public void swingArms() {
@@ -965,8 +980,8 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	}
 
 	public void shakeHead() {
-		this.headShakeAnim = 40;
-		this.prevHeadShakeAnim = 40;
+		this.headShakeAmount = 40;
+		this.prevHeadShakeAmount = 40;
 	}
 
 	public void shakeHead(IParticleData particleData) {

@@ -135,9 +135,9 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends BipedModel<T> {
 		// SETUP //
 
 		float partialtick = ageInTicks - (float)entity.tickCount;
-		float climbanim1 = entity.getClimbingAnimationScale(partialtick);
-		float climbanim2 = Math.min(climbanim1 * 5F / 3F, 1F);
-		int attackanim = entity.getAttackTimer();
+		float fullclimbamount = entity.getClimbingAmount(partialtick);
+		float climbamount = Math.min(fullclimbamount * 5F / 3F, 1F);
+		int attacktimer = entity.getAttackTimer();
 		int earstate = this.getEarState(entity);
 		HandSide mainhand = entity.getMainArm();
 
@@ -174,8 +174,8 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends BipedModel<T> {
 		this.head.xRot = headPitch * ((float) Math.PI / 180F);
 
 		if (entity.isPartying()) {
-			this.rightArm.xRot = (1F - climbanim2) * (float) -Math.PI;
-			this.leftArm.xRot = (1F - climbanim2) * (float) -Math.PI;
+			this.rightArm.xRot = (1F - climbamount) * (float) -Math.PI;
+			this.leftArm.xRot = (1F - climbamount) * (float) -Math.PI;
 		} else {
 			this.rightArm.xRot += MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 2F * limbSwingAmount * 0.5F / 1F;
 			this.leftArm.xRot += MathHelper.cos(limbSwing * 0.6662F) * 2F * limbSwingAmount * 0.5F / 1F;
@@ -188,54 +188,98 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends BipedModel<T> {
 			this.getArm(mainhand.getOpposite()).xRot -= (float) Math.PI / 10F;
 		}
 
+		// SITTING ANIMATIONS //
+
+		if (this.riding) {
+			if (!entity.isPartying()) {
+				this.rightArm.xRot += (-(float) Math.PI / 5F);
+				this.leftArm.xRot += (-(float) Math.PI / 5F);
+			}
+
+			this.rightLeg.xRot = -1.4137167F;
+			this.rightLeg.yRot = ((float) Math.PI / 10F);
+			this.rightLeg.zRot = 0.07853982F;
+			this.leftLeg.xRot = -1.4137167F;
+			this.leftLeg.yRot = (-(float) Math.PI / 10F);
+			this.leftLeg.zRot = -0.07853982F;
+		} else {
+			float f = entity.getSittingAmount(partialtick);
+
+			if (f > 0F) {
+				if (!entity.isPartying()) {
+					this.rightArm.xRot += f * -((float) Math.PI / 5F);
+					this.leftArm.xRot += f * -((float) Math.PI / 5F);
+				}
+
+				this.body.y += f * 10F;
+				this.head.y += f * (this.young ? 6.5F : 10F);
+				this.rightArm.y += f * 10F;
+				this.leftArm.y += f * 10F;
+				this.rightLeg.y += f * 10F;
+				this.rightLeg.z += f;
+				this.leftLeg.y += f * 10F;
+				this.leftLeg.z += f;
+
+				this.rightLeg.xRot = f * -((float) Math.PI / 2F);
+				this.rightLeg.yRot = f * ((float) Math.PI / 10F);
+				this.leftLeg.xRot = f * -((float) Math.PI / 2F);
+				this.leftLeg.yRot = f * -((float) Math.PI / 10F);
+			}
+
+			if (entity.getAction() != ChimpanzeeAction.SHAKING) {
+				this.rightLeg.xRot += MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+				this.leftLeg.xRot += MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
+			}
+		}
+
 		// ACTION ANIMATIONS //
 
 		if (entity.getAction() == ChimpanzeeAction.EATING) {
-			float eatanim = MathHelper.sin(ageInTicks * 0.7F);
+			float f = MathHelper.sin(ageInTicks * 0.7F);
 
-			this.head.xRot = -eatanim * 0.2F;
+			this.head.xRot = -f * 0.2F;
 			this.head.yRot = 0F;
 
-			this.rightArm.xRot = eatanim * 0.4F - 1.7F;
-			this.leftArm.xRot = eatanim * 0.4F - 1.7F;
+			this.rightArm.xRot = f * 0.4F - 1.7F;
+			this.leftArm.xRot = f * 0.4F - 1.7F;
 			this.rightArm.yRot = -0.6F;
 			this.leftArm.yRot = 0.6F;
 		} else if (entity.getAction() == ChimpanzeeAction.GROOMING) {
-			float groomanim = MathHelper.sin(ageInTicks * 0.5F);
+			float f = MathHelper.sin(ageInTicks * 0.5F);
 
-			this.rightArm.xRot = groomanim * 0.4F - (float) Math.PI / 2F;
-			this.leftArm.xRot = -groomanim * 0.4F - (float) Math.PI / 2F;
+			this.rightArm.xRot = f * 0.4F - (float) Math.PI / 2F;
+			this.leftArm.xRot = -f * 0.4F - (float) Math.PI / 2F;
 		} else if (entity.getAction() == ChimpanzeeAction.SHAKING) {
-			float shakeanimz = MathHelper.sin(ageInTicks * 0.82F) * 1.4F;
-			float shakeanimy = MathHelper.cos(ageInTicks * 0.82F) * 1.8F;
+			float f = MathHelper.sin(ageInTicks * 0.82F) * 1.4F;
+			float f1 = MathHelper.cos(ageInTicks * 0.82F) * 1.8F;
 
-			this.head.y += shakeanimy + 1.5F;
-			this.head.z += shakeanimz;
-			this.body.y += shakeanimy + 1.5F;
-			this.body.z += shakeanimz;
+			this.head.y += f1 + 1.5F;
+			this.head.z += f;
+			this.body.y += f1 + 1.5F;
+			this.body.z += f;
 			this.rightArm.y += 1.5F;
-			this.rightArm.z += shakeanimz * 0.5F;
+			this.rightArm.z += f * 0.5F;
 			this.leftArm.y += 1.5F;
-			this.leftArm.z += shakeanimz * 0.5F;
-			this.rightLeg.y += shakeanimy + 1.5F;
-			this.rightLeg.z += shakeanimz;
-			this.leftLeg.y += shakeanimy + 1.5F;
-			this.leftLeg.z += shakeanimz;
+			this.leftArm.z += f * 0.5F;
+			this.rightLeg.y += f1 + 1.5F;
+			this.rightLeg.z += f;
+			this.leftLeg.y += f1 + 1.5F;
+			this.leftLeg.z += f;
 
-			this.rightLeg.xRot = shakeanimz * 0.35F - (float) Math.PI * 0.1F;
-			this.leftLeg.xRot = shakeanimz * 0.35F - (float) Math.PI * 0.1F;
+			this.rightLeg.xRot = f * 0.35F - (float) Math.PI * 0.1F;
+			this.leftLeg.xRot = f * 0.35F - (float) Math.PI * 0.1F;
 		} else if (entity.getAction() == ChimpanzeeAction.HUNCHING) {
 			this.head.xRot = 0.8F;
 			this.head.yRot = MathHelper.sin(ageInTicks * 0.2F) * 0.2F;
 		} else if (entity.getAction() == ChimpanzeeAction.CRYING) {
-			float cryanim = MathHelper.sin(ageInTicks * 0.7F);
+			float f = MathHelper.sin(ageInTicks * 0.7F);
 
-			this.head.xRot = 0.3F - cryanim * 0.2F;
+			this.head.xRot = 0.3F - f * 0.2F;
 			this.head.yRot = 0F;
 
-			this.leftArm.xRot = cryanim * 0.4F - 1.7F;
+			this.leftArm.xRot = f * 0.4F - 1.7F;
 			this.leftArm.yRot = 0.5F;
-			this.rightArm.xRot = cryanim * 0.4F - 1.7F;
+			this.rightArm.xRot = f * 0.4F - 1.7F;
 			this.rightArm.yRot = -0.5F;
 		} else if (entity.getAction() == ChimpanzeeAction.LOOKING_AT_ITEM) {
 			this.head.xRot = 0.5F;
@@ -249,15 +293,15 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends BipedModel<T> {
 				this.rightArm.xRot = -0.9F;
 			}
 		} else if (entity.getAction() == ChimpanzeeAction.PLAYING_WITH_ITEM) {
-			float playanim = MathHelper.sin(ageInTicks * 0.6F);
+			float f = MathHelper.sin(ageInTicks * 0.6F);
 
 			this.head.xRot = -0.1F + MathHelper.sin(ageInTicks * 0.6F - 0.5F) * 0.1F;
 
 			if (entity.isLeftHanded()) {
-				this.leftArm.xRot = playanim * 0.5F - 1.8F;
+				this.leftArm.xRot = f * 0.5F - 1.8F;
 				this.head.yRot = -0.5F;
 			} else {
-				this.rightArm.xRot = playanim * 0.5F - 1.8F;
+				this.rightArm.xRot = f * 0.5F - 1.8F;
 				this.head.yRot = 0.5F;
 			}
 		} else if (entity.getAction() == ChimpanzeeAction.PLAYING_WITH_HELMET) {
@@ -265,93 +309,61 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends BipedModel<T> {
 			this.head.yRot = 0.0F;
 			this.head.zRot =  MathHelper.sin(ageInTicks * 0.55F) * 0.3F;
 		} else if (entity.getAction() == ChimpanzeeAction.DRUMMING) {
-			float drumanim1 = -Math.abs(MathHelper.sin(ageInTicks * 0.3F));
-			float drumanim2 = -Math.abs(MathHelper.sin(ageInTicks * 0.3F + (float) Math.PI / 2F));
+			float f = -Math.abs(MathHelper.sin(ageInTicks * 0.3F));
+			float f1 = -Math.abs(MathHelper.sin(ageInTicks * 0.3F + (float) Math.PI / 2F));
 
-			this.rightArm.xRot = drumanim1 - 0.3F;
-			this.leftArm.xRot = drumanim2 - 0.3F;
+			this.rightArm.xRot = f - 0.9F;
+			this.leftArm.xRot = f1 - 0.9F;
 			this.rightArm.yRot = -0.5F;
 			this.leftArm.yRot = 0.5F;
 		} else {
-			float headshakeanim = entity.getHeadShakeProgress(partialtick);
+			float f = entity.getHeadShakeAmount(partialtick);
 
-			if (headshakeanim > 0F) {
-				this.head.yRot = MathHelper.sin(headshakeanim * (float) Math.PI / 8F) * 0.3F;
+			if (f > 0F) {
+				this.head.yRot = MathHelper.sin(f * (float) Math.PI / 8F) * 0.3F;
 				this.head.xRot = 0.6F;
 			}
 		}
 
 		// OVERLAPPING ANIMATIONS //
 
-		this.rightArm.xRot += -climbanim1 * (float) Math.PI;
-		this.leftArm.xRot += -climbanim1 * (float) Math.PI;
-		this.rightArm.yRot += climbanim2 * 0.6F;
-		this.leftArm.yRot += -climbanim2 * 0.6F;
+		this.rightArm.xRot += -fullclimbamount * (float) Math.PI;
+		this.leftArm.xRot += -fullclimbamount * (float) Math.PI;
+		this.rightArm.yRot += climbamount * 0.6F;
+		this.leftArm.yRot += -climbamount * 0.6F;
+
+		this.rightLeg.xRot += -climbamount * (float) Math.PI * 0.2F;
+		this.leftLeg.xRot += -climbamount * (float) Math.PI * 0.2F;
 
 		if (entity.getAction() != ChimpanzeeAction.CLIMBING && entity.getAction() != ChimpanzeeAction.HANGING && entity.getAction() != ChimpanzeeAction.SHAKING) {
 			ModelHelper.bobArms(this.rightArm, this.leftArm, ageInTicks);
 		}
 
 		if (entity.isPartying()) {
-			float partyx = MathHelper.cos(ageInTicks * 0.75F) * 0.5F;
-			float partyz = MathHelper.sin(ageInTicks * 0.75F) * 0.5F;
+			float f = MathHelper.cos(ageInTicks * 0.75F) * 0.5F;
+			float f1 = MathHelper.sin(ageInTicks * 0.75F) * 0.5F;
 
-			this.head.x += partyx;
-			this.body.x += partyx;
-			this.rightArm.x += partyx;
-			this.leftArm.x += partyx;
-			this.head.z += partyz;
-			this.body.z += partyz;
-			this.rightArm.z += partyz;
-			this.leftArm.z += partyz;
+			this.head.x += f;
+			this.body.x += f;
+			this.rightArm.x += f;
+			this.leftArm.x += f;
+			this.head.z += f1;
+			this.body.z += f1;
+			this.rightArm.z += f1;
+			this.leftArm.z += f1;
 
-			this.rightArm.xRot += partyx * 0.1F;
-			this.leftArm.xRot += partyx * 0.1F;
-			this.rightArm.zRot += partyz * 0.2F;
-			this.leftArm.zRot += partyz * 0.2F;
+			this.rightArm.xRot += f * 0.1F;
+			this.leftArm.xRot += f * 0.1F;
+			this.rightArm.zRot += f1 * 0.2F;
+			this.leftArm.zRot += f1 * 0.2F;
 		}
 
-		if (attackanim > 0) {
-			this.rightArm.xRot = -2F + 1.5F * MathHelper.triangleWave((float) attackanim - partialtick, 10F);
-			this.leftArm.xRot = -2F + 1.5F * MathHelper.triangleWave((float) attackanim - partialtick, 10F);
+		if (attacktimer > 0) {
+			this.rightArm.xRot = -2F + 1.5F * MathHelper.triangleWave((float) attacktimer - partialtick, 10F);
+			this.leftArm.xRot = -2F + 1.5F * MathHelper.triangleWave((float) attacktimer - partialtick, 10F);
 			this.rightArm.yRot = 0F;
 			this.leftArm.yRot = 0F;
 		} 
-
-		// SITTING ANIMATIONS //
-
-		if (this.riding) {
-			if ((entity.getAction() == ChimpanzeeAction.DEFAULT && !entity.isPartying()) || entity.getAction() == ChimpanzeeAction.HUNCHING) {
-				this.rightArm.xRot += (-(float) Math.PI / 5F);
-				this.leftArm.xRot += (-(float) Math.PI / 5F);
-			}
-			this.rightLeg.xRot = -1.4137167F;
-			this.rightLeg.yRot = ((float) Math.PI / 10F);
-			this.rightLeg.zRot = 0.07853982F;
-			this.leftLeg.xRot = -1.4137167F;
-			this.leftLeg.yRot = (-(float) Math.PI / 10F);
-			this.leftLeg.zRot = -0.07853982F;
-		} else if (entity.isSitting()) {
-			if (!entity.isPartying()) {
-				this.rightArm.xRot += (-(float) Math.PI / 5F);
-				this.leftArm.xRot += (-(float) Math.PI / 5F);
-			}
-
-			this.body.y += 10F;
-			this.head.y += this.young ? 6.5F : 10F;
-			this.rightArm.y += 10F;
-			this.leftArm.y += 10F;
-			this.rightLeg.y += 10F;
-			this.leftLeg.y += 10F;
-
-			this.rightLeg.xRot = -((float) Math.PI / 2F);
-			this.rightLeg.yRot = ((float) Math.PI / 10F);
-			this.leftLeg.xRot = -((float) Math.PI / 2F);
-			this.leftLeg.yRot = (-(float) Math.PI / 10F);
-		} else if (entity.getAction() != ChimpanzeeAction.SHAKING) {
-			this.rightLeg.xRot = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount - climbanim2 * (float) Math.PI * 0.2F;
-			this.leftLeg.xRot = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount - climbanim2 * (float) Math.PI * 0.2F;
-		}
 	}
 
 	protected HandSide getMainHand(T entityIn) {
