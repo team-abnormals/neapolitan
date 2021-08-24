@@ -30,7 +30,7 @@ public class ChimpGetScaredGoal extends Goal {
 
 	@Override
 	public boolean canUse() {
-		if (this.chimpanzee.getAction() == ChimpanzeeAction.PLAYING_WITH_ITEM) {
+		if (this.chimpanzee.isDoingAction(ChimpanzeeAction.PLAYING_WITH_ITEM)) {
 			return false;
 		} else {
 			List<Entity> list = this.chimpanzee.level.getEntitiesOfClass(Entity.class, this.chimpanzee.getBoundingBox().inflate(8.0D, 4.0D, 8.0D), (entity) -> {

@@ -20,7 +20,7 @@ public class ChimpCryGoal extends Goal {
 	public boolean canUse() {
 		if (!this.chimpanzee.isBaby()) {
 			return false;
-		} else if (this.chimpanzee.getAction() != ChimpanzeeAction.DEFAULT) {
+		} else if (!this.chimpanzee.isDoingAction(ChimpanzeeAction.DEFAULT)) {
 			return false;
 		} else if (!this.chimpanzee.getNavigation().isDone()) {
 			return false;

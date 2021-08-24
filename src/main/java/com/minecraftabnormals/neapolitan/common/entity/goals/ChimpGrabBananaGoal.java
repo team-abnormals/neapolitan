@@ -25,7 +25,7 @@ public class ChimpGrabBananaGoal extends Goal {
 	public boolean canUse() {
 		if (!this.chimpanzee.needsSnack()) {
 			return false;
-		} else if (this.chimpanzee.getAction() == ChimpanzeeAction.SHAKING) {
+		} else if (this.chimpanzee.isDoingAction(ChimpanzeeAction.SHAKING)) {
 			return false;
 		} else {
 			List<ItemEntity> list = this.chimpanzee.level.getEntitiesOfClass(ItemEntity.class, this.chimpanzee.getBoundingBox().inflate(12.0D, 4.0D, 12.0D));

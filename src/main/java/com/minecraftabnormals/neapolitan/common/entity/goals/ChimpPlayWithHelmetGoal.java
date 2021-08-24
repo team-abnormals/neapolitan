@@ -50,7 +50,7 @@ public class ChimpPlayWithHelmetGoal extends Goal {
 
 	@Override
 	public boolean canContinueToUse() {
-		if (this.chimpanzee.getAction() != ChimpanzeeAction.PLAYING_WITH_HELMET) {
+		if (!this.chimpanzee.isDoingAction(ChimpanzeeAction.PLAYING_WITH_HELMET)) {
 			return false;
 		} else if (this.chimpanzee.getItemBySlot(EquipmentSlotType.HEAD) != this.itemStack) {
 			return false;

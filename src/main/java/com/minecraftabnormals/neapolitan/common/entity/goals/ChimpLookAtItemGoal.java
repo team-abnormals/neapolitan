@@ -11,7 +11,6 @@ import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.projectile.FireworkRocketEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
-import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.FireworkRocketItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -91,7 +90,7 @@ public class ChimpLookAtItemGoal extends Goal {
 	public void tick() {
 		--this.lookTimer;
 
-		if (this.lookTimer == 4 && this.chimpanzee.getAction() == ChimpanzeeAction.PLAYING_WITH_ITEM) {
+		if (this.lookTimer == 4 && this.chimpanzee.isDoingAction(ChimpanzeeAction.PLAYING_WITH_ITEM)) {
 			if (this.itemStack.getItem() instanceof TieredItem) {
 				this.chimpanzee.hurt(DamageSource.GENERIC, 0.0F);
 				this.wasHurt = true;
@@ -112,7 +111,7 @@ public class ChimpLookAtItemGoal extends Goal {
 		if (item.is(NeapolitanTags.Items.CHIMPANZEE_APE_MODE_ITEMS) && this.chimpanzee.getApeModeTime() <= 0) {
 			this.lookTimer = 40;
 			this.chimpanzee.setApeModeTime(1200 + this.chimpanzee.getRandom().nextInt(1200));
-		} else if (this.shouldPlayWithItem(item) && this.chimpanzee.getAction() == ChimpanzeeAction.LOOKING_AT_ITEM) {
+		} else if (this.shouldPlayWithItem(item) && this.chimpanzee.isDoingAction(ChimpanzeeAction.LOOKING_AT_ITEM)) {
 			this.lookTimer = 40 + this.chimpanzee.getRandom().nextInt(40);
 			this.chimpanzee.setAction(ChimpanzeeAction.PLAYING_WITH_ITEM);
 		} else {

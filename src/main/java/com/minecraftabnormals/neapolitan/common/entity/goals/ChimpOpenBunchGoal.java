@@ -62,7 +62,7 @@ public class ChimpOpenBunchGoal extends Goal {
 		if (this.chimpanzee.getMainHandItem().getItem() != NeapolitanItems.BANANA_BUNCH.get() && this.chimpanzee.getOffhandItem().getItem() != NeapolitanItems.BANANA_BUNCH.get()) {
 			return false;
 		} else {
-			return this.chimpanzee.getAction() == ChimpanzeeAction.DEFAULT;
+			return this.chimpanzee.isDoingAction(ChimpanzeeAction.DEFAULT);
 		}
 	}
 }

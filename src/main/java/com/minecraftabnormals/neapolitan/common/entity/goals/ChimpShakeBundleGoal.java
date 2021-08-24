@@ -147,7 +147,7 @@ public class ChimpShakeBundleGoal extends MoveToBlockGoal {
 
 	private boolean getBlockBeingShaken(World worldIn, BlockPos pos) {
 		return !worldIn.getEntitiesOfClass(ChimpanzeeEntity.class, new AxisAlignedBB(pos.below()), (chimpanzee) -> {
-			return chimpanzee != this.chimpanzee && (chimpanzee.getAction() == ChimpanzeeAction.HANGING || chimpanzee.getAction() == ChimpanzeeAction.SHAKING);
+			return chimpanzee != this.chimpanzee && chimpanzee.isDoingAction(ChimpanzeeAction.HANGING, ChimpanzeeAction.SHAKING);
 		}).isEmpty();
 	}
 }

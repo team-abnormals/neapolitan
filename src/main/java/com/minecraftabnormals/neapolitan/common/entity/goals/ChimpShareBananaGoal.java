@@ -35,7 +35,7 @@ public class ChimpShareBananaGoal extends Goal {
 			double d0 = Double.MAX_VALUE;
 
 			for(ChimpanzeeEntity chimpanzeeentity1 : list) {
-				if (chimpanzeeentity1.isHungry() && chimpanzeeentity1.getSnack().isEmpty() && chimpanzeeentity1.getAction() != ChimpanzeeAction.HANGING && chimpanzeeentity1.getAction() != ChimpanzeeAction.SHAKING) {
+				if (chimpanzeeentity1.isHungry() && chimpanzeeentity1.getSnack().isEmpty() && !chimpanzeeentity1.isDoingAction(ChimpanzeeAction.HANGING, ChimpanzeeAction.SHAKING)) {
 					double d1 = this.chimpanzee.distanceToSqr(chimpanzeeentity1);
 					if (!(d1 > d0)) {
 						d0 = d1;
@@ -60,7 +60,7 @@ public class ChimpShareBananaGoal extends Goal {
 		} else if (!this.buddy.isAlive()) {
 			return false;
 		} else if (this.lookTimer < 0) {
-			if (this.chimpanzee.getSnack().isEmpty() || !this.buddy.isHungry() || !this.buddy.getSnack().isEmpty() || this.buddy.getAction() == ChimpanzeeAction.HANGING || this.buddy.getAction() == ChimpanzeeAction.SHAKING) {
+			if (this.chimpanzee.getSnack().isEmpty() || !this.buddy.isHungry() || !this.buddy.getSnack().isEmpty() || this.buddy.isDoingAction(ChimpanzeeAction.HANGING, ChimpanzeeAction.SHAKING)) {
 				return false;
 			} 
 		}

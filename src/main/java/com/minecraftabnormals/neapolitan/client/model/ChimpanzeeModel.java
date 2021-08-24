@@ -226,7 +226,7 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends BipedModel<T> {
 				this.leftLeg.yRot = f * -((float) Math.PI / 10F);
 			}
 
-			if (entity.getAction() != ChimpanzeeAction.SHAKING) {
+			if (!entity.isDoingAction(ChimpanzeeAction.SHAKING)) {
 				this.rightLeg.xRot += MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
 				this.leftLeg.xRot += MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
 			}
@@ -234,7 +234,7 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends BipedModel<T> {
 
 		// ACTION ANIMATIONS //
 
-		if (entity.getAction() == ChimpanzeeAction.EATING) {
+		if (entity.isDoingAction(ChimpanzeeAction.EATING)) {
 			float f = MathHelper.sin(ageInTicks * 0.7F);
 
 			this.head.xRot = -f * 0.2F;
@@ -244,12 +244,12 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends BipedModel<T> {
 			this.leftArm.xRot = f * 0.4F - 1.7F;
 			this.rightArm.yRot = -0.6F;
 			this.leftArm.yRot = 0.6F;
-		} else if (entity.getAction() == ChimpanzeeAction.GROOMING) {
+		} else if (entity.isDoingAction(ChimpanzeeAction.GROOMING)) {
 			float f = MathHelper.sin(ageInTicks * 0.5F);
 
 			this.rightArm.xRot = f * 0.4F - (float) Math.PI / 2F;
 			this.leftArm.xRot = -f * 0.4F - (float) Math.PI / 2F;
-		} else if (entity.getAction() == ChimpanzeeAction.SHAKING) {
+		} else if (entity.isDoingAction(ChimpanzeeAction.SHAKING)) {
 			float f = MathHelper.sin(ageInTicks * 0.82F) * 1.4F;
 			float f1 = MathHelper.cos(ageInTicks * 0.82F) * 1.8F;
 
@@ -268,10 +268,7 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends BipedModel<T> {
 
 			this.rightLeg.xRot = f * 0.35F - (float) Math.PI * 0.1F;
 			this.leftLeg.xRot = f * 0.35F - (float) Math.PI * 0.1F;
-		} else if (entity.getAction() == ChimpanzeeAction.HUNCHING) {
-			this.head.xRot = 0.8F;
-			this.head.yRot = MathHelper.sin(ageInTicks * 0.2F) * 0.2F;
-		} else if (entity.getAction() == ChimpanzeeAction.CRYING) {
+		} else if (entity.isDoingAction(ChimpanzeeAction.CRYING)) {
 			float f = MathHelper.sin(ageInTicks * 0.7F);
 
 			this.head.xRot = 0.3F - f * 0.2F;
@@ -281,7 +278,7 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends BipedModel<T> {
 			this.leftArm.yRot = 0.5F;
 			this.rightArm.xRot = f * 0.4F - 1.7F;
 			this.rightArm.yRot = -0.5F;
-		} else if (entity.getAction() == ChimpanzeeAction.LOOKING_AT_ITEM) {
+		} else if (entity.isDoingAction(ChimpanzeeAction.LOOKING_AT_ITEM)) {
 			this.head.xRot = 0.5F;
 			this.head.yRot = 0F;
 
@@ -292,7 +289,7 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends BipedModel<T> {
 				this.rightArm.yRot = -0.5F;
 				this.rightArm.xRot = -0.9F;
 			}
-		} else if (entity.getAction() == ChimpanzeeAction.PLAYING_WITH_ITEM) {
+		} else if (entity.isDoingAction(ChimpanzeeAction.PLAYING_WITH_ITEM)) {
 			float f = MathHelper.sin(ageInTicks * 0.6F);
 
 			this.head.xRot = -0.1F + MathHelper.sin(ageInTicks * 0.6F - 0.5F) * 0.1F;
@@ -304,11 +301,11 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends BipedModel<T> {
 				this.rightArm.xRot = f * 0.5F - 1.8F;
 				this.head.yRot = 0.5F;
 			}
-		} else if (entity.getAction() == ChimpanzeeAction.PLAYING_WITH_HELMET) {
+		} else if (entity.isDoingAction(ChimpanzeeAction.PLAYING_WITH_HELMET)) {
 			this.head.xRot = MathHelper.cos(ageInTicks * 0.55F) * 0.5F;
 			this.head.yRot = 0.0F;
 			this.head.zRot =  MathHelper.sin(ageInTicks * 0.55F) * 0.3F;
-		} else if (entity.getAction() == ChimpanzeeAction.DRUMMING) {
+		} else if (entity.isDoingAction(ChimpanzeeAction.DRUMMING)) {
 			float f = -Math.abs(MathHelper.sin(ageInTicks * 0.3F));
 			float f1 = -Math.abs(MathHelper.sin(ageInTicks * 0.3F + (float) Math.PI / 2F));
 
@@ -335,7 +332,7 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends BipedModel<T> {
 		this.rightLeg.xRot += -climbamount * (float) Math.PI * 0.2F;
 		this.leftLeg.xRot += -climbamount * (float) Math.PI * 0.2F;
 
-		if (entity.getAction() != ChimpanzeeAction.CLIMBING && entity.getAction() != ChimpanzeeAction.HANGING && entity.getAction() != ChimpanzeeAction.SHAKING) {
+		if (!entity.isDoingAction(ChimpanzeeAction.CLIMBING, ChimpanzeeAction.HANGING, ChimpanzeeAction.SHAKING)) {
 			ModelHelper.bobArms(this.rightArm, this.leftArm, ageInTicks);
 		}
 

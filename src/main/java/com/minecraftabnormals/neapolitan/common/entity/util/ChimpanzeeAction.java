@@ -4,29 +4,28 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 public enum ChimpanzeeAction {
-	DEFAULT(0, true, false),
+	DEFAULT(0, true, true),
 	CLIMBING(1, false, false),
 	HANGING(2,  false, false),
-	EATING(3, false, false),
-	GROOMING(4, false, false),
+	EATING(3, false, true),
+	GROOMING(4, false, true),
 	SHAKING(5,  false, false),
-	HUNCHING(6,  true, true),
-	CRYING(7,  true, false),
-	LOOKING_AT_ITEM(8, true, false),
-	PLAYING_WITH_ITEM(9, true, false),
-	PLAYING_WITH_HELMET(10, true, false),
-	DRUMMING(11, true, true);
+	CRYING(6,  true, true),
+	LOOKING_AT_ITEM(7, true, true),
+	PLAYING_WITH_ITEM(8, true, true),
+	PLAYING_WITH_HELMET(9, true, true),
+	DRUMMING(10, true, true);
 
 	private static final ChimpanzeeAction[] VALUES = Arrays.stream(values()).sorted(Comparator.comparingInt(ChimpanzeeAction::getId)).toArray(ChimpanzeeAction[]::new);
 	
 	private final int id;
 	private final boolean canBeInterrupted;
-	private final boolean shouldSit;
+	private final boolean canSit;
 
-	private ChimpanzeeAction(int idIn, boolean canBeInterruptedIn, boolean shouldSitIn) {
+	private ChimpanzeeAction(int idIn, boolean canBeInterruptedIn, boolean canSitIn) {
 		this.id = idIn;
 		this.canBeInterrupted = canBeInterruptedIn;
-		this.shouldSit = shouldSitIn;
+		this.canSit = canSitIn;
 	}
 
 	public int getId() {
@@ -45,7 +44,7 @@ public enum ChimpanzeeAction {
 		return this.canBeInterrupted;
 	}
 
-	public boolean shouldSit() {
-		return this.shouldSit;
+	public boolean canSit() {
+		return this.canSit;
 	}
 }

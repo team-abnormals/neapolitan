@@ -37,7 +37,7 @@ public class ChimpPlayNoteBlockGoal extends MoveToBlockGoal {
 			return false;
 		} else if (this.chimpanzee.isPassenger()) {
 			return false;
-		} else if (this.timePlayed > 0 && !this.isReachedTarget()) {
+		} else if (this.timePlayed > 0 && (!this.isReachedTarget() || !this.chimpanzee.isSitting())) {
 			return false;
 		} else {
 			return super.canContinueToUse();
@@ -55,6 +55,7 @@ public class ChimpPlayNoteBlockGoal extends MoveToBlockGoal {
 	public void stop() {
 		super.stop();
 		this.chimpanzee.setDefaultAction();
+		this.chimpanzee.setSitting(false);
 	}
 
 	@Override
@@ -65,6 +66,7 @@ public class ChimpPlayNoteBlockGoal extends MoveToBlockGoal {
 
 		if (this.isReachedTarget() && this.chimpanzee.getNavigation().isDone() && this.chimpanzee.getAction().canBeInterrupted()) {
 			this.chimpanzee.setAction(ChimpanzeeAction.DRUMMING);
+			this.chimpanzee.setSitting(true);
 
 			if (--this.noteTime <= 0) {
 				BlockState state = this.chimpanzee.level.getBlockState(this.blockPos);
@@ -77,8 +79,6 @@ public class ChimpPlayNoteBlockGoal extends MoveToBlockGoal {
 			}
 
 			++this.timePlayed;
-		} else {
-			this.chimpanzee.setDefaultAction();
 		}
 	}
 
@@ -89,7 +89,7 @@ public class ChimpPlayNoteBlockGoal extends MoveToBlockGoal {
 
 	private boolean getBlockBeingPlayed(World worldIn, BlockPos pos) {
 		return !worldIn.getEntitiesOfClass(ChimpanzeeEntity.class, new AxisAlignedBB(pos.above()), (chimpanzee) -> {
-			return chimpanzee != this.chimpanzee && chimpanzee.getAction() == ChimpanzeeAction.DRUMMING;
+			return chimpanzee != this.chimpanzee && chimpanzee.isDoingAction(ChimpanzeeAction.DRUMMING);
 		}).isEmpty();
 	}
 }

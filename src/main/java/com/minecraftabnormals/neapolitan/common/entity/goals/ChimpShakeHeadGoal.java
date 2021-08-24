@@ -17,7 +17,7 @@ public class ChimpShakeHeadGoal extends Goal {
 
 	@Override
 	public boolean canUse() {
-		if (this.chimpanzee.getAction() != ChimpanzeeAction.DEFAULT && this.chimpanzee.getAction() != ChimpanzeeAction.CLIMBING) {
+		if (!this.chimpanzee.isDoingAction(ChimpanzeeAction.DEFAULT, ChimpanzeeAction.CLIMBING)) {
 			return false;
 		} else if (this.chimpanzee.getNavigation().isDone() && this.chimpanzee.getRandom().nextInt(120) == 0) {
 			if (this.chimpanzee.isDirty() && this.chimpanzee.getGroomer() == null) {
