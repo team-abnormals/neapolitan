@@ -11,7 +11,7 @@ public class ChimpApeModeGoal extends RandomWalkingGoal {
 	private final ChimpanzeeEntity chimpanzee;
 
 	public ChimpApeModeGoal(ChimpanzeeEntity chimpanzeeIn, double speed) {
-		super(chimpanzeeIn, speed, 40);
+		super(chimpanzeeIn, speed, 20);
 		this.chimpanzee = chimpanzeeIn;
 	}
 
