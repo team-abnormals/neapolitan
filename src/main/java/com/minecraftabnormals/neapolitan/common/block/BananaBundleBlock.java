@@ -3,28 +3,22 @@ package com.minecraftabnormals.neapolitan.common.block;
 import com.minecraftabnormals.neapolitan.common.entity.PlantainSpiderEntity;
 import com.minecraftabnormals.neapolitan.core.NeapolitanConfig;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEntities;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.DirectionalBlock;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
-import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.state.StateContainer;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
-public class BananaBundleBlock extends DirectionalBlock {
+public class BananaBundleBlock extends Block {
 	
 	public BananaBundleBlock(Properties properties) {
 		super(properties);
-		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.UP));
 	}
 
 	@Override
@@ -52,26 +46,5 @@ public class BananaBundleBlock extends DirectionalBlock {
 			if (world.getRandom().nextFloat() <= 0.45F)
 				world.addFreshEntity(spider);
 		}
-	}
-
-	@Override
-	public BlockState rotate(BlockState state, Rotation rot) {
-		return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
-	}
-
-	@Override
-	public BlockState mirror(BlockState state, Mirror mirrorIn) {
-		return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
-	}
-
-	@Override
-	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
-		builder.add(FACING);
-	}
-
-	@Override
-	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		Direction direction = context.getClickedFace() == Direction.UP ? context.getNearestLookingDirection().getOpposite() : Direction.UP;
-		return this.defaultBlockState().setValue(FACING, direction);
 	}
 }
