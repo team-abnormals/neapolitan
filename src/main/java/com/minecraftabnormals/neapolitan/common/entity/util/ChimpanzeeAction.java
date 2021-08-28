@@ -13,7 +13,7 @@ public enum ChimpanzeeAction {
 	CRYING(6,  true, true),
 	LOOKING_AT_ITEM(7, true, true),
 	PLAYING_WITH_ITEM(8, true, true),
-	PLAYING_WITH_HELMET(9, true, true),
+	PLAYING_WITH_HELMET(9, true, false),
 	DRUMMING(10, true, true);
 
 	private static final ChimpanzeeAction[] VALUES = Arrays.stream(values()).sorted(Comparator.comparingInt(ChimpanzeeAction::getId)).toArray(ChimpanzeeAction[]::new);

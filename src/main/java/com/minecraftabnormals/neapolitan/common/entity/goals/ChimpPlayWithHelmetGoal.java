@@ -78,7 +78,6 @@ public class ChimpPlayWithHelmetGoal extends Goal {
 			
 			this.chimpanzee.setItemSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
 			this.itemStack = this.chimpanzee.getItemBySlot(EquipmentSlotType.HEAD);
-			this.chimpanzee.setPickUpTimer(80);
 		}
 	}
 }

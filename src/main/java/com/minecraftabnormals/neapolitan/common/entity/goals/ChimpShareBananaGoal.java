@@ -108,7 +108,6 @@ public class ChimpShareBananaGoal extends Goal {
 					this.chimpanzee.level.addFreshEntity(itementity);
 
 					this.chimpanzee.setItemInHand(hand, itemstack.split(i - 1));
-					this.chimpanzee.setPickUpTimer(80);
 					this.throwTimer = 12;
 					this.lookTimer = 0;
 				}

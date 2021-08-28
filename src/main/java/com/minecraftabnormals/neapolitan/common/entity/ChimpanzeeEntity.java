@@ -68,7 +68,6 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	private static final RangedInteger ANGER_RANGE = TickRangeConverter.rangeOfSeconds(20, 39);
 	private UUID lastHurtBy;
 	private int attackTimer;
-	private int pickUpTimer;
 	private int climbingStamina = 20 + this.random.nextInt(40);
 
 	private boolean isLeader;
@@ -110,11 +109,11 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		this.goalSelector.addGoal(9, new ChimpTemptBananaGoal(this, 1.25D));
 		this.goalSelector.addGoal(10, new TemptGoal(this, 1.25D, Ingredient.of(NeapolitanTags.Items.CHIMPANZEE_FOOD), false));
 		this.goalSelector.addGoal(11, new FollowParentGoal(this, 1.25D));
-		this.goalSelector.addGoal(12, new ChimpShakeBundleGoal(this, 1.0D, 48, 16));
-		this.goalSelector.addGoal(13, new ChimpShareBananaGoal(this, 1.0D));
-		this.goalSelector.addGoal(14, new ChimpBeGroomedGoal(this));
-		this.goalSelector.addGoal(15, new ChimpGroomGoal(this, 1.0D));
-		this.goalSelector.addGoal(16, new ChimpFollowOthersGoal(this, 1.0D));
+		this.goalSelector.addGoal(12, new ChimpShareBananaGoal(this, 1.0D));
+		this.goalSelector.addGoal(13, new ChimpBeGroomedGoal(this));
+		this.goalSelector.addGoal(14, new ChimpGroomGoal(this, 1.0D));
+		this.goalSelector.addGoal(15, new ChimpFollowOthersGoal(this, 1.0D));
+		this.goalSelector.addGoal(16, new ChimpShakeBundleGoal(this, 1.0D, 48, 16));
 		this.goalSelector.addGoal(17, new ChimpPlayWithHelmetGoal(this));
 		this.goalSelector.addGoal(18, new ChimpCryGoal(this));
 		this.goalSelector.addGoal(19, new ChimpShakeHeadGoal(this));
@@ -339,10 +338,6 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		super.aiStep();
 		if (this.attackTimer > 0) {
 			--this.attackTimer;
-		}
-
-		if (this.pickUpTimer > 0) {
-			--this.pickUpTimer;
 		}
 
 		if (this.jukeboxPosition == null || !this.jukeboxPosition.closerThan(this.position(), 3.46D) || this.level.getBlockState(jukeboxPosition).getBlock() != Blocks.JUKEBOX) {
@@ -586,15 +581,11 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 
 	@Override
 	public boolean canTakeItem(ItemStack itemstackIn) {
-		if (this.pickUpTimer > 0) {
+		EquipmentSlotType equipmentslottype = MobEntity.getEquipmentSlotForItem(itemstackIn);
+		if (!this.getItemBySlot(equipmentslottype).isEmpty()) {
 			return false;
 		} else {
-			EquipmentSlotType equipmentslottype = MobEntity.getEquipmentSlotForItem(itemstackIn);
-			if (!this.getItemBySlot(equipmentslottype).isEmpty()) {
-				return false;
-			} else {
-				return equipmentslottype == EquipmentSlotType.MAINHAND && super.canTakeItem(itemstackIn);
-			}
+			return equipmentslottype == EquipmentSlotType.MAINHAND && super.canTakeItem(itemstackIn);
 		}
 	}
 
@@ -779,10 +770,6 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	@Override
 	public void setRemainingPersistentAngerTime(int time) {
 		this.entityData.set(ANGER_TIME, time);
-	}
-
-	public void setPickUpTimer(int time) {
-		this.pickUpTimer = time;
 	}
 
 	public ChimpanzeeEntity getGroomingTarget() {
