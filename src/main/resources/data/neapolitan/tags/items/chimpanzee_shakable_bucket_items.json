@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:bucket"
+  ],
+  "optional": [
+    "caverns_and_chasms:golden_bucket"
+  ]
+}

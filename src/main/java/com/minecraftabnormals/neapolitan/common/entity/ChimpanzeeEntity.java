@@ -9,10 +9,8 @@ import com.minecraftabnormals.neapolitan.core.registry.*;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.ai.controller.BodyController;
 import net.minecraft.entity.ai.controller.LookController;
 import net.minecraft.entity.ai.goal.*;
@@ -220,7 +218,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 
 	@Override
 	protected void playStepSound(BlockPos pos, BlockState blockIn) {
-		this.playSound(NeapolitanSounds.ENTITY_CHIMPANZEE_STEP.get(), 0.3F, 1.0F);
+		this.playSound(NeapolitanSounds.ENTITY_CHIMPANZEE_STEP.get(), 0.15F, 1.0F);
 	}
 
 	@Nullable
@@ -653,6 +651,17 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 
 	public void dropItem(ItemStack itemstack) {
 		ItemEntity itementity = new ItemEntity(this.level, this.getX(), this.getEyeY() - (double)0.3F, this.getZ(), itemstack);
+		itementity.setPickUpDelay(40);
+		itementity.setThrower(this.getUUID());
+		this.level.addFreshEntity(itementity);
+	}
+	
+	public void spawnItemFromBucket(ItemStack itemstack, HandSide hand) {
+		Vector3d vector3d = new Vector3d(hand == HandSide.LEFT ? 0.35D : -0.35D, 0.0D, 0.5D);
+		vector3d = vector3d.yRot(-this.yBodyRot * ((float) Math.PI / 180F));
+		
+		ItemEntity itementity = new ItemEntity(this.level, this.getX() + vector3d.x, this.getEyeY() - (double)0.15F, this.getZ() + vector3d.z, itemstack);
+		itementity.setDeltaMovement(0.0D, 0.25D, 0.0D);
 		itementity.setPickUpDelay(40);
 		itementity.setThrower(this.getUUID());
 		this.level.addFreshEntity(itementity);

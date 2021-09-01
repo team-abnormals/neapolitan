@@ -70,6 +70,6 @@ public class ChimpJumpOnBouncyGoal extends MoveToBlockGoal {
 
 	@Override
 	protected boolean isValidTarget(IWorldReader worldIn, BlockPos pos) {
-		return worldIn.isEmptyBlock(pos.above()) && worldIn.isEmptyBlock(pos.above().above()) && worldIn.getBlockState(pos).getBlock().is(NeapolitanTags.Blocks.CHIMPANZEE_BOUNCING_BLOCKS);
+		return worldIn.isEmptyBlock(pos.above()) && worldIn.isEmptyBlock(pos.above().above()) && worldIn.getBlockState(pos).getBlock().is(NeapolitanTags.Blocks.CHIMPANZEE_JUMPING_BLOCKS);
 	}
 }

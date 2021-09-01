@@ -13,13 +13,14 @@ public class NeapolitanTags {
 	public static class Blocks {
 		public static final ITag<Block> VANILLA_PLANTABLE_ON = BlockTags.bind(id("vanilla_plantable_on"));
 		public static final ITag<Block> UNAFFECTED_BY_MINT = BlockTags.bind(id("unaffected_by_mint"));
-		public static final ITag<Block> CHIMPANZEE_BOUNCING_BLOCKS = BlockTags.bind(id("chimpanzee_bouncing_blocks"));
+		public static final ITag<Block> CHIMPANZEE_JUMPING_BLOCKS = BlockTags.bind(id("chimpanzee_jumping_blocks"));
 	}
 
 	public static class Items {
 		public static final ITag<Item> CHIMPANZEE_FOOD = ItemTags.bind(id("chimpanzee_food"));
 		public static final ITag<Item> CHIMPANZEE_SNACKS = ItemTags.bind(id("chimpanzee_snacks"));
 		public static final ITag<Item> CHIMPANZEE_APE_MODE_ITEMS = ItemTags.bind(id("chimpanzee_ape_mode_items"));
+		public static final ITag<Item> CHIMPANZEE_SHAKABLE_BUCKET_ITEMS = ItemTags.bind(id("chimpanzee_shakable_bucket_items"));
 		public static final ITag<Item> CHIMPANZEE_FAVORITES = ItemTags.bind(id("chimpanzee_favorites"));
 		public static final ITag<Item> HIDES_CHIMPANZEE_EARS = ItemTags.bind(id("hides_chimpanzee_ears"));
 	}

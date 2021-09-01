@@ -5,12 +5,14 @@ import java.util.EnumSet;
 import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
 import com.minecraftabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
 import com.minecraftabnormals.neapolitan.core.other.NeapolitanTags;
+import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
 
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.projectile.FireworkRocketEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
+import net.minecraft.item.BucketItem;
 import net.minecraft.item.FireworkRocketItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -20,6 +22,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
+import net.minecraftforge.common.Tags;
 
 public class ChimpLookAtItemGoal extends Goal {
 	private final ChimpanzeeEntity chimpanzee;
@@ -90,18 +93,24 @@ public class ChimpLookAtItemGoal extends Goal {
 	public void tick() {
 		--this.lookTimer;
 
-		if (this.lookTimer == 4 && this.chimpanzee.isDoingAction(ChimpanzeeAction.PLAYING_WITH_ITEM)) {
-			if (this.itemStack.getItem() instanceof TieredItem) {
-				this.chimpanzee.hurt(DamageSource.GENERIC, 0.0F);
-				this.wasHurt = true;
-			} else if (this.itemStack.getItem() instanceof FireworkRocketItem) {
-				FireworkRocketEntity fireworkrocketentity = new FireworkRocketEntity(this.level, this.chimpanzee, this.chimpanzee.getX(), this.chimpanzee.getEyeY(), this.chimpanzee.getZ(), this.itemStack);
-				this.level.addFreshEntity(fireworkrocketentity);
-				this.chimpanzee.getMainHandItem().shrink(1);
-				this.itemStack = this.chimpanzee.getMainHandItem();
-			}
-		} else if (this.lookTimer == 0) {
+		if (this.lookTimer == 0) {
 			this.doItemInteraction();
+		} else if (chimpanzee.isDoingAction(ChimpanzeeAction.PLAYING_WITH_ITEM)) {
+			if (this.lookTimer == 20) {
+				if (this.chimpanzee.getRandom().nextInt(10) == 0 && this.itemStack.getItem().is(NeapolitanTags.Items.CHIMPANZEE_SHAKABLE_BUCKET_ITEMS)) {
+					this.chimpanzee.spawnItemFromBucket(new ItemStack(NeapolitanItems.BANANA.get()), this.chimpanzee.getMainArm());
+				}
+			} else if (this.lookTimer == 4) {
+				if (this.itemStack.getItem() instanceof TieredItem) {
+					this.chimpanzee.hurt(DamageSource.GENERIC, 0.0F);
+					this.wasHurt = true;
+				} else if (this.itemStack.getItem() instanceof FireworkRocketItem) {
+					FireworkRocketEntity fireworkrocketentity = new FireworkRocketEntity(this.level, this.chimpanzee, this.chimpanzee.getX(), this.chimpanzee.getEyeY(), this.chimpanzee.getZ(), this.itemStack);
+					this.level.addFreshEntity(fireworkrocketentity);
+					this.chimpanzee.getMainHandItem().shrink(1);
+					this.itemStack = this.chimpanzee.getMainHandItem();
+				}
+			}
 		}
 	}
 
@@ -112,7 +121,7 @@ public class ChimpLookAtItemGoal extends Goal {
 			this.lookTimer = 40;
 			this.chimpanzee.setApeModeTime(1200 + this.chimpanzee.getRandom().nextInt(1200));
 		} else if (this.shouldPlayWithItem(item) && this.chimpanzee.isDoingAction(ChimpanzeeAction.LOOKING_AT_ITEM)) {
-			this.lookTimer = 40 + this.chimpanzee.getRandom().nextInt(40);
+			this.lookTimer = 60 + this.chimpanzee.getRandom().nextInt(20);
 			this.chimpanzee.setAction(ChimpanzeeAction.PLAYING_WITH_ITEM);
 		} else {
 			if (item instanceof ArmorItem && ((ArmorItem)item).getSlot() == EquipmentSlotType.HEAD && this.chimpanzee.getItemBySlot(EquipmentSlotType.HEAD).isEmpty()) {
@@ -154,6 +163,6 @@ public class ChimpLookAtItemGoal extends Goal {
 	}
 
 	private boolean shouldPlayWithItem(Item item) {
-		return item instanceof TieredItem || item instanceof FireworkRocketItem;
+		return item instanceof TieredItem || item instanceof FireworkRocketItem || item.is(NeapolitanTags.Items.CHIMPANZEE_SHAKABLE_BUCKET_ITEMS);
 	}
 }
