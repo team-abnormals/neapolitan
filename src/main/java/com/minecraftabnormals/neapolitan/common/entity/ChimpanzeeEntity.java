@@ -121,7 +121,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		this.goalSelector.addGoal(23, new ChimpApeModeGoal(this, 1.0D));
 		this.goalSelector.addGoal(24, new ChimpRandomWalkingGoal(this, 1.0D));
 		this.goalSelector.addGoal(25, new LookAtGoal(this, PlayerEntity.class, 6.0F));
-		this.goalSelector.addGoal(26, new LookAtGoal(this, ChimpanzeeEntity.class, 6.0F));
+		this.goalSelector.addGoal(26, new LookAtGoal(this, MobEntity.class, 6.0F));
 		this.goalSelector.addGoal(27, new LookRandomlyGoal(this));
 
 		this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10, true, false, this::isAngryAt));
@@ -597,14 +597,24 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 
 	@Override
 	public boolean canHoldItem(ItemStack stack) {
-		ItemStack itemstack = this.getItemBySlot(EquipmentSlotType.MAINHAND);
-		return itemstack.isEmpty() || (this.isHungry() && !this.isSnack(itemstack) && this.isSnack(stack));
+		ItemStack heldstack = this.getItemBySlot(EquipmentSlotType.MAINHAND);
+		return heldstack.isEmpty() || this.getItemValue(stack) > this.getItemValue(heldstack);
+	}
+	
+	private int getItemValue(ItemStack stack) {
+		if (this.isSnack(stack)) {
+			return this.isHungry() ? 2 : 1;
+		} else if (this.isFavoriteItem(stack)) {
+			return 1;
+		} else {
+			return 0;
+		}
 	}
 
 	@Override
 	protected void pickUpItem(ItemEntity itemEntity) {
 		ItemStack itemstack = itemEntity.getItem();
-		if (this.canHoldItem(itemstack)) {
+		if (!this.isDoingAction(ChimpanzeeAction.LOOKING_AT_ITEM, ChimpanzeeAction.PLAYING_WITH_ITEM) && this.canHoldItem(itemstack)) {
 			int i = itemstack.getCount();
 			if (i > 1) {
 				ItemEntity itementity = new ItemEntity(this.level, this.getX(), this.getY(), this.getZ(), itemstack.split(i - 1));
@@ -625,6 +635,10 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		}
 	}
 
+	public boolean isFavoriteItem(ItemStack stack) {
+		return stack.getItem().is(NeapolitanTags.Items.CHIMPANZEE_FAVORITES);
+	}
+	
 	public void throwHeldItem(Hand hand) {
 		ItemStack itemstack = this.getItemInHand(hand);
 		if (!itemstack.isEmpty() && !this.level.isClientSide) {

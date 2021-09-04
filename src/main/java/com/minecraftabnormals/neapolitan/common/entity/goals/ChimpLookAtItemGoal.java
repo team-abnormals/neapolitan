@@ -43,7 +43,7 @@ public class ChimpLookAtItemGoal extends Goal {
 			return false;
 		} else if (!this.chimpanzee.getNavigation().isDone()) {
 			return false;
-		} else if (this.chimpanzee.getRandom().nextInt(120) > 0) {
+		} else if (this.chimpanzee.getRandom().nextInt(160) > 0) {
 			return false;
 		} else {
 			ItemStack mainhanditem = this.chimpanzee.getMainHandItem();
@@ -159,7 +159,7 @@ public class ChimpLookAtItemGoal extends Goal {
 	}
 
 	private boolean shouldLookAtItem(ItemStack itemStackIn) {
-		return !this.chimpanzee.isSnack(itemStackIn) && !itemStackIn.getItem().is(NeapolitanTags.Items.CHIMPANZEE_FAVORITES);
+		return !this.chimpanzee.isSnack(itemStackIn) && !this.chimpanzee.isFavoriteItem(itemStackIn);
 	}
 
 	private boolean shouldPlayWithItem(Item item) {
