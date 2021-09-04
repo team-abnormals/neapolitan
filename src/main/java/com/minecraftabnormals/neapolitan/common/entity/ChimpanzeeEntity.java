@@ -979,7 +979,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	public boolean isMouthOpen() {
 		if (this.isDoingAction(ChimpanzeeAction.EATING)) {
 			return Math.sin(Math.PI * this.tickCount * 0.2D) > 0;
-		} else if (this.isDoingAction(ChimpanzeeAction.CRYING, ChimpanzeeAction.PLAYING_WITH_ITEM, ChimpanzeeAction.PLAYING_WITH_HELMET, ChimpanzeeAction.DRUMMING)) {
+		} else if (this.isDoingAction(ChimpanzeeAction.CRYING, ChimpanzeeAction.PLAYING_WITH_ITEM, ChimpanzeeAction.PLAYING_WITH_HELMET, ChimpanzeeAction.JUMPING, ChimpanzeeAction.DRUMMING)) {
 			return true;
 		} else if (this.getApeModeTime() > 0 || this.isAngry() || this.isHungry() || this.isPartying()) {
 			return true;

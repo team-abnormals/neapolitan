@@ -19,7 +19,7 @@ public class ChimpShakeHeadGoal extends Goal {
 	public boolean canUse() {
 		if (!this.chimpanzee.isDoingAction(ChimpanzeeAction.DEFAULT, ChimpanzeeAction.CLIMBING)) {
 			return false;
-		} else if (this.chimpanzee.getNavigation().isDone() && this.chimpanzee.getRandom().nextInt(120) == 0) {
+		} else if (this.chimpanzee.getNavigation().isDone() && this.chimpanzee.getRandom().nextInt(240) == 0) {
 			if (this.chimpanzee.isDirty() && this.chimpanzee.getGroomer() == null) {
 				this.chimpanzee.level.broadcastEntityEvent(this.chimpanzee, (byte) 6);
 				return true;

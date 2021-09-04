@@ -24,11 +24,7 @@ public class ChimpSitGoal extends Goal {
 			return false;
 		} else if (this.chimpanzee.isSitting()) {
 			return true;
-		} else if (this.chimpanzee.isPassenger()) {
-			return false;
-		} else if (!this.chimpanzee.isOnGround()) {
-			return false;
-		} else if (this.chimpanzee.isInWater()) {
+		} else if (this.chimpanzee.isPassenger() || !this.chimpanzee.isOnGround() || this.chimpanzee.isInWater()) {
 			return false;
 		} else if (this.chimpanzee.xxa != 0.0F || this.chimpanzee.yya != 0.0F || this.chimpanzee.zza != 0.0F) {
 			return false;
@@ -68,9 +64,7 @@ public class ChimpSitGoal extends Goal {
 			return false;
 		} else if (this.sitTimer <= 0) {
 			return false;
-		} else if (this.chimpanzee.isPassenger()) {
-			return false;
-		} else if (this.chimpanzee.isInWater()) {
+		} else if (this.chimpanzee.isPassenger() || this.chimpanzee.isInWater()) {
 			return false;
 		} else if (this.chimpanzee.xxa != 0.0F || this.chimpanzee.yya != 0.0F || this.chimpanzee.zza != 0.0F) {
 			return false;

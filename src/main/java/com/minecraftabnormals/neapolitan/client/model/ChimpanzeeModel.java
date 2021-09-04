@@ -307,6 +307,17 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends BipedModel<T> {
 			this.head.xRot = MathHelper.cos(ageInTicks * 0.55F) * 0.5F;
 			this.head.yRot = 0.0F;
 			this.head.zRot =  MathHelper.sin(ageInTicks * 0.55F) * 0.3F;
+		} else if (entity.isDoingAction(ChimpanzeeAction.JUMPING)) {
+			if (!entity.isPartying()) {
+				float f = -Math.abs(MathHelper.sin(ageInTicks * 0.2F));
+				
+				this.rightArm.x += 1.0F;
+				this.leftArm.x += -1.0F;
+				this.rightArm.xRot = (float) -Math.PI;
+				this.leftArm.xRot = (float) -Math.PI;
+				this.rightArm.zRot += f * 0.4F -0.4F;
+				this.leftArm.zRot += -f * 0.4F + 0.4F;
+			}
 		} else if (entity.isDoingAction(ChimpanzeeAction.DRUMMING)) {
 			float f = -Math.abs(MathHelper.sin(ageInTicks * 0.3F));
 			float f1 = -Math.abs(MathHelper.sin(ageInTicks * 0.3F + (float) Math.PI / 2F));
