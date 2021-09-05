@@ -181,13 +181,13 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends BipedModel<T> {
 			float f = apemode ? 1.4F : 1.0F;
 			this.rightArm.xRot += MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 2F * limbSwingAmount * 0.5F * f;
 			this.leftArm.xRot += MathHelper.cos(limbSwing * 0.6662F) * 2F * limbSwingAmount * 0.5F * f;
-		}
-
-		if (!entity.getMainHandItem().isEmpty()) {
-			this.getArm(mainhand).xRot -= (float) Math.PI / 10F;
-		}
-		if (!entity.getOffhandItem().isEmpty()) {
-			this.getArm(mainhand.getOpposite()).xRot -= (float) Math.PI / 10F;
+			
+			if (!entity.getMainHandItem().isEmpty()) {
+				this.getArm(mainhand).xRot -= (float) Math.PI / 10F;
+			}
+			if (!entity.getOffhandItem().isEmpty()) {
+				this.getArm(mainhand.getOpposite()).xRot -= (float) Math.PI / 10F;
+			}
 		}
 
 		// SITTING ANIMATIONS //
@@ -308,16 +308,14 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends BipedModel<T> {
 			this.head.yRot = 0.0F;
 			this.head.zRot =  MathHelper.sin(ageInTicks * 0.55F) * 0.3F;
 		} else if (entity.isDoingAction(ChimpanzeeAction.JUMPING)) {
-			if (!entity.isPartying()) {
-				float f = -Math.abs(MathHelper.sin(ageInTicks * 0.2F));
-				
-				this.rightArm.x += 1.0F;
-				this.leftArm.x += -1.0F;
-				this.rightArm.xRot = (float) -Math.PI;
-				this.leftArm.xRot = (float) -Math.PI;
-				this.rightArm.zRot += f * 0.4F -0.4F;
-				this.leftArm.zRot += -f * 0.4F + 0.4F;
-			}
+			float f = -Math.abs(MathHelper.sin(ageInTicks * 0.2F));
+
+			this.rightArm.x += 1.0F;
+			this.leftArm.x += -1.0F;
+			this.rightArm.xRot = (float) -Math.PI;
+			this.leftArm.xRot = (float) -Math.PI;
+			this.rightArm.zRot = f * 0.4F -0.4F;
+			this.leftArm.zRot = -f * 0.4F + 0.4F;
 		} else if (entity.isDoingAction(ChimpanzeeAction.DRUMMING)) {
 			float f = -Math.abs(MathHelper.sin(ageInTicks * 0.3F));
 			float f1 = -Math.abs(MathHelper.sin(ageInTicks * 0.3F + (float) Math.PI / 2F));
@@ -364,8 +362,8 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends BipedModel<T> {
 
 			this.rightArm.xRot += f * 0.1F;
 			this.leftArm.xRot += f * 0.1F;
-			this.rightArm.zRot += f1 * 0.2F;
-			this.leftArm.zRot += f1 * 0.2F;
+			this.rightArm.zRot += f1 * 0.2F - 0.1F;
+			this.leftArm.zRot += f1 * 0.2F + 0.1F;
 		}
 
 		if (attacktimer > 0) {
