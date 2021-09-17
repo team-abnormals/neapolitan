@@ -24,7 +24,6 @@ public class BananaPeelEntity extends Entity {
 
 	public BananaPeelEntity(EntityType<? extends BananaPeelEntity> type, World worldIn) {
 		super(type, worldIn);
-		this.age = 1200;
 	}
 
 	public BananaPeelEntity(FMLPlayMessages.SpawnEntity spawnEntity, World world) {
@@ -42,10 +41,12 @@ public class BananaPeelEntity extends Entity {
 
 	@Override
 	protected void readAdditionalSaveData(CompoundNBT compound) {
+		this.age = compound.getShort("Age");
 	}
 
 	@Override
 	protected void addAdditionalSaveData(CompoundNBT compound) {
+		compound.putShort("Age", (short)this.age);
 	}
 
 	@Override
@@ -78,10 +79,10 @@ public class BananaPeelEntity extends Entity {
 		this.move(MoverType.SELF, this.getDeltaMovement());
 
 		if (!this.level.isClientSide) {
-			if (this.age < 0)
+			++this.age;
+			if (this.age >= 1200) {
 				this.remove();
-			else
-				this.age += -1;
+			}
 		}
 	}
 
