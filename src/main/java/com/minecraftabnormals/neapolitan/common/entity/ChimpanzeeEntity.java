@@ -18,6 +18,7 @@ import net.minecraft.entity.item.BoatEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.FireworkRocketEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.item.crafting.Ingredient;
@@ -284,6 +285,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		}
 	}
 
+	@Override
 	public void tick() {
 		if (!this.level.isClientSide) {
 			if (this.isDoingAction(ChimpanzeeAction.DEFAULT, ChimpanzeeAction.CLIMBING)) {
@@ -404,7 +406,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 						vector3d = vector3d.xRot(-this.xRot * ((float) Math.PI / 180F));
 						vector3d = vector3d.yRot(-this.yRot * ((float) Math.PI / 180F));
 						double d0 = (double) (-this.random.nextFloat()) * 0.2D;
-						Vector3d vector3d1 = new Vector3d(((double) this.random.nextFloat() - 0.5D) * 0.2D, d0, 0.8D + ((double) this.random.nextFloat() - 0.5D) * 0.2D);
+						Vector3d vector3d1 = new Vector3d(((double) this.random.nextFloat() - 0.5D) * 0.2D, d0, 0.6D * this.getScale() + ((double) this.random.nextFloat() - 0.5D) * 0.2D);
 						vector3d1 = vector3d1.yRot(-this.yBodyRot * ((float) Math.PI / 180F));
 						vector3d1 = vector3d1.add(this.getX(), this.getEyeY(), this.getZ());
 						this.level.addParticle(new ItemParticleData(ParticleTypes.ITEM, this.getItemInHand(this.getSnackHand())), vector3d1.x, vector3d1.y, vector3d1.z, vector3d.x, vector3d.y + 0.05D, vector3d.z);
@@ -663,22 +665,30 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		}
 	}
 
-	public void dropItem(ItemStack itemstack) {
-		ItemEntity itementity = new ItemEntity(this.level, this.getX(), this.getEyeY() - (double)0.3F, this.getZ(), itemstack);
+	public void dropItem(ItemStack itemStack) {
+		ItemEntity itementity = new ItemEntity(this.level, this.getX(), this.getEyeY() - (double)0.3F, this.getZ(), itemStack);
 		itementity.setPickUpDelay(40);
 		itementity.setThrower(this.getUUID());
 		this.level.addFreshEntity(itementity);
 	}
 	
-	public void spawnItemFromBucket(ItemStack itemstack, HandSide hand) {
+	public void spawnItemFromBucket(ItemStack itemStack, HandSide hand) {
 		Vector3d vector3d = new Vector3d(hand == HandSide.LEFT ? 0.35D : -0.35D, 0.0D, 0.5D);
 		vector3d = vector3d.yRot(-this.yBodyRot * ((float) Math.PI / 180F));
 		
-		ItemEntity itementity = new ItemEntity(this.level, this.getX() + vector3d.x, this.getEyeY() - (double)0.15F, this.getZ() + vector3d.z, itemstack);
+		ItemEntity itementity = new ItemEntity(this.level, this.getX() + vector3d.x * this.getScale(), this.getEyeY() - (double)0.15F, this.getZ() + vector3d.z * this.getScale(), itemStack);
 		itementity.setDeltaMovement(0.0D, 0.25D, 0.0D);
 		itementity.setPickUpDelay(40);
 		itementity.setThrower(this.getUUID());
 		this.level.addFreshEntity(itementity);
+	}
+	
+	public void setOffFirework(ItemStack itemStack, HandSide hand) {
+		Vector3d vector3d = new Vector3d(hand == HandSide.LEFT ? 0.35D : -0.35D, 0.0D, 0.5D);
+		vector3d = vector3d.yRot(-this.yBodyRot * ((float) Math.PI / 180F));
+		
+		FireworkRocketEntity fireworkrocketentity = new FireworkRocketEntity(this.level, this, this.getX() + vector3d.x * this.getScale(), this.getEyeY(), this.getZ() + vector3d.z * this.getScale(), itemStack);
+		this.level.addFreshEntity(fireworkrocketentity);
 	}
 
 	// GROUP BEHAVIOR //

@@ -18,6 +18,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.TieredItem;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
+import net.minecraft.util.HandSide;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
@@ -95,7 +96,7 @@ public class ChimpLookAtItemGoal extends Goal {
 			this.doItemInteraction();
 		} else if (chimpanzee.isDoingAction(ChimpanzeeAction.PLAYING_WITH_ITEM)) {
 			if (this.lookTimer == 20) {
-				if (this.chimpanzee.getRandom().nextInt(10) == 0 && this.itemStack.getItem().is(NeapolitanTags.Items.CHIMPANZEE_SHAKABLE_BUCKET_ITEMS)) {
+				if (this.chimpanzee.getRandom().nextInt(1) == 0 && this.itemStack.getItem().is(NeapolitanTags.Items.CHIMPANZEE_SHAKABLE_BUCKET_ITEMS)) {
 					this.chimpanzee.spawnItemFromBucket(new ItemStack(NeapolitanItems.BANANA.get()), this.chimpanzee.getMainArm());
 				}
 			} else if (this.lookTimer == 4) {
@@ -103,8 +104,7 @@ public class ChimpLookAtItemGoal extends Goal {
 					this.chimpanzee.hurt(DamageSource.GENERIC, 0.0F);
 					this.wasHurt = true;
 				} else if (this.itemStack.getItem() instanceof FireworkRocketItem) {
-					FireworkRocketEntity fireworkrocketentity = new FireworkRocketEntity(this.level, this.chimpanzee, this.chimpanzee.getX(), this.chimpanzee.getEyeY(), this.chimpanzee.getZ(), this.itemStack);
-					this.level.addFreshEntity(fireworkrocketentity);
+					this.chimpanzee.setOffFirework(this.itemStack, this.chimpanzee.getMainArm());
 					this.chimpanzee.getMainHandItem().shrink(1);
 					this.itemStack = this.chimpanzee.getMainHandItem();
 				}
