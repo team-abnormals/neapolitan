@@ -9,7 +9,6 @@ import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
 
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.entity.projectile.FireworkRocketEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.FireworkRocketItem;
@@ -18,7 +17,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.TieredItem;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
-import net.minecraft.util.HandSide;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
@@ -96,7 +94,7 @@ public class ChimpLookAtItemGoal extends Goal {
 			this.doItemInteraction();
 		} else if (chimpanzee.isDoingAction(ChimpanzeeAction.PLAYING_WITH_ITEM)) {
 			if (this.lookTimer == 20) {
-				if (this.chimpanzee.getRandom().nextInt(1) == 0 && this.itemStack.getItem().is(NeapolitanTags.Items.CHIMPANZEE_SHAKABLE_BUCKET_ITEMS)) {
+				if (this.chimpanzee.getRandom().nextInt(10) == 0 && this.itemStack.getItem().is(NeapolitanTags.Items.CHIMPANZEE_SHAKABLE_BUCKET_ITEMS)) {
 					this.chimpanzee.spawnItemFromBucket(new ItemStack(NeapolitanItems.BANANA.get()), this.chimpanzee.getMainArm());
 				}
 			} else if (this.lookTimer == 4) {

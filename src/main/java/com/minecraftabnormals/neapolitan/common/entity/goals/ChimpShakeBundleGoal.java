@@ -61,12 +61,14 @@ public class ChimpShakeBundleGoal extends MoveToBlockGoal {
 		super.start();
 		this.shakingTime = 0;
 		this.nextBananaTime = 30 + this.getNextBananaTime();
+		this.chimpanzee.setLookingForBundle(true);
 	}
 
 	@Override
 	public void stop() {
 		super.stop();
 		this.chimpanzee.setDefaultAction();
+		this.chimpanzee.setLookingForBundle(false);
 	}
 
 	@Override

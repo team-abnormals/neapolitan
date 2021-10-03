@@ -70,6 +70,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	private int climbingStamina = 20 + this.random.nextInt(40);
 
 	private boolean isLeader;
+	private boolean lookingForBundle;
 
 	@Nullable
 	private ChimpanzeeEntity groomingTarget;
@@ -107,7 +108,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		this.goalSelector.addGoal(8, new ChimpEatBananaGoal(this));
 		this.goalSelector.addGoal(9, new ChimpTemptBananaGoal(this, 1.25D));
 		this.goalSelector.addGoal(10, new TemptGoal(this, 1.25D, Ingredient.of(NeapolitanTags.Items.CHIMPANZEE_FOOD), false));
-		this.goalSelector.addGoal(11, new FollowParentGoal(this, 1.25D));
+		this.goalSelector.addGoal(11, new ChimpFollowParentGoal(this, 1.25D));
 		this.goalSelector.addGoal(12, new ChimpShareBananaGoal(this, 1.0D));
 		this.goalSelector.addGoal(13, new ChimpBeGroomedGoal(this));
 		this.goalSelector.addGoal(14, new ChimpGroomGoal(this, 1.0D));
@@ -700,6 +701,26 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	public void setLeader(boolean isLeaderIn) {
 		this.isLeader = isLeaderIn;
 	}
+	
+	public boolean isLookingForBundle() {
+		return this.lookingForBundle;
+	}
+	
+	public void setLookingForBundle(boolean lookingForBundleIn) {
+		this.lookingForBundle = lookingForBundleIn;
+		
+		if (lookingForBundleIn) {
+			this.setLeader(this.shouldBeLeader());
+			Predicate<ChimpanzeeEntity> predicate = (chimpanzeeentity) -> {
+				return chimpanzeeentity != this && chimpanzeeentity.getAge() >= 0;
+			};
+			List<ChimpanzeeEntity> list = this.level.getEntitiesOfClass(ChimpanzeeEntity.class, this.getBoundingBox().inflate(12.0D, 8.0D, 12.0D), predicate);
+
+			for(ChimpanzeeEntity chimpanzeeentity : list) {
+				chimpanzeeentity.setLeader(chimpanzeeentity.shouldBeLeader());
+			}
+		}
+	}
 
 	private boolean shouldBeLeader() {
 		Predicate<ChimpanzeeEntity> predicate = (chimpanzeeentity) -> {
@@ -720,7 +741,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 			}
 
 			if (leaderamount * 4 >= chimpamount) {
-				if (!(this.needsSnack() && !chimpanzeeentity.needsSnack())) {
+				if (!(this.isLookingForBundle() && !chimpanzeeentity.isLookingForBundle())) {
 					return false;
 				}
 			}
