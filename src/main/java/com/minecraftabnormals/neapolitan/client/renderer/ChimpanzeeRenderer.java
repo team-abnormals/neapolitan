@@ -1,10 +1,7 @@
 package com.minecraftabnormals.neapolitan.client.renderer;
 
 import com.minecraftabnormals.neapolitan.client.model.ChimpanzeeModel;
-import com.minecraftabnormals.neapolitan.client.renderer.layers.ChimpanzeeDirtLayer;
-import com.minecraftabnormals.neapolitan.client.renderer.layers.ChimpanzeeDyeLayer;
-import com.minecraftabnormals.neapolitan.client.renderer.layers.ChimpanzeeItemLayer;
-import com.minecraftabnormals.neapolitan.client.renderer.layers.ChimpanzeePaleSkinLayer;
+import com.minecraftabnormals.neapolitan.client.renderer.layers.*;
 import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
 import com.minecraftabnormals.neapolitan.common.entity.util.ChimpanzeeTypes;
 import com.minecraftabnormals.neapolitan.core.Neapolitan;
