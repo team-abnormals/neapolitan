@@ -46,7 +46,7 @@ public class BananaPeelEntity extends Entity {
 
 	@Override
 	protected void addAdditionalSaveData(CompoundNBT compound) {
-		compound.putShort("Age", (short)this.age);
+		compound.putShort("Age", (short) this.age);
 	}
 
 	@Override
@@ -89,7 +89,7 @@ public class BananaPeelEntity extends Entity {
 	@Override
 	public void push(Entity entityIn) {
 		super.push(entityIn);
-		if (this.onGround && !this.isInWater() && entityIn instanceof LivingEntity && this.getY() <= entityIn.getY()  && !NeapolitanTags.EntityTypes.UNAFFECTED_BY_SLIPPING.contains(entityIn.getType()) && !this.level.isClientSide()) {
+		if (this.onGround && !this.isInWater() && entityIn instanceof LivingEntity && this.getY() <= entityIn.getY() && !NeapolitanTags.EntityTypes.UNAFFECTED_BY_SLIPPING.contains(entityIn.getType()) && !this.level.isClientSide()) {
 			((LivingEntity) entityIn).addEffect(new EffectInstance(NeapolitanEffects.SLIPPING.get(), 100));
 		}
 	}

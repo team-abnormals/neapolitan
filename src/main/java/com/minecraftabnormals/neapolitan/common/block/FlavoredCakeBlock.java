@@ -19,8 +19,8 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
 public class FlavoredCakeBlock extends CakeBlock {
-	private EffectType effectType;
-	private Food food;
+	private final EffectType effectType;
+	private final Food food;
 
 	public FlavoredCakeBlock(Food food, EffectType effectType, Properties properties) {
 		super(properties);

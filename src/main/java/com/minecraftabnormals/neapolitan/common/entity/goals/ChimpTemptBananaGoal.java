@@ -74,25 +74,25 @@ public class ChimpTemptBananaGoal extends Goal {
 
 	@Override
 	public void tick() {
-		this.chimpanzee.getLookControl().setLookAt(this.closestPlayer, (float)(this.chimpanzee.getMaxHeadYRot() + 20), (float)this.chimpanzee.getMaxHeadXRot());
+		this.chimpanzee.getLookControl().setLookAt(this.closestPlayer, (float) (this.chimpanzee.getMaxHeadYRot() + 20), (float) this.chimpanzee.getMaxHeadXRot());
 		if (this.chimpanzee.distanceToSqr(this.closestPlayer) < 6.25D) {
 			this.chimpanzee.getNavigation().stop();
 		} else {
 			this.chimpanzee.getNavigation().moveTo(this.closestPlayer, this.speed);
 		}
-		
+
 		double d0 = this.chimpanzee.distanceToSqr(this.closestPlayer);
-		
+
 		if (this.playerDistance < d0 && this.closestPlayer.getDeltaMovement() != Vector3d.ZERO) {
 			--this.patience;
 		}
-		
+
 		this.playerDistance = d0;
-		
+
 		if (!this.chimpanzee.isBaby() && this.patience <= 0 && !this.closestPlayer.abilities.instabuild) {
 			this.chimpanzee.setTarget(this.closestPlayer);
 		}
-		
+
 		if (!this.isTempting(this.closestPlayer.getMainHandItem()) && !this.isTempting(this.closestPlayer.getOffhandItem())) {
 			--this.forgetTimer;
 		} else {

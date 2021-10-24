@@ -79,7 +79,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 
 	private float climbAnim;
 	private float prevClimbAnim;
-	
+
 	private float sitAnim;
 	private float sitAnim0;
 
@@ -132,7 +132,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	}
 
 	public static AttributeModifierMap.MutableAttribute registerAttributes() {
-		return AnimalEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 10.0D).add(Attributes.MOVEMENT_SPEED, (double) 0.3F).add(Attributes.ATTACK_DAMAGE, 3.0D);
+		return AnimalEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 10.0D).add(Attributes.MOVEMENT_SPEED, 0.3F).add(Attributes.ATTACK_DAMAGE, 3.0D);
 	}
 
 	@Override
@@ -247,14 +247,10 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		if (this.isAngry()) {
 			this.lastHurtByPlayerTime = this.tickCount;
 		}
-		
+
 		if (this.getApeModeTime() > 0 && this.getMoveControl().hasWanted()) {
 			double d0 = this.getMoveControl().getSpeedModifier();
-			if (d0 >= 1.0D) {
-				this.setSprinting(true);
-			} else {
-				this.setSprinting(false);
-			}
+			this.setSprinting(d0 >= 1.0D);
 		} else {
 			this.setSprinting(false);
 		}
@@ -308,7 +304,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 					this.setHandDyed(false, this.random.nextBoolean() ? HandSide.LEFT : HandSide.RIGHT);
 				}
 			}
-			
+
 			this.spawnParticles();
 		}
 
@@ -327,7 +323,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		} else {
 			this.sitAnim = Math.max(this.sitAnim - 0.167F, 0);
 		}
-		
+
 		this.prevHeadShakeAnim = this.headShakeAnim;
 		if (this.headShakeAnim > 0) {
 			--this.headShakeAnim;
@@ -436,17 +432,17 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 			}
 		}
 	}
-	
+
 	private void handleClimbing() {
 		this.setBesideClimbableBlock(this.horizontalCollision);
 
 		if (this.isDoingAction(ChimpanzeeAction.CLIMBING)) {
 			Direction newfacing = Direction.DOWN;
 
-			for(Direction direction : Direction.Plane.HORIZONTAL) {
+			for (Direction direction : Direction.Plane.HORIZONTAL) {
 				Vector3d vector3d = this.collide(Vector3d.atLowerCornerOf(direction.getNormal()));
 
-				if (Math.abs(vector3d.get(direction.getAxis())) <= 0.2D ) {
+				if (Math.abs(vector3d.get(direction.getAxis())) <= 0.2D) {
 					newfacing = direction;
 					if (direction == this.entityData.get(FACING)) {
 						break;
@@ -509,12 +505,12 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	public void eatSnack() {
 		if (!this.getSnack().isEmpty()) {
 			if (this.getSnack().getItem() == NeapolitanItems.BANANARROW.get()) {
-				this.heal((float)NeapolitanItems.BANANA.get().getFoodProperties().getNutrition());
+				this.heal((float) NeapolitanItems.BANANA.get().getFoodProperties().getNutrition());
 				this.hurt(DamageSource.GENERIC, 0.0F);
 				this.setItemInHand(this.getSnackHand(), new ItemStack(Items.ARROW));
 			} else {
 				if (this.getSnack().isEdible()) {
-					this.heal((float)this.getSnack().getItem().getFoodProperties().getNutrition());
+					this.heal((float) this.getSnack().getItem().getFoodProperties().getNutrition());
 				}
 				this.setItemInHand(this.getSnackHand(), this.getSnack().finishUsingItem(this.level, this));
 			}
@@ -603,7 +599,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		ItemStack heldstack = this.getItemBySlot(EquipmentSlotType.MAINHAND);
 		return heldstack.isEmpty() || this.getItemValue(stack) > this.getItemValue(heldstack);
 	}
-	
+
 	private int getItemValue(ItemStack stack) {
 		if (this.isSnack(stack)) {
 			return this.isHungry() ? 2 : 1;
@@ -641,7 +637,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	public boolean isFavoriteItem(ItemStack stack) {
 		return stack.getItem().is(NeapolitanTags.Items.CHIMPANZEE_FAVORITES);
 	}
-	
+
 	public void throwHeldItem(Hand hand) {
 		ItemStack itemstack = this.getItemInHand(hand);
 		if (!itemstack.isEmpty() && !this.level.isClientSide) {
@@ -650,7 +646,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 			if (item instanceof DyeItem) {
 				HandSide handside = hand == Hand.MAIN_HAND ? this.getMainArm() : this.getMainArm().getOpposite();
 				this.setHandDyed(true, handside);
-				this.setHandDyeColor(((DyeItem)item).getDyeColor(), handside);
+				this.setHandDyeColor(((DyeItem) item).getDyeColor(), handside);
 			}
 
 			ItemEntity itementity = new ItemEntity(this.level, this.getX() + this.getLookAngle().x * 0.2D, this.getY() + this.getBbHeight() * 0.625F, this.getZ() + this.getLookAngle().z * 0.2D, itemstack);
@@ -662,32 +658,32 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 			this.setItemInHand(hand, ItemStack.EMPTY);
 
 			this.swingArms();
-			this.level.broadcastEntityEvent(this, (byte)4);
+			this.level.broadcastEntityEvent(this, (byte) 4);
 		}
 	}
 
 	public void dropItem(ItemStack itemStack) {
-		ItemEntity itementity = new ItemEntity(this.level, this.getX(), this.getEyeY() - (double)0.3F, this.getZ(), itemStack);
+		ItemEntity itementity = new ItemEntity(this.level, this.getX(), this.getEyeY() - (double) 0.3F, this.getZ(), itemStack);
 		itementity.setPickUpDelay(40);
 		itementity.setThrower(this.getUUID());
 		this.level.addFreshEntity(itementity);
 	}
-	
+
 	public void spawnItemFromBucket(ItemStack itemStack, HandSide hand) {
 		Vector3d vector3d = new Vector3d(hand == HandSide.LEFT ? 0.35D : -0.35D, 0.0D, 0.5D);
 		vector3d = vector3d.yRot(-this.yBodyRot * ((float) Math.PI / 180F));
-		
-		ItemEntity itementity = new ItemEntity(this.level, this.getX() + vector3d.x * this.getScale(), this.getEyeY() - (double)0.15F, this.getZ() + vector3d.z * this.getScale(), itemStack);
+
+		ItemEntity itementity = new ItemEntity(this.level, this.getX() + vector3d.x * this.getScale(), this.getEyeY() - (double) 0.15F, this.getZ() + vector3d.z * this.getScale(), itemStack);
 		itementity.setDeltaMovement(0.0D, 0.25D, 0.0D);
 		itementity.setPickUpDelay(40);
 		itementity.setThrower(this.getUUID());
 		this.level.addFreshEntity(itementity);
 	}
-	
+
 	public void setOffFirework(ItemStack itemStack, HandSide hand) {
 		Vector3d vector3d = new Vector3d(hand == HandSide.LEFT ? 0.35D : -0.35D, 0.0D, 0.5D);
 		vector3d = vector3d.yRot(-this.yBodyRot * ((float) Math.PI / 180F));
-		
+
 		FireworkRocketEntity fireworkrocketentity = new FireworkRocketEntity(this.level, this, this.getX() + vector3d.x * this.getScale(), this.getEyeY(), this.getZ() + vector3d.z * this.getScale(), itemStack);
 		this.level.addFreshEntity(fireworkrocketentity);
 	}
@@ -701,14 +697,14 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	public void setLeader(boolean isLeaderIn) {
 		this.isLeader = isLeaderIn;
 	}
-	
+
 	public boolean isLookingForBundle() {
 		return this.lookingForBundle;
 	}
-	
+
 	public void setLookingForBundle(boolean lookingForBundleIn) {
 		this.lookingForBundle = lookingForBundleIn;
-		
+
 		if (lookingForBundleIn) {
 			this.setLeader(this.shouldBeLeader());
 			Predicate<ChimpanzeeEntity> predicate = (chimpanzeeentity) -> {
@@ -716,7 +712,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 			};
 			List<ChimpanzeeEntity> list = this.level.getEntitiesOfClass(ChimpanzeeEntity.class, this.getBoundingBox().inflate(12.0D, 8.0D, 12.0D), predicate);
 
-			for(ChimpanzeeEntity chimpanzeeentity : list) {
+			for (ChimpanzeeEntity chimpanzeeentity : list) {
 				chimpanzeeentity.setLeader(chimpanzeeentity.shouldBeLeader());
 			}
 		}
@@ -735,7 +731,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		int chimpamount = list.size() + 1;
 		int leaderamount = 0;
 
-		for(ChimpanzeeEntity chimpanzeeentity : list) {
+		for (ChimpanzeeEntity chimpanzeeentity : list) {
 			if (chimpanzeeentity.isLeader()) {
 				++leaderamount;
 			}
@@ -782,7 +778,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 			ItemStack itemstack;
 			if (f < 0.6F) {
 				if (this.level.getBiome(this.blockPosition()).getRegistryName().getPath().contains("bamboo")) {
-					itemstack = new ItemStack(Items.BAMBOO);	
+					itemstack = new ItemStack(Items.BAMBOO);
 				} else {
 					itemstack = new ItemStack(Items.STICK);
 				}
@@ -798,7 +794,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	@Override
 	public ChimpanzeeEntity getBreedOffspring(ServerWorld world, AgeableEntity ageableEntity) {
 		ChimpanzeeEntity baby = NeapolitanEntities.CHIMPANZEE.get().create(world);
-		baby.setChimpanzeeType(this.random.nextBoolean() ? this.getChimpanzeeType() : ((ChimpanzeeEntity)ageableEntity).getChimpanzeeType());
+		baby.setChimpanzeeType(this.random.nextBoolean() ? this.getChimpanzeeType() : ((ChimpanzeeEntity) ageableEntity).getChimpanzeeType());
 		return baby;
 	}
 
@@ -853,7 +849,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	public boolean isSitting() {
 		return this.entityData.get(SITTING);
 	}
-	
+
 	public void setSitting(boolean sitting) {
 		this.entityData.set(SITTING, sitting);
 	}
@@ -974,7 +970,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	}
 
 	public boolean isInSunlight() {
-		BlockPos blockpos = this.getVehicle() instanceof BoatEntity ? (new BlockPos(this.getX(), (double)Math.round(this.getY()), this.getZ())).above() : new BlockPos(this.getX(), (double)Math.round(this.getY()), this.getZ());
+		BlockPos blockpos = this.getVehicle() instanceof BoatEntity ? (new BlockPos(this.getX(), (double) Math.round(this.getY()), this.getZ())).above() : new BlockPos(this.getX(), (double) Math.round(this.getY()), this.getZ());
 		return this.level.getBrightness(LightType.SKY, blockpos) > 8;
 	}
 
@@ -985,17 +981,17 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	}
 
 	public boolean isDoingAction(ChimpanzeeAction... actions) {
-	    for (ChimpanzeeAction action : actions) {
-	         if (this.getAction() == action) {
-	        	 return true;
-	         }
-	    }
-	    
-	    return false;
+		for (ChimpanzeeAction action : actions) {
+			if (this.getAction() == action) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	public void setAction(ChimpanzeeAction action) {
-		this.entityData.set(ACTION, (byte)action.getId());
+		this.entityData.set(ACTION, (byte) action.getId());
 	}
 
 	public void setDefaultAction() {
@@ -1026,11 +1022,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 			return Math.sin(Math.PI * this.tickCount * 0.2D) > 0;
 		} else if (this.isDoingAction(ChimpanzeeAction.CRYING, ChimpanzeeAction.PLAYING_WITH_ITEM, ChimpanzeeAction.PLAYING_WITH_HELMET, ChimpanzeeAction.JUMPING, ChimpanzeeAction.DRUMMING)) {
 			return true;
-		} else if (this.getApeModeTime() > 0 || this.isAngry() || this.isHungry() || this.isPartying()) {
-			return true;
-		} else {
-			return false;
-		}
+		} else return this.getApeModeTime() > 0 || this.isAngry() || this.isHungry() || this.isPartying();
 	}
 
 	@OnlyIn(Dist.CLIENT)
@@ -1105,9 +1097,9 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 
 			Direction facing = ChimpanzeeEntity.this.getFacing();
 			if (ChimpanzeeEntity.this.isDoingAction(ChimpanzeeAction.CLIMBING) && facing != Direction.DOWN) {
-				ChimpanzeeEntity.this.yHeadRot = MathHelper.rotateIfNecessary(ChimpanzeeEntity.this.yHeadRot, facing.toYRot(), (float)ChimpanzeeEntity.this.getMaxHeadYRot());
+				ChimpanzeeEntity.this.yHeadRot = MathHelper.rotateIfNecessary(ChimpanzeeEntity.this.yHeadRot, facing.toYRot(), (float) ChimpanzeeEntity.this.getMaxHeadYRot());
 			} else if (!ChimpanzeeEntity.this.getNavigation().isDone()) {
-				ChimpanzeeEntity.this.yHeadRot = MathHelper.rotateIfNecessary(ChimpanzeeEntity.this.yHeadRot, ChimpanzeeEntity.this.yBodyRot, (float)ChimpanzeeEntity.this.getMaxHeadYRot());
+				ChimpanzeeEntity.this.yHeadRot = MathHelper.rotateIfNecessary(ChimpanzeeEntity.this.yHeadRot, ChimpanzeeEntity.this.yBodyRot, (float) ChimpanzeeEntity.this.getMaxHeadYRot());
 			}
 		}
 	}
@@ -1133,7 +1125,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 
 			if (facing != Direction.DOWN && ChimpanzeeEntity.this.isDoingAction(ChimpanzeeAction.CLIMBING)) {
 				int i = this.bodyRotationTickCounter;
-				float f = MathHelper.clamp((float)i / 10.0F, 0.0F, 1.0F);
+				float f = MathHelper.clamp((float) i / 10.0F, 0.0F, 1.0F);
 				float f1 = 90.0F * f;
 				ChimpanzeeEntity.this.yBodyRot = MathHelper.rotateIfNecessary(ChimpanzeeEntity.this.yBodyRot, facing.toYRot(), f1);
 
@@ -1142,7 +1134,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 				}
 			} else if (facing != Direction.DOWN && ChimpanzeeEntity.this.isDoingAction(ChimpanzeeAction.CLIMBING)) {
 				int i = this.bodyRotationTickCounter;
-				float f = MathHelper.clamp((float)i / 10.0F, 0.0F, 1.0F);
+				float f = MathHelper.clamp((float) i / 10.0F, 0.0F, 1.0F);
 				float f1 = 90.0F * f;
 				ChimpanzeeEntity.this.yBodyRot = MathHelper.rotateIfNecessary(ChimpanzeeEntity.this.yBodyRot, facing.toYRot(), f1);
 

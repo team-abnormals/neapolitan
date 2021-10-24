@@ -1,11 +1,8 @@
 package com.minecraftabnormals.neapolitan.common.entity.goals;
 
-import java.util.EnumSet;
-
 import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
 import com.minecraftabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
 import com.minecraftabnormals.neapolitan.core.other.NeapolitanTags;
-
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -13,6 +10,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+
+import java.util.EnumSet;
 
 public class ChimpJumpOnBouncyGoal extends MoveToBlockGoal {
 	private final ChimpanzeeEntity chimpanzee;
@@ -84,7 +83,7 @@ public class ChimpJumpOnBouncyGoal extends MoveToBlockGoal {
 	protected boolean isValidTarget(IWorldReader worldIn, BlockPos pos) {
 		return worldIn.isEmptyBlock(pos.above()) && worldIn.isEmptyBlock(pos.above().above()) && worldIn.getBlockState(pos).getBlock().is(NeapolitanTags.Blocks.CHIMPANZEE_JUMPING_BLOCKS) && !this.isBlockBeingJumpedOn((World) worldIn, pos);
 	}
-	
+
 	private boolean isBlockBeingJumpedOn(World worldIn, BlockPos pos) {
 		return !worldIn.getEntitiesOfClass(ChimpanzeeEntity.class, new AxisAlignedBB(pos.above()), (chimpanzee) -> {
 			return chimpanzee != this.chimpanzee && chimpanzee.isDoingAction(ChimpanzeeAction.JUMPING);

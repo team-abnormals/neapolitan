@@ -70,7 +70,7 @@ public class ChimpPlayNoteBlockGoal extends MoveToBlockGoal {
 	public void tick() {
 		super.tick();
 
-		this.chimpanzee.getLookControl().setLookAt(this.blockPos.getX() + 0.5D, this.blockPos.getY() + 0.5D, this.blockPos.getZ() + 0.5D, (float)(this.chimpanzee.getMaxHeadYRot() + 20), (float)this.chimpanzee.getMaxHeadXRot());
+		this.chimpanzee.getLookControl().setLookAt(this.blockPos.getX() + 0.5D, this.blockPos.getY() + 0.5D, this.blockPos.getZ() + 0.5D, (float) (this.chimpanzee.getMaxHeadYRot() + 20), (float) this.chimpanzee.getMaxHeadXRot());
 
 		if (this.isReachedTarget() && this.chimpanzee.getNavigation().isDone() && this.chimpanzee.getAction().canBeInterrupted()) {
 			this.chimpanzee.setAction(ChimpanzeeAction.DRUMMING);

@@ -34,7 +34,7 @@ public class ChimpShareBananaGoal extends Goal {
 			ChimpanzeeEntity chimpanzeeentity = null;
 			double d0 = Double.MAX_VALUE;
 
-			for(ChimpanzeeEntity chimpanzeeentity1 : list) {
+			for (ChimpanzeeEntity chimpanzeeentity1 : list) {
 				if (chimpanzeeentity1.isHungry() && chimpanzeeentity1.getSnack().isEmpty() && !chimpanzeeentity1.isDoingAction(ChimpanzeeAction.HANGING, ChimpanzeeAction.SHAKING)) {
 					double d1 = this.chimpanzee.distanceToSqr(chimpanzeeentity1);
 					if (!(d1 > d0)) {
@@ -62,7 +62,7 @@ public class ChimpShareBananaGoal extends Goal {
 		} else if (this.lookTimer < 0) {
 			if (this.chimpanzee.getSnack().isEmpty() || !this.buddy.isHungry() || !this.buddy.getSnack().isEmpty() || this.buddy.isDoingAction(ChimpanzeeAction.HANGING, ChimpanzeeAction.SHAKING)) {
 				return false;
-			} 
+			}
 		}
 
 		return this.chimpanzee.distanceToSqr(this.buddy) <= 256.0D;
@@ -100,9 +100,9 @@ public class ChimpShareBananaGoal extends Goal {
 					ItemStack itemstack = this.chimpanzee.getItemInHand(hand);
 					int i = itemstack.getCount();
 
-					ItemEntity itementity = new ItemEntity(this.chimpanzee.level, this.chimpanzee.getX(), this.chimpanzee.getEyeY() - (double)0.3F, this.chimpanzee.getZ(), itemstack.split(1));
+					ItemEntity itementity = new ItemEntity(this.chimpanzee.level, this.chimpanzee.getX(), this.chimpanzee.getEyeY() - (double) 0.3F, this.chimpanzee.getZ(), itemstack.split(1));
 					Vector3d vector3d = this.buddy.position().subtract(this.chimpanzee.position());
-					vector3d = vector3d.normalize().scale((double)0.3F);
+					vector3d = vector3d.normalize().scale(0.3F);
 					itementity.setDeltaMovement(vector3d);
 					itementity.setDefaultPickUpDelay();
 					this.chimpanzee.level.addFreshEntity(itementity);

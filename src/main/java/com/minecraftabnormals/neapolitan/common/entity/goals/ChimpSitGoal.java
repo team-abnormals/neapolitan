@@ -1,12 +1,11 @@
 package com.minecraftabnormals.neapolitan.common.entity.goals;
 
-import java.util.List;
-import java.util.function.Predicate;
-
 import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
 import com.minecraftabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
-
 import net.minecraft.entity.ai.goal.Goal;
+
+import java.util.List;
+import java.util.function.Predicate;
 
 public class ChimpSitGoal extends Goal {
 	private final ChimpanzeeEntity chimpanzee;
@@ -35,18 +34,14 @@ public class ChimpSitGoal extends Goal {
 				};
 				List<ChimpanzeeEntity> list = this.chimpanzee.level.getEntitiesOfClass(ChimpanzeeEntity.class, this.chimpanzee.getBoundingBox().inflate(6.0D, 4.0D, 6.0D), predicate);
 
-				for(ChimpanzeeEntity chimpanzeeentity : list) {
+				for (ChimpanzeeEntity chimpanzeeentity : list) {
 					if (chimpanzeeentity.isSitting()) {
 						return true;
 					}
 				}
 			} else if (this.chimpanzee.level.isNight()) {
-				if (this.chimpanzee.getRandom().nextInt(300) == 0) {
-					return true;
-				}
-			} else if (this.chimpanzee.getRandom().nextInt(2400) == 0) {
-				return true;
-			}
+				return this.chimpanzee.getRandom().nextInt(300) == 0;
+			} else return this.chimpanzee.getRandom().nextInt(2400) == 0;
 		}
 
 		return false;
@@ -68,11 +63,7 @@ public class ChimpSitGoal extends Goal {
 			return false;
 		} else if (this.chimpanzee.xxa != 0.0F || this.chimpanzee.yya != 0.0F || this.chimpanzee.zza != 0.0F) {
 			return false;
-		} else if (!this.chimpanzee.getAction().canSit()) {
-			return false;
-		} else {
-			return true;
-		}
+		} else return this.chimpanzee.getAction().canSit();
 	}
 
 	@Override

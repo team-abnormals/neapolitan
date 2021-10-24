@@ -66,12 +66,12 @@ public class BananaBunchItem extends Item {
 	private void throwBanana(World world, PlayerEntity player, float pitch, float yaw) {
 		if (!world.isClientSide) {
 			BananaPeelEntity bananapeel = NeapolitanEntities.BANANA_PEEL.get().create(world);
-			bananapeel.moveTo(player.getX(), player.getEyeY() - (double)0.1F, player.getZ(), yaw, 0.0F);
-			float f = -MathHelper.sin(yaw * ((float)Math.PI / 180F)) * MathHelper.cos(pitch * ((float)Math.PI / 180F)) * 0.6F;
-			float f1 = -MathHelper.sin(pitch * ((float)Math.PI / 180F)) * 0.6F;
-			float f2 = MathHelper.cos(yaw * ((float)Math.PI / 180F)) * MathHelper.cos(pitch * ((float)Math.PI / 180F)) * 0.6F;
+			bananapeel.moveTo(player.getX(), player.getEyeY() - (double) 0.1F, player.getZ(), yaw, 0.0F);
+			float f = -MathHelper.sin(yaw * ((float) Math.PI / 180F)) * MathHelper.cos(pitch * ((float) Math.PI / 180F)) * 0.6F;
+			float f1 = -MathHelper.sin(pitch * ((float) Math.PI / 180F)) * 0.6F;
+			float f2 = MathHelper.cos(yaw * ((float) Math.PI / 180F)) * MathHelper.cos(pitch * ((float) Math.PI / 180F)) * 0.6F;
 			Vector3d vector3d = player.getDeltaMovement();
-			bananapeel.setDeltaMovement(new Vector3d((double)f, (double)f1, (double)f2).add(vector3d.x, player.isOnGround() ? 0.0D : vector3d.y, vector3d.z));
+			bananapeel.setDeltaMovement(new Vector3d(f, f1, f2).add(vector3d.x, player.isOnGround() ? 0.0D : vector3d.y, vector3d.z));
 			world.addFreshEntity(bananapeel);
 		}
 	}

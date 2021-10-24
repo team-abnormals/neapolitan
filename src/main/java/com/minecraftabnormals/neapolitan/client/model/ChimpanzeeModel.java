@@ -5,7 +5,6 @@ import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
 import com.minecraftabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
 import com.minecraftabnormals.neapolitan.core.other.NeapolitanTags;
 import com.mojang.blaze3d.matrix.MatrixStack;
-
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelHelper;
 import net.minecraft.client.renderer.model.ModelRenderer;
@@ -134,7 +133,7 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends BipedModel<T> {
 	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		// SETUP //
 
-		float partialtick = ageInTicks - (float)entity.tickCount;
+		float partialtick = ageInTicks - (float) entity.tickCount;
 		float fullclimbanim = entity.getClimbingAnim(partialtick);
 		float climbanim = Math.min(fullclimbanim * 5F / 3F, 1F);
 		int attacktimer = entity.getAttackTimer();
@@ -181,7 +180,7 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends BipedModel<T> {
 			float f = apemode ? 1.4F : 1.0F;
 			this.rightArm.xRot += MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 2F * limbSwingAmount * 0.5F * f;
 			this.leftArm.xRot += MathHelper.cos(limbSwing * 0.6662F) * 2F * limbSwingAmount * 0.5F * f;
-			
+
 			if (!entity.getMainHandItem().isEmpty()) {
 				this.getArm(mainhand).xRot -= (float) Math.PI / 10F;
 			}
@@ -306,7 +305,7 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends BipedModel<T> {
 		} else if (entity.isDoingAction(ChimpanzeeAction.PLAYING_WITH_HELMET)) {
 			this.head.xRot = MathHelper.cos(ageInTicks * 0.55F) * 0.5F;
 			this.head.yRot = 0.0F;
-			this.head.zRot =  MathHelper.sin(ageInTicks * 0.55F) * 0.3F;
+			this.head.zRot = MathHelper.sin(ageInTicks * 0.55F) * 0.3F;
 		} else if (entity.isDoingAction(ChimpanzeeAction.JUMPING)) {
 			float f = -Math.abs(MathHelper.sin(ageInTicks * 0.2F));
 
@@ -314,7 +313,7 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends BipedModel<T> {
 			this.leftArm.x += -1.0F;
 			this.rightArm.xRot = (float) -Math.PI;
 			this.leftArm.xRot = (float) -Math.PI;
-			this.rightArm.zRot = f * 0.4F -0.4F;
+			this.rightArm.zRot = f * 0.4F - 0.4F;
 			this.leftArm.zRot = -f * 0.4F + 0.4F;
 		} else if (entity.isDoingAction(ChimpanzeeAction.DRUMMING)) {
 			float f = -Math.abs(MathHelper.sin(ageInTicks * 0.3F));
@@ -371,7 +370,7 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends BipedModel<T> {
 			this.leftArm.xRot = -2F + 1.5F * MathHelper.triangleWave((float) attacktimer - partialtick, 10F);
 			this.rightArm.yRot = 0F;
 			this.leftArm.yRot = 0F;
-		} 
+		}
 	}
 
 	protected HandSide getMainHand(T entityIn) {
@@ -409,7 +408,7 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends BipedModel<T> {
 			} else {
 				if (item instanceof BlockItem) {
 					return 1;
-				} else if (item instanceof ArmorItem && ((ArmorItem)item).getSlot() == EquipmentSlotType.HEAD) {
+				} else if (item instanceof ArmorItem && ((ArmorItem) item).getSlot() == EquipmentSlotType.HEAD) {
 					return 1;
 				}
 			}

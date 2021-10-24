@@ -12,6 +12,6 @@ public class ChimpPanicGoal extends PanicGoal {
 	}
 
 	public boolean canUse() {
-		return !this.chimpanzee.isBaby() && !this.chimpanzee.isOnFire() ? false : super.canUse();
+		return (this.chimpanzee.isBaby() || this.chimpanzee.isOnFire()) && super.canUse();
 	}
 }

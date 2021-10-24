@@ -20,9 +20,7 @@ public class ChimpOpenBunchGoal extends Goal {
 	@Override
 	public boolean canUse() {
 		if (this.chimpanzee.isHungry() && this.chimpanzee.getAction().canBeInterrupted()) {
-			if (this.chimpanzee.getMainHandItem().getItem() == NeapolitanItems.BANANA_BUNCH.get() || this.chimpanzee.getOffhandItem().getItem() == NeapolitanItems.BANANA_BUNCH.get()) {
-				return true;
-			}
+			return this.chimpanzee.getMainHandItem().getItem() == NeapolitanItems.BANANA_BUNCH.get() || this.chimpanzee.getOffhandItem().getItem() == NeapolitanItems.BANANA_BUNCH.get();
 		}
 
 		return false;
@@ -52,7 +50,7 @@ public class ChimpOpenBunchGoal extends Goal {
 			if (flag) {
 				this.chimpanzee.openBunch(hand);
 				this.chimpanzee.swingArms();
-				this.chimpanzee.level.broadcastEntityEvent(this.chimpanzee, (byte)4);
+				this.chimpanzee.level.broadcastEntityEvent(this.chimpanzee, (byte) 4);
 			}
 		}
 	}

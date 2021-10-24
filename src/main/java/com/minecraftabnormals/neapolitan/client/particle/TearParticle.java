@@ -11,9 +11,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class TearParticle extends SpriteTexturedParticle {
 	private TearParticle(ClientWorld world, double x, double y, double z, double motionX, double motionY, double motionZ) {
 		super(world, x, y, z, motionX, motionY, motionZ);
-		this.xd *= (double)0.1F;
-		this.yd *= (double)0.1F;
-		this.zd *= (double)0.1F;
+		this.xd *= 0.1F;
+		this.yd *= 0.1F;
+		this.zd *= 0.1F;
 		this.xd += motionX * 0.4D;
 		this.yd += motionY * 0.4D;
 		this.zd += motionZ * 0.4D;
@@ -23,7 +23,7 @@ public class TearParticle extends SpriteTexturedParticle {
 	}
 
 	public float getQuadSize(float scaleFactor) {
-		return this.quadSize * MathHelper.clamp(((float)this.age + scaleFactor) / (float)this.lifetime * 32.0F, 0.0F, 1.0F);
+		return this.quadSize * MathHelper.clamp(((float) this.age + scaleFactor) / (float) this.lifetime * 32.0F, 0.0F, 1.0F);
 	}
 
 	public void tick() {
@@ -34,10 +34,10 @@ public class TearParticle extends SpriteTexturedParticle {
 			this.remove();
 		} else {
 			this.move(this.xd, this.yd, this.zd);
-			this.xd *= (double)0.7F;
-			this.yd *= (double)0.7F;
-			this.zd *= (double)0.7F;
-			this.yd -= (double)this.gravity;
+			this.xd *= 0.7F;
+			this.yd *= 0.7F;
+			this.zd *= 0.7F;
+			this.yd -= this.gravity;
 			if (this.onGround) {
 				this.remove();
 			}

@@ -104,7 +104,7 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, IGrowa
 				double d0 = Math.abs(entityIn.getX() - entityIn.xOld);
 				double d1 = Math.abs(entityIn.getZ() - entityIn.zOld);
 				if (d0 >= (double) 0.003F || d1 >= (double) 0.003F) {
-					worldIn.playSound((PlayerEntity) null, pos, SoundEvents.GRASS_STEP, SoundCategory.BLOCKS, 1.5F, 0.8F + worldIn.random.nextFloat() * 0.4F);
+					worldIn.playSound(null, pos, SoundEvents.GRASS_STEP, SoundCategory.BLOCKS, 1.5F, 0.8F + worldIn.random.nextFloat() * 0.4F);
 				}
 			}
 		}
@@ -188,12 +188,12 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, IGrowa
 		}
 	}
 
-	public static enum StrawberryType implements IStringSerializable {
+	public enum StrawberryType implements IStringSerializable {
 		NONE("none"), RED("red"), WHITE("white");
 
 		private final String name;
 
-		private StrawberryType(String name) {
+		StrawberryType(String name) {
 			this.name = name;
 		}
 

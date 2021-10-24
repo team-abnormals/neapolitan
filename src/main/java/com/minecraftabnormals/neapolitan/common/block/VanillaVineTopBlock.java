@@ -52,9 +52,7 @@ public class VanillaVineTopBlock extends Block implements IGrowable {
 	public static boolean facingSameDirection(BlockState state, BlockState otherState) {
 		Block block = otherState.getBlock();
 		if (block == NeapolitanBlocks.VANILLA_VINE.get() || block == NeapolitanBlocks.VANILLA_VINE_PLANT.get()) {
-			if (otherState.getValue(FACING) == state.getValue(FACING)) {
-				return true;
-			}
+			return otherState.getValue(FACING) == state.getValue(FACING);
 		}
 
 		return false;

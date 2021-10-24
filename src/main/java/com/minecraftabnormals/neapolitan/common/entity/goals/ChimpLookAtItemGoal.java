@@ -1,25 +1,20 @@
 package com.minecraftabnormals.neapolitan.common.entity.goals;
 
-import java.util.EnumSet;
-
 import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
 import com.minecraftabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
 import com.minecraftabnormals.neapolitan.core.other.NeapolitanTags;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
-
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.FireworkRocketItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.TieredItem;
+import net.minecraft.item.*;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
+
+import java.util.EnumSet;
 
 public class ChimpLookAtItemGoal extends Goal {
 	private final ChimpanzeeEntity chimpanzee;
@@ -120,7 +115,7 @@ public class ChimpLookAtItemGoal extends Goal {
 			this.lookTimer = 60 + this.chimpanzee.getRandom().nextInt(20);
 			this.chimpanzee.setAction(ChimpanzeeAction.PLAYING_WITH_ITEM);
 		} else {
-			if (item instanceof ArmorItem && ((ArmorItem)item).getSlot() == EquipmentSlotType.HEAD && this.chimpanzee.getItemBySlot(EquipmentSlotType.HEAD).isEmpty()) {
+			if (item instanceof ArmorItem && ((ArmorItem) item).getSlot() == EquipmentSlotType.HEAD && this.chimpanzee.getItemBySlot(EquipmentSlotType.HEAD).isEmpty()) {
 				this.chimpanzee.setItemSlot(EquipmentSlotType.HEAD, this.itemStack);
 				this.chimpanzee.setItemInHand(Hand.MAIN_HAND, ItemStack.EMPTY);
 				this.chimpanzee.setDropChance(EquipmentSlotType.HEAD, 2.0F);
@@ -140,7 +135,7 @@ public class ChimpLookAtItemGoal extends Goal {
 	}
 
 	private void playEquipSound(Item item) {
-		SoundEvent soundevent = ((ArmorItem)item).getMaterial().getEquipSound();
+		SoundEvent soundevent = ((ArmorItem) item).getMaterial().getEquipSound();
 		this.chimpanzee.playSound(soundevent, 1.0F, 1.0F);
 	}
 

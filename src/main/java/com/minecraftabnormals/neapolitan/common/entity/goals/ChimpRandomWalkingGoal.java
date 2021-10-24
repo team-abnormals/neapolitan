@@ -1,15 +1,13 @@
 package com.minecraftabnormals.neapolitan.common.entity.goals;
 
-import java.util.List;
-import java.util.function.Predicate;
-
-import javax.annotation.Nullable;
-
 import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
-
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.util.math.vector.Vector3d;
+
+import javax.annotation.Nullable;
+import java.util.List;
+import java.util.function.Predicate;
 
 public class ChimpRandomWalkingGoal extends WaterAvoidingRandomWalkingGoal {
 	private final ChimpanzeeEntity chimpanzee;
@@ -21,7 +19,7 @@ public class ChimpRandomWalkingGoal extends WaterAvoidingRandomWalkingGoal {
 
 	@Override
 	public boolean canUse() {
-		return this.chimpanzee.isSitting() ? false : super.canUse();
+		return !this.chimpanzee.isSitting() && super.canUse();
 	}
 
 	@Nullable

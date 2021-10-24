@@ -12,6 +12,6 @@ public class ChimpAttackGoal extends MeleeAttackGoal {
 	}
 
 	public boolean canUse() {
-		return !this.chimpanzee.isBaby() ? super.canUse() : false;
+		return !this.chimpanzee.isBaby() && super.canUse();
 	}
 }

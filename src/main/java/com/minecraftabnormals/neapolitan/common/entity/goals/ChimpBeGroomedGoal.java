@@ -16,9 +16,9 @@ public class ChimpBeGroomedGoal extends Goal {
 
 	@Override
 	public boolean canUse() {
-		if (!this.chimpanzee.getAction().canBeInterrupted())  {
+		if (!this.chimpanzee.getAction().canBeInterrupted()) {
 			return false;
-		} else if (this.chimpanzee.isDoingAction(ChimpanzeeAction.CRYING))  {
+		} else if (this.chimpanzee.isDoingAction(ChimpanzeeAction.CRYING)) {
 			return false;
 		} else {
 			ChimpanzeeEntity groomer = this.chimpanzee.getGroomer();

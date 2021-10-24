@@ -75,7 +75,7 @@ public class ChimpShakeBundleGoal extends MoveToBlockGoal {
 	public void tick() {
 		super.tick();
 
-		this.chimpanzee.getLookControl().setLookAt(this.bundlePos.getX() + 0.5D, this.bundlePos.getY() + 0.5D, this.bundlePos.getZ() + 0.5D, (float)(this.chimpanzee.getMaxHeadYRot() + 20), (float)this.chimpanzee.getMaxHeadXRot());
+		this.chimpanzee.getLookControl().setLookAt(this.bundlePos.getX() + 0.5D, this.bundlePos.getY() + 0.5D, this.bundlePos.getZ() + 0.5D, (float) (this.chimpanzee.getMaxHeadYRot() + 20), (float) this.chimpanzee.getMaxHeadXRot());
 
 		if (this.chimpanzee.getY(1.0D) <= this.bundlePos.getY() && this.bundlePos.closerThan(this.chimpanzee.position().add(new Vector3d(0.0D, this.chimpanzee.getBbHeight(), 0.0D)), 1.0D)) {
 			this.chimpanzee.setDeltaMovement(this.chimpanzee.getDeltaMovement().multiply(0.4D, 0.0D, 0.4D).add(0.0D, 0.1D, 0.0D));

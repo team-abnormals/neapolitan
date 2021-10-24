@@ -12,7 +12,7 @@ public enum ChimpanzeeTypes {
 
 	private final int id;
 
-	private ChimpanzeeTypes(int id) {
+	ChimpanzeeTypes(int id) {
 		this.id = id;
 	}
 

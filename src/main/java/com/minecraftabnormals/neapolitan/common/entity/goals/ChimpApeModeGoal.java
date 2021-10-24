@@ -17,7 +17,7 @@ public class ChimpApeModeGoal extends RandomWalkingGoal {
 
 	@Override
 	public boolean canUse() {
-		return this.chimpanzee.getApeModeTime() > 0 ? super.canUse() : false;
+		return this.chimpanzee.getApeModeTime() > 0 && super.canUse();
 	}
 
 	@Nullable

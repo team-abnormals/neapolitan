@@ -3,7 +3,6 @@ package com.minecraftabnormals.neapolitan.common.block;
 import com.minecraftabnormals.neapolitan.common.entity.PlantainSpiderEntity;
 import com.minecraftabnormals.neapolitan.core.NeapolitanConfig;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEntities;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -16,7 +15,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
 public class BananaBundleBlock extends Block {
-	
+
 	public BananaBundleBlock(Properties properties) {
 		super(properties);
 	}
@@ -32,7 +31,7 @@ public class BananaBundleBlock extends Block {
 	@Override
 	public void wasExploded(World world, BlockPos pos, Explosion explosion) {
 		if (world instanceof ServerWorld) {
-			this.spawnSpider((ServerWorld)world, pos);
+			this.spawnSpider((ServerWorld) world, pos);
 		}
 	}
 

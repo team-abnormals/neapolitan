@@ -22,9 +22,7 @@ public class ChimpEatBananaGoal extends Goal {
 		if (this.chimpanzee.isHungry()) {
 			ItemStack snack = this.chimpanzee.getSnack();
 			if (!snack.isEmpty() && snack.getItem() != NeapolitanItems.BANANA_BUNCH.get()) {
-				if (this.chimpanzee.getAction().canBeInterrupted()) {
-					return true;
-				}
+				return this.chimpanzee.getAction().canBeInterrupted();
 			}
 		}
 

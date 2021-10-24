@@ -34,16 +34,16 @@ public class ChimpFollowOthersGoal extends Goal {
 			double d0 = Double.MAX_VALUE;
 			boolean flag = false;
 
-			for(ChimpanzeeEntity chimpanzeeentity1 : list) {
+			for (ChimpanzeeEntity chimpanzeeentity1 : list) {
 				double d1 = this.chimpanzee.distanceToSqr(chimpanzeeentity1);
-				
+
 				if (this.chimpanzee.isLeader() && d1 < 64.0D) {
 					return false;
 				}
 
 				if (!flag && chimpanzeeentity1.isLeader()) {
 					flag = true;
-					d0 = Double.MAX_VALUE;;
+					d0 = Double.MAX_VALUE;
 				}
 
 				if (flag == chimpanzeeentity1.isLeader() && !(d1 > d0)) {

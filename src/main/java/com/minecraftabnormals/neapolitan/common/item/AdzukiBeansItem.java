@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Random;
 
 public class AdzukiBeansItem extends Item {
-	private boolean magic;
+	private final boolean magic;
 
 	public AdzukiBeansItem(boolean magic, Properties builder) {
 		super(builder);

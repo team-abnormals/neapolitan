@@ -1,16 +1,15 @@
 package com.minecraftabnormals.neapolitan.common.entity.goals;
 
-import java.util.EnumSet;
-
 import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
 import com.minecraftabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
-
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.vector.Vector3d;
+
+import java.util.EnumSet;
 
 public class ChimpPlayWithHelmetGoal extends Goal {
 	private final ChimpanzeeEntity chimpanzee;
@@ -32,7 +31,7 @@ public class ChimpPlayWithHelmetGoal extends Goal {
 			return false;
 		} else {
 			ItemStack helmet = this.chimpanzee.getItemBySlot(EquipmentSlotType.HEAD);
-			if (!helmet.isEmpty() && helmet.getItem() instanceof ArmorItem && ((ArmorItem)helmet.getItem()).getSlot() == EquipmentSlotType.HEAD) {
+			if (!helmet.isEmpty() && helmet.getItem() instanceof ArmorItem && ((ArmorItem) helmet.getItem()).getSlot() == EquipmentSlotType.HEAD) {
 				this.itemStack = helmet;
 				return true;
 			}
@@ -75,7 +74,7 @@ public class ChimpPlayWithHelmetGoal extends Goal {
 			itementity.setPickUpDelay(40);
 			itementity.setThrower(this.chimpanzee.getUUID());
 			this.chimpanzee.level.addFreshEntity(itementity);
-			
+
 			this.chimpanzee.setItemSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
 			this.itemStack = this.chimpanzee.getItemBySlot(EquipmentSlotType.HEAD);
 		}

@@ -57,12 +57,12 @@ public class ChimpCryGoal extends Goal {
 	private boolean isParentCloseBy() {
 		List<ChimpanzeeEntity> list = this.chimpanzee.level.getEntitiesOfClass(ChimpanzeeEntity.class, this.chimpanzee.getBoundingBox().inflate(8.0D, 4.0D, 8.0D));
 
-		for(ChimpanzeeEntity chimpanzeentity : list) {
+		for (ChimpanzeeEntity chimpanzeentity : list) {
 			if (chimpanzeentity.getAge() >= 0) {
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
 }
