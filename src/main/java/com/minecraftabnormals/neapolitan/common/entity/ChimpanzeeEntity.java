@@ -78,13 +78,13 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	private ChimpanzeeEntity groomer;
 
 	private float climbAnim;
-	private float prevClimbAnim;
+	private float climbAnim0;
 
 	private float sitAnim;
 	private float sitAnim0;
 
 	private int headShakeAnim;
-	private int prevHeadShakeAnim;
+	private int headShakeAnim0;
 
 	public boolean isPartying = false;
 	BlockPos jukeboxPosition;
@@ -308,7 +308,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 			this.spawnParticles();
 		}
 
-		this.prevClimbAnim = this.climbAnim;
+		this.climbAnim0 = this.climbAnim;
 		if (this.isDoingAction(ChimpanzeeAction.CLIMBING)) {
 			this.climbAnim = Math.min(this.climbAnim + 0.125F, 0.75F);
 		} else if (this.isDoingAction(ChimpanzeeAction.HANGING, ChimpanzeeAction.SHAKING)) {
@@ -324,7 +324,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 			this.sitAnim = Math.max(this.sitAnim - 0.167F, 0);
 		}
 
-		this.prevHeadShakeAnim = this.headShakeAnim;
+		this.headShakeAnim0 = this.headShakeAnim;
 		if (this.headShakeAnim > 0) {
 			--this.headShakeAnim;
 		}
@@ -1027,7 +1027,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 
 	@OnlyIn(Dist.CLIENT)
 	public float getClimbingAnim(float partialTicks) {
-		return MathHelper.lerp(partialTicks, this.prevClimbAnim, this.climbAnim);
+		return MathHelper.lerp(partialTicks, this.climbAnim0, this.climbAnim);
 	}
 
 	@OnlyIn(Dist.CLIENT)
@@ -1037,7 +1037,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 
 	@OnlyIn(Dist.CLIENT)
 	public float getHeadShakeAnim(float partialTicks) {
-		return MathHelper.lerp(partialTicks, this.prevHeadShakeAnim, this.headShakeAnim);
+		return MathHelper.lerp(partialTicks, this.headShakeAnim0, this.headShakeAnim);
 	}
 
 	public void swingArms() {
@@ -1046,7 +1046,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 
 	public void shakeHead() {
 		this.headShakeAnim = 40;
-		this.prevHeadShakeAnim = 40;
+		this.headShakeAnim0 = 40;
 	}
 
 	public void shakeHead(IParticleData particleData) {

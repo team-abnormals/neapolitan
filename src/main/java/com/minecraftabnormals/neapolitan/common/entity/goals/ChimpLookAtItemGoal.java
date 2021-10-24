@@ -115,7 +115,7 @@ public class ChimpLookAtItemGoal extends Goal {
 			this.lookTimer = 60 + this.chimpanzee.getRandom().nextInt(20);
 			this.chimpanzee.setAction(ChimpanzeeAction.PLAYING_WITH_ITEM);
 		} else {
-			if (item instanceof ArmorItem && ((ArmorItem) item).getSlot() == EquipmentSlotType.HEAD && this.chimpanzee.getItemBySlot(EquipmentSlotType.HEAD).isEmpty()) {
+			if (!this.chimpanzee.isBaby() && item instanceof ArmorItem && ((ArmorItem) item).getSlot() == EquipmentSlotType.HEAD && this.chimpanzee.getItemBySlot(EquipmentSlotType.HEAD).isEmpty()) {
 				this.chimpanzee.setItemSlot(EquipmentSlotType.HEAD, this.itemStack);
 				this.chimpanzee.setItemInHand(Hand.MAIN_HAND, ItemStack.EMPTY);
 				this.chimpanzee.setDropChance(EquipmentSlotType.HEAD, 2.0F);
