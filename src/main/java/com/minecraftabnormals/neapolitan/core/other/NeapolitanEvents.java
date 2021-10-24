@@ -175,8 +175,8 @@ public class NeapolitanEvents {
 		Effect effect = event.getPotionEffect().getEffect();
 		LivingEntity entity = event.getEntityLiving();
 
-		if (entity.getEffect(NeapolitanEffects.VANILLA_SCENT.get()) != null) {
-			if (effect != NeapolitanEffects.VANILLA_SCENT.get()) {
+		if (entity.getEffect(NeapolitanEffects.VANILLA_SCENT.get()) != null && effect != NeapolitanEffects.VANILLA_SCENT.get()) {
+			if (effect.getRegistryName() != null && !effect.getRegistryName().equals(new ResourceLocation("autumnity", "foul_taste"))) {
 				event.setResult(Result.DENY);
 			}
 		}
@@ -191,12 +191,12 @@ public class NeapolitanEvents {
 		if (event.getType().equals(VillagerProfession.FARMER)) {
 			TradeUtil.addVillagerTrades(event, TradeUtil.APPRENTICE,
 					new AbnormalsTrade(NeapolitanItems.STRAWBERRIES.get(), 24, 1, 16, 2)
-					);
+			);
 
 			TradeUtil.addVillagerTrades(event, TradeUtil.JOURNEYMAN,
 					new AbnormalsTrade(NeapolitanItems.BANANA.get(), 8, 1, 12, 10),
 					new AbnormalsTrade(3, NeapolitanItems.STRAWBERRY_SCONES.get(), 12, 12, 10)
-					);
+			);
 
 			TradeUtil.addVillagerTrades(event, TradeUtil.EXPERT,
 					new AbnormalsTrade(3, NeapolitanItems.VANILLA_CAKE.get(), 1, 12, 15),
@@ -204,16 +204,16 @@ public class NeapolitanEvents {
 					new AbnormalsTrade(3, NeapolitanItems.STRAWBERRY_CAKE.get(), 1, 12, 15),
 					new AbnormalsTrade(3, NeapolitanItems.BANANA_CAKE.get(), 1, 12, 15),
 					new AbnormalsTrade(3, NeapolitanItems.MINT_CAKE.get(), 1, 12, 15)
-					);
+			);
 		}
 
 		TradeUtil.addVillagerTrades(event, VillagerProfession.BUTCHER, TradeUtil.MASTER,
 				new AbnormalsTrade(NeapolitanItems.MINT_LEAVES.get(), 10, 1, 12, 30)
-				);
+		);
 
 		TradeUtil.addVillagerTrades(event, VillagerProfession.FLETCHER, TradeUtil.EXPERT,
 				new AbnormalsTrade(1, NeapolitanItems.BANANARROW.get(), 4, 12, 15)
-				);
+		);
 	}
 
 	@SubscribeEvent
@@ -224,11 +224,11 @@ public class NeapolitanEvents {
 				new AbnormalsTrade(2, NeapolitanBlocks.BANANA_FROND.get().asItem(), 1, 5, 1),
 				new AbnormalsTrade(2, NeapolitanItems.MINT_SPROUT.get(), 1, 5, 1),
 				new AbnormalsTrade(2, NeapolitanItems.ADZUKI_BEANS.get(), 1, 5, 1)
-				);
+		);
 
 		TradeUtil.addRareWandererTrades(event,
 				new AbnormalsTrade(1, NeapolitanItems.WHITE_STRAWBERRIES.get(), 1, 8, 1),
 				new AbnormalsTrade(3, NeapolitanItems.MAGIC_BEANS.get(), 1, 6, 1)
-				);
+		);
 	}
 }
