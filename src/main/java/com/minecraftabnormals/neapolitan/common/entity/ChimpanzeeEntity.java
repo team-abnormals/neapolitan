@@ -35,6 +35,7 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.math.vector.Vector3i;
 import net.minecraft.world.*;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
@@ -370,7 +371,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 
 			if (this.shouldClimb() && this.verticalCollision) {
 				if (--this.climbingStamina <= 0) {
-					this.climbingStamina = -20 - this.random.nextInt(20);
+					this.climbingStamina = -20;
 				}
 			} else if (this.onGround) {
 				if (this.climbingStamina < 0) {
@@ -434,23 +435,46 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	}
 
 	private void handleClimbing() {
-		this.setBesideClimbableBlock(this.horizontalCollision);
+		Direction newfacing = Direction.DOWN;
 
-		if (this.isDoingAction(ChimpanzeeAction.CLIMBING)) {
-			Direction newfacing = Direction.DOWN;
+		for (Direction direction : Direction.Plane.HORIZONTAL) {
+			Vector3i normal = direction.getNormal();
+			Vector3d vector3d = this.collide(Vector3d.atLowerCornerOf(normal));
 
-			for (Direction direction : Direction.Plane.HORIZONTAL) {
-				Vector3d vector3d = this.collide(Vector3d.atLowerCornerOf(direction.getNormal()));
-
-				if (Math.abs(vector3d.get(direction.getAxis())) <= 0.2D) {
+			if (vector3d.get(direction.getAxis()) == 0.0D) {
+				int x = MathHelper.floor(this.position().x + normal.getX() * this.getBbWidth() * 0.51F);
+				int y = MathHelper.floor(this.position().y);
+				int z = MathHelper.floor(this.position().z + normal.getZ() * this.getBbWidth() * 0.51F);
+				BlockPos blockpos = new BlockPos(x, y, z);
+				BlockState blockstate = this.level.getBlockState(blockpos);
+				if (blockstate.getCollisionShape(this.level, blockpos).isEmpty()) {
+					BlockPos blockpos1 = blockpos.below();
+					BlockState blockstate1 = this.level.getBlockState(blockpos1);
+					if (blockstate1.collisionExtendsVertically(this.level, blockpos1, this) && !blockstate1.is(NeapolitanTags.Blocks.AGILITY_NON_CLIMBABLE)) {
+						newfacing = direction;
+						if (direction == this.entityData.get(FACING)) {
+							break;
+						}
+					}
+				} else if (!blockstate.is(NeapolitanTags.Blocks.AGILITY_NON_CLIMBABLE)) {
 					newfacing = direction;
 					if (direction == this.entityData.get(FACING)) {
 						break;
 					}
 				}
 			}
+		}
 
+		if (this.horizontalCollision) {
 			this.setFacing(newfacing);
+			if (newfacing == Direction.DOWN) {
+				this.climbingStamina = -20;
+				this.setBesideClimbableBlock(false);
+			} else {
+				this.setBesideClimbableBlock(true);
+			}
+		} else {
+			this.setBesideClimbableBlock(false);
 		}
 	}
 
@@ -1079,6 +1103,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	class LookHelperController extends LookController {
 
 		public LookHelperController() {
+			
 			super(ChimpanzeeEntity.this);
 		}
 
