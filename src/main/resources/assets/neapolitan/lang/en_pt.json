@@ -73,7 +73,7 @@
   "item.neapolitan.strawberry_pips": "Bits o' Love Capers",
   "item.neapolitan.strawberries": "Capers o' Love",
   "item.neapolitan.strawberry_ice_cream": "Frosty Strawberry Slush",
-  "item.neapolitan.strawberry_scones": "Strawberry Scones",
+  "item.neapolitan.strawberry_scones": "Soft Strawberry Biscuits",
   "item.neapolitan.strawberry_milkshake": "Rum o' Strawberry",
 
   "item.neapolitan.vanilla_pods": "Gout Bringer",
@@ -83,7 +83,7 @@
   "item.neapolitan.vanilla_milkshake": "Rum o' Vanilla",
   "item.neapolitan.vanilla_fudge": "Chunk o' Sticky Sweets",
 
-  "item.neapolitan.banana": "Yellow Boomerang",
+  "item.neapolitan.banana": "Yeller Boomerang",
   "item.neapolitan.banana_bunch": "Bunch o' Boomerangs",
   "item.neapolitan.dried_banana": "Sunburnt banana",
   "item.neapolitan.banana_ice_cream": "Frosty Banana Slush",
@@ -113,9 +113,9 @@
   "item.neapolitan.vanilla_chocolate_fingers": "Fingers o' Blackbeard",
   "item.neapolitan.strawberry_banana_smoothie": "Strawberry banana grog",
   "item.neapolitan.mint_chocolate": "Minty cacao",
-  "item.neapolitan.strawberry_bean_bonbons": "Treats o' Scarlet Love",
+  "item.neapolitan.strawberry_bean_bonbons": "Scarlet Love Treats",
   "item.neapolitan.adzuki_curry": "Scarlet Tack Dip",
-  "item.neapolitan.neapolitan_ice_cream": "Neapolitan's Paradise",
+  "item.neapolitan.neapolitan_ice_cream": "Slush o' Neapolitan Heaven",
 
   "item.neapolitan.music_disc_hullabaloo": "Shanty",
   "item.neapolitan.music_disc_hullabaloo.desc": "Mista Jub - Hullabaloo",
@@ -132,7 +132,7 @@
 
   "effect.neapolitan.sugar_rush": "SUGARRRRR",
   "effect.neapolitan.vanilla_scent": "Fragrant",
-  "effect.neapolitan.agility": "Swashbuckler's Stride",
+  "effect.neapolitan.agility": "Mast Climber",
   "effect.neapolitan.slipping": "Bad Sea Legs",
   "effect.neapolitan.berserking": "Scourge o' the sea",
   "effect.neapolitan.harmony": "Yellow Jack",
@@ -146,7 +146,7 @@
   "advancements.neapolitan.husbandry.place_all_chocolate_blocks.title": "Plate Fleet o' Cacao",
   "advancements.neapolitan.husbandry.place_all_chocolate_blocks.description": "Forge a ship out o' every type of blocks made from the cacao o' paradise.",
 
-  "advancements.neapolitan.husbandry.harvest_white_strawberries.title": "Dinner's on Mizzenmast",
+  "advancements.neapolitan.husbandry.harvest_white_strawberries.title": "Galley on Mizzenmast",
   "advancements.neapolitan.husbandry.harvest_white_strawberries.description": "Plunder a bush o' love capers high up on the sky to make 'em pearly. Move smartly, lest ye get airsick",
 
   "advancements.neapolitan.adventure.chimpanzee_attack.title": "Pressganged",
@@ -157,7 +157,7 @@
 
   "subtitles.neapolitan.entity.chimpanzee.scream": "Banana man mutinies",
   "subtitles.neapolitan.entity.chimpanzee.death": "Banana man overboard",
-  "subtitles.neapolitan.entity.chimpanzee.eat": "Banana man eats their stock",
+  "subtitles.neapolitan.entity.chimpanzee.eat": "Banana man enjoyin' bananas",
   "subtitles.neapolitan.entity.chimpanzee.howl": "Banana man howls",
   "subtitles.neapolitan.entity.chimpanzee.hurt": "Banana man be hurt",
   "subtitles.neapolitan.entity.chimpanzee.ambient": "Banana man ooo-ooo aaa-aaas",
@@ -165,7 +165,7 @@
   "subtitles.neapolitan.entity.chimpanzee.swing": "Banana man flyin'",
 
   "subtitles.neapolitan.item.ice_cubes.eat": "Crunchin'",
-  "subtitles.neapolitan.item.banana_bunch.open": "Bunch o' bananas be looted",
+  "subtitles.neapolitan.item.banana_bunch.open": "Bunch o' boomerangs be split",
 
   "block.minecraft.banner.mca_chimpanzee.black": "Black figurehead o' banana man",
   "block.minecraft.banner.mca_chimpanzee.red": "Red figurehead o' banana man",
