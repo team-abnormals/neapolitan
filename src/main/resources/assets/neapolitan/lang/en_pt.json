@@ -1,0 +1,186 @@
+{
+  "block.neapolitan.vanilla_ice_cream_block": "Chunk o' Vanilla Frost",
+  "block.neapolitan.chocolate_ice_cream_block": "Chunk o' Chocolate Frost",
+  "block.neapolitan.strawberry_ice_cream_block": "Chunk o' Strawberry Frost",
+  "block.neapolitan.banana_ice_cream_block": "Chunk o' Banana Frost",
+  "block.neapolitan.mint_ice_cream_block": "Chunk o' Mint Frost",
+  "block.neapolitan.adzuki_ice_cream_block": "Chunk o' Adzuki Frost",
+
+  "block.neapolitan.milk_cauldron": "Pot o' bovine juice",
+
+  "block.neapolitan.chocolate_block": "Chunk o' Chocolate",
+  "block.neapolitan.chocolate_bricks": "Bricks o' Chocolate",
+  "block.neapolitan.chocolate_brick_slab": "Slab o' chocolate bricks",
+  "block.neapolitan.chocolate_brick_stairs": "Stairs o' chocolate bricks",
+  "block.neapolitan.chocolate_brick_wall": "Wall o' chocolate bricks",
+  "block.neapolitan.chocolate_brick_vertical_slab": "Standin' slab o' chocolate bricks",
+
+  "block.neapolitan.chiseled_chocolate_bricks": "Carv'd bricks o' chocolate",
+
+  "block.neapolitan.chocolate_tiles": "Tiles o' chocolate",
+  "block.neapolitan.chocolate_tile_slab": "Slab o' chocolate tiles",
+  "block.neapolitan.chocolate_tile_stairs": "Stairs o' chocolate tiles",
+  "block.neapolitan.chocolate_tile_wall": "Wall o' chocolate tiles",
+  "block.neapolitan.chocolate_tile_vertical_slab": "Standin' slab o' chocolate tiles",
+
+  "block.neapolitan.frond_thatch": "Chunk o' frond fiber",
+  "block.neapolitan.frond_thatch_stairs": "Stairs o' frond fiber",
+  "block.neapolitan.frond_thatch_slab": "Slab o' frond fiber",
+  "block.neapolitan.frond_thatch_vertical_slab": "Standin' slab o' frond fiber",
+
+  "block.neapolitan.strawberry_basket": "Basket o' Love Capers",
+  "block.neapolitan.white_strawberry_basket": "Basket o' Pearly Capers",
+  "block.neapolitan.vanilla_pod_block": "Chunk o' Vanilla",
+  "block.neapolitan.dried_vanilla_pod_block": "Chunk o' Burnt Vanilla",
+  "block.neapolitan.banana_crate": "Crate o' Bananas",
+  "block.neapolitan.mint_basket": "Basket o' Spicy Leaves",
+  "block.neapolitan.adzuki_crate": "Crate o' Adzuki",
+  "block.neapolitan.roasted_adzuki_crate": "Crate o' Roasted Adzuki",
+
+  "block.neapolitan.strawberry_bush": "Bush o' Lover Capers",
+  "block.neapolitan.vanilla_vine": "Vine o' Gout",
+  "block.neapolitan.vanilla_vine_plant": "Vine o' Gout",
+  "block.neapolitan.mint": "Spicy leaves",
+
+  "block.neapolitan.banana_stalk": "Mast o' banana",
+  "block.neapolitan.carved_banana_stalk": "Carv'd mast o' banana",
+  "block.neapolitan.banana_bundle": "Bundle o' Bananas",
+
+  "block.neapolitan.small_banana_frond": "Tiny frond o' banana",
+  "block.neapolitan.banana_frond": "Frond o' Banana",
+  "block.neapolitan.large_banana_frond": "Giant frond o' banana",
+
+  "block.neapolitan.adzuki_sprouts": "Wee Sprout o' Beans",
+  "block.neapolitan.adzuki_soil": "Bean Infest'd Dirt",
+  "block.neapolitan.beanstalk": "Jack's ladder",
+  "block.neapolitan.beanstalk_thorns": "Thorns on Jack's ladder",
+
+  "block.neapolitan.chocolate_cake": "Duff o' Chocolate",
+  "block.neapolitan.strawberry_cake": "Duff o' Love Capers",
+  "block.neapolitan.vanilla_cake": "Duff o' Vanilla",
+  "block.neapolitan.banana_cake": "Duff o' Banana",
+  "block.neapolitan.mint_cake": "Duff o' Spicy Leaves",
+  "block.neapolitan.adzuki_cake": "Duff o' Adzuki",
+
+  "item.neapolitan.milk_bottle": "Bottle o' Bovine Juice",
+  "item.neapolitan.ice_cubes": "Doubloons o' frost",
+
+  "item.neapolitan.chocolate_bar": "Cacao o' Paradise",
+  "item.neapolitan.chocolate_ice_cream": "Frosty Chocolate Slush",
+  "item.neapolitan.chocolate_milkshake": "Rum o' Chocolate",
+  "item.neapolitan.chocolate_spider_eye": "Spider eyeballs w' cacao",
+
+  "item.neapolitan.strawberry_pips": "Bits o' Love Capers",
+  "item.neapolitan.strawberries": "Capers o' Love",
+  "item.neapolitan.strawberry_ice_cream": "Frosty Strawberry Slush",
+  "item.neapolitan.strawberry_scones": "Soft Strawberry Biscuits",
+  "item.neapolitan.strawberry_milkshake": "Rum o' Strawberry",
+
+  "item.neapolitan.vanilla_pods": "Gout Bringer",
+  "item.neapolitan.dried_vanilla_pods": "Pod o' Fragrance",
+  "item.neapolitan.vanilla_ice_cream": "Frosty Vanilla Slush",
+  "item.neapolitan.vanilla_pudding": "Sweet Fragrant Pudding",
+  "item.neapolitan.vanilla_milkshake": "Rum o' Vanilla",
+  "item.neapolitan.vanilla_fudge": "Chunk o' Sticky Sweets",
+
+  "item.neapolitan.banana": "Yeller Boomerang",
+  "item.neapolitan.banana_bunch": "Bunch o' Boomerangs",
+  "item.neapolitan.dried_banana": "Sunburnt banana",
+  "item.neapolitan.banana_ice_cream": "Frosty Banana Slush",
+  "item.neapolitan.banana_milkshake": "Banana Rum",
+  "item.neapolitan.banana_bread": "Bun o' Banana",
+
+  "item.neapolitan.bananarrow": "Bananabolt",
+
+  "item.neapolitan.mint_sprout": "Seed o' Spice",
+  "item.neapolitan.mint_leaves": "Spicy Leaves",
+  "item.neapolitan.mint_chops": "Spicy Briskets o' Sheep",
+  "item.neapolitan.cooked_mint_chops": "Roasted Mint Delight",
+  "item.neapolitan.mint_ice_cream": "Frosty Mint Slush",
+  "item.neapolitan.mint_milkshake": "Mint Rum",
+  "item.neapolitan.mint_candies": "Spicy Sweets",
+
+  "item.neapolitan.adzuki_beans": "Bloody beans",
+  "item.neapolitan.roasted_adzuki_beans": "Roasted scarlet beans",
+  "item.neapolitan.adzuki_bun": "Bun o' bean mush",
+  "item.neapolitan.adzuki_stew": "Adzuki goulash",
+  "item.neapolitan.adzuki_ice_cream": "Frosty Bean Slush",
+  "item.neapolitan.adzuki_milkshake": "Rum o' Scarlet Beans",
+  "item.neapolitan.magic_beans": "Beans o' Witchery",
+
+  "item.neapolitan.chocolate_strawberries": "Strawberries n' Cacao",
+  "item.neapolitan.white_strawberries": "Pearly capers",
+  "item.neapolitan.vanilla_chocolate_fingers": "Fingers o' Blackbeard",
+  "item.neapolitan.strawberry_banana_smoothie": "Strawberry banana grog",
+  "item.neapolitan.mint_chocolate": "Minty cacao",
+  "item.neapolitan.strawberry_bean_bonbons": "Scarlet Love Treats",
+  "item.neapolitan.adzuki_curry": "Scarlet Tack Dip",
+  "item.neapolitan.neapolitan_ice_cream": "Slush o' Neapolitan Heaven",
+
+  "item.neapolitan.music_disc_hullabaloo": "Shanty",
+  "item.neapolitan.music_disc_hullabaloo.desc": "Mista Jub - Hullabaloo",
+  "item.neapolitan.chimpanzee_banner_pattern": "Flag Pattern",
+  "item.neapolitan.chimpanzee_banner_pattern.desc": "Figurehead o' banana man",
+
+  "item.neapolitan.chimpanzee_spawn_egg": "Banana Man Cackle Fruit",
+  "item.neapolitan.plantain_spider_spawn_egg": "Banana rat cackle fruit",
+
+  "entity.neapolitan.banana_peel": "Peel o' Banana",
+  "entity.neapolitan.chimpanzee": "Banana Man",
+  "entity.neapolitan.plantain_spider": "Banana Rat",
+  "entity.neapolitan.bananarrow": "Bananabolt",
+
+  "effect.neapolitan.sugar_rush": "SUGARRRRR",
+  "effect.neapolitan.vanilla_scent": "Fragrant",
+  "effect.neapolitan.agility": "Mast Climber",
+  "effect.neapolitan.slipping": "Bad Sea Legs",
+  "effect.neapolitan.berserking": "Scourge o' the sea",
+  "effect.neapolitan.harmony": "Yellow Jack",
+
+  "advancements.neapolitan.husbandry.creeper_heal.title": "Cannon o' love",
+  "advancements.neapolitan.husbandry.creeper_heal.description": "Have ye bad humors treated by a Pirate Creeper who blow'd tharr in a bush o' love",
+
+  "advancements.neapolitan.husbandry.vanilla_poison.title": "Tharr be knavery aboard",
+  "advancements.neapolitan.husbandry.vanilla_poison.description": "Break a bringer o' gout with ye cutters, lest its spirits haunts ye",
+
+  "advancements.neapolitan.husbandry.place_all_chocolate_blocks.title": "Plate Fleet o' Cacao",
+  "advancements.neapolitan.husbandry.place_all_chocolate_blocks.description": "Forge a ship out o' every type of blocks made from the cacao o' paradise.",
+
+  "advancements.neapolitan.husbandry.harvest_white_strawberries.title": "Galley on Mizzenmast",
+  "advancements.neapolitan.husbandry.harvest_white_strawberries.description": "Plunder a bush o' love capers high up on the sky to make 'em pearly. Move smartly, lest ye get airsick",
+
+  "advancements.neapolitan.adventure.chimpanzee_attack.title": "Pressganged",
+  "advancements.neapolitan.adventure.chimpanzee_attack.description": "Get ye some bananas on a bolt 'n shoot a sailor with it to send th' banana men after him",
+
+  "death.attack.neapolitan.beanstalkThorns": "Pirate %1$s was too busy climbin' to notice th' spikes on Jack's ladder",
+  "death.attack.neapolitan.beanstalkThorns.player": "%1$s was keelhaul'd by th' spikes on Jack's ladder while tryin' to escape Pirate %2$s",
+
+  "subtitles.neapolitan.entity.chimpanzee.scream": "Banana man mutinies",
+  "subtitles.neapolitan.entity.chimpanzee.death": "Banana man overboard",
+  "subtitles.neapolitan.entity.chimpanzee.eat": "Banana man enjoyin' bananas",
+  "subtitles.neapolitan.entity.chimpanzee.howl": "Banana man howls",
+  "subtitles.neapolitan.entity.chimpanzee.hurt": "Banana man be hurt",
+  "subtitles.neapolitan.entity.chimpanzee.ambient": "Banana man ooo-ooo aaa-aaas",
+  "subtitles.neapolitan.entity.chimpanzee.step": "Banana man vibin'",
+  "subtitles.neapolitan.entity.chimpanzee.swing": "Banana man flyin'",
+
+  "subtitles.neapolitan.item.ice_cubes.eat": "Crunchin'",
+  "subtitles.neapolitan.item.banana_bunch.open": "Bunch o' boomerangs be split",
+
+  "block.minecraft.banner.mca_chimpanzee.black": "Black figurehead o' banana man",
+  "block.minecraft.banner.mca_chimpanzee.red": "Red figurehead o' banana man",
+  "block.minecraft.banner.mca_chimpanzee.green": "Green figurehead o' banana man",
+  "block.minecraft.banner.mca_chimpanzee.brown": "Brown figurehead o' banana man",
+  "block.minecraft.banner.mca_chimpanzee.blue": "Blue figurehead o' banana man",
+  "block.minecraft.banner.mca_chimpanzee.purple": "Purple figurehead o' banana man",
+  "block.minecraft.banner.mca_chimpanzee.cyan": "Cyan figurehead o' banana man",
+  "block.minecraft.banner.mca_chimpanzee.light_gray": "Light Gray figurehead o' banana man",
+  "block.minecraft.banner.mca_chimpanzee.gray": "Gray figurehead o' banana man",
+  "block.minecraft.banner.mca_chimpanzee.pink": "Pink figurehead o' banana man",
+  "block.minecraft.banner.mca_chimpanzee.lime": "Lime figurehead o' banana man",
+  "block.minecraft.banner.mca_chimpanzee.yellow": "Yellow figurehead o' banana man",
+  "block.minecraft.banner.mca_chimpanzee.light_blue": "Light Blue figurehead o' banana man",
+  "block.minecraft.banner.mca_chimpanzee.magenta": "Magenta figurehead o' banana man",
+  "block.minecraft.banner.mca_chimpanzee.orange": "Orange figurehead o' banana man",
+  "block.minecraft.banner.mca_chimpanzee.white": "White figurehead o' banana man"
+}
