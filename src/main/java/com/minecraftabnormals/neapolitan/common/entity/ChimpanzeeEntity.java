@@ -370,7 +370,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 
 			if (this.shouldClimb() && this.verticalCollision) {
 				if (--this.climbingStamina <= 0) {
-					this.climbingStamina = -20 - this.random.nextInt(20);
+					this.climbingStamina = -20;
 				}
 			} else if (this.onGround) {
 				if (this.climbingStamina < 0) {
