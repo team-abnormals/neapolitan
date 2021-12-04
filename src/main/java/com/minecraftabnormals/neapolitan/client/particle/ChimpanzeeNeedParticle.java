@@ -20,14 +20,17 @@ public class ChimpanzeeNeedParticle extends SpriteTexturedParticle {
 		this.hasPhysics = false;
 	}
 
+	@Override
 	public IParticleRenderType getRenderType() {
 		return IParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
 	}
 
+	@Override
 	public float getQuadSize(float scaleFactor) {
 		return this.quadSize * MathHelper.clamp(((float) this.age + scaleFactor) / (float) this.lifetime * 32.0F, 0.0F, 1.0F);
 	}
 
+	@Override
 	public void tick() {
 		this.xo = this.x;
 		this.yo = this.y;

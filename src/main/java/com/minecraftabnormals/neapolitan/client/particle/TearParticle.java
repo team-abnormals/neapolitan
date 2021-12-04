@@ -22,10 +22,12 @@ public class TearParticle extends SpriteTexturedParticle {
 		this.lifetime = (int) (20.0D / (Math.random() * 0.8D + 0.2D));
 	}
 
+	@Override
 	public float getQuadSize(float scaleFactor) {
 		return this.quadSize * MathHelper.clamp(((float) this.age + scaleFactor) / (float) this.lifetime * 32.0F, 0.0F, 1.0F);
 	}
 
+	@Override
 	public void tick() {
 		this.xo = this.x;
 		this.yo = this.y;
@@ -44,6 +46,7 @@ public class TearParticle extends SpriteTexturedParticle {
 		}
 	}
 
+	@Override
 	public IParticleRenderType getRenderType() {
 		return IParticleRenderType.PARTICLE_SHEET_OPAQUE;
 	}

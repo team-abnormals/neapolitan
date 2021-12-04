@@ -19,15 +19,18 @@ public class MintBoostParticle extends SpriteTexturedParticle {
 		this.lifetime = (int) (20.0D / (Math.random() * 0.8D + 0.2D));
 	}
 
+	@Override
 	public IParticleRenderType getRenderType() {
 		return IParticleRenderType.PARTICLE_SHEET_OPAQUE;
 	}
 
+	@Override
 	public void move(double x, double y, double z) {
 		this.setBoundingBox(this.getBoundingBox().move(x, y, z));
 		this.setLocationFromBoundingbox();
 	}
 
+	@Override
 	public void tick() {
 		this.xo = this.x;
 		this.yo = this.y;
