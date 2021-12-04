@@ -14,7 +14,6 @@ public class NeapolitanTags {
 		public static final ITag<Block> VANILLA_PLANTABLE_ON = BlockTags.bind(id("vanilla_plantable_on"));
 		public static final ITag<Block> UNAFFECTED_BY_MINT = BlockTags.bind(id("unaffected_by_mint"));
 		public static final ITag<Block> CHIMPANZEE_JUMPING_BLOCKS = BlockTags.bind(id("chimpanzee_jumping_blocks"));
-		public static final ITag<Block> AGILITY_NON_CLIMBABLE = BlockTags.bind(id("agility_non_climbable"));
 	}
 
 	public static class Items {
