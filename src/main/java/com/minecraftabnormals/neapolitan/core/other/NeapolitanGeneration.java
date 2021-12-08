@@ -36,8 +36,6 @@ public class NeapolitanGeneration {
 		if ((category.equals(Biome.Category.JUNGLE) || biome.getPath().contains("rainforest"))) {
 			if (NeapolitanConfig.COMMON.plantainSpiderSpawning.get())
 				spawns.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(NeapolitanEntities.PLANTAIN_SPIDER.get(), 120, 3, 5));
-			if (NeapolitanConfig.COMMON.chimpanzeeSpawning.get())
-				spawns.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(NeapolitanEntities.CHIMPANZEE.get(), 45, 3, 4));
 		}
 
 		if (category.equals(Biome.Category.PLAINS) && NeapolitanConfig.COMMON.strawberryBushGenerationChance.get() > 0)
@@ -57,7 +55,12 @@ public class NeapolitanGeneration {
 				generation.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NeapolitanFeatures.Configured.BANANA_PLANT_BEACH);
 
 			if (category.equals(Biome.Category.JUNGLE) && NeapolitanConfig.COMMON.bananaPlantJungleGeneration.get()) {
-				if (!DataUtil.matchesKeys(biome, Biomes.BAMBOO_JUNGLE) && !DataUtil.matchesKeys(biome, Biomes.BAMBOO_JUNGLE_HILLS)) {
+				if (biome.getPath().contains("rainforest")) {
+					if (BiomeDictionary.hasType(key, BiomeDictionary.Type.FOREST))
+						generation.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NeapolitanFeatures.Configured.BANANA_PLANT_RARE);
+					else
+						generation.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NeapolitanFeatures.Configured.BANANA_PLANT_VERY_RARE);
+				} else if (!DataUtil.matchesKeys(biome, Biomes.BAMBOO_JUNGLE) && !DataUtil.matchesKeys(biome, Biomes.BAMBOO_JUNGLE_HILLS)) {
 					if (!DataUtil.matchesKeys(biome, Biomes.JUNGLE_EDGE) && !DataUtil.matchesKeys(biome, Biomes.MODIFIED_JUNGLE_EDGE))
 						generation.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NeapolitanFeatures.Configured.BANANA_PLANT_JUNGLE);
 					else
@@ -65,12 +68,7 @@ public class NeapolitanGeneration {
 				}
 			}
 
-			if (biome.getPath().contains("rainforest") && NeapolitanConfig.COMMON.bananaPlantJungleGeneration.get()) {
-				if (BiomeDictionary.hasType(key, BiomeDictionary.Type.FOREST))
-					generation.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NeapolitanFeatures.Configured.BANANA_PLANT_RARE);
-				else
-					generation.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NeapolitanFeatures.Configured.BANANA_PLANT_VERY_RARE);
-			}
+
 		}
 	}
 }
