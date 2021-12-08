@@ -104,14 +104,12 @@ public class BananaPlantFeature extends Feature<NoFeatureConfig> {
 			if (NeapolitanConfig.COMMON.chimpanzeeSpawning.get() && random.nextInt(3) != 0 && level.getBiome(pos).getBiomeCategory().equals(Biome.Category.JUNGLE)) {
 				Direction.Plane.HORIZONTAL.stream().forEach((direction -> {
 					BlockPos offset = pos.relative(direction);
-					if (level.getBlockState(offset).isValidSpawn(level, offset, NeapolitanEntities.CHIMPANZEE.get())) {
-						ChimpanzeeEntity chimp = NeapolitanEntities.CHIMPANZEE.get().create(level.getLevel());
-						if (chimp != null) {
-							chimp.moveTo(offset.getX() + 0.5F, offset.getY() + 0.5F, offset.getZ() + 0.5F, 0.0F, 0.0F);
-							if (random.nextInt(3) == 0) chimp.setBaby(true);
-							chimp.finalizeSpawn(level, level.getCurrentDifficultyAt(pos), SpawnReason.STRUCTURE, null, null);
-							level.addFreshEntity(chimp);
-						}
+					ChimpanzeeEntity chimp = NeapolitanEntities.CHIMPANZEE.get().create(level.getLevel());
+					if (chimp != null && ChimpanzeeEntity.canChimpanzeeSpawn(chimp, level, offset)) {
+						chimp.moveTo(offset.getX() + 0.5F, offset.getY() + 0.5F, offset.getZ() + 0.5F, 0.0F, 0.0F);
+						if (random.nextInt(3) == 0) chimp.setBaby(true);
+						chimp.finalizeSpawn(level, level.getCurrentDifficultyAt(pos), SpawnReason.STRUCTURE, null, null);
+						level.addFreshEntity(chimp);
 					}
 				}));
 			}
