@@ -20,7 +20,7 @@ public class NeapolitanTags {
 		public static final ITag<Item> CHIMPANZEE_FOOD = ItemTags.bind(id("chimpanzee_food"));
 		public static final ITag<Item> CHIMPANZEE_SNACKS = ItemTags.bind(id("chimpanzee_snacks"));
 		public static final ITag<Item> CHIMPANZEE_APE_MODE_ITEMS = ItemTags.bind(id("chimpanzee_ape_mode_items"));
-		public static final ITag<Item> CHIMPANZEE_SHAKABLE_BUCKET_ITEMS = ItemTags.bind(id("chimpanzee_shakable_bucket_items"));
+		public static final ITag<Item> CHIMPANZEE_SHAKEABLE_BUCKETS = ItemTags.bind(id("chimpanzee_shakeable_buckets"));
 		public static final ITag<Item> CHIMPANZEE_FAVORITES = ItemTags.bind(id("chimpanzee_favorites"));
 		public static final ITag<Item> HIDES_CHIMPANZEE_EARS = ItemTags.bind(id("hides_chimpanzee_ears"));
 	}

@@ -89,7 +89,7 @@ public class ChimpLookAtItemGoal extends Goal {
 			this.doItemInteraction();
 		} else if (chimpanzee.isDoingAction(ChimpanzeeAction.PLAYING_WITH_ITEM)) {
 			if (this.lookTimer == 20) {
-				if (this.chimpanzee.getRandom().nextInt(10) == 0 && this.itemStack.getItem().is(NeapolitanTags.Items.CHIMPANZEE_SHAKABLE_BUCKET_ITEMS)) {
+				if (this.chimpanzee.getRandom().nextInt(10) == 0 && this.itemStack.getItem().is(NeapolitanTags.Items.CHIMPANZEE_SHAKEABLE_BUCKETS)) {
 					this.chimpanzee.spawnItemFromBucket(new ItemStack(NeapolitanItems.BANANA.get()), this.chimpanzee.getMainArm());
 				}
 			} else if (this.lookTimer == 4) {
@@ -154,6 +154,6 @@ public class ChimpLookAtItemGoal extends Goal {
 	}
 
 	private boolean shouldPlayWithItem(Item item) {
-		return item instanceof TieredItem || item instanceof FireworkRocketItem || item.is(NeapolitanTags.Items.CHIMPANZEE_SHAKABLE_BUCKET_ITEMS);
+		return item instanceof TieredItem || item instanceof FireworkRocketItem || item.is(NeapolitanTags.Items.CHIMPANZEE_SHAKEABLE_BUCKETS);
 	}
 }
