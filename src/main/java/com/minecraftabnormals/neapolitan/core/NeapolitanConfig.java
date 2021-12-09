@@ -32,10 +32,10 @@ public class NeapolitanConfig {
 			builder.pop();
 			builder.push("world");
 			builder.push("generation");
-			strawberryBushGenerationChance = builder.define("Strawberry Bush generation chance in Plains", 7);
-			vanillaVineGenerationChance = builder.define("Vanilla Vine generation chance in Savannas", 6);
-			adzukiSproutsGenerationChance = builder.define("Adzuki Sprouts generation chance in Forests", 6);
-			mintPondGenerationChance = builder.define("Mint pond generation chance in Mountains", 5);
+			strawberryBushGenerationChance = builder.define("Strawberry Bush generation chance in Plains", 12);
+			vanillaVineGenerationChance = builder.define("Vanilla Vine generation chance in Savannas", 10);
+			adzukiSproutsGenerationChance = builder.define("Adzuki Sprouts generation chance in Forests", 7);
+			mintPondGenerationChance = builder.define("Mint pond generation chance in Mountains", 6);
 			bananaPlantBeachGeneration = builder.define("Banana Plant generation in Beaches", true);
 			bananaPlantJungleGeneration = builder.define("Banana Plant generation in Jungles", true);
 			builder.pop();
