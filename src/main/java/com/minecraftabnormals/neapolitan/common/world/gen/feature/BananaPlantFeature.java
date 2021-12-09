@@ -19,6 +19,7 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class BananaPlantFeature extends Feature<NoFeatureConfig> {
 	public BananaPlantFeature(Codec<NoFeatureConfig> codec) {
@@ -102,21 +103,34 @@ public class BananaPlantFeature extends Feature<NoFeatureConfig> {
 				}
 			}
 			if (NeapolitanConfig.COMMON.chimpanzeeSpawning.get() && random.nextInt(3) != 0 && level.getBiome(pos).getBiomeCategory().equals(Biome.Category.JUNGLE)) {
-				Direction.Plane.HORIZONTAL.stream().forEach((direction -> {
-					BlockPos offset = pos.relative(direction);
-					ChimpanzeeEntity chimp = NeapolitanEntities.CHIMPANZEE.get().create(level.getLevel());
-					if (chimp != null && ChimpanzeeEntity.canChimpanzeeSpawn(chimp, level, offset)) {
-						chimp.moveTo(offset.getX() + 0.5F, offset.getY() + 0.5F, offset.getZ() + 0.5F, 0.0F, 0.0F);
-						if (random.nextInt(3) == 0) chimp.setBaby(true);
-						chimp.finalizeSpawn(level, level.getCurrentDifficultyAt(pos), SpawnReason.STRUCTURE, null, null);
-						level.addFreshEntity(chimp);
+				List<Direction> directions = Direction.Plane.HORIZONTAL.stream().collect(Collectors.toList());
+				Collections.shuffle(directions);
+				int totalChimps = Math.max(2 + random.nextInt(3) + random.nextInt(2), 4);
+				int spawnedChimps = 0;
+				for (Direction direction : directions) {
+					if (spawnedChimps < totalChimps) {
+						BlockPos offset = pos.relative(direction);
+						attemptSpawnChimp(level, offset, spawnedChimps > 2 && random.nextInt(4) != 0);
+						spawnedChimps++;
 					}
-				}));
+				}
 			}
 
 			return true;
 		}
 
+		return false;
+	}
+
+	private static boolean attemptSpawnChimp(ISeedReader level, BlockPos pos, boolean isBaby) {
+		ChimpanzeeEntity chimp = NeapolitanEntities.CHIMPANZEE.get().create(level.getLevel());
+		if (chimp != null && ChimpanzeeEntity.canChimpanzeeSpawn(chimp, level, pos)) {
+			chimp.moveTo(pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, 0.0F, 0.0F);
+			if (isBaby) chimp.setBaby(true);
+			chimp.finalizeSpawn(level, level.getCurrentDifficultyAt(pos), SpawnReason.STRUCTURE, null, null);
+			level.addFreshEntity(chimp);
+			return true;
+		}
 		return false;
 	}
 
