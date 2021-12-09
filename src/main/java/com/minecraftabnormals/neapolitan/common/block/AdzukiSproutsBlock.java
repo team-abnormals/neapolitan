@@ -65,11 +65,21 @@ public class AdzukiSproutsBlock extends BushBlock implements IPlantable, IGrowab
 	}
 
 	@Override
-	public void playerWillDestroy(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-		super.playerWillDestroy(world, pos, state, player);
-		BlockState downState = world.getBlockState(pos.below());
+	public void spawnAfterBreak(BlockState state, ServerWorld level, BlockPos pos, ItemStack stack) {
+		super.spawnAfterBreak(state, level, pos, stack);
+		this.replant(state, level, pos);
+	}
+
+	@Override
+	public void playerWillDestroy(World level, BlockPos pos, BlockState state, PlayerEntity player) {
+		super.playerWillDestroy(level, pos, state, player);
+		this.replant(state, level, pos);
+	}
+
+	private void replant(BlockState state, World level, BlockPos pos) {
+		BlockState downState = level.getBlockState(pos.below());
 		if (this.isMaxAge(state) && (downState.is(Blocks.DIRT) || downState.is(Blocks.COARSE_DIRT) || downState.is(Blocks.GRASS_BLOCK)))
-			world.setBlockAndUpdate(pos.below(), NeapolitanBlocks.ADZUKI_SOIL.get().defaultBlockState());
+			level.setBlockAndUpdate(pos.below(), NeapolitanBlocks.ADZUKI_SOIL.get().defaultBlockState());
 	}
 
 	public boolean isMaxAge(BlockState state) {
