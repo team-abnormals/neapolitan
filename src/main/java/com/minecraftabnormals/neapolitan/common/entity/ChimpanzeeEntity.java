@@ -206,7 +206,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 
 	@Override
 	protected SoundEvent getAmbientSound() {
-		return this.isAngry() ? NeapolitanSounds.ENTITY_CHIMPANZEE_SCREAM.get() : NeapolitanSounds.ENTITY_CHIMPANZEE_AMBIENT.get();
+		return (this.isAngry() || this.getApeModeTime() > 0) ? NeapolitanSounds.ENTITY_CHIMPANZEE_SCREAM.get() : NeapolitanSounds.ENTITY_CHIMPANZEE_AMBIENT.get();
 	}
 
 	@Override
