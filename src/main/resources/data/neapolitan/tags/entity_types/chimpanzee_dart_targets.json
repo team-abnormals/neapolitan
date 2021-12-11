@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "endergetic:bolloom_fruit",
+      "required": false
+    },
+    {
+      "id": "endergetic:bolloom_balloon",
+      "required": false
+    }
+  ]
+}

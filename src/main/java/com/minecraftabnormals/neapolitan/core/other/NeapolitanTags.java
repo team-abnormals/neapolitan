@@ -30,6 +30,7 @@ public class NeapolitanTags {
 		public static final ITag<EntityType<?>> UNAFFECTED_BY_SLIPPING = EntityTypeTags.bind(id("unaffected_by_slipping"));
 		public static final ITag<EntityType<?>> UNAFFECTED_BY_HARMONY = EntityTypeTags.bind(id("unaffected_by_harmony"));
 		public static final ITag<EntityType<?>> SCARES_CHIMPANZEES = EntityTypeTags.bind(id("scares_chimpanzees"));
+		public static final ITag<EntityType<?>> CHIMPANZEE_DART_TARGETS = EntityTypeTags.bind(id("chimpanzee_dart_targets"));
 	}
 
 	private static String id(String string) {

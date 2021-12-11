@@ -18,6 +18,7 @@ import net.minecraft.entity.item.BoatEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.entity.projectile.FireworkRocketEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
@@ -639,26 +640,59 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	}
 
 	public void throwHeldItem(Hand hand) {
-		ItemStack itemstack = this.getItemInHand(hand);
-		if (!itemstack.isEmpty() && !this.level.isClientSide) {
-			Item item = itemstack.getItem();
+		ItemStack stack = this.getItemInHand(hand);
+		if (!stack.isEmpty() && !this.level.isClientSide) {
+			Item item = stack.getItem();
 
-			if (item instanceof DyeItem) {
-				HandSide handside = hand == Hand.MAIN_HAND ? this.getMainArm() : this.getMainArm().getOpposite();
-				this.setHandDyed(true, handside);
-				this.setHandDyeColor(((DyeItem) item).getDyeColor(), handside);
+			if (item instanceof ArrowItem) {
+				ArrowItem arrowItem = (ArrowItem) item;
+				List<Entity> list = this.level.getEntitiesOfClass(Entity.class, this.getBoundingBox().inflate(8.0D, 4.0D, 8.0D), (entity) -> NeapolitanTags.EntityTypes.CHIMPANZEE_DART_TARGETS.contains(entity.getType()));
+				Entity target = null;
+
+				double maxValue = Double.MAX_VALUE;
+				for (Entity entity : list) {
+					double distance = this.distanceToSqr(entity);
+					if (!(distance > maxValue)) {
+						maxValue = distance;
+						target = entity;
+					}
+				}
+
+				if (target != null) {
+					AbstractArrowEntity arrow = arrowItem.createArrow(level, stack, this);
+					double d0 = target.getEyeY() - (double) 1.1F;
+					double d1 = target.getX() - this.getX();
+					double d2 = d0 - arrow.getY();
+					double d3 = target.getZ() - this.getZ();
+					float f = MathHelper.sqrt(d1 * d1 + d3 * d3) * 0.2F;
+					this.lookAt(target, 90.0F, 90.0F);
+					arrow.shoot(d1, d2 + (double) f, d3, 1.6F, 6.0F);
+					this.playSound(SoundEvents.ARROW_SHOOT, 1.0F, 0.4F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
+					this.level.addFreshEntity(arrow);
+					this.setItemInHand(hand, ItemStack.EMPTY);
+
+					this.swingArms();
+					this.level.broadcastEntityEvent(this, (byte) 4);
+				}
+
+			} else {
+				if (item instanceof DyeItem) {
+					HandSide handside = hand == Hand.MAIN_HAND ? this.getMainArm() : this.getMainArm().getOpposite();
+					this.setHandDyed(true, handside);
+					this.setHandDyeColor(((DyeItem) item).getDyeColor(), handside);
+				}
+
+				ItemEntity itemEntity = new ItemEntity(this.level, this.getX() + this.getLookAngle().x * 0.2D, this.getY() + this.getBbHeight() * 0.625F, this.getZ() + this.getLookAngle().z * 0.2D, stack);
+				Vector3d vector3d = new Vector3d(this.getLookAngle().x * 0.25D, 0.0D, this.getLookAngle().z * 0.25D);
+				itemEntity.setDeltaMovement(vector3d);
+				itemEntity.setPickUpDelay(40);
+				itemEntity.setThrower(this.getUUID());
+				this.level.addFreshEntity(itemEntity);
+				this.setItemInHand(hand, ItemStack.EMPTY);
+
+				this.swingArms();
+				this.level.broadcastEntityEvent(this, (byte) 4);
 			}
-
-			ItemEntity itementity = new ItemEntity(this.level, this.getX() + this.getLookAngle().x * 0.2D, this.getY() + this.getBbHeight() * 0.625F, this.getZ() + this.getLookAngle().z * 0.2D, itemstack);
-			Vector3d vector3d = new Vector3d(this.getLookAngle().x * 0.25D, 0.0D, this.getLookAngle().z * 0.25D);
-			itementity.setDeltaMovement(vector3d);
-			itementity.setPickUpDelay(40);
-			itementity.setThrower(this.getUUID());
-			this.level.addFreshEntity(itementity);
-			this.setItemInHand(hand, ItemStack.EMPTY);
-
-			this.swingArms();
-			this.level.broadcastEntityEvent(this, (byte) 4);
 		}
 	}
 
