@@ -8,6 +8,7 @@ import com.minecraftabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEntities;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -19,7 +20,6 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class BananaPlantFeature extends Feature<NoFeatureConfig> {
 	public BananaPlantFeature(Codec<NoFeatureConfig> codec) {
@@ -84,8 +84,12 @@ public class BananaPlantFeature extends Feature<NoFeatureConfig> {
 				TreeUtil.setForcedState(level, blockPos2, NeapolitanBlocks.BANANA_STALK.get().defaultBlockState());
 			}
 			TreeUtil.setForcedState(level, upFrond, NeapolitanBlocks.LARGE_BANANA_FROND.get().defaultBlockState());
-			if (bundle != null)
+			if (bundle != null) {
 				TreeUtil.setForcedState(level, bundle, NeapolitanBlocks.BANANA_BUNDLE.get().defaultBlockState());
+				if (NeapolitanConfig.COMMON.chimpanzeeSpawning.get() && random.nextInt(4) == 0 && level.getBiome(pos).getBiomeCategory().equals(Biome.Category.JUNGLE)) {
+					spawnChimps(level, pos);
+				}
+			}
 			for (BlockPos blockPos2 : smallFronds.keySet()) {
 				TreeUtil.setForcedState(level, blockPos2, NeapolitanBlocks.SMALL_BANANA_FROND.get().defaultBlockState().setValue(BananaFrondBlock.FACING, smallFronds.get(blockPos2)));
 			}
@@ -98,21 +102,8 @@ public class BananaPlantFeature extends Feature<NoFeatureConfig> {
 			if (isGrass(level, pos.below())) {
 				TreeUtil.setForcedState(level, pos.below(), Blocks.GRAVEL.defaultBlockState());
 				for (BlockPos blockpos : BlockPos.betweenClosed(pos.getX() - 3, pos.getY() - 2, pos.getZ() - 3, pos.getX() + 3, pos.getY() + 2, pos.getZ() + 3)) {
-					if (isGrass(level, blockpos) && random.nextInt(4) == 0 && TreeUtil.isAir(level, blockpos.above()))
+					if (isGrass(level, blockpos) && random.nextDouble() < NeapolitanConfig.COMMON.chimpanzeeGroupChance.get() && TreeUtil.isAir(level, blockpos.above()))
 						TreeUtil.setForcedState(level, blockpos, Blocks.GRAVEL.defaultBlockState());
-				}
-			}
-			if (NeapolitanConfig.COMMON.chimpanzeeSpawning.get() && random.nextInt(3) != 0 && level.getBiome(pos).getBiomeCategory().equals(Biome.Category.JUNGLE)) {
-				List<Direction> directions = Direction.Plane.HORIZONTAL.stream().collect(Collectors.toList());
-				Collections.shuffle(directions);
-				int totalChimps = Math.max(2 + random.nextInt(3) + random.nextInt(2), 4);
-				int spawnedChimps = 0;
-				for (Direction direction : directions) {
-					if (spawnedChimps < totalChimps) {
-						BlockPos offset = pos.relative(direction);
-						attemptSpawnChimp(level, offset, spawnedChimps > 2 && random.nextInt(4) != 0);
-						spawnedChimps++;
-					}
 				}
 			}
 
@@ -122,16 +113,35 @@ public class BananaPlantFeature extends Feature<NoFeatureConfig> {
 		return false;
 	}
 
-	private static boolean attemptSpawnChimp(ISeedReader level, BlockPos pos, boolean isBaby) {
-		ChimpanzeeEntity chimp = NeapolitanEntities.CHIMPANZEE.get().create(level.getLevel());
-		if (chimp != null && ChimpanzeeEntity.canChimpanzeeSpawn(chimp, level, pos)) {
-			chimp.moveTo(pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, 0.0F, 0.0F);
-			if (isBaby) chimp.setBaby(true);
-			chimp.finalizeSpawn(level, level.getCurrentDifficultyAt(pos), SpawnReason.STRUCTURE, null, null);
-			level.addFreshEntity(chimp);
-			return true;
+	private static void spawnChimps(ISeedReader level, BlockPos pos) {
+		Random random = level.getRandom();
+		int minSpawnAttempts = NeapolitanConfig.COMMON.chimpanzeeMinSpawnAttempts.get();
+		int maxSpawnAttempts = NeapolitanConfig.COMMON.chimpanzeeMaxSpawnAttempts.get();
+		if (maxSpawnAttempts < minSpawnAttempts) return;
+		int spawnCount = minSpawnAttempts + random.nextInt(maxSpawnAttempts - minSpawnAttempts);
+
+		int spawnedChimps = 0;
+		for (int i = 0; i < spawnCount; ++i) {
+			int spawnRange = 4;
+
+			double d0 = (double) pos.getX() + (random.nextDouble() - random.nextDouble()) * (double) spawnRange + 0.5D;
+			double d1 = pos.getY() + random.nextInt(3) - 1;
+			double d2 = (double) pos.getZ() + (random.nextDouble() - random.nextDouble()) * (double) spawnRange + 0.5D;
+			if (level.noCollision(NeapolitanEntities.CHIMPANZEE.get().getAABB(d0, d1, d2))) {
+				if (spawnedChimps < NeapolitanConfig.COMMON.chimpanzeeMaxGroupSize.get() && EntitySpawnPlacementRegistry.checkSpawnRules(NeapolitanEntities.CHIMPANZEE.get(), level, SpawnReason.STRUCTURE, new BlockPos(d0, d1, d2), level.getRandom())) {
+					ChimpanzeeEntity chimp = NeapolitanEntities.CHIMPANZEE.get().create(level.getLevel());
+					if (chimp != null) {
+						chimp.moveTo(d0, d1, d2, level.getRandom().nextFloat() * 360.0F, 0.0F);
+						chimp.finalizeSpawn(level, level.getCurrentDifficultyAt(chimp.blockPosition()), SpawnReason.SPAWNER, null, null);
+						chimp.setBaby(random.nextInt(4) == 0);
+						level.levelEvent(2004, pos, 0);
+						level.addFreshEntity(chimp);
+						chimp.spawnAnim();
+						spawnedChimps++;
+					}
+				}
+			}
 		}
-		return false;
 	}
 
 	private static boolean isAirAt(IWorldGenerationBaseReader world, BlockPos pos, int size) {

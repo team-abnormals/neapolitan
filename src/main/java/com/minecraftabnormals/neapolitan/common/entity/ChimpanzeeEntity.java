@@ -34,7 +34,6 @@ import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.*;
 import net.minecraft.world.server.ServerWorld;
@@ -751,10 +750,6 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 
 	public static boolean canChimpanzeeSpawn(EntityType<ChimpanzeeEntity> entity, IWorld world, SpawnReason reason, BlockPos pos, Random random) {
 		return world.getRawBrightness(pos, 0) > 8;
-	}
-
-	public static boolean canChimpanzeeSpawn(ChimpanzeeEntity entity, IWorld level, BlockPos pos) {
-		return level.getBlockState(pos.below()).entityCanStandOnFace(level, pos.below(), entity, Direction.UP) && level.getBlockState(pos).getCollisionShape(level, pos) == VoxelShapes.empty() && level.getBlockState(pos.above()).getCollisionShape(level, pos.above()) == VoxelShapes.empty() && level.getRawBrightness(pos, 0) > 8;
 	}
 
 	@Override

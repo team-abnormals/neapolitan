@@ -22,6 +22,10 @@ public class NeapolitanConfig {
 		public final ConfigValue<Boolean> plantainSpidersGiveSlipping;
 
 		public final ConfigValue<Boolean> chimpanzeeSpawning;
+		public final ConfigValue<Double> chimpanzeeGroupChance;
+		public final ConfigValue<Integer> chimpanzeeMaxGroupSize;
+		public final ConfigValue<Integer> chimpanzeeMinSpawnAttempts;
+		public final ConfigValue<Integer> chimpanzeeMaxSpawnAttempts;
 
 		Common(ForgeConfigSpec.Builder builder) {
 			builder.push("items");
@@ -32,22 +36,26 @@ public class NeapolitanConfig {
 			builder.pop();
 			builder.push("world");
 			builder.push("generation");
-			strawberryBushGenerationChance = builder.define("Strawberry Bush generation chance in Plains", 12);
-			vanillaVineGenerationChance = builder.define("Vanilla Vine generation chance in Savannas", 10);
-			adzukiSproutsGenerationChance = builder.define("Adzuki Sprouts generation chance in Forests", 7);
-			mintPondGenerationChance = builder.define("Mint pond generation chance in Mountains", 6);
-			bananaPlantBeachGeneration = builder.define("Banana Plant generation in Beaches", true);
-			bananaPlantJungleGeneration = builder.define("Banana Plant generation in Jungles", true);
+			strawberryBushGenerationChance = builder.comment("The chance Strawberry Bushes have to generate in Plains biomes (larger = more common)").define("Strawberry Bush chance", 12);
+			vanillaVineGenerationChance = builder.comment("The chance Vanilla Vines have to generate in Savanna biomes (larger = more common)").define("Vanilla Vine chance", 10);
+			adzukiSproutsGenerationChance = builder.comment("The chance Adzuki Sprouts have to generate in Forest biomes (larger = more common)").define("Adzuki Sprouts chance", 7);
+			mintPondGenerationChance = builder.comment("The chance ponds with Mint have to generate in Mountain biomes (larger = more common)").define("Mint pond chance", 6);
+			bananaPlantBeachGeneration = builder.define("Banana Plants generate in Beach biomes", true);
+			bananaPlantJungleGeneration = builder.define("Banana Plants generate in Jungle biomes", true);
 			builder.pop();
 			builder.pop();
 			builder.push("mobs");
 			builder.push("plantain_spider");
-			plantainSpiderSpawning = builder.define("Plantain Spider spawning in Jungles", true);
+			plantainSpiderSpawning = builder.define("Plantain Spider spawn in Jungles", true);
 			plantainSpidersFromBundles = builder.define("Plantain Spider spawn from Banana Bundles", true);
 			plantainSpidersGiveSlipping = builder.define("Plantain Spiders give Slipping", true);
 			builder.pop();
 			builder.push("chimpanzee");
-			chimpanzeeSpawning = builder.define("Chimpanzee spawning in Jungles", true);
+			chimpanzeeSpawning = builder.define("Chimpanzee spawn in Jungles", true);
+			chimpanzeeGroupChance = builder.comment("The percentage chance for a Banana Plant to generate with a group of Chimpanzees").define("Chimpanzee group chance", 0.25D);
+			chimpanzeeMaxGroupSize = builder.comment("The maximum amount of Chimpanzees that can spawn with a Banana Plant").define("Chimpanzee maximum group size", 16);
+			chimpanzeeMinSpawnAttempts = builder.comment("The minimum attempts for Chimpanzees to spawn with a Banana Plant").define("Chimpanzee minimum spawn attempts", 16);
+			chimpanzeeMaxSpawnAttempts = builder.comment("The maximum attempts for Chimpanzees to spawn with a Banana Plant").define("Chimpanzee maximum spawn attempts", 32);
 			builder.pop();
 			builder.pop();
 		}
