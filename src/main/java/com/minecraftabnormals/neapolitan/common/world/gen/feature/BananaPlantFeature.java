@@ -160,21 +160,11 @@ public class BananaPlantFeature extends Feature<NoFeatureConfig> {
 		return true;
 	}
 
-	public static boolean isGrowable(IWorldGenerationBaseReader worldIn, BlockPos pos) {
-		return worldIn.isStateAtPosition(pos, (state) -> {
-			return state.is(Blocks.GRAVEL) || state.is(Blocks.SAND);
-		});
-	}
-
 	public static boolean isValidGround(IWorldGenerationBaseReader worldIn, BlockPos pos) {
-		return worldIn.isStateAtPosition(pos, (state) -> {
-			return state.is(Blocks.GRAVEL) || state.is(Blocks.SAND) || state.is(Blocks.GRASS_BLOCK);
-		});
+		return worldIn.isStateAtPosition(pos, (state) -> state.is(Blocks.GRAVEL) || state.is(Blocks.SAND) || state.is(Blocks.GRASS_BLOCK));
 	}
 
 	public static boolean isGrass(IWorldGenerationBaseReader worldIn, BlockPos pos) {
-		return worldIn.isStateAtPosition(pos, (state) -> {
-			return state.is(Blocks.GRASS_BLOCK);
-		});
+		return worldIn.isStateAtPosition(pos, (state) -> state.is(Blocks.GRASS_BLOCK));
 	}
 }
