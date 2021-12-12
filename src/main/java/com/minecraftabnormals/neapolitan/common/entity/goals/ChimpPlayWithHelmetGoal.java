@@ -24,7 +24,7 @@ public class ChimpPlayWithHelmetGoal extends Goal {
 
 	@Override
 	public boolean canUse() {
-		if (!this.chimpanzee.getAction().canBeInterrupted()) {
+		if (!this.chimpanzee.isDoingAction(ChimpanzeeAction.DEFAULT, ChimpanzeeAction.CLIMBING)) {
 			return false;
 		} else if (!this.chimpanzee.getNavigation().isDone()) {
 			return false;

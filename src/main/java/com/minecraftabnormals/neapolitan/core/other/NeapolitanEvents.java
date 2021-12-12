@@ -3,6 +3,7 @@ package com.minecraftabnormals.neapolitan.core.other;
 import com.minecraftabnormals.abnormals_core.core.util.TradeUtil;
 import com.minecraftabnormals.abnormals_core.core.util.TradeUtil.AbnormalsTrade;
 import com.minecraftabnormals.neapolitan.common.block.MilkCauldronBlock;
+import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
 import com.minecraftabnormals.neapolitan.core.Neapolitan;
 import com.minecraftabnormals.neapolitan.core.NeapolitanConfig;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanBlocks;
@@ -19,6 +20,8 @@ import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.entity.projectile.ProjectileItemEntity;
+import net.minecraft.entity.projectile.ThrowableEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -27,8 +30,11 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.EntityRayTraceResult;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.PotionEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteractSpecific;
@@ -169,6 +175,22 @@ public class NeapolitanEvents {
 			}
 		}
 	}
+
+	@SubscribeEvent
+	public static void onProjectileImpact(final ProjectileImpactEvent.Throwable event) {
+		ThrowableEntity projectileEntity = event.getThrowable();
+
+		if (projectileEntity instanceof ProjectileItemEntity && ModList.get().isLoaded("environmental") && ((ProjectileItemEntity) projectileEntity).getItem().getItem() == NeapolitanCompat.MUD_BALL) {
+			if (event.getRayTraceResult().getType() == RayTraceResult.Type.ENTITY) {
+				EntityRayTraceResult entity = (EntityRayTraceResult) event.getRayTraceResult();
+				if (entity.getEntity() instanceof ChimpanzeeEntity) {
+					ChimpanzeeEntity chimpanzee = (ChimpanzeeEntity) entity.getEntity();
+					chimpanzee.setDirtiness(12000);
+				}
+			}
+		}
+	}
+
 
 	@SubscribeEvent
 	public static void onPotionAdded(PotionEvent.PotionApplicableEvent event) {

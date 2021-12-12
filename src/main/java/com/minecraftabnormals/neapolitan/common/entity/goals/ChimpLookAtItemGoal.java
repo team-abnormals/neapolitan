@@ -12,20 +12,17 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.World;
 
 import java.util.EnumSet;
 
 public class ChimpLookAtItemGoal extends Goal {
 	private final ChimpanzeeEntity chimpanzee;
-	private final World level;
 	private ItemStack itemStack;
 	private int lookTimer;
 	private boolean wasHurt;
 
 	public ChimpLookAtItemGoal(ChimpanzeeEntity chimpanzeeIn) {
 		this.chimpanzee = chimpanzeeIn;
-		this.level = chimpanzeeIn.level;
 		this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
 	}
 
