@@ -2,6 +2,7 @@ package com.minecraftabnormals.neapolitan.common.entity.goals;
 
 import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
 import com.minecraftabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -67,7 +68,7 @@ public class ChimpPlayWithHelmetGoal extends Goal {
 	public void tick() {
 		--this.playTimer;
 
-		if (this.playTimer == 6) {
+		if (this.playTimer == 6 && !EnchantmentHelper.hasBindingCurse(this.itemStack) ) {
 			ItemEntity itementity = new ItemEntity(this.chimpanzee.level, this.chimpanzee.getX(), this.chimpanzee.getY(1.0D), this.chimpanzee.getZ(), this.itemStack);
 			Vector3d vector3d = itementity.getDeltaMovement();
 			itementity.setDeltaMovement(vector3d.x * 1.6D, vector3d.y, vector3d.z * 1.6D);
