@@ -27,7 +27,7 @@ public class ChimpSitGoal extends Goal {
 			return false;
 		} else if (this.chimpanzee.xxa != 0.0F || this.chimpanzee.yya != 0.0F || this.chimpanzee.zza != 0.0F) {
 			return false;
-		} else if (this.chimpanzee.getAction().canSit() && !this.chimpanzee.isPassenger()) {
+		} else if (this.chimpanzee.getAction().canSit()) {
 			if (!this.chimpanzee.isLeader() && this.chimpanzee.getRandom().nextInt(60) == 0) {
 				Predicate<ChimpanzeeEntity> predicate = (chimpanzeeentity) -> {
 					return chimpanzeeentity != this.chimpanzee && chimpanzeeentity.isLeader();

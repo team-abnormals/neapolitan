@@ -68,7 +68,7 @@ public class ChimpPlayWithHelmetGoal extends Goal {
 	public void tick() {
 		--this.playTimer;
 
-		if (this.playTimer == 6 && !EnchantmentHelper.hasBindingCurse(this.itemStack) ) {
+		if (this.playTimer == 6 && !EnchantmentHelper.hasBindingCurse(this.itemStack)) {
 			ItemEntity itementity = new ItemEntity(this.chimpanzee.level, this.chimpanzee.getX(), this.chimpanzee.getY(1.0D), this.chimpanzee.getZ(), this.itemStack);
 			Vector3d vector3d = itementity.getDeltaMovement();
 			itementity.setDeltaMovement(vector3d.x * 1.6D, vector3d.y, vector3d.z * 1.6D);
