@@ -985,6 +985,8 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 
 	public void getCleaned() {
 		this.setDirtiness(0);
+		this.setHandDyed(false, HandSide.LEFT);
+		this.setHandDyed(false, HandSide.RIGHT);
 	}
 
 	public int getPaleness() {
