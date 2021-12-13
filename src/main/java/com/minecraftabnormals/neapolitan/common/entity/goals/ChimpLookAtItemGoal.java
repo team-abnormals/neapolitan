@@ -28,7 +28,7 @@ public class ChimpLookAtItemGoal extends Goal {
 
 	@Override
 	public boolean canUse() {
-		if (!this.chimpanzee.getAction().canBeInterrupted()) {
+		if (!this.chimpanzee.isDoingAction(ChimpanzeeAction.DEFAULT)) {
 			return false;
 		} else if (!this.chimpanzee.getNavigation().isDone()) {
 			return false;
