@@ -3,10 +3,9 @@
   "values": [
     "minecraft:firework_rocket",
     "minecraft:lightning_bolt",
-	"minecraft:small_fireball",
-	"minecraft:fireball",
-    "minecraft:wither_skull",
-	"minecraft:dragon_fireball",
+    "minecraft:small_fireball",
+    "minecraft:fireball",
+    "minecraft:dragon_fireball",
     "minecraft:wither_skull",
     "minecraft:evoker_fangs",
     "minecraft:tnt"
