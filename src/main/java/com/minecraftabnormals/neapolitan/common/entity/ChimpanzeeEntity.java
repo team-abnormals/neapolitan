@@ -4,6 +4,7 @@ import com.minecraftabnormals.neapolitan.common.entity.goals.*;
 import com.minecraftabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
 import com.minecraftabnormals.neapolitan.common.entity.util.ChimpanzeeTypes;
 import com.minecraftabnormals.neapolitan.common.item.MilkshakeItem;
+import com.minecraftabnormals.neapolitan.core.other.NeapolitanCompat;
 import com.minecraftabnormals.neapolitan.core.other.NeapolitanTags;
 import com.minecraftabnormals.neapolitan.core.registry.*;
 import net.minecraft.block.BlockState;
@@ -40,6 +41,7 @@ import net.minecraft.world.*;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.ModList;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -266,12 +268,18 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		this.level.broadcastEntityEvent(this, (byte) 4);
 		float f = (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE);
 		float f1 = (int) f > 0 ? f / 2.0F + (float) this.random.nextInt((int) f) : f;
-		boolean flag = entityIn.hurt(DamageSource.mobAttack(this), f1);
+		float f2 = this.isChimpanzeeWeapon(this.getMainHandItem()) || this.isChimpanzeeWeapon(this.getOffhandItem()) ? f1 + 1.0F : f1;
+		boolean flag = entityIn.hurt(DamageSource.mobAttack(this), f2);
 		if (flag) {
 			this.doEnchantDamageEffects(this, entityIn);
 		}
 
 		return flag;
+	}
+
+	public boolean isChimpanzeeWeapon(ItemStack stack) {
+		Item item = stack.getItem();
+		return item == Items.STICK || item == Items.BAMBOO;
 	}
 
 	@Override
@@ -677,10 +685,10 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 				}
 
 			} else {
-				if (item instanceof DyeItem) {
+				if (item instanceof DyeItem || (ModList.get().isLoaded("environmental") && item == NeapolitanCompat.MUD_BALL)) {
 					HandSide handside = hand == Hand.MAIN_HAND ? this.getMainArm() : this.getMainArm().getOpposite();
 					this.setHandDyed(true, handside);
-					this.setHandDyeColor(((DyeItem) item).getDyeColor(), handside);
+					this.setHandDyeColor(item instanceof DyeItem ? ((DyeItem) item).getDyeColor() : DyeColor.BROWN, handside);
 				}
 
 				ItemEntity itemEntity = new ItemEntity(this.level, this.getX() + this.getLookAngle().x * 0.2D, this.getY() + this.getBbHeight() * 0.625F, this.getZ() + this.getLookAngle().z * 0.2D, stack);
