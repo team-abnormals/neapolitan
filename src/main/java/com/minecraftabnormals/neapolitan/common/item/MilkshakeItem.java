@@ -1,6 +1,6 @@
 package com.minecraftabnormals.neapolitan.common.item;
 
-import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEffects;
 import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
 import net.minecraft.advancements.CriteriaTriggers;
@@ -8,16 +8,13 @@ import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.UseAction;
-import net.minecraft.potion.Effect;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.EffectType;
-import net.minecraft.potion.Effects;
+import net.minecraft.item.*;
+import net.minecraft.potion.*;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class MilkshakeItem extends DrinkItem {
 	private final EffectType effectType;
@@ -60,10 +57,10 @@ public class MilkshakeItem extends DrinkItem {
 	}
 
 	private void handleEffects(LivingEntity user) {
-		ImmutableList<EffectInstance> effects = ImmutableList.copyOf(user.getActiveEffects());
+		List<EffectInstance> effects = Lists.newArrayList(user.getActiveEffects());
 		if (this.getEffectType() != null) {
-			for (int i = 0; i < effects.size(); ++i) {
-				Effect effect = effects.get(i).getEffect();
+			for (EffectInstance effectInstance : effects) {
+				Effect effect = effectInstance.getEffect();
 				if (effect.getCategory() == this.getEffectType() || (this.getEffectType() == EffectType.HARMFUL && effect == Effects.BAD_OMEN) || this.getEffectType() == EffectType.NEUTRAL) {
 					user.removeEffect(effect);
 				}
@@ -71,7 +68,11 @@ public class MilkshakeItem extends DrinkItem {
 		} else {
 			LivingEntity nearest = user.level.getNearestEntity(LivingEntity.class, EntityPredicate.DEFAULT.selector((living) -> living != user && living.getEffect(NeapolitanEffects.VANILLA_SCENT.get()) == null), user, user.getX(), user.getY(), user.getZ(), user.getBoundingBox().inflate(6.0D, 2.0D, 6.0D));
 			if (nearest != null) {
-				ImmutableList<EffectInstance> nearestEffects = ImmutableList.copyOf(nearest.getActiveEffects());
+				List<EffectInstance> nearestEffects = Lists.newArrayList(nearest.getActiveEffects());
+
+				nerfEffects(effects);
+				nerfEffects(nearestEffects);
+
 				if (this == NeapolitanItems.BANANA_MILKSHAKE.get()) {
 					user.removeAllEffects();
 					nearest.removeAllEffects();
@@ -86,6 +87,18 @@ public class MilkshakeItem extends DrinkItem {
 				}
 			}
 		}
+	}
+
+	private void nerfEffects(List<EffectInstance> effects) {
+		List<EffectInstance> toNerf = Lists.newArrayList();
+		effects.forEach(effect -> {
+			if (effect.getDuration() > 32766)
+				toNerf.add(effect);
+		});
+		if (toNerf.isEmpty())
+			return;
+		effects.removeAll(toNerf);
+		toNerf.forEach((effect -> effects.add(new EffectInstance(effect.getEffect(), 32766, effect.getAmplifier(), effect.isAmbient(), effect.isVisible(), effect.showIcon()))));
 	}
 
 	@Override
