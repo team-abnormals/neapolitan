@@ -68,7 +68,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	private static final DataParameter<Byte> CLIMBING = EntityDataManager.defineId(ChimpanzeeEntity.class, DataSerializers.BYTE);
 	private static final DataParameter<Direction> FACING = EntityDataManager.defineId(ChimpanzeeEntity.class, DataSerializers.DIRECTION);
 
-	private static final UUID SPEED_MODIFIER_SITTING_UUID = UUID.fromString("B9766B59-9566-4402-BC1F-2EE2A276D836");
+	private static final UUID SPEED_MODIFIER_SITTING_UUID = UUID.fromString("2EF64346-9E56-44E9-9574-1BF9FD6443CF");
 	private static final AttributeModifier SPEED_MODIFIER_SITTING = new AttributeModifier(SPEED_MODIFIER_SITTING_UUID, "Sitting speed reduction", -0.75D, AttributeModifier.Operation.MULTIPLY_BASE);
 
 	public static final EntitySize SITTING_DIMENSIONS = EntitySize.scalable(0.6F, 1.0F);
