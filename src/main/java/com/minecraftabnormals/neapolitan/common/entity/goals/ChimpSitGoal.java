@@ -55,15 +55,17 @@ public class ChimpSitGoal extends Goal {
 
 	@Override
 	public boolean canContinueToUse() {
-		if (!this.chimpanzee.isSitting()) {
+		if (!this.chimpanzee.isSitting() || !this.chimpanzee.getAction().canSit() || this.chimpanzee.isPassenger()) {
+			return false;
+		} else if (!this.chimpanzee.canStandUp()) {
+			return true;
+		} else if (this.chimpanzee.isInWater()) {
 			return false;
 		} else if (this.sitTimer <= 0) {
 			return false;
-		} else if (this.chimpanzee.isPassenger() || this.chimpanzee.isInWater()) {
-			return false;
 		} else if (this.chimpanzee.xxa != 0.0F || this.chimpanzee.yya != 0.0F || this.chimpanzee.zza != 0.0F) {
 			return false;
-		} else return this.chimpanzee.getAction().canSit();
+		} else return true;
 	}
 
 	@Override

@@ -63,7 +63,9 @@ public class ChimpPlayNoteBlockGoal extends MoveToBlockGoal {
 		super.stop();
 		this.timePlayed = 0;
 		this.chimpanzee.setDefaultAction();
-		this.chimpanzee.setSitting(false);
+		if (this.chimpanzee.canStandUp()) {
+			this.chimpanzee.setSitting(false);
+		}
 	}
 
 	@Override

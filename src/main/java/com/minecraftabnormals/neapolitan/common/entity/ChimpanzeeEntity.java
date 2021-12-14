@@ -10,8 +10,10 @@ import com.minecraftabnormals.neapolitan.core.registry.*;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.ai.controller.BodyController;
 import net.minecraft.entity.ai.controller.LookController;
 import net.minecraft.entity.ai.goal.*;
@@ -34,6 +36,7 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.pathfinding.ClimberPathNavigator;
 import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.util.*;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
@@ -64,6 +67,9 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	private static final DataParameter<Byte> ACTION = EntityDataManager.defineId(ChimpanzeeEntity.class, DataSerializers.BYTE);
 	private static final DataParameter<Byte> CLIMBING = EntityDataManager.defineId(ChimpanzeeEntity.class, DataSerializers.BYTE);
 	private static final DataParameter<Direction> FACING = EntityDataManager.defineId(ChimpanzeeEntity.class, DataSerializers.DIRECTION);
+
+	private static final UUID SPEED_MODIFIER_SITTING_UUID = UUID.fromString("B9766B59-9566-4402-BC1F-2EE2A276D836");
+	private static final AttributeModifier SPEED_MODIFIER_SITTING = new AttributeModifier(SPEED_MODIFIER_SITTING_UUID, "Sitting speed reduction", -0.75D, AttributeModifier.Operation.MULTIPLY_BASE);
 
 	public static final EntitySize SITTING_DIMENSIONS = EntitySize.scalable(0.6F, 1.0F);
 
@@ -252,7 +258,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 			this.lastHurtByPlayerTime = this.tickCount;
 		}
 
-		if (this.getApeModeTime() > 0 && this.getMoveControl().hasWanted()) {
+		if (this.getApeModeTime() > 0 && this.getMoveControl().hasWanted() && !this.isSitting()) {
 			double d0 = this.getMoveControl().getSpeedModifier();
 			this.setSprinting(d0 >= 1.0D);
 		} else {
@@ -287,7 +293,9 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		if (this.isInvulnerableTo(source)) {
 			return false;
 		} else {
-			this.setSitting(false);
+			if (this.canStandUp()) {
+				this.setSitting(false);
+			}
 			return super.hurt(source, amount);
 		}
 	}
@@ -579,6 +587,15 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 		} else {
 			return super.getDimensions(pose);
 		}
+	}
+
+	public boolean canStandUp() {
+		EntitySize entitysize = this.getType().getDimensions();
+		float f = entitysize.width / 2.0F;
+		Vector3d vector3d = new Vector3d(this.getX() - (double)f, this.getY(), this.getZ() - (double)f);
+		Vector3d vector3d1 = new Vector3d(this.getX() + (double)f, this.getY() + (double)entitysize.height, this.getZ() + (double)f);
+		AxisAlignedBB axisalignedbb = new AxisAlignedBB(vector3d, vector3d1);
+		return this.level.noCollision(this, axisalignedbb.deflate(1.0E-7D));
 	}
 
 	@Override
@@ -895,6 +912,14 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 
 	public void setSitting(boolean sitting) {
 		this.entityData.set(SITTING, sitting);
+		ModifiableAttributeInstance modifiableattributeinstance = this.getAttribute(Attributes.MOVEMENT_SPEED);
+		if (modifiableattributeinstance.getModifier(SPEED_MODIFIER_SITTING_UUID) != null) {
+			modifiableattributeinstance.removeModifier(SPEED_MODIFIER_SITTING);
+		}
+
+		if (sitting) {
+			modifiableattributeinstance.addTransientModifier(SPEED_MODIFIER_SITTING);
+		}
 	}
 
 	public DyeColor getHandDyeColor(HandSide handSide) {
