@@ -6,12 +6,8 @@ import com.minecraftabnormals.neapolitan.common.block.MilkCauldronBlock;
 import com.minecraftabnormals.neapolitan.common.entity.ChimpanzeeEntity;
 import com.minecraftabnormals.neapolitan.core.Neapolitan;
 import com.minecraftabnormals.neapolitan.core.NeapolitanConfig;
-import com.minecraftabnormals.neapolitan.core.registry.NeapolitanBlocks;
-import com.minecraftabnormals.neapolitan.core.registry.NeapolitanEffects;
-import com.minecraftabnormals.neapolitan.core.registry.NeapolitanItems;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.CauldronBlock;
+import com.minecraftabnormals.neapolitan.core.registry.*;
+import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.AvoidEntityGoal;
@@ -22,16 +18,12 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.projectile.ProjectileItemEntity;
 import net.minecraft.entity.projectile.ThrowableEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.item.*;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.EntityRayTraceResult;
-import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.*;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
@@ -50,7 +42,9 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 @EventBusSubscriber(modid = Neapolitan.MOD_ID)
 public class NeapolitanEvents {
+	public static final String ENVIRONMENTAL = "environmental";
 	public static final String SAVAGE_AND_RAVAGE = "savageandravage";
+	public static final ResourceLocation MUD_BALL = new ResourceLocation(ENVIRONMENTAL, "mud_ball");
 	public static final ResourceLocation CREEPIE = new ResourceLocation(SAVAGE_AND_RAVAGE, "creepie");
 
 	@SubscribeEvent
@@ -177,10 +171,10 @@ public class NeapolitanEvents {
 	}
 
 	@SubscribeEvent
-	public static void onProjectileImpact(final ProjectileImpactEvent.Throwable event) {
+	public static void onProjectileImpact(ProjectileImpactEvent.Throwable event) {
 		ThrowableEntity projectileEntity = event.getThrowable();
 
-		if (projectileEntity instanceof ProjectileItemEntity && ModList.get().isLoaded("environmental") && ((ProjectileItemEntity) projectileEntity).getItem().getItem() == NeapolitanCompat.MUD_BALL) {
+		if (projectileEntity instanceof ProjectileItemEntity && ModList.get().isLoaded("environmental") && ((ProjectileItemEntity) projectileEntity).getItem().getItem() == ForgeRegistries.ITEMS.getValue(MUD_BALL)) {
 			if (event.getRayTraceResult().getType() == RayTraceResult.Type.ENTITY) {
 				EntityRayTraceResult entity = (EntityRayTraceResult) event.getRayTraceResult();
 				if (entity.getEntity() instanceof ChimpanzeeEntity) {

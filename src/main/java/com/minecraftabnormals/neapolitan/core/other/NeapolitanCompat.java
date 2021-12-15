@@ -13,16 +13,13 @@ import net.minecraft.dispenser.IPosition;
 import net.minecraft.dispenser.ProjectileDispenseBehavior;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.Foods;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootTables;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraftforge.registries.ForgeRegistries;
 
 public class NeapolitanCompat {
-	public static final Item MUD_BALL = ForgeRegistries.ITEMS.getValue(new ResourceLocation("environmental", "mud_ball"));
-
+	
 	public static void transformCookies() {
 		Foods.COOKIE.fastFood = true;
 		Foods.COOKIE.saturationModifier = 0.3F;
