@@ -4,16 +4,13 @@ import com.minecraftabnormals.neapolitan.common.entity.goals.*;
 import com.minecraftabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
 import com.minecraftabnormals.neapolitan.common.entity.util.ChimpanzeeTypes;
 import com.minecraftabnormals.neapolitan.common.item.MilkshakeItem;
-import com.minecraftabnormals.neapolitan.core.other.NeapolitanCompat;
+import com.minecraftabnormals.neapolitan.core.other.NeapolitanConstants;
 import com.minecraftabnormals.neapolitan.core.other.NeapolitanTags;
 import com.minecraftabnormals.neapolitan.core.registry.*;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
+import net.minecraft.entity.ai.attributes.*;
 import net.minecraft.entity.ai.controller.BodyController;
 import net.minecraft.entity.ai.controller.LookController;
 import net.minecraft.entity.ai.goal.*;
@@ -27,29 +24,22 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.particles.IParticleData;
-import net.minecraft.particles.ItemParticleData;
-import net.minecraft.particles.ParticleTypes;
+import net.minecraft.network.datasync.*;
+import net.minecraft.particles.*;
 import net.minecraft.pathfinding.ClimberPathNavigator;
 import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.util.*;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.*;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.*;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.ModList;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
-import java.util.List;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 import java.util.function.Predicate;
 
 public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
@@ -592,8 +582,8 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 	public boolean canStandUp() {
 		EntitySize entitysize = this.getType().getDimensions();
 		float f = entitysize.width / 2.0F;
-		Vector3d vector3d = new Vector3d(this.getX() - (double)f, this.getY(), this.getZ() - (double)f);
-		Vector3d vector3d1 = new Vector3d(this.getX() + (double)f, this.getY() + (double)entitysize.height, this.getZ() + (double)f);
+		Vector3d vector3d = new Vector3d(this.getX() - (double) f, this.getY(), this.getZ() - (double) f);
+		Vector3d vector3d1 = new Vector3d(this.getX() + (double) f, this.getY() + (double) entitysize.height, this.getZ() + (double) f);
 		AxisAlignedBB axisalignedbb = new AxisAlignedBB(vector3d, vector3d1);
 		return this.level.noCollision(this, axisalignedbb.deflate(1.0E-7D));
 	}
@@ -702,7 +692,7 @@ public class ChimpanzeeEntity extends AnimalEntity implements IAngerable {
 				}
 
 			} else {
-				if (item instanceof DyeItem || (ModList.get().isLoaded("environmental") && item == NeapolitanCompat.MUD_BALL)) {
+				if (item instanceof DyeItem || (ModList.get().isLoaded(NeapolitanConstants.ENVIRONMENTAL) && item == ForgeRegistries.ITEMS.getValue(NeapolitanConstants.MUD_BALL))) {
 					HandSide handside = hand == Hand.MAIN_HAND ? this.getMainArm() : this.getMainArm().getOpposite();
 					this.setHandDyed(true, handside);
 					this.setHandDyeColor(item instanceof DyeItem ? ((DyeItem) item).getDyeColor() : DyeColor.BROWN, handside);

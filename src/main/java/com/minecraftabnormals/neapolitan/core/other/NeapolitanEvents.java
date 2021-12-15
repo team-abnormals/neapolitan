@@ -42,10 +42,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 @EventBusSubscriber(modid = Neapolitan.MOD_ID)
 public class NeapolitanEvents {
-	public static final String ENVIRONMENTAL = "environmental";
-	public static final String SAVAGE_AND_RAVAGE = "savageandravage";
-	public static final ResourceLocation MUD_BALL = new ResourceLocation(ENVIRONMENTAL, "mud_ball");
-	public static final ResourceLocation CREEPIE = new ResourceLocation(SAVAGE_AND_RAVAGE, "creepie");
 
 	@SubscribeEvent
 	public static void onEntityJoinWorld(EntityJoinWorldEvent event) {
@@ -153,7 +149,7 @@ public class NeapolitanEvents {
 	@SubscribeEvent
 	public static void onExplosion(ExplosionEvent.Detonate event) {
 		LivingEntity source = event.getExplosion().getSourceMob();
-		if (source != null && (source instanceof CreeperEntity || (ModList.get().isLoaded(SAVAGE_AND_RAVAGE) && source.getType() == ForgeRegistries.ENTITIES.getValue(CREEPIE)))) {
+		if (source != null && (source instanceof CreeperEntity || (ModList.get().isLoaded(NeapolitanConstants.SAVAGE_AND_RAVAGE) && source.getType() == ForgeRegistries.ENTITIES.getValue(NeapolitanConstants.CREEPIE)))) {
 			if (event.getWorld().getBlockState(source.blockPosition()).getBlock() == NeapolitanBlocks.STRAWBERRY_BUSH.get()) {
 				for (Entity entity : event.getAffectedEntities()) {
 					if (entity instanceof LivingEntity) {
@@ -174,7 +170,7 @@ public class NeapolitanEvents {
 	public static void onProjectileImpact(ProjectileImpactEvent.Throwable event) {
 		ThrowableEntity projectileEntity = event.getThrowable();
 
-		if (projectileEntity instanceof ProjectileItemEntity && ModList.get().isLoaded("environmental") && ((ProjectileItemEntity) projectileEntity).getItem().getItem() == ForgeRegistries.ITEMS.getValue(MUD_BALL)) {
+		if (projectileEntity instanceof ProjectileItemEntity && ModList.get().isLoaded(NeapolitanConstants.ENVIRONMENTAL) && ((ProjectileItemEntity) projectileEntity).getItem().getItem() == ForgeRegistries.ITEMS.getValue(NeapolitanConstants.MUD_BALL)) {
 			if (event.getRayTraceResult().getType() == RayTraceResult.Type.ENTITY) {
 				EntityRayTraceResult entity = (EntityRayTraceResult) event.getRayTraceResult();
 				if (entity.getEntity() instanceof ChimpanzeeEntity) {
