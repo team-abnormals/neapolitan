@@ -132,9 +132,8 @@ public class BananaPlantFeature extends Feature<NoFeatureConfig> {
 					ChimpanzeeEntity chimp = NeapolitanEntities.CHIMPANZEE.get().create(level.getLevel());
 					if (chimp != null) {
 						chimp.moveTo(d0, d1, d2, level.getRandom().nextFloat() * 360.0F, 0.0F);
-						chimp.finalizeSpawn(level, level.getCurrentDifficultyAt(chimp.blockPosition()), SpawnReason.SPAWNER, null, null);
+						chimp.finalizeSpawn(level, level.getCurrentDifficultyAt(chimp.blockPosition()), SpawnReason.STRUCTURE, null, null);
 						chimp.setBaby(random.nextInt(4) == 0);
-						level.levelEvent(2004, pos, 0);
 						level.addFreshEntity(chimp);
 						chimp.spawnAnim();
 						spawnedChimps++;
