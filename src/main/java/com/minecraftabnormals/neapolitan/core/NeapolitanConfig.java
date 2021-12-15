@@ -53,9 +53,9 @@ public class NeapolitanConfig {
 			builder.push("chimpanzee");
 			chimpanzeeSpawning = builder.define("Chimpanzee spawn in Jungles", true);
 			chimpanzeeGroupChance = builder.comment("The percentage chance for a Banana Plant to generate with a group of Chimpanzees").define("Chimpanzee group chance", 0.25D);
-			chimpanzeeMaxGroupSize = builder.comment("The maximum amount of Chimpanzees that can spawn with a Banana Plant").define("Chimpanzee maximum group size", 16);
-			chimpanzeeMinSpawnAttempts = builder.comment("The minimum attempts for Chimpanzees to spawn with a Banana Plant").define("Chimpanzee minimum spawn attempts", 16);
-			chimpanzeeMaxSpawnAttempts = builder.comment("The maximum attempts for Chimpanzees to spawn with a Banana Plant").define("Chimpanzee maximum spawn attempts", 32);
+			chimpanzeeMaxGroupSize = builder.comment("The maximum amount of Chimpanzees that can spawn with a Banana Plant").define("Chimpanzee maximum group size", 10);
+			chimpanzeeMinSpawnAttempts = builder.comment("The minimum attempts for Chimpanzees to spawn with a Banana Plant").define("Chimpanzee minimum spawn attempts", 12);
+			chimpanzeeMaxSpawnAttempts = builder.comment("The maximum attempts for Chimpanzees to spawn with a Banana Plant").define("Chimpanzee maximum spawn attempts", 24);
 			builder.pop();
 			builder.pop();
 		}
