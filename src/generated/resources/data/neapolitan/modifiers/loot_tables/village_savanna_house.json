@@ -1,0 +1,53 @@
+{
+  "target": {
+    "type": "names",
+    "config": [
+      "minecraft:chests/village/village_savanna_house"
+    ],
+    "conditions": []
+  },
+  "priority": "normal",
+  "modifiers": [
+    {
+      "type": "entries",
+      "config": {
+        "replace": false,
+        "index": 0,
+        "entries": [
+          {
+            "type": "minecraft:item",
+            "weight": 10,
+            "functions": [
+              {
+                "function": "minecraft:set_count",
+                "count": {
+                  "type": "minecraft:uniform",
+                  "min": 1.0,
+                  "max": 7.0
+                },
+                "add": false
+              }
+            ],
+            "name": "neapolitan:vanilla_pods"
+          },
+          {
+            "type": "minecraft:item",
+            "weight": 10,
+            "functions": [
+              {
+                "function": "minecraft:set_count",
+                "count": {
+                  "type": "minecraft:uniform",
+                  "min": 1.0,
+                  "max": 4.0
+                },
+                "add": false
+              }
+            ],
+            "name": "neapolitan:vanilla_fudge"
+          }
+        ]
+      }
+    }
+  ]
+}

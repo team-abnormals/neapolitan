@@ -1,5 +1,5 @@
 {
-    "parent": "abnormals_core:block/vertical_slab",
+    "parent": "blueprint:block/vertical_slab",
     "textures": {
         "side": "neapolitan:block/chocolate_bricks",
         "top": "neapolitan:block/chocolate_bricks",

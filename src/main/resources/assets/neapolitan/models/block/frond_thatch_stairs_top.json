@@ -1,5 +1,5 @@
 {
-  "parent": "abnormals_core:block/thatch/thatch_stairs_top",
+  "parent": "blueprint:block/thatch/thatch_stairs_top",
   "textures": {
     "thatch": "neapolitan:block/frond_thatch",
     "extrudes": "neapolitan:block/frond_thatch_extrudes"
