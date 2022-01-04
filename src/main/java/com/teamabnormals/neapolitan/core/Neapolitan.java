@@ -84,7 +84,7 @@ public class Neapolitan {
 	}
 
 	private void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
-		event.registerLayerDefinition(ChimpanzeeModel.LOCATION, ChimpanzeeModel::createLayerDefinition);
+		event.registerLayerDefinition(ChimpanzeeModel.LOCATION, () ->  ChimpanzeeModel.createLayerDefinition(0.0F, false, false));
 		event.registerLayerDefinition(BananaPeelModel.LOCATION, BananaPeelModel::createLayerDefinition);
 	}
 

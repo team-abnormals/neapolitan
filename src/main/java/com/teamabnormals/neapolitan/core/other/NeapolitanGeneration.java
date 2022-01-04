@@ -58,15 +58,11 @@ public class NeapolitanGeneration {
 						generation.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, NeapolitanPlacedFeatures.BANANA_PLANT_RARE);
 					else
 						generation.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, NeapolitanPlacedFeatures.BANANA_PLANT_VERY_RARE);
-				} else if (!DataUtil.matchesKeys(biome, Biomes.BAMBOO_JUNGLE)) {
-					if (!DataUtil.matchesKeys(biome, Biomes.SPARSE_JUNGLE))
-						generation.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, NeapolitanPlacedFeatures.BANANA_PLANT_JUNGLE);
-					else
-						generation.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, NeapolitanPlacedFeatures.BANANA_PLANT_RARE);
-				}
+				} else if (!DataUtil.matchesKeys(biome, Biomes.SPARSE_JUNGLE))
+					generation.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, NeapolitanPlacedFeatures.BANANA_PLANT_JUNGLE);
+				else
+					generation.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, NeapolitanPlacedFeatures.BANANA_PLANT_RARE);
 			}
-
-
 		}
 	}
 }

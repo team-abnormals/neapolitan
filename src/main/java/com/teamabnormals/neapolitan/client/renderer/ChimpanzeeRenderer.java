@@ -21,8 +21,8 @@ import java.util.Locale;
 public class ChimpanzeeRenderer extends MobRenderer<ChimpanzeeEntity, ChimpanzeeModel<ChimpanzeeEntity>> {
 
 	public ChimpanzeeRenderer(EntityRendererProvider.Context context) {
-		super(context, new ChimpanzeeModel<>(ChimpanzeeModel.createLayerDefinition().bakeRoot()), 0.4F);
-		this.addLayer(new HumanoidArmorLayer<>(this, new ChimpanzeeModel<>(ChimpanzeeModel.createLayerDefinition().bakeRoot()), new ChimpanzeeModel<>(ChimpanzeeModel.createLayerDefinition().bakeRoot())));
+		super(context, new ChimpanzeeModel<>(ChimpanzeeModel.createLayerDefinition(0.0F, false, false).bakeRoot()), 0.4F);
+		this.addLayer(new HumanoidArmorLayer<>(this, new ChimpanzeeModel<>(ChimpanzeeModel.createLayerDefinition(0.5F, true, true).bakeRoot()), new ChimpanzeeModel<>(ChimpanzeeModel.createLayerDefinition(1.0F, true, false).bakeRoot())));
 		this.addLayer(new ChimpanzeePaleSkinLayer<>(this));
 		this.addLayer(new ChimpanzeeDirtLayer<>(this));
 		this.addLayer(new ChimpanzeeDyeLayer<>(this));

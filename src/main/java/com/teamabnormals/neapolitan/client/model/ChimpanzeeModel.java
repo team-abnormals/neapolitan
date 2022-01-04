@@ -48,17 +48,41 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends HumanoidModel<T
 		this.rightLegDefault = root.getChild("right_leg_default");
 	}
 
-	public static LayerDefinition createLayerDefinition() {
-		MeshDefinition meshdefinition = HumanoidModel.createMesh(CubeDeformation.NONE, 0.0F);
+	public static LayerDefinition createLayerDefinition(float modelSize, boolean isArmor, boolean isInner) {
+		CubeDeformation deformation = CubeDeformation.NONE;
+		MeshDefinition meshdefinition = HumanoidModel.createMesh(deformation, 0.0F);
 		PartDefinition root = meshdefinition.getRoot();
-		PartDefinition body = root.addOrReplaceChild("body", CubeListBuilder.create().texOffs(37, 0).addBox(-5.0F, -0.0F, -1.5F, 10.0F, 8.0F, 3.0F, false), PartPose.offsetAndRotation(0.0F, 5.0F, 0.5F, 0.0F, 0.0F, 0.0F));
-		PartDefinition head = root.addOrReplaceChild("head", CubeListBuilder.create().texOffs(1, 1).addBox(-4.0F, -8.0F, -3.0F, 8.0F, 8.0F, 6.0F, false).texOffs(30, 11).addBox(-2.0F, -5.0F, -4.0F, 4.0F, 5.0F, 1.0F, false), PartPose.offsetAndRotation(0.0F, 5.0F, 0.5F, 0.0F, 0.0F, 0.0F));
-		PartDefinition leftEar = head.addOrReplaceChild("left_ear", CubeListBuilder.create().texOffs(25, 1).addBox(0.0F, -2.0F, -1.0F, 2.0F, 3.0F, 1.0F, false), PartPose.offsetAndRotation(4.0F, -5.0F, 0.0F, 0.0F, 0.0F, 0.0F));
-		PartDefinition rightEar = head.addOrReplaceChild("right_ear", CubeListBuilder.create().texOffs(25, 1).addBox(-2.0F, -4.0F, -1.0F, 2.0F, 3.0F, 1.0F, false), PartPose.offsetAndRotation(-4.0F, -3.0F, 0.0F, 0.0F, 0.0F, 0.0F));
-		PartDefinition leftArm = root.addOrReplaceChild("left_arm", CubeListBuilder.create().texOffs(14, 17).addBox(0.0F, -1.5F, -1.5F, 3.0F, 11.0F, 3.0F, false), PartPose.offsetAndRotation(5.0F, 6.5F, 0.5F, 0.0F, 0.0F, 0.0F));
-		PartDefinition rightArm = root.addOrReplaceChild("right_arm", CubeListBuilder.create().texOffs(1, 17).addBox(-3.0F, -1.5F, -1.5F, 3.0F, 11.0F, 3.0F, false), PartPose.offsetAndRotation(-5.0F, 6.5F, 0.5F, 0.0F, 0.0F, 0.0F));
-		PartDefinition leftLeg = root.addOrReplaceChild("left_leg", CubeListBuilder.create().texOffs(40, 17).addBox(-1.5F, 0.0F, -1.5F, 3.0F, 11.0F, 3.0F, false), PartPose.offsetAndRotation(2.5F, 13.0F, 0.5F, 0.0F, 0.0F, 0.0F));
-		PartDefinition rightLeg = root.addOrReplaceChild("right_leg", CubeListBuilder.create().texOffs(27, 17).addBox(-1.5F, 0.0F, -1.5F, 3.0F, 11.0F, 3.0F, false), PartPose.offsetAndRotation(-2.5F, 13.0F, 0.5F, 0.0F, 0.0F, 0.0F));
+
+		PartDefinition body = root.addOrReplaceChild("body", CubeListBuilder.create().texOffs(37, 0).addBox(-5.0F, -0.0F, -1.5F, 10.0F, 8.0F, 3.0F, deformation.extend(modelSize)), PartPose.offsetAndRotation(0.0F, 5.0F, 0.5F, 0.0F, 0.0F, 0.0F));
+		PartDefinition head = root.addOrReplaceChild("head", CubeListBuilder.create().texOffs(1, 1).addBox(-4.0F, -8.0F, -3.0F, 8.0F, 8.0F, 6.0F, deformation.extend(modelSize)).texOffs(30, 11).addBox(-2.0F, -5.0F, -4.0F, 4.0F, 5.0F, 1.0F, false), PartPose.offsetAndRotation(0.0F, 5.0F, 0.5F, 0.0F, 0.0F, 0.0F));
+		PartDefinition leftEar = head.addOrReplaceChild("left_ear", CubeListBuilder.create().texOffs(25, 1).mirror().addBox(0.0F, -2.0F, -1.0F, 2.0F, 3.0F, 1.0F, deformation.extend(modelSize)), PartPose.offsetAndRotation(4.0F, -5.0F, 0.0F, 0.0F, 0.0F, 0.0F));
+		PartDefinition rightEar = head.addOrReplaceChild("right_ear", CubeListBuilder.create().texOffs(25, 1).addBox(-2.0F, -4.0F, -1.0F, 2.0F, 3.0F, 1.0F, deformation.extend(modelSize)), PartPose.offsetAndRotation(-4.0F, -3.0F, 0.0F, 0.0F, 0.0F, 0.0F));
+		PartDefinition leftArm = root.addOrReplaceChild("left_arm", CubeListBuilder.create().texOffs(14, 17).mirror().addBox(0.0F, -1.5F, -1.5F, 3.0F, 11.0F, 3.0F, deformation.extend(modelSize)), PartPose.offsetAndRotation(5.0F, 6.5F, 0.5F, 0.0F, 0.0F, 0.0F));
+		PartDefinition rightArm = root.addOrReplaceChild("right_arm", CubeListBuilder.create().texOffs(1, 17).addBox(-3.0F, -1.5F, -1.5F, 3.0F, 11.0F, 3.0F, deformation.extend(modelSize)), PartPose.offsetAndRotation(-5.0F, 6.5F, 0.5F, 0.0F, 0.0F, 0.0F));
+		PartDefinition leftLeg = root.addOrReplaceChild("left_leg", CubeListBuilder.create().texOffs(40, 17).mirror().addBox(-1.5F, 0.0F, -1.5F, 3.0F, 11.0F, 3.0F, deformation.extend(modelSize)), PartPose.offsetAndRotation(2.5F, 13.0F, 0.5F, 0.0F, 0.0F, 0.0F));
+		PartDefinition rightLeg = root.addOrReplaceChild("right_leg", CubeListBuilder.create().texOffs(27, 17).addBox(-1.5F, 0.0F, -1.5F, 3.0F, 11.0F, 3.0F, deformation.extend(modelSize)), PartPose.offsetAndRotation(-2.5F, 13.0F, 0.5F, 0.0F, 0.0F, 0.0F));
+
+
+		if (isArmor) {
+			head = root.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, deformation.extend(modelSize)), PartPose.offsetAndRotation(0.0F, 1.0F, 0.5F, 0.0F, 0.0F, 0.0F));
+			body = root.addOrReplaceChild("body", CubeListBuilder.create().texOffs(16, 16).addBox(-4.0F, -0.0F, -2.0F, 8.0F, 12.0F, 4.0F, deformation.extend(modelSize)), PartPose.offsetAndRotation(0.0F, 5.0F, 0.5F, 0.0F, 0.0F, 0.0F));
+			rightArm = root.addOrReplaceChild("right_arm", CubeListBuilder.create().texOffs(40, 16).addBox(-3.0F, -1.5F, -2.0F, 4.0F, 12.0F, 4.0F, deformation.extend(modelSize)), PartPose.offsetAndRotation(-5.0F, 6.5F, 0.5F, 0.0F, 0.0F, 0.0F));
+			leftArm = root.addOrReplaceChild("left_arm", CubeListBuilder.create().texOffs(40, 16).mirror().addBox(-1.0F, -1.5F, -2.0F, 4.0F, 12.0F, 4.0F, deformation.extend(modelSize)), PartPose.offsetAndRotation(5.0F, 6.5F, 0.5F, 0.0F, 0.0F, 0.0F));
+
+			if (isInner) {
+				rightLeg = root.addOrReplaceChild("right_leg", CubeListBuilder.create().texOffs(0, 16).addBox(-1.5F, -1.0F, -2.0F, 4.0F, 12.0F, 4.0F, deformation.extend(modelSize)), PartPose.offsetAndRotation(-2.5F, 13.0F, 0.5F, 0.0F, 0.0F, 0.0F));
+				leftLeg = root.addOrReplaceChild("left_leg", CubeListBuilder.create().texOffs(0, 16).mirror().addBox(-2.5F, -1.0F, -2.0F, 4.0F, 12.0F, 4.0F, deformation.extend(modelSize)), PartPose.offsetAndRotation(2.5F, 13.0F, 0.5F, 0.0F, 0.0F, 0.0F));
+			} else {
+				rightLeg = root.addOrReplaceChild("right_leg", CubeListBuilder.create().texOffs(0, 16).addBox(-1.5F, -1.0F, -2.0F, 4.0F, 12.0F, 4.0F, deformation.extend(modelSize)), PartPose.offsetAndRotation(-2.5F, 13.0F, 0.5F, 0.0F, 0.0F, 0.0F));
+				leftLeg = root.addOrReplaceChild("left_leg", CubeListBuilder.create().texOffs(0, 16).mirror().addBox(-2.5F, -1.0F, -2.0F, 4.0F, 12.0F, 4.0F, deformation.extend(modelSize)), PartPose.offsetAndRotation(2.5F, 13.0F, 0.5F, 0.0F, 0.0F, 0.0F));
+			}
+
+			leftEar = root.addOrReplaceChild("left_ear", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F));
+			rightEar = root.addOrReplaceChild("right_ear", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F));
+		}
+
+		PartDefinition hat = root.addOrReplaceChild("hat", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F));
+
 		PartDefinition bodyDefault = root.addOrReplaceChild("body_default", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, 5.0F, 0.5F, 0.0F, 0.0F, 0.0F));
 		PartDefinition headDefault = root.addOrReplaceChild("head_default", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, 5.0F, 0.5F, 0.0F, 0.0F, 0.0F));
 		PartDefinition leftEarDefault = root.addOrReplaceChild("left_ear_default", CubeListBuilder.create(), PartPose.offsetAndRotation(4.0F, -5.0F, 0.0F, 0.0F, 0.0F, 0.0F));
@@ -67,6 +91,7 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends HumanoidModel<T
 		PartDefinition rightArmDefault = root.addOrReplaceChild("right_arm_default", CubeListBuilder.create(), PartPose.offsetAndRotation(-5.0F, 6.5F, 0.5F, 0.0F, 0.0F, 0.0F));
 		PartDefinition leftLegDefault = root.addOrReplaceChild("left_leg_default", CubeListBuilder.create(), PartPose.offsetAndRotation(2.5F, 13.0F, 0.5F, 0.0F, 0.0F, 0.0F));
 		PartDefinition rightLegDefault = root.addOrReplaceChild("right_leg_default", CubeListBuilder.create(), PartPose.offsetAndRotation(-2.5F, 13.0F, 0.5F, 0.0F, 0.0F, 0.0F));
+
 		return LayerDefinition.create(meshdefinition, 64, 32);
 	}
 
