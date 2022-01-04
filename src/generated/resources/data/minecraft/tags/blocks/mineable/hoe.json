@@ -1,0 +1,19 @@
+{
+  "replace": false,
+  "values": [
+    "neapolitan:frond_thatch",
+    "neapolitan:frond_thatch_slab",
+    "neapolitan:frond_thatch_stairs",
+    "neapolitan:frond_thatch_vertical_slab",
+    "neapolitan:banana_stalk",
+    "neapolitan:carved_banana_stalk",
+    "neapolitan:small_banana_frond",
+    "neapolitan:banana_frond",
+    "neapolitan:large_banana_frond",
+    "neapolitan:beanstalk",
+    "neapolitan:beanstalk_thorns",
+    "neapolitan:vanilla_pod_block",
+    "neapolitan:dried_vanilla_pod_block",
+    "neapolitan:banana_bundle"
+  ]
+}

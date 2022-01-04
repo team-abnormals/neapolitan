@@ -1,0 +1,28 @@
+{
+  "replace": false,
+  "values": [
+    "neapolitan:chocolate_block",
+    "neapolitan:chocolate_bricks",
+    "neapolitan:chocolate_brick_slab",
+    "neapolitan:chocolate_brick_stairs",
+    "neapolitan:chocolate_brick_wall",
+    "neapolitan:chocolate_brick_vertical_slab",
+    "neapolitan:chiseled_chocolate_bricks",
+    "neapolitan:chocolate_tiles",
+    "neapolitan:chocolate_tile_slab",
+    "neapolitan:chocolate_tile_stairs",
+    "neapolitan:chocolate_tile_wall",
+    "neapolitan:chocolate_tile_vertical_slab",
+    "neapolitan:strawberry_bush",
+    "neapolitan:vanilla_vine",
+    "neapolitan:vanilla_vine_plant",
+    "neapolitan:mint",
+    "neapolitan:adzuki_sprouts",
+    "neapolitan:strawberry_basket",
+    "neapolitan:white_strawberry_basket",
+    "neapolitan:banana_crate",
+    "neapolitan:mint_basket",
+    "neapolitan:adzuki_crate",
+    "neapolitan:roasted_adzuki_crate"
+  ]
+}
