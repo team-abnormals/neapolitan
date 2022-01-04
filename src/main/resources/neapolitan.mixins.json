@@ -5,11 +5,11 @@
   "minVersion": "0.8",
   "refmap": "neapolitan.refmap.json",
   "mixins": [
-    "BipedArmorLayerMixin",
+    "HumanoidArmorLayerMixin",
     "CauldronBlockMixin",
     "LivingEntityMixin",
     "PointedDripstoneBlockMixin",
-    "SpreadableSnowyDirtBlockMixin"
+    "SpreadingSnowyDirtBlockMixin"
   ],
   "injectors": {
     "defaultRequire": 1

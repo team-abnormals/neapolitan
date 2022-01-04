@@ -182,7 +182,7 @@ public class ChimpanzeeEntity extends Animal implements NeutralMob {
 	@Override
 	public void readAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
-		this.readPersistentAngerSaveData((ServerLevel) this.level, compound);
+		this.readPersistentAngerSaveData(this.level, compound);
 		this.setChimpanzeeType(compound.getInt("ChimpanzeeType"));
 		this.setApeModeTime(compound.getInt("ApeModeTime"));
 		this.setHunger(compound.getInt("Hunger"));

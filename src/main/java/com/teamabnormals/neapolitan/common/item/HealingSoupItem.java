@@ -1,8 +1,8 @@
 package com.teamabnormals.neapolitan.common.item;
 
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.BowlFoodItem;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
 public class HealingSoupItem extends BowlFoodItem {

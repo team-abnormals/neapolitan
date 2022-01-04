@@ -63,9 +63,7 @@ public class ChimpSitGoal extends Goal {
 			return false;
 		} else if (this.sitTimer <= 0) {
 			return false;
-		} else if (this.chimpanzee.xxa != 0.0F || this.chimpanzee.yya != 0.0F || this.chimpanzee.zza != 0.0F) {
-			return false;
-		} else return true;
+		} else return this.chimpanzee.xxa == 0.0F && this.chimpanzee.yya == 0.0F && this.chimpanzee.zza == 0.0F;
 	}
 
 	@Override

@@ -1,8 +1,8 @@
 package com.teamabnormals.neapolitan.common.entity.goals;
 
 import com.teamabnormals.neapolitan.common.entity.ChimpanzeeEntity;
-import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;

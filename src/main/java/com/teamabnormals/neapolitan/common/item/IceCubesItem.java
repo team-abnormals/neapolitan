@@ -1,8 +1,8 @@
 package com.teamabnormals.neapolitan.common.item;
 
 import com.teamabnormals.neapolitan.core.registry.NeapolitanSounds;
-import net.minecraft.world.item.Item;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.item.Item;
 
 public class IceCubesItem extends Item {
 

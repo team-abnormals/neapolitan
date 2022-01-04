@@ -3,8 +3,8 @@ package com.teamabnormals.neapolitan.common.entity.goals;
 import com.teamabnormals.neapolitan.common.entity.ChimpanzeeEntity;
 import com.teamabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
-import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.ai.goal.Goal;
 
 import java.util.EnumSet;
 

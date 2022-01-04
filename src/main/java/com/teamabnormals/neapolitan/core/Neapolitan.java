@@ -5,7 +5,6 @@ import com.teamabnormals.neapolitan.client.model.BananaPeelModel;
 import com.teamabnormals.neapolitan.client.model.ChimpanzeeModel;
 import com.teamabnormals.neapolitan.client.renderer.*;
 import com.teamabnormals.neapolitan.core.data.client.NeapolitanBlockStateProvider;
-import com.teamabnormals.neapolitan.core.data.client.NeapolitanLanguageProvider;
 import com.teamabnormals.neapolitan.core.data.server.NeapolitanLootModifiersProvider;
 import com.teamabnormals.neapolitan.core.data.server.NeapolitanLootTableProvider;
 import com.teamabnormals.neapolitan.core.data.server.tags.NeapolitanBlockTagsProvider;
@@ -84,7 +83,7 @@ public class Neapolitan {
 	}
 
 	private void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
-		event.registerLayerDefinition(ChimpanzeeModel.LOCATION, () ->  ChimpanzeeModel.createLayerDefinition(0.0F, false, false));
+		event.registerLayerDefinition(ChimpanzeeModel.LOCATION, () -> ChimpanzeeModel.createLayerDefinition(0.0F, false, false));
 		event.registerLayerDefinition(BananaPeelModel.LOCATION, BananaPeelModel::createLayerDefinition);
 	}
 
