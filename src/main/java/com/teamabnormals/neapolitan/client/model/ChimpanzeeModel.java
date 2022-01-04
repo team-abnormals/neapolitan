@@ -236,7 +236,7 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends HumanoidModel<T
 			this.rightLeg.xRot = f * 0.35F - (float) Math.PI * 0.1F;
 			this.leftLeg.xRot = f * 0.35F - (float) Math.PI * 0.1F;
 		} else if (entity.isDoingAction(ChimpanzeeAction.CRYING)) {
-			float f = Mth.sin(ageInTicks * 0.7F);
+			float f = Mth.sin(ageInTicks * 0.6F);
 
 			this.head.xRot = 0.3F - f * 0.2F;
 			this.head.yRot = 0F;
