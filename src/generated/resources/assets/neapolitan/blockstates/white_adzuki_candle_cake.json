@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "neapolitan:block/white_adzuki_candle_cake"
+    },
+    "lit=true": {
+      "model": "neapolitan:block/white_adzuki_candle_cake_lit"
+    }
+  }
+}

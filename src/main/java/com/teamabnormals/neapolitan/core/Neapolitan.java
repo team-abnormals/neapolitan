@@ -4,7 +4,11 @@ import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import com.teamabnormals.neapolitan.client.model.BananaPeelModel;
 import com.teamabnormals.neapolitan.client.model.ChimpanzeeModel;
 import com.teamabnormals.neapolitan.client.renderer.*;
+import com.teamabnormals.neapolitan.core.data.client.NeapolitanBlockStateProvider;
+import com.teamabnormals.neapolitan.core.data.client.NeapolitanLanguageProvider;
 import com.teamabnormals.neapolitan.core.data.server.NeapolitanLootModifiersProvider;
+import com.teamabnormals.neapolitan.core.data.server.NeapolitanLootTableProvider;
+import com.teamabnormals.neapolitan.core.data.server.tags.NeapolitanBlockTagsProvider;
 import com.teamabnormals.neapolitan.core.other.NeapolitanCompat;
 import com.teamabnormals.neapolitan.core.registry.*;
 import net.minecraft.data.DataGenerator;
@@ -68,7 +72,14 @@ public class Neapolitan {
 		ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
 
 		if (event.includeServer()) {
+			dataGenerator.addProvider(new NeapolitanBlockTagsProvider(dataGenerator, existingFileHelper));
+			dataGenerator.addProvider(new NeapolitanLootTableProvider(dataGenerator));
 			dataGenerator.addProvider(NeapolitanLootModifiersProvider.createLootModifierDataProvider(dataGenerator));
+		}
+
+		if (event.includeClient()) {
+			dataGenerator.addProvider(new NeapolitanBlockStateProvider(dataGenerator, existingFileHelper));
+			//dataGenerator.addProvider(new NeapolitanLanguageProvider(dataGenerator));
 		}
 	}
 
