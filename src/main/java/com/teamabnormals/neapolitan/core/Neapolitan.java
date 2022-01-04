@@ -9,6 +9,7 @@ import com.teamabnormals.neapolitan.core.other.NeapolitanCompat;
 import com.teamabnormals.neapolitan.core.registry.*;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -29,6 +30,7 @@ public class Neapolitan {
 	public Neapolitan() {
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 		MinecraftForge.EVENT_BUS.register(this);
+		ForgeMod.enableMilkFluid();
 
 		REGISTRY_HELPER.register(bus);
 		NeapolitanEffects.EFFECTS.register(bus);

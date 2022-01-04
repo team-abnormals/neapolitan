@@ -5,7 +5,6 @@ import com.teamabnormals.blueprint.common.block.thatch.*;
 import com.teamabnormals.blueprint.core.util.registry.BlockSubRegistryHelper;
 import com.teamabnormals.neapolitan.common.block.*;
 import com.teamabnormals.neapolitan.core.Neapolitan;
-import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.*;
@@ -26,7 +25,7 @@ public class NeapolitanBlocks {
 	public static final RegistryObject<Block> MINT_ICE_CREAM_BLOCK = HELPER.createBlock("mint_ice_cream_block", () -> new Block(Properties.MINT_ICE_CREAM_BLOCK), CreativeModeTab.TAB_BUILDING_BLOCKS);
 	public static final RegistryObject<Block> ADZUKI_ICE_CREAM_BLOCK = HELPER.createBlock("adzuki_ice_cream_block", () -> new Block(Properties.ADZUKI_ICE_CREAM_BLOCK), CreativeModeTab.TAB_BUILDING_BLOCKS);
 
-	public static final RegistryObject<Block> MILK_CAULDRON = HELPER.createBlockNoItem("milk_cauldron", () -> new LayeredCauldronBlock(Properties.MILK_CAULDRON, LayeredCauldronBlock.SNOW, CauldronInteraction.POWDER_SNOW));
+	public static final RegistryObject<Block> MILK_CAULDRON = HELPER.createBlockNoItem("milk_cauldron", () -> new MilkCauldronBlock(Properties.MILK_CAULDRON));
 
 	public static final RegistryObject<Block> CHOCOLATE_BLOCK = HELPER.createBlock("chocolate_block", () -> new Block(Properties.CHOCOLATE), CreativeModeTab.TAB_BUILDING_BLOCKS);
 

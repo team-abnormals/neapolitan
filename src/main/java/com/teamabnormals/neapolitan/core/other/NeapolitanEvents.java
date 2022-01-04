@@ -1,8 +1,9 @@
 package com.teamabnormals.neapolitan.core.other;
 
+import com.teamabnormals.blueprint.core.other.tags.BlueprintEntityTypeTags;
+import com.teamabnormals.blueprint.core.util.MathUtil;
 import com.teamabnormals.blueprint.core.util.TradeUtil;
 import com.teamabnormals.blueprint.core.util.TradeUtil.BlueprintTrade;
-import com.teamabnormals.neapolitan.common.block.MilkCauldronBlock;
 import com.teamabnormals.neapolitan.common.entity.ChimpanzeeEntity;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.NeapolitanConfig;
@@ -11,8 +12,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffect;
@@ -28,17 +27,14 @@ import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.LayeredCauldronBlock;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.EntityHitResult;
-import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.level.block.PointedDripstoneBlock;
+import net.minecraft.world.phys.*;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.PotionEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteractSpecific;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.event.world.ExplosionEvent;
@@ -47,6 +43,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.Random;
 
 @EventBusSubscriber(modid = Neapolitan.MOD_ID)
 public class NeapolitanEvents {
@@ -60,48 +58,20 @@ public class NeapolitanEvents {
 	}
 
 	@SubscribeEvent
-	public static void onRightClickBlock(RightClickBlock event) {
-		BlockPos pos = event.getPos();
-		ItemStack stack = event.getItemStack();
-		Level world = event.getWorld();
-		Item item = stack.getItem();
-		BlockState state = event.getWorld().getBlockState(pos);
-		Player player = event.getPlayer();
-		InteractionHand hand = event.getHand();
+	public static void onLivingUpdate(LivingUpdateEvent event) {
+		Entity entity = event.getEntity();
+		if (entity.getType().is(BlueprintEntityTypeTags.MILKABLE)) {
+			Level level = event.getEntity().getLevel();
+			BlockPos entityPos = event.getEntityLiving().blockPosition();
+			BlockPos dripstonePos = event.getEntityLiving().getOnPos().below();
+			Random random = level.random;
 
-		if (NeapolitanConfig.COMMON.milkCauldron.get() && state.is(Blocks.CAULDRON)) {
-			int i = state.getValue(LayeredCauldronBlock.LEVEL);
-			if (item == Items.MILK_BUCKET) {
-				if (i < 3 && !world.isClientSide) {
-					if (!player.getAbilities().instabuild) {
-						player.setItemInHand(hand, new ItemStack(Items.BUCKET));
-					}
-
-					player.awardStat(Stats.FILL_CAULDRON);
-					((MilkCauldronBlock) NeapolitanBlocks.MILK_CAULDRON.get()).setMilkLevel(world, pos, 3);
-					world.playSound(null, pos, SoundEvents.BUCKET_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
-				}
-
-				event.setCanceled(true);
-				event.setCancellationResult(InteractionResult.sidedSuccess(world.isClientSide));
-			} else if (item == NeapolitanItems.MILK_BOTTLE.get()) {
-				if (i < 3 && !world.isClientSide) {
-					if (!player.getAbilities().instabuild) {
-						stack.shrink(1);
-						ItemStack returnStack = new ItemStack(Items.GLASS_BOTTLE);
-						if (!player.getInventory().add(returnStack)) {
-							player.drop(returnStack, false);
-						}
-
-						player.awardStat(Stats.USE_CAULDRON);
-					}
-
-					world.playSound(null, pos, SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
-					((MilkCauldronBlock) NeapolitanBlocks.MILK_CAULDRON.get()).setMilkLevel(world, pos, i + 1);
-				}
-
-				event.setCanceled(true);
-				event.setCancellationResult(InteractionResult.sidedSuccess(world.isClientSide));
+			if (level.getGameTime() % 60 == 0 && PointedDripstoneBlock.canDrip(level.getBlockState(dripstonePos))) {
+				Vec3 vec3 = level.getBlockState(entityPos).getOffset(level, entityPos);
+				double d1 = (double) entityPos.getX() + 0.5D + vec3.x + MathUtil.makeNegativeRandomly(random.nextFloat() * 0.25F, random);
+				double d2 = entityPos.getY() + entity.getBbHeight() / 2;
+				double d3 = (double) entityPos.getZ() + 0.5D + vec3.z + MathUtil.makeNegativeRandomly(random.nextFloat() * 0.25F, random);
+				level.addParticle(NeapolitanParticles.DRIPPING_DRIPSTONE_MILK.get(), d1, d2, d3, 0.0D, 0.0D, 0.0D);
 			}
 		}
 	}
@@ -118,8 +88,8 @@ public class NeapolitanEvents {
 			boolean notChild = !(entity instanceof LivingEntity) || !((LivingEntity) entity).isBaby();
 			if (stack.getItem() == Items.GLASS_BOTTLE && notChild) {
 				player.playSound(SoundEvents.COW_MILK, 1.0F, 1.0F);
-				ItemStack itemstack1 = ItemUtils.createFilledResult(stack, event.getPlayer(), NeapolitanItems.MILK_BOTTLE.get().getDefaultInstance());
-				player.setItemInHand(hand, itemstack1);
+				ItemStack newStack = ItemUtils.createFilledResult(stack, event.getPlayer(), NeapolitanItems.MILK_BOTTLE.get().getDefaultInstance());
+				player.setItemInHand(hand, newStack);
 
 				event.setCanceled(true);
 				event.setCancellationResult(InteractionResult.sidedSuccess(world.isClientSide()));
@@ -127,18 +97,17 @@ public class NeapolitanEvents {
 		}
 
 		if (entity instanceof LivingEntity && !NeapolitanTags.EntityTypes.UNAFFECTED_BY_SLIPPING.contains(entity.getType()) && stack.getItem() == NeapolitanItems.BANANA_BUNCH.get()) {
-			InteractionResult actionresulttype = stack.interactLivingEntity(player, (LivingEntity) entity, hand);
-			if (actionresulttype.consumesAction()) {
+			InteractionResult result = stack.interactLivingEntity(player, (LivingEntity) entity, hand);
+			if (result.consumesAction()) {
 				event.setCanceled(true);
-				event.setCancellationResult(actionresulttype);
+				event.setCancellationResult(result);
 			}
 		}
 	}
 
 	@SubscribeEvent
 	public static void onLivingDeath(LivingDeathEvent event) {
-		if (event.getSource().getEntity() instanceof LivingEntity) {
-			LivingEntity attacker = (LivingEntity) event.getSource().getEntity();
+		if (event.getSource().getEntity() instanceof LivingEntity attacker) {
 			if (attacker.getEffect(NeapolitanEffects.BERSERKING.get()) != null) {
 				MobEffectInstance berserking = attacker.getEffect(NeapolitanEffects.BERSERKING.get());
 				if (berserking.getAmplifier() < 9) {
@@ -156,8 +125,7 @@ public class NeapolitanEvents {
 		if (source != null && (source instanceof Creeper || (ModList.get().isLoaded(NeapolitanConstants.SAVAGE_AND_RAVAGE) && source.getType() == ForgeRegistries.ENTITIES.getValue(NeapolitanConstants.CREEPIE)))) {
 			if (event.getWorld().getBlockState(source.blockPosition()).getBlock() == NeapolitanBlocks.STRAWBERRY_BUSH.get()) {
 				for (Entity entity : event.getAffectedEntities()) {
-					if (entity instanceof LivingEntity) {
-						LivingEntity livingEntity = ((LivingEntity) entity);
+					if (entity instanceof LivingEntity livingEntity) {
 						livingEntity.heal(5.0F);
 					}
 					if (entity instanceof ServerPlayer)
@@ -177,8 +145,7 @@ public class NeapolitanEvents {
 		if (projectileEntity instanceof ThrowableItemProjectile && ModList.get().isLoaded(NeapolitanConstants.ENVIRONMENTAL) && ((ThrowableItemProjectile) projectileEntity).getItem().getItem() == ForgeRegistries.ITEMS.getValue(NeapolitanConstants.MUD_BALL)) {
 			if (event.getRayTraceResult().getType() == HitResult.Type.ENTITY) {
 				EntityHitResult entity = (EntityHitResult) event.getRayTraceResult();
-				if (entity.getEntity() instanceof ChimpanzeeEntity) {
-					ChimpanzeeEntity chimpanzee = (ChimpanzeeEntity) entity.getEntity();
+				if (entity.getEntity() instanceof ChimpanzeeEntity chimpanzee) {
 					chimpanzee.setDirtiness(12000);
 				}
 			}
