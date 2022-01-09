@@ -1,5 +1,6 @@
 package com.teamabnormals.neapolitan.common.block;
 
+import com.teamabnormals.neapolitan.core.NeapolitanConfig;
 import com.teamabnormals.neapolitan.core.other.NeapolitanCriteriaTriggers;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
 import net.minecraft.core.BlockPos;
@@ -28,7 +29,9 @@ import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.event.ForgeEventFactory;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -84,13 +87,13 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, Boneme
 			int maxAgeForPos = worldIn.getBlockState(pos.below()).is(Blocks.COARSE_DIRT) ? 2 : this.getMaxAge();
 			int growthChance = !worldIn.isRaining() ? 7 : 5;
 			if (age < maxAgeForPos) {
-				if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt(growthChance) == 0)) {
+				if (ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt(growthChance) == 0)) {
 					if (age != 5) {
 						worldIn.setBlock(pos, this.withAge(age + 1), 2);
 					} else {
 						worldIn.setBlock(pos, this.withAge(age + 1).setValue(TYPE, this.isWhite(worldIn, pos) ? StrawberryType.WHITE : StrawberryType.RED), 2);
 					}
-					net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state);
+					ForgeHooks.onCropsGrowPost(worldIn, pos, state);
 				}
 			}
 		}
@@ -107,14 +110,12 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, Boneme
 				}
 			}
 		}
-		if (entityIn instanceof Ravager && net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(worldIn, entityIn)) {
+		if (entityIn instanceof Ravager && ForgeEventFactory.getMobGriefingEvent(worldIn, entityIn)) {
 			worldIn.destroyBlock(pos, true, entityIn);
 		}
-		if (entityIn instanceof LivingEntity) {
-			LivingEntity entity = (LivingEntity) entityIn;
-			if (entity.getMobType() == MobType.ARTHROPOD && state.getValue(AGE) > 0) {
-				entity.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 3, 0, false, false, false));
-			}
+		if (entityIn instanceof LivingEntity entity && entity.getMobType() == MobType.ARTHROPOD && state.getValue(AGE) > 0 && NeapolitanConfig.COMMON.strawberryBushArthropodInvisibility.get()) {
+			entity.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 3, 0, false, false, false));
+
 		}
 		super.entityInside(state, worldIn, pos, entityIn);
 	}
@@ -164,7 +165,7 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, Boneme
 	}
 
 	private boolean isWhite(ServerLevel worldIn, BlockPos pos) {
-		return (pos.getY() >= 200 && worldIn.dimension() == Level.OVERWORLD) || worldIn.dimension() == Level.END;
+		return (pos.getY() >= NeapolitanConfig.COMMON.whiteStrawberryMinHeight.get() && worldIn.dimension() == Level.OVERWORLD) || worldIn.dimension() == Level.END;
 	}
 
 	@Override

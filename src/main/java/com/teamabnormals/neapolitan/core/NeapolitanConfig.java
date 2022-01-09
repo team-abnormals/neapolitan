@@ -9,6 +9,9 @@ public class NeapolitanConfig {
 		public final ConfigValue<Boolean> milkCauldron;
 		public final ConfigValue<Boolean> milkingWithGlassBottles;
 
+		public final ConfigValue<Integer> whiteStrawberryMinHeight;
+		public final ConfigValue<Boolean> strawberryBushArthropodInvisibility;
+
 		public final ConfigValue<Integer> strawberryBushGenerationChance;
 		public final ConfigValue<Integer> vanillaVineGenerationChance;
 		public final ConfigValue<Integer> adzukiSproutsGenerationChance;
@@ -32,6 +35,12 @@ public class NeapolitanConfig {
 			builder.push("milk_bottles");
 			milkCauldron = builder.comment("If milk can be inserted into cauldrons").define("Milk Cauldron", true);
 			milkingWithGlassBottles = builder.comment("If milkable mobs can be milked with empty glass bottles").define("Milking with Glass Bottles", false);
+			builder.pop();
+			builder.pop();
+			builder.push("blocks");
+			builder.push("strawberry_bush");
+			whiteStrawberryMinHeight = builder.comment("The minimum height required for Strawberry Bushes to grow White Strawberries").define("White Strawberry minimum height", 256);
+			strawberryBushArthropodInvisibility = builder.comment("If arthropods that go through Strawberry Bushes are given Invisibility").define("Strawberry Bushes give arthropods Invisibility", true);
 			builder.pop();
 			builder.pop();
 			builder.push("world");
