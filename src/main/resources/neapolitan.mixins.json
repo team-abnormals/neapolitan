@@ -5,8 +5,9 @@
   "minVersion": "0.8",
   "refmap": "neapolitan.refmap.json",
   "mixins": [
-    "HumanoidArmorLayerMixin",
     "CauldronBlockMixin",
+    "FoxEatBerriesGoalMixin",
+    "HumanoidArmorLayerMixin",
     "LivingEntityMixin",
     "PointedDripstoneBlockMixin",
     "SpreadingSnowyDirtBlockMixin"

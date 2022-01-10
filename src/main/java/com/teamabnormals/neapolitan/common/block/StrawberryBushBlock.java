@@ -55,22 +55,22 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, Boneme
 	}
 
 	@Override
-	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
 		int age = state.getValue(AGE);
 		boolean fullyGrown = age == this.getMaxAge();
-		if (!fullyGrown && player.getItemInHand(handIn).getItem() == Items.BONE_MEAL) {
+		if (!fullyGrown && player.getItemInHand(hand).getItem() == Items.BONE_MEAL) {
 			return InteractionResult.PASS;
 		} else if (fullyGrown) {
-			int strawberryCount = 1 + worldIn.random.nextInt(2);
+			int strawberryCount = 1 + level.random.nextInt(2);
 			Item strawberry = state.getValue(TYPE) == StrawberryType.WHITE ? NeapolitanItems.WHITE_STRAWBERRIES.get() : NeapolitanItems.STRAWBERRIES.get();
-			popResource(worldIn, pos, new ItemStack(strawberry, strawberryCount));
-			worldIn.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + worldIn.random.nextFloat() * 0.4F);
-			worldIn.setBlock(pos, state.setValue(AGE, 1).setValue(TYPE, StrawberryType.NONE), 2);
+			popResource(level, pos, new ItemStack(strawberry, strawberryCount));
+			level.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + level.random.nextFloat() * 0.4F);
+			level.setBlock(pos, state.setValue(AGE, 1).setValue(TYPE, StrawberryType.NONE), 2);
 			if (player instanceof ServerPlayer)
 				NeapolitanCriteriaTriggers.HARVEST_STRAWBERRIES.trigger((ServerPlayer) player, state);
-			return InteractionResult.sidedSuccess(worldIn.isClientSide);
+			return InteractionResult.sidedSuccess(level.isClientSide);
 		} else {
-			return super.use(state, worldIn, pos, player, handIn, hit);
+			return super.use(state, level, pos, player, hand, hit);
 		}
 	}
 

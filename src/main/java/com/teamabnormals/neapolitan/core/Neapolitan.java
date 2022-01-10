@@ -8,6 +8,7 @@ import com.teamabnormals.neapolitan.core.data.client.NeapolitanBlockStateProvide
 import com.teamabnormals.neapolitan.core.data.server.NeapolitanLootModifiersProvider;
 import com.teamabnormals.neapolitan.core.data.server.NeapolitanLootTableProvider;
 import com.teamabnormals.neapolitan.core.data.server.tags.NeapolitanBlockTagsProvider;
+import com.teamabnormals.neapolitan.core.data.server.tags.NeapolitanItemTagsProvider;
 import com.teamabnormals.neapolitan.core.other.NeapolitanCompat;
 import com.teamabnormals.neapolitan.core.registry.*;
 import net.minecraft.data.DataGenerator;
@@ -67,17 +68,19 @@ public class Neapolitan {
 	}
 
 	private void dataSetup(GatherDataEvent event) {
-		DataGenerator dataGenerator = event.getGenerator();
-		ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
+		DataGenerator generator = event.getGenerator();
+		ExistingFileHelper helper = event.getExistingFileHelper();
 
 		if (event.includeServer()) {
-			dataGenerator.addProvider(new NeapolitanBlockTagsProvider(dataGenerator, existingFileHelper));
-			dataGenerator.addProvider(new NeapolitanLootTableProvider(dataGenerator));
-			dataGenerator.addProvider(NeapolitanLootModifiersProvider.createLootModifierDataProvider(dataGenerator));
+			NeapolitanBlockTagsProvider blockTagsProvider = new NeapolitanBlockTagsProvider(generator, helper);
+			generator.addProvider(blockTagsProvider);
+			generator.addProvider(new NeapolitanItemTagsProvider(generator, blockTagsProvider, helper));
+			generator.addProvider(new NeapolitanLootTableProvider(generator));
+			generator.addProvider(NeapolitanLootModifiersProvider.createLootModifierDataProvider(generator));
 		}
 
 		if (event.includeClient()) {
-			dataGenerator.addProvider(new NeapolitanBlockStateProvider(dataGenerator, existingFileHelper));
+			generator.addProvider(new NeapolitanBlockStateProvider(generator, helper));
 			//dataGenerator.addProvider(new NeapolitanLanguageProvider(dataGenerator));
 		}
 	}
