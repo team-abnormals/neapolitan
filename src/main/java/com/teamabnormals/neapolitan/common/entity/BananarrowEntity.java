@@ -1,11 +1,15 @@
 package com.teamabnormals.neapolitan.common.entity;
 
 import com.teamabnormals.neapolitan.core.other.NeapolitanCriteriaTriggers;
-import com.teamabnormals.neapolitan.core.registry.*;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanEffects;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanEntityTypes;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;

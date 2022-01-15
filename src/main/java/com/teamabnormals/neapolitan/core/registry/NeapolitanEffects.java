@@ -1,11 +1,15 @@
 package com.teamabnormals.neapolitan.core.registry;
 
 import com.teamabnormals.blueprint.common.effect.BlueprintMobEffect;
-import com.teamabnormals.neapolitan.common.potion.*;
+import com.teamabnormals.neapolitan.common.potion.BerserkingEffect;
+import com.teamabnormals.neapolitan.common.potion.SlippingEffect;
+import com.teamabnormals.neapolitan.common.potion.SugarRushEffect;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
-import net.minecraftforge.registries.*;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public class NeapolitanEffects {
 	public static final DeferredRegister<MobEffect> EFFECTS = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, Neapolitan.MOD_ID);

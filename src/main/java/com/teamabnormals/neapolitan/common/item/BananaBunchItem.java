@@ -1,15 +1,19 @@
 package com.teamabnormals.neapolitan.common.item;
 
 import com.teamabnormals.neapolitan.common.entity.BananaPeelEntity;
-import com.teamabnormals.neapolitan.core.other.NeapolitanTags;
-import com.teamabnormals.neapolitan.core.registry.*;
+import com.teamabnormals.neapolitan.core.other.tags.NeapolitanEntityTypeTags;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanEntityTypes;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanSounds;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.Mth;
-import net.minecraft.world.*;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -38,7 +42,7 @@ public class BananaBunchItem extends Item {
 
 	@Override
 	public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity target, InteractionHand hand) {
-		if (!NeapolitanTags.EntityTypes.UNAFFECTED_BY_SLIPPING.contains(target.getType())) {
+		if (!NeapolitanEntityTypeTags.UNAFFECTED_BY_SLIPPING.contains(target.getType())) {
 			Level world = player.level;
 			this.placeBanana(world, target.getX(), target.getY(), target.getZ(), player.getViewYRot(1.0F));
 			this.handleOpening(world, player, hand, stack);

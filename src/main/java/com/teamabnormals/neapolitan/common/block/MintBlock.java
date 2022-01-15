@@ -1,7 +1,7 @@
 package com.teamabnormals.neapolitan.common.block;
 
 import com.teamabnormals.blueprint.core.util.NetworkUtil;
-import com.teamabnormals.neapolitan.core.other.NeapolitanTags;
+import com.teamabnormals.neapolitan.core.other.tags.NeapolitanBlockTags;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -18,7 +18,9 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.BonemealableBlock;
+import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
@@ -87,7 +89,7 @@ public class MintBlock extends BushBlock implements IPlantable, BonemealableBloc
 				Plane.HORIZONTAL.stream().forEach(direction -> {
 					BlockPos offsetPos = pos.relative(direction);
 					BlockState offsetState = worldIn.getBlockState(offsetPos);
-					if (!offsetState.is(NeapolitanTags.Blocks.UNAFFECTED_BY_MINT))
+					if (!offsetState.is(NeapolitanBlockTags.UNAFFECTED_BY_MINT))
 						offsetState.randomTick(worldIn, offsetPos, random);
 				});
 			}

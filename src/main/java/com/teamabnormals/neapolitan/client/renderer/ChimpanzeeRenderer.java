@@ -2,7 +2,10 @@ package com.teamabnormals.neapolitan.client.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.teamabnormals.neapolitan.client.model.ChimpanzeeModel;
-import com.teamabnormals.neapolitan.client.renderer.layers.*;
+import com.teamabnormals.neapolitan.client.renderer.layers.ChimpanzeeDirtLayer;
+import com.teamabnormals.neapolitan.client.renderer.layers.ChimpanzeeDyeLayer;
+import com.teamabnormals.neapolitan.client.renderer.layers.ChimpanzeeItemLayer;
+import com.teamabnormals.neapolitan.client.renderer.layers.ChimpanzeePaleSkinLayer;
 import com.teamabnormals.neapolitan.common.entity.ChimpanzeeEntity;
 import com.teamabnormals.neapolitan.common.entity.util.ChimpanzeeTypes;
 import com.teamabnormals.neapolitan.core.Neapolitan;

@@ -1,6 +1,10 @@
 package com.teamabnormals.neapolitan.core.registry;
 
-import com.teamabnormals.neapolitan.common.world.gen.feature.*;
+import com.teamabnormals.neapolitan.common.world.gen.feature.AdzukiSproutsFeature;
+import com.teamabnormals.neapolitan.common.world.gen.feature.BananaPlantFeature;
+import com.teamabnormals.neapolitan.common.world.gen.feature.MintPondFeature;
+import com.teamabnormals.neapolitan.common.world.gen.feature.StrawberryBushFeature;
+import com.teamabnormals.neapolitan.common.world.gen.feature.VanillaPatchFeature;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.NeapolitanConfig;
 import net.minecraft.core.BlockPos;
@@ -13,10 +17,18 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.*;
+import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
-import net.minecraft.world.level.levelgen.placement.*;
-import net.minecraftforge.registries.*;
+import net.minecraft.world.level.levelgen.placement.BiomeFilter;
+import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.minecraft.world.level.levelgen.placement.RarityFilter;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 import java.util.List;
 

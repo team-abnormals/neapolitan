@@ -4,7 +4,9 @@ import com.teamabnormals.blueprint.core.api.banner.BannerManager;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import net.minecraft.world.entity.decoration.Motive;
 import net.minecraft.world.level.block.entity.BannerPattern;
-import net.minecraftforge.registries.*;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public final class NeapolitanBanners {
 	public static final DeferredRegister<Motive> PAINTINGS = DeferredRegister.create(ForgeRegistries.PAINTING_TYPES, Neapolitan.MOD_ID);

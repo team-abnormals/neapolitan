@@ -2,7 +2,7 @@ package com.teamabnormals.neapolitan.common.entity.goals;
 
 import com.teamabnormals.neapolitan.common.entity.ChimpanzeeEntity;
 import com.teamabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
-import com.teamabnormals.neapolitan.core.other.NeapolitanTags;
+import com.teamabnormals.neapolitan.core.other.tags.NeapolitanBlockTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
@@ -81,7 +81,7 @@ public class ChimpJumpOnBouncyGoal extends MoveToBlockGoal {
 
 	@Override
 	protected boolean isValidTarget(LevelReader worldIn, BlockPos pos) {
-		return worldIn.isEmptyBlock(pos.above()) && worldIn.isEmptyBlock(pos.above().above()) && worldIn.getBlockState(pos).is(NeapolitanTags.Blocks.CHIMPANZEE_JUMPING_BLOCKS) && !this.isBlockBeingJumpedOn((Level) worldIn, pos);
+		return worldIn.isEmptyBlock(pos.above()) && worldIn.isEmptyBlock(pos.above().above()) && worldIn.getBlockState(pos).is(NeapolitanBlockTags.CHIMPANZEE_JUMPING_BLOCKS) && !this.isBlockBeingJumpedOn((Level) worldIn, pos);
 	}
 
 	private boolean isBlockBeingJumpedOn(Level worldIn, BlockPos pos) {

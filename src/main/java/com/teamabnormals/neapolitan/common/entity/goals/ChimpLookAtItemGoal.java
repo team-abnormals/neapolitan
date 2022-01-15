@@ -2,7 +2,7 @@ package com.teamabnormals.neapolitan.common.entity.goals;
 
 import com.teamabnormals.neapolitan.common.entity.ChimpanzeeEntity;
 import com.teamabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
-import com.teamabnormals.neapolitan.core.other.NeapolitanTags;
+import com.teamabnormals.neapolitan.core.other.tags.NeapolitanItemTags;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.InteractionHand;
@@ -10,7 +10,11 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.util.DefaultRandomPos;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.FireworkRocketItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TieredItem;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.EnumSet;
@@ -86,7 +90,7 @@ public class ChimpLookAtItemGoal extends Goal {
 			this.doItemInteraction();
 		} else if (chimpanzee.isDoingAction(ChimpanzeeAction.PLAYING_WITH_ITEM)) {
 			if (this.lookTimer == 20) {
-				if (this.chimpanzee.getRandom().nextInt(10) == 0 && this.itemStack.is(NeapolitanTags.Items.CHIMPANZEE_SHAKEABLE_BUCKETS)) {
+				if (this.chimpanzee.getRandom().nextInt(10) == 0 && this.itemStack.is(NeapolitanItemTags.CHIMPANZEE_SHAKEABLE_BUCKETS)) {
 					this.chimpanzee.spawnItemFromBucket(new ItemStack(NeapolitanItems.BANANA.get()), this.chimpanzee.getMainArm());
 				}
 			} else if (this.lookTimer == 4) {
@@ -105,7 +109,7 @@ public class ChimpLookAtItemGoal extends Goal {
 	private void doItemInteraction() {
 		Item item = this.itemStack.getItem();
 
-		if (this.itemStack.is(NeapolitanTags.Items.CHIMPANZEE_APE_MODE_ITEMS) && this.chimpanzee.getApeModeTime() <= 0) {
+		if (this.itemStack.is(NeapolitanItemTags.CHIMPANZEE_APE_MODE_ITEMS) && this.chimpanzee.getApeModeTime() <= 0) {
 			this.lookTimer = 40;
 			this.chimpanzee.setApeModeTime(1200 + this.chimpanzee.getRandom().nextInt(1200));
 		} else if (this.shouldPlayWithItem(this.itemStack) && this.chimpanzee.isDoingAction(ChimpanzeeAction.LOOKING_AT_ITEM)) {
@@ -151,6 +155,6 @@ public class ChimpLookAtItemGoal extends Goal {
 	}
 
 	private boolean shouldPlayWithItem(ItemStack stack) {
-		return stack.getItem() instanceof TieredItem || stack.getItem() instanceof FireworkRocketItem || stack.is(NeapolitanTags.Items.CHIMPANZEE_SHAKEABLE_BUCKETS);
+		return stack.getItem() instanceof TieredItem || stack.getItem() instanceof FireworkRocketItem || stack.is(NeapolitanItemTags.CHIMPANZEE_SHAKEABLE_BUCKETS);
 	}
 }

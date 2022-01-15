@@ -5,16 +5,25 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.teamabnormals.neapolitan.common.entity.ChimpanzeeEntity;
 import com.teamabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
 import com.teamabnormals.neapolitan.core.Neapolitan;
-import com.teamabnormals.neapolitan.core.other.NeapolitanTags;
+import com.teamabnormals.neapolitan.core.other.tags.NeapolitanItemTags;
 import net.minecraft.client.model.AnimationUtils;
 import net.minecraft.client.model.HumanoidModel;
-import net.minecraft.client.model.geom.*;
-import net.minecraft.client.model.geom.builders.*;
+import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.CubeDeformation;
+import net.minecraft.client.model.geom.builders.CubeListBuilder;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.model.geom.builders.MeshDefinition;
+import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.HumanoidArm;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -363,7 +372,7 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends HumanoidModel<T
 		ItemStack itemstack = entity.getItemBySlot(EquipmentSlot.HEAD);
 		Item item = itemstack.getItem();
 
-		if (itemstack.is(NeapolitanTags.Items.HIDES_CHIMPANZEE_EARS)) {
+		if (itemstack.is(NeapolitanItemTags.HIDES_CHIMPANZEE_EARS)) {
 			return 2;
 		} else if (item instanceof BlockItem || (item instanceof ArmorItem && ((ArmorItem) item).getSlot() == EquipmentSlot.HEAD)) {
 			return 1;

@@ -1,9 +1,14 @@
 package com.teamabnormals.neapolitan.core.registry;
 
 import com.teamabnormals.blueprint.core.util.registry.EntitySubRegistryHelper;
-import com.teamabnormals.neapolitan.common.entity.*;
+import com.teamabnormals.neapolitan.common.entity.BananaPeelEntity;
+import com.teamabnormals.neapolitan.common.entity.BananarrowEntity;
+import com.teamabnormals.neapolitan.common.entity.ChimpanzeeEntity;
+import com.teamabnormals.neapolitan.common.entity.PlantainSpiderEntity;
 import com.teamabnormals.neapolitan.core.Neapolitan;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

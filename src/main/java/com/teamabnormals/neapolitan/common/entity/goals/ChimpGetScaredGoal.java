@@ -2,7 +2,7 @@ package com.teamabnormals.neapolitan.common.entity.goals;
 
 import com.teamabnormals.neapolitan.common.entity.ChimpanzeeEntity;
 import com.teamabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
-import com.teamabnormals.neapolitan.core.other.NeapolitanTags;
+import com.teamabnormals.neapolitan.core.other.tags.NeapolitanEntityTypeTags;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
@@ -32,9 +32,7 @@ public class ChimpGetScaredGoal extends Goal {
 		if (this.chimpanzee.isDoingAction(ChimpanzeeAction.PLAYING_WITH_ITEM)) {
 			return false;
 		} else {
-			List<Entity> list = this.chimpanzee.level.getEntitiesOfClass(Entity.class, this.chimpanzee.getBoundingBox().inflate(8.0D, 4.0D, 8.0D), (entity) -> {
-				return NeapolitanTags.EntityTypes.SCARES_CHIMPANZEES.contains(entity.getType());
-			});
+			List<Entity> list = this.chimpanzee.level.getEntitiesOfClass(Entity.class, this.chimpanzee.getBoundingBox().inflate(8.0D, 4.0D, 8.0D), (entity) -> NeapolitanEntityTypeTags.SCARES_CHIMPANZEES.contains(entity.getType()));
 			double d0 = Double.MAX_VALUE;
 
 			for (Entity entity : list) {

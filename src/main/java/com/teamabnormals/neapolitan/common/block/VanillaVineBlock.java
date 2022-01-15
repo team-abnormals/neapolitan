@@ -1,7 +1,7 @@
 package com.teamabnormals.neapolitan.common.block;
 
 import com.teamabnormals.neapolitan.core.other.NeapolitanCriteriaTriggers;
-import com.teamabnormals.neapolitan.core.other.NeapolitanTags;
+import com.teamabnormals.neapolitan.core.other.tags.NeapolitanBlockTags;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
 import net.minecraft.core.BlockPos;
@@ -14,9 +14,16 @@ import net.minecraft.world.entity.AreaEffectCloud;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.*;
-import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.BonemealableBlock;
+import net.minecraft.world.level.block.NetherVines;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -57,7 +64,7 @@ public class VanillaVineBlock extends Block implements BonemealableBlock {
 	@Override
 	public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
 		BlockState otherState = worldIn.getBlockState(pos.relative(state.getValue(FACING).getOpposite()));
-		return VanillaVineTopBlock.facingSameDirection(state, otherState) || otherState.is(NeapolitanTags.Blocks.VANILLA_PLANTABLE_ON);
+		return VanillaVineTopBlock.facingSameDirection(state, otherState) || otherState.is(NeapolitanBlockTags.VANILLA_PLANTABLE_ON);
 	}
 
 

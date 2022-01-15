@@ -1,30 +1,82 @@
 package com.teamabnormals.neapolitan.common.entity;
 
-import com.teamabnormals.neapolitan.common.entity.goals.*;
+import com.teamabnormals.neapolitan.common.entity.goals.ChimpApeModeGoal;
+import com.teamabnormals.neapolitan.common.entity.goals.ChimpAttackGoal;
+import com.teamabnormals.neapolitan.common.entity.goals.ChimpAvoidEntityGoal;
+import com.teamabnormals.neapolitan.common.entity.goals.ChimpBeGroomedGoal;
+import com.teamabnormals.neapolitan.common.entity.goals.ChimpCryGoal;
+import com.teamabnormals.neapolitan.common.entity.goals.ChimpEatBananaGoal;
+import com.teamabnormals.neapolitan.common.entity.goals.ChimpFollowOthersGoal;
+import com.teamabnormals.neapolitan.common.entity.goals.ChimpFollowParentGoal;
+import com.teamabnormals.neapolitan.common.entity.goals.ChimpGetScaredGoal;
+import com.teamabnormals.neapolitan.common.entity.goals.ChimpGrabBananaGoal;
+import com.teamabnormals.neapolitan.common.entity.goals.ChimpGroomGoal;
+import com.teamabnormals.neapolitan.common.entity.goals.ChimpHurtByTargetGoal;
+import com.teamabnormals.neapolitan.common.entity.goals.ChimpJumpOnBouncyGoal;
+import com.teamabnormals.neapolitan.common.entity.goals.ChimpLookAtItemGoal;
+import com.teamabnormals.neapolitan.common.entity.goals.ChimpOpenBunchGoal;
+import com.teamabnormals.neapolitan.common.entity.goals.ChimpPanicGoal;
+import com.teamabnormals.neapolitan.common.entity.goals.ChimpPlayNoteBlockGoal;
+import com.teamabnormals.neapolitan.common.entity.goals.ChimpPlayWithHelmetGoal;
+import com.teamabnormals.neapolitan.common.entity.goals.ChimpRandomWalkingGoal;
+import com.teamabnormals.neapolitan.common.entity.goals.ChimpShakeBundleGoal;
+import com.teamabnormals.neapolitan.common.entity.goals.ChimpShakeHeadGoal;
+import com.teamabnormals.neapolitan.common.entity.goals.ChimpShareBananaGoal;
+import com.teamabnormals.neapolitan.common.entity.goals.ChimpSitGoal;
+import com.teamabnormals.neapolitan.common.entity.goals.ChimpTemptBananaGoal;
 import com.teamabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
 import com.teamabnormals.neapolitan.common.entity.util.ChimpanzeeTypes;
 import com.teamabnormals.neapolitan.common.item.MilkshakeItem;
 import com.teamabnormals.neapolitan.core.other.NeapolitanConstants;
-import com.teamabnormals.neapolitan.core.other.NeapolitanTags;
-import com.teamabnormals.neapolitan.core.registry.*;
+import com.teamabnormals.neapolitan.core.other.tags.NeapolitanEntityTypeTags;
+import com.teamabnormals.neapolitan.core.other.tags.NeapolitanItemTags;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanEntityTypes;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanParticles;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.*;
+import net.minecraft.core.particles.ItemParticleOption;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.syncher.*;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.util.TimeUtil;
 import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.*;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.attributes.*;
+import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.HumanoidArm;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.NeutralMob;
+import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.SpawnGroupData;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.BodyRotationControl;
 import net.minecraft.world.entity.ai.control.LookControl;
-import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.BreedGoal;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.TemptGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.ResetUniversalAngerTargetGoal;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
@@ -35,9 +87,17 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.FireworkRocketEntity;
 import net.minecraft.world.entity.vehicle.Boat;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.ArrowItem;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.DyeItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.level.*;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LightLayer;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
@@ -48,7 +108,9 @@ import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.List;
+import java.util.Random;
+import java.util.UUID;
 import java.util.function.Predicate;
 
 public class ChimpanzeeEntity extends Animal implements NeutralMob {
@@ -116,7 +178,7 @@ public class ChimpanzeeEntity extends Animal implements NeutralMob {
 		this.goalSelector.addGoal(8, new ChimpOpenBunchGoal(this));
 		this.goalSelector.addGoal(9, new ChimpEatBananaGoal(this));
 		this.goalSelector.addGoal(10, new ChimpTemptBananaGoal(this, 1.25D));
-		this.goalSelector.addGoal(11, new TemptGoal(this, 1.25D, Ingredient.of(NeapolitanTags.Items.CHIMPANZEE_FOOD), false));
+		this.goalSelector.addGoal(11, new TemptGoal(this, 1.25D, Ingredient.of(NeapolitanItemTags.CHIMPANZEE_FOOD), false));
 		this.goalSelector.addGoal(12, new ChimpFollowParentGoal(this, 1.25D));
 		this.goalSelector.addGoal(13, new ChimpShareBananaGoal(this, 1.0D));
 		this.goalSelector.addGoal(14, new ChimpBeGroomedGoal(this));
@@ -661,7 +723,7 @@ public class ChimpanzeeEntity extends Animal implements NeutralMob {
 	}
 
 	public boolean isFavoriteItem(ItemStack stack) {
-		return stack.is(NeapolitanTags.Items.CHIMPANZEE_FAVORITES);
+		return stack.is(NeapolitanItemTags.CHIMPANZEE_FAVORITES);
 	}
 
 	public void throwHeldItem(InteractionHand hand) {
@@ -669,9 +731,8 @@ public class ChimpanzeeEntity extends Animal implements NeutralMob {
 		if (!stack.isEmpty() && !this.level.isClientSide) {
 			Item item = stack.getItem();
 
-			if (item instanceof ArrowItem) {
-				ArrowItem arrowItem = (ArrowItem) item;
-				List<Entity> list = this.level.getEntitiesOfClass(Entity.class, this.getBoundingBox().inflate(8.0D, 4.0D, 8.0D), (entity) -> NeapolitanTags.EntityTypes.CHIMPANZEE_DART_TARGETS.contains(entity.getType()));
+			if (item instanceof ArrowItem arrowItem) {
+				List<Entity> list = this.level.getEntitiesOfClass(Entity.class, this.getBoundingBox().inflate(8.0D, 4.0D, 8.0D), (entity) -> NeapolitanEntityTypeTags.CHIMPANZEE_DART_TARGETS.contains(entity.getType()));
 				Entity target = null;
 
 				double maxValue = Double.MAX_VALUE;
@@ -997,11 +1058,11 @@ public class ChimpanzeeEntity extends Animal implements NeutralMob {
 
 	@Override
 	public boolean isFood(ItemStack stack) {
-		return stack.is(NeapolitanTags.Items.CHIMPANZEE_FOOD);
+		return stack.is(NeapolitanItemTags.CHIMPANZEE_FOOD);
 	}
 
 	public boolean isSnack(ItemStack stack) {
-		return stack.is(NeapolitanTags.Items.CHIMPANZEE_SNACKS);
+		return stack.is(NeapolitanItemTags.CHIMPANZEE_SNACKS);
 	}
 
 	public int getDirtiness() {

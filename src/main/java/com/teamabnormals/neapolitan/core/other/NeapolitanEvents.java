@@ -7,7 +7,11 @@ import com.teamabnormals.blueprint.core.util.TradeUtil.BlueprintTrade;
 import com.teamabnormals.neapolitan.common.entity.ChimpanzeeEntity;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.NeapolitanConfig;
-import com.teamabnormals.neapolitan.core.registry.*;
+import com.teamabnormals.neapolitan.core.other.tags.NeapolitanEntityTypeTags;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanEffects;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanParticles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -25,10 +29,14 @@ import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemUtils;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.PointedDripstoneBlock;
-import net.minecraft.world.phys.*;
+import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -52,7 +60,7 @@ public class NeapolitanEvents {
 	@SubscribeEvent
 	public static void onEntityJoinWorld(EntityJoinWorldEvent event) {
 		Entity entity = event.getEntity();
-		if (entity instanceof Monster mobEntity && !entity.getType().is(NeapolitanTags.EntityTypes.UNAFFECTED_BY_HARMONY)) {
+		if (entity instanceof Monster mobEntity && !entity.getType().is(NeapolitanEntityTypeTags.UNAFFECTED_BY_HARMONY)) {
 			mobEntity.goalSelector.addGoal(0, new AvoidEntityGoal<>(mobEntity, Player.class, 12.0F, 1.0D, 1.0D, (player) -> player.getEffect(NeapolitanEffects.HARMONY.get()) != null));
 		}
 	}
@@ -84,7 +92,7 @@ public class NeapolitanEvents {
 		InteractionHand hand = event.getHand();
 		Player player = event.getPlayer();
 
-		if (NeapolitanConfig.COMMON.milkingWithGlassBottles.get() && entity.getType().is(NeapolitanTags.EntityTypes.MILKABLE)) {
+		if (NeapolitanConfig.COMMON.milkingWithGlassBottles.get() && entity.getType().is(BlueprintEntityTypeTags.MILKABLE)) {
 			boolean notChild = !(entity instanceof LivingEntity) || !((LivingEntity) entity).isBaby();
 			if (stack.getItem() == Items.GLASS_BOTTLE && notChild) {
 				player.playSound(SoundEvents.COW_MILK, 1.0F, 1.0F);
@@ -96,7 +104,7 @@ public class NeapolitanEvents {
 			}
 		}
 
-		if (entity instanceof LivingEntity && !NeapolitanTags.EntityTypes.UNAFFECTED_BY_SLIPPING.contains(entity.getType()) && stack.getItem() == NeapolitanItems.BANANA_BUNCH.get()) {
+		if (entity instanceof LivingEntity && !NeapolitanEntityTypeTags.UNAFFECTED_BY_SLIPPING.contains(entity.getType()) && stack.getItem() == NeapolitanItems.BANANA_BUNCH.get()) {
 			InteractionResult result = stack.interactLivingEntity(player, (LivingEntity) entity, hand);
 			if (result.consumesAction()) {
 				event.setCanceled(true);
