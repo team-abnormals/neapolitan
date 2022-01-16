@@ -8,14 +8,14 @@
 
   "block.neapolitan.milk_cauldron": "Pot o' bovine juice",
 
-  "block.neapolitan.chocolate_block": "Chunk o' Chocolate",
-  "block.neapolitan.chocolate_bricks": "Bricks o' Chocolate",
-  "block.neapolitan.chocolate_brick_slab": "Slab o' chocolate bricks",
-  "block.neapolitan.chocolate_brick_stairs": "Stairs o' chocolate bricks",
-  "block.neapolitan.chocolate_brick_wall": "Wall o' chocolate bricks",
-  "block.neapolitan.chocolate_brick_vertical_slab": "Standin' slab o' chocolate bricks",
+  "block.neapolitan.chocolate_block": "Chunk o' Cacoa",
+  "block.neapolitan.chocolate_bricks": "Bricks o' Cacao",
+  "block.neapolitan.chocolate_brick_slab": "Slab o' Cacao bricks",
+  "block.neapolitan.chocolate_brick_stairs": "Stairs o' cacao bricks",
+  "block.neapolitan.chocolate_brick_wall": "Wall o' cacao bricks",
+  "block.neapolitan.chocolate_brick_vertical_slab": "Standin' slab o' cacao bricks",
 
-  "block.neapolitan.chiseled_chocolate_bricks": "Carv'd bricks o' chocolate",
+  "block.neapolitan.chiseled_chocolate_bricks": "Carv'd bricks o' Cacao",
 
   "block.neapolitan.chocolate_tiles": "Tiles o' cacao",
   "block.neapolitan.chocolate_tile_slab": "Slab o' cacao tiles",
@@ -34,7 +34,7 @@
   "block.neapolitan.dried_vanilla_pod_block": "Chunk o' Burnt Vanilla",
   "block.neapolitan.banana_crate": "Crate o' Bananas",
   "block.neapolitan.mint_basket": "Basket o' Spicy Leaves",
-  "block.neapolitan.adzuki_crate": "Crate o' Adzuki",
+  "block.neapolitan.adzuki_crate": "Crate o' bloodred beans",
   "block.neapolitan.roasted_adzuki_crate": "Crate o' Roasted Adzuki",
 
   "block.neapolitan.strawberry_bush": "Bush o' Lover Capers",
@@ -55,8 +55,8 @@
   "block.neapolitan.beanstalk": "Jack's ladder",
   "block.neapolitan.beanstalk_thorns": "Keelhaulers",
 
-  "block.neapolitan.chocolate_cake": "Duff o' Chocolate",
-  "block.neapolitan.strawberry_cake": "Duff o' Love Capers",
+  "block.neapolitan.chocolate_cake": "Duff o' Cacao",
+  "block.neapolitan.strawberry_cake": "Duff o' Love",
   "block.neapolitan.vanilla_cake": "Duff o' Vanilla",
   "block.neapolitan.banana_cake": "Duff o' Banana",
   "block.neapolitan.mint_cake": "Duff o' Spicy Leaves",
@@ -66,7 +66,7 @@
   "item.neapolitan.ice_cubes": "Sum ice",
 
   "item.neapolitan.chocolate_bar": "Cacao o' Paradise",
-  "item.neapolitan.chocolate_ice_cream": "Frosty Chocolate Slush",
+  "item.neapolitan.chocolate_ice_cream": "Frosty Cacao Slush",
   "item.neapolitan.chocolate_milkshake": "Cacao rum",
   "item.neapolitan.chocolate_spider_eye": "Spider eyeballs w' cacao",
 
@@ -144,7 +144,7 @@
   "advancements.neapolitan.husbandry.vanilla_poison.description": "Break a bringer o' gout with ye cutters, lest its spirits haunts ye",
 
   "advancements.neapolitan.husbandry.place_all_chocolate_blocks.title": "Plate Fleet o' Cacao",
-  "advancements.neapolitan.husbandry.place_all_chocolate_blocks.description": "Forge a delicious ship by placin' o' every type of blocks made from the cacao o' paradise.",
+  "advancements.neapolitan.husbandry.place_all_chocolate_blocks.description": "Forge th' most delicious ship by placin' every type of blocks made from yer cacao o' paradise",
 
   "advancements.neapolitan.husbandry.harvest_white_strawberries.title": "Galley on Mizzenmast",
   "advancements.neapolitan.husbandry.harvest_white_strawberries.description": "Plunder a bush o' love capers high up in th' heavens to make 'em white. Move smartly, th' heights ain't made fer us sailors",
