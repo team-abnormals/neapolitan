@@ -1,6 +1,6 @@
 {
   "block.neapolitan.vanilla_ice_cream_block": "Chunk o' Vanilla Frost",
-  "block.neapolitan.chocolate_ice_cream_block": "Chunk o' Chocolate Frost",
+  "block.neapolitan.chocolate_ice_cream_block": "Chunk o' Cacao Frost",
   "block.neapolitan.strawberry_ice_cream_block": "Chunk o' Strawberry Frost",
   "block.neapolitan.banana_ice_cream_block": "Chunk o' Banana Frost",
   "block.neapolitan.mint_ice_cream_block": "Chunk o' Mint Frost",
@@ -34,7 +34,7 @@
   "block.neapolitan.dried_vanilla_pod_block": "Chunk o' Burnt Vanilla",
   "block.neapolitan.banana_crate": "Crate o' Bananas",
   "block.neapolitan.mint_basket": "Basket o' Spicy Leaves",
-  "block.neapolitan.adzuki_crate": "Crate o' bloodred beans",
+  "block.neapolitan.adzuki_crate": "Crate o' bloody beans",
   "block.neapolitan.roasted_adzuki_crate": "Crate o' Roasted Adzuki",
 
   "block.neapolitan.strawberry_bush": "Bush o' Lover Capers",
@@ -74,7 +74,7 @@
   "item.neapolitan.strawberries": "Capers o' Love",
   "item.neapolitan.strawberry_ice_cream": "Frosty Strawberry Slush",
   "item.neapolitan.strawberry_scones": "Lovely biscuits",
-  "item.neapolitan.strawberry_milkshake": "Rum o' Love",
+  "item.neapolitan.strawberry_milkshake": "Rum o' love",
 
   "item.neapolitan.vanilla_pods": "Gout Bringer",
   "item.neapolitan.dried_vanilla_pods": "Pod o' Fragrance",
@@ -158,11 +158,11 @@
   "subtitles.neapolitan.entity.chimpanzee.scream": "Banana man mutinies",
   "subtitles.neapolitan.entity.chimpanzee.death": "Banana man walks th' plank",
   "subtitles.neapolitan.entity.chimpanzee.eat": "Banana man enjoys a banana",
-  "subtitles.neapolitan.entity.chimpanzee.howl": "Banana man howls murder",
+  "subtitles.neapolitan.entity.chimpanzee.howl": "Banana man howls ho",
   "subtitles.neapolitan.entity.chimpanzee.hurt": "Banana man be hurt",
   "subtitles.neapolitan.entity.chimpanzee.ambient": "Banana man ooo-ooo aaa-aaas",
-  "subtitles.neapolitan.entity.chimpanzee.step": "Banana man walks around",
-  "subtitles.neapolitan.entity.chimpanzee.swing": "Banana man flyin'",
+  "subtitles.neapolitan.entity.chimpanzee.step": "Banana man goes to n' fro",
+  "subtitles.neapolitan.entity.chimpanzee.swing": "Banana man swingin' high",
 
   "subtitles.neapolitan.item.ice_cubes.eat": "Crunchin'",
   "subtitles.neapolitan.item.banana_bunch.open": "Bunch o' bananas be split",
