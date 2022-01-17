@@ -2,20 +2,24 @@ package com.teamabnormals.neapolitan.core.other;
 
 import com.teamabnormals.blueprint.core.util.DataUtil;
 import com.teamabnormals.neapolitan.common.block.MilkCauldronBlock;
-import com.teamabnormals.neapolitan.common.entity.BananarrowEntity;
+import com.teamabnormals.neapolitan.common.entity.projectile.BananarrowEntity;
+import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.Position;
 import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.core.dispenser.AbstractProjectileDispenseBehavior;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.food.Foods;
+import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUtils;
@@ -36,6 +40,7 @@ public class NeapolitanCompat {
 		registerCompostables();
 		registerFlammables();
 		registerDispenserBehaviors();
+		registerItemProperties();
 		registerCauldronInteractions();
 	}
 
@@ -158,6 +163,12 @@ public class NeapolitanCompat {
 		DataUtil.registerFlammable(NeapolitanBlocks.CHOCOLATE_TILE_SLAB.get(), 60, 100);
 		DataUtil.registerFlammable(NeapolitanBlocks.CHOCOLATE_TILE_WALL.get(), 60, 100);
 		DataUtil.registerFlammable(NeapolitanBlocks.CHOCOLATE_TILE_VERTICAL_SLAB.get(), 60, 100);
+	}
+
+	public static void registerItemProperties() {
+		ItemProperties.register(Items.CROSSBOW, new ResourceLocation(Neapolitan.MOD_ID, "bananarrow"), (stack, world, entity, i) -> {
+			return entity != null && CrossbowItem.isCharged(stack) && CrossbowItem.containsChargedProjectile(stack, NeapolitanItems.BANANARROW.get()) ? 1.0F : 0.0F;
+		});
 	}
 
 	public static void registerDispenserBehaviors() {

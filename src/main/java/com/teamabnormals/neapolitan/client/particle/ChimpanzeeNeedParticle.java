@@ -59,10 +59,10 @@ public class ChimpanzeeNeedParticle extends TextureSheetParticle {
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	public static class Factory implements ParticleProvider<SimpleParticleType> {
+	public static class Provider implements ParticleProvider<SimpleParticleType> {
 		private final SpriteSet spriteSet;
 
-		public Factory(SpriteSet spriteSet) {
+		public Provider(SpriteSet spriteSet) {
 			this.spriteSet = spriteSet;
 		}
 

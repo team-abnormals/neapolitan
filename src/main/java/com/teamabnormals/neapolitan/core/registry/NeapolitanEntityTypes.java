@@ -1,10 +1,10 @@
 package com.teamabnormals.neapolitan.core.registry;
 
 import com.teamabnormals.blueprint.core.util.registry.EntitySubRegistryHelper;
-import com.teamabnormals.neapolitan.common.entity.BananaPeelEntity;
-import com.teamabnormals.neapolitan.common.entity.BananarrowEntity;
-import com.teamabnormals.neapolitan.common.entity.ChimpanzeeEntity;
-import com.teamabnormals.neapolitan.common.entity.PlantainSpiderEntity;
+import com.teamabnormals.neapolitan.common.entity.projectile.BananaPeelEntity;
+import com.teamabnormals.neapolitan.common.entity.projectile.BananarrowEntity;
+import com.teamabnormals.neapolitan.common.entity.animal.ChimpanzeeEntity;
+import com.teamabnormals.neapolitan.common.entity.monster.PlantainSpiderEntity;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;

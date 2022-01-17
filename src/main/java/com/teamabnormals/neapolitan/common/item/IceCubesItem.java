@@ -1,6 +1,6 @@
 package com.teamabnormals.neapolitan.common.item;
 
-import com.teamabnormals.neapolitan.core.registry.NeapolitanSounds;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanSoundEvents;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.Item;
 
@@ -12,11 +12,11 @@ public class IceCubesItem extends Item {
 
 	@Override
 	public SoundEvent getDrinkingSound() {
-		return NeapolitanSounds.ITEM_ICE_CUBES_EAT.get();
+		return NeapolitanSoundEvents.ITEM_ICE_CUBES_EAT.get();
 	}
 
 	@Override
 	public SoundEvent getEatingSound() {
-		return NeapolitanSounds.ITEM_ICE_CUBES_EAT.get();
+		return NeapolitanSoundEvents.ITEM_ICE_CUBES_EAT.get();
 	}
 }

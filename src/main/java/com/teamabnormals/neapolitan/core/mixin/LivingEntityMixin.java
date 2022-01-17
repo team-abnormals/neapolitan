@@ -1,6 +1,6 @@
 package com.teamabnormals.neapolitan.core.mixin;
 
-import com.teamabnormals.neapolitan.core.registry.NeapolitanEffects;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanMobEffects;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
 import net.minecraft.world.entity.Entity;
@@ -21,8 +21,8 @@ public abstract class LivingEntityMixin extends Entity {
 	}
 
 	@Inject(at = @At("RETURN"), method = "onClimbable", cancellable = true)
-	private void isClimbing(CallbackInfoReturnable<Boolean> cir) {
-		if (((LivingEntity) (Object) this).hasEffect(NeapolitanEffects.AGILITY.get())) {
+	private void onClimbable(CallbackInfoReturnable<Boolean> cir) {
+		if (((LivingEntity) (Object) this).hasEffect(NeapolitanMobEffects.AGILITY.get())) {
 			for (Direction direction : Direction.Plane.HORIZONTAL) {
 				Vec3i normal = direction.getNormal();
 				Vec3 vector3d = this.collide(Vec3.atLowerCornerOf(normal));

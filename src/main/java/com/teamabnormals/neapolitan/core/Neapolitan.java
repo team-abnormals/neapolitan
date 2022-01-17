@@ -3,28 +3,32 @@ package com.teamabnormals.neapolitan.core;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import com.teamabnormals.neapolitan.client.model.BananaPeelModel;
 import com.teamabnormals.neapolitan.client.model.ChimpanzeeModel;
-import com.teamabnormals.neapolitan.client.renderer.BananaPeelRenderer;
-import com.teamabnormals.neapolitan.client.renderer.BananarrowRenderer;
-import com.teamabnormals.neapolitan.client.renderer.ChimpanzeeRenderer;
-import com.teamabnormals.neapolitan.client.renderer.PlantainSpiderRenderer;
+import com.teamabnormals.neapolitan.client.renderer.entity.BananaPeelRenderer;
+import com.teamabnormals.neapolitan.client.renderer.entity.BananarrowRenderer;
+import com.teamabnormals.neapolitan.client.renderer.entity.ChimpanzeeRenderer;
+import com.teamabnormals.neapolitan.client.renderer.entity.PlantainSpiderRenderer;
 import com.teamabnormals.neapolitan.core.data.client.NeapolitanBlockStateProvider;
 import com.teamabnormals.neapolitan.core.data.server.NeapolitanLootModifiersProvider;
 import com.teamabnormals.neapolitan.core.data.server.NeapolitanLootTableProvider;
 import com.teamabnormals.neapolitan.core.data.server.tags.NeapolitanBlockTagsProvider;
 import com.teamabnormals.neapolitan.core.data.server.tags.NeapolitanItemTagsProvider;
 import com.teamabnormals.neapolitan.core.other.NeapolitanCompat;
-import com.teamabnormals.neapolitan.core.registry.NeapolitanBanners;
-import com.teamabnormals.neapolitan.core.registry.NeapolitanEffects;
+import com.teamabnormals.neapolitan.core.other.NeapolitanModelLayers;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanPaintingTypes;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanMobEffects;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanEntityTypes;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanFeatures;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
-import com.teamabnormals.neapolitan.core.registry.NeapolitanParticles;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanParticleTypes;
 import net.minecraft.data.DataGenerator;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -41,23 +45,27 @@ public class Neapolitan {
 
 	public Neapolitan() {
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+		ModLoadingContext context = ModLoadingContext.get();
 		MinecraftForge.EVENT_BUS.register(this);
+
 		ForgeMod.enableMilkFluid();
 
 		REGISTRY_HELPER.register(bus);
-		NeapolitanEffects.EFFECTS.register(bus);
+		NeapolitanMobEffects.MOB_EFFECTS.register(bus);
 		NeapolitanFeatures.FEATURES.register(bus);
-		NeapolitanBanners.PAINTINGS.register(bus);
-		NeapolitanParticles.PARTICLES.register(bus);
+		NeapolitanPaintingTypes.PAINTING_TYPES.register(bus);
+		NeapolitanParticleTypes.PARTICLE_TYPES.register(bus);
 
 		bus.addListener(this::commonSetup);
 		bus.addListener(this::clientSetup);
 		bus.addListener(this::dataSetup);
 
-		bus.addListener(this::registerLayerDefinitions);
-		bus.addListener(this::registerRenderers);
+		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
+			bus.addListener(this::registerLayerDefinitions);
+			bus.addListener(this::registerRenderers);
+		});
 
-		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, NeapolitanConfig.COMMON_SPEC);
+		context.registerConfig(ModConfig.Type.COMMON, NeapolitanConfig.COMMON_SPEC);
 	}
 
 	private void commonSetup(FMLCommonSetupEvent event) {
@@ -93,11 +101,15 @@ public class Neapolitan {
 		}
 	}
 
+	@OnlyIn(Dist.CLIENT)
 	private void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
-		event.registerLayerDefinition(ChimpanzeeModel.LOCATION, () -> ChimpanzeeModel.createLayerDefinition(0.0F, false, false));
-		event.registerLayerDefinition(BananaPeelModel.LOCATION, BananaPeelModel::createLayerDefinition);
+		event.registerLayerDefinition(NeapolitanModelLayers.BANANA_PEEL, BananaPeelModel::createBodyLayer);
+		event.registerLayerDefinition(NeapolitanModelLayers.CHIMPANZEE, () -> ChimpanzeeModel.createBodyLayer(0.0F, false, false));
+		event.registerLayerDefinition(NeapolitanModelLayers.CHIMPANZEE_INNER_ARMOR, () -> ChimpanzeeModel.createBodyLayer(0.5F, true, true));
+		event.registerLayerDefinition(NeapolitanModelLayers.CHIMPANZEE_OUTER_ARMOR, () -> ChimpanzeeModel.createBodyLayer(1.0F, true, false));
 	}
 
+	@OnlyIn(Dist.CLIENT)
 	private void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
 		event.registerEntityRenderer(NeapolitanEntityTypes.CHIMPANZEE.get(), ChimpanzeeRenderer::new);
 		event.registerEntityRenderer(NeapolitanEntityTypes.PLANTAIN_SPIDER.get(), PlantainSpiderRenderer::new);

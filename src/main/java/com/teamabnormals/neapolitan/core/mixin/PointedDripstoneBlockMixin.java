@@ -1,7 +1,7 @@
 package com.teamabnormals.neapolitan.core.mixin;
 
 import com.teamabnormals.blueprint.core.other.tags.BlueprintEntityTypeTags;
-import com.teamabnormals.neapolitan.core.registry.NeapolitanParticles;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanParticleTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.server.level.ServerLevel;
@@ -78,7 +78,7 @@ public abstract class PointedDripstoneBlockMixin {
 	private static ParticleOptions spawnDripParticle(ParticleOptions options, Level level, BlockPos pos, BlockState state, Fluid fluid) {
 		Fluid dripFluid = getDripFluid(level, fluid);
 		if (dripFluid != null && dripFluid.is(Tags.Fluids.MILK)) {
-			options = NeapolitanParticles.DRIPPING_DRIPSTONE_MILK.get();
+			options = NeapolitanParticleTypes.DRIPPING_DRIPSTONE_MILK.get();
 		}
 
 		return options;

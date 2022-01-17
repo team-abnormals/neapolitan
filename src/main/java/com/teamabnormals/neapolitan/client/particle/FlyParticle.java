@@ -63,10 +63,10 @@ public class FlyParticle extends TextureSheetParticle {
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	public static class Factory implements ParticleProvider<SimpleParticleType> {
+	public static class Provider implements ParticleProvider<SimpleParticleType> {
 		private final SpriteSet animatedSprite;
 
-		public Factory(SpriteSet animatedSpriteIn) {
+		public Provider(SpriteSet animatedSpriteIn) {
 			this.animatedSprite = animatedSpriteIn;
 		}
 

@@ -1,10 +1,10 @@
 package com.teamabnormals.neapolitan.common.item;
 
-import com.teamabnormals.neapolitan.common.entity.BananaPeelEntity;
+import com.teamabnormals.neapolitan.common.entity.projectile.BananaPeelEntity;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanEntityTypeTags;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanEntityTypes;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
-import com.teamabnormals.neapolitan.core.registry.NeapolitanSounds;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanSoundEvents;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
@@ -104,6 +104,6 @@ public class BananaBunchItem extends Item {
 			}
 		}
 
-		world.playSound(player, player.blockPosition(), NeapolitanSounds.ITEM_BANANA_BUNCH_OPEN.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+		world.playSound(player, player.blockPosition(), NeapolitanSoundEvents.ITEM_BANANA_BUNCH_OPEN.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
 	}
 }

@@ -1,7 +1,7 @@
 package com.teamabnormals.neapolitan.common.item;
 
 import com.teamabnormals.blueprint.core.util.item.filling.TargetedItemCategoryFiller;
-import com.teamabnormals.neapolitan.common.entity.BananarrowEntity;
+import com.teamabnormals.neapolitan.common.entity.projectile.BananarrowEntity;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;

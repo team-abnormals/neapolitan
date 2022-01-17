@@ -1,6 +1,6 @@
 package com.teamabnormals.neapolitan.client.particle;
 
-import com.teamabnormals.neapolitan.core.registry.NeapolitanParticles;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanParticleTypes;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;
@@ -131,7 +131,7 @@ public class MilkDripParticle extends TextureSheetParticle {
 		}
 
 		public Particle createParticle(SimpleParticleType p_171992_, ClientLevel p_171993_, double p_171994_, double p_171995_, double p_171996_, double p_171997_, double p_171998_, double p_171999_) {
-			MilkDripParticle dripparticle = new MilkDripParticle.DripstoneFallAndLandParticle(p_171993_, p_171994_, p_171995_, p_171996_, ForgeMod.MILK.get(), NeapolitanParticles.MILK_SPLASH.get());
+			MilkDripParticle dripparticle = new MilkDripParticle.DripstoneFallAndLandParticle(p_171993_, p_171994_, p_171995_, p_171996_, ForgeMod.MILK.get(), NeapolitanParticleTypes.MILK_SPLASH.get());
 			dripparticle.setColor(0.87F, 0.95F, 0.96F);
 			dripparticle.pickSprite(this.sprite);
 			return dripparticle;
@@ -147,7 +147,7 @@ public class MilkDripParticle extends TextureSheetParticle {
 		}
 
 		public Particle createParticle(SimpleParticleType p_172013_, ClientLevel p_172014_, double p_172015_, double p_172016_, double p_172017_, double p_172018_, double p_172019_, double p_172020_) {
-			MilkDripParticle dripparticle = new MilkDripParticle.DripHangParticle(p_172014_, p_172015_, p_172016_, p_172017_, ForgeMod.MILK.get(), NeapolitanParticles.FALLING_DRIPSTONE_MILK.get());
+			MilkDripParticle dripparticle = new MilkDripParticle.DripHangParticle(p_172014_, p_172015_, p_172016_, p_172017_, ForgeMod.MILK.get(), NeapolitanParticleTypes.FALLING_DRIPSTONE_MILK.get());
 			dripparticle.setColor(1.0F, 1.0F, 1.0F);
 			dripparticle.pickSprite(this.sprite);
 			return dripparticle;

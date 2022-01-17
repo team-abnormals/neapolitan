@@ -1,10 +1,10 @@
 package com.teamabnormals.neapolitan.core.registry;
 
-import com.teamabnormals.neapolitan.common.world.gen.feature.AdzukiSproutsFeature;
-import com.teamabnormals.neapolitan.common.world.gen.feature.BananaPlantFeature;
-import com.teamabnormals.neapolitan.common.world.gen.feature.MintPondFeature;
-import com.teamabnormals.neapolitan.common.world.gen.feature.StrawberryBushFeature;
-import com.teamabnormals.neapolitan.common.world.gen.feature.VanillaPatchFeature;
+import com.teamabnormals.neapolitan.common.levelgen.feature.AdzukiSproutsFeature;
+import com.teamabnormals.neapolitan.common.levelgen.feature.BananaPlantFeature;
+import com.teamabnormals.neapolitan.common.levelgen.feature.MintPondFeature;
+import com.teamabnormals.neapolitan.common.levelgen.feature.StrawberryBushFeature;
+import com.teamabnormals.neapolitan.common.levelgen.feature.VanillaPatchFeature;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.NeapolitanConfig;
 import net.minecraft.core.BlockPos;

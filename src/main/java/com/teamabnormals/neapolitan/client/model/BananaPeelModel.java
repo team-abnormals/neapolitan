@@ -22,7 +22,7 @@ public class BananaPeelModel extends EntityModel<Entity> {
 		this.bananaPeel = root.getChild("banana_peel");
 	}
 
-	public static LayerDefinition createLayerDefinition() {
+	public static LayerDefinition createBodyLayer() {
 		MeshDefinition mesh = new MeshDefinition();
 		PartDefinition root = mesh.getRoot();
 		PartDefinition bananaPeel = root.addOrReplaceChild("banana_peel", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -5.0F, -1.0F, 2.0F, 5.0F, 2.0F, false).texOffs(0, 12).addBox(1.0F, 0.0F, -1.0F, 4.0F, 0.0F, 2.0F, false).texOffs(0, 14).addBox(-5.0F, 0.0F, -1.0F, 4.0F, 0.0F, 2.0F, false).texOffs(0, 7).addBox(-1.0F, 0.0F, -5.0F, 2.0F, 0.0F, 4.0F, false).texOffs(4, 7).addBox(-1.0F, 0.0F, 1.0F, 2.0F, 0.0F, 4.0F, false), PartPose.offsetAndRotation(0.0F, -0.1F, 0.0F, 0.0F, 0.0F, 0.0F));

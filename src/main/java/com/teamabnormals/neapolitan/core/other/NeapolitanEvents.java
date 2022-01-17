@@ -4,14 +4,14 @@ import com.teamabnormals.blueprint.core.other.tags.BlueprintEntityTypeTags;
 import com.teamabnormals.blueprint.core.util.MathUtil;
 import com.teamabnormals.blueprint.core.util.TradeUtil;
 import com.teamabnormals.blueprint.core.util.TradeUtil.BlueprintTrade;
-import com.teamabnormals.neapolitan.common.entity.ChimpanzeeEntity;
+import com.teamabnormals.neapolitan.common.entity.animal.ChimpanzeeEntity;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.NeapolitanConfig;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanEntityTypeTags;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
-import com.teamabnormals.neapolitan.core.registry.NeapolitanEffects;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanMobEffects;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
-import com.teamabnormals.neapolitan.core.registry.NeapolitanParticles;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanParticleTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -61,7 +61,7 @@ public class NeapolitanEvents {
 	public static void onEntityJoinWorld(EntityJoinWorldEvent event) {
 		Entity entity = event.getEntity();
 		if (entity instanceof Monster mobEntity && !entity.getType().is(NeapolitanEntityTypeTags.UNAFFECTED_BY_HARMONY)) {
-			mobEntity.goalSelector.addGoal(0, new AvoidEntityGoal<>(mobEntity, Player.class, 12.0F, 1.0D, 1.0D, (player) -> player.getEffect(NeapolitanEffects.HARMONY.get()) != null));
+			mobEntity.goalSelector.addGoal(0, new AvoidEntityGoal<>(mobEntity, Player.class, 12.0F, 1.0D, 1.0D, (player) -> player.getEffect(NeapolitanMobEffects.HARMONY.get()) != null));
 		}
 	}
 
@@ -79,7 +79,7 @@ public class NeapolitanEvents {
 				double d1 = (double) entityPos.getX() + 0.5D + vec3.x + MathUtil.makeNegativeRandomly(random.nextFloat() * 0.25F, random);
 				double d2 = entityPos.getY() + entity.getBbHeight() / 2;
 				double d3 = (double) entityPos.getZ() + 0.5D + vec3.z + MathUtil.makeNegativeRandomly(random.nextFloat() * 0.25F, random);
-				level.addParticle(NeapolitanParticles.DRIPPING_DRIPSTONE_MILK.get(), d1, d2, d3, 0.0D, 0.0D, 0.0D);
+				level.addParticle(NeapolitanParticleTypes.DRIPPING_DRIPSTONE_MILK.get(), d1, d2, d3, 0.0D, 0.0D, 0.0D);
 			}
 		}
 	}
@@ -116,11 +116,11 @@ public class NeapolitanEvents {
 	@SubscribeEvent
 	public static void onLivingDeath(LivingDeathEvent event) {
 		if (event.getSource().getEntity() instanceof LivingEntity attacker) {
-			if (attacker.getEffect(NeapolitanEffects.BERSERKING.get()) != null) {
-				MobEffectInstance berserking = attacker.getEffect(NeapolitanEffects.BERSERKING.get());
+			if (attacker.getEffect(NeapolitanMobEffects.BERSERKING.get()) != null) {
+				MobEffectInstance berserking = attacker.getEffect(NeapolitanMobEffects.BERSERKING.get());
 				if (berserking.getAmplifier() < 9) {
 					MobEffectInstance upgrade = new MobEffectInstance(berserking.getEffect(), berserking.getDuration(), berserking.getAmplifier() + 1, berserking.isAmbient(), berserking.isVisible(), berserking.showIcon());
-					attacker.removeEffectNoUpdate(NeapolitanEffects.BERSERKING.get());
+					attacker.removeEffectNoUpdate(NeapolitanMobEffects.BERSERKING.get());
 					attacker.addEffect(upgrade);
 				}
 			}
@@ -166,13 +166,13 @@ public class NeapolitanEvents {
 		MobEffect effect = event.getPotionEffect().getEffect();
 		LivingEntity entity = event.getEntityLiving();
 
-		if (entity.getEffect(NeapolitanEffects.VANILLA_SCENT.get()) != null && effect != NeapolitanEffects.VANILLA_SCENT.get()) {
+		if (entity.getEffect(NeapolitanMobEffects.VANILLA_SCENT.get()) != null && effect != NeapolitanMobEffects.VANILLA_SCENT.get()) {
 			if (effect.getRegistryName() != null && !effect.getRegistryName().equals(new ResourceLocation("autumnity", "foul_taste"))) {
 				event.setResult(Result.DENY);
 			}
 		}
 
-		if (effect == NeapolitanEffects.SUGAR_RUSH.get() && !entity.level.isClientSide) {
+		if (effect == NeapolitanMobEffects.SUGAR_RUSH.get() && !entity.level.isClientSide) {
 			entity.getPersistentData().putInt("SugarRushDuration", event.getPotionEffect().getDuration());
 		}
 	}

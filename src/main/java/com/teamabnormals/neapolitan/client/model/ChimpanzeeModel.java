@@ -2,13 +2,11 @@ package com.teamabnormals.neapolitan.client.model;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.teamabnormals.neapolitan.common.entity.ChimpanzeeEntity;
+import com.teamabnormals.neapolitan.common.entity.animal.ChimpanzeeEntity;
 import com.teamabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
-import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanItemTags;
 import net.minecraft.client.model.AnimationUtils;
 import net.minecraft.client.model.HumanoidModel;
-import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
@@ -16,7 +14,6 @@ import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.HumanoidArm;
@@ -29,8 +26,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends HumanoidModel<T> {
-	public static final ModelLayerLocation LOCATION = new ModelLayerLocation(new ResourceLocation(Neapolitan.MOD_ID, "chimpanzee"), "main");
-
 	public ModelPart leftEar;
 	public ModelPart rightEar;
 
@@ -57,7 +52,7 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends HumanoidModel<T
 		this.rightLegDefault = root.getChild("right_leg_default");
 	}
 
-	public static LayerDefinition createLayerDefinition(float modelSize, boolean isArmor, boolean isInner) {
+	public static LayerDefinition createBodyLayer(float modelSize, boolean isArmor, boolean isInner) {
 		CubeDeformation deformation = CubeDeformation.NONE;
 		MeshDefinition meshdefinition = HumanoidModel.createMesh(deformation, 0.0F);
 		PartDefinition root = meshdefinition.getRoot();

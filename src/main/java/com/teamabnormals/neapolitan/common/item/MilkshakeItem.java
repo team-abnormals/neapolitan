@@ -1,7 +1,7 @@
 package com.teamabnormals.neapolitan.common.item;
 
 import com.google.common.collect.Lists;
-import com.teamabnormals.neapolitan.core.registry.NeapolitanEffects;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanMobEffects;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.server.level.ServerPlayer;
@@ -51,7 +51,7 @@ public class MilkshakeItem extends DrinkItem {
 			serverplayerentity.awardStat(Stats.ITEM_USED.get(this));
 		}
 
-		if (entity.getEffect(NeapolitanEffects.VANILLA_SCENT.get()) == null)
+		if (entity.getEffect(NeapolitanMobEffects.VANILLA_SCENT.get()) == null)
 			handleEffects(entity);
 
 		if (!player.getAbilities().instabuild) {
@@ -75,7 +75,7 @@ public class MilkshakeItem extends DrinkItem {
 				}
 			}
 		} else {
-			LivingEntity nearest = user.level.getNearestEntity(LivingEntity.class, TargetingConditions.DEFAULT.selector((living) -> living != user && living.getEffect(NeapolitanEffects.VANILLA_SCENT.get()) == null), user, user.getX(), user.getY(), user.getZ(), user.getBoundingBox().inflate(6.0D, 2.0D, 6.0D));
+			LivingEntity nearest = user.level.getNearestEntity(LivingEntity.class, TargetingConditions.DEFAULT.selector((living) -> living != user && living.getEffect(NeapolitanMobEffects.VANILLA_SCENT.get()) == null), user, user.getX(), user.getY(), user.getZ(), user.getBoundingBox().inflate(6.0D, 2.0D, 6.0D));
 			if (nearest != null) {
 				List<MobEffectInstance> nearestEffects = Lists.newArrayList(nearest.getActiveEffects());
 

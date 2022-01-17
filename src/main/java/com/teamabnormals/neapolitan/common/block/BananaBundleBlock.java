@@ -1,6 +1,6 @@
 package com.teamabnormals.neapolitan.common.block;
 
-import com.teamabnormals.neapolitan.common.entity.PlantainSpiderEntity;
+import com.teamabnormals.neapolitan.common.entity.monster.PlantainSpiderEntity;
 import com.teamabnormals.neapolitan.core.NeapolitanConfig;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanEntityTypes;
 import net.minecraft.core.BlockPos;
