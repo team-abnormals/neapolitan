@@ -11,14 +11,14 @@ import com.teamabnormals.neapolitan.core.data.client.NeapolitanBlockStateProvide
 import com.teamabnormals.neapolitan.core.data.server.NeapolitanLootModifiersProvider;
 import com.teamabnormals.neapolitan.core.data.server.NeapolitanLootTableProvider;
 import com.teamabnormals.neapolitan.core.data.server.tags.NeapolitanBlockTagsProvider;
+import com.teamabnormals.neapolitan.core.data.server.tags.NeapolitanEntityTypeTagsProvider;
 import com.teamabnormals.neapolitan.core.data.server.tags.NeapolitanItemTagsProvider;
 import com.teamabnormals.neapolitan.core.other.NeapolitanCompat;
 import com.teamabnormals.neapolitan.core.other.NeapolitanModelLayers;
-import com.teamabnormals.neapolitan.core.registry.NeapolitanPaintingTypes;
-import com.teamabnormals.neapolitan.core.registry.NeapolitanMobEffects;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanEntityTypes;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanFeatures;
-import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanMobEffects;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanPaintingTypes;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanParticleTypes;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.api.distmarker.Dist;
@@ -77,26 +77,24 @@ public class Neapolitan {
 	}
 
 	private void clientSetup(FMLClientSetupEvent event) {
-		event.enqueueWork(() -> {
-			NeapolitanCompat.registerRenderLayers();
-			NeapolitanItems.registerItemProperties();
-		});
+		event.enqueueWork(NeapolitanCompat::registerRenderLayers);
 	}
 
 	private void dataSetup(GatherDataEvent event) {
 		DataGenerator generator = event.getGenerator();
-		ExistingFileHelper helper = event.getExistingFileHelper();
+		ExistingFileHelper fileHelper = event.getExistingFileHelper();
 
 		if (event.includeServer()) {
-			NeapolitanBlockTagsProvider blockTagsProvider = new NeapolitanBlockTagsProvider(generator, helper);
+			NeapolitanBlockTagsProvider blockTagsProvider = new NeapolitanBlockTagsProvider(generator, fileHelper);
 			generator.addProvider(blockTagsProvider);
-			generator.addProvider(new NeapolitanItemTagsProvider(generator, blockTagsProvider, helper));
+			generator.addProvider(new NeapolitanItemTagsProvider(generator, blockTagsProvider, fileHelper));
+			generator.addProvider(new NeapolitanEntityTypeTagsProvider(generator, fileHelper));
 			generator.addProvider(new NeapolitanLootTableProvider(generator));
 			generator.addProvider(NeapolitanLootModifiersProvider.createLootModifierDataProvider(generator));
 		}
 
 		if (event.includeClient()) {
-			generator.addProvider(new NeapolitanBlockStateProvider(generator, helper));
+			generator.addProvider(new NeapolitanBlockStateProvider(generator, fileHelper));
 			//dataGenerator.addProvider(new NeapolitanLanguageProvider(dataGenerator));
 		}
 	}

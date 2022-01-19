@@ -2,7 +2,6 @@ package com.teamabnormals.neapolitan.core.data.client;
 
 import com.teamabnormals.neapolitan.common.block.FlavoredCandleCakeBlock;
 import com.teamabnormals.neapolitan.core.Neapolitan;
-import com.teamabnormals.neapolitan.core.data.server.tags.NeapolitanBlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
@@ -24,7 +23,7 @@ public class NeapolitanBlockStateProvider extends BlockStateProvider {
 
 	@Override
 	protected void registerStatesAndModels() {
-		NeapolitanBlockTagsProvider.getCandleCakes().forEach((block -> this.candleCake((FlavoredCandleCakeBlock) block)));
+		FlavoredCandleCakeBlock.getCandleCakes().forEach((block -> this.candleCake((FlavoredCandleCakeBlock) block)));
 	}
 
 	public void candleCake(FlavoredCandleCakeBlock block) {

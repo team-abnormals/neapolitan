@@ -2,6 +2,7 @@ package com.teamabnormals.neapolitan.common.block;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
+import com.teamabnormals.neapolitan.core.Neapolitan;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -26,10 +27,12 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.Map;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 public class FlavoredCandleCakeBlock extends AbstractCandleBlock {
 	public static final BooleanProperty LIT = AbstractCandleBlock.LIT;
@@ -122,5 +125,9 @@ public class FlavoredCandleCakeBlock extends AbstractCandleBlock {
 
 	public Block getCake() {
 		return baseCake.get();
+	}
+
+	public static Iterable<Block> getCandleCakes() {
+		return ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block.getRegistryName() != null && Neapolitan.MOD_ID.equals(block.getRegistryName().getNamespace()) && block instanceof FlavoredCandleCakeBlock).collect(Collectors.toList());
 	}
 }

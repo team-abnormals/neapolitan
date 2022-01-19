@@ -1,8 +1,8 @@
 {
   "replace": false,
   "values": [
-    "neapolitan:vanilla_ice_cream",
     "neapolitan:chocolate_ice_cream",
+    "neapolitan:vanilla_ice_cream",
     "neapolitan:strawberry_ice_cream",
     "neapolitan:banana_ice_cream",
     "neapolitan:mint_ice_cream",

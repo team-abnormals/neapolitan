@@ -1,7 +1,7 @@
 package com.teamabnormals.neapolitan.core.data.client;
 
+import com.teamabnormals.neapolitan.common.block.FlavoredCandleCakeBlock;
 import com.teamabnormals.neapolitan.core.Neapolitan;
-import com.teamabnormals.neapolitan.core.data.server.tags.NeapolitanBlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -16,7 +16,7 @@ public class NeapolitanLanguageProvider extends LanguageProvider {
 
 	@Override
 	public void addTranslations() {
-		NeapolitanBlockTagsProvider.getCandleCakes().forEach(this::add);
+		FlavoredCandleCakeBlock.getCandleCakes().forEach(this::add);
 	}
 
 	private void add(Item item) {

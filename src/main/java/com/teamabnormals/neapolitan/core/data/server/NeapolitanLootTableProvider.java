@@ -3,7 +3,6 @@ package com.teamabnormals.neapolitan.core.data.server;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import com.teamabnormals.neapolitan.common.block.FlavoredCandleCakeBlock;
-import com.teamabnormals.neapolitan.core.data.server.tags.NeapolitanBlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.loot.BlockLoot;
 import net.minecraft.data.loot.LootTableProvider;
@@ -41,12 +40,12 @@ public class NeapolitanLootTableProvider extends LootTableProvider {
 
 		@Override
 		public void addTables() {
-			NeapolitanBlockTagsProvider.getCandleCakes().forEach((block -> this.add(block, createCandleCakeDrops(((FlavoredCandleCakeBlock) block).getCandle()))));
+			FlavoredCandleCakeBlock.getCandleCakes().forEach((block -> this.add(block, createCandleCakeDrops(((FlavoredCandleCakeBlock) block).getCandle()))));
 		}
 
 		@Override
 		public Iterable<Block> getKnownBlocks() {
-			return NeapolitanBlockTagsProvider.getCandleCakes();
+			return FlavoredCandleCakeBlock.getCandleCakes();
 		}
 	}
 }
