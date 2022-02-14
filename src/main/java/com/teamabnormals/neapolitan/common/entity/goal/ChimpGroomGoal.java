@@ -24,7 +24,7 @@ public class ChimpGroomGoal extends Goal {
 	public boolean canUse() {
 		if (this.chimpanzee.isBaby()) {
 			return false;
-		} else if (this.chimpanzee.getRandom().nextInt(80) == 0) {
+		} else if (this.chimpanzee.getRandom().nextInt(40) == 0) {
 			List<ChimpanzeeEntity> list = this.chimpanzee.level.getEntitiesOfClass(ChimpanzeeEntity.class, this.chimpanzee.getBoundingBox().inflate(8.0D, 4.0D, 8.0D));
 			ChimpanzeeEntity chimpanzeeentity = null;
 			double d0 = Double.MAX_VALUE;
@@ -83,7 +83,7 @@ public class ChimpGroomGoal extends Goal {
 		ChimpanzeeEntity target = this.chimpanzee.getGroomingTarget();
 
 		if (--this.delayCounter <= 0) {
-			this.delayCounter = 10;
+			this.delayCounter = this.adjustedTickDelay(10);
 
 			double d0 = this.chimpanzee.distanceToSqr(target);
 

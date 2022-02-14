@@ -1,6 +1,7 @@
 package com.teamabnormals.neapolitan.client.renderer.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Vector3f;
 import com.teamabnormals.neapolitan.client.model.ChimpanzeeModel;
 import com.teamabnormals.neapolitan.client.renderer.entity.layers.ChimpanzeeDirtLayer;
 import com.teamabnormals.neapolitan.client.renderer.entity.layers.ChimpanzeeDyeLayer;
@@ -16,6 +17,8 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.layers.CustomHeadLayer;
 import net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.monster.Shulker;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -35,15 +38,21 @@ public class ChimpanzeeRenderer extends MobRenderer<ChimpanzeeEntity, Chimpanzee
 	}
 
 	@Override
-	public ResourceLocation getTextureLocation(ChimpanzeeEntity entity) {
-		ChimpanzeeTypes type = ChimpanzeeTypes.byId(entity.getChimpanzeeType());
-		String textureend = entity.isMouthOpen() ? "_chimpanzee_mouth_open.png" : "_chimpanzee.png";
+	public ResourceLocation getTextureLocation(ChimpanzeeEntity chimpanzee) {
+		ChimpanzeeTypes type = ChimpanzeeTypes.byId(chimpanzee.getChimpanzeeType());
+		String textureend = chimpanzee.isMouthOpen() ? "_chimpanzee_mouth_open.png" : "_chimpanzee.png";
 		return new ResourceLocation(Neapolitan.MOD_ID, "textures/entity/chimpanzee/" + type.name().toLowerCase(Locale.ROOT) + textureend);
 	}
 
 	@Override
-	public void render(ChimpanzeeEntity entityIn, float entityYaw, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn) {
-		super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
+	protected void setupRotations(ChimpanzeeEntity chimpanzee, PoseStack matrixStackIn, float ageInTicks, float rotationYaw, float partialTicks) {
+		super.setupRotations(chimpanzee, matrixStackIn, ageInTicks, rotationYaw, partialTicks);
+		float f = chimpanzee.getFlipAnim(partialTicks);
+		if (f > 0.0F) {
+			float f1 = Mth.PI * f / 10F;
+			matrixStackIn.translate(0.0D, -Mth.cos(f1) * 0.8D + 0.8D, Mth.sin(f1) * 0.8D);
+			matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(-f * 18F));
+		}
 	}
 
 	@Override

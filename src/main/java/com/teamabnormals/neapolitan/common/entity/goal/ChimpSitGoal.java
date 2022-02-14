@@ -28,7 +28,7 @@ public class ChimpSitGoal extends Goal {
 		} else if (this.chimpanzee.xxa != 0.0F || this.chimpanzee.yya != 0.0F || this.chimpanzee.zza != 0.0F) {
 			return false;
 		} else if (this.chimpanzee.getAction().canSit()) {
-			if (!this.chimpanzee.isLeader() && this.chimpanzee.getRandom().nextInt(60) == 0) {
+			if (!this.chimpanzee.isLeader() && this.chimpanzee.getRandom().nextInt(30) == 0) {
 				Predicate<ChimpanzeeEntity> predicate = (chimpanzeeentity) -> {
 					return chimpanzeeentity != this.chimpanzee && chimpanzeeentity.isLeader();
 				};
@@ -40,8 +40,8 @@ public class ChimpSitGoal extends Goal {
 					}
 				}
 			} else if (this.chimpanzee.level.isNight()) {
-				return this.chimpanzee.getRandom().nextInt(300) == 0;
-			} else return this.chimpanzee.getRandom().nextInt(2400) == 0;
+				return this.chimpanzee.getRandom().nextInt(150) == 0;
+			} else return this.chimpanzee.getRandom().nextInt(1200) == 0;
 		}
 
 		return false;
@@ -68,8 +68,13 @@ public class ChimpSitGoal extends Goal {
 
 	@Override
 	public void stop() {
-		this.cooldown = 100;
+		this.cooldown = this.adjustedTickDelay(100);
 		this.chimpanzee.setSitting(false);
+	}
+
+	@Override
+	public boolean requiresUpdateEveryTick() {
+		return true;
 	}
 
 	@Override

@@ -29,7 +29,7 @@ public class ChimpShareBananaGoal extends Goal {
 	public boolean canUse() {
 		if (this.chimpanzee.isBaby() || this.chimpanzee.getSnack().isEmpty() || this.chimpanzee.isHungry()) {
 			return false;
-		} else if (this.chimpanzee.getRandom().nextInt(100) == 0) {
+		} else if (this.chimpanzee.getRandom().nextInt(60) == 0) {
 			List<ChimpanzeeEntity> list = this.chimpanzee.level.getEntitiesOfClass(ChimpanzeeEntity.class, this.chimpanzee.getBoundingBox().inflate(8.0D, 4.0D, 8.0D));
 			ChimpanzeeEntity chimpanzeeentity = null;
 			double d0 = Double.MAX_VALUE;
@@ -78,6 +78,11 @@ public class ChimpShareBananaGoal extends Goal {
 	@Override
 	public void stop() {
 		this.buddy = null;
+	}
+
+	@Override
+	public boolean requiresUpdateEveryTick() {
+		return true;
 	}
 
 	@Override

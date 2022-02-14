@@ -30,14 +30,12 @@ public class ChimpOpenBunchGoal extends Goal {
 	public void start() {
 		this.chimpanzee.setAction(ChimpanzeeAction.DEFAULT);
 		this.chimpanzee.getNavigation().stop();
-		this.throwTimer = 0;
+		this.throwTimer = this.adjustedTickDelay(40);
 	}
 
 	@Override
 	public void tick() {
-		++this.throwTimer;
-
-		if (this.throwTimer >= 40) {
+		if (--this.throwTimer <= 0) {
 			boolean flag = false;
 			InteractionHand hand = InteractionHand.MAIN_HAND;
 			if (this.chimpanzee.getMainHandItem().getItem() == NeapolitanItems.BANANA_BUNCH.get()) {

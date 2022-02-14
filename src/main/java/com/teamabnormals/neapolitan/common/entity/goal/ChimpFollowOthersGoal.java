@@ -83,7 +83,7 @@ public class ChimpFollowOthersGoal extends Goal {
 
 	public void tick() {
 		if (--this.delayCounter <= 0) {
-			this.delayCounter = 20;
+			this.delayCounter = this.adjustedTickDelay(20);
 			this.chimpanzee.getNavigation().moveTo(this.leader, this.moveSpeed);
 		}
 	}

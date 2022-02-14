@@ -60,8 +60,8 @@ public class ChimpTemptBananaGoal extends Goal {
 
 	@Override
 	public void start() {
-		this.forgetTimer = 100;
-		this.patience = 60;
+		this.forgetTimer = this.adjustedTickDelay(100);
+		this.patience = this.adjustedTickDelay(60);
 		this.playerDistance = this.chimpanzee.distanceToSqr(this.closestPlayer);
 	}
 
@@ -69,7 +69,7 @@ public class ChimpTemptBananaGoal extends Goal {
 	public void stop() {
 		this.closestPlayer = null;
 		this.chimpanzee.getNavigation().stop();
-		this.delayTemptCounter = 100;
+		this.delayTemptCounter = this.adjustedTickDelay(100);
 	}
 
 	@Override
@@ -96,7 +96,7 @@ public class ChimpTemptBananaGoal extends Goal {
 		if (!this.isTempting(this.closestPlayer.getMainHandItem()) && !this.isTempting(this.closestPlayer.getOffhandItem())) {
 			--this.forgetTimer;
 		} else {
-			this.forgetTimer = 160;
+			this.forgetTimer = this.adjustedTickDelay(160);
 		}
 	}
 }

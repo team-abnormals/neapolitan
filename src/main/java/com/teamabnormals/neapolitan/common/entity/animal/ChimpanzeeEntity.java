@@ -1,29 +1,6 @@
 package com.teamabnormals.neapolitan.common.entity.animal;
 
-import com.teamabnormals.neapolitan.common.entity.goal.ChimpApeModeGoal;
-import com.teamabnormals.neapolitan.common.entity.goal.ChimpAttackGoal;
-import com.teamabnormals.neapolitan.common.entity.goal.ChimpAvoidEntityGoal;
-import com.teamabnormals.neapolitan.common.entity.goal.ChimpBeGroomedGoal;
-import com.teamabnormals.neapolitan.common.entity.goal.ChimpCryGoal;
-import com.teamabnormals.neapolitan.common.entity.goal.ChimpEatBananaGoal;
-import com.teamabnormals.neapolitan.common.entity.goal.ChimpFollowOthersGoal;
-import com.teamabnormals.neapolitan.common.entity.goal.ChimpFollowParentGoal;
-import com.teamabnormals.neapolitan.common.entity.goal.ChimpGetScaredGoal;
-import com.teamabnormals.neapolitan.common.entity.goal.ChimpGrabBananaGoal;
-import com.teamabnormals.neapolitan.common.entity.goal.ChimpGroomGoal;
-import com.teamabnormals.neapolitan.common.entity.goal.ChimpHurtByTargetGoal;
-import com.teamabnormals.neapolitan.common.entity.goal.ChimpJumpOnBouncyGoal;
-import com.teamabnormals.neapolitan.common.entity.goal.ChimpLookAtItemGoal;
-import com.teamabnormals.neapolitan.common.entity.goal.ChimpOpenBunchGoal;
-import com.teamabnormals.neapolitan.common.entity.goal.ChimpPanicGoal;
-import com.teamabnormals.neapolitan.common.entity.goal.ChimpPlayNoteBlockGoal;
-import com.teamabnormals.neapolitan.common.entity.goal.ChimpPlayWithHelmetGoal;
-import com.teamabnormals.neapolitan.common.entity.goal.ChimpRandomWalkingGoal;
-import com.teamabnormals.neapolitan.common.entity.goal.ChimpShakeBundleGoal;
-import com.teamabnormals.neapolitan.common.entity.goal.ChimpShakeHeadGoal;
-import com.teamabnormals.neapolitan.common.entity.goal.ChimpShareBananaGoal;
-import com.teamabnormals.neapolitan.common.entity.goal.ChimpSitGoal;
-import com.teamabnormals.neapolitan.common.entity.goal.ChimpTemptBananaGoal;
+import com.teamabnormals.neapolitan.common.entity.goal.*;
 import com.teamabnormals.neapolitan.common.entity.monster.PlantainSpiderEntity;
 import com.teamabnormals.neapolitan.common.entity.projectile.BananaPeelEntity;
 import com.teamabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
@@ -150,13 +127,16 @@ public class ChimpanzeeEntity extends Animal implements NeutralMob {
 	private ChimpanzeeEntity groomer;
 
 	private float climbAnim;
-	private float climbAnim0;
+	private float climbAnimO;
 
 	private float sitAnim;
-	private float sitAnim0;
+	private float sitAnimO;
 
 	private int headShakeAnim;
-	private int headShakeAnim0;
+	private int headShakeAnimO;
+
+	private float flipAnim;
+	private float flipAnimO;
 
 	public boolean isPartying = false;
 	BlockPos jukeboxPosition;
@@ -193,11 +173,12 @@ public class ChimpanzeeEntity extends Animal implements NeutralMob {
 		this.goalSelector.addGoal(21, new ChimpLookAtItemGoal(this));
 		this.goalSelector.addGoal(22, new ChimpJumpOnBouncyGoal(this, 1.0D, 16));
 		this.goalSelector.addGoal(23, new ChimpPlayNoteBlockGoal(this, 1.0D, 16));
-		this.goalSelector.addGoal(24, new ChimpApeModeGoal(this, 1.0D));
-		this.goalSelector.addGoal(25, new ChimpRandomWalkingGoal(this, 1.0D));
-		this.goalSelector.addGoal(26, new LookAtPlayerGoal(this, Player.class, 6.0F));
-		this.goalSelector.addGoal(27, new LookAtPlayerGoal(this, Mob.class, 6.0F));
-		this.goalSelector.addGoal(28, new RandomLookAroundGoal(this));
+		this.goalSelector.addGoal(24, new ChimpFlipGoal(this));
+		this.goalSelector.addGoal(25, new ChimpApeModeGoal(this, 1.0D));
+		this.goalSelector.addGoal(26, new ChimpRandomWalkingGoal(this, 1.0D));
+		this.goalSelector.addGoal(27, new LookAtPlayerGoal(this, Player.class, 6.0F));
+		this.goalSelector.addGoal(28, new LookAtPlayerGoal(this, Mob.class, 6.0F));
+		this.goalSelector.addGoal(29, new RandomLookAroundGoal(this));
 
 		this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, this::isAngryAt));
 		this.targetSelector.addGoal(1, new ChimpHurtByTargetGoal(this).setAlertOthers());
@@ -389,7 +370,7 @@ public class ChimpanzeeEntity extends Animal implements NeutralMob {
 			this.spawnParticles();
 		}
 
-		this.climbAnim0 = this.climbAnim;
+		this.climbAnimO = this.climbAnim;
 		if (this.isDoingAction(ChimpanzeeAction.CLIMBING)) {
 			this.climbAnim = Math.min(this.climbAnim + 0.125F, 0.75F);
 		} else if (this.isDoingAction(ChimpanzeeAction.HANGING, ChimpanzeeAction.SHAKING)) {
@@ -398,16 +379,21 @@ public class ChimpanzeeEntity extends Animal implements NeutralMob {
 			this.climbAnim = Math.max(this.climbAnim - 0.125F, 0);
 		}
 
-		this.sitAnim0 = this.sitAnim;
+		this.sitAnimO = this.sitAnim;
 		if (this.isSitting()) {
 			this.sitAnim = Math.min(this.sitAnim + 0.167F, 1);
 		} else {
 			this.sitAnim = Math.max(this.sitAnim - 0.167F, 0);
 		}
 
-		this.headShakeAnim0 = this.headShakeAnim;
+		this.headShakeAnimO = this.headShakeAnim;
 		if (this.headShakeAnim > 0) {
 			--this.headShakeAnim;
+		}
+
+		this.flipAnimO = this.flipAnim;
+		if (this.flipAnim > 0) {
+			--this.flipAnim;
 		}
 	}
 
@@ -1159,17 +1145,22 @@ public class ChimpanzeeEntity extends Animal implements NeutralMob {
 
 	@OnlyIn(Dist.CLIENT)
 	public float getClimbingAnim(float partialTicks) {
-		return Mth.lerp(partialTicks, this.climbAnim0, this.climbAnim);
+		return Mth.lerp(partialTicks, this.climbAnimO, this.climbAnim);
 	}
 
 	@OnlyIn(Dist.CLIENT)
 	public float getSitAnim(float partialTicks) {
-		return Mth.lerp(partialTicks, this.sitAnim0, this.sitAnim);
+		return Mth.lerp(partialTicks, this.sitAnimO, this.sitAnim);
 	}
 
 	@OnlyIn(Dist.CLIENT)
 	public float getHeadShakeAnim(float partialTicks) {
-		return Mth.lerp(partialTicks, this.headShakeAnim0, this.headShakeAnim);
+		return Mth.lerp(partialTicks, this.headShakeAnimO, this.headShakeAnim);
+	}
+
+	@OnlyIn(Dist.CLIENT)
+	public float getFlipAnim(float partialTicks) {
+		return Mth.lerp(partialTicks, this.flipAnimO, this.flipAnim);
 	}
 
 	public void swingArms() {
@@ -1178,7 +1169,12 @@ public class ChimpanzeeEntity extends Animal implements NeutralMob {
 
 	public void shakeHead() {
 		this.headShakeAnim = 40;
-		this.headShakeAnim0 = 40;
+		this.headShakeAnimO = 40;
+	}
+
+	public void doFlip() {
+		this.flipAnim = 20;
+		this.flipAnimO = 20;
 	}
 
 	public void shakeHead(ParticleOptions particleData) {
@@ -1201,6 +1197,8 @@ public class ChimpanzeeEntity extends Animal implements NeutralMob {
 			this.shakeHead(NeapolitanParticleTypes.CHIMPANZEE_NEEDS_SUN.get());
 		} else if (id == 8) {
 			this.shakeHead(NeapolitanParticleTypes.CHIMPANZEE_NEEDS_FOOD.get());
+		} else if (id == 9) {
+			this.doFlip();
 		} else {
 			super.handleEntityEvent(id);
 		}

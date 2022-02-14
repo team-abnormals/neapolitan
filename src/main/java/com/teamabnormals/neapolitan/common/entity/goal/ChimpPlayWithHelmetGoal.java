@@ -28,7 +28,7 @@ public class ChimpPlayWithHelmetGoal extends Goal {
 			return false;
 		} else if (!this.chimpanzee.getNavigation().isDone()) {
 			return false;
-		} else if (this.chimpanzee.getRandom().nextInt(200) > 0) {
+		} else if (this.chimpanzee.getRandom().nextInt(100) > 0) {
 			return false;
 		} else {
 			ItemStack helmet = this.chimpanzee.getItemBySlot(EquipmentSlot.HEAD);
@@ -62,6 +62,11 @@ public class ChimpPlayWithHelmetGoal extends Goal {
 	@Override
 	public void stop() {
 		this.chimpanzee.setDefaultAction();
+	}
+
+	@Override
+	public boolean requiresUpdateEveryTick() {
+		return true;
 	}
 
 	@Override

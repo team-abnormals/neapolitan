@@ -69,7 +69,7 @@ public class ChimpGrabBananaGoal extends Goal {
 	@Override
 	public void tick() {
 		if (--this.delayCounter <= 0) {
-			this.delayCounter = 10;
+			this.delayCounter = this.adjustedTickDelay(10);
 			this.chimpanzee.getLookControl().setLookAt(this.itemEntity, 30.0F, 30.0F);
 			Path path = this.chimpanzee.getNavigation().createPath(this.itemEntity, 0);
 			if (path != null) {

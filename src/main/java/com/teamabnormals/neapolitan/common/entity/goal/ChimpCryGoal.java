@@ -24,7 +24,7 @@ public class ChimpCryGoal extends Goal {
 			return false;
 		} else if (!this.chimpanzee.getNavigation().isDone()) {
 			return false;
-		} else if (this.chimpanzee.getRandom().nextInt(120) == 0) {
+		} else if (this.chimpanzee.getRandom().nextInt(60) == 0) {
 			return !this.isParentCloseBy();
 		} else {
 			return false;
@@ -33,7 +33,7 @@ public class ChimpCryGoal extends Goal {
 
 	@Override
 	public void start() {
-		this.cryTimer = 40 + this.chimpanzee.getRandom().nextInt(40);
+		this.cryTimer = this.adjustedTickDelay(40 + this.chimpanzee.getRandom().nextInt(40));
 		this.chimpanzee.setAction(ChimpanzeeAction.CRYING);
 		this.chimpanzee.getNavigation().stop();
 	}

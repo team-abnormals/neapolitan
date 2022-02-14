@@ -29,9 +29,9 @@ public class ChimpJumpOnBouncyGoal extends MoveToBlockGoal {
 			return false;
 		} else if (!this.chimpanzee.isDoingAction(ChimpanzeeAction.DEFAULT, ChimpanzeeAction.CLIMBING)) {
 			return false;
-		} else if (this.chimpanzee.isBaby() && this.chimpanzee.getRandom().nextInt(400) != 0) {
+		} else if (this.chimpanzee.isBaby() && this.chimpanzee.getRandom().nextInt(200) != 0) {
 			return false;
-		} else if (!this.chimpanzee.isBaby() && this.chimpanzee.getRandom().nextInt(1200) != 0) {
+		} else if (!this.chimpanzee.isBaby() && this.chimpanzee.getRandom().nextInt(600) != 0) {
 			return false;
 		} else {
 			return this.findNearestBlock();

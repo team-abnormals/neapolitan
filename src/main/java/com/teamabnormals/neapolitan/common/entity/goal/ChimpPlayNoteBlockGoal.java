@@ -32,7 +32,7 @@ public class ChimpPlayNoteBlockGoal extends MoveToBlockGoal {
 			return false;
 		} else if (!this.chimpanzee.isDoingAction(ChimpanzeeAction.DEFAULT, ChimpanzeeAction.CLIMBING)) {
 			return false;
-		} else if (this.chimpanzee.getRandom().nextInt(1200) != 0) {
+		} else if (this.chimpanzee.getRandom().nextInt(600) != 0) {
 			return false;
 		} else {
 			return this.findNearestBlock();
@@ -66,6 +66,11 @@ public class ChimpPlayNoteBlockGoal extends MoveToBlockGoal {
 		if (this.chimpanzee.canStandUp()) {
 			this.chimpanzee.setSitting(false);
 		}
+	}
+
+	@Override
+	public boolean requiresUpdateEveryTick() {
+		return true;
 	}
 
 	@Override

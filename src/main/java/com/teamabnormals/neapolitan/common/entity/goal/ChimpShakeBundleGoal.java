@@ -72,6 +72,11 @@ public class ChimpShakeBundleGoal extends MoveToBlockGoal {
 	}
 
 	@Override
+	public boolean requiresUpdateEveryTick() {
+		return true;
+	}
+
+	@Override
 	public void tick() {
 		super.tick();
 
@@ -113,7 +118,7 @@ public class ChimpShakeBundleGoal extends MoveToBlockGoal {
 				double d1 = this.blockPos.getZ() + 0.5D - this.chimpanzee.getZ();
 				double d2 = this.bundlePos.getY() - this.chimpanzee.getY() + 1.0D;
 				double d3 = 0.8D - d2 * 0.1D;
-				this.chimpanzee.setDeltaMovement(this.chimpanzee.getDeltaMovement().multiply(0.9D, 1.0D, 0.9D).add(d0 * d3, 0.3D + d2 * 0.1D, d1 * d3));
+				this.chimpanzee.setDeltaMovement(this.chimpanzee.getDeltaMovement().multiply(0.5D, 1.0D, 0.5D).add(d0 * d3, 0.3D + d2 * 0.1D, d1 * d3));
 			}
 
 			this.chimpanzee.setDefaultAction();

@@ -33,7 +33,7 @@ public class ChimpEatBananaGoal extends Goal {
 	public void start() {
 		this.chimpanzee.setAction(ChimpanzeeAction.DEFAULT);
 		this.chimpanzee.getNavigation().stop();
-		this.eatTime = 140;
+		this.eatTime = this.adjustedTickDelay(140);
 	}
 
 	@Override

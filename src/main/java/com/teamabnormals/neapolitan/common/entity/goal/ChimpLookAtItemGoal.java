@@ -37,7 +37,7 @@ public class ChimpLookAtItemGoal extends Goal {
 			return false;
 		} else if (!this.chimpanzee.getNavigation().isDone()) {
 			return false;
-		} else if (this.chimpanzee.getRandom().nextInt(160) > 0) {
+		} else if (this.chimpanzee.getRandom().nextInt(80) > 0) {
 			return false;
 		} else {
 			ItemStack mainhanditem = this.chimpanzee.getMainHandItem();
@@ -63,7 +63,7 @@ public class ChimpLookAtItemGoal extends Goal {
 
 	@Override
 	public void start() {
-		this.lookTimer = 60 + this.chimpanzee.getRandom().nextInt(60);
+		this.lookTimer = this.adjustedTickDelay(60 + this.chimpanzee.getRandom().nextInt(60));
 		this.wasHurt = false;
 		this.chimpanzee.setAction(ChimpanzeeAction.LOOKING_AT_ITEM);
 		this.chimpanzee.getNavigation().stop();
@@ -81,6 +81,11 @@ public class ChimpLookAtItemGoal extends Goal {
 	@Override
 	public void stop() {
 		this.chimpanzee.setDefaultAction();
+	}
+
+	@Override
+	public boolean requiresUpdateEveryTick() {
+		return true;
 	}
 
 	@Override

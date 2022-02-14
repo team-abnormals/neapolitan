@@ -66,7 +66,6 @@ public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends HumanoidModel<T
 		PartDefinition leftLeg = root.addOrReplaceChild("left_leg", CubeListBuilder.create().texOffs(40, 17).mirror().addBox(-1.5F, 0.0F, -1.5F, 3.0F, 11.0F, 3.0F, deformation.extend(modelSize)), PartPose.offsetAndRotation(2.5F, 13.0F, 0.5F, 0.0F, 0.0F, 0.0F));
 		PartDefinition rightLeg = root.addOrReplaceChild("right_leg", CubeListBuilder.create().texOffs(27, 17).addBox(-1.5F, 0.0F, -1.5F, 3.0F, 11.0F, 3.0F, deformation.extend(modelSize)), PartPose.offsetAndRotation(-2.5F, 13.0F, 0.5F, 0.0F, 0.0F, 0.0F));
 
-
 		if (isArmor) {
 			head = root.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, deformation.extend(modelSize)), PartPose.offsetAndRotation(0.0F, 1.0F, 0.5F, 0.0F, 0.0F, 0.0F));
 			body = root.addOrReplaceChild("body", CubeListBuilder.create().texOffs(16, 16).addBox(-4.0F, -0.0F, -2.0F, 8.0F, 12.0F, 4.0F, deformation.extend(modelSize)), PartPose.offsetAndRotation(0.0F, 5.0F, 0.5F, 0.0F, 0.0F, 0.0F));
