@@ -2,7 +2,7 @@
   "selector": {
     "type": "names",
     "config": [
-      "minecraft:chests/jungle_temple_dispenser"
+      "minecraft:chests/jungle_temple"
     ],
     "conditions": []
   },

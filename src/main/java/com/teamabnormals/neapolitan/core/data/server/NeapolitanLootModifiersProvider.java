@@ -50,7 +50,7 @@ public class NeapolitanLootModifiersProvider extends ObjectModifierProvider<Loot
 		this.registerEntry("village_savanna_house", new LootPoolEntriesModifier(false, 0, Arrays.asList(createLootEntry(NeapolitanItems.VANILLA_PODS.get(), 10, 1, 7), createLootEntry(NeapolitanItems.VANILLA_FUDGE.get(), 10, 1, 4))), BuiltInLootTables.VILLAGE_SAVANNA_HOUSE);
 		this.registerEntry("village_snowy_house", new LootPoolEntriesModifier(false, 0, Collections.singletonList(createLootEntry(NeapolitanItems.ICE_CUBES.get(), 10, 1, 8))), BuiltInLootTables.VILLAGE_SNOWY_HOUSE);
 
-		this.registerEntry("jungle_temple", new LootPoolEntriesModifier(false, 0, Arrays.asList(createLootEntry(NeapolitanItems.CHOCOLATE_BAR.get(), 10, 2, 6), createLootEntry(NeapolitanItems.CHOCOLATE_SPIDER_EYE.get(), 12, 1, 3))), BuiltInLootTables.JUNGLE_TEMPLE_DISPENSER);
+		this.registerEntry("jungle_temple", new LootPoolEntriesModifier(false, 0, Arrays.asList(createLootEntry(NeapolitanItems.CHOCOLATE_BAR.get(), 10, 2, 6), createLootEntry(NeapolitanItems.CHOCOLATE_SPIDER_EYE.get(), 12, 1, 3))), BuiltInLootTables.JUNGLE_TEMPLE);
 		this.registerEntry("jungle_temple_dispenser", new LootPoolEntriesModifier(false, 0, Collections.singletonList(createLootEntry(NeapolitanItems.BANANARROW.get(), 20, 2, 5))), BuiltInLootTables.JUNGLE_TEMPLE_DISPENSER);
 
 		this.registerEntry("ravager", new LootPoolsModifier(Collections.singletonList(LootPool.lootPool().name("neapolitan:ravager").setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(NeapolitanItems.MUSIC_DISC_HULLABALOO.get()).when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.KILLER, EntityPredicate.Builder.entity().of(NeapolitanEntityTypes.CHIMPANZEE.get())))).build()), false), new ResourceLocation("entities/ravager"));
