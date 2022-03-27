@@ -90,7 +90,7 @@ public class Neapolitan {
 			generator.addProvider(new NeapolitanItemTagsProvider(generator, blockTagsProvider, fileHelper));
 			generator.addProvider(new NeapolitanEntityTypeTagsProvider(generator, fileHelper));
 			generator.addProvider(new NeapolitanLootTableProvider(generator));
-			generator.addProvider(NeapolitanLootModifiersProvider.createLootModifierDataProvider(generator));
+			generator.addProvider(new NeapolitanLootModifiersProvider(generator));
 		}
 
 		if (event.includeClient()) {

@@ -1,5 +1,5 @@
 {
-  "target": {
+  "selector": {
     "type": "names",
     "config": [
       "minecraft:chests/village/village_savanna_house"

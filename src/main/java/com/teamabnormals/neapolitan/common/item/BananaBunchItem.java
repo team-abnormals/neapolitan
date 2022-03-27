@@ -42,7 +42,7 @@ public class BananaBunchItem extends Item {
 
 	@Override
 	public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity target, InteractionHand hand) {
-		if (!NeapolitanEntityTypeTags.UNAFFECTED_BY_SLIPPING.contains(target.getType())) {
+		if (!target.getType().is(NeapolitanEntityTypeTags.UNAFFECTED_BY_SLIPPING)) {
 			Level world = player.level;
 			this.placeBanana(world, target.getX(), target.getY(), target.getZ(), player.getViewYRot(1.0F));
 			this.handleOpening(world, player, hand, stack);

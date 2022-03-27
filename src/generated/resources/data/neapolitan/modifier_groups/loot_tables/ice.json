@@ -1,5 +1,5 @@
 {
-  "target": {
+  "selector": {
     "type": "names",
     "config": [
       "minecraft:blocks/ice"

@@ -2,7 +2,6 @@ package com.teamabnormals.neapolitan.core.registry;
 
 import com.teamabnormals.blueprint.common.item.BlueprintBannerPatternItem;
 import com.teamabnormals.blueprint.common.item.BlueprintRecordItem;
-import com.teamabnormals.blueprint.common.item.BlueprintSpawnEggItem;
 import com.teamabnormals.blueprint.core.util.registry.ItemSubRegistryHelper;
 import com.teamabnormals.neapolitan.common.item.AdzukiBeansItem;
 import com.teamabnormals.neapolitan.common.item.BananaBunchItem;
@@ -25,6 +24,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -95,8 +95,8 @@ public class NeapolitanItems {
 	public static final RegistryObject<Item> MUSIC_DISC_HULLABALOO = HELPER.createItem("music_disc_hullabaloo", () -> new BlueprintRecordItem(12, NeapolitanSoundEvents.HULLABALOO, new Item.Properties().stacksTo(1).tab(CreativeModeTab.TAB_MISC).rarity(Rarity.RARE)));
 	public static final RegistryObject<Item> CHIMPANZEE_BANNER_PATTERN = HELPER.createItem("chimpanzee_banner_pattern", () -> new BlueprintBannerPatternItem(NeapolitanPaintingTypes.CHIMPANZEE, new Item.Properties().tab(CreativeModeTab.TAB_MISC).stacksTo(1)));
 
-	public static final RegistryObject<BlueprintSpawnEggItem> CHIMPANZEE_SPAWN_EGG = HELPER.createSpawnEggItem("chimpanzee", NeapolitanEntityTypes.CHIMPANZEE::get, 0x1F1626, 0xAD8064);
-	public static final RegistryObject<BlueprintSpawnEggItem> PLANTAIN_SPIDER_SPAWN_EGG = HELPER.createSpawnEggItem("plantain_spider", NeapolitanEntityTypes.PLANTAIN_SPIDER::get, 0xAD870A, 0x33202A);
+	public static final RegistryObject<ForgeSpawnEggItem> CHIMPANZEE_SPAWN_EGG = HELPER.createSpawnEggItem("chimpanzee", NeapolitanEntityTypes.CHIMPANZEE::get, 0x1F1626, 0xAD8064);
+	public static final RegistryObject<ForgeSpawnEggItem> PLANTAIN_SPIDER_SPAWN_EGG = HELPER.createSpawnEggItem("plantain_spider", NeapolitanEntityTypes.PLANTAIN_SPIDER::get, 0xAD870A, 0x33202A);
 
 	public static final class NeapolitanFoods {
 		public static final FoodProperties ICE_CUBES = (new FoodProperties.Builder()).alwaysEat().build();

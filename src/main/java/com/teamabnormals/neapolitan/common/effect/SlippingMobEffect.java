@@ -15,7 +15,7 @@ public class SlippingMobEffect extends MobEffect {
 
 	@Override
 	public void applyEffectTick(LivingEntity entity, int amplifier) {
-		if (entity.isOnGround() && !entity.isInWater() && !NeapolitanEntityTypeTags.UNAFFECTED_BY_SLIPPING.contains(entity.getType())) {
+		if (entity.isOnGround() && !entity.isInWater() && !entity.getType().is(NeapolitanEntityTypeTags.UNAFFECTED_BY_SLIPPING)) {
 			Random rand = entity.getCommandSenderWorld().getRandom();
 			float amount = rand.nextFloat() * 0.2F;
 			float x = 0.0F;

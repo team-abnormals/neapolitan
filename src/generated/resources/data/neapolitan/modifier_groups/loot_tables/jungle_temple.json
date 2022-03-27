@@ -1,8 +1,8 @@
 {
-  "target": {
+  "selector": {
     "type": "names",
     "config": [
-      "minecraft:chests/village/village_plains_house"
+      "minecraft:chests/jungle_temple_dispenser"
     ],
     "conditions": []
   },
@@ -22,29 +22,29 @@
                 "function": "minecraft:set_count",
                 "count": {
                   "type": "minecraft:uniform",
-                  "min": 1.0,
-                  "max": 13.0
+                  "min": 2.0,
+                  "max": 6.0
                 },
                 "add": false
               }
             ],
-            "name": "neapolitan:strawberries"
+            "name": "neapolitan:chocolate_bar"
           },
           {
             "type": "minecraft:item",
-            "weight": 10,
+            "weight": 12,
             "functions": [
               {
                 "function": "minecraft:set_count",
                 "count": {
                   "type": "minecraft:uniform",
                   "min": 1.0,
-                  "max": 5.0
+                  "max": 3.0
                 },
                 "add": false
               }
             ],
-            "name": "neapolitan:strawberry_scones"
+            "name": "neapolitan:chocolate_spider_eye"
           }
         ]
       }

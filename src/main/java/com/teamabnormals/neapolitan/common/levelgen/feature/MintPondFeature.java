@@ -72,7 +72,7 @@ public class MintPondFeature extends Feature<NoneFeatureConfiguration> {
 			for (BlockPos blockPos : waterPositions) placeWater(level, blockPos);
 			for (BlockPos blockPos : mintPositions) {
 				if (!spruce && random.nextInt(3) == 0) {
-					TreeFeatures.SPRUCE.place(level, context.chunkGenerator(), random, blockPos);
+					TreeFeatures.SPRUCE.value().place(level, context.chunkGenerator(), random, blockPos);
 					spruce = true;
 				} else placeMint(level, blockPos, random);
 			}

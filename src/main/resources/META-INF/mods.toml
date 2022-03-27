@@ -20,20 +20,20 @@ license = "https://github.com/team-abnormals/neapolitan/blob/main/LICENSE.txt"
 [[dependencies.neapolitan]]
     modId = "minecraft"
     mandatory = true
-    versionRange = "[1.18.1,1.19)"
+    versionRange = "[1.18.2,1.19)"
     ordering = "NONE"
     side = "BOTH"
 
 [[dependencies.neapolitan]]
     modId = "forge"
     mandatory = true
-    versionRange = "[39.0.0,)"
+    versionRange = "[40.0.18,)"
     ordering = "NONE"
     side = "BOTH"
 
 [[dependencies.neapolitan]]
     modId = "blueprint"
     mandatory = true
-    versionRange = "[5.0.0,)"
+    versionRange = "[5.2.3,)"
     ordering = "AFTER"
     side = "BOTH"
