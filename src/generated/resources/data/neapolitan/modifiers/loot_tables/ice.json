@@ -1,11 +1,5 @@
 {
-  "selector": {
-    "type": "names",
-    "config": [
-      "minecraft:blocks/ice"
-    ],
-    "conditions": []
-  },
+  "selector": "minecraft:blocks/ice",
   "priority": "normal",
   "modifiers": [
     {

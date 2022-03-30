@@ -8,8 +8,9 @@ import com.teamabnormals.neapolitan.client.renderer.entity.BananarrowRenderer;
 import com.teamabnormals.neapolitan.client.renderer.entity.ChimpanzeeRenderer;
 import com.teamabnormals.neapolitan.client.renderer.entity.PlantainSpiderRenderer;
 import com.teamabnormals.neapolitan.core.data.client.NeapolitanBlockStateProvider;
-import com.teamabnormals.neapolitan.core.data.server.NeapolitanLootModifiersProvider;
 import com.teamabnormals.neapolitan.core.data.server.NeapolitanLootTableProvider;
+import com.teamabnormals.neapolitan.core.data.server.modifiers.NeapolitanAdvancementModifierProvider;
+import com.teamabnormals.neapolitan.core.data.server.modifiers.NeapolitanLootModifierProvider;
 import com.teamabnormals.neapolitan.core.data.server.tags.NeapolitanBlockTagsProvider;
 import com.teamabnormals.neapolitan.core.data.server.tags.NeapolitanEntityTypeTagsProvider;
 import com.teamabnormals.neapolitan.core.data.server.tags.NeapolitanItemTagsProvider;
@@ -90,7 +91,8 @@ public class Neapolitan {
 			generator.addProvider(new NeapolitanItemTagsProvider(generator, blockTagsProvider, fileHelper));
 			generator.addProvider(new NeapolitanEntityTypeTagsProvider(generator, fileHelper));
 			generator.addProvider(new NeapolitanLootTableProvider(generator));
-			generator.addProvider(new NeapolitanLootModifiersProvider(generator));
+			generator.addProvider(new NeapolitanLootModifierProvider(generator));
+			generator.addProvider(new NeapolitanAdvancementModifierProvider(generator));
 		}
 
 		if (event.includeClient()) {

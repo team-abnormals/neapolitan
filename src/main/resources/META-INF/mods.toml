@@ -34,6 +34,6 @@ license = "https://github.com/team-abnormals/neapolitan/blob/main/LICENSE.txt"
 [[dependencies.neapolitan]]
     modId = "blueprint"
     mandatory = true
-    versionRange = "[5.2.3,)"
+    versionRange = "[5.3.0,)"
     ordering = "AFTER"
     side = "BOTH"

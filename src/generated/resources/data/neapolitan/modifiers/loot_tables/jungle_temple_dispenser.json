@@ -1,11 +1,5 @@
 {
-  "selector": {
-    "type": "names",
-    "config": [
-      "minecraft:chests/jungle_temple_dispenser"
-    ],
-    "conditions": []
-  },
+  "selector": "minecraft:chests/jungle_temple_dispenser",
   "priority": "normal",
   "modifiers": [
     {

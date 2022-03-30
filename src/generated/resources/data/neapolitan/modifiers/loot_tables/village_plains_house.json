@@ -1,11 +1,5 @@
 {
-  "selector": {
-    "type": "names",
-    "config": [
-      "minecraft:chests/village/village_plains_house"
-    ],
-    "conditions": []
-  },
+  "selector": "minecraft:chests/village/village_plains_house",
   "priority": "normal",
   "modifiers": [
     {

@@ -1,41 +1,40 @@
 {
-  "advancement": "minecraft:husbandry/plant_seed",
+  "selector": "minecraft:husbandry/plant_seed",
+  "priority": "normal",
   "modifiers": [
     {
-      "type": "indexed_requirements",
+      "type": "criteria",
       "config": {
-        "mode": "modify",
-        "index": 0,
         "criteria": {
-          "strawberry_bush": {
+          "neapolitan:strawberry_bush": {
             "trigger": "minecraft:placed_block",
             "conditions": {
               "block": "neapolitan:strawberry_bush"
             }
           },
-          "mint": {
+          "neapolitan:mint": {
             "trigger": "minecraft:placed_block",
             "conditions": {
               "block": "neapolitan:mint"
             }
           },
-          "adzuki_sprouts": {
+          "neapolitan:adzuki_sprouts": {
             "trigger": "minecraft:placed_block",
             "conditions": {
               "block": "neapolitan:adzuki_sprouts"
             }
           }
         },
-        "requirements": [
-          [
-            "strawberry_bush"
-          ],
-          [
-            "mint"
-          ],
-          [
-            "adzuki_sprouts"
-          ]
+        "indexed_requirements": [
+          {
+            "index": 0,
+            "replace": false,
+            "requirements": [
+              "neapolitan:strawberry_bush",
+              "neapolitan:mint",
+              "neapolitan:adzuki_sprouts"
+            ]
+          }
         ]
       }
     }
