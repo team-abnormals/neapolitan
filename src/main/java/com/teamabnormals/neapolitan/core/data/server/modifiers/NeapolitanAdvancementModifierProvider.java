@@ -16,13 +16,17 @@ import net.minecraft.advancements.critereon.KilledTrigger;
 import net.minecraft.advancements.critereon.MobEffectsPredicate;
 import net.minecraft.advancements.critereon.PlacedBlockTrigger;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.RegistryObject;
+import org.apache.commons.compress.utils.Lists;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class NeapolitanAdvancementModifierProvider extends AdvancementModifierProvider {
+	private static final EntityType<?>[] BREEDABLE_ANIMALS = new EntityType[]{NeapolitanEntityTypes.CHIMPANZEE.get()};
+	private static final EntityType<?>[] MOBS_TO_KILL = new EntityType[]{NeapolitanEntityTypes.PLANTAIN_SPIDER.get()};
 
 	public NeapolitanAdvancementModifierProvider(DataGenerator dataGenerator) {
 		super(dataGenerator, Neapolitan.MOD_ID);
@@ -34,19 +38,20 @@ public class NeapolitanAdvancementModifierProvider extends AdvancementModifierPr
 		NeapolitanMobEffects.MOB_EFFECTS.getEntries().forEach(mobEffect -> predicate.and(mobEffect.get()));
 		this.entry("nether/all_effects").selects("nether/all_effects").addModifier(new EffectsChangedModifier("all_effects", false, predicate));
 
-		CriteriaModifier.Builder criteria = CriteriaModifier.builder(this.modId);
+		CriteriaModifier.Builder balancedDiet = CriteriaModifier.builder(this.modId);
 		Collection<RegistryObject<Item>> items = NeapolitanItems.HELPER.getDeferredRegister().getEntries();
 		items.forEach(item -> {
-			if (item.get().getFoodProperties() != null) {
-				ResourceLocation name = item.get().getRegistryName();
-				criteria.addCriterion(name.getPath(), ConsumeItemTrigger.TriggerInstance.usedItem(item.get()));
+			if (item.get().isEdible()) {
+				balancedDiet.addCriterion(item.get().getRegistryName().getPath(), ConsumeItemTrigger.TriggerInstance.usedItem(item.get()));
 			}
 		});
-		this.entry("husbandry/balanced_diet").selects("husbandry/balanced_diet").addModifier(criteria.requirements(RequirementsStrategy.AND).build());
+		this.entry("husbandry/balanced_diet").selects("husbandry/balanced_diet").addModifier(balancedDiet.requirements(RequirementsStrategy.AND).build());
 
-		this.entry("husbandry/bred_all_animals").selects("husbandry/bred_all_animals").addModifier(CriteriaModifier.builder(this.modId)
-				.addCriterion("chimpanzee", BredAnimalsTrigger.TriggerInstance.bredAnimals(EntityPredicate.Builder.entity().of(NeapolitanEntityTypes.CHIMPANZEE.get())))
-				.requirements(RequirementsStrategy.AND).build());
+		CriteriaModifier.Builder breedAllAnimals = CriteriaModifier.builder(this.modId);
+		for (EntityType<?> entityType : BREEDABLE_ANIMALS) {
+			breedAllAnimals.addCriterion(entityType.getRegistryName().getPath(), BredAnimalsTrigger.TriggerInstance.bredAnimals(EntityPredicate.Builder.entity().of(NeapolitanEntityTypes.CHIMPANZEE.get())));
+		}
+		this.entry("husbandry/bred_all_animals").selects("husbandry/bred_all_animals").addModifier(breedAllAnimals.requirements(RequirementsStrategy.AND).build());
 
 		this.entry("husbandry/plant_seed").selects("husbandry/plant_seed").addModifier(CriteriaModifier.builder(this.modId)
 				.addCriterion("strawberry_bush", PlacedBlockTrigger.TriggerInstance.placedBlock(NeapolitanBlocks.STRAWBERRY_BUSH.get()))
@@ -54,11 +59,19 @@ public class NeapolitanAdvancementModifierProvider extends AdvancementModifierPr
 				.addCriterion("adzuki_soil", PlacedBlockTrigger.TriggerInstance.placedBlock(NeapolitanBlocks.ADZUKI_SOIL.get()))
 				.addIndexedRequirements(0, false, "strawberry_bush", "mint", "adzuki_soil").build());
 
-		this.entry("adventure/kill_a_mob").selects("adventure/kill_a_mob").addModifier(CriteriaModifier.builder(this.modId)
-				.addCriterion("plantain_spider", KilledTrigger.TriggerInstance.playerKilledEntity(EntityPredicate.Builder.entity().of(NeapolitanEntityTypes.PLANTAIN_SPIDER.get())))
-				.addIndexedRequirements(0, false, "plantain_spider").build());
-		this.entry("adventure/kill_all_mobs").selects("adventure/kill_all_mobs").addModifier(CriteriaModifier.builder(this.modId)
-				.addCriterion("plantain_spider", KilledTrigger.TriggerInstance.playerKilledEntity(EntityPredicate.Builder.entity().of(NeapolitanEntityTypes.PLANTAIN_SPIDER.get())))
-				.requirements(RequirementsStrategy.AND).build());
+		CriteriaModifier.Builder killAMob = CriteriaModifier.builder(this.modId);
+		CriteriaModifier.Builder killAllMobs = CriteriaModifier.builder(this.modId);
+		ArrayList<String> names = Lists.newArrayList();
+		for (EntityType<?> entityType : MOBS_TO_KILL) {
+			String name = entityType.getRegistryName().getPath();
+			KilledTrigger.TriggerInstance triggerInstance = KilledTrigger.TriggerInstance.playerKilledEntity(EntityPredicate.Builder.entity().of(entityType));
+			killAMob.addCriterion(name, triggerInstance);
+			killAllMobs.addCriterion(name, triggerInstance);
+			names.add(name);
+		}
+
+		this.entry("adventure/kill_a_mob").selects("adventure/kill_a_mob").addModifier(killAMob.addIndexedRequirements(0, false, names.toArray(new String[0])).build());
+		this.entry("adventure/kill_all_mobs").selects("adventure/kill_all_mobs").addModifier(killAllMobs.requirements(RequirementsStrategy.AND).build());
+
 	}
 }

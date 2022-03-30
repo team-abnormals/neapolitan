@@ -18,10 +18,10 @@
               "block": "neapolitan:mint"
             }
           },
-          "neapolitan:adzuki_sprouts": {
+          "neapolitan:adzuki_soil": {
             "trigger": "minecraft:placed_block",
             "conditions": {
-              "block": "neapolitan:adzuki_sprouts"
+              "block": "neapolitan:adzuki_soil"
             }
           }
         },
@@ -32,7 +32,7 @@
             "requirements": [
               "neapolitan:strawberry_bush",
               "neapolitan:mint",
-              "neapolitan:adzuki_sprouts"
+              "neapolitan:adzuki_soil"
             ]
           }
         ]
