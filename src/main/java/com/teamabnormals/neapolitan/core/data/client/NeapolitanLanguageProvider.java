@@ -16,17 +16,13 @@ public class NeapolitanLanguageProvider extends LanguageProvider {
 
 	@Override
 	public void addTranslations() {
-		FlavoredCandleCakeBlock.getCandleCakes().forEach(this::add);
+		FlavoredCandleCakeBlock.getCandleCakes().forEach(this::addCandleCake);
 	}
 
-	private void add(Item item) {
-		if (item.getRegistryName() != null)
-			this.add(item, format(item.getRegistryName()));
-	}
-
-	private void add(Block block) {
-		if (block.getRegistryName() != null)
-			this.add(block, format(block.getRegistryName()));
+	private void addCandleCake(Block block) {
+		if (block instanceof FlavoredCandleCakeBlock candleCakeBlock) {
+			this.add(block, format(candleCakeBlock.getCake().getRegistryName()) + " with " + format(candleCakeBlock.getCandle().getRegistryName()));
+		}
 	}
 
 	private String format(ResourceLocation registryName) {

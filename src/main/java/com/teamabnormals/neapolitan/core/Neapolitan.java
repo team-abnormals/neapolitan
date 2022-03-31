@@ -97,7 +97,7 @@ public class Neapolitan {
 
 		if (event.includeClient()) {
 			generator.addProvider(new NeapolitanBlockStateProvider(generator, fileHelper));
-			//dataGenerator.addProvider(new NeapolitanLanguageProvider(dataGenerator));
+			//generator.addProvider(new NeapolitanLanguageProvider(generator));
 		}
 	}
 
