@@ -1,4 +1,4 @@
-package com.teamabnormals.neapolitan.core.mixin;
+package com.teamabnormals.neapolitan.core.mixin.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.teamabnormals.neapolitan.client.model.ChimpanzeeModel;
