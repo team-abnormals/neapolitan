@@ -38,7 +38,7 @@ public class FlavoredCakeBlock extends CakeBlock {
 		Item item = stack.getItem();
 		if (stack.is(ItemTags.CANDLES) && state.getValue(BITES) == 0) {
 			Block block = Block.byItem(item);
-			if (block instanceof CandleBlock) {
+			if (block instanceof CandleBlock && FlavoredCandleCakeBlock.hasEntry(block, this)) {
 				if (!player.isCreative()) {
 					stack.shrink(1);
 				}
