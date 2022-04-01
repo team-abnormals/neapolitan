@@ -1,10 +1,10 @@
 package com.teamabnormals.neapolitan.core.registry;
 
 import com.teamabnormals.blueprint.core.util.registry.EntitySubRegistryHelper;
-import com.teamabnormals.neapolitan.common.entity.projectile.BananaPeelEntity;
-import com.teamabnormals.neapolitan.common.entity.projectile.BananarrowEntity;
 import com.teamabnormals.neapolitan.common.entity.animal.ChimpanzeeEntity;
 import com.teamabnormals.neapolitan.common.entity.monster.PlantainSpiderEntity;
+import com.teamabnormals.neapolitan.common.entity.projectile.BananaPeelEntity;
+import com.teamabnormals.neapolitan.common.entity.projectile.BananarrowEntity;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -12,10 +12,10 @@ import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.registries.RegistryObject;
 
-@Mod.EventBusSubscriber(modid = Neapolitan.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = Neapolitan.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class NeapolitanEntityTypes {
 	public static final EntitySubRegistryHelper HELPER = Neapolitan.REGISTRY_HELPER.getEntitySubHelper();
 
