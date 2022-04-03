@@ -384,7 +384,7 @@ public class ChimpanzeeEntity extends Animal implements NeutralMob {
 			--this.attackTimer;
 		}
 
-		if (this.jukeboxPosition == null || !this.jukeboxPosition.closerThan(this.blockPosition(), 3.46D) || this.level.getBlockState(jukeboxPosition).getBlock() != Blocks.JUKEBOX) {
+		if (this.jukeboxPosition == null || !this.jukeboxPosition.closerToCenterThan(this.position(), 3.46D) || this.level.getBlockState(jukeboxPosition).getBlock() != Blocks.JUKEBOX) {
 			this.isPartying = false;
 			this.jukeboxPosition = null;
 		}

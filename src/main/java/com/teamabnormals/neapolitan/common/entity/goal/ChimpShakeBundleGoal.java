@@ -1,13 +1,12 @@
 package com.teamabnormals.neapolitan.common.entity.goal;
 
-import com.teamabnormals.neapolitan.common.entity.projectile.BananaPeelEntity;
 import com.teamabnormals.neapolitan.common.entity.animal.ChimpanzeeEntity;
+import com.teamabnormals.neapolitan.common.entity.projectile.BananaPeelEntity;
 import com.teamabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanEntityTypes;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Vec3i;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -15,7 +14,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.Vec3;
 
 import java.util.EnumSet;
 
@@ -78,7 +76,7 @@ public class ChimpShakeBundleGoal extends MoveToBlockGoal {
 
 		this.chimpanzee.getLookControl().setLookAt(this.bundlePos.getX() + 0.5D, this.bundlePos.getY() + 0.5D, this.bundlePos.getZ() + 0.5D, (float) (this.chimpanzee.getMaxHeadYRot() + 20), (float) this.chimpanzee.getMaxHeadXRot());
 
-		if (this.chimpanzee.getY(1.0D) <= this.bundlePos.getY() && this.bundlePos.closerThan(this.chimpanzee.blockPosition().offset(0.0D, this.chimpanzee.getBbHeight(), 0.0D), 1.0D)) {
+		if (this.chimpanzee.getY(1.0D) <= this.bundlePos.getY() && this.bundlePos.closerToCenterThan(this.chimpanzee.position().add(0.0D, this.chimpanzee.getBbHeight(), 0.0D), 1.0D)) {
 			this.chimpanzee.setDeltaMovement(this.chimpanzee.getDeltaMovement().multiply(0.4D, 0.0D, 0.4D).add(0.0D, 0.1D, 0.0D));
 
 			if (this.shakingTime > 30) {

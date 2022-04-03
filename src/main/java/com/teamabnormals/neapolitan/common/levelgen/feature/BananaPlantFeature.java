@@ -1,7 +1,6 @@
 package com.teamabnormals.neapolitan.common.levelgen.feature;
 
 import com.mojang.serialization.Codec;
-import com.teamabnormals.blueprint.core.util.TagUtil;
 import com.teamabnormals.blueprint.core.util.TreeUtil;
 import com.teamabnormals.neapolitan.common.block.BananaFrondBlock;
 import com.teamabnormals.neapolitan.common.entity.animal.ChimpanzeeEntity;
@@ -33,7 +32,6 @@ public class BananaPlantFeature extends Feature<NoneFeatureConfiguration> {
 
 	@Override
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
-
 		Random random = context.random();
 		WorldGenLevel level = context.level();
 		BlockPos pos = context.origin();
@@ -96,7 +94,7 @@ public class BananaPlantFeature extends Feature<NoneFeatureConfiguration> {
 			TreeUtil.setForcedState(level, upFrond, NeapolitanBlocks.LARGE_BANANA_FROND.get().defaultBlockState());
 			if (bundle != null) {
 				TreeUtil.setForcedState(level, bundle, NeapolitanBlocks.BANANA_BUNDLE.get().defaultBlockState());
-				if (NeapolitanConfig.COMMON.chimpanzeeSpawning.get() && random.nextInt(4) == 0 && TagUtil.isTagged(level.getBiome(pos).value(), BiomeTags.IS_JUNGLE)) {
+				if (NeapolitanConfig.COMMON.chimpanzeeSpawning.get() && random.nextInt(4) == 0 && level.getBiome(pos).containsTag(BiomeTags.IS_JUNGLE)) {
 					spawnChimps(level, pos);
 				}
 			}
