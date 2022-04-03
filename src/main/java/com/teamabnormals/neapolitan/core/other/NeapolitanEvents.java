@@ -101,7 +101,7 @@ public class NeapolitanEvents {
 		LevelAccessor level = event.getWorld();
 		Holder<Biome> biome = level.getBiome(entity.blockPosition());
 
-		if (event.getResult() != Event.Result.DENY && NeapolitanConfig.COMMON.plantainSpiderSpawning.get()) {
+		if (event.getResult() != Event.Result.DENY && NeapolitanConfig.COMMON.plantainSpiderSpawning.get() && level.getRandom().nextInt(4) != 0) {
 			boolean validSpawn = event.getSpawnReason() == MobSpawnType.NATURAL || event.getSpawnReason() == MobSpawnType.CHUNK_GENERATION || event.getSpawnReason() == MobSpawnType.MOB_SUMMONED;
 			boolean conditions = Biome.getBiomeCategory(biome).equals(BiomeCategory.JUNGLE) || biome.value().getRegistryName().getPath().contains("rainforest");
 			if (validSpawn && conditions) {
