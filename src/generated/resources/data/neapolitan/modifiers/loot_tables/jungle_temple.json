@@ -1,11 +1,5 @@
 {
-  "target": {
-    "type": "names",
-    "config": [
-      "minecraft:chests/jungle_temple"
-    ],
-    "conditions": []
-  },
+  "selector": "minecraft:chests/jungle_temple",
   "priority": "normal",
   "modifiers": [
     {

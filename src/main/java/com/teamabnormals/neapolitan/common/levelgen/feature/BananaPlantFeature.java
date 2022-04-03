@@ -9,11 +9,11 @@ import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.level.LevelSimulatedReader;
 import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
@@ -32,7 +32,6 @@ public class BananaPlantFeature extends Feature<NoneFeatureConfiguration> {
 
 	@Override
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
-
 		Random random = context.random();
 		WorldGenLevel level = context.level();
 		BlockPos pos = context.origin();
@@ -95,7 +94,7 @@ public class BananaPlantFeature extends Feature<NoneFeatureConfiguration> {
 			TreeUtil.setForcedState(level, upFrond, NeapolitanBlocks.LARGE_BANANA_FROND.get().defaultBlockState());
 			if (bundle != null) {
 				TreeUtil.setForcedState(level, bundle, NeapolitanBlocks.BANANA_BUNDLE.get().defaultBlockState());
-				if (NeapolitanConfig.COMMON.chimpanzeeSpawning.get() && random.nextInt(4) == 0 && level.getBiome(pos).getBiomeCategory().equals(Biome.BiomeCategory.JUNGLE)) {
+				if (NeapolitanConfig.COMMON.chimpanzeeSpawning.get() && random.nextInt(4) == 0 && level.getBiome(pos).containsTag(BiomeTags.IS_JUNGLE)) {
 					spawnChimps(level, pos);
 				}
 			}

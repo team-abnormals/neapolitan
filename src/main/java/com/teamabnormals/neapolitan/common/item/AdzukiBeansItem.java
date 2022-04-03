@@ -2,9 +2,11 @@ package com.teamabnormals.neapolitan.common.item;
 
 import com.teamabnormals.neapolitan.common.block.BeanstalkThornsBlock;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
+import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
@@ -55,6 +57,9 @@ public class AdzukiBeansItem extends Item {
 				if (!world.isClientSide())
 					world.setBlockAndUpdate(pos, NeapolitanBlocks.ADZUKI_SOIL.get().defaultBlockState());
 				world.playSound(null, pos, SoundEvents.CROP_PLANTED, SoundSource.BLOCKS, 1.0F, 1.0F);
+				if (player instanceof ServerPlayer) {
+					CriteriaTriggers.PLACED_BLOCK.trigger((ServerPlayer) player, pos, stack);
+				}
 				if (player != null && !player.getAbilities().instabuild) stack.shrink(1);
 				return InteractionResult.sidedSuccess(world.isClientSide);
 			}
@@ -91,7 +96,6 @@ public class AdzukiBeansItem extends Item {
 			for (BlockPos blockPos : beanstalkPositions) {
 				if (attemptPlaceBeanstalk(world, blockPos, face)) placed++;
 			}
-
 
 			if (placed > 0 && player != null && !player.getAbilities().instabuild) stack.shrink(1);
 

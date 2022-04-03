@@ -115,6 +115,10 @@ public class FlavoredCandleCakeBlock extends AbstractCandleBlock {
 		return false;
 	}
 
+	public static boolean hasEntry(Block candle, FlavoredCakeBlock cake) {
+		return BY_CANDLE_AND_CAKE.get(Pair.of(candle, cake)) != null;
+	}
+
 	public static BlockState byCandle(Block candle, FlavoredCakeBlock cake) {
 		return BY_CANDLE_AND_CAKE.get(Pair.of(candle, cake)).defaultBlockState();
 	}

@@ -1,11 +1,5 @@
 {
-  "target": {
-    "type": "names",
-    "config": [
-      "minecraft:entities/ravager"
-    ],
-    "conditions": []
-  },
+  "selector": "minecraft:entities/ravager",
   "priority": "normal",
   "modifiers": [
     {

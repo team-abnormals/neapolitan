@@ -1,176 +1,28 @@
 {
-  "advancement": "minecraft:husbandry/balanced_diet",
+  "selector": "minecraft:husbandry/balanced_diet",
+  "priority": "normal",
   "modifiers": [
     {
       "type": "criteria",
       "config": {
-        "mode": "modify",
         "criteria": {
+          "neapolitan:ice_cubes": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+              "item": {
+                "items": [
+                  "neapolitan:ice_cubes"
+                ]
+              }
+            }
+          },
           "neapolitan:chocolate_bar": {
             "trigger": "minecraft:consume_item",
             "conditions": {
               "item": {
-                "item": "neapolitan:chocolate_bar"
-              }
-            }
-          },
-          "neapolitan:chocolate_ice_cream": {
-            "trigger": "minecraft:consume_item",
-            "conditions": {
-              "item": {
-                "item": "neapolitan:chocolate_ice_cream"
-              }
-            }
-          },
-          "neapolitan:chocolate_milkshake": {
-            "trigger": "minecraft:consume_item",
-            "conditions": {
-              "item": {
-                "item": "neapolitan:chocolate_milkshake"
-              }
-            }
-          },
-          "neapolitan:chocolate_strawberries": {
-            "trigger": "minecraft:consume_item",
-            "conditions": {
-              "item": {
-                "item": "neapolitan:chocolate_strawberries"
-              }
-            }
-          },
-          "neapolitan:vanilla_chocolate_fingers": {
-            "trigger": "minecraft:consume_item",
-            "conditions": {
-              "item": {
-                "item": "neapolitan:vanilla_chocolate_fingers"
-              }
-            }
-          },
-          "neapolitan:strawberries": {
-            "trigger": "minecraft:consume_item",
-            "conditions": {
-              "item": {
-                "item": "neapolitan:strawberries"
-              }
-            }
-          },
-          "neapolitan:strawberry_ice_cream": {
-            "trigger": "minecraft:consume_item",
-            "conditions": {
-              "item": {
-                "item": "neapolitan:strawberry_ice_cream"
-              }
-            }
-          },
-          "neapolitan:strawberry_scones": {
-            "trigger": "minecraft:consume_item",
-            "conditions": {
-              "item": {
-                "item": "neapolitan:strawberry_scones"
-              }
-            }
-          },
-          "neapolitan:strawberry_milkshake": {
-            "trigger": "minecraft:consume_item",
-            "conditions": {
-              "item": {
-                "item": "neapolitan:strawberry_milkshake"
-              }
-            }
-          },
-          "neapolitan:white_strawberries": {
-            "trigger": "minecraft:consume_item",
-            "conditions": {
-              "item": {
-                "item": "neapolitan:white_strawberries"
-              }
-            }
-          },
-          "neapolitan:dried_vanilla_pods": {
-            "trigger": "minecraft:consume_item",
-            "conditions": {
-              "item": {
-                "item": "neapolitan:dried_vanilla_pods"
-              }
-            }
-          },
-          "neapolitan:vanilla_pudding": {
-            "trigger": "minecraft:consume_item",
-            "conditions": {
-              "item": {
-                "item": "neapolitan:vanilla_pudding"
-              }
-            }
-          },
-          "neapolitan:vanilla_ice_cream": {
-            "trigger": "minecraft:consume_item",
-            "conditions": {
-              "item": {
-                "item": "neapolitan:vanilla_ice_cream"
-              }
-            }
-          },
-          "neapolitan:vanilla_milkshake": {
-            "trigger": "minecraft:consume_item",
-            "conditions": {
-              "item": {
-                "item": "neapolitan:vanilla_milkshake"
-              }
-            }
-          },
-          "neapolitan:neapolitan_ice_cream": {
-            "trigger": "minecraft:consume_item",
-            "conditions": {
-              "item": {
-                "item": "neapolitan:neapolitan_ice_cream"
-              }
-            }
-          },
-          "neapolitan:banana": {
-            "trigger": "minecraft:consume_item",
-            "conditions": {
-              "item": {
-                "item": "neapolitan:banana"
-              }
-            }
-          },
-          "neapolitan:banana_ice_cream": {
-            "trigger": "minecraft:consume_item",
-            "conditions": {
-              "item": {
-                "item": "neapolitan:banana_ice_cream"
-              }
-            }
-          },
-          "neapolitan:banana_milkshake": {
-            "trigger": "minecraft:consume_item",
-            "conditions": {
-              "item": {
-                "item": "neapolitan:banana_milkshake"
-              }
-            }
-          },
-          "neapolitan:banana_bread": {
-            "trigger": "minecraft:consume_item",
-            "conditions": {
-              "item": {
-                "item": "neapolitan:banana_bread"
-              }
-            }
-          },
-          "neapolitan:dried_banana": {
-            "trigger": "minecraft:consume_item",
-            "conditions": {
-              "item": {
-                "item": "neapolitan:dried_banana"
-              }
-            }
-          },
-          "neapolitan:strawberry_banana_smoothie": {
-            "trigger": "minecraft:consume_item",
-            "conditions": {
-              "item": {
-                "item": "neapolitan:strawberry_banana_smoothie"
+                "items": [
+                  "neapolitan:chocolate_bar"
+                ]
               }
             }
           },
@@ -178,7 +30,89 @@
             "trigger": "minecraft:consume_item",
             "conditions": {
               "item": {
-                "item": "neapolitan:chocolate_spider_eye"
+                "items": [
+                  "neapolitan:chocolate_spider_eye"
+                ]
+              }
+            }
+          },
+          "neapolitan:chocolate_ice_cream": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+              "item": {
+                "items": [
+                  "neapolitan:chocolate_ice_cream"
+                ]
+              }
+            }
+          },
+          "neapolitan:chocolate_milkshake": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+              "item": {
+                "items": [
+                  "neapolitan:chocolate_milkshake"
+                ]
+              }
+            }
+          },
+          "neapolitan:strawberries": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+              "item": {
+                "items": [
+                  "neapolitan:strawberries"
+                ]
+              }
+            }
+          },
+          "neapolitan:white_strawberries": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+              "item": {
+                "items": [
+                  "neapolitan:white_strawberries"
+                ]
+              }
+            }
+          },
+          "neapolitan:strawberry_scones": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+              "item": {
+                "items": [
+                  "neapolitan:strawberry_scones"
+                ]
+              }
+            }
+          },
+          "neapolitan:strawberry_ice_cream": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+              "item": {
+                "items": [
+                  "neapolitan:strawberry_ice_cream"
+                ]
+              }
+            }
+          },
+          "neapolitan:strawberry_milkshake": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+              "item": {
+                "items": [
+                  "neapolitan:strawberry_milkshake"
+                ]
+              }
+            }
+          },
+          "neapolitan:dried_vanilla_pods": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+              "item": {
+                "items": [
+                  "neapolitan:dried_vanilla_pods"
+                ]
               }
             }
           },
@@ -186,7 +120,89 @@
             "trigger": "minecraft:consume_item",
             "conditions": {
               "item": {
-                "item": "neapolitan:vanilla_fudge"
+                "items": [
+                  "neapolitan:vanilla_fudge"
+                ]
+              }
+            }
+          },
+          "neapolitan:vanilla_pudding": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+              "item": {
+                "items": [
+                  "neapolitan:vanilla_pudding"
+                ]
+              }
+            }
+          },
+          "neapolitan:vanilla_ice_cream": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+              "item": {
+                "items": [
+                  "neapolitan:vanilla_ice_cream"
+                ]
+              }
+            }
+          },
+          "neapolitan:vanilla_milkshake": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+              "item": {
+                "items": [
+                  "neapolitan:vanilla_milkshake"
+                ]
+              }
+            }
+          },
+          "neapolitan:banana": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+              "item": {
+                "items": [
+                  "neapolitan:banana"
+                ]
+              }
+            }
+          },
+          "neapolitan:dried_banana": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+              "item": {
+                "items": [
+                  "neapolitan:dried_banana"
+                ]
+              }
+            }
+          },
+          "neapolitan:banana_bread": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+              "item": {
+                "items": [
+                  "neapolitan:banana_bread"
+                ]
+              }
+            }
+          },
+          "neapolitan:banana_ice_cream": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+              "item": {
+                "items": [
+                  "neapolitan:banana_ice_cream"
+                ]
+              }
+            }
+          },
+          "neapolitan:banana_milkshake": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+              "item": {
+                "items": [
+                  "neapolitan:banana_milkshake"
+                ]
               }
             }
           },
@@ -194,7 +210,9 @@
             "trigger": "minecraft:consume_item",
             "conditions": {
               "item": {
-                "item": "neapolitan:mint_leaves"
+                "items": [
+                  "neapolitan:mint_leaves"
+                ]
               }
             }
           },
@@ -202,15 +220,9 @@
             "trigger": "minecraft:consume_item",
             "conditions": {
               "item": {
-                "item": "neapolitan:mint_candies"
-              }
-            }
-          },
-          "neapolitan:mint_chocolate": {
-            "trigger": "minecraft:consume_item",
-            "conditions": {
-              "item": {
-                "item": "neapolitan:mint_chocolate"
+                "items": [
+                  "neapolitan:mint_candies"
+                ]
               }
             }
           },
@@ -218,7 +230,9 @@
             "trigger": "minecraft:consume_item",
             "conditions": {
               "item": {
-                "item": "neapolitan:mint_chops"
+                "items": [
+                  "neapolitan:mint_chops"
+                ]
               }
             }
           },
@@ -226,7 +240,9 @@
             "trigger": "minecraft:consume_item",
             "conditions": {
               "item": {
-                "item": "neapolitan:cooked_mint_chops"
+                "items": [
+                  "neapolitan:cooked_mint_chops"
+                ]
               }
             }
           },
@@ -234,7 +250,9 @@
             "trigger": "minecraft:consume_item",
             "conditions": {
               "item": {
-                "item": "neapolitan:mint_ice_cream"
+                "items": [
+                  "neapolitan:mint_ice_cream"
+                ]
               }
             }
           },
@@ -242,7 +260,9 @@
             "trigger": "minecraft:consume_item",
             "conditions": {
               "item": {
-                "item": "neapolitan:mint_milkshake"
+                "items": [
+                  "neapolitan:mint_milkshake"
+                ]
               }
             }
           },
@@ -250,7 +270,9 @@
             "trigger": "minecraft:consume_item",
             "conditions": {
               "item": {
-                "item": "neapolitan:roasted_adzuki_beans"
+                "items": [
+                  "neapolitan:roasted_adzuki_beans"
+                ]
               }
             }
           },
@@ -258,7 +280,9 @@
             "trigger": "minecraft:consume_item",
             "conditions": {
               "item": {
-                "item": "neapolitan:adzuki_bun"
+                "items": [
+                  "neapolitan:adzuki_bun"
+                ]
               }
             }
           },
@@ -266,15 +290,9 @@
             "trigger": "minecraft:consume_item",
             "conditions": {
               "item": {
-                "item": "neapolitan:adzuki_stew"
-              }
-            }
-          },
-          "neapolitan:adzuki_curry": {
-            "trigger": "minecraft:consume_item",
-            "conditions": {
-              "item": {
-                "item": "neapolitan:adzuki_curry"
+                "items": [
+                  "neapolitan:adzuki_stew"
+                ]
               }
             }
           },
@@ -282,7 +300,9 @@
             "trigger": "minecraft:consume_item",
             "conditions": {
               "item": {
-                "item": "neapolitan:adzuki_ice_cream"
+                "items": [
+                  "neapolitan:adzuki_ice_cream"
+                ]
               }
             }
           },
@@ -290,7 +310,49 @@
             "trigger": "minecraft:consume_item",
             "conditions": {
               "item": {
-                "item": "neapolitan:adzuki_milkshake"
+                "items": [
+                  "neapolitan:adzuki_milkshake"
+                ]
+              }
+            }
+          },
+          "neapolitan:chocolate_strawberries": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+              "item": {
+                "items": [
+                  "neapolitan:chocolate_strawberries"
+                ]
+              }
+            }
+          },
+          "neapolitan:vanilla_chocolate_fingers": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+              "item": {
+                "items": [
+                  "neapolitan:vanilla_chocolate_fingers"
+                ]
+              }
+            }
+          },
+          "neapolitan:strawberry_banana_smoothie": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+              "item": {
+                "items": [
+                  "neapolitan:strawberry_banana_smoothie"
+                ]
+              }
+            }
+          },
+          "neapolitan:mint_chocolate": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+              "item": {
+                "items": [
+                  "neapolitan:mint_chocolate"
+                ]
               }
             }
           },
@@ -298,14 +360,42 @@
             "trigger": "minecraft:consume_item",
             "conditions": {
               "item": {
-                "item": "neapolitan:strawberry_bean_bonbons"
+                "items": [
+                  "neapolitan:strawberry_bean_bonbons"
+                ]
+              }
+            }
+          },
+          "neapolitan:adzuki_curry": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+              "item": {
+                "items": [
+                  "neapolitan:adzuki_curry"
+                ]
+              }
+            }
+          },
+          "neapolitan:neapolitan_ice_cream": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+              "item": {
+                "items": [
+                  "neapolitan:neapolitan_ice_cream"
+                ]
               }
             }
           }
         },
         "requirements": [
           [
+            "neapolitan:ice_cubes"
+          ],
+          [
             "neapolitan:chocolate_bar"
+          ],
+          [
+            "neapolitan:chocolate_spider_eye"
           ],
           [
             "neapolitan:chocolate_ice_cream"
@@ -314,28 +404,25 @@
             "neapolitan:chocolate_milkshake"
           ],
           [
-            "neapolitan:chocolate_strawberries"
-          ],
-          [
-            "neapolitan:vanilla_chocolate_fingers"
-          ],
-          [
             "neapolitan:strawberries"
-          ],
-          [
-            "neapolitan:strawberry_ice_cream"
-          ],
-          [
-            "neapolitan:strawberry_scones"
-          ],
-          [
-            "neapolitan:strawberry_milkshake"
           ],
           [
             "neapolitan:white_strawberries"
           ],
           [
+            "neapolitan:strawberry_scones"
+          ],
+          [
+            "neapolitan:strawberry_ice_cream"
+          ],
+          [
+            "neapolitan:strawberry_milkshake"
+          ],
+          [
             "neapolitan:dried_vanilla_pods"
+          ],
+          [
+            "neapolitan:vanilla_fudge"
           ],
           [
             "neapolitan:vanilla_pudding"
@@ -347,10 +434,13 @@
             "neapolitan:vanilla_milkshake"
           ],
           [
-            "neapolitan:neapolitan_ice_cream"
+            "neapolitan:banana"
           ],
           [
-            "neapolitan:banana"
+            "neapolitan:dried_banana"
+          ],
+          [
+            "neapolitan:banana_bread"
           ],
           [
             "neapolitan:banana_ice_cream"
@@ -359,28 +449,10 @@
             "neapolitan:banana_milkshake"
           ],
           [
-            "neapolitan:banana_bread"
-          ],
-          [
-            "neapolitan:dried_banana"
-          ],
-          [
-            "neapolitan:strawberry_banana_smoothie"
-          ],
-          [
-            "neapolitan:chocolate_spider_eye"
-          ],
-          [
-            "neapolitan:vanilla_fudge"
-          ],
-          [
             "neapolitan:mint_leaves"
           ],
           [
             "neapolitan:mint_candies"
-          ],
-          [
-            "neapolitan:mint_chocolate"
           ],
           [
             "neapolitan:mint_chops"
@@ -404,18 +476,34 @@
             "neapolitan:adzuki_stew"
           ],
           [
-            "neapolitan:adzuki_curry"
-          ],
-          [
             "neapolitan:adzuki_ice_cream"
           ],
           [
             "neapolitan:adzuki_milkshake"
           ],
           [
+            "neapolitan:chocolate_strawberries"
+          ],
+          [
+            "neapolitan:vanilla_chocolate_fingers"
+          ],
+          [
+            "neapolitan:strawberry_banana_smoothie"
+          ],
+          [
+            "neapolitan:mint_chocolate"
+          ],
+          [
             "neapolitan:strawberry_bean_bonbons"
+          ],
+          [
+            "neapolitan:adzuki_curry"
+          ],
+          [
+            "neapolitan:neapolitan_ice_cream"
           ]
-        ]
+        ],
+        "should_replace_requirements": false
       }
     }
   ]

@@ -7,10 +7,12 @@
   "mixins": [
     "CauldronBlockMixin",
     "FoxEatBerriesGoalMixin",
-    "HumanoidArmorLayerMixin",
     "LivingEntityMixin",
     "PointedDripstoneBlockMixin",
     "SpreadingSnowyDirtBlockMixin"
+  ],
+  "client": [
+    "client.HumanoidArmorLayerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

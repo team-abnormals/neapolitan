@@ -1,10 +1,10 @@
 {
-  "advancement": "minecraft:adventure/kill_all_mobs",
+  "selector": "minecraft:adventure/kill_all_mobs",
+  "priority": "normal",
   "modifiers": [
     {
       "type": "criteria",
       "config": {
-        "mode": "modify",
         "criteria": {
           "neapolitan:plantain_spider": {
             "trigger": "minecraft:player_killed_entity",
@@ -25,7 +25,8 @@
           [
             "neapolitan:plantain_spider"
           ]
-        ]
+        ],
+        "should_replace_requirements": false
       }
     }
   ]

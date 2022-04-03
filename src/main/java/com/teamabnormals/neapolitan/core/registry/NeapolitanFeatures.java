@@ -8,7 +8,7 @@ import com.teamabnormals.neapolitan.common.levelgen.feature.VanillaPatchFeature;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.NeapolitanConfig;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Registry;
+import net.minecraft.core.Holder;
 import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceLocation;
@@ -25,6 +25,7 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvi
 import net.minecraft.world.level.levelgen.placement.BiomeFilter;
 import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.minecraft.world.level.levelgen.placement.PlacementModifier;
 import net.minecraft.world.level.levelgen.placement.RarityFilter;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -41,15 +42,14 @@ public class NeapolitanFeatures {
 	public static final RegistryObject<Feature<NoneFeatureConfiguration>> MINT_POND = FEATURES.register("mind_pond", () -> new MintPondFeature(NoneFeatureConfiguration.CODEC));
 
 	public static final class NeapolitanConfiguredFeatures {
+		public static final Holder<ConfiguredFeature<?, ?>> PATCH_STRAWBERRY_BUSH = register("patch_strawberry_bush", Feature.RANDOM_PATCH, new RandomPatchConfiguration(512, 5, 3, PlacementUtils.filtered(STRAWBERRY_BUSH.get(), new SimpleBlockConfiguration(BlockStateProvider.simple(NeapolitanBlocks.STRAWBERRY_BUSH.get().defaultBlockState())), simplePatchPredicate(List.of(Blocks.GRASS_BLOCK)))));
+		public static final Holder<ConfiguredFeature<?, ?>> PATCH_VANILLA_VINE = register("patch_vanilla_vine", NeapolitanFeatures.VANILLA_VINE_PATCH.get(), new RandomPatchConfiguration(64, 7, 3, PlacementUtils.filtered(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(NeapolitanBlocks.VANILLA_VINE.get().defaultBlockState())), BlockPredicate.allOf(BlockPredicate.replaceable(), BlockPredicate.ONLY_IN_AIR_PREDICATE))));
+		public static final Holder<ConfiguredFeature<?, ?>> PATCH_ADZUKI_SPROUTS = register("patch_adzuki_sprouts", Feature.RANDOM_PATCH, new RandomPatchConfiguration(256, 3, 2, PlacementUtils.filtered(ADZUKI_SPROUTS.get(), new SimpleBlockConfiguration(BlockStateProvider.simple(NeapolitanBlocks.ADZUKI_SPROUTS.get().defaultBlockState())), simplePatchPredicate(List.of(Blocks.GRASS_BLOCK)))));
+		public static final Holder<ConfiguredFeature<?, ?>> MINT_POND = register("mint_pond", NeapolitanFeatures.MINT_POND.get(), FeatureConfiguration.NONE);
+		public static final Holder<ConfiguredFeature<?, ?>> BANANA_PLANT = register("banana_plant", NeapolitanFeatures.BANANA_PLANT.get(), FeatureConfiguration.NONE);
 
-		public static final ConfiguredFeature<?, ?> PATCH_STRAWBERRY_BUSH = register("patch_strawberry_bush", Feature.RANDOM_PATCH.configured(new RandomPatchConfiguration(512, 5, 3, () -> STRAWBERRY_BUSH.get().configured(new SimpleBlockConfiguration(BlockStateProvider.simple(NeapolitanBlocks.STRAWBERRY_BUSH.get().defaultBlockState()))).filtered(simplePatchPredicate(List.of(Blocks.GRASS_BLOCK))))));
-		public static final ConfiguredFeature<?, ?> PATCH_VANILLA_VINE = register("patch_vanilla_vine", NeapolitanFeatures.VANILLA_VINE_PATCH.get().configured(new RandomPatchConfiguration(64, 7, 3, () -> Feature.SIMPLE_BLOCK.configured(new SimpleBlockConfiguration(BlockStateProvider.simple(NeapolitanBlocks.VANILLA_VINE.get().defaultBlockState()))).filtered(BlockPredicate.allOf(BlockPredicate.replaceable(), BlockPredicate.ONLY_IN_AIR_PREDICATE)))));
-		public static final ConfiguredFeature<?, ?> PATCH_ADZUKI_SPROUTS = register("patch_adzuki_sprouts", Feature.RANDOM_PATCH.configured(new RandomPatchConfiguration(256, 3, 2, () -> ADZUKI_SPROUTS.get().configured(new SimpleBlockConfiguration(BlockStateProvider.simple(NeapolitanBlocks.ADZUKI_SPROUTS.get().defaultBlockState()))).filtered(simplePatchPredicate(List.of(Blocks.GRASS_BLOCK))))));
-		public static final ConfiguredFeature<?, ?> MINT_POND = register("mint_pond", NeapolitanFeatures.MINT_POND.get().configured(FeatureConfiguration.NONE));
-		public static final ConfiguredFeature<?, ?> BANANA_PLANT = register("banana_plant", NeapolitanFeatures.BANANA_PLANT.get().configured(FeatureConfiguration.NONE));
-
-		private static <FC extends FeatureConfiguration> ConfiguredFeature<FC, ?> register(String name, ConfiguredFeature<FC, ?> configuredFeature) {
-			return Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new ResourceLocation(Neapolitan.MOD_ID, name), configuredFeature);
+		public static <FC extends FeatureConfiguration, F extends Feature<FC>> Holder<ConfiguredFeature<?, ?>> register(String name, F feature, FC config) {
+			return BuiltinRegistries.register(BuiltinRegistries.CONFIGURED_FEATURE, new ResourceLocation(Neapolitan.MOD_ID, name), new ConfiguredFeature<>(feature, config));
 		}
 
 		private static BlockPredicate simplePatchPredicate(List<Block> matchBlocks) {
@@ -65,18 +65,22 @@ public class NeapolitanFeatures {
 	}
 
 	public static final class NeapolitanPlacedFeatures {
-		public static final PlacedFeature PATCH_STRAWBERRY_BUSH = register("patch_strawberry_bush", NeapolitanConfiguredFeatures.PATCH_STRAWBERRY_BUSH.placed(RarityFilter.onAverageOnceEvery(NeapolitanConfig.COMMON.strawberryBushGenerationChance.get()), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
-		public static final PlacedFeature PATCH_VANILLA_VINE = register("patch_vanilla_vine", NeapolitanConfiguredFeatures.PATCH_VANILLA_VINE.placed(RarityFilter.onAverageOnceEvery(NeapolitanConfig.COMMON.vanillaVineGenerationChance.get()), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
-		public static final PlacedFeature PATCH_ADZUKI_SPROUTS = register("patch_adzuki_sprouts", NeapolitanConfiguredFeatures.PATCH_ADZUKI_SPROUTS.placed(RarityFilter.onAverageOnceEvery(NeapolitanConfig.COMMON.adzukiSproutsGenerationChance.get()), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
-		public static final PlacedFeature MINT_POND = register("mint_pond", NeapolitanConfiguredFeatures.MINT_POND.placed(RarityFilter.onAverageOnceEvery(NeapolitanConfig.COMMON.mintPondGenerationChance.get()), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
+		public static final Holder<PlacedFeature> PATCH_STRAWBERRY_BUSH = register("patch_strawberry_bush", NeapolitanConfiguredFeatures.PATCH_STRAWBERRY_BUSH, RarityFilter.onAverageOnceEvery(NeapolitanConfig.COMMON.strawberryBushGenerationChance.get()), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+		public static final Holder<PlacedFeature> PATCH_VANILLA_VINE = register("patch_vanilla_vine", NeapolitanConfiguredFeatures.PATCH_VANILLA_VINE, RarityFilter.onAverageOnceEvery(NeapolitanConfig.COMMON.vanillaVineGenerationChance.get()), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+		public static final Holder<PlacedFeature> PATCH_ADZUKI_SPROUTS = register("patch_adzuki_sprouts", NeapolitanConfiguredFeatures.PATCH_ADZUKI_SPROUTS, RarityFilter.onAverageOnceEvery(NeapolitanConfig.COMMON.adzukiSproutsGenerationChance.get()), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+		public static final Holder<PlacedFeature> MINT_POND = register("mint_pond", NeapolitanConfiguredFeatures.MINT_POND, RarityFilter.onAverageOnceEvery(NeapolitanConfig.COMMON.mintPondGenerationChance.get()), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 
-		public static final PlacedFeature BANANA_PLANT_BEACH = register("banana_plant_beach", NeapolitanConfiguredFeatures.BANANA_PLANT.placed(PlacementUtils.countExtra(0, 0.05F, 1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
-		public static final PlacedFeature BANANA_PLANT_JUNGLE = register("banana_plant_jungle", NeapolitanConfiguredFeatures.BANANA_PLANT.placed(PlacementUtils.countExtra(0, 0.25F, 3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
-		public static final PlacedFeature BANANA_PLANT_RARE = register("banana_plant_rare", NeapolitanConfiguredFeatures.BANANA_PLANT.placed(PlacementUtils.countExtra(0, 0.25F, 1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
-		public static final PlacedFeature BANANA_PLANT_VERY_RARE = register("banana_plant_very_rare", NeapolitanConfiguredFeatures.BANANA_PLANT.placed(PlacementUtils.countExtra(0, 0.125F, 1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
+		public static final Holder<PlacedFeature> BANANA_PLANT_BEACH = register("banana_plant_beach", NeapolitanConfiguredFeatures.BANANA_PLANT, PlacementUtils.countExtra(0, 0.05F, 1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
+		public static final Holder<PlacedFeature> BANANA_PLANT_JUNGLE = register("banana_plant_jungle", NeapolitanConfiguredFeatures.BANANA_PLANT, PlacementUtils.countExtra(0, 0.25F, 3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
+		public static final Holder<PlacedFeature> BANANA_PLANT_RARE = register("banana_plant_rare", NeapolitanConfiguredFeatures.BANANA_PLANT, PlacementUtils.countExtra(0, 0.25F, 1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
+		public static final Holder<PlacedFeature> BANANA_PLANT_VERY_RARE = register("banana_plant_very_rare", NeapolitanConfiguredFeatures.BANANA_PLANT, PlacementUtils.countExtra(0, 0.125F, 1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
 
-		public static PlacedFeature register(String name, PlacedFeature placedFeature) {
-			return Registry.register(BuiltinRegistries.PLACED_FEATURE, new ResourceLocation(Neapolitan.MOD_ID, name), placedFeature);
+		public static Holder<PlacedFeature> register(String name, Holder<? extends ConfiguredFeature<?, ?>> configuredFeature, PlacementModifier... placementModifiers) {
+			return register(name, configuredFeature, List.of(placementModifiers));
+		}
+
+		public static Holder<PlacedFeature> register(String name, Holder<? extends ConfiguredFeature<?, ?>> configuredFeature, List<PlacementModifier> placementModifiers) {
+			return BuiltinRegistries.register(BuiltinRegistries.PLACED_FEATURE, new ResourceLocation(Neapolitan.MOD_ID, name), new PlacedFeature(Holder.hackyErase(configuredFeature), placementModifiers));
 		}
 	}
 }
