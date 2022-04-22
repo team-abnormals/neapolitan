@@ -3,7 +3,7 @@ package com.teamabnormals.neapolitan.client.renderer.entity.layers;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.teamabnormals.neapolitan.client.model.ChimpanzeeModel;
-import com.teamabnormals.neapolitan.common.entity.animal.ChimpanzeeEntity;
+import com.teamabnormals.neapolitan.common.entity.animal.Chimpanzee;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -15,7 +15,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class ChimpanzeePaleSkinLayer<E extends ChimpanzeeEntity, M extends ChimpanzeeModel<E>> extends RenderLayer<E, M> {
+public class ChimpanzeePaleSkinLayer<E extends Chimpanzee, M extends ChimpanzeeModel<E>> extends RenderLayer<E, M> {
 	public static final ResourceLocation PALE_SKIN = new ResourceLocation(Neapolitan.MOD_ID, "textures/entity/chimpanzee/chimpanzee_skin_pale.png");
 	public static final ResourceLocation PALE_SKIN_MOUTH_OPEN = new ResourceLocation(Neapolitan.MOD_ID, "textures/entity/chimpanzee/chimpanzee_skin_pale_mouth_open.png");
 

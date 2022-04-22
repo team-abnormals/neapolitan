@@ -1,15 +1,15 @@
 package com.teamabnormals.neapolitan.common.entity.goal;
 
-import com.teamabnormals.neapolitan.common.entity.animal.ChimpanzeeEntity;
+import com.teamabnormals.neapolitan.common.entity.animal.Chimpanzee;
 import com.teamabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
 import net.minecraft.world.entity.ai.goal.Goal;
 
 import java.util.EnumSet;
 
 public class ChimpBeGroomedGoal extends Goal {
-	private final ChimpanzeeEntity chimpanzee;
+	private final Chimpanzee chimpanzee;
 
-	public ChimpBeGroomedGoal(ChimpanzeeEntity chimpanzeeIn) {
+	public ChimpBeGroomedGoal(Chimpanzee chimpanzeeIn) {
 		this.chimpanzee = chimpanzeeIn;
 		this.setFlags(EnumSet.of(Goal.Flag.MOVE));
 	}
@@ -21,14 +21,14 @@ public class ChimpBeGroomedGoal extends Goal {
 		} else if (this.chimpanzee.isDoingAction(ChimpanzeeAction.CRYING)) {
 			return false;
 		} else {
-			ChimpanzeeEntity groomer = this.chimpanzee.getGroomer();
+			Chimpanzee groomer = this.chimpanzee.getGroomer();
 			return groomer != null && this.chimpanzee.distanceToSqr(groomer) < 16.0D && groomer.getGroomingTarget() == this.chimpanzee;
 		}
 	}
 
 	@Override
 	public boolean canContinueToUse() {
-		ChimpanzeeEntity groomer = this.chimpanzee.getGroomer();
+		Chimpanzee groomer = this.chimpanzee.getGroomer();
 		return groomer != null && groomer.isAlive() && groomer.getGroomingTarget() == this.chimpanzee;
 	}
 

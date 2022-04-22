@@ -1,6 +1,6 @@
 package com.teamabnormals.neapolitan.common.entity.goal;
 
-import com.teamabnormals.neapolitan.common.entity.animal.ChimpanzeeEntity;
+import com.teamabnormals.neapolitan.common.entity.animal.Chimpanzee;
 import com.teamabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanEntityTypeTags;
 import net.minecraft.world.entity.Entity;
@@ -14,13 +14,13 @@ import java.util.EnumSet;
 import java.util.List;
 
 public class ChimpGetScaredGoal extends Goal {
-	private final ChimpanzeeEntity chimpanzee;
+	private final Chimpanzee chimpanzee;
 	protected Entity toAvoid;
 	public final double speedModifier;
 	protected Path path;
 	protected final PathNavigation pathNav;
 
-	public ChimpGetScaredGoal(ChimpanzeeEntity chimpanzeeIn, double speed) {
+	public ChimpGetScaredGoal(Chimpanzee chimpanzeeIn, double speed) {
 		this.chimpanzee = chimpanzeeIn;
 		this.speedModifier = speed;
 		this.pathNav = chimpanzeeIn.getNavigation();

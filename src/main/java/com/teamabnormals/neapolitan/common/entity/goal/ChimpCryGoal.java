@@ -1,6 +1,6 @@
 package com.teamabnormals.neapolitan.common.entity.goal;
 
-import com.teamabnormals.neapolitan.common.entity.animal.ChimpanzeeEntity;
+import com.teamabnormals.neapolitan.common.entity.animal.Chimpanzee;
 import com.teamabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
 import net.minecraft.world.entity.ai.goal.Goal;
 
@@ -8,10 +8,10 @@ import java.util.EnumSet;
 import java.util.List;
 
 public class ChimpCryGoal extends Goal {
-	private final ChimpanzeeEntity chimpanzee;
+	private final Chimpanzee chimpanzee;
 	private int cryTimer;
 
-	public ChimpCryGoal(ChimpanzeeEntity chimpanzeeIn) {
+	public ChimpCryGoal(Chimpanzee chimpanzeeIn) {
 		this.chimpanzee = chimpanzeeIn;
 		this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
 	}
@@ -55,9 +55,9 @@ public class ChimpCryGoal extends Goal {
 	}
 
 	private boolean isParentCloseBy() {
-		List<ChimpanzeeEntity> list = this.chimpanzee.level.getEntitiesOfClass(ChimpanzeeEntity.class, this.chimpanzee.getBoundingBox().inflate(8.0D, 4.0D, 8.0D));
+		List<Chimpanzee> list = this.chimpanzee.level.getEntitiesOfClass(Chimpanzee.class, this.chimpanzee.getBoundingBox().inflate(8.0D, 4.0D, 8.0D));
 
-		for (ChimpanzeeEntity chimpanzeentity : list) {
+		for (Chimpanzee chimpanzeentity : list) {
 			if (chimpanzeentity.getAge() >= 0) {
 				return true;
 			}

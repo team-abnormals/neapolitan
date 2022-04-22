@@ -4,7 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.teamabnormals.blueprint.client.BlueprintRenderTypes;
 import com.teamabnormals.neapolitan.client.model.ChimpanzeeModel;
-import com.teamabnormals.neapolitan.common.entity.animal.ChimpanzeeEntity;
+import com.teamabnormals.neapolitan.common.entity.animal.Chimpanzee;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -16,7 +16,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class ChimpanzeeEyesLayer<T extends ChimpanzeeEntity> extends EyesLayer<T, ChimpanzeeModel<T>> {
+public class ChimpanzeeEyesLayer<T extends Chimpanzee> extends EyesLayer<T, ChimpanzeeModel<T>> {
 	private static final RenderType RENDER_TYPE = BlueprintRenderTypes.getUnshadedCutoutEntity(new ResourceLocation(Neapolitan.MOD_ID, "textures/entity/chimpanzee/chimpanzee_eyes.png"), true);
 
 	public ChimpanzeeEyesLayer(RenderLayerParent<T, ChimpanzeeModel<T>> rendererIn) {

@@ -1,6 +1,6 @@
 package com.teamabnormals.neapolitan.common.entity.goal;
 
-import com.teamabnormals.neapolitan.common.entity.animal.ChimpanzeeEntity;
+import com.teamabnormals.neapolitan.common.entity.animal.Chimpanzee;
 import com.teamabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
 import net.minecraft.world.entity.ai.goal.Goal;
 
@@ -8,13 +8,13 @@ import java.util.EnumSet;
 import java.util.List;
 
 public class ChimpGroomGoal extends Goal {
-	private final ChimpanzeeEntity chimpanzee;
+	private final Chimpanzee chimpanzee;
 	private final double moveSpeed;
 	private int delayCounter;
 	private int groomTime;
 	private int forgetTime;
 
-	public ChimpGroomGoal(ChimpanzeeEntity chimpanzeeIn, double speed) {
+	public ChimpGroomGoal(Chimpanzee chimpanzeeIn, double speed) {
 		this.chimpanzee = chimpanzeeIn;
 		this.moveSpeed = speed;
 		this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
@@ -25,11 +25,11 @@ public class ChimpGroomGoal extends Goal {
 		if (this.chimpanzee.isBaby()) {
 			return false;
 		} else if (this.chimpanzee.getRandom().nextInt(40) == 0) {
-			List<ChimpanzeeEntity> list = this.chimpanzee.level.getEntitiesOfClass(ChimpanzeeEntity.class, this.chimpanzee.getBoundingBox().inflate(8.0D, 4.0D, 8.0D));
-			ChimpanzeeEntity chimpanzeeentity = null;
+			List<Chimpanzee> list = this.chimpanzee.level.getEntitiesOfClass(Chimpanzee.class, this.chimpanzee.getBoundingBox().inflate(8.0D, 4.0D, 8.0D));
+			Chimpanzee chimpanzeeentity = null;
 			double d0 = Double.MAX_VALUE;
 
-			for (ChimpanzeeEntity chimpanzeeentity1 : list) {
+			for (Chimpanzee chimpanzeeentity1 : list) {
 				if (chimpanzeeentity1 != this.chimpanzee && chimpanzeeentity1.isOnGround() && chimpanzeeentity1.isDirty() && chimpanzeeentity1.getGroomer() == null) {
 					double d1 = this.chimpanzee.distanceToSqr(chimpanzeeentity1);
 					if (!(d1 > d0)) {
@@ -51,7 +51,7 @@ public class ChimpGroomGoal extends Goal {
 
 	@Override
 	public boolean canContinueToUse() {
-		ChimpanzeeEntity target = this.chimpanzee.getGroomingTarget();
+		Chimpanzee target = this.chimpanzee.getGroomingTarget();
 
 		if (this.forgetTime <= 0) {
 			return false;
@@ -80,7 +80,7 @@ public class ChimpGroomGoal extends Goal {
 
 	@Override
 	public void tick() {
-		ChimpanzeeEntity target = this.chimpanzee.getGroomingTarget();
+		Chimpanzee target = this.chimpanzee.getGroomingTarget();
 
 		if (--this.delayCounter <= 0) {
 			this.delayCounter = this.adjustedTickDelay(10);

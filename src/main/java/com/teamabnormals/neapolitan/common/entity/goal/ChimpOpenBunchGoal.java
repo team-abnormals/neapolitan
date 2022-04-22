@@ -1,6 +1,6 @@
 package com.teamabnormals.neapolitan.common.entity.goal;
 
-import com.teamabnormals.neapolitan.common.entity.animal.ChimpanzeeEntity;
+import com.teamabnormals.neapolitan.common.entity.animal.Chimpanzee;
 import com.teamabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
 import net.minecraft.world.InteractionHand;
@@ -9,10 +9,10 @@ import net.minecraft.world.entity.ai.goal.Goal;
 import java.util.EnumSet;
 
 public class ChimpOpenBunchGoal extends Goal {
-	private final ChimpanzeeEntity chimpanzee;
+	private final Chimpanzee chimpanzee;
 	private int throwTimer;
 
-	public ChimpOpenBunchGoal(ChimpanzeeEntity chimpanzeeIn) {
+	public ChimpOpenBunchGoal(Chimpanzee chimpanzeeIn) {
 		this.chimpanzee = chimpanzeeIn;
 		this.setFlags(EnumSet.of(Goal.Flag.MOVE));
 	}

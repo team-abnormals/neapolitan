@@ -1,6 +1,6 @@
 package com.teamabnormals.neapolitan.common.entity.goal;
 
-import com.teamabnormals.neapolitan.common.entity.animal.ChimpanzeeEntity;
+import com.teamabnormals.neapolitan.common.entity.animal.Chimpanzee;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.util.DefaultRandomPos;
 import net.minecraft.world.entity.ai.util.LandRandomPos;
@@ -11,9 +11,9 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class ChimpRandomWalkingGoal extends WaterAvoidingRandomStrollGoal {
-	private final ChimpanzeeEntity chimpanzee;
+	private final Chimpanzee chimpanzee;
 
-	public ChimpRandomWalkingGoal(ChimpanzeeEntity chimpanzeeIn, double speed) {
+	public ChimpRandomWalkingGoal(Chimpanzee chimpanzeeIn, double speed) {
 		super(chimpanzeeIn, speed);
 		this.chimpanzee = chimpanzeeIn;
 	}
@@ -26,10 +26,10 @@ public class ChimpRandomWalkingGoal extends WaterAvoidingRandomStrollGoal {
 	@Nullable
 	protected Vec3 getPosition() {
 		if (!this.chimpanzee.isLeader() && !this.chimpanzee.isInWaterOrBubble()) {
-			Predicate<ChimpanzeeEntity> predicate = (chimpanzeeentity) -> {
+			Predicate<Chimpanzee> predicate = (chimpanzeeentity) -> {
 				return chimpanzeeentity != this.chimpanzee && chimpanzeeentity.getAge() >= 0;
 			};
-			List<ChimpanzeeEntity> list = this.chimpanzee.level.getEntitiesOfClass(ChimpanzeeEntity.class, this.chimpanzee.getBoundingBox().inflate(12.0D, 8.0D, 12.0D), predicate);
+			List<Chimpanzee> list = this.chimpanzee.level.getEntitiesOfClass(Chimpanzee.class, this.chimpanzee.getBoundingBox().inflate(12.0D, 8.0D, 12.0D), predicate);
 
 			if (!list.isEmpty()) {
 				return this.chimpanzee.getRandom().nextFloat() >= this.probability ? LandRandomPos.getPos(this.mob, 6, 3) : DefaultRandomPos.getPos(this.mob, 6, 3);

@@ -1,6 +1,6 @@
 package com.teamabnormals.neapolitan.common.entity.goal;
 
-import com.teamabnormals.neapolitan.common.entity.animal.ChimpanzeeEntity;
+import com.teamabnormals.neapolitan.common.entity.animal.Chimpanzee;
 import com.teamabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
 import net.minecraft.world.entity.ai.goal.Goal;
 
@@ -8,11 +8,11 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class ChimpSitGoal extends Goal {
-	private final ChimpanzeeEntity chimpanzee;
+	private final Chimpanzee chimpanzee;
 	private int sitTimer;
 	private int cooldown;
 
-	public ChimpSitGoal(ChimpanzeeEntity chimpanzeeIn) {
+	public ChimpSitGoal(Chimpanzee chimpanzeeIn) {
 		this.chimpanzee = chimpanzeeIn;
 	}
 
@@ -29,12 +29,12 @@ public class ChimpSitGoal extends Goal {
 			return false;
 		} else if (this.chimpanzee.getAction().canSit()) {
 			if (!this.chimpanzee.isLeader() && this.chimpanzee.getRandom().nextInt(30) == 0) {
-				Predicate<ChimpanzeeEntity> predicate = (chimpanzeeentity) -> {
+				Predicate<Chimpanzee> predicate = (chimpanzeeentity) -> {
 					return chimpanzeeentity != this.chimpanzee && chimpanzeeentity.isLeader();
 				};
-				List<ChimpanzeeEntity> list = this.chimpanzee.level.getEntitiesOfClass(ChimpanzeeEntity.class, this.chimpanzee.getBoundingBox().inflate(6.0D, 4.0D, 6.0D), predicate);
+				List<Chimpanzee> list = this.chimpanzee.level.getEntitiesOfClass(Chimpanzee.class, this.chimpanzee.getBoundingBox().inflate(6.0D, 4.0D, 6.0D), predicate);
 
-				for (ChimpanzeeEntity chimpanzeeentity : list) {
+				for (Chimpanzee chimpanzeeentity : list) {
 					if (chimpanzeeentity.isSitting()) {
 						return true;
 					}

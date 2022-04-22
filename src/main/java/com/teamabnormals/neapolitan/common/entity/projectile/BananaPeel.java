@@ -19,14 +19,14 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 
-public class BananaPeelEntity extends Entity {
+public class BananaPeel extends Entity {
 	private int age;
 
-	public BananaPeelEntity(EntityType<? extends BananaPeelEntity> type, Level worldIn) {
+	public BananaPeel(EntityType<? extends BananaPeel> type, Level worldIn) {
 		super(type, worldIn);
 	}
 
-	public BananaPeelEntity(PlayMessages.SpawnEntity spawnEntity, Level world) {
+	public BananaPeel(PlayMessages.SpawnEntity spawnEntity, Level world) {
 		this(NeapolitanEntityTypes.BANANA_PEEL.get(), world);
 	}
 

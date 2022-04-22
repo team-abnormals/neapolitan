@@ -1,7 +1,7 @@
 package com.teamabnormals.neapolitan.common.entity.goal;
 
-import com.teamabnormals.neapolitan.common.entity.animal.ChimpanzeeEntity;
-import com.teamabnormals.neapolitan.common.entity.projectile.BananaPeelEntity;
+import com.teamabnormals.neapolitan.common.entity.animal.Chimpanzee;
+import com.teamabnormals.neapolitan.common.entity.projectile.BananaPeel;
 import com.teamabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanEntityTypes;
@@ -18,12 +18,12 @@ import net.minecraft.world.phys.AABB;
 import java.util.EnumSet;
 
 public class ChimpShakeBundleGoal extends MoveToBlockGoal {
-	private final ChimpanzeeEntity chimpanzee;
+	private final Chimpanzee chimpanzee;
 	private BlockPos bundlePos = BlockPos.ZERO;
 	private int shakingTime;
 	private int nextBananaTime;
 
-	public ChimpShakeBundleGoal(ChimpanzeeEntity chimpanzeeIn, double speed, int length, int yMax) {
+	public ChimpShakeBundleGoal(Chimpanzee chimpanzeeIn, double speed, int length, int yMax) {
 		super(chimpanzeeIn, speed, length, yMax);
 		this.chimpanzee = chimpanzeeIn;
 		this.setFlags(EnumSet.of(Goal.Flag.LOOK, Goal.Flag.MOVE));
@@ -92,7 +92,7 @@ public class ChimpShakeBundleGoal extends MoveToBlockGoal {
 					double d1 = this.bundlePos.getZ() + this.chimpanzee.getRandom().nextDouble() * 0.5D + 0.25D;
 
 					if (this.chimpanzee.getRandom().nextInt(4) == 0) {
-						BananaPeelEntity bananapeel = NeapolitanEntityTypes.BANANA_PEEL.get().create(this.chimpanzee.level);
+						BananaPeel bananapeel = NeapolitanEntityTypes.BANANA_PEEL.get().create(this.chimpanzee.level);
 						bananapeel.moveTo(d0, this.bundlePos.getY() - 0.5D, d1, this.chimpanzee.getYRot(), 0.0F);
 						bananapeel.setDeltaMovement(this.chimpanzee.getRandom().nextDouble() * 0.4D - 0.2D, -0.1D, this.chimpanzee.getRandom().nextDouble() * 0.4D - 0.2D);
 						this.chimpanzee.level.addFreshEntity(bananapeel);
@@ -152,7 +152,7 @@ public class ChimpShakeBundleGoal extends MoveToBlockGoal {
 	}
 
 	private boolean getBlockBeingShaken(Level worldIn, BlockPos pos) {
-		return !worldIn.getEntitiesOfClass(ChimpanzeeEntity.class, new AABB(pos.below()), (chimpanzee) -> {
+		return !worldIn.getEntitiesOfClass(Chimpanzee.class, new AABB(pos.below()), (chimpanzee) -> {
 			return chimpanzee != this.chimpanzee && chimpanzee.isDoingAction(ChimpanzeeAction.HANGING, ChimpanzeeAction.SHAKING);
 		}).isEmpty();
 	}

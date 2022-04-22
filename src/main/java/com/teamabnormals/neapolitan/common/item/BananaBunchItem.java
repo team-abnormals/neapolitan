@@ -1,6 +1,6 @@
 package com.teamabnormals.neapolitan.common.item;
 
-import com.teamabnormals.neapolitan.common.entity.projectile.BananaPeelEntity;
+import com.teamabnormals.neapolitan.common.entity.projectile.BananaPeel;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanEntityTypeTags;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanEntityTypes;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
@@ -61,7 +61,7 @@ public class BananaBunchItem extends Item {
 
 	private void placeBanana(Level world, double posX, double posY, double posZ, float yaw) {
 		if (!world.isClientSide) {
-			BananaPeelEntity bananapeel = NeapolitanEntityTypes.BANANA_PEEL.get().create(world);
+			BananaPeel bananapeel = NeapolitanEntityTypes.BANANA_PEEL.get().create(world);
 			bananapeel.moveTo(posX, posY, posZ, yaw, 0.0F);
 			world.addFreshEntity(bananapeel);
 		}
@@ -69,7 +69,7 @@ public class BananaBunchItem extends Item {
 
 	private void throwBanana(Level world, Player player, float pitch, float yaw) {
 		if (!world.isClientSide) {
-			BananaPeelEntity bananapeel = NeapolitanEntityTypes.BANANA_PEEL.get().create(world);
+			BananaPeel bananapeel = NeapolitanEntityTypes.BANANA_PEEL.get().create(world);
 			bananapeel.moveTo(player.getX(), player.getEyeY() - (double) 0.1F, player.getZ(), yaw, 0.0F);
 			float f = -Mth.sin(yaw * ((float) Math.PI / 180F)) * Mth.cos(pitch * ((float) Math.PI / 180F)) * 0.6F;
 			float f1 = -Mth.sin(pitch * ((float) Math.PI / 180F)) * 0.6F;

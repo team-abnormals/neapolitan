@@ -1,8 +1,8 @@
 package com.teamabnormals.neapolitan.common.entity.animal;
 
 import com.teamabnormals.neapolitan.common.entity.goal.*;
-import com.teamabnormals.neapolitan.common.entity.monster.PlantainSpiderEntity;
-import com.teamabnormals.neapolitan.common.entity.projectile.BananaPeelEntity;
+import com.teamabnormals.neapolitan.common.entity.monster.PlantainSpider;
+import com.teamabnormals.neapolitan.common.entity.projectile.BananaPeel;
 import com.teamabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
 import com.teamabnormals.neapolitan.common.entity.util.ChimpanzeeTypes;
 import com.teamabnormals.neapolitan.common.item.MilkshakeItem;
@@ -81,21 +81,21 @@ import java.util.Random;
 import java.util.UUID;
 import java.util.function.Predicate;
 
-public class ChimpanzeeEntity extends Animal implements NeutralMob {
-	private static final EntityDataAccessor<Integer> CHIMPANZEE_TYPE = SynchedEntityData.defineId(ChimpanzeeEntity.class, EntityDataSerializers.INT);
-	private static final EntityDataAccessor<Integer> ANGER_TIME = SynchedEntityData.defineId(ChimpanzeeEntity.class, EntityDataSerializers.INT);
-	private static final EntityDataAccessor<Integer> APE_MODE_TIME = SynchedEntityData.defineId(ChimpanzeeEntity.class, EntityDataSerializers.INT);
-	private static final EntityDataAccessor<Integer> HUNGER = SynchedEntityData.defineId(ChimpanzeeEntity.class, EntityDataSerializers.INT);
-	private static final EntityDataAccessor<Integer> DIRTINESS = SynchedEntityData.defineId(ChimpanzeeEntity.class, EntityDataSerializers.INT);
-	private static final EntityDataAccessor<Integer> PALENESS = SynchedEntityData.defineId(ChimpanzeeEntity.class, EntityDataSerializers.INT);
-	private static final EntityDataAccessor<Integer> LEFT_HAND_DYE_COLOR = SynchedEntityData.defineId(ChimpanzeeEntity.class, EntityDataSerializers.INT);
-	private static final EntityDataAccessor<Integer> RIGHT_HAND_DYE_COLOR = SynchedEntityData.defineId(ChimpanzeeEntity.class, EntityDataSerializers.INT);
-	private static final EntityDataAccessor<Boolean> SITTING = SynchedEntityData.defineId(ChimpanzeeEntity.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> IS_LEFT_HAND_DYED = SynchedEntityData.defineId(ChimpanzeeEntity.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> IS_RIGHT_HAND_DYED = SynchedEntityData.defineId(ChimpanzeeEntity.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Byte> ACTION = SynchedEntityData.defineId(ChimpanzeeEntity.class, EntityDataSerializers.BYTE);
-	private static final EntityDataAccessor<Byte> CLIMBING = SynchedEntityData.defineId(ChimpanzeeEntity.class, EntityDataSerializers.BYTE);
-	private static final EntityDataAccessor<Direction> FACING = SynchedEntityData.defineId(ChimpanzeeEntity.class, EntityDataSerializers.DIRECTION);
+public class Chimpanzee extends Animal implements NeutralMob {
+	private static final EntityDataAccessor<Integer> CHIMPANZEE_TYPE = SynchedEntityData.defineId(Chimpanzee.class, EntityDataSerializers.INT);
+	private static final EntityDataAccessor<Integer> ANGER_TIME = SynchedEntityData.defineId(Chimpanzee.class, EntityDataSerializers.INT);
+	private static final EntityDataAccessor<Integer> APE_MODE_TIME = SynchedEntityData.defineId(Chimpanzee.class, EntityDataSerializers.INT);
+	private static final EntityDataAccessor<Integer> HUNGER = SynchedEntityData.defineId(Chimpanzee.class, EntityDataSerializers.INT);
+	private static final EntityDataAccessor<Integer> DIRTINESS = SynchedEntityData.defineId(Chimpanzee.class, EntityDataSerializers.INT);
+	private static final EntityDataAccessor<Integer> PALENESS = SynchedEntityData.defineId(Chimpanzee.class, EntityDataSerializers.INT);
+	private static final EntityDataAccessor<Integer> LEFT_HAND_DYE_COLOR = SynchedEntityData.defineId(Chimpanzee.class, EntityDataSerializers.INT);
+	private static final EntityDataAccessor<Integer> RIGHT_HAND_DYE_COLOR = SynchedEntityData.defineId(Chimpanzee.class, EntityDataSerializers.INT);
+	private static final EntityDataAccessor<Boolean> SITTING = SynchedEntityData.defineId(Chimpanzee.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Boolean> IS_LEFT_HAND_DYED = SynchedEntityData.defineId(Chimpanzee.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Boolean> IS_RIGHT_HAND_DYED = SynchedEntityData.defineId(Chimpanzee.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Byte> ACTION = SynchedEntityData.defineId(Chimpanzee.class, EntityDataSerializers.BYTE);
+	private static final EntityDataAccessor<Byte> CLIMBING = SynchedEntityData.defineId(Chimpanzee.class, EntityDataSerializers.BYTE);
+	private static final EntityDataAccessor<Direction> FACING = SynchedEntityData.defineId(Chimpanzee.class, EntityDataSerializers.DIRECTION);
 
 	private static final UUID SPEED_MODIFIER_SITTING_UUID = UUID.fromString("2EF64346-9E56-44E9-9574-1BF9FD6443CF");
 	private static final AttributeModifier SPEED_MODIFIER_SITTING = new AttributeModifier(SPEED_MODIFIER_SITTING_UUID, "Sitting speed reduction", -0.75D, AttributeModifier.Operation.MULTIPLY_BASE);
@@ -111,9 +111,9 @@ public class ChimpanzeeEntity extends Animal implements NeutralMob {
 	private boolean lookingForBundle;
 
 	@Nullable
-	private ChimpanzeeEntity groomingTarget;
+	private Chimpanzee groomingTarget;
 	@Nullable
-	private ChimpanzeeEntity groomer;
+	private Chimpanzee groomer;
 
 	private float climbAnim;
 	private float climbAnimO;
@@ -130,9 +130,9 @@ public class ChimpanzeeEntity extends Animal implements NeutralMob {
 	public boolean isPartying = false;
 	BlockPos jukeboxPosition;
 
-	public ChimpanzeeEntity(EntityType<? extends Animal> type, Level worldIn) {
+	public Chimpanzee(EntityType<? extends Animal> type, Level worldIn) {
 		super(type, worldIn);
-		this.lookControl = new ChimpanzeeEntity.LookHelperController();
+		this.lookControl = new Chimpanzee.LookHelperController();
 		this.setCanPickUpLoot(true);
 	}
 
@@ -145,7 +145,7 @@ public class ChimpanzeeEntity extends Animal implements NeutralMob {
 		this.goalSelector.addGoal(4, new ChimpAttackGoal(this, 1.25D));
 		this.goalSelector.addGoal(5, new ChimpPanicGoal(this, 1.25D));
 		this.goalSelector.addGoal(6, new BreedGoal(this, 1.0D));
-		this.goalSelector.addGoal(7, new ChimpAvoidEntityGoal<>(this, PlantainSpiderEntity.class, 4.0F, 1.0D, 1.25D));
+		this.goalSelector.addGoal(7, new ChimpAvoidEntityGoal<>(this, PlantainSpider.class, 4.0F, 1.0D, 1.25D));
 		this.goalSelector.addGoal(8, new ChimpOpenBunchGoal(this));
 		this.goalSelector.addGoal(9, new ChimpEatBananaGoal(this));
 		this.goalSelector.addGoal(10, new ChimpTemptBananaGoal(this, 1.25D));
@@ -231,7 +231,7 @@ public class ChimpanzeeEntity extends Animal implements NeutralMob {
 
 	@Override
 	protected BodyRotationControl createBodyControl() {
-		return new ChimpanzeeEntity.BodyHelperController();
+		return new Chimpanzee.BodyHelperController();
 	}
 
 	@Override
@@ -549,7 +549,7 @@ public class ChimpanzeeEntity extends Animal implements NeutralMob {
 
 	public void openBunch(InteractionHand hand) {
 		if (!this.level.isClientSide) {
-			BananaPeelEntity bananapeel = NeapolitanEntityTypes.BANANA_PEEL.get().create(this.level);
+			BananaPeel bananapeel = NeapolitanEntityTypes.BANANA_PEEL.get().create(this.level);
 			bananapeel.moveTo(this.getX(), this.getEyeY(), this.getZ(), this.getYRot(), 0.0F);
 			bananapeel.setDeltaMovement(this.random.nextDouble() * 0.4D - 0.2D, 0.4D, this.random.nextDouble() * 0.4D - 0.2D);
 			this.level.addFreshEntity(bananapeel);
@@ -804,22 +804,22 @@ public class ChimpanzeeEntity extends Animal implements NeutralMob {
 
 		if (lookingForBundleIn) {
 			this.setLeader(this.shouldBeLeader());
-			Predicate<ChimpanzeeEntity> predicate = (chimpanzeeentity) -> {
+			Predicate<Chimpanzee> predicate = (chimpanzeeentity) -> {
 				return chimpanzeeentity != this && chimpanzeeentity.getAge() >= 0;
 			};
-			List<ChimpanzeeEntity> list = this.level.getEntitiesOfClass(ChimpanzeeEntity.class, this.getBoundingBox().inflate(12.0D, 8.0D, 12.0D), predicate);
+			List<Chimpanzee> list = this.level.getEntitiesOfClass(Chimpanzee.class, this.getBoundingBox().inflate(12.0D, 8.0D, 12.0D), predicate);
 
-			for (ChimpanzeeEntity chimpanzeeentity : list) {
+			for (Chimpanzee chimpanzeeentity : list) {
 				chimpanzeeentity.setLeader(chimpanzeeentity.shouldBeLeader());
 			}
 		}
 	}
 
 	private boolean shouldBeLeader() {
-		Predicate<ChimpanzeeEntity> predicate = (chimpanzeeentity) -> {
+		Predicate<Chimpanzee> predicate = (chimpanzeeentity) -> {
 			return chimpanzeeentity != this && chimpanzeeentity.getAge() >= 0;
 		};
-		List<ChimpanzeeEntity> list = this.level.getEntitiesOfClass(ChimpanzeeEntity.class, this.getBoundingBox().inflate(8.0D, 8.0D, 8.0D), predicate);
+		List<Chimpanzee> list = this.level.getEntitiesOfClass(Chimpanzee.class, this.getBoundingBox().inflate(8.0D, 8.0D, 8.0D), predicate);
 
 		if (list.isEmpty()) {
 			return false;
@@ -828,7 +828,7 @@ public class ChimpanzeeEntity extends Animal implements NeutralMob {
 		int chimpamount = list.size() + 1;
 		int leaderamount = 0;
 
-		for (ChimpanzeeEntity chimpanzeeentity : list) {
+		for (Chimpanzee chimpanzeeentity : list) {
 			if (chimpanzeeentity.isLeader()) {
 				++leaderamount;
 			}
@@ -845,7 +845,7 @@ public class ChimpanzeeEntity extends Animal implements NeutralMob {
 
 	// SPAWNING //
 
-	public static boolean canChimpanzeeSpawn(EntityType<ChimpanzeeEntity> entity, LevelAccessor world, MobSpawnType reason, BlockPos pos, Random random) {
+	public static boolean canChimpanzeeSpawn(EntityType<Chimpanzee> entity, LevelAccessor world, MobSpawnType reason, BlockPos pos, Random random) {
 		return world.getRawBrightness(pos, 0) > 8;
 	}
 
@@ -859,7 +859,7 @@ public class ChimpanzeeEntity extends Animal implements NeutralMob {
 		return spawnDataIn;
 	}
 
-	public void setTypeForPosition(ChimpanzeeEntity entity, LevelAccessor worldIn) {
+	public void setTypeForPosition(Chimpanzee entity, LevelAccessor worldIn) {
 		if (worldIn.getBiome(this.blockPosition()).value().getRegistryName().getPath().contains("rainforest")) {
 			entity.setChimpanzeeType(ChimpanzeeTypes.RAINFOREST.getId());
 		} else if (worldIn.getBiome(this.blockPosition()).value().getRegistryName().getPath().contains("bamboo")) {
@@ -889,9 +889,9 @@ public class ChimpanzeeEntity extends Animal implements NeutralMob {
 	}
 
 	@Override
-	public ChimpanzeeEntity getBreedOffspring(ServerLevel world, AgeableMob ageableEntity) {
-		ChimpanzeeEntity baby = NeapolitanEntityTypes.CHIMPANZEE.get().create(world);
-		baby.setChimpanzeeType(this.random.nextBoolean() ? this.getChimpanzeeType() : ((ChimpanzeeEntity) ageableEntity).getChimpanzeeType());
+	public Chimpanzee getBreedOffspring(ServerLevel world, AgeableMob ageableEntity) {
+		Chimpanzee baby = NeapolitanEntityTypes.CHIMPANZEE.get().create(world);
+		baby.setChimpanzeeType(this.random.nextBoolean() ? this.getChimpanzeeType() : ((Chimpanzee) ageableEntity).getChimpanzeeType());
 		return baby;
 	}
 
@@ -919,19 +919,19 @@ public class ChimpanzeeEntity extends Animal implements NeutralMob {
 		this.entityData.set(ANGER_TIME, time);
 	}
 
-	public ChimpanzeeEntity getGroomingTarget() {
+	public Chimpanzee getGroomingTarget() {
 		return this.groomingTarget;
 	}
 
-	public void setGroomingTarget(ChimpanzeeEntity target) {
+	public void setGroomingTarget(Chimpanzee target) {
 		this.groomingTarget = target;
 	}
 
-	public ChimpanzeeEntity getGroomer() {
+	public Chimpanzee getGroomer() {
 		return this.groomer;
 	}
 
-	public void setGroomer(ChimpanzeeEntity groomerIn) {
+	public void setGroomer(Chimpanzee groomerIn) {
 		this.groomer = groomerIn;
 	}
 
@@ -1102,9 +1102,7 @@ public class ChimpanzeeEntity extends Animal implements NeutralMob {
 	}
 
 	public void setDefaultAction() {
-		boolean flag = !this.isPassenger() && this.shouldClimb();
-
-		if (flag) {
+		if (!this.isPassenger() && this.shouldClimb()) {
 			this.setAction(ChimpanzeeAction.CLIMBING);
 		} else {
 			this.setAction(ChimpanzeeAction.DEFAULT);
@@ -1198,28 +1196,28 @@ public class ChimpanzeeEntity extends Animal implements NeutralMob {
 	class LookHelperController extends LookControl {
 
 		public LookHelperController() {
-			super(ChimpanzeeEntity.this);
+			super(Chimpanzee.this);
 		}
 
 		public void tick() {
 			if (this.resetXRotOnTick()) {
-				ChimpanzeeEntity.this.setXRot(0.0F);
+				Chimpanzee.this.setXRot(0.0F);
 			}
 
 			if (this.isLookingAtTarget()) {
 				if (this.getYRotD().isPresent() && this.getXRotD().isPresent()) {
-					ChimpanzeeEntity.this.yHeadRot = this.rotateTowards(ChimpanzeeEntity.this.yHeadRot, this.getYRotD().get(), this.yMaxRotSpeed);
-					ChimpanzeeEntity.this.setXRot(this.rotateTowards(ChimpanzeeEntity.this.getXRot(), this.getXRotD().get(), this.xMaxRotAngle));
+					Chimpanzee.this.yHeadRot = this.rotateTowards(Chimpanzee.this.yHeadRot, this.getYRotD().get(), this.yMaxRotSpeed);
+					Chimpanzee.this.setXRot(this.rotateTowards(Chimpanzee.this.getXRot(), this.getXRotD().get(), this.xMaxRotAngle));
 				}
 			} else {
-				ChimpanzeeEntity.this.yHeadRot = this.rotateTowards(ChimpanzeeEntity.this.yHeadRot, ChimpanzeeEntity.this.yBodyRot, 10.0F);
+				Chimpanzee.this.yHeadRot = this.rotateTowards(Chimpanzee.this.yHeadRot, Chimpanzee.this.yBodyRot, 10.0F);
 			}
 
-			Direction facing = ChimpanzeeEntity.this.getFacing();
-			if (ChimpanzeeEntity.this.isDoingAction(ChimpanzeeAction.CLIMBING) && facing != Direction.DOWN) {
-				ChimpanzeeEntity.this.yHeadRot = Mth.rotateIfNecessary(ChimpanzeeEntity.this.yHeadRot, facing.toYRot(), (float) ChimpanzeeEntity.this.getMaxHeadYRot());
-			} else if (!ChimpanzeeEntity.this.getNavigation().isDone()) {
-				ChimpanzeeEntity.this.yHeadRot = Mth.rotateIfNecessary(ChimpanzeeEntity.this.yHeadRot, ChimpanzeeEntity.this.yBodyRot, (float) ChimpanzeeEntity.this.getMaxHeadYRot());
+			Direction facing = Chimpanzee.this.getFacing();
+			if (Chimpanzee.this.isDoingAction(ChimpanzeeAction.CLIMBING) && facing != Direction.DOWN) {
+				Chimpanzee.this.yHeadRot = Mth.rotateIfNecessary(Chimpanzee.this.yHeadRot, facing.toYRot(), (float) Chimpanzee.this.getMaxHeadYRot());
+			} else if (!Chimpanzee.this.getNavigation().isDone()) {
+				Chimpanzee.this.yHeadRot = Mth.rotateIfNecessary(Chimpanzee.this.yHeadRot, Chimpanzee.this.yBodyRot, (float) Chimpanzee.this.getMaxHeadYRot());
 			}
 		}
 	}
@@ -1229,34 +1227,34 @@ public class ChimpanzeeEntity extends Animal implements NeutralMob {
 		private Direction prevFacing;
 
 		public BodyHelperController() {
-			super(ChimpanzeeEntity.this);
+			super(Chimpanzee.this);
 		}
 
 		public void clientTick() {
 			super.clientTick();
 
-			Direction facing = ChimpanzeeEntity.this.getFacing();
+			Direction facing = Chimpanzee.this.getFacing();
 
-			if (facing != this.prevFacing || !ChimpanzeeEntity.this.isDoingAction(ChimpanzeeAction.CLIMBING)) {
+			if (facing != this.prevFacing || !Chimpanzee.this.isDoingAction(ChimpanzeeAction.CLIMBING)) {
 				this.bodyRotationTickCounter = 10;
 			}
 
 			this.prevFacing = facing;
 
-			if (facing != Direction.DOWN && ChimpanzeeEntity.this.isDoingAction(ChimpanzeeAction.CLIMBING)) {
+			if (facing != Direction.DOWN && Chimpanzee.this.isDoingAction(ChimpanzeeAction.CLIMBING)) {
 				int i = this.bodyRotationTickCounter;
 				float f = Mth.clamp((float) i / 10.0F, 0.0F, 1.0F);
 				float f1 = 90.0F * f;
-				ChimpanzeeEntity.this.yBodyRot = Mth.rotateIfNecessary(ChimpanzeeEntity.this.yBodyRot, facing.toYRot(), f1);
+				Chimpanzee.this.yBodyRot = Mth.rotateIfNecessary(Chimpanzee.this.yBodyRot, facing.toYRot(), f1);
 
 				if (this.bodyRotationTickCounter > 0) {
 					--this.bodyRotationTickCounter;
 				}
-			} else if (facing != Direction.DOWN && ChimpanzeeEntity.this.isDoingAction(ChimpanzeeAction.CLIMBING)) {
+			} else if (facing != Direction.DOWN && Chimpanzee.this.isDoingAction(ChimpanzeeAction.CLIMBING)) {
 				int i = this.bodyRotationTickCounter;
 				float f = Mth.clamp((float) i / 10.0F, 0.0F, 1.0F);
 				float f1 = 90.0F * f;
-				ChimpanzeeEntity.this.yBodyRot = Mth.rotateIfNecessary(ChimpanzeeEntity.this.yBodyRot, facing.toYRot(), f1);
+				Chimpanzee.this.yBodyRot = Mth.rotateIfNecessary(Chimpanzee.this.yBodyRot, facing.toYRot(), f1);
 
 				if (this.bodyRotationTickCounter > 0) {
 					--this.bodyRotationTickCounter;

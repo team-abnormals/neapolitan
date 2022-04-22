@@ -23,8 +23,8 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class PlantainSpiderEntity extends Spider {
-	public PlantainSpiderEntity(EntityType<? extends PlantainSpiderEntity> type, Level worldIn) {
+public class PlantainSpider extends Spider {
+	public PlantainSpider(EntityType<? extends PlantainSpider> type, Level worldIn) {
 		super(type, worldIn);
 	}
 

@@ -1,16 +1,16 @@
 package com.teamabnormals.neapolitan.common.entity.goal;
 
-import com.teamabnormals.neapolitan.common.entity.animal.ChimpanzeeEntity;
+import com.teamabnormals.neapolitan.common.entity.animal.Chimpanzee;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 
 public class ChimpHurtByTargetGoal extends HurtByTargetGoal {
 
-	private final ChimpanzeeEntity chimpanzee;
+	private final Chimpanzee chimpanzee;
 
-	public ChimpHurtByTargetGoal(ChimpanzeeEntity chimpanzeeIn) {
-		super(chimpanzeeIn, ChimpanzeeEntity.class);
+	public ChimpHurtByTargetGoal(Chimpanzee chimpanzeeIn) {
+		super(chimpanzeeIn, Chimpanzee.class);
 		this.chimpanzee = chimpanzeeIn;
 	}
 
@@ -22,7 +22,7 @@ public class ChimpHurtByTargetGoal extends HurtByTargetGoal {
 	}
 
 	protected void alertOther(Mob mobIn, LivingEntity targetIn) {
-		if (mobIn instanceof ChimpanzeeEntity && !mobIn.isBaby()) {
+		if (mobIn instanceof Chimpanzee && !mobIn.isBaby()) {
 			super.alertOther(mobIn, targetIn);
 		}
 	}

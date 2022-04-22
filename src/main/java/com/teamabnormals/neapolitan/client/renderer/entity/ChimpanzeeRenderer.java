@@ -7,7 +7,7 @@ import com.teamabnormals.neapolitan.client.renderer.entity.layers.ChimpanzeeDirt
 import com.teamabnormals.neapolitan.client.renderer.entity.layers.ChimpanzeeDyeLayer;
 import com.teamabnormals.neapolitan.client.renderer.entity.layers.ChimpanzeeItemLayer;
 import com.teamabnormals.neapolitan.client.renderer.entity.layers.ChimpanzeePaleSkinLayer;
-import com.teamabnormals.neapolitan.common.entity.animal.ChimpanzeeEntity;
+import com.teamabnormals.neapolitan.common.entity.animal.Chimpanzee;
 import com.teamabnormals.neapolitan.common.entity.util.ChimpanzeeTypes;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.other.NeapolitanModelLayers;
@@ -25,7 +25,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.Locale;
 
 @OnlyIn(Dist.CLIENT)
-public class ChimpanzeeRenderer extends MobRenderer<ChimpanzeeEntity, ChimpanzeeModel<ChimpanzeeEntity>> {
+public class ChimpanzeeRenderer extends MobRenderer<Chimpanzee, ChimpanzeeModel<Chimpanzee>> {
 
 	public ChimpanzeeRenderer(EntityRendererProvider.Context context) {
 		super(context, new ChimpanzeeModel<>(context.bakeLayer(NeapolitanModelLayers.CHIMPANZEE)), 0.4F);
@@ -38,14 +38,14 @@ public class ChimpanzeeRenderer extends MobRenderer<ChimpanzeeEntity, Chimpanzee
 	}
 
 	@Override
-	public ResourceLocation getTextureLocation(ChimpanzeeEntity chimpanzee) {
+	public ResourceLocation getTextureLocation(Chimpanzee chimpanzee) {
 		ChimpanzeeTypes type = ChimpanzeeTypes.byId(chimpanzee.getChimpanzeeType());
 		String textureend = chimpanzee.isMouthOpen() ? "_chimpanzee_mouth_open.png" : "_chimpanzee.png";
 		return new ResourceLocation(Neapolitan.MOD_ID, "textures/entity/chimpanzee/" + type.name().toLowerCase(Locale.ROOT) + textureend);
 	}
 
 	@Override
-	protected void setupRotations(ChimpanzeeEntity chimpanzee, PoseStack matrixStackIn, float ageInTicks, float rotationYaw, float partialTicks) {
+	protected void setupRotations(Chimpanzee chimpanzee, PoseStack matrixStackIn, float ageInTicks, float rotationYaw, float partialTicks) {
 		super.setupRotations(chimpanzee, matrixStackIn, ageInTicks, rotationYaw, partialTicks);
 		float f = chimpanzee.getFlipAnim(partialTicks);
 		if (f > 0.0F) {
@@ -56,7 +56,7 @@ public class ChimpanzeeRenderer extends MobRenderer<ChimpanzeeEntity, Chimpanzee
 	}
 
 	@Override
-	protected boolean isShaking(ChimpanzeeEntity entityIn) {
+	protected boolean isShaking(Chimpanzee entityIn) {
 		return entityIn.getApeModeTime() > 0;
 	}
 }

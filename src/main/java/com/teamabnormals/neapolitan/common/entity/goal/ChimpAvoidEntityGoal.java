@@ -1,6 +1,6 @@
 package com.teamabnormals.neapolitan.common.entity.goal;
 
-import com.teamabnormals.neapolitan.common.entity.animal.ChimpanzeeEntity;
+import com.teamabnormals.neapolitan.common.entity.animal.Chimpanzee;
 import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.Goal;
@@ -14,7 +14,7 @@ import java.util.EnumSet;
 import java.util.function.Predicate;
 
 public class ChimpAvoidEntityGoal<T extends LivingEntity> extends Goal {
-	private final ChimpanzeeEntity chimpanzee;
+	private final Chimpanzee chimpanzee;
 	private final double walkSpeedModifier;
 	private final double sprintSpeedModifier;
 	protected T toAvoid;
@@ -26,7 +26,7 @@ public class ChimpAvoidEntityGoal<T extends LivingEntity> extends Goal {
 	private final TargetingConditions avoidEntityTargeting;
 
 
-	public ChimpAvoidEntityGoal(ChimpanzeeEntity chimpanzeeIn, Class<T> avoidClassIn, float maxDistIn, double walkSpeedModifierIn, double sprintSpeedModifierIn) {
+	public ChimpAvoidEntityGoal(Chimpanzee chimpanzeeIn, Class<T> avoidClassIn, float maxDistIn, double walkSpeedModifierIn, double sprintSpeedModifierIn) {
 		this.chimpanzee = chimpanzeeIn;
 		this.avoidClass = avoidClassIn;
 		this.maxDist = maxDistIn;

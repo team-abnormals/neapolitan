@@ -1,6 +1,6 @@
 package com.teamabnormals.neapolitan.common.block;
 
-import com.teamabnormals.neapolitan.common.entity.monster.PlantainSpiderEntity;
+import com.teamabnormals.neapolitan.common.entity.monster.PlantainSpider;
 import com.teamabnormals.neapolitan.core.NeapolitanConfig;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanEntityTypes;
 import net.minecraft.core.BlockPos;
@@ -37,7 +37,7 @@ public class BananaBundleBlock extends Block {
 
 	private void spawnSpider(ServerLevel world, BlockPos pos) {
 		if (world.getRandom().nextFloat() <= 0.05F && NeapolitanConfig.COMMON.plantainSpidersFromBundles.get()) {
-			PlantainSpiderEntity spider = NeapolitanEntityTypes.PLANTAIN_SPIDER.get().create(world);
+			PlantainSpider spider = NeapolitanEntityTypes.PLANTAIN_SPIDER.get().create(world);
 			spider.moveTo(pos.getX() + 0.5D, pos.getY() + 0.1D, pos.getZ() + 0.5D, 0.0F, 0.0F);
 			world.addFreshEntity(spider);
 			if (world.getRandom().nextFloat() <= 0.25F)

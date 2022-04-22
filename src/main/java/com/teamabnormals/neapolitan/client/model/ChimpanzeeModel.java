@@ -2,7 +2,7 @@ package com.teamabnormals.neapolitan.client.model;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.teamabnormals.neapolitan.common.entity.animal.ChimpanzeeEntity;
+import com.teamabnormals.neapolitan.common.entity.animal.Chimpanzee;
 import com.teamabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanItemTags;
 import net.minecraft.client.model.AnimationUtils;
@@ -25,7 +25,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class ChimpanzeeModel<T extends ChimpanzeeEntity> extends HumanoidModel<T> {
+public class ChimpanzeeModel<T extends Chimpanzee> extends HumanoidModel<T> {
 	public ModelPart leftEar;
 	public ModelPart rightEar;
 

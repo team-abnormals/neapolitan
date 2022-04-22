@@ -2,7 +2,7 @@ package com.teamabnormals.neapolitan.core.other;
 
 import com.teamabnormals.blueprint.core.util.DataUtil;
 import com.teamabnormals.neapolitan.common.block.MilkCauldronBlock;
-import com.teamabnormals.neapolitan.common.entity.projectile.BananarrowEntity;
+import com.teamabnormals.neapolitan.common.entity.projectile.Bananarrow;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
@@ -174,7 +174,7 @@ public class NeapolitanCompat {
 	public static void registerDispenserBehaviors() {
 		DispenserBlock.registerBehavior(NeapolitanItems.BANANARROW.get(), new AbstractProjectileDispenseBehavior() {
 			protected Projectile getProjectile(Level worldIn, Position position, ItemStack stackIn) {
-				return new BananarrowEntity(worldIn, position.x(), position.y(), position.z());
+				return new Bananarrow(worldIn, position.x(), position.y(), position.z());
 			}
 		});
 	}

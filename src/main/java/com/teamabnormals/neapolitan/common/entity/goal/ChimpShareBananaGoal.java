@@ -1,6 +1,6 @@
 package com.teamabnormals.neapolitan.common.entity.goal;
 
-import com.teamabnormals.neapolitan.common.entity.animal.ChimpanzeeEntity;
+import com.teamabnormals.neapolitan.common.entity.animal.Chimpanzee;
 import com.teamabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.ai.goal.Goal;
@@ -12,14 +12,14 @@ import java.util.EnumSet;
 import java.util.List;
 
 public class ChimpShareBananaGoal extends Goal {
-	private final ChimpanzeeEntity chimpanzee;
-	private ChimpanzeeEntity buddy;
+	private final Chimpanzee chimpanzee;
+	private Chimpanzee buddy;
 	private final double moveSpeed;
 	private int delayCounter;
 	private int throwTimer;
 	private int lookTimer;
 
-	public ChimpShareBananaGoal(ChimpanzeeEntity chimpanzeeIn, double speed) {
+	public ChimpShareBananaGoal(Chimpanzee chimpanzeeIn, double speed) {
 		this.chimpanzee = chimpanzeeIn;
 		this.moveSpeed = speed;
 		this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
@@ -30,11 +30,11 @@ public class ChimpShareBananaGoal extends Goal {
 		if (this.chimpanzee.isBaby() || this.chimpanzee.getSnack().isEmpty() || this.chimpanzee.isHungry()) {
 			return false;
 		} else if (this.chimpanzee.getRandom().nextInt(60) == 0) {
-			List<ChimpanzeeEntity> list = this.chimpanzee.level.getEntitiesOfClass(ChimpanzeeEntity.class, this.chimpanzee.getBoundingBox().inflate(8.0D, 4.0D, 8.0D));
-			ChimpanzeeEntity chimpanzeeentity = null;
+			List<Chimpanzee> list = this.chimpanzee.level.getEntitiesOfClass(Chimpanzee.class, this.chimpanzee.getBoundingBox().inflate(8.0D, 4.0D, 8.0D));
+			Chimpanzee chimpanzeeentity = null;
 			double d0 = Double.MAX_VALUE;
 
-			for (ChimpanzeeEntity chimpanzeeentity1 : list) {
+			for (Chimpanzee chimpanzeeentity1 : list) {
 				if (chimpanzeeentity1.isHungry() && chimpanzeeentity1.getSnack().isEmpty() && !chimpanzeeentity1.isDoingAction(ChimpanzeeAction.HANGING, ChimpanzeeAction.SHAKING)) {
 					double d1 = this.chimpanzee.distanceToSqr(chimpanzeeentity1);
 					if (!(d1 > d0)) {

@@ -1,6 +1,6 @@
 package com.teamabnormals.neapolitan.common.entity.goal;
 
-import com.teamabnormals.neapolitan.common.entity.animal.ChimpanzeeEntity;
+import com.teamabnormals.neapolitan.common.entity.animal.Chimpanzee;
 import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
 import net.minecraft.world.entity.ai.util.LandRandomPos;
 import net.minecraft.world.phys.Vec3;
@@ -8,9 +8,9 @@ import net.minecraft.world.phys.Vec3;
 import javax.annotation.Nullable;
 
 public class ChimpApeModeGoal extends RandomStrollGoal {
-	private final ChimpanzeeEntity chimpanzee;
+	private final Chimpanzee chimpanzee;
 
-	public ChimpApeModeGoal(ChimpanzeeEntity chimpanzeeIn, double speed) {
+	public ChimpApeModeGoal(Chimpanzee chimpanzeeIn, double speed) {
 		super(chimpanzeeIn, speed, 20);
 		this.chimpanzee = chimpanzeeIn;
 	}

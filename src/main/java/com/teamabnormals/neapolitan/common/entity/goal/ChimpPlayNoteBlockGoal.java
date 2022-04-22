@@ -1,6 +1,6 @@
 package com.teamabnormals.neapolitan.common.entity.goal;
 
-import com.teamabnormals.neapolitan.common.entity.animal.ChimpanzeeEntity;
+import com.teamabnormals.neapolitan.common.entity.animal.Chimpanzee;
 import com.teamabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
@@ -16,11 +16,11 @@ import net.minecraft.world.phys.AABB;
 import java.util.EnumSet;
 
 public class ChimpPlayNoteBlockGoal extends MoveToBlockGoal {
-	private final ChimpanzeeEntity chimpanzee;
+	private final Chimpanzee chimpanzee;
 	private int timePlayed;
 	private int noteTime;
 
-	public ChimpPlayNoteBlockGoal(ChimpanzeeEntity chimpanzeeIn, double speed, int length) {
+	public ChimpPlayNoteBlockGoal(Chimpanzee chimpanzeeIn, double speed, int length) {
 		super(chimpanzeeIn, speed, length, 6);
 		this.chimpanzee = chimpanzeeIn;
 		this.setFlags(EnumSet.of(Goal.Flag.LOOK, Goal.Flag.MOVE));
@@ -104,7 +104,7 @@ public class ChimpPlayNoteBlockGoal extends MoveToBlockGoal {
 	}
 
 	private boolean isBlockBeingPlayed(Level worldIn, BlockPos pos) {
-		return !worldIn.getEntitiesOfClass(ChimpanzeeEntity.class, new AABB(pos.above()), (chimpanzee) -> {
+		return !worldIn.getEntitiesOfClass(Chimpanzee.class, new AABB(pos.above()), (chimpanzee) -> {
 			return chimpanzee != this.chimpanzee && chimpanzee.isDoingAction(ChimpanzeeAction.DRUMMING);
 		}).isEmpty();
 	}

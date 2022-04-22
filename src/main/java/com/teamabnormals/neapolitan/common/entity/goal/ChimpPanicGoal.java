@@ -1,12 +1,12 @@
 package com.teamabnormals.neapolitan.common.entity.goal;
 
-import com.teamabnormals.neapolitan.common.entity.animal.ChimpanzeeEntity;
+import com.teamabnormals.neapolitan.common.entity.animal.Chimpanzee;
 import net.minecraft.world.entity.ai.goal.PanicGoal;
 
 public class ChimpPanicGoal extends PanicGoal {
-	private final ChimpanzeeEntity chimpanzee;
+	private final Chimpanzee chimpanzee;
 
-	public ChimpPanicGoal(ChimpanzeeEntity chimpanzeeIn, double speed) {
+	public ChimpPanicGoal(Chimpanzee chimpanzeeIn, double speed) {
 		super(chimpanzeeIn, speed);
 		this.chimpanzee = chimpanzeeIn;
 	}

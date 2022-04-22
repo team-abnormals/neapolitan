@@ -1,7 +1,7 @@
 package com.teamabnormals.neapolitan.common.item;
 
 import com.teamabnormals.blueprint.core.util.item.filling.TargetedItemCategoryFiller;
-import com.teamabnormals.neapolitan.common.entity.projectile.BananarrowEntity;
+import com.teamabnormals.neapolitan.common.entity.projectile.Bananarrow;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -21,7 +21,7 @@ public class BananarrowItem extends ArrowItem {
 
 	@Override
 	public AbstractArrow createArrow(Level worldIn, ItemStack stack, LivingEntity shooter) {
-		return new BananarrowEntity(worldIn, shooter);
+		return new Bananarrow(worldIn, shooter);
 	}
 
 	@Override

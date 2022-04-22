@@ -1,6 +1,6 @@
 package com.teamabnormals.neapolitan.common.entity.goal;
 
-import com.teamabnormals.neapolitan.common.entity.animal.ChimpanzeeEntity;
+import com.teamabnormals.neapolitan.common.entity.animal.Chimpanzee;
 import net.minecraft.world.entity.ai.goal.Goal;
 
 import java.util.EnumSet;
@@ -8,33 +8,33 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class ChimpFollowOthersGoal extends Goal {
-	private final ChimpanzeeEntity chimpanzee;
-	private ChimpanzeeEntity leader;
+	private final Chimpanzee chimpanzee;
+	private Chimpanzee leader;
 	private final double moveSpeed;
 	private int delayCounter;
 
-	public ChimpFollowOthersGoal(ChimpanzeeEntity chimpanzeeIn, double speed) {
+	public ChimpFollowOthersGoal(Chimpanzee chimpanzeeIn, double speed) {
 		this.chimpanzee = chimpanzeeIn;
 		this.moveSpeed = speed;
 		this.setFlags(EnumSet.of(Goal.Flag.MOVE));
 	}
 
 	public boolean canUse() {
-		Predicate<ChimpanzeeEntity> predicate = (chimpanzeeentity) -> {
+		Predicate<Chimpanzee> predicate = (chimpanzeeentity) -> {
 			return chimpanzeeentity != this.chimpanzee && chimpanzeeentity.getAge() >= 0;
 		};
-		List<ChimpanzeeEntity> list = this.chimpanzee.level.getEntitiesOfClass(ChimpanzeeEntity.class, this.chimpanzee.getBoundingBox().inflate(12.0D, 8.0D, 12.0D), predicate);
+		List<Chimpanzee> list = this.chimpanzee.level.getEntitiesOfClass(Chimpanzee.class, this.chimpanzee.getBoundingBox().inflate(12.0D, 8.0D, 12.0D), predicate);
 
 		if (list.isEmpty()) {
 			return false;
 		} else if (this.chimpanzee.isBaby()) {
 			return false;
 		} else {
-			ChimpanzeeEntity chimpanzeeentity = null;
+			Chimpanzee chimpanzeeentity = null;
 			double d0 = Double.MAX_VALUE;
 			boolean flag = false;
 
-			for (ChimpanzeeEntity chimpanzeeentity1 : list) {
+			for (Chimpanzee chimpanzeeentity1 : list) {
 				double d1 = this.chimpanzee.distanceToSqr(chimpanzeeentity1);
 
 				if (this.chimpanzee.isLeader() && d1 < 64.0D) {
@@ -88,7 +88,7 @@ public class ChimpFollowOthersGoal extends Goal {
 		}
 	}
 
-	private double getFollowDistance(ChimpanzeeEntity chimpanzeeentity) {
+	private double getFollowDistance(Chimpanzee chimpanzeeentity) {
 		return chimpanzeeentity.isLeader() && chimpanzeeentity.getNavigation().isInProgress() ? 16.0D : 64.0D;
 	}
 }

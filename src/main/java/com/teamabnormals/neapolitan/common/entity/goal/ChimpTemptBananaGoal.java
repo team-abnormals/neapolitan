@@ -1,6 +1,6 @@
 package com.teamabnormals.neapolitan.common.entity.goal;
 
-import com.teamabnormals.neapolitan.common.entity.animal.ChimpanzeeEntity;
+import com.teamabnormals.neapolitan.common.entity.animal.Chimpanzee;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.player.Player;
@@ -11,7 +11,7 @@ import java.util.EnumSet;
 
 public class ChimpTemptBananaGoal extends Goal {
 	private static final TargetingConditions ENTITY_PREDICATE = TargetingConditions.forNonCombat().range(10.0D).ignoreLineOfSight();
-	protected final ChimpanzeeEntity chimpanzee;
+	protected final Chimpanzee chimpanzee;
 	private final double speed;
 	protected Player closestPlayer;
 	private int delayTemptCounter;
@@ -19,7 +19,7 @@ public class ChimpTemptBananaGoal extends Goal {
 	private int patience;
 	private double playerDistance;
 
-	public ChimpTemptBananaGoal(ChimpanzeeEntity chimpanzeeIn, double speedIn) {
+	public ChimpTemptBananaGoal(Chimpanzee chimpanzeeIn, double speedIn) {
 		this.chimpanzee = chimpanzeeIn;
 		this.speed = speedIn;
 

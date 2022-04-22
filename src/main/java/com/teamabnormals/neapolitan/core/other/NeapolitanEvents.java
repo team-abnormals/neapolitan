@@ -4,8 +4,8 @@ import com.teamabnormals.blueprint.core.other.tags.BlueprintEntityTypeTags;
 import com.teamabnormals.blueprint.core.util.MathUtil;
 import com.teamabnormals.blueprint.core.util.TradeUtil;
 import com.teamabnormals.blueprint.core.util.TradeUtil.BlueprintTrade;
-import com.teamabnormals.neapolitan.common.entity.animal.ChimpanzeeEntity;
-import com.teamabnormals.neapolitan.common.entity.monster.PlantainSpiderEntity;
+import com.teamabnormals.neapolitan.common.entity.animal.Chimpanzee;
+import com.teamabnormals.neapolitan.common.entity.monster.PlantainSpider;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.NeapolitanConfig;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanEntityTypeTags;
@@ -107,7 +107,7 @@ public class NeapolitanEvents {
 			if (validSpawn && conditions) {
 				if (entity.getType() == EntityType.SPIDER && event.getY() > 60) {
 					Spider spider = (Spider) entity;
-					PlantainSpiderEntity plantainSpider = NeapolitanEntityTypes.PLANTAIN_SPIDER.get().create((Level) level);
+					PlantainSpider plantainSpider = NeapolitanEntityTypes.PLANTAIN_SPIDER.get().create((Level) level);
 					if (plantainSpider != null) {
 						plantainSpider.copyPosition(spider);
 						level.addFreshEntity(plantainSpider);
@@ -187,7 +187,7 @@ public class NeapolitanEvents {
 		if (projectileEntity instanceof ThrowableItemProjectile && ModList.get().isLoaded(NeapolitanConstants.ENVIRONMENTAL) && ((ThrowableItemProjectile) projectileEntity).getItem().getItem() == ForgeRegistries.ITEMS.getValue(NeapolitanConstants.MUD_BALL)) {
 			if (event.getRayTraceResult().getType() == HitResult.Type.ENTITY) {
 				EntityHitResult entity = (EntityHitResult) event.getRayTraceResult();
-				if (entity.getEntity() instanceof ChimpanzeeEntity chimpanzee) {
+				if (entity.getEntity() instanceof Chimpanzee chimpanzee) {
 					chimpanzee.setDirtiness(12000);
 				}
 			}

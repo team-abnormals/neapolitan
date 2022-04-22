@@ -1,7 +1,7 @@
 package com.teamabnormals.neapolitan.common.entity.goal;
 
 import com.teamabnormals.blueprint.core.other.tags.BlueprintItemTags;
-import com.teamabnormals.neapolitan.common.entity.animal.ChimpanzeeEntity;
+import com.teamabnormals.neapolitan.common.entity.animal.Chimpanzee;
 import com.teamabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanItemTags;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
@@ -21,12 +21,12 @@ import net.minecraft.world.phys.Vec3;
 import java.util.EnumSet;
 
 public class ChimpLookAtItemGoal extends Goal {
-	private final ChimpanzeeEntity chimpanzee;
+	private final Chimpanzee chimpanzee;
 	private ItemStack itemStack;
 	private int lookTimer;
 	private boolean wasHurt;
 
-	public ChimpLookAtItemGoal(ChimpanzeeEntity chimpanzeeIn) {
+	public ChimpLookAtItemGoal(Chimpanzee chimpanzeeIn) {
 		this.chimpanzee = chimpanzeeIn;
 		this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
 	}
