@@ -21,23 +21,6 @@
     ],
     "subtitle": "subtitles.neapolitan.entity.chimpanzee.death"
   },
-  "entity.chimpanzee.eat": {
-    "sounds": [
-      {
-        "name": "minecraft:random/eat1",
-        "volume": 0.65
-      },
-      {
-        "name": "minecraft:random/eat2",
-        "volume": 0.65
-      },
-      {
-        "name": "minecraft:random/eat3",
-        "volume": 0.65
-      }
-    ],
-    "subtitle": "subtitles.neapolitan.entity.chimpanzee.eat"
-  },
   "entity.chimpanzee.howl": {
     "sounds": [
       "neapolitan:mob/chimpanzee/howl1",

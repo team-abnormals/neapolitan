@@ -61,6 +61,7 @@ import net.minecraft.world.item.DyeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -466,7 +467,11 @@ public class Chimpanzee extends Animal implements NeutralMob {
 					}
 				}
 
-				this.playSound(NeapolitanSoundEvents.ENTITY_CHIMPANZEE_EAT.get(), 0.25F + 0.5F * (float) this.random.nextInt(2), (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+				if (food.getUseAnimation() == UseAnim.DRINK) {
+					this.playSound(food.getDrinkingSound(), 0.5F, this.random.nextFloat() * 0.1F + 0.9F);
+				} else {
+					this.playSound(food.getEatingSound(), 0.5F + 0.5F * (float)this.random.nextInt(2), (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+				}
 			}
 		} else if (this.isDoingAction(ChimpanzeeAction.CRYING)) {
 			if (this.level.isClientSide) {

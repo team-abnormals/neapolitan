@@ -14,7 +14,6 @@ public class NeapolitanSoundEvents {
 
 	public static final RegistryObject<SoundEvent> ENTITY_CHIMPANZEE_SCREAM = HELPER.createSoundEvent("entity.chimpanzee.scream");
 	public static final RegistryObject<SoundEvent> ENTITY_CHIMPANZEE_DEATH = HELPER.createSoundEvent("entity.chimpanzee.death");
-	public static final RegistryObject<SoundEvent> ENTITY_CHIMPANZEE_EAT = HELPER.createSoundEvent("entity.chimpanzee.eat");
 	public static final RegistryObject<SoundEvent> ENTITY_CHIMPANZEE_HOWL = HELPER.createSoundEvent("entity.chimpanzee.howl");
 	public static final RegistryObject<SoundEvent> ENTITY_CHIMPANZEE_HURT = HELPER.createSoundEvent("entity.chimpanzee.hurt");
 	public static final RegistryObject<SoundEvent> ENTITY_CHIMPANZEE_AMBIENT = HELPER.createSoundEvent("entity.chimpanzee.ambient");
