@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:block/crop",
-  "textures": {
-    "crop": "neapolitan:block/strawberry_bush_stage5"
-  }
+    "parent": "neapolitan:block/cross_crop",
+    "textures": {
+        "texture": "neapolitan:block/strawberry_bush_stage5"
+    }
 }
