@@ -1,6 +1,6 @@
 {
-    "parent": "neapolitan:block/cross_crop",
-    "textures": {
-        "texture": "neapolitan:block/strawberry_bush_stage3"
-    }
+  "parent": "neapolitan:block/cross_crop",
+  "textures": {
+    "texture": "neapolitan:block/strawberry_bush_stage3"
+  }
 }
