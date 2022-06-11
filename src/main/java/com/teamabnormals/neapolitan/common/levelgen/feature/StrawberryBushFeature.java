@@ -28,7 +28,7 @@ public class StrawberryBushFeature extends Feature<SimpleBlockConfiguration> {
 		BlockState state = config.toPlace().getState(random, origin);
 		if (state.canSurvive(level, origin)) {
 			if (random.nextInt(10) != 0) {
-				int age = level.getBlockState(origin.below()).is(Blocks.COARSE_DIRT) ? 2 : 6;
+				int age = level.getBlockState(origin.below()).is(Blocks.COARSE_DIRT) ? 3 : 6;
 				level.setBlock(origin, state.setValue(StrawberryBushBlock.AGE, age), 2);
 			} else {
 				level.setBlock(origin, state.setValue(StrawberryBushBlock.TYPE, StrawberryBushBlock.StrawberryType.NONE).setValue(StrawberryBushBlock.AGE, 2), 2);

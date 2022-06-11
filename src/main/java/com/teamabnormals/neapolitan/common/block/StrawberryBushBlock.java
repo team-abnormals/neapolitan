@@ -94,7 +94,7 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, Boneme
 			return;
 		if (worldIn.getRawBrightness(pos, 0) >= 13) {
 			int age = this.getAge(state);
-			int maxAgeForPos = worldIn.getBlockState(pos.below()).is(Blocks.COARSE_DIRT) ? 2 : this.getMaxAge();
+			int maxAgeForPos = worldIn.getBlockState(pos.below()).is(Blocks.COARSE_DIRT) ? 3 : this.getMaxAge();
 			int growthChance = !worldIn.isRaining() ? 7 : 5;
 			if (age < maxAgeForPos) {
 				if (ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt(growthChance) == 0)) {
