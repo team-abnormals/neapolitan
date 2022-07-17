@@ -1,8 +1,8 @@
 package com.teamabnormals.neapolitan.common.item;
 
 import com.google.common.collect.Lists;
-import com.teamabnormals.neapolitan.core.registry.NeapolitanMobEffects;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanMobEffects;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;

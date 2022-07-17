@@ -3,32 +3,18 @@ package com.teamabnormals.neapolitan.core.registry;
 import com.teamabnormals.blueprint.common.item.BlueprintBannerPatternItem;
 import com.teamabnormals.blueprint.common.item.BlueprintRecordItem;
 import com.teamabnormals.blueprint.core.util.registry.ItemSubRegistryHelper;
-import com.teamabnormals.neapolitan.common.item.AdzukiBeansItem;
-import com.teamabnormals.neapolitan.common.item.BananaBunchItem;
-import com.teamabnormals.neapolitan.common.item.BananarrowItem;
-import com.teamabnormals.neapolitan.common.item.HealingDrinkItem;
-import com.teamabnormals.neapolitan.common.item.HealingItem;
-import com.teamabnormals.neapolitan.common.item.HealingSoupItem;
-import com.teamabnormals.neapolitan.common.item.IceCubesItem;
-import com.teamabnormals.neapolitan.common.item.MilkBottleItem;
-import com.teamabnormals.neapolitan.common.item.MilkshakeItem;
+import com.teamabnormals.neapolitan.common.item.*;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.BowlFoodItem;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemNameBlockItem;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.*;
 import net.minecraftforge.common.ForgeSpawnEggItem;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.registries.RegistryObject;
 
-@Mod.EventBusSubscriber(modid = Neapolitan.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = Neapolitan.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class NeapolitanItems {
 	public static final ItemSubRegistryHelper HELPER = Neapolitan.REGISTRY_HELPER.getItemSubHelper();
 

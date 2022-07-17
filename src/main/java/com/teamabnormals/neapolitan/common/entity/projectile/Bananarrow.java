@@ -2,9 +2,9 @@ package com.teamabnormals.neapolitan.common.entity.projectile;
 
 import com.teamabnormals.neapolitan.common.entity.animal.Chimpanzee;
 import com.teamabnormals.neapolitan.core.other.NeapolitanCriteriaTriggers;
-import com.teamabnormals.neapolitan.core.registry.NeapolitanMobEffects;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanEntityTypes;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanMobEffects;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;

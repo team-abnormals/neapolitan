@@ -11,14 +11,12 @@ import com.teamabnormals.neapolitan.common.entity.animal.Chimpanzee;
 import com.teamabnormals.neapolitan.common.entity.util.ChimpanzeeTypes;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.other.NeapolitanModelLayers;
-import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.layers.CustomHeadLayer;
 import net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.monster.Shulker;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 

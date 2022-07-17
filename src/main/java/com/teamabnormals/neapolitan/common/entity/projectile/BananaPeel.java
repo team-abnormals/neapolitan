@@ -1,9 +1,9 @@
 package com.teamabnormals.neapolitan.common.entity.projectile;
 
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanEntityTypeTags;
-import com.teamabnormals.neapolitan.core.registry.NeapolitanMobEffects;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanEntityTypes;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanMobEffects;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.sounds.SoundEvents;

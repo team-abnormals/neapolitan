@@ -1,0 +1,23 @@
+{
+  "replace": false,
+  "values": [
+    "neapolitan:strawberry_cake",
+    "neapolitan:strawberry_candle_cake",
+    "neapolitan:white_strawberry_candle_cake",
+    "neapolitan:orange_strawberry_candle_cake",
+    "neapolitan:magenta_strawberry_candle_cake",
+    "neapolitan:light_blue_strawberry_candle_cake",
+    "neapolitan:yellow_strawberry_candle_cake",
+    "neapolitan:lime_strawberry_candle_cake",
+    "neapolitan:pink_strawberry_candle_cake",
+    "neapolitan:gray_strawberry_candle_cake",
+    "neapolitan:light_gray_strawberry_candle_cake",
+    "neapolitan:cyan_strawberry_candle_cake",
+    "neapolitan:purple_strawberry_candle_cake",
+    "neapolitan:blue_strawberry_candle_cake",
+    "neapolitan:brown_strawberry_candle_cake",
+    "neapolitan:green_strawberry_candle_cake",
+    "neapolitan:red_strawberry_candle_cake",
+    "neapolitan:black_strawberry_candle_cake"
+  ]
+}

@@ -16,11 +16,7 @@ import com.teamabnormals.neapolitan.core.data.server.tags.NeapolitanEntityTypeTa
 import com.teamabnormals.neapolitan.core.data.server.tags.NeapolitanItemTagsProvider;
 import com.teamabnormals.neapolitan.core.other.NeapolitanCompat;
 import com.teamabnormals.neapolitan.core.other.NeapolitanModelLayers;
-import com.teamabnormals.neapolitan.core.registry.NeapolitanEntityTypes;
-import com.teamabnormals.neapolitan.core.registry.NeapolitanFeatures;
-import com.teamabnormals.neapolitan.core.registry.NeapolitanMobEffects;
-import com.teamabnormals.neapolitan.core.registry.NeapolitanPaintingTypes;
-import com.teamabnormals.neapolitan.core.registry.NeapolitanParticleTypes;
+import com.teamabnormals.neapolitan.core.registry.*;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;

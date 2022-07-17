@@ -1,6 +1,5 @@
 package com.teamabnormals.neapolitan.core.registry;
 
-import com.teamabnormals.blueprint.core.api.banner.BannerManager;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import net.minecraft.world.entity.decoration.Motive;
 import net.minecraft.world.level.block.entity.BannerPattern;
@@ -14,5 +13,5 @@ public final class NeapolitanPaintingTypes {
 	public static final RegistryObject<Motive> SCREAM = PAINTING_TYPES.register("scream", () -> new Motive(32, 32));
 	public static final RegistryObject<Motive> CONE = PAINTING_TYPES.register("cone", () -> new Motive(16, 32));
 
-	public static final BannerPattern CHIMPANZEE = BannerManager.createPattern("mca", "chimpanzee", "mky");
+	public static final BannerPattern CHIMPANZEE = BannerPattern.create("MCA_CHIMPANZEE", "mca_chimpanzee", "mca_mky", true);
 }

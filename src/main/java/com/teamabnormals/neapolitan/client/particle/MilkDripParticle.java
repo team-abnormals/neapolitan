@@ -2,11 +2,7 @@ package com.teamabnormals.neapolitan.client.particle;
 
 import com.teamabnormals.neapolitan.core.registry.NeapolitanParticleTypes;
 import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.particle.Particle;
-import net.minecraft.client.particle.ParticleProvider;
-import net.minecraft.client.particle.ParticleRenderType;
-import net.minecraft.client.particle.SpriteSet;
-import net.minecraft.client.particle.TextureSheetParticle;
+import net.minecraft.client.particle.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.SimpleParticleType;

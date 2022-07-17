@@ -6,40 +6,22 @@ import com.teamabnormals.blueprint.common.block.thatch.ThatchSlabBlock;
 import com.teamabnormals.blueprint.common.block.thatch.ThatchStairBlock;
 import com.teamabnormals.blueprint.common.block.thatch.ThatchVerticalSlabBlock;
 import com.teamabnormals.blueprint.core.util.registry.BlockSubRegistryHelper;
-import com.teamabnormals.neapolitan.common.block.AdzukiSoilBlock;
-import com.teamabnormals.neapolitan.common.block.AdzukiSproutsBlock;
-import com.teamabnormals.neapolitan.common.block.BananaBundleBlock;
-import com.teamabnormals.neapolitan.common.block.BananaFrondBlock;
-import com.teamabnormals.neapolitan.common.block.BeanstalkBlock;
-import com.teamabnormals.neapolitan.common.block.BeanstalkThornsBlock;
-import com.teamabnormals.neapolitan.common.block.FlavoredCakeBlock;
-import com.teamabnormals.neapolitan.common.block.FlavoredCandleCakeBlock;
-import com.teamabnormals.neapolitan.common.block.MilkCauldronBlock;
-import com.teamabnormals.neapolitan.common.block.MintBlock;
-import com.teamabnormals.neapolitan.common.block.StrawberryBushBlock;
-import com.teamabnormals.neapolitan.common.block.VanillaVineBlock;
-import com.teamabnormals.neapolitan.common.block.VanillaVineTopBlock;
+import com.teamabnormals.neapolitan.common.block.*;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems.NeapolitanFoods;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.RotatedPillarBlock;
-import net.minecraft.world.level.block.SlabBlock;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.StairBlock;
-import net.minecraft.world.level.block.WallBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.function.ToIntFunction;
 
-@Mod.EventBusSubscriber(modid = Neapolitan.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = Neapolitan.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class NeapolitanBlocks {
 	public static final BlockSubRegistryHelper HELPER = Neapolitan.REGISTRY_HELPER.getBlockSubHelper();
 

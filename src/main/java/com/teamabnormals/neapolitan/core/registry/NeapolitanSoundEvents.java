@@ -3,10 +3,10 @@ package com.teamabnormals.neapolitan.core.registry;
 import com.teamabnormals.blueprint.core.util.registry.SoundSubRegistryHelper;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.registries.RegistryObject;
 
-@Mod.EventBusSubscriber(modid = Neapolitan.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = Neapolitan.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class NeapolitanSoundEvents {
 	public static final SoundSubRegistryHelper HELPER = Neapolitan.REGISTRY_HELPER.getSoundSubHelper();
 

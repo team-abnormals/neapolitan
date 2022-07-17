@@ -1,12 +1,11 @@
 package com.teamabnormals.neapolitan.common.entity.goal;
 
-import java.util.EnumSet;
-
 import com.teamabnormals.neapolitan.common.entity.animal.Chimpanzee;
 import com.teamabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
-
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.phys.Vec3;
+
+import java.util.EnumSet;
 
 public class ChimpFlipGoal extends Goal {
 	private final Chimpanzee chimpanzee;

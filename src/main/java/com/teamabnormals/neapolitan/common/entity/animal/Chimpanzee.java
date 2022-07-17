@@ -9,11 +9,7 @@ import com.teamabnormals.neapolitan.common.item.MilkshakeItem;
 import com.teamabnormals.neapolitan.core.other.NeapolitanConstants;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanEntityTypeTags;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanItemTags;
-import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
-import com.teamabnormals.neapolitan.core.registry.NeapolitanEntityTypes;
-import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
-import com.teamabnormals.neapolitan.core.registry.NeapolitanParticleTypes;
-import com.teamabnormals.neapolitan.core.registry.NeapolitanSoundEvents;
+import com.teamabnormals.neapolitan.core.registry.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ItemParticleOption;
@@ -40,11 +36,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.BodyRotationControl;
 import net.minecraft.world.entity.ai.control.LookControl;
-import net.minecraft.world.entity.ai.goal.BreedGoal;
-import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
-import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
-import net.minecraft.world.entity.ai.goal.TemptGoal;
+import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.ResetUniversalAngerTargetGoal;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
@@ -55,13 +47,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.FireworkRocketEntity;
 import net.minecraft.world.entity.vehicle.Boat;
-import net.minecraft.world.item.ArrowItem;
-import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.item.DyeItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -470,7 +456,7 @@ public class Chimpanzee extends Animal implements NeutralMob {
 				if (food.getUseAnimation() == UseAnim.DRINK) {
 					this.playSound(food.getDrinkingSound(), 0.5F, this.random.nextFloat() * 0.1F + 0.9F);
 				} else {
-					this.playSound(food.getEatingSound(), 0.5F + 0.5F * (float)this.random.nextInt(2), (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+					this.playSound(food.getEatingSound(), 0.5F + 0.5F * (float) this.random.nextInt(2), (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
 				}
 			}
 		} else if (this.isDoingAction(ChimpanzeeAction.CRYING)) {

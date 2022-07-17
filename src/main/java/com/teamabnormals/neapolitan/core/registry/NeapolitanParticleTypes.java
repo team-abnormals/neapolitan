@@ -1,10 +1,6 @@
 package com.teamabnormals.neapolitan.core.registry;
 
-import com.teamabnormals.neapolitan.client.particle.ChimpanzeeNeedParticle;
-import com.teamabnormals.neapolitan.client.particle.FlyParticle;
-import com.teamabnormals.neapolitan.client.particle.MilkDripParticle;
-import com.teamabnormals.neapolitan.client.particle.MintBoostParticle;
-import com.teamabnormals.neapolitan.client.particle.TearParticle;
+import com.teamabnormals.neapolitan.client.particle.*;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.ParticleEngine;
@@ -14,12 +10,12 @@ import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-@Mod.EventBusSubscriber(modid = Neapolitan.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = Neapolitan.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class NeapolitanParticleTypes {
 	public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES = DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, Neapolitan.MOD_ID);
 
@@ -40,7 +36,7 @@ public class NeapolitanParticleTypes {
 		manager.register(CHIMPANZEE_NEEDS_FOOD.get(), ChimpanzeeNeedParticle.Provider::new);
 		manager.register(CHIMPANZEE_NEEDS_FRIEND.get(), ChimpanzeeNeedParticle.Provider::new);
 		manager.register(CHIMPANZEE_NEEDS_SUN.get(), ChimpanzeeNeedParticle.Provider::new);
-		manager.register(FLY.get(),  FlyParticle.Provider::new);
+		manager.register(FLY.get(), FlyParticle.Provider::new);
 		manager.register(TEAR.get(), TearParticle.Provider::new);
 		manager.register(DRIPPING_DRIPSTONE_MILK.get(), MilkDripParticle.DripstoneWaterHangProvider::new);
 		manager.register(FALLING_DRIPSTONE_MILK.get(), MilkDripParticle.DripstoneWaterFallProvider::new);

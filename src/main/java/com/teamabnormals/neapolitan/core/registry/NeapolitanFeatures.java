@@ -1,10 +1,6 @@
 package com.teamabnormals.neapolitan.core.registry;
 
-import com.teamabnormals.neapolitan.common.levelgen.feature.AdzukiSproutsFeature;
-import com.teamabnormals.neapolitan.common.levelgen.feature.BananaPlantFeature;
-import com.teamabnormals.neapolitan.common.levelgen.feature.MintPondFeature;
-import com.teamabnormals.neapolitan.common.levelgen.feature.StrawberryBushFeature;
-import com.teamabnormals.neapolitan.common.levelgen.feature.VanillaPatchFeature;
+import com.teamabnormals.neapolitan.common.levelgen.feature.*;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.NeapolitanConfig;
 import net.minecraft.core.BlockPos;
@@ -22,11 +18,7 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
-import net.minecraft.world.level.levelgen.placement.BiomeFilter;
-import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import net.minecraft.world.level.levelgen.placement.PlacementModifier;
-import net.minecraft.world.level.levelgen.placement.RarityFilter;
+import net.minecraft.world.level.levelgen.placement.*;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
