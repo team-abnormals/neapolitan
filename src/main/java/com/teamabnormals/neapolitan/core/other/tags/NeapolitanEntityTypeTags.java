@@ -10,6 +10,9 @@ public class NeapolitanEntityTypeTags {
 	public static final TagKey<EntityType<?>> UNAFFECTED_BY_HARMONY = entityTypeTag("unaffected_by_harmony");
 	public static final TagKey<EntityType<?>> SCARES_CHIMPANZEES = entityTypeTag("scares_chimpanzees");
 	public static final TagKey<EntityType<?>> CHIMPANZEE_DART_TARGETS = entityTypeTag("chimpanzee_dart_targets");
+	public static final TagKey<EntityType<?>> PLANTAIN_SPIDERS_CAN_REPLACE = entityTypeTag("plantain_spiders_can_replace");
+	public static final TagKey<EntityType<?>> EXPLOSION_HEALS_IN_STRAWBERRY = entityTypeTag("explosion_heals_in_strawberry");
+	public static final TagKey<EntityType<?>> MUDDY_PROJECTILES = TagUtil.entityTypeTag("environmental", "muddy_projectiles");
 
 	private static TagKey<EntityType<?>> entityTypeTag(String name) {
 		return TagUtil.entityTypeTag(Neapolitan.MOD_ID, name);

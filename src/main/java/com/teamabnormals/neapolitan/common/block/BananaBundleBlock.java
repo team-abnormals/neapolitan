@@ -21,8 +21,8 @@ public class BananaBundleBlock extends Block {
 	}
 
 	@Override
-	public void spawnAfterBreak(BlockState state, ServerLevel world, BlockPos pos, ItemStack stack) {
-		super.spawnAfterBreak(state, world, pos, stack);
+	public void spawnAfterBreak(BlockState state, ServerLevel world, BlockPos pos, ItemStack stack, boolean bool) {
+		super.spawnAfterBreak(state, world, pos, stack, bool);
 		if (world.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) && EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SILK_TOUCH, stack) == 0) {
 			this.spawnSpider(world, pos);
 		}

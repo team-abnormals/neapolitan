@@ -5,14 +5,13 @@ import com.teamabnormals.neapolitan.common.block.StrawberryBushBlock;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
-
-import java.util.Random;
 
 public class StrawberryBushFeature extends Feature<SimpleBlockConfiguration> {
 	public StrawberryBushFeature(Codec<SimpleBlockConfiguration> config) {
@@ -22,7 +21,7 @@ public class StrawberryBushFeature extends Feature<SimpleBlockConfiguration> {
 	public boolean place(FeaturePlaceContext<SimpleBlockConfiguration> context) {
 		SimpleBlockConfiguration config = context.config();
 		WorldGenLevel level = context.level();
-		Random random = context.random();
+		RandomSource random = context.random();
 		BlockPos origin = context.origin();
 		BlockPos downPos = origin.below();
 		BlockState state = config.toPlace().getState(random, origin);

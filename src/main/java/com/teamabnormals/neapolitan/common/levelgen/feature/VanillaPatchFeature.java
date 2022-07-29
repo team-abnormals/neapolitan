@@ -6,13 +6,12 @@ import com.teamabnormals.neapolitan.common.block.VanillaVineTopBlock;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
-
-import java.util.Random;
 
 public class VanillaPatchFeature extends Feature<RandomPatchConfiguration> {
 	public VanillaPatchFeature(Codec<RandomPatchConfiguration> codec) {
@@ -22,7 +21,7 @@ public class VanillaPatchFeature extends Feature<RandomPatchConfiguration> {
 	@Override
 	public boolean place(FeaturePlaceContext<RandomPatchConfiguration> context) {
 		RandomPatchConfiguration config = context.config();
-		Random random = context.random();
+		RandomSource random = context.random();
 		BlockPos origin = context.origin();
 		WorldGenLevel level = context.level();
 		BlockState state = NeapolitanBlocks.VANILLA_VINE.get().defaultBlockState();

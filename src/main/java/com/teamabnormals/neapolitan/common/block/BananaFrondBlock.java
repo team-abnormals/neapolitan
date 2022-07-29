@@ -5,6 +5,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -19,7 +20,10 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraftforge.common.Tags;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class BananaFrondBlock extends BushBlock implements BonemealableBlock {
 	public static final DirectionProperty FACING = BlockStateProperties.FACING;
@@ -63,19 +67,19 @@ public class BananaFrondBlock extends BushBlock implements BonemealableBlock {
 	}
 
 	@Override
-	public boolean isBonemealSuccess(Level worldIn, Random rand, BlockPos pos, BlockState state) {
+	public boolean isBonemealSuccess(Level worldIn, RandomSource rand, BlockPos pos, BlockState state) {
 		return true;
 	}
 
 	@Override
-	public void performBonemeal(ServerLevel world, Random rand, BlockPos pos, BlockState state) {
+	public void performBonemeal(ServerLevel world, RandomSource rand, BlockPos pos, BlockState state) {
 		if (rand.nextInt(6) == 0) {
 			attemptGrowBanana(getSizeForFrond(rand, this), world, rand, pos);
 		}
 	}
 
 	@Override
-	public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, Random rand) {
+	public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource rand) {
 		if (this.isValidBonemealTarget(worldIn, pos, state, worldIn.isClientSide()) && canGrowOn(worldIn.getBlockState(pos.below()))) {
 			if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt(2) == 0)) {
 				attemptGrowBanana(getSizeForFrond(rand, this), worldIn, rand, pos);
@@ -84,7 +88,7 @@ public class BananaFrondBlock extends BushBlock implements BonemealableBlock {
 		}
 	}
 
-	public static boolean attemptGrowBanana(int size, Level world, Random rand, BlockPos pos) {
+	public static boolean attemptGrowBanana(int size, Level world, RandomSource rand, BlockPos pos) {
 		BlockPos blockPos = pos;
 		List<BlockPos> stalks = new ArrayList<>();
 		BlockPos upFrond = null;
@@ -172,7 +176,7 @@ public class BananaFrondBlock extends BushBlock implements BonemealableBlock {
 		return true;
 	}
 
-	private static int getSizeForFrond(Random rand, Block frond) {
+	private static int getSizeForFrond(RandomSource rand, Block frond) {
 		int extra = 0;
 		if (frond == NeapolitanBlocks.SMALL_BANANA_FROND.get())
 			extra = rand.nextInt(2);

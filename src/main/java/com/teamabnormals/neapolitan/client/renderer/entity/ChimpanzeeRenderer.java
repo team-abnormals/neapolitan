@@ -8,7 +8,7 @@ import com.teamabnormals.neapolitan.client.renderer.entity.layers.ChimpanzeeDyeL
 import com.teamabnormals.neapolitan.client.renderer.entity.layers.ChimpanzeeItemLayer;
 import com.teamabnormals.neapolitan.client.renderer.entity.layers.ChimpanzeePaleSkinLayer;
 import com.teamabnormals.neapolitan.common.entity.animal.Chimpanzee;
-import com.teamabnormals.neapolitan.common.entity.util.ChimpanzeeTypes;
+import com.teamabnormals.neapolitan.common.entity.util.ChimpanzeeType;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.other.NeapolitanModelLayers;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -31,13 +31,13 @@ public class ChimpanzeeRenderer extends MobRenderer<Chimpanzee, ChimpanzeeModel<
 		this.addLayer(new ChimpanzeePaleSkinLayer<>(this));
 		this.addLayer(new ChimpanzeeDirtLayer<>(this));
 		this.addLayer(new ChimpanzeeDyeLayer<>(this));
-		this.addLayer(new CustomHeadLayer<>(this, context.getModelSet()));
-		this.addLayer(new ChimpanzeeItemLayer<>(this));
+		this.addLayer(new CustomHeadLayer<>(this, context.getModelSet(), context.getItemInHandRenderer()));
+		this.addLayer(new ChimpanzeeItemLayer<>(this, context.getItemInHandRenderer()));
 	}
 
 	@Override
 	public ResourceLocation getTextureLocation(Chimpanzee chimpanzee) {
-		ChimpanzeeTypes type = ChimpanzeeTypes.byId(chimpanzee.getChimpanzeeType());
+		ChimpanzeeType type = ChimpanzeeType.byId(chimpanzee.getChimpanzeeType());
 		String textureend = chimpanzee.isMouthOpen() ? "_chimpanzee_mouth_open.png" : "_chimpanzee.png";
 		return new ResourceLocation(Neapolitan.MOD_ID, "textures/entity/chimpanzee/" + type.name().toLowerCase(Locale.ROOT) + textureend);
 	}

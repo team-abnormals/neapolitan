@@ -2,12 +2,10 @@ package com.teamabnormals.neapolitan.core.registry;
 
 import com.teamabnormals.neapolitan.client.particle.*;
 import com.teamabnormals.neapolitan.core.Neapolitan;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.client.particle.SplashParticle;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
-import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
+import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -30,16 +28,15 @@ public class NeapolitanParticleTypes {
 	public static final RegistryObject<SimpleParticleType> MILK_SPLASH = PARTICLE_TYPES.register("milk_splash", () -> new SimpleParticleType(false));
 
 	@SubscribeEvent(priority = EventPriority.LOWEST)
-	public static void registerParticleTypes(ParticleFactoryRegisterEvent event) {
-		ParticleEngine manager = Minecraft.getInstance().particleEngine;
-		manager.register(MINT_BOOST.get(), MintBoostParticle.Provider::new);
-		manager.register(CHIMPANZEE_NEEDS_FOOD.get(), ChimpanzeeNeedParticle.Provider::new);
-		manager.register(CHIMPANZEE_NEEDS_FRIEND.get(), ChimpanzeeNeedParticle.Provider::new);
-		manager.register(CHIMPANZEE_NEEDS_SUN.get(), ChimpanzeeNeedParticle.Provider::new);
-		manager.register(FLY.get(), FlyParticle.Provider::new);
-		manager.register(TEAR.get(), TearParticle.Provider::new);
-		manager.register(DRIPPING_DRIPSTONE_MILK.get(), MilkDripParticle.DripstoneWaterHangProvider::new);
-		manager.register(FALLING_DRIPSTONE_MILK.get(), MilkDripParticle.DripstoneWaterFallProvider::new);
-		manager.register(MILK_SPLASH.get(), SplashParticle.Provider::new);
+	public static void registerParticleTypes(RegisterParticleProvidersEvent event) {
+		event.register(MINT_BOOST.get(), MintBoostParticle.Provider::new);
+		event.register(CHIMPANZEE_NEEDS_FOOD.get(), ChimpanzeeNeedParticle.Provider::new);
+		event.register(CHIMPANZEE_NEEDS_FRIEND.get(), ChimpanzeeNeedParticle.Provider::new);
+		event.register(CHIMPANZEE_NEEDS_SUN.get(), ChimpanzeeNeedParticle.Provider::new);
+		event.register(FLY.get(), FlyParticle.Provider::new);
+		event.register(TEAR.get(), TearParticle.Provider::new);
+		event.register(DRIPPING_DRIPSTONE_MILK.get(), MilkDripParticle.DripstoneWaterHangProvider::new);
+		event.register(FALLING_DRIPSTONE_MILK.get(), MilkDripParticle.DripstoneWaterFallProvider::new);
+		event.register(MILK_SPLASH.get(), SplashParticle.Provider::new);
 	}
 }

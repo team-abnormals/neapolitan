@@ -11,6 +11,7 @@ import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
 
 public class AdzukiSproutsFeature extends Feature<SimpleBlockConfiguration> {
+
 	public AdzukiSproutsFeature(Codec<SimpleBlockConfiguration> config) {
 		super(config);
 	}

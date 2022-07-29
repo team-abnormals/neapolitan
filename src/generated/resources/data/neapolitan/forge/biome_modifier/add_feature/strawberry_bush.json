@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#neapolitan:has_feature/strawberry_bush",
+  "features": "neapolitan:patch_strawberry_bush",
+  "step": "vegetal_decoration"
+}

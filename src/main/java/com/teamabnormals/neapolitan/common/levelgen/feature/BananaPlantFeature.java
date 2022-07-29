@@ -5,21 +5,27 @@ import com.teamabnormals.blueprint.core.util.TreeUtil;
 import com.teamabnormals.neapolitan.common.block.BananaFrondBlock;
 import com.teamabnormals.neapolitan.common.entity.animal.Chimpanzee;
 import com.teamabnormals.neapolitan.core.NeapolitanConfig;
+import com.teamabnormals.neapolitan.core.other.tags.NeapolitanBiomeTags;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.tags.BiomeTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.level.LevelSimulatedReader;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockBehaviour.BlockStateBase;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.TreeFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class BananaPlantFeature extends Feature<NoneFeatureConfiguration> {
 	public BananaPlantFeature(Codec<NoneFeatureConfiguration> codec) {
@@ -28,7 +34,7 @@ public class BananaPlantFeature extends Feature<NoneFeatureConfiguration> {
 
 	@Override
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
-		Random random = context.random();
+		RandomSource random = context.random();
 		WorldGenLevel level = context.level();
 		BlockPos pos = context.origin();
 
@@ -90,7 +96,7 @@ public class BananaPlantFeature extends Feature<NoneFeatureConfiguration> {
 			TreeUtil.setForcedState(level, upFrond, NeapolitanBlocks.LARGE_BANANA_FROND.get().defaultBlockState());
 			if (bundle != null) {
 				TreeUtil.setForcedState(level, bundle, NeapolitanBlocks.BANANA_BUNDLE.get().defaultBlockState());
-				if (NeapolitanConfig.COMMON.chimpanzeeSpawning.get() && random.nextInt(4) == 0 && level.getBiome(pos).containsTag(BiomeTags.IS_JUNGLE)) {
+				if (random.nextDouble() < NeapolitanConfig.COMMON.chimpanzeeGroupChance.get() && level.getBiome(pos).containsTag(NeapolitanBiomeTags.HAS_CHIMPANZEE)) {
 					spawnChimps(level, pos);
 				}
 			}
@@ -106,7 +112,7 @@ public class BananaPlantFeature extends Feature<NoneFeatureConfiguration> {
 			if (isGrass(level, pos.below())) {
 				TreeUtil.setForcedState(level, pos.below(), Blocks.GRAVEL.defaultBlockState());
 				for (BlockPos blockpos : BlockPos.betweenClosed(pos.getX() - 3, pos.getY() - 2, pos.getZ() - 3, pos.getX() + 3, pos.getY() + 2, pos.getZ() + 3)) {
-					if (isGrass(level, blockpos) && random.nextDouble() < NeapolitanConfig.COMMON.chimpanzeeGroupChance.get() && isAir(level, blockpos.above()))
+					if (isGrass(level, blockpos) && level.isStateAtPosition(blockpos.above(), BlockStateBase::isAir))
 						TreeUtil.setForcedState(level, blockpos, Blocks.GRAVEL.defaultBlockState());
 				}
 			}
@@ -118,7 +124,7 @@ public class BananaPlantFeature extends Feature<NoneFeatureConfiguration> {
 	}
 
 	private static void spawnChimps(WorldGenLevel level, BlockPos pos) {
-		Random random = level.getRandom();
+		RandomSource random = level.getRandom();
 		int minSpawnAttempts = NeapolitanConfig.COMMON.chimpanzeeMinSpawnAttempts.get();
 		int maxSpawnAttempts = NeapolitanConfig.COMMON.chimpanzeeMaxSpawnAttempts.get();
 		if (maxSpawnAttempts < minSpawnAttempts) return;
@@ -147,18 +153,18 @@ public class BananaPlantFeature extends Feature<NoneFeatureConfiguration> {
 		}
 	}
 
-	private static boolean isAirAt(LevelSimulatedReader world, BlockPos pos, int size) {
-		BlockPos position = pos.above();
+	private static boolean isAirAt(LevelSimulatedReader level, BlockPos origin, int size) {
+		BlockPos pos = origin.above();
 		for (int i = 0; i < size + 1; i++) {
-			if (!isAir(world, position))
+			if (!TreeFeature.isAirOrLeaves(level, pos))
 				return false;
 			for (Direction direction : Direction.values()) {
 				if (direction.getAxis().isHorizontal()) {
-					if (!isAir(world, position.relative(direction)))
+					if (!level.isStateAtPosition(pos.relative(direction), BlockStateBase::isAir))
 						return false;
 				}
 			}
-			position = position.above();
+			pos = pos.above();
 		}
 		return true;
 	}

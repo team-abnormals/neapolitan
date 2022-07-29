@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#neapolitan:has_feature/mint_pond",
+  "features": "neapolitan:mint_pond",
+  "step": "vegetal_decoration"
+}

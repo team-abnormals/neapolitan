@@ -1,15 +1,10 @@
 {
-  "selector": "minecraft:entities/ravager",
-  "priority": "normal",
   "modifiers": [
     {
       "type": "pools",
       "config": {
-        "replace": false,
         "pools": [
           {
-            "name": "neapolitan:ravager",
-            "rolls": 1.0,
             "bonus_rolls": 0.0,
             "entries": [
               {
@@ -17,18 +12,23 @@
                 "conditions": [
                   {
                     "condition": "minecraft:entity_properties",
+                    "entity": "killer",
                     "predicate": {
                       "type": "neapolitan:chimpanzee"
-                    },
-                    "entity": "killer"
+                    }
                   }
                 ],
                 "name": "neapolitan:music_disc_hullabaloo"
               }
-            ]
+            ],
+            "name": "neapolitan:ravager",
+            "rolls": 1.0
           }
-        ]
+        ],
+        "replace": false
       }
     }
-  ]
+  ],
+  "priority": "normal",
+  "selector": "minecraft:entities/ravager"
 }

@@ -6,6 +6,7 @@ import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.data.worldgen.features.TreeFeatures;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.Heightmap;
@@ -15,8 +16,6 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.stream.Collectors;
 
 public class MintPondFeature extends Feature<NoneFeatureConfiguration> {
 	public MintPondFeature(Codec<NoneFeatureConfiguration> codec) {
@@ -26,11 +25,11 @@ public class MintPondFeature extends Feature<NoneFeatureConfiguration> {
 	@Override
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
 		WorldGenLevel level = context.level();
-		Random random = context.random();
+		RandomSource random = context.random();
 		BlockPos pos = context.origin();
 
 		BlockPos blockpos = level.getHeightmapPos(Heightmap.Types.WORLD_SURFACE_WG, pos);
-		List<Direction> directions = Direction.Plane.HORIZONTAL.stream().collect(Collectors.toList());
+		List<Direction> directions = Direction.Plane.HORIZONTAL.stream().toList();
 		boolean spruce = false;
 
 		int i = 0;
@@ -83,7 +82,7 @@ public class MintPondFeature extends Feature<NoneFeatureConfiguration> {
 		return i > 0;
 	}
 
-	private static void placeMint(WorldGenLevel world, BlockPos pos, Random random) {
+	private static void placeMint(WorldGenLevel world, BlockPos pos, RandomSource random) {
 		if (world.getBlockState(pos).isAir() && world.getBlockState(pos.below()).is(Blocks.GRASS_BLOCK) && random.nextInt(4) == 0)
 			world.setBlock(pos, NeapolitanBlocks.MINT.get().defaultBlockState().setValue(MintBlock.AGE, 4).setValue(MintBlock.SPROUTS, 1 + random.nextInt(3)), 2);
 	}

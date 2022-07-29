@@ -1,10 +1,10 @@
 {
   "parent": "minecraft:block/template_cake_with_candle",
   "textures": {
-    "candle": "minecraft:block/light_gray_candle_lit",
     "bottom": "neapolitan:block/banana_cake_bottom",
+    "candle": "minecraft:block/light_gray_candle_lit",
+    "particle": "neapolitan:block/banana_cake_side",
     "side": "neapolitan:block/banana_cake_side",
-    "top": "neapolitan:block/banana_cake_top",
-    "particle": "neapolitan:block/banana_cake_side"
+    "top": "neapolitan:block/banana_cake_top"
   }
 }

@@ -10,11 +10,12 @@ import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class NeapolitanBlockTagsProvider extends BlockTagsProvider {
 
-	public NeapolitanBlockTagsProvider(DataGenerator generator, ExistingFileHelper fileHelper) {
-		super(generator, Neapolitan.MOD_ID, fileHelper);
+	public NeapolitanBlockTagsProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
+		super(generator, Neapolitan.MOD_ID, existingFileHelper);
 	}
 
 	@Override
@@ -41,7 +42,7 @@ public class NeapolitanBlockTagsProvider extends BlockTagsProvider {
 		this.tag(BlueprintBlockTags.VERTICAL_SLABS).add(NeapolitanBlocks.CHOCOLATE_BRICK_VERTICAL_SLAB.get(), NeapolitanBlocks.CHOCOLATE_TILE_VERTICAL_SLAB.get(), NeapolitanBlocks.FROND_THATCH_VERTICAL_SLAB.get());
 
 		FlavoredCandleCakeBlock.getCandleCakes().forEach(block -> {
-			String name = block.getRegistryName().getPath();
+			String name = ForgeRegistries.BLOCKS.getKey(block).getPath();
 			this.tag(BlockTags.CANDLE_CAKES).add(block);
 			if (name.contains("vanilla")) this.tag(NeapolitanBlockTags.DROPS_VANILLA_CAKE_SLICE).add(block);
 			if (name.contains("chocolate")) this.tag(NeapolitanBlockTags.DROPS_CHOCOLATE_CAKE_SLICE).add(block);

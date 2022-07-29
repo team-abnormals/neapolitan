@@ -1,24 +1,22 @@
 {
-  "selector": "minecraft:adventure/kill_all_mobs",
-  "priority": "normal",
   "modifiers": [
     {
       "type": "criteria",
       "config": {
         "criteria": {
           "neapolitan:plantain_spider": {
-            "trigger": "minecraft:player_killed_entity",
             "conditions": {
               "entity": [
                 {
                   "condition": "minecraft:entity_properties",
+                  "entity": "this",
                   "predicate": {
                     "type": "neapolitan:plantain_spider"
-                  },
-                  "entity": "this"
+                  }
                 }
               ]
-            }
+            },
+            "trigger": "minecraft:player_killed_entity"
           }
         },
         "requirements": [
@@ -29,5 +27,7 @@
         "should_replace_requirements": false
       }
     }
-  ]
+  ],
+  "priority": "normal",
+  "selector": "minecraft:adventure/kill_all_mobs"
 }

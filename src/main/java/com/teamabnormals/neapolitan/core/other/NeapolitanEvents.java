@@ -1,71 +1,65 @@
 package com.teamabnormals.neapolitan.core.other;
 
 import com.teamabnormals.blueprint.core.other.tags.BlueprintEntityTypeTags;
-import com.teamabnormals.blueprint.core.util.MathUtil;
 import com.teamabnormals.blueprint.core.util.TradeUtil;
 import com.teamabnormals.blueprint.core.util.TradeUtil.BlueprintTrade;
 import com.teamabnormals.neapolitan.common.entity.animal.Chimpanzee;
 import com.teamabnormals.neapolitan.common.entity.monster.PlantainSpider;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.NeapolitanConfig;
+import com.teamabnormals.neapolitan.core.other.tags.NeapolitanBiomeTags;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanEntityTypeTags;
+import com.teamabnormals.neapolitan.core.other.tags.NeapolitanMobEffectTags;
 import com.teamabnormals.neapolitan.core.registry.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
-import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.Spider;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.Projectile;
-import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.biome.Biome.BiomeCategory;
 import net.minecraft.world.level.block.PointedDripstoneBlock;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingTickEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
-import net.minecraftforge.event.entity.living.PotionEvent;
+import net.minecraftforge.event.entity.living.MobEffectEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteractSpecific;
+import net.minecraftforge.event.level.ExplosionEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.event.village.WandererTradesEvent;
-import net.minecraftforge.event.world.ExplosionEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.registries.ForgeRegistries;
-
-import java.util.Random;
+import net.minecraftforge.registries.tags.ITagManager;
 
 @EventBusSubscriber(modid = Neapolitan.MOD_ID)
 public class NeapolitanEvents {
 
 	@SubscribeEvent
-	public static void onEntityJoinWorld(EntityJoinWorldEvent event) {
+	public static void onEntityJoinWorld(EntityJoinLevelEvent event) {
 		Entity entity = event.getEntity();
 		if (entity instanceof Monster mobEntity && !entity.getType().is(NeapolitanEntityTypeTags.UNAFFECTED_BY_HARMONY)) {
 			mobEntity.goalSelector.addGoal(0, new AvoidEntityGoal<>(mobEntity, Player.class, 12.0F, 1.0D, 1.0D, (player) -> player.getEffect(NeapolitanMobEffects.HARMONY.get()) != null));
@@ -73,35 +67,38 @@ public class NeapolitanEvents {
 	}
 
 	@SubscribeEvent
-	public static void onLivingUpdate(LivingUpdateEvent event) {
-		Entity entity = event.getEntity();
+	public static void onLivingUpdate(LivingTickEvent event) {
+		LivingEntity entity = event.getEntity();
 		if (entity.getType().is(BlueprintEntityTypeTags.MILKABLE)) {
 			Level level = event.getEntity().getLevel();
-			BlockPos entityPos = event.getEntityLiving().blockPosition();
-			BlockPos dripstonePos = event.getEntityLiving().getOnPos().below();
-			Random random = level.random;
+			BlockPos entityPos = entity.blockPosition();
+			BlockPos dripstonePos = entity.getOnPos().below();
+			RandomSource random = level.random;
 
 			if (level.getGameTime() % 60 == 0 && PointedDripstoneBlock.canDrip(level.getBlockState(dripstonePos))) {
 				Vec3 vec3 = level.getBlockState(entityPos).getOffset(level, entityPos);
-				double d1 = (double) entityPos.getX() + 0.5D + vec3.x + MathUtil.makeNegativeRandomly(random.nextFloat() * 0.25F, random);
+				double d1 = (double) entityPos.getX() + 0.5D + vec3.x + makeNegativeRandomly(random.nextFloat() * 0.25F, random);
 				double d2 = entityPos.getY() + entity.getBbHeight() / 2;
-				double d3 = (double) entityPos.getZ() + 0.5D + vec3.z + MathUtil.makeNegativeRandomly(random.nextFloat() * 0.25F, random);
+				double d3 = (double) entityPos.getZ() + 0.5D + vec3.z + makeNegativeRandomly(random.nextFloat() * 0.25F, random);
 				level.addParticle(NeapolitanParticleTypes.DRIPPING_DRIPSTONE_MILK.get(), d1, d2, d3, 0.0D, 0.0D, 0.0D);
 			}
 		}
 	}
 
+	public static double makeNegativeRandomly(double value, RandomSource rand) {
+		return rand.nextBoolean() ? -value : value;
+	}
+
 	@SubscribeEvent
 	public static void onLivingSpawn(LivingSpawnEvent.CheckSpawn event) {
 		Entity entity = event.getEntity();
-		LevelAccessor level = event.getWorld();
+		LevelAccessor level = event.getLevel();
 		Holder<Biome> biome = level.getBiome(entity.blockPosition());
 
-		if (event.getResult() != Event.Result.DENY && NeapolitanConfig.COMMON.plantainSpiderSpawning.get() && level.getRandom().nextInt(4) != 0) {
+		if (event.getResult() != Event.Result.DENY && level.getRandom().nextInt(4) != 0) {
 			boolean validSpawn = event.getSpawnReason() == MobSpawnType.NATURAL || event.getSpawnReason() == MobSpawnType.CHUNK_GENERATION || event.getSpawnReason() == MobSpawnType.MOB_SUMMONED;
-			boolean conditions = Biome.getBiomeCategory(biome).equals(BiomeCategory.JUNGLE) || biome.value().getRegistryName().getPath().contains("rainforest");
-			if (validSpawn && conditions) {
-				if (entity.getType() == EntityType.SPIDER && event.getY() > 60) {
+			if (validSpawn && biome.is(NeapolitanBiomeTags.HAS_PLANTAIN_SPIDER)) {
+				if (entity.getType().is(NeapolitanEntityTypeTags.PLANTAIN_SPIDERS_CAN_REPLACE) && event.getY() > 60) {
 					Spider spider = (Spider) entity;
 					PlantainSpider plantainSpider = NeapolitanEntityTypes.PLANTAIN_SPIDER.get().create((Level) level);
 					if (plantainSpider != null) {
@@ -116,17 +113,17 @@ public class NeapolitanEvents {
 
 	@SubscribeEvent
 	public static void onEntityInteract(EntityInteractSpecific event) {
-		Level world = event.getWorld();
+		Level world = event.getLevel();
 		ItemStack stack = event.getItemStack();
 		Entity entity = event.getTarget();
 		InteractionHand hand = event.getHand();
-		Player player = event.getPlayer();
+		Player player = event.getEntity();
 
 		if (NeapolitanConfig.COMMON.milkingWithGlassBottles.get() && entity.getType().is(BlueprintEntityTypeTags.MILKABLE)) {
 			boolean notChild = !(entity instanceof LivingEntity) || !((LivingEntity) entity).isBaby();
 			if (stack.getItem() == Items.GLASS_BOTTLE && notChild) {
 				player.playSound(SoundEvents.COW_MILK, 1.0F, 1.0F);
-				ItemStack newStack = ItemUtils.createFilledResult(stack, event.getPlayer(), NeapolitanItems.MILK_BOTTLE.get().getDefaultInstance());
+				ItemStack newStack = ItemUtils.createFilledResult(stack, player, NeapolitanItems.MILK_BOTTLE.get().getDefaultInstance());
 				player.setItemInHand(hand, newStack);
 
 				event.setCanceled(true);
@@ -160,8 +157,8 @@ public class NeapolitanEvents {
 	@SubscribeEvent
 	public static void onExplosion(ExplosionEvent.Detonate event) {
 		LivingEntity source = event.getExplosion().getSourceMob();
-		if (source != null && (source instanceof Creeper || (ModList.get().isLoaded(NeapolitanConstants.SAVAGE_AND_RAVAGE) && source.getType() == ForgeRegistries.ENTITIES.getValue(NeapolitanConstants.CREEPIE)))) {
-			if (event.getWorld().getBlockState(source.blockPosition()).getBlock() == NeapolitanBlocks.STRAWBERRY_BUSH.get()) {
+		if (source != null && (source.getType().is(NeapolitanEntityTypeTags.EXPLOSION_HEALS_IN_STRAWBERRY))) {
+			if (event.getLevel().getBlockState(source.blockPosition()).getBlock() == NeapolitanBlocks.STRAWBERRY_BUSH.get()) {
 				for (Entity entity : event.getAffectedEntities()) {
 					if (entity instanceof LivingEntity livingEntity) {
 						livingEntity.heal(5.0F);
@@ -178,9 +175,7 @@ public class NeapolitanEvents {
 
 	@SubscribeEvent
 	public static void onProjectileImpact(ProjectileImpactEvent event) {
-		Projectile projectileEntity = event.getProjectile();
-
-		if (projectileEntity instanceof ThrowableItemProjectile && ModList.get().isLoaded(NeapolitanConstants.ENVIRONMENTAL) && ((ThrowableItemProjectile) projectileEntity).getItem().getItem() == ForgeRegistries.ITEMS.getValue(NeapolitanConstants.MUD_BALL)) {
+		if (event.getProjectile().getType().is(NeapolitanEntityTypeTags.MUDDY_PROJECTILES)) {
 			if (event.getRayTraceResult().getType() == HitResult.Type.ENTITY) {
 				EntityHitResult entity = (EntityHitResult) event.getRayTraceResult();
 				if (entity.getEntity() instanceof Chimpanzee chimpanzee) {
@@ -192,18 +187,19 @@ public class NeapolitanEvents {
 
 
 	@SubscribeEvent
-	public static void onPotionAdded(PotionEvent.PotionApplicableEvent event) {
-		MobEffect effect = event.getPotionEffect().getEffect();
-		LivingEntity entity = event.getEntityLiving();
+	public static void onPotionAdded(MobEffectEvent.Applicable event) {
+		MobEffect effect = event.getEffectInstance().getEffect();
+		LivingEntity entity = event.getEntity();
 
-		if (entity.getEffect(NeapolitanMobEffects.VANILLA_SCENT.get()) != null && effect != NeapolitanMobEffects.VANILLA_SCENT.get()) {
-			if (effect.getRegistryName() != null && !effect.getRegistryName().equals(new ResourceLocation("autumnity", "foul_taste"))) {
+		if (entity.getEffect(NeapolitanMobEffects.VANILLA_SCENT.get()) != null) {
+			ITagManager<MobEffect> mobEffectTags = ForgeRegistries.MOB_EFFECTS.tags();
+			if (mobEffectTags != null && !mobEffectTags.getTag(NeapolitanMobEffectTags.UNAFFECTED_BY_VANILLA_SCENT).contains(effect)) {
 				event.setResult(Result.DENY);
 			}
 		}
 
 		if (effect == NeapolitanMobEffects.SUGAR_RUSH.get() && !entity.level.isClientSide) {
-			entity.getPersistentData().putInt("SugarRushDuration", event.getPotionEffect().getDuration());
+			entity.getPersistentData().putInt("SugarRushDuration", event.getEffectInstance().getDuration());
 		}
 	}
 

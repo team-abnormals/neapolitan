@@ -4,6 +4,7 @@ import com.teamabnormals.neapolitan.core.NeapolitanConfig;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanMobEffects;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.*;
@@ -15,14 +16,13 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 
 import javax.annotation.Nullable;
-import java.util.Random;
 
 public class PlantainSpider extends Spider {
 	public PlantainSpider(EntityType<? extends PlantainSpider> type, Level worldIn) {
 		super(type, worldIn);
 	}
 
-	public static boolean canPlantainSpiderSpawn(EntityType<? extends Monster> type, ServerLevelAccessor worldIn, MobSpawnType reason, BlockPos pos, Random randomIn) {
+	public static boolean canPlantainSpiderSpawn(EntityType<? extends Monster> type, ServerLevelAccessor worldIn, MobSpawnType reason, BlockPos pos, RandomSource randomIn) {
 		return pos.getY() > 60 && checkMonsterSpawnRules(type, worldIn, reason, pos, randomIn);
 	}
 

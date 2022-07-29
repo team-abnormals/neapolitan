@@ -72,7 +72,7 @@ public class BeanstalkThornsBlock extends Block implements SimpleWaterloggedBloc
 
 	@Nullable
 	@Override
-	public BlockPathTypes getAiPathNodeType(BlockState state, BlockGetter world, BlockPos pos, @Nullable Mob entity) {
+	public BlockPathTypes getBlockPathType(BlockState state, BlockGetter world, BlockPos pos, @Nullable Mob entity) {
 		return BlockPathTypes.DAMAGE_OTHER;
 	}
 

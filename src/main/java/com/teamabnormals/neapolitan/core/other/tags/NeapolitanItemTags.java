@@ -20,8 +20,6 @@ public class NeapolitanItemTags {
 	public static final TagKey<Item> FRUITS_STRAWBERRY = TagUtil.itemTag("forge", "fruits/strawberry");
 	public static final TagKey<Item> SEEDS_STRAWBERRY = TagUtil.itemTag("forge", "seeds/strawberry");
 	public static final TagKey<Item> ICE_CUBES = TagUtil.itemTag("forge", "ice_cubes");
-	public static final TagKey<Item> MILK = TagUtil.itemTag("forge", "milk");
-	public static final TagKey<Item> PUMPKINS = TagUtil.itemTag("forge", "pumpkins");
 
 	private static TagKey<Item> itemTag(String name) {
 		return TagUtil.itemTag(Neapolitan.MOD_ID, name);

@@ -9,6 +9,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -44,7 +45,6 @@ import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.event.ForgeEventFactory;
 
 import javax.annotation.Nullable;
-import java.util.Random;
 
 public class StrawberryBushBlock extends BushBlock implements IPlantable, BonemealableBlock {
 	public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 6);
@@ -88,7 +88,8 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, Boneme
 		return Mth.nextInt(worldIn.random, 2, 5);
 	}
 
-	public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, Random rand) {
+	@Override
+	public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource rand) {
 		super.tick(state, worldIn, pos, rand);
 		if (!worldIn.isAreaLoaded(pos, 1))
 			return;
@@ -132,10 +133,10 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, Boneme
 
 	@Nullable
 	@Override
-	public BlockPathTypes getAiPathNodeType(BlockState state, BlockGetter world, BlockPos pos, @Nullable Mob entity) {
+	public BlockPathTypes getBlockPathType(BlockState state, BlockGetter world, BlockPos pos, @Nullable Mob entity) {
 		if (entity instanceof Creeper)
 			return BlockPathTypes.DANGER_OTHER;
-		return super.getAiPathNodeType(state, world, pos, entity);
+		return super.getBlockPathType(state, world, pos, entity);
 	}
 
 	protected ItemLike getSeedsItem() {
@@ -184,12 +185,12 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, Boneme
 	}
 
 	@Override
-	public boolean isBonemealSuccess(Level world, Random rand, BlockPos pos, BlockState state) {
+	public boolean isBonemealSuccess(Level world, RandomSource rand, BlockPos pos, BlockState state) {
 		return true;
 	}
 
 	@Override
-	public void performBonemeal(ServerLevel worldIn, Random rand, BlockPos pos, BlockState state) {
+	public void performBonemeal(ServerLevel worldIn, RandomSource rand, BlockPos pos, BlockState state) {
 		int age = Math.min(this.getAge(state) + this.getBonemealAgeIncrease(worldIn), this.getMaxAge());
 		if (age != 6) {
 			worldIn.setBlock(pos, this.withAge(age), 2);

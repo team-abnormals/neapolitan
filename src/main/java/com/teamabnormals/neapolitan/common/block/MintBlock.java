@@ -9,6 +9,7 @@ import net.minecraft.core.Direction.Plane;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
@@ -31,7 +32,6 @@ import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.IPlantable;
 
 import javax.annotation.Nullable;
-import java.util.Random;
 
 public class MintBlock extends BushBlock implements IPlantable, BonemealableBlock {
 	public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 4);
@@ -77,7 +77,7 @@ public class MintBlock extends BushBlock implements IPlantable, BonemealableBloc
 	}
 
 	@Override
-	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
+	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
 		if (!worldIn.isAreaLoaded(pos, 1)) return;
 		int i = state.getValue(AGE);
 		if (worldIn.getRawBrightness(pos, 0) >= 9 && !this.isMaxAge(state) && ForgeHooks.onCropsGrowPre(worldIn, pos, state, random.nextInt(9) == 0)) {
@@ -96,7 +96,7 @@ public class MintBlock extends BushBlock implements IPlantable, BonemealableBloc
 		}
 	}
 
-	private static void spawnGrowthParticles(ServerLevel worldIn, BlockPos posIn, Random random) {
+	private static void spawnGrowthParticles(ServerLevel worldIn, BlockPos posIn, RandomSource random) {
 		BlockState blockstate = worldIn.getBlockState(posIn);
 		if (!blockstate.isAir()) {
 			double d1 = blockstate.getShape(worldIn, posIn).max(Direction.Axis.Y);
@@ -141,12 +141,12 @@ public class MintBlock extends BushBlock implements IPlantable, BonemealableBloc
 	}
 
 	@Override
-	public boolean isBonemealSuccess(Level world, Random rand, BlockPos pos, BlockState state) {
+	public boolean isBonemealSuccess(Level world, RandomSource rand, BlockPos pos, BlockState state) {
 		return true;
 	}
 
 	@Override
-	public void performBonemeal(ServerLevel worldIn, Random rand, BlockPos pos, BlockState state) {
+	public void performBonemeal(ServerLevel worldIn, RandomSource rand, BlockPos pos, BlockState state) {
 		int i = Math.min(4, state.getValue(AGE) + 1);
 		worldIn.setBlock(pos, state.setValue(AGE, i), 2);
 	}

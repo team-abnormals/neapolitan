@@ -1,47 +1,47 @@
 {
-  "selector": "minecraft:chests/village/village_plains_house",
-  "priority": "normal",
   "modifiers": [
     {
       "type": "entries",
       "config": {
-        "replace": false,
-        "index": 0,
         "entries": [
           {
             "type": "minecraft:item",
-            "weight": 10,
             "functions": [
               {
-                "function": "minecraft:set_count",
+                "add": false,
                 "count": {
                   "type": "minecraft:uniform",
-                  "min": 1.0,
-                  "max": 13.0
+                  "max": 13.0,
+                  "min": 1.0
                 },
-                "add": false
+                "function": "minecraft:set_count"
               }
             ],
-            "name": "neapolitan:strawberries"
+            "name": "neapolitan:strawberries",
+            "weight": 10
           },
           {
             "type": "minecraft:item",
-            "weight": 10,
             "functions": [
               {
-                "function": "minecraft:set_count",
+                "add": false,
                 "count": {
                   "type": "minecraft:uniform",
-                  "min": 1.0,
-                  "max": 5.0
+                  "max": 5.0,
+                  "min": 1.0
                 },
-                "add": false
+                "function": "minecraft:set_count"
               }
             ],
-            "name": "neapolitan:strawberry_scones"
+            "name": "neapolitan:strawberry_scones",
+            "weight": 10
           }
-        ]
+        ],
+        "index": 0,
+        "replace": false
       }
     }
-  ]
+  ],
+  "priority": "normal",
+  "selector": "minecraft:chests/village/village_plains_house"
 }

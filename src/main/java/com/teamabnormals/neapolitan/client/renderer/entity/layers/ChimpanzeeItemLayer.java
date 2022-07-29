@@ -2,9 +2,9 @@ package com.teamabnormals.neapolitan.client.renderer.entity.layers;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ArmedModel;
 import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.renderer.ItemInHandRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
@@ -17,8 +17,11 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class ChimpanzeeItemLayer<T extends LivingEntity, M extends EntityModel<T> & ArmedModel> extends RenderLayer<T, M> {
-	public ChimpanzeeItemLayer(RenderLayerParent<T, M> p_i50934_1_) {
+	private final ItemInHandRenderer itemInHandRenderer;
+
+	public ChimpanzeeItemLayer(RenderLayerParent<T, M> p_i50934_1_, ItemInHandRenderer p_234847_) {
 		super(p_i50934_1_);
+		this.itemInHandRenderer = p_234847_;
 	}
 
 	public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, T entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
@@ -46,7 +49,7 @@ public class ChimpanzeeItemLayer<T extends LivingEntity, M extends EntityModel<T
 			p_229135_5_.mulPose(Vector3f.YP.rotationDegrees(180.0F));
 			boolean flag = p_229135_4_ == HumanoidArm.LEFT;
 			p_229135_5_.translate((float) (flag ? -1 : 1) / 16.0F * 1.5F, 0.125D, -0.5625D);
-			Minecraft.getInstance().getItemInHandRenderer().renderItem(p_229135_1_, p_229135_2_, p_229135_3_, flag, p_229135_5_, p_229135_6_, p_229135_7_);
+			this.itemInHandRenderer.renderItem(p_229135_1_, p_229135_2_, p_229135_3_, flag, p_229135_5_, p_229135_6_, p_229135_7_);
 			p_229135_5_.popPose();
 		}
 	}

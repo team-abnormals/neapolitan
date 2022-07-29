@@ -132,6 +132,6 @@ public class FlavoredCandleCakeBlock extends AbstractCandleBlock {
 	}
 
 	public static Iterable<Block> getCandleCakes() {
-		return ForgeRegistries.BLOCKS.getValues().stream().filter(block -> block.getRegistryName() != null && Neapolitan.MOD_ID.equals(block.getRegistryName().getNamespace()) && block instanceof FlavoredCandleCakeBlock).collect(Collectors.toList());
+		return ForgeRegistries.BLOCKS.getValues().stream().filter(block -> ForgeRegistries.BLOCKS.getKey(block) != null && Neapolitan.MOD_ID.equals(ForgeRegistries.BLOCKS.getKey(block).getNamespace()) && block instanceof FlavoredCandleCakeBlock).collect(Collectors.toList());
 	}
 }

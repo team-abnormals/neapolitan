@@ -1,11 +1,10 @@
 package com.teamabnormals.neapolitan.common.effect;
 
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanEntityTypeTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
-
-import java.util.Random;
 
 public class SlippingMobEffect extends MobEffect {
 
@@ -16,7 +15,7 @@ public class SlippingMobEffect extends MobEffect {
 	@Override
 	public void applyEffectTick(LivingEntity entity, int amplifier) {
 		if (entity.isOnGround() && !entity.isInWater() && !entity.getType().is(NeapolitanEntityTypeTags.UNAFFECTED_BY_SLIPPING)) {
-			Random rand = entity.getCommandSenderWorld().getRandom();
+			RandomSource rand = entity.getCommandSenderWorld().getRandom();
 			float amount = rand.nextFloat() * 0.2F;
 			float x = 0.0F;
 			float z = 0.0F;

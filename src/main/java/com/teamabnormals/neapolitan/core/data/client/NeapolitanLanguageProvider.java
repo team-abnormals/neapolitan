@@ -6,11 +6,13 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.LanguageProvider;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.commons.lang3.text.WordUtils;
 
 public class NeapolitanLanguageProvider extends LanguageProvider {
-	public NeapolitanLanguageProvider(DataGenerator gen) {
-		super(gen, Neapolitan.MOD_ID, "en_us");
+
+	public NeapolitanLanguageProvider(DataGenerator generator) {
+		super(generator, Neapolitan.MOD_ID, "en_us");
 	}
 
 	@Override
@@ -20,7 +22,7 @@ public class NeapolitanLanguageProvider extends LanguageProvider {
 
 	private void addCandleCake(Block block) {
 		if (block instanceof FlavoredCandleCakeBlock candleCakeBlock) {
-			this.add(block, format(candleCakeBlock.getCake().getRegistryName()) + " with " + format(candleCakeBlock.getCandle().getRegistryName()));
+			this.add(block, format(ForgeRegistries.BLOCKS.getKey(candleCakeBlock.getCake())) + " with " + format(ForgeRegistries.BLOCKS.getKey(candleCakeBlock.getCandle())));
 		}
 	}
 

@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#neapolitan:has_feature/vanilla_vine",
+  "features": "neapolitan:patch_vanilla_vine",
+  "step": "vegetal_decoration"
+}

@@ -9,6 +9,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class ChimpanzeeNeedParticle extends TextureSheetParticle {
+
 	private ChimpanzeeNeedParticle(ClientLevel world, double x, double y, double z) {
 		super(world, x, y, z, 0.0D, 0.0D, 0.0D);
 		this.xd *= 0.01F;

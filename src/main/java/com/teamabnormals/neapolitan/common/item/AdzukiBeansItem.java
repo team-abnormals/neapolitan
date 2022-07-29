@@ -9,6 +9,7 @@ import net.minecraft.core.Direction.Axis;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -22,7 +23,6 @@ import net.minecraft.world.level.material.Fluids;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class AdzukiBeansItem extends Item {
 	private final boolean magic;
@@ -39,7 +39,7 @@ public class AdzukiBeansItem extends Item {
 		Direction face = context.getClickedFace();
 		Player player = context.getPlayer();
 		ItemStack stack = context.getItemInHand();
-		Random random = world.getRandom();
+		RandomSource random = world.getRandom();
 
 		List<Direction> offsetDirections = new ArrayList<>();
 		for (Axis axis : Axis.values()) {

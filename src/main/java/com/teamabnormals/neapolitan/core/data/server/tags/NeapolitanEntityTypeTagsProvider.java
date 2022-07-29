@@ -12,8 +12,8 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class NeapolitanEntityTypeTagsProvider extends EntityTypeTagsProvider {
 
-	public NeapolitanEntityTypeTagsProvider(DataGenerator generator, ExistingFileHelper fileHelper) {
-		super(generator, Neapolitan.MOD_ID, fileHelper);
+	public NeapolitanEntityTypeTagsProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
+		super(generator, Neapolitan.MOD_ID, existingFileHelper);
 	}
 
 	@Override
@@ -24,5 +24,8 @@ public class NeapolitanEntityTypeTagsProvider extends EntityTypeTagsProvider {
 		this.tag(NeapolitanEntityTypeTags.SCARES_CHIMPANZEES).add(EntityType.DRAGON_FIREBALL, EntityType.EVOKER_FANGS, EntityType.FIREBALL, EntityType.FIREWORK_ROCKET, EntityType.LIGHTNING_BOLT, EntityType.SMALL_FIREBALL, EntityType.TNT, EntityType.WITHER_SKULL);
 		this.tag(NeapolitanEntityTypeTags.UNAFFECTED_BY_HARMONY);
 		this.tag(NeapolitanEntityTypeTags.UNAFFECTED_BY_SLIPPING).add(NeapolitanEntityTypes.CHIMPANZEE.get(), NeapolitanEntityTypes.PLANTAIN_SPIDER.get());
+		this.tag(NeapolitanEntityTypeTags.PLANTAIN_SPIDERS_CAN_REPLACE).add(EntityType.SPIDER);
+		this.tag(NeapolitanEntityTypeTags.EXPLOSION_HEALS_IN_STRAWBERRY).add(EntityType.CREEPER).addOptional(NeapolitanConstants.CREEPIE);
+		this.tag(NeapolitanEntityTypeTags.MUDDY_PROJECTILES).addOptional(NeapolitanConstants.MUD_BALL);
 	}
 }

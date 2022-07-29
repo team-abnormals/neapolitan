@@ -31,8 +31,8 @@ import java.util.Collections;
 
 public class NeapolitanLootModifierProvider extends LootModifierProvider {
 
-	public NeapolitanLootModifierProvider(DataGenerator dataGenerator) {
-		super(dataGenerator, Neapolitan.MOD_ID);
+	public NeapolitanLootModifierProvider(DataGenerator generator) {
+		super(generator, Neapolitan.MOD_ID);
 	}
 
 	@Override

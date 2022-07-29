@@ -1,13 +1,12 @@
 package com.teamabnormals.neapolitan.common.item;
 
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-
-import java.util.Random;
 
 public class HealingItem extends Item {
 	private final float healAmount;
@@ -25,7 +24,7 @@ public class HealingItem extends Item {
 
 	public static void applyHealing(float healAmount, LevelAccessor world, LivingEntity entity) {
 		entity.heal(healAmount);
-		Random rand = entity.getRandom();
+		RandomSource rand = entity.getRandom();
 		if (world.isClientSide()) {
 			int times = 2 * Math.round(healAmount);
 			for (int i = 0; i < times; ++i) {

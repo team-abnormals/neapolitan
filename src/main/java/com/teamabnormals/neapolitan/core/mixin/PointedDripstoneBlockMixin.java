@@ -84,7 +84,7 @@ public abstract class PointedDripstoneBlockMixin {
 		return options;
 	}
 
-	@Inject(at = @At("HEAD"), method = "maybeFillCauldron")
+	@Inject(at = @At("HEAD"), method = "maybeTransferFluid")
 	private static void maybeFillCauldron(BlockState state, ServerLevel level, BlockPos pos, float chance, CallbackInfo ci) {
 		if (!(chance > 0.17578125F) || !(chance > 0.05859375F)) {
 			if (isStalactiteStartPos(state, level, pos)) {

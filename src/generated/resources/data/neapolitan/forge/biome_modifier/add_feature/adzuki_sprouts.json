@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#neapolitan:has_feature/adzuki_sprouts",
+  "features": "neapolitan:patch_adzuki_sprouts",
+  "step": "vegetal_decoration"
+}

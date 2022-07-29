@@ -13,6 +13,7 @@ import net.minecraft.advancements.critereon.*;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.apache.commons.compress.utils.Lists;
 
@@ -23,8 +24,8 @@ public class NeapolitanAdvancementModifierProvider extends AdvancementModifierPr
 	private static final EntityType<?>[] BREEDABLE_ANIMALS = new EntityType[]{NeapolitanEntityTypes.CHIMPANZEE.get()};
 	private static final EntityType<?>[] MOBS_TO_KILL = new EntityType[]{NeapolitanEntityTypes.PLANTAIN_SPIDER.get()};
 
-	public NeapolitanAdvancementModifierProvider(DataGenerator dataGenerator) {
-		super(dataGenerator, Neapolitan.MOD_ID);
+	public NeapolitanAdvancementModifierProvider(DataGenerator generator) {
+		super(generator, Neapolitan.MOD_ID);
 	}
 
 	@Override
@@ -37,14 +38,14 @@ public class NeapolitanAdvancementModifierProvider extends AdvancementModifierPr
 		Collection<RegistryObject<Item>> items = NeapolitanItems.HELPER.getDeferredRegister().getEntries();
 		items.forEach(item -> {
 			if (item.get().isEdible()) {
-				balancedDiet.addCriterion(item.get().getRegistryName().getPath(), ConsumeItemTrigger.TriggerInstance.usedItem(item.get()));
+				balancedDiet.addCriterion(ForgeRegistries.ITEMS.getKey(item.get()).getPath(), ConsumeItemTrigger.TriggerInstance.usedItem(item.get()));
 			}
 		});
 		this.entry("husbandry/balanced_diet").selects("husbandry/balanced_diet").addModifier(balancedDiet.requirements(RequirementsStrategy.AND).build());
 
 		CriteriaModifier.Builder breedAllAnimals = CriteriaModifier.builder(this.modId);
 		for (EntityType<?> entityType : BREEDABLE_ANIMALS) {
-			breedAllAnimals.addCriterion(entityType.getRegistryName().getPath(), BredAnimalsTrigger.TriggerInstance.bredAnimals(EntityPredicate.Builder.entity().of(entityType)));
+			breedAllAnimals.addCriterion(ForgeRegistries.ENTITY_TYPES.getKey(entityType).getPath(), BredAnimalsTrigger.TriggerInstance.bredAnimals(EntityPredicate.Builder.entity().of(entityType)));
 		}
 		this.entry("husbandry/bred_all_animals").selects("husbandry/bred_all_animals").addModifier(breedAllAnimals.requirements(RequirementsStrategy.AND).build());
 
@@ -58,7 +59,7 @@ public class NeapolitanAdvancementModifierProvider extends AdvancementModifierPr
 		CriteriaModifier.Builder killAllMobs = CriteriaModifier.builder(this.modId);
 		ArrayList<String> names = Lists.newArrayList();
 		for (EntityType<?> entityType : MOBS_TO_KILL) {
-			String name = entityType.getRegistryName().getPath();
+			String name = ForgeRegistries.ENTITY_TYPES.getKey(entityType).getPath();
 			KilledTrigger.TriggerInstance triggerInstance = KilledTrigger.TriggerInstance.playerKilledEntity(EntityPredicate.Builder.entity().of(entityType));
 			killAMob.addCriterion(name, triggerInstance);
 			killAllMobs.addCriterion(name, triggerInstance);

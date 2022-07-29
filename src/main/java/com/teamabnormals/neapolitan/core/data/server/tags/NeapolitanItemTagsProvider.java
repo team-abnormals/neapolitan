@@ -18,8 +18,8 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class NeapolitanItemTagsProvider extends ItemTagsProvider {
 
-	public NeapolitanItemTagsProvider(DataGenerator generator, BlockTagsProvider provider, ExistingFileHelper helper) {
-		super(generator, provider, Neapolitan.MOD_ID, helper);
+	public NeapolitanItemTagsProvider(DataGenerator generator, BlockTagsProvider blockTags, ExistingFileHelper existingFileHelper) {
+		super(generator, blockTags, Neapolitan.MOD_ID, existingFileHelper);
 	}
 
 	@Override
@@ -46,9 +46,7 @@ public class NeapolitanItemTagsProvider extends ItemTagsProvider {
 		this.tag(NeapolitanItemTags.FRUITS_STRAWBERRY).add(NeapolitanItems.STRAWBERRIES.get());
 		this.tag(NeapolitanItemTags.FRUITS_BANANA).add(NeapolitanItems.BANANA.get());
 		this.tag(NeapolitanItemTags.ICE_CUBES).add(NeapolitanItems.ICE_CUBES.get());
-		this.tag(NeapolitanItemTags.PUMPKINS).add(Items.PUMPKIN);
-		this.tag(BlueprintItemTags.BUCKETS_MILK);
-		this.tag(NeapolitanItemTags.MILK).addTag(BlueprintItemTags.BUCKETS_MILK).addTag(NeapolitanItemTags.BOTTLES_MILK);
+		this.tag(BlueprintItemTags.MILK).addTag(NeapolitanItemTags.BOTTLES_MILK);
 
 		this.copy(BlueprintBlockTags.VERTICAL_SLABS, BlueprintItemTags.VERTICAL_SLABS);
 	}

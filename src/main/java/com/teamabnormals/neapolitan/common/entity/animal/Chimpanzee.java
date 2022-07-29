@@ -4,14 +4,16 @@ import com.teamabnormals.neapolitan.common.entity.goal.*;
 import com.teamabnormals.neapolitan.common.entity.monster.PlantainSpider;
 import com.teamabnormals.neapolitan.common.entity.projectile.BananaPeel;
 import com.teamabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
-import com.teamabnormals.neapolitan.common.entity.util.ChimpanzeeTypes;
+import com.teamabnormals.neapolitan.common.entity.util.ChimpanzeeType;
 import com.teamabnormals.neapolitan.common.item.MilkshakeItem;
 import com.teamabnormals.neapolitan.core.other.NeapolitanConstants;
+import com.teamabnormals.neapolitan.core.other.tags.NeapolitanBiomeTags;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanEntityTypeTags;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanItemTags;
 import com.teamabnormals.neapolitan.core.registry.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -23,6 +25,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.util.TimeUtil;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.DifficultyInstance;
@@ -53,6 +56,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
@@ -64,7 +68,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.List;
-import java.util.Random;
 import java.util.UUID;
 import java.util.function.Predicate;
 
@@ -836,28 +839,29 @@ public class Chimpanzee extends Animal implements NeutralMob {
 
 	// SPAWNING //
 
-	public static boolean canChimpanzeeSpawn(EntityType<Chimpanzee> entity, LevelAccessor world, MobSpawnType reason, BlockPos pos, Random random) {
+	public static boolean canChimpanzeeSpawn(EntityType<Chimpanzee> entity, LevelAccessor world, MobSpawnType reason, BlockPos pos, RandomSource random) {
 		return world.getRawBrightness(pos, 0) > 8;
 	}
 
 	@Override
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
 		spawnDataIn = super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
-		this.setTypeForPosition(this, worldIn);
+		this.setChimpanzeeType(this.getChimpanzeeTypeForPosition(worldIn).getId());
 		this.setHunger(this.random.nextInt(4800));
 		this.setDirtiness(this.random.nextInt(4800));
 		this.populateDefaultEquipmentSlots(difficultyIn);
 		return spawnDataIn;
 	}
 
-	public void setTypeForPosition(Chimpanzee entity, LevelAccessor worldIn) {
-		if (worldIn.getBiome(this.blockPosition()).value().getRegistryName().getPath().contains("rainforest")) {
-			entity.setChimpanzeeType(ChimpanzeeTypes.RAINFOREST.getId());
-		} else if (worldIn.getBiome(this.blockPosition()).value().getRegistryName().getPath().contains("bamboo")) {
-			entity.setChimpanzeeType(ChimpanzeeTypes.BAMBOO.getId());
-		} else {
-			entity.setChimpanzeeType(ChimpanzeeTypes.JUNGLE.getId());
+	public ChimpanzeeType getChimpanzeeTypeForPosition(LevelAccessor worldIn) {
+		Holder<Biome> biome = worldIn.getBiome(this.blockPosition());
+		if (biome.is(NeapolitanBiomeTags.SPAWNS_RAINFOREST_VARIANT_CHIMPANZEES)) {
+			return ChimpanzeeType.RAINFOREST;
+		} else if (biome.is(NeapolitanBiomeTags.SPAWNS_BAMBOO_VARIANT_CHIMPANZEES)) {
+			return ChimpanzeeType.BAMBOO;
 		}
+
+		return ChimpanzeeType.JUNGLE;
 	}
 
 	protected void populateDefaultEquipmentSlots(DifficultyInstance difficultyIn) {
@@ -865,7 +869,7 @@ public class Chimpanzee extends Animal implements NeutralMob {
 			float f = this.random.nextFloat();
 			ItemStack itemstack;
 			if (f < 0.6F) {
-				if (this.level.getBiome(this.blockPosition()).value().getRegistryName().getPath().contains("bamboo")) {
+				if (this.level.getBiome(this.blockPosition()).is(NeapolitanBiomeTags.SPAWNS_BAMBOO_VARIANT_CHIMPANZEES)) {
 					itemstack = new ItemStack(Items.BAMBOO);
 				} else {
 					itemstack = new ItemStack(Items.STICK);

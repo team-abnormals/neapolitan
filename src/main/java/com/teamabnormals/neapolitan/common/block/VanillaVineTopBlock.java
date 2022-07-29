@@ -6,6 +6,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -22,8 +23,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
-import java.util.Random;
 
 public class VanillaVineTopBlock extends Block implements BonemealableBlock {
 	public static final DirectionProperty FACING = BlockStateProperties.FACING;
@@ -61,7 +60,7 @@ public class VanillaVineTopBlock extends Block implements BonemealableBlock {
 		return false;
 	}
 
-	protected int getGrowthAmount(Random rand) {
+	protected int getGrowthAmount(RandomSource rand) {
 		return rand.nextInt(2) + 1;
 	}
 
@@ -78,14 +77,14 @@ public class VanillaVineTopBlock extends Block implements BonemealableBlock {
 	}
 
 	@Override
-	public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, Random rand) {
+	public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource rand) {
 		if (!state.canSurvive(worldIn, pos)) {
 			worldIn.destroyBlock(pos, true);
 		}
 	}
 
 	@Override
-	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
+	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
 		if (this.canGrowUp(state, worldIn, pos) && net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos.relative(state.getValue(FACING)), worldIn.getBlockState(pos.relative(state.getValue(FACING))), random.nextDouble() < 0.1D)) {
 			BlockPos blockpos = pos.relative(state.getValue(FACING));
 			if (this.canGrowIn(worldIn.getBlockState(blockpos))) {
@@ -141,12 +140,12 @@ public class VanillaVineTopBlock extends Block implements BonemealableBlock {
 	}
 
 	@Override
-	public boolean isBonemealSuccess(Level worldIn, Random rand, BlockPos pos, BlockState state) {
+	public boolean isBonemealSuccess(Level worldIn, RandomSource rand, BlockPos pos, BlockState state) {
 		return true;
 	}
 
 	@Override
-	public void performBonemeal(ServerLevel worldIn, Random rand, BlockPos pos, BlockState state) {
+	public void performBonemeal(ServerLevel worldIn, RandomSource rand, BlockPos pos, BlockState state) {
 		BlockPos blockpos = pos.relative(state.getValue(FACING));
 		int j = this.getGrowthAmount(rand);
 

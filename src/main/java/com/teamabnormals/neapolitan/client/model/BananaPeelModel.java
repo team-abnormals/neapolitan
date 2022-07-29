@@ -15,7 +15,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 
 public class BananaPeelModel extends EntityModel<Entity> {
-	public static final ModelLayerLocation LOCATION = new ModelLayerLocation(new ResourceLocation(Neapolitan.MOD_ID, "banana_peel"), "main");
 	private final ModelPart bananaPeel;
 
 	public BananaPeelModel(ModelPart root) {
