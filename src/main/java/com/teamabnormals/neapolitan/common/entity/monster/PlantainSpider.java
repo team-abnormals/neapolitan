@@ -30,6 +30,7 @@ public class PlantainSpider extends Spider {
 		return Spider.createAttributes().add(Attributes.MAX_HEALTH, 8.0D);
 	}
 
+	@Override
 	public boolean doHurtTarget(Entity entityIn) {
 		if (super.doHurtTarget(entityIn)) {
 			if (entityIn instanceof LivingEntity livingEntity && NeapolitanConfig.COMMON.plantainSpidersGiveSlipping.get()) {
@@ -41,11 +42,13 @@ public class PlantainSpider extends Spider {
 		}
 	}
 
+	@Override
 	@Nullable
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
 		return spawnDataIn;
 	}
 
+	@Override
 	protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
 		return 0.40F;
 	}

@@ -68,10 +68,12 @@ public class MintBlock extends BushBlock implements IPlantable, BonemealableBloc
 		return useContext.getItemInHand().getItem() == this.asItem() && state.getValue(SPROUTS) < 4 || super.canBeReplaced(state, useContext);
 	}
 
+	@Override
 	public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
 		super.entityInside(state, worldIn, pos, entityIn);
 	}
 
+	@Override
 	public ItemStack getCloneItemStack(BlockGetter worldIn, BlockPos pos, BlockState state) {
 		return new ItemStack(NeapolitanItems.MINT_SPROUT.get());
 	}
@@ -114,6 +116,7 @@ public class MintBlock extends BushBlock implements IPlantable, BonemealableBloc
 		}
 	}
 
+	@Override
 	@Nullable
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
 		BlockState blockstate = context.getLevel().getBlockState(context.getClickedPos());
@@ -127,10 +130,12 @@ public class MintBlock extends BushBlock implements IPlantable, BonemealableBloc
 		return state.getValue(AGE) >= 4;
 	}
 
+	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(AGE, SPROUTS);
 	}
 
+	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
 		return SHAPE_BY_AGE[state.getValue(AGE)];
 	}

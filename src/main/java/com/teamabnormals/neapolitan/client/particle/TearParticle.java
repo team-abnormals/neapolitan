@@ -59,6 +59,7 @@ public class TearParticle extends TextureSheetParticle {
 			this.spriteSet = spriteSet;
 		}
 
+		@Override
 		public Particle createParticle(SimpleParticleType typeIn, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
 			TearParticle tearparticle = new TearParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed);
 			tearparticle.pickSprite(this.spriteSet);

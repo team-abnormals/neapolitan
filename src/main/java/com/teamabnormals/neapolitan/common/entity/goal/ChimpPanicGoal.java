@@ -11,6 +11,7 @@ public class ChimpPanicGoal extends PanicGoal {
 		this.chimpanzee = chimpanzeeIn;
 	}
 
+	@Override
 	public boolean canUse() {
 		return (this.chimpanzee.isBaby() || this.chimpanzee.isOnFire()) && super.canUse();
 	}

@@ -63,6 +63,7 @@ public class ChimpanzeeNeedParticle extends TextureSheetParticle {
 			this.spriteSet = spriteSet;
 		}
 
+		@Override
 		public Particle createParticle(SimpleParticleType typeIn, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
 			ChimpanzeeNeedParticle needparticle = new ChimpanzeeNeedParticle(worldIn, x, y, z);
 			needparticle.pickSprite(this.spriteSet);

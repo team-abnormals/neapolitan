@@ -54,10 +54,12 @@ public class FlavoredCandleCakeBlock extends AbstractCandleBlock {
 		BY_CANDLE_AND_CAKE.put(Pair.of(candle, (FlavoredCakeBlock) baseCake.get()), this);
 	}
 
+	@Override
 	protected Iterable<Vec3> getParticleOffsets(BlockState p_152868_) {
 		return PARTICLE_OFFSETS;
 	}
 
+	@Override
 	public VoxelShape getShape(BlockState p_152875_, BlockGetter p_152876_, BlockPos p_152877_, CollisionContext p_152878_) {
 		return SHAPE;
 	}
@@ -91,26 +93,32 @@ public class FlavoredCandleCakeBlock extends AbstractCandleBlock {
 		return result.getLocation().y - (double) result.getBlockPos().getY() > 0.5D;
 	}
 
+	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_152905_) {
 		p_152905_.add(LIT);
 	}
 
+	@Override
 	public BlockState updateShape(BlockState p_152898_, Direction p_152899_, BlockState p_152900_, LevelAccessor p_152901_, BlockPos p_152902_, BlockPos p_152903_) {
 		return p_152899_ == Direction.DOWN && !p_152898_.canSurvive(p_152901_, p_152902_) ? Blocks.AIR.defaultBlockState() : super.updateShape(p_152898_, p_152899_, p_152900_, p_152901_, p_152902_, p_152903_);
 	}
 
+	@Override
 	public boolean canSurvive(BlockState p_152891_, LevelReader p_152892_, BlockPos p_152893_) {
 		return p_152892_.getBlockState(p_152893_.below()).getMaterial().isSolid();
 	}
 
+	@Override
 	public int getAnalogOutputSignal(BlockState p_152880_, Level p_152881_, BlockPos p_152882_) {
 		return CakeBlock.FULL_CAKE_SIGNAL;
 	}
 
+	@Override
 	public boolean hasAnalogOutputSignal(BlockState p_152909_) {
 		return true;
 	}
 
+	@Override
 	public boolean isPathfindable(BlockState p_152870_, BlockGetter p_152871_, BlockPos p_152872_, PathComputationType p_152873_) {
 		return false;
 	}

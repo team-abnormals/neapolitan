@@ -23,6 +23,7 @@ public class ChimpanzeePaleSkinLayer<E extends Chimpanzee, M extends ChimpanzeeM
 		super(entityRenderer);
 	}
 
+	@Override
 	public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, E chimpanzee, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
 		float f = chimpanzee.getVisiblePaleness();
 		if (!chimpanzee.isInvisible() && f > 0.0F) {

@@ -43,6 +43,7 @@ public class AdzukiSproutsBlock extends BushBlock implements IPlantable, Bonemea
 		this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0).setValue(FLOWERING, false));
 	}
 
+	@Override
 	public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
 		super.entityInside(state, worldIn, pos, entityIn);
 		if (entityIn instanceof Animal && !state.getValue(FLOWERING)) {
@@ -52,6 +53,7 @@ public class AdzukiSproutsBlock extends BushBlock implements IPlantable, Bonemea
 		}
 	}
 
+	@Override
 	public ItemStack getCloneItemStack(BlockGetter worldIn, BlockPos pos, BlockState state) {
 		return new ItemStack(NeapolitanItems.ADZUKI_BEANS.get());
 	}
@@ -89,10 +91,12 @@ public class AdzukiSproutsBlock extends BushBlock implements IPlantable, Bonemea
 		return state.getValue(AGE) >= 6;
 	}
 
+	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(AGE, FLOWERING);
 	}
 
+	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
 		return SHAPE_BY_AGE[state.getValue(AGE)];
 	}

@@ -24,6 +24,7 @@ public class ChimpanzeeItemLayer<T extends LivingEntity, M extends EntityModel<T
 		this.itemInHandRenderer = p_234847_;
 	}
 
+	@Override
 	public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, T entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
 		boolean flag = entitylivingbaseIn.getMainArm() == HumanoidArm.RIGHT;
 		ItemStack itemstack = flag ? entitylivingbaseIn.getOffhandItem() : entitylivingbaseIn.getMainHandItem();

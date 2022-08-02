@@ -33,14 +33,17 @@ public class MilkDripParticle extends TextureSheetParticle {
 		return this.type;
 	}
 
+	@Override
 	public ParticleRenderType getRenderType() {
 		return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
 	}
 
+	@Override
 	public int getLightColor(float p_106065_) {
 		return this.isGlowing ? 240 : super.getLightColor(p_106065_);
 	}
 
+	@Override
 	public void tick() {
 		this.xo = this.x;
 		this.yo = this.y;
@@ -85,6 +88,7 @@ public class MilkDripParticle extends TextureSheetParticle {
 			this.lifetime = 40;
 		}
 
+		@Override
 		protected void preMoveUpdate() {
 			if (this.lifetime-- <= 0) {
 				this.remove();
@@ -93,6 +97,7 @@ public class MilkDripParticle extends TextureSheetParticle {
 
 		}
 
+		@Override
 		protected void postMoveUpdate() {
 			this.xd *= 0.02D;
 			this.yd *= 0.02D;
@@ -106,6 +111,7 @@ public class MilkDripParticle extends TextureSheetParticle {
 			super(p_171930_, p_171931_, p_171932_, p_171933_, p_171934_, p_171935_);
 		}
 
+		@Override
 		protected void postMoveUpdate() {
 			if (this.onGround) {
 				this.remove();
@@ -126,6 +132,7 @@ public class MilkDripParticle extends TextureSheetParticle {
 			this.sprite = p_171981_;
 		}
 
+		@Override
 		public Particle createParticle(SimpleParticleType p_171992_, ClientLevel p_171993_, double p_171994_, double p_171995_, double p_171996_, double p_171997_, double p_171998_, double p_171999_) {
 			MilkDripParticle dripparticle = new MilkDripParticle.DripstoneFallAndLandParticle(p_171993_, p_171994_, p_171995_, p_171996_, ForgeMod.MILK.get(), NeapolitanParticleTypes.MILK_SPLASH.get());
 			dripparticle.setColor(0.87F, 0.95F, 0.96F);
@@ -142,6 +149,7 @@ public class MilkDripParticle extends TextureSheetParticle {
 			this.sprite = p_172002_;
 		}
 
+		@Override
 		public Particle createParticle(SimpleParticleType p_172013_, ClientLevel p_172014_, double p_172015_, double p_172016_, double p_172017_, double p_172018_, double p_172019_, double p_172020_) {
 			MilkDripParticle dripparticle = new MilkDripParticle.DripHangParticle(p_172014_, p_172015_, p_172016_, p_172017_, ForgeMod.MILK.get(), NeapolitanParticleTypes.FALLING_DRIPSTONE_MILK.get());
 			dripparticle.setColor(1.0F, 1.0F, 1.0F);
@@ -159,6 +167,7 @@ public class MilkDripParticle extends TextureSheetParticle {
 			this.landParticle = p_106121_;
 		}
 
+		@Override
 		protected void postMoveUpdate() {
 			if (this.onGround) {
 				this.remove();
@@ -179,6 +188,7 @@ public class MilkDripParticle extends TextureSheetParticle {
 			this.lifetime = p_172027_;
 		}
 
+		@Override
 		protected void postMoveUpdate() {
 			if (this.onGround) {
 				this.remove();

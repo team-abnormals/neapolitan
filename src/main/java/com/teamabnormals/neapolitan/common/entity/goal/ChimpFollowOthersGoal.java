@@ -19,6 +19,7 @@ public class ChimpFollowOthersGoal extends Goal {
 		this.setFlags(EnumSet.of(Goal.Flag.MOVE));
 	}
 
+	@Override
 	public boolean canUse() {
 		Predicate<Chimpanzee> predicate = (chimpanzeeentity) -> {
 			return chimpanzeeentity != this.chimpanzee && chimpanzeeentity.getAge() >= 0;
@@ -61,6 +62,7 @@ public class ChimpFollowOthersGoal extends Goal {
 		}
 	}
 
+	@Override
 	public boolean canContinueToUse() {
 		if (this.chimpanzee.isLeader()) {
 			return false;
@@ -72,15 +74,18 @@ public class ChimpFollowOthersGoal extends Goal {
 		}
 	}
 
+	@Override
 	public void start() {
 		this.delayCounter = 0;
 	}
 
+	@Override
 	public void stop() {
 		this.leader = null;
 		this.chimpanzee.getNavigation().stop();
 	}
 
+	@Override
 	public void tick() {
 		if (--this.delayCounter <= 0) {
 			this.delayCounter = this.adjustedTickDelay(20);

@@ -22,6 +22,7 @@ public class ChimpanzeeDirtLayer<E extends Chimpanzee, M extends ChimpanzeeModel
 		super(entityRenderer);
 	}
 
+	@Override
 	public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, E chimpanzee, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
 		if (!chimpanzee.isInvisible() && chimpanzee.isDirty()) {
 			VertexConsumer ivertexbuilder = bufferIn.getBuffer(RenderType.entityTranslucent(DIRT));

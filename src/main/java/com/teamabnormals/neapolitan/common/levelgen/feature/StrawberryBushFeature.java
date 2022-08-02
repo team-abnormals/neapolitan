@@ -18,6 +18,7 @@ public class StrawberryBushFeature extends Feature<SimpleBlockConfiguration> {
 		super(config);
 	}
 
+	@Override
 	public boolean place(FeaturePlaceContext<SimpleBlockConfiguration> context) {
 		SimpleBlockConfiguration config = context.config();
 		WorldGenLevel level = context.level();

@@ -23,6 +23,7 @@ public class ChimpRandomWalkingGoal extends WaterAvoidingRandomStrollGoal {
 		return !this.chimpanzee.isSitting() && super.canUse();
 	}
 
+	@Override
 	@Nullable
 	protected Vec3 getPosition() {
 		if (!this.chimpanzee.isLeader() && !this.chimpanzee.isInWaterOrBubble()) {

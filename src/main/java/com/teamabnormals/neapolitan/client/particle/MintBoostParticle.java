@@ -52,6 +52,7 @@ public class MintBoostParticle extends TextureSheetParticle {
 			this.spriteSet = spriteSet;
 		}
 
+		@Override
 		public Particle createParticle(SimpleParticleType typeIn, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
 			MintBoostParticle mintBoostParticle = new MintBoostParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed);
 			mintBoostParticle.pickSprite(this.spriteSet);

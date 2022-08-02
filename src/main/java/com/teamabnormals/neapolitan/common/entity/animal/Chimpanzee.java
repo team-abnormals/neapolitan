@@ -1194,6 +1194,7 @@ public class Chimpanzee extends Animal implements NeutralMob {
 			super(Chimpanzee.this);
 		}
 
+		@Override
 		public void tick() {
 			if (this.resetXRotOnTick()) {
 				Chimpanzee.this.setXRot(0.0F);
@@ -1225,6 +1226,7 @@ public class Chimpanzee extends Animal implements NeutralMob {
 			super(Chimpanzee.this);
 		}
 
+		@Override
 		public void clientTick() {
 			super.clientTick();
 

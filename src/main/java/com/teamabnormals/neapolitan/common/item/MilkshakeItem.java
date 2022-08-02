@@ -45,8 +45,7 @@ public class MilkshakeItem extends DrinkItem {
 			return InteractionResult.CONSUME;
 		entity.level.playSound(null, entity.blockPosition(), SoundEvents.WANDERING_TRADER_DRINK_MILK, SoundSource.NEUTRAL, 1, 1);
 
-		if (player instanceof ServerPlayer) {
-			ServerPlayer serverplayerentity = (ServerPlayer) player;
+		if (player instanceof ServerPlayer serverplayerentity) {
 			CriteriaTriggers.CONSUME_ITEM.trigger(serverplayerentity, stack);
 			serverplayerentity.awardStat(Stats.ITEM_USED.get(this));
 		}

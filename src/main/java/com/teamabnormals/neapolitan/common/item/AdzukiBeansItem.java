@@ -32,6 +32,7 @@ public class AdzukiBeansItem extends Item {
 		this.magic = magic;
 	}
 
+	@Override
 	public InteractionResult useOn(UseOnContext context) {
 		Level world = context.getLevel();
 		BlockPos pos = context.getClickedPos();

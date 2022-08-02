@@ -88,8 +88,7 @@ public class BananaBunchItem extends Item {
 				stack.shrink(1);
 			}
 
-			if (player instanceof ServerPlayer) {
-				ServerPlayer serverplayerentity = (ServerPlayer) player;
+			if (player instanceof ServerPlayer serverplayerentity) {
 				CriteriaTriggers.CONSUME_ITEM.trigger(serverplayerentity, stack);
 				serverplayerentity.awardStat(Stats.ITEM_USED.get(this));
 			}

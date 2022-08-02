@@ -23,8 +23,7 @@ public class MilkBottleItem extends Item {
 	public ItemStack finishUsingItem(ItemStack stack, Level worldIn, LivingEntity entity) {
 		clearRandomEffect(worldIn, entity);
 
-		if (entity instanceof ServerPlayer) {
-			ServerPlayer serverplayerentity = (ServerPlayer) entity;
+		if (entity instanceof ServerPlayer serverplayerentity) {
 			CriteriaTriggers.CONSUME_ITEM.trigger(serverplayerentity, stack);
 			serverplayerentity.awardStat(Stats.ITEM_USED.get(this));
 		}
@@ -35,9 +34,8 @@ public class MilkBottleItem extends Item {
 		if (stack.isEmpty()) {
 			return new ItemStack(Items.GLASS_BOTTLE);
 		} else {
-			if (entity instanceof Player && !((Player) entity).getAbilities().instabuild) {
+			if (entity instanceof Player playerentity && !((Player) entity).getAbilities().instabuild) {
 				ItemStack itemstack = new ItemStack(Items.GLASS_BOTTLE);
-				Player playerentity = (Player) entity;
 				if (!playerentity.getInventory().add(itemstack)) {
 					playerentity.drop(itemstack, false);
 				}

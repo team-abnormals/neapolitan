@@ -14,6 +14,7 @@ public class ChimpHurtByTargetGoal extends HurtByTargetGoal {
 		this.chimpanzee = chimpanzeeIn;
 	}
 
+	@Override
 	public void start() {
 		super.start();
 		if (this.chimpanzee.isBaby()) {
@@ -21,6 +22,7 @@ public class ChimpHurtByTargetGoal extends HurtByTargetGoal {
 		}
 	}
 
+	@Override
 	protected void alertOther(Mob mobIn, LivingEntity targetIn) {
 		if (mobIn instanceof Chimpanzee && !mobIn.isBaby()) {
 			super.alertOther(mobIn, targetIn);

@@ -169,6 +169,7 @@ public class NeapolitanCompat {
 
 	public static void registerDispenserBehaviors() {
 		DispenserBlock.registerBehavior(NeapolitanItems.BANANARROW.get(), new AbstractProjectileDispenseBehavior() {
+			@Override
 			protected Projectile getProjectile(Level worldIn, Position position, ItemStack stackIn) {
 				return new Bananarrow(worldIn, position.x(), position.y(), position.z());
 			}

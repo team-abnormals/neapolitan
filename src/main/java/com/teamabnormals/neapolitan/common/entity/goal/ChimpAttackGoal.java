@@ -11,6 +11,7 @@ public class ChimpAttackGoal extends MeleeAttackGoal {
 		this.chimpanzee = chimpanzeeIn;
 	}
 
+	@Override
 	public boolean canUse() {
 		return !this.chimpanzee.isBaby() && super.canUse();
 	}

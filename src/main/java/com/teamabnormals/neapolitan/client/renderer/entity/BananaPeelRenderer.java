@@ -31,6 +31,7 @@ public class BananaPeelRenderer extends EntityRenderer<BananaPeel> {
 		matrixStack.popPose();
 	}
 
+	@Override
 	public ResourceLocation getTextureLocation(BananaPeel entity) {
 		return BANANA_PEEL_LOCATION;
 	}

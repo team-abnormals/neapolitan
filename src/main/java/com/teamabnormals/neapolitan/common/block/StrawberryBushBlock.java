@@ -111,6 +111,7 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, Boneme
 
 	}
 
+	@Override
 	public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
 		if (worldIn.random.nextInt(15) == 0) {
 			if (entityIn.xOld != entityIn.getX() || entityIn.zOld != entityIn.getZ()) {
@@ -143,6 +144,7 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, Boneme
 		return NeapolitanItems.STRAWBERRY_PIPS.get();
 	}
 
+	@Override
 	public ItemStack getCloneItemStack(BlockGetter worldIn, BlockPos pos, BlockState state) {
 		return new ItemStack(this.getSeedsItem());
 	}
@@ -159,10 +161,12 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, Boneme
 		return state.getValue(this.getAgeProperty()) >= this.getMaxAge();
 	}
 
+	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(AGE, TYPE);
 	}
 
+	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
 		return SHAPE_BY_AGE[state.getValue(this.getAgeProperty())];
 	}

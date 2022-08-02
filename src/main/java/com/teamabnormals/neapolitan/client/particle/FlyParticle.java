@@ -66,6 +66,7 @@ public class FlyParticle extends TextureSheetParticle {
 			this.animatedSprite = animatedSpriteIn;
 		}
 
+		@Override
 		public Particle createParticle(SimpleParticleType typeIn, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
 			return new FlyParticle(this.animatedSprite, worldIn, x, y, z, (float) xSpeed, (float) ySpeed, (float) zSpeed);
 		}

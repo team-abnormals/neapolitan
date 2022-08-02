@@ -87,6 +87,7 @@ public class BeanstalkThornsBlock extends Block implements SimpleWaterloggedBloc
 		return state.getFluidState().isEmpty();
 	}
 
+	@Override
 	@Nullable
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
 		FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
