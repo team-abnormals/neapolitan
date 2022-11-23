@@ -1,5 +1,6 @@
 package com.teamabnormals.neapolitan.core.mixin;
 
+import com.teamabnormals.neapolitan.core.NeapolitanConfig;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
@@ -18,7 +19,7 @@ public abstract class CauldronBlockMixin {
 
 	@Inject(at = @At("HEAD"), method = "receiveStalactiteDrip")
 	private void receiveStalactiteDrip(BlockState state, Level level, BlockPos pos, Fluid fluid, CallbackInfo ci) {
-		if (fluid == ForgeMod.MILK.get()) {
+		if (fluid == ForgeMod.MILK.get() && NeapolitanConfig.COMMON.milkCauldron.get() && NeapolitanConfig.COMMON.milkFromDripstones.get()) {
 			level.setBlockAndUpdate(pos, NeapolitanBlocks.MILK_CAULDRON.get().defaultBlockState());
 			level.levelEvent(1047, pos, 0);
 			level.gameEvent(null, GameEvent.FLUID_PLACE, pos);

@@ -7,6 +7,7 @@ import org.apache.commons.lang3.tuple.Pair;
 public class NeapolitanConfig {
 	public static class Common {
 		public final ConfigValue<Boolean> milkCauldron;
+		public final ConfigValue<Boolean> milkFromDripstones;
 		public final ConfigValue<Boolean> milkingWithGlassBottles;
 
 		public final ConfigValue<Integer> whiteStrawberryMinHeight;
@@ -24,6 +25,7 @@ public class NeapolitanConfig {
 			builder.push("items");
 			builder.push("milk_bottles");
 			milkCauldron = builder.comment("If milk can be inserted into cauldrons").define("Milk Cauldron", true);
+			milkFromDripstones = builder.comment("If cauldrons are filled with milk dropping from a dripstone").define("Milk from Dripstone", true);
 			milkingWithGlassBottles = builder.comment("If milkable mobs can be milked with empty glass bottles").define("Milking with Glass Bottles", false);
 			builder.pop();
 			builder.pop();
