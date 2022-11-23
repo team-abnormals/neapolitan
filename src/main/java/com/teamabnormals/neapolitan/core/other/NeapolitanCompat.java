@@ -4,6 +4,7 @@ import com.teamabnormals.blueprint.core.util.DataUtil;
 import com.teamabnormals.neapolitan.common.block.MilkCauldronBlock;
 import com.teamabnormals.neapolitan.common.entity.projectile.Bananarrow;
 import com.teamabnormals.neapolitan.core.Neapolitan;
+import com.teamabnormals.neapolitan.core.NeapolitanConfig;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -212,6 +213,7 @@ public class NeapolitanCompat {
 			}
 		});
 		CauldronInteraction.EMPTY.put(NeapolitanItems.MILK_BOTTLE.get(), (state, level, pos, player, hand, stack) -> {
+			if(!NeapolitanConfig.COMMON.milkCauldron.get()) return InteractionResult.PASS;
 			if (!level.isClientSide) {
 				Item item = stack.getItem();
 				player.setItemInHand(hand, ItemUtils.createFilledResult(stack, player, new ItemStack(Items.GLASS_BOTTLE)));

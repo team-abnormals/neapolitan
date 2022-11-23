@@ -25,7 +25,10 @@ import java.util.function.Predicate;
 public class MilkCauldronBlock extends LayeredCauldronBlock {
 	public static Map<Item, CauldronInteraction> MILK = CauldronInteraction.newInteractionMap();
 	public static final Predicate<Biome.Precipitation> FALSE = (precipitation) -> false;
-	public static final CauldronInteraction FILL_MILK = (state, level, pos, player, hand, stack) -> CauldronInteraction.emptyBucket(level, pos, player, hand, stack, NeapolitanBlocks.MILK_CAULDRON.get().defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 3), SoundEvents.BUCKET_EMPTY);
+    public static final CauldronInteraction FILL_MILK = (state, level, pos, player, hand, stack) -> {
+        if (!NeapolitanConfig.COMMON.milkCauldron.get()) return InteractionResult.PASS;
+        return CauldronInteraction.emptyBucket(level, pos, player, hand, stack, NeapolitanBlocks.MILK_CAULDRON.get().defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 3), SoundEvents.BUCKET_EMPTY);
+    };
 
 	public MilkCauldronBlock(BlockBehaviour.Properties properties) {
 		super(properties, FALSE, MILK);
