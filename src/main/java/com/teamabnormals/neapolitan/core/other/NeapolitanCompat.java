@@ -4,6 +4,7 @@ import com.teamabnormals.blueprint.core.util.DataUtil;
 import com.teamabnormals.neapolitan.common.block.MilkCauldronBlock;
 import com.teamabnormals.neapolitan.common.entity.projectile.Bananarrow;
 import com.teamabnormals.neapolitan.core.Neapolitan;
+import com.teamabnormals.neapolitan.core.NeapolitanConfig;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -177,6 +178,8 @@ public class NeapolitanCompat {
 	}
 
 	public static void registerCauldronInteractions() {
+		if(!NeapolitanConfig.COMMON.milkCauldron.get()) return;
+
 		CauldronInteraction.addDefaultInteractions(MilkCauldronBlock.MILK);
 		CauldronInteraction.EMPTY.put(Items.MILK_BUCKET, MilkCauldronBlock.FILL_MILK);
 		CauldronInteraction.WATER.put(Items.MILK_BUCKET, MilkCauldronBlock.FILL_MILK);
