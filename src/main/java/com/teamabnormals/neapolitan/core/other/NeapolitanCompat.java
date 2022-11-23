@@ -177,6 +177,8 @@ public class NeapolitanCompat {
 	}
 
 	public static void registerCauldronInteractions() {
+		if(!NeapolitanConfig.COMMON.milkCauldron.get()) return;
+
 		CauldronInteraction.addDefaultInteractions(MilkCauldronBlock.MILK);
 		CauldronInteraction.EMPTY.put(Items.MILK_BUCKET, MilkCauldronBlock.FILL_MILK);
 		CauldronInteraction.WATER.put(Items.MILK_BUCKET, MilkCauldronBlock.FILL_MILK);
@@ -213,7 +215,6 @@ public class NeapolitanCompat {
 			}
 		});
 		CauldronInteraction.EMPTY.put(NeapolitanItems.MILK_BOTTLE.get(), (state, level, pos, player, hand, stack) -> {
-			if(!NeapolitanConfig.COMMON.milkCauldron.get()) return InteractionResult.PASS;
 			if (!level.isClientSide) {
 				Item item = stack.getItem();
 				player.setItemInHand(hand, ItemUtils.createFilledResult(stack, player, new ItemStack(Items.GLASS_BOTTLE)));
