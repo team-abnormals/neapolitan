@@ -52,6 +52,6 @@ public class MilkCauldronBlock extends LayeredCauldronBlock {
 
 	@Override
 	protected boolean canReceiveStalactiteDrip(Fluid fluid) {
-		return fluid == ForgeMod.MILK.get();
+		return fluid == ForgeMod.MILK.get() && NeapolitanConfig.COMMON.milkFromDripstones.get();
 	}
 }
