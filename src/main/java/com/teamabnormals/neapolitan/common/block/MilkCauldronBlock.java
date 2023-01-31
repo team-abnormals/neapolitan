@@ -1,10 +1,12 @@
 package com.teamabnormals.neapolitan.common.block;
 
 import com.teamabnormals.neapolitan.common.item.MilkBottleItem;
+import com.teamabnormals.neapolitan.core.NeapolitanConfig;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
@@ -25,7 +27,7 @@ import java.util.function.Predicate;
 public class MilkCauldronBlock extends LayeredCauldronBlock {
 	public static Map<Item, CauldronInteraction> MILK = CauldronInteraction.newInteractionMap();
 	public static final Predicate<Biome.Precipitation> FALSE = (precipitation) -> false;
-	public static final CauldronInteraction FILL_MILK = (state, level, pos, player, hand, stack) -> CauldronInteraction.emptyBucket(level, pos, player, hand, stack, NeapolitanBlocks.MILK_CAULDRON.get().defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 3), SoundEvents.BUCKET_EMPTY);
+    public static final CauldronInteraction FILL_MILK = (state, level, pos, player, hand, stack) -> CauldronInteraction.emptyBucket(level, pos, player, hand, stack, NeapolitanBlocks.MILK_CAULDRON.get().defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 3), SoundEvents.BUCKET_EMPTY);
 
 	public MilkCauldronBlock(BlockBehaviour.Properties properties) {
 		super(properties, FALSE, MILK);
@@ -50,6 +52,6 @@ public class MilkCauldronBlock extends LayeredCauldronBlock {
 
 	@Override
 	protected boolean canReceiveStalactiteDrip(Fluid fluid) {
-		return fluid == ForgeMod.MILK.get();
+		return fluid == ForgeMod.MILK.get() && NeapolitanConfig.COMMON.milkFromDripstones.get();
 	}
 }
