@@ -1,6 +1,7 @@
 package com.teamabnormals.neapolitan.common.block;
 
 import com.teamabnormals.neapolitan.common.item.MilkBottleItem;
+import com.teamabnormals.neapolitan.core.NeapolitanConfig;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.cauldron.CauldronInteraction;
@@ -50,6 +51,6 @@ public class MilkCauldronBlock extends LayeredCauldronBlock {
 
 	@Override
 	protected boolean canReceiveStalactiteDrip(Fluid fluid) {
-		return fluid == ForgeMod.MILK.get();
+		return fluid == ForgeMod.MILK.get() && NeapolitanConfig.COMMON.milkFromDripstones.get();
 	}
 }
