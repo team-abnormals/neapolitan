@@ -275,7 +275,9 @@ public class Chimpanzee extends Animal implements NeutralMob {
 
 	@Override
 	protected void customServerAiStep() {
-		this.updatePersistentAnger((ServerLevel) this.level, true);
+		if (!this.level.isClientSide) {
+			this.updatePersistentAnger((ServerLevel) this.level, true);
+		}
 
 		if (this.isAngry()) {
 			this.lastHurtByPlayerTime = this.tickCount;
