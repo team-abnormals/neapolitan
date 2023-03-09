@@ -70,7 +70,7 @@ public class Bananarrow extends AbstractArrow {
 		if (entity instanceof LivingEntity livingEntity && !(entity instanceof Chimpanzee)) {
 			List<Chimpanzee> chimps = level.getEntitiesOfClass(Chimpanzee.class, livingEntity.getBoundingBox().inflate(16.0D, 6.0D, 16.0D));
 			for (Chimpanzee chimp : chimps) {
-				if (!chimp.isBaby()) {
+				if (!chimp.isBaby() && livingEntity.canBeSeenAsEnemy()) {
 					chimp.setTarget(livingEntity);
 				}
 			}
