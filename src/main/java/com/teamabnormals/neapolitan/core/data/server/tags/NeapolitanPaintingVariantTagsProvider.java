@@ -1,11 +1,12 @@
 package com.teamabnormals.neapolitan.core.data.server.tags;
 
 import com.teamabnormals.neapolitan.core.Neapolitan;
-import com.teamabnormals.neapolitan.core.registry.NeapolitanPaintingVariants;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.PaintingVariantTagsProvider;
 import net.minecraft.tags.PaintingVariantTags;
 import net.minecraftforge.common.data.ExistingFileHelper;
+
+import static com.teamabnormals.neapolitan.core.registry.NeapolitanPaintingVariants.*;
 
 public class NeapolitanPaintingVariantTagsProvider extends PaintingVariantTagsProvider {
 
@@ -15,6 +16,6 @@ public class NeapolitanPaintingVariantTagsProvider extends PaintingVariantTagsPr
 
 	@Override
 	public void addTags() {
-		this.tag(PaintingVariantTags.PLACEABLE).add(NeapolitanPaintingVariants.CONE.get(), NeapolitanPaintingVariants.SCREAM.get());
+		this.tag(PaintingVariantTags.PLACEABLE).add(CONE.get(), DAWN.get(), SCREAM.get());
 	}
 }
