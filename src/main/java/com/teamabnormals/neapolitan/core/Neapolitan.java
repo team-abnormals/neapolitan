@@ -83,23 +83,24 @@ public class Neapolitan {
 
 	private void dataSetup(GatherDataEvent event) {
 		DataGenerator generator = event.getGenerator();
-		ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
+		ExistingFileHelper helper = event.getExistingFileHelper();
 
 		boolean includeServer = event.includeServer();
-		NeapolitanBlockTagsProvider blockTagsProvider = new NeapolitanBlockTagsProvider(generator, existingFileHelper);
+		NeapolitanBlockTagsProvider blockTagsProvider = new NeapolitanBlockTagsProvider(generator, helper);
 		generator.addProvider(includeServer, blockTagsProvider);
-		generator.addProvider(includeServer, new NeapolitanItemTagsProvider(generator, blockTagsProvider, existingFileHelper));
-		generator.addProvider(includeServer, new NeapolitanEntityTypeTagsProvider(generator, existingFileHelper));
-		generator.addProvider(includeServer, new NeapolitanBannerPatternTagsProvider(generator, existingFileHelper));
-		generator.addProvider(includeServer, new NeapolitanBiomeTagsProvider(generator, existingFileHelper));
-		generator.addProvider(includeServer, new NeapolitanMobEffectTagsProvider(generator, existingFileHelper));
+		generator.addProvider(includeServer, new NeapolitanItemTagsProvider(generator, blockTagsProvider, helper));
+		generator.addProvider(includeServer, new NeapolitanEntityTypeTagsProvider(generator, helper));
+		generator.addProvider(includeServer, new NeapolitanBannerPatternTagsProvider(generator, helper));
+		generator.addProvider(includeServer, new NeapolitanBiomeTagsProvider(generator, helper));
+		generator.addProvider(includeServer, new NeapolitanMobEffectTagsProvider(generator, helper));
+		generator.addProvider(includeServer, new NeapolitanPaintingVariantTagsProvider(generator, helper));
 		generator.addProvider(includeServer, new NeapolitanLootTableProvider(generator));
 		generator.addProvider(includeServer, new NeapolitanLootModifierProvider(generator));
 		generator.addProvider(includeServer, new NeapolitanAdvancementModifierProvider(generator));
-		generator.addProvider(includeServer, NeapolitanBiomeModifierProvider.create(generator, existingFileHelper));
+		generator.addProvider(includeServer, NeapolitanBiomeModifierProvider.create(generator, helper));
 
 		boolean includeClient = event.includeClient();
-		generator.addProvider(includeClient, new NeapolitanBlockStateProvider(generator, existingFileHelper));
+		generator.addProvider(includeClient, new NeapolitanBlockStateProvider(generator, helper));
 		//generator.addProvider(new NeapolitanLanguageProvider(generator));
 	}
 
