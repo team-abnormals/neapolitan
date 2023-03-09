@@ -46,6 +46,8 @@ public class Neapolitan {
 		ModLoadingContext context = ModLoadingContext.get();
 		MinecraftForge.EVENT_BUS.register(this);
 
+		ForgeMod.enableMilkFluid();
+
 		REGISTRY_HELPER.register(bus);
 		NeapolitanMobEffects.MOB_EFFECTS.register(bus);
 		NeapolitanFeatures.FEATURES.register(bus);
