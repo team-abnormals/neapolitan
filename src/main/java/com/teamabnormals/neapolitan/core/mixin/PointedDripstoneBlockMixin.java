@@ -62,14 +62,14 @@ public abstract class PointedDripstoneBlockMixin {
 
 	@Inject(at = @At("RETURN"), method = "canFillCauldron", cancellable = true)
 	private static void canFillCauldron(Fluid fluid, CallbackInfoReturnable<Boolean> cir) {
-		if (fluid == ForgeMod.MILK.get())
+		if (ForgeMod.MILK.isPresent() && fluid == ForgeMod.MILK.get())
 			cir.setReturnValue(true);
 	}
 
 	@Inject(at = @At("RETURN"), method = "getFluidAboveStalactite", cancellable = true)
 	private static void getFluidAboveStalactite(Level level, BlockPos pos, BlockState state, CallbackInfoReturnable<Optional<Fluid>> cir) {
 		Optional<List<Entity>> entities = findRootBlock(level, pos, state, 11).map((newPos) -> level.getEntities(EntityTypeTest.forClass(Entity.class), new AABB(newPos.above()), (entity) -> entity.getType().is(BlueprintEntityTypeTags.MILKABLE)));
-		if (isStalactite(state) && entities.isPresent() && !entities.get().isEmpty()) {
+		if (ForgeMod.MILK.isPresent() && isStalactite(state) && entities.isPresent() && !entities.get().isEmpty()) {
 			cir.setReturnValue(Optional.of(ForgeMod.MILK.get()));
 		}
 	}
@@ -86,21 +86,19 @@ public abstract class PointedDripstoneBlockMixin {
 
 	@Inject(at = @At("HEAD"), method = "maybeTransferFluid")
 	private static void maybeFillCauldron(BlockState state, ServerLevel level, BlockPos pos, float chance, CallbackInfo ci) {
-		if (!(chance > 0.17578125F) || !(chance > 0.05859375F)) {
-			if (isStalactiteStartPos(state, level, pos)) {
-				Fluid fluid = PointedDripstoneBlock.getCauldronFillFluidType(level, pos);
-				if (fluid == ForgeMod.MILK.get()) {
-					if (!(chance >= 0.1171875F)) {
-						BlockPos tipPos = findTip(state, level, pos, 11, false);
-						if (tipPos != null) {
-							BlockPos cauldronPos = findFillableCauldronBelowStalactiteTip(level, tipPos, fluid);
-							if (cauldronPos != null) {
-								level.levelEvent(1504, tipPos, 0);
-								int i = tipPos.getY() - cauldronPos.getY();
-								int j = 50 + i;
-								BlockState blockstate = level.getBlockState(cauldronPos);
-								level.scheduleTick(cauldronPos, blockstate.getBlock(), j);
-							}
+		if (ForgeMod.MILK.isPresent() && (!(chance > 0.17578125F) || !(chance > 0.05859375F)) && isStalactiteStartPos(state, level, pos)) {
+			Fluid fluid = PointedDripstoneBlock.getCauldronFillFluidType(level, pos);
+			if (fluid == ForgeMod.MILK.get()) {
+				if (!(chance >= 0.1171875F)) {
+					BlockPos tipPos = findTip(state, level, pos, 11, false);
+					if (tipPos != null) {
+						BlockPos cauldronPos = findFillableCauldronBelowStalactiteTip(level, tipPos, fluid);
+						if (cauldronPos != null) {
+							level.levelEvent(1504, tipPos, 0);
+							int i = tipPos.getY() - cauldronPos.getY();
+							int j = 50 + i;
+							BlockState blockstate = level.getBlockState(cauldronPos);
+							level.scheduleTick(cauldronPos, blockstate.getBlock(), j);
 						}
 					}
 				}
