@@ -23,7 +23,6 @@ public class BeanstalkBlock extends RotatedPillarBlock {
 		ItemStack stack = player.getItemInHand(handIn);
 		Direction face = hit.getDirection();
 		BlockPos offsetPos = pos.relative(face);
-		System.out.println(worldIn.isClientSide());
 		if (stack.getItem() instanceof BoneMealItem && worldIn.getBlockState(offsetPos).isAir()) {
 			if (!player.getAbilities().instabuild) stack.shrink(1);
 			worldIn.setBlockAndUpdate(offsetPos, NeapolitanBlocks.BEANSTALK_THORNS.get().defaultBlockState().setValue(BeanstalkThornsBlock.FACING, face));
