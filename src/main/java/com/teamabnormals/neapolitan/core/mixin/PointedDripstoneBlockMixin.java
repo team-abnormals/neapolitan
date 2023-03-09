@@ -9,7 +9,9 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.PointedDripstoneBlock;
+import net.minecraft.world.level.block.PointedDripstoneBlock.FluidInfo;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.entity.EntityTypeTest;
 import net.minecraft.world.level.material.Fluid;
@@ -67,10 +69,10 @@ public abstract class PointedDripstoneBlockMixin {
 	}
 
 	@Inject(at = @At("RETURN"), method = "getFluidAboveStalactite", cancellable = true)
-	private static void getFluidAboveStalactite(Level level, BlockPos pos, BlockState state, CallbackInfoReturnable<Optional<Fluid>> cir) {
+	private static void getFluidAboveStalactite(Level level, BlockPos pos, BlockState state, CallbackInfoReturnable<Optional<FluidInfo>> cir) {
 		Optional<List<Entity>> entities = findRootBlock(level, pos, state, 11).map((newPos) -> level.getEntities(EntityTypeTest.forClass(Entity.class), new AABB(newPos.above()), (entity) -> entity.getType().is(BlueprintEntityTypeTags.MILKABLE)));
 		if (isStalactite(state) && entities.isPresent() && !entities.get().isEmpty()) {
-			cir.setReturnValue(Optional.of(ForgeMod.MILK.get()));
+			cir.setReturnValue(Optional.of(new PointedDripstoneBlock.FluidInfo(pos, ForgeMod.MILK.get(), Blocks.AIR.defaultBlockState())));
 		}
 	}
 
