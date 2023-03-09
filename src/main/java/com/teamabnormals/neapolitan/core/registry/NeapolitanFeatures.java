@@ -31,7 +31,7 @@ public class NeapolitanFeatures {
 	public static final RegistryObject<Feature<RandomPatchConfiguration>> VANILLA_VINE_PATCH = FEATURES.register("vanilla_patch", () -> new VanillaPatchFeature(RandomPatchConfiguration.CODEC));
 	public static final RegistryObject<Feature<NoneFeatureConfiguration>> BANANA_PLANT = FEATURES.register("banana_plant", () -> new BananaPlantFeature(NoneFeatureConfiguration.CODEC));
 	public static final RegistryObject<Feature<SimpleBlockConfiguration>> ADZUKI_SPROUTS = FEATURES.register("adzuki_sprouts", () -> new AdzukiSproutsFeature(SimpleBlockConfiguration.CODEC));
-	public static final RegistryObject<Feature<NoneFeatureConfiguration>> MINT_POND = FEATURES.register("mind_pond", () -> new MintPondFeature(NoneFeatureConfiguration.CODEC));
+	public static final RegistryObject<Feature<NoneFeatureConfiguration>> MINT_POND = FEATURES.register("mint_pond", () -> new MintPondFeature(NoneFeatureConfiguration.CODEC));
 
 	public static final class NeapolitanConfiguredFeatures {
 		public static final DeferredRegister<ConfiguredFeature<?, ?>> CONFIGURED_FEATURES = DeferredRegister.create(Registry.CONFIGURED_FEATURE_REGISTRY, Neapolitan.MOD_ID);
