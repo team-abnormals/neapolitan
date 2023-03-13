@@ -5,10 +5,10 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;
 
-public class MilkshakeItem extends DrinkItem {
+public class HealingMilkshakeItem extends HealingItem {
 
-	public MilkshakeItem(Properties builder) {
-		super(builder);
+	public HealingMilkshakeItem(float healAmount, Properties builder) {
+		super(healAmount, builder);
 	}
 
 	@Override
