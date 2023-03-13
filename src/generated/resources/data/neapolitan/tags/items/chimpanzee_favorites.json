@@ -2,8 +2,6 @@
   "values": [
     "minecraft:stick",
     "minecraft:bamboo",
-    "neapolitan:small_banana_frond",
-    "neapolitan:banana_frond",
-    "neapolitan:large_banana_frond"
+    "neapolitan:banana_frond"
   ]
 }

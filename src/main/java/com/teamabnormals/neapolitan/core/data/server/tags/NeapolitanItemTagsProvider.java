@@ -32,7 +32,7 @@ public class NeapolitanItemTagsProvider extends ItemTagsProvider {
 		this.copy(BlockTags.WALLS, ItemTags.WALLS);
 
 		this.tag(NeapolitanItemTags.CHIMPANZEE_APE_MODE_ITEMS).addOptional(NeapolitanConstants.WARM_MONKEY_BRUSH).addOptional(NeapolitanConstants.HOT_MONKEY_BRUSH).addOptional(NeapolitanConstants.SCALDING_MONKEY_BRUSH);
-		this.tag(NeapolitanItemTags.CHIMPANZEE_FAVORITES).add(Items.STICK, Items.BAMBOO, NeapolitanBlocks.BANANA_FROND.get().asItem());
+		this.tag(NeapolitanItemTags.CHIMPANZEE_FAVORITES).add(Items.STICK, Items.BAMBOO, NeapolitanItems.BANANA_FROND.get());
 		this.tag(NeapolitanItemTags.CHIMPANZEE_FOOD).add(NeapolitanItems.BANANA_BUNCH.get());
 		this.tag(NeapolitanItemTags.CHIMPANZEE_SNACKS).add(NeapolitanItems.BANANA.get(), NeapolitanItems.BANANA_BUNCH.get(), NeapolitanItems.BANANA_BREAD.get(), NeapolitanItems.DRIED_BANANA.get(), NeapolitanItems.BANANARROW.get());
 		this.tag(NeapolitanItemTags.HIDES_CHIMPANZEE_EARS).addTag(Tags.Items.HEADS).addOptional(NeapolitanConstants.GRIEFER_HELMET).addOptional(NeapolitanConstants.SANGUINE_HELMET);
