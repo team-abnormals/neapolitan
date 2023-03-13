@@ -34,10 +34,6 @@
                 }
               ],
               "name": "neapolitan:white_strawberries"
-            },
-            {
-              "type": "minecraft:item",
-              "name": "neapolitan:strawberry_pips"
             }
           ]
         }
