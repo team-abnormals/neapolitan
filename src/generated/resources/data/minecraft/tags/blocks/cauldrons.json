@@ -1,5 +1,11 @@
 {
   "values": [
-    "neapolitan:milk_cauldron"
+    "neapolitan:milk_cauldron",
+    "neapolitan:vanilla_milkshake_cauldron",
+    "neapolitan:chocolate_milkshake_cauldron",
+    "neapolitan:strawberry_milkshake_cauldron",
+    "neapolitan:banana_milkshake_cauldron",
+    "neapolitan:mint_milkshake_cauldron",
+    "neapolitan:adzuki_milkshake_cauldron"
   ]
 }
