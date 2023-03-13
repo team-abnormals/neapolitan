@@ -1,5 +1,7 @@
 package com.teamabnormals.neapolitan.common.block;
 
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Maps;
 import com.teamabnormals.blueprint.core.util.BlockUtil;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
@@ -22,6 +24,8 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.Tags;
 
@@ -34,6 +38,10 @@ public class BananaFrondBlock extends BushBlock implements BonemealableBlock {
 	public static final DirectionProperty FACING = BlockStateProperties.FACING;
 	public static final BooleanProperty MOIST = BooleanProperty.create("moist");
 
+	private static final Map<Direction, VoxelShape> SMALL_AABBS = Maps.newEnumMap(ImmutableMap.of(Direction.NORTH, Block.box(4.0D, 7.0D, 8.0D, 12.0D, 15.0D, 16.0D), Direction.SOUTH, Block.box(4.0D, 7.0D, 0.0D, 12.0D, 15.0D, 8.0D), Direction.WEST, Block.box(8.0D, 7.0D, 4.0D, 16.0D, 15.0D, 12.0D), Direction.EAST, Block.box(0.0D, 7.0D, 4.0D, 8.0D, 15.0D, 12.0D), Direction.UP, Block.box(3.0D, 0.0D, 5.0D, 13.0D, 4.0D, 13.0D), Direction.DOWN, Block.box(3.0D, 12.0D, 2.0D, 13.0D, 16.0D, 13.0D)));
+	private static final Map<Direction, VoxelShape> AABBS = Maps.newEnumMap(ImmutableMap.of(Direction.NORTH, Block.box(3.0D, 5.0D, 6.0D, 13.0D, 15.0D, 16.0D), Direction.SOUTH, Block.box(3.0D, 5.0D, 0.0D, 13.0D, 15.0D, 10.0D), Direction.WEST, Block.box(6.0D, 5.0D, 3.0D, 16.0D, 15.0D, 13.0D), Direction.EAST, Block.box(0.0D, 5.0D, 3.0D, 10.0D, 15.0D, 13.0D), Direction.UP, Block.box(2.0D, 0.0D, 2.0D, 14.0D, 5.5D, 14.0D), Direction.DOWN, Block.box(2.0D, 11.5D, 2.0D, 14.0D, 16.0D, 14.0D)));
+	private static final Map<Direction, VoxelShape> LARGE_AABBS = Maps.newEnumMap(ImmutableMap.of(Direction.NORTH, Block.box(2.0D, 3.0D, 4.0D, 14.0D, 15.0D, 16.0D), Direction.SOUTH, Block.box(2.0D, 3.0D, 0.0D, 14.0D, 15.0D, 12.0D), Direction.WEST, Block.box(4.0D, 3.0D, 2.0D, 16.0D, 15.0D, 14.0D), Direction.EAST, Block.box(0.0D, 3.0D, 2.0D, 12.0D, 15.0D, 14.0D), Direction.UP, Block.box(1.0D, 0.0D, 1.0D, 15.0D, 7.0D, 15.0D), Direction.DOWN, Block.box(1.0D, 9.0D, 1.0D, 15.0D, 16.0D, 15.0D)));
+
 	public BananaFrondBlock(Properties properties) {
 		super(properties);
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.UP).setValue(MOIST, false));
@@ -45,6 +53,10 @@ public class BananaFrondBlock extends BushBlock implements BonemealableBlock {
 		BlockPos blockpos = pos.relative(facing.getOpposite());
 		BlockState blockState = level.getBlockState(blockpos);
 		return (canSupportCenter(level, blockpos, facing) || this.mayPlaceOn(blockState, level, blockpos));
+	}
+
+	public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+		return (isLarge(state) ? LARGE_AABBS : isSmall(state) ? SMALL_AABBS : AABBS).get(state.getValue(FACING));
 	}
 
 	@Override
@@ -68,18 +80,18 @@ public class BananaFrondBlock extends BushBlock implements BonemealableBlock {
 		BlockPos pos = context.getClickedPos();
 		BlockState state = level.getBlockState(pos);
 		Direction direction = context.getClickedFace();
-		if (state.is(NeapolitanBlocks.SMALL_BANANA_FROND.get())) {
-			return BlockUtil.transferAllBlockStates(state, NeapolitanBlocks.BANANA_FROND.get().defaultBlockState());
-		} else if (state.is(NeapolitanBlocks.BANANA_FROND.get())) {
-			return BlockUtil.transferAllBlockStates(state, NeapolitanBlocks.LARGE_BANANA_FROND.get().defaultBlockState());
-		} else {
+		if (isLarge(state)) {
 			return this.defaultBlockState().setValue(FACING, direction).setValue(MOIST, direction == Direction.UP && canGrowOn(level.getBlockState(pos.below())));
+		} else if (isSmall(state)) {
+			return BlockUtil.transferAllBlockStates(state, NeapolitanBlocks.BANANA_FROND.get().defaultBlockState());
+		} else {
+			return BlockUtil.transferAllBlockStates(state, NeapolitanBlocks.LARGE_BANANA_FROND.get().defaultBlockState());
 		}
 	}
 
 	@Override
 	public boolean canBeReplaced(BlockState state, BlockPlaceContext useContext) {
-		return (useContext.getItemInHand().is(NeapolitanItems.BANANA_FROND.get()) && !state.is(NeapolitanBlocks.LARGE_BANANA_FROND.get())) || super.canBeReplaced(state, useContext);
+		return (useContext.getItemInHand().is(NeapolitanItems.BANANA_FROND.get()) && !isLarge(state)) || super.canBeReplaced(state, useContext);
 	}
 
 	@Override
@@ -89,7 +101,7 @@ public class BananaFrondBlock extends BushBlock implements BonemealableBlock {
 
 	@Override
 	public boolean isValidBonemealTarget(BlockGetter level, BlockPos pos, BlockState state, boolean isClient) {
-		if (state.is(NeapolitanBlocks.LARGE_BANANA_FROND.get())) {
+		if (isLarge(state)) {
 			return state.getValue(FACING) == Direction.UP && level instanceof Level && ((Level) level).isRainingAt(pos);
 		} else {
 			return true;
@@ -103,11 +115,11 @@ public class BananaFrondBlock extends BushBlock implements BonemealableBlock {
 
 	@Override
 	public void performBonemeal(ServerLevel level, RandomSource rand, BlockPos pos, BlockState state) {
-		if (state.is(NeapolitanBlocks.LARGE_BANANA_FROND.get()) && rand.nextInt(6) == 0) {
+		if (isLarge(state) && rand.nextInt(6) == 0) {
 			attemptGrowBanana(getSizeForFrond(rand, this), level, rand, pos);
-		} else if (state.is(NeapolitanBlocks.SMALL_BANANA_FROND.get())) {
+		} else if (isSmall(state)) {
 			level.setBlockAndUpdate(pos, BlockUtil.transferAllBlockStates(state, NeapolitanBlocks.BANANA_FROND.get().defaultBlockState()));
-		} else if (state.is(NeapolitanBlocks.BANANA_FROND.get())) {
+		} else {
 			level.setBlockAndUpdate(pos, BlockUtil.transferAllBlockStates(state, NeapolitanBlocks.LARGE_BANANA_FROND.get().defaultBlockState()));
 		}
 	}
@@ -208,6 +220,14 @@ public class BananaFrondBlock extends BushBlock implements BonemealableBlock {
 			pos = pos.above();
 		}
 		return true;
+	}
+
+	public static boolean isLarge(BlockState state) {
+		return state.is(NeapolitanBlocks.LARGE_BANANA_FROND.get());
+	}
+
+	public static boolean isSmall(BlockState state) {
+		return state.is(NeapolitanBlocks.SMALL_BANANA_FROND.get());
 	}
 
 	private static int getSizeForFrond(RandomSource rand, Block frond) {
