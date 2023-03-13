@@ -1,0 +1,47 @@
+{
+	"credit": "Made with Blockbench",
+	"ambientocclusion": false,
+	"texture_size": [16, 32],
+	"textures": {
+		"particle": "neapolitan:block/small_banana_frond",
+		"frond": "neapolitan:block/small_banana_frond"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 8],
+			"to": [16, 0, 24],
+			"rotation": {"angle": -22.5, "axis": "x", "origin": [8, 0, 8]},
+			"faces": {
+				"up": {"uv": [0, 8, 16, 16], "rotation": 180, "texture": "#frond"},
+				"down": {"uv": [0, 4, 16, 16], "texture": "#frond"}
+			}
+		},
+		{
+			"from": [8, 0, 0],
+			"to": [24, 0, 16],
+			"rotation": {"angle": 22.5, "axis": "z", "origin": [8, 0, 8]},
+			"faces": {
+				"up": {"uv": [0, 8, 16, 16], "rotation": 90, "texture": "#frond"},
+				"down": {"uv": [0, 4, 16, 16], "rotation": 90, "texture": "#frond"}
+			}
+		},
+		{
+			"from": [-8, 0, 0],
+			"to": [8, 0, 16],
+			"rotation": {"angle": -22.5, "axis": "z", "origin": [8, 0, 8]},
+			"faces": {
+				"up": {"uv": [0, 8, 16, 16], "rotation": 270, "texture": "#frond"},
+				"down": {"uv": [0, 4, 16, 16], "rotation": 270, "texture": "#frond"}
+			}
+		},
+		{
+			"from": [0, 0, -8],
+			"to": [16, 0, 8],
+			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, 0, 8]},
+			"faces": {
+				"up": {"uv": [0, 8, 16, 16], "texture": "#frond"},
+				"down": {"uv": [0, 4, 16, 16], "rotation": 180, "texture": "#frond"}
+			}
+		}
+	]
+}
