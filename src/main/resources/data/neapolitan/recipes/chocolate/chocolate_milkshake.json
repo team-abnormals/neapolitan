@@ -11,10 +11,7 @@
       "item": "minecraft:glass_bottle"
     },
     {
-      "item": "neapolitan:chocolate_bar"
-    },
-    {
-      "item": "neapolitan:vanilla_ice_cream"
+      "item": "neapolitan:chocolate_ice_cream"
     },
     {
       "tag": "forge:milk"
