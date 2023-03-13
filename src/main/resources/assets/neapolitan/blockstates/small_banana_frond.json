@@ -19,8 +19,11 @@
       "model": "neapolitan:block/small_banana_frond_wall",
       "y": 90
     },
-    "facing=up": {
+    "facing=up,moist=false": {
       "model": "neapolitan:block/small_banana_frond"
+    },
+    "facing=up,moist=true": {
+      "model": "neapolitan:block/small_banana_frond_moist"
     }
   }
 }

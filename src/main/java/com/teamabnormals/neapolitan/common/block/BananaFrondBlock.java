@@ -20,6 +20,7 @@ import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.Tags;
@@ -31,23 +32,24 @@ import java.util.Map;
 
 public class BananaFrondBlock extends BushBlock implements BonemealableBlock {
 	public static final DirectionProperty FACING = BlockStateProperties.FACING;
+	public static final BooleanProperty MOIST = BooleanProperty.create("moist");
 
 	public BananaFrondBlock(Properties properties) {
 		super(properties);
-		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.UP));
+		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.UP).setValue(MOIST, false));
 	}
 
 	@Override
-	public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
+	public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
 		Direction facing = state.getValue(FACING);
 		BlockPos blockpos = pos.relative(facing.getOpposite());
-		BlockState blockState = worldIn.getBlockState(blockpos);
-		return (canSupportCenter(worldIn, blockpos, facing) || this.mayPlaceOn(blockState, worldIn, blockpos));
+		BlockState blockState = level.getBlockState(blockpos);
+		return (canSupportCenter(level, blockpos, facing) || this.mayPlaceOn(blockState, level, blockpos));
 	}
 
 	@Override
-	protected boolean mayPlaceOn(BlockState state, BlockGetter worldIn, BlockPos pos) {
-		return worldIn.getBlockState(pos).is(BlockTags.LEAVES);
+	protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
+		return level.getBlockState(pos).is(BlockTags.LEAVES);
 	}
 
 	@Override
@@ -57,18 +59,21 @@ public class BananaFrondBlock extends BushBlock implements BonemealableBlock {
 
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		builder.add(FACING);
+		builder.add(FACING, MOIST);
 	}
 
 	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		BlockState state = context.getLevel().getBlockState(context.getClickedPos());
+		Level level = context.getLevel();
+		BlockPos pos = context.getClickedPos();
+		BlockState state = level.getBlockState(pos);
+		Direction direction = context.getClickedFace();
 		if (state.is(NeapolitanBlocks.SMALL_BANANA_FROND.get())) {
 			return BlockUtil.transferAllBlockStates(state, NeapolitanBlocks.BANANA_FROND.get().defaultBlockState());
 		} else if (state.is(NeapolitanBlocks.BANANA_FROND.get())) {
 			return BlockUtil.transferAllBlockStates(state, NeapolitanBlocks.LARGE_BANANA_FROND.get().defaultBlockState());
 		} else {
-			return this.defaultBlockState().setValue(FACING, context.getClickedFace());
+			return this.defaultBlockState().setValue(FACING, direction).setValue(MOIST, direction == Direction.UP && canGrowOn(level.getBlockState(pos.below())));
 		}
 	}
 
@@ -78,49 +83,49 @@ public class BananaFrondBlock extends BushBlock implements BonemealableBlock {
 	}
 
 	@Override
-	public ItemStack getCloneItemStack(BlockGetter worldIn, BlockPos pos, BlockState state) {
+	public ItemStack getCloneItemStack(BlockGetter level, BlockPos pos, BlockState state) {
 		return new ItemStack(NeapolitanItems.BANANA_FROND.get());
 	}
 
 	@Override
-	public boolean isValidBonemealTarget(BlockGetter worldIn, BlockPos pos, BlockState state, boolean isClient) {
+	public boolean isValidBonemealTarget(BlockGetter level, BlockPos pos, BlockState state, boolean isClient) {
 		if (state.is(NeapolitanBlocks.LARGE_BANANA_FROND.get())) {
-			return state.getValue(FACING) == Direction.UP && worldIn instanceof Level && ((Level) worldIn).isRainingAt(pos);
+			return state.getValue(FACING) == Direction.UP && level instanceof Level && ((Level) level).isRainingAt(pos);
 		} else {
 			return true;
 		}
 	}
 
 	@Override
-	public boolean isBonemealSuccess(Level worldIn, RandomSource rand, BlockPos pos, BlockState state) {
+	public boolean isBonemealSuccess(Level level, RandomSource rand, BlockPos pos, BlockState state) {
 		return true;
 	}
 
 	@Override
-	public void performBonemeal(ServerLevel world, RandomSource rand, BlockPos pos, BlockState state) {
+	public void performBonemeal(ServerLevel level, RandomSource rand, BlockPos pos, BlockState state) {
 		if (state.is(NeapolitanBlocks.LARGE_BANANA_FROND.get()) && rand.nextInt(6) == 0) {
-			attemptGrowBanana(getSizeForFrond(rand, this), world, rand, pos);
+			attemptGrowBanana(getSizeForFrond(rand, this), level, rand, pos);
 		} else if (state.is(NeapolitanBlocks.SMALL_BANANA_FROND.get())) {
-			world.setBlockAndUpdate(pos, BlockUtil.transferAllBlockStates(state, NeapolitanBlocks.BANANA_FROND.get().defaultBlockState()));
+			level.setBlockAndUpdate(pos, BlockUtil.transferAllBlockStates(state, NeapolitanBlocks.BANANA_FROND.get().defaultBlockState()));
 		} else if (state.is(NeapolitanBlocks.BANANA_FROND.get())) {
-			world.setBlockAndUpdate(pos, BlockUtil.transferAllBlockStates(state, NeapolitanBlocks.LARGE_BANANA_FROND.get().defaultBlockState()));
+			level.setBlockAndUpdate(pos, BlockUtil.transferAllBlockStates(state, NeapolitanBlocks.LARGE_BANANA_FROND.get().defaultBlockState()));
 		}
 	}
 
 	@Override
-	public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource rand) {
-		if (this.isValidBonemealTarget(worldIn, pos, state, worldIn.isClientSide()) && canGrowOn(worldIn.getBlockState(pos.below()))) {
-			if (ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt(2) == 0)) {
-				attemptGrowBanana(getSizeForFrond(rand, this), worldIn, rand, pos);
-				ForgeHooks.onCropsGrowPost(worldIn, pos, state);
+	public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
+		if (state.getValue(MOIST) && level.isRainingAt(pos) && canGrowOn(level.getBlockState(pos.below()))) {
+			if (ForgeHooks.onCropsGrowPre(level, pos, state, rand.nextInt(2) == 0)) {
+				attemptGrowBanana(getSizeForFrond(rand, this), level, rand, pos);
+				ForgeHooks.onCropsGrowPost(level, pos, state);
 			}
 		}
 	}
 
-	public static boolean attemptGrowBanana(int size, Level world, RandomSource rand, BlockPos pos) {
+	public static boolean attemptGrowBanana(int size, Level level, RandomSource rand, BlockPos pos) {
 		BlockPos blockPos = pos;
 		List<BlockPos> stalks = new ArrayList<>();
-		BlockPos upFrond = null;
+		BlockPos upFrond;
 		BlockPos bundle = null;
 
 		Map<BlockPos, Direction> smallFronds = new HashMap<>();
@@ -164,21 +169,21 @@ public class BananaFrondBlock extends BushBlock implements BonemealableBlock {
 			i += 1;
 		}
 
-		if (isAirAt(world, pos, size) && pos.getY() < world.getMaxBuildHeight() - size) {
+		if (isAirAt(level, pos, size) && pos.getY() < level.getMaxBuildHeight() - size) {
 			for (BlockPos blockPos2 : stalks) {
-				world.setBlock(blockPos2, NeapolitanBlocks.BANANA_STALK.get().defaultBlockState(), 2);
+				level.setBlock(blockPos2, NeapolitanBlocks.BANANA_STALK.get().defaultBlockState(), 2);
 			}
-			world.setBlock(upFrond, NeapolitanBlocks.LARGE_BANANA_FROND.get().defaultBlockState(), 2);
+			level.setBlock(upFrond, NeapolitanBlocks.LARGE_BANANA_FROND.get().defaultBlockState(), 2);
 			if (bundle != null)
-				world.setBlock(bundle, NeapolitanBlocks.BANANA_BUNDLE.get().defaultBlockState(), 2);
+				level.setBlock(bundle, NeapolitanBlocks.BANANA_BUNDLE.get().defaultBlockState(), 2);
 			for (BlockPos blockPos2 : smallFronds.keySet()) {
-				world.setBlock(blockPos2, NeapolitanBlocks.SMALL_BANANA_FROND.get().defaultBlockState().setValue(FACING, smallFronds.get(blockPos2)), 2);
+				level.setBlock(blockPos2, NeapolitanBlocks.SMALL_BANANA_FROND.get().defaultBlockState().setValue(FACING, smallFronds.get(blockPos2)), 2);
 			}
 			for (BlockPos blockPos2 : fronds.keySet()) {
-				world.setBlock(blockPos2, NeapolitanBlocks.BANANA_FROND.get().defaultBlockState().setValue(FACING, fronds.get(blockPos2)), 2);
+				level.setBlock(blockPos2, NeapolitanBlocks.BANANA_FROND.get().defaultBlockState().setValue(FACING, fronds.get(blockPos2)), 2);
 			}
 			for (BlockPos blockPos2 : largeFronds.keySet()) {
-				world.setBlock(blockPos2, NeapolitanBlocks.LARGE_BANANA_FROND.get().defaultBlockState().setValue(FACING, largeFronds.get(blockPos2)), 2);
+				level.setBlock(blockPos2, NeapolitanBlocks.LARGE_BANANA_FROND.get().defaultBlockState().setValue(FACING, largeFronds.get(blockPos2)), 2);
 			}
 			return true;
 		}
@@ -190,13 +195,13 @@ public class BananaFrondBlock extends BushBlock implements BonemealableBlock {
 		return state.is(Tags.Blocks.GRAVEL) || state.is(Tags.Blocks.SAND);
 	}
 
-	private static boolean isAirAt(Level world, BlockPos pos, int size) {
+	private static boolean isAirAt(Level level, BlockPos pos, int size) {
 		for (int i = 0; i < size + 1; i++) {
-			if (i != 0 && !(world.isEmptyBlock(pos) || world.getBlockState(pos).getMaterial().isReplaceable()))
+			if (i != 0 && !(level.isEmptyBlock(pos) || level.getBlockState(pos).getMaterial().isReplaceable()))
 				return false;
 			for (Direction direction : Direction.values()) {
 				if (direction.getAxis().isHorizontal()) {
-					if (!(world.isEmptyBlock(pos.relative(direction)) || world.getBlockState(pos.relative(direction)).getMaterial().isReplaceable()))
+					if (!(level.isEmptyBlock(pos.relative(direction)) || level.getBlockState(pos.relative(direction)).getMaterial().isReplaceable()))
 						return false;
 				}
 			}
