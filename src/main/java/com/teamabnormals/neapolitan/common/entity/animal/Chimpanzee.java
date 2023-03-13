@@ -5,7 +5,6 @@ import com.teamabnormals.neapolitan.common.entity.monster.PlantainSpider;
 import com.teamabnormals.neapolitan.common.entity.projectile.BananaPeel;
 import com.teamabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
 import com.teamabnormals.neapolitan.common.entity.util.ChimpanzeeType;
-import com.teamabnormals.neapolitan.common.item.MilkshakeItem;
 import com.teamabnormals.neapolitan.core.other.NeapolitanConstants;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanBiomeTags;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanEntityTypeTags;
@@ -511,13 +510,6 @@ public class Chimpanzee extends Animal implements NeutralMob {
 		ItemStack itemstack = player.getItemInHand(hand);
 
 		if (!itemstack.isEmpty()) {
-			if (itemstack.getItem() instanceof MilkshakeItem) {
-				InteractionResult actionresulttype = itemstack.interactLivingEntity(player, this, hand);
-				if (actionresulttype.consumesAction()) {
-					return actionresulttype;
-				}
-			}
-
 			if (!(this.isFood(itemstack) && !this.isHungry())) {
 				if (this.getMainHandItem().isEmpty() || (this.isHungry() && this.isSnack(itemstack) && !this.isSnack(this.getMainHandItem()))) {
 					if (!this.getMainHandItem().isEmpty()) {
