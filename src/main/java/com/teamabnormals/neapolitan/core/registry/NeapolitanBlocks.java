@@ -59,7 +59,9 @@ public class NeapolitanBlocks {
 	public static final RegistryObject<Block> STRAWBERRY_BUSH = HELPER.createBlockNoItem("strawberry_bush", () -> new StrawberryBushBlock(Properties.STRAWBERRY_BUSH));
 	public static final RegistryObject<Block> VANILLA_VINE = HELPER.createBlockNoItem("vanilla_vine", () -> new VanillaVineTopBlock(Properties.VANILLA_VINE));
 	public static final RegistryObject<Block> VANILLA_VINE_PLANT = HELPER.createBlockNoItem("vanilla_vine_plant", () -> new VanillaVineBlock(Properties.VANILLA_VINE));
+	public static final RegistryObject<Block> POTTED_VANILLA_VINE = HELPER.createBlockNoItem("potted_vanilla_vine", () -> new FlowerPotBlock(VANILLA_VINE.get(), PropertyUtil.flowerPot()));
 	public static final RegistryObject<Block> MINT = HELPER.createBlockNoItem("mint", () -> new MintBlock(Properties.MINT));
+	public static final RegistryObject<Block> POTTED_MINT = HELPER.createBlockNoItem("potted_mint", () -> new FlowerPotBlock(MINT.get(), PropertyUtil.flowerPot()));
 
 	public static final RegistryObject<Block> BANANA_STALK = HELPER.createFuelBlock("banana_stalk", () -> new RotatedPillarBlock(Properties.BANANA_STALK), 800, CreativeModeTab.TAB_BUILDING_BLOCKS);
 	public static final RegistryObject<Block> CARVED_BANANA_STALK = HELPER.createFuelBlock("carved_banana_stalk", () -> new RotatedPillarBlock(Properties.BANANA_STALK), 800, CreativeModeTab.TAB_BUILDING_BLOCKS);
