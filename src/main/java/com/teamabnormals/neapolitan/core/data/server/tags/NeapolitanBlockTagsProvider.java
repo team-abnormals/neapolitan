@@ -27,6 +27,7 @@ public class NeapolitanBlockTagsProvider extends BlockTagsProvider {
 		this.tag(BlockTags.SLABS).add(NeapolitanBlocks.CHOCOLATE_BRICK_SLAB.get(), NeapolitanBlocks.CHOCOLATE_TILE_SLAB.get(), NeapolitanBlocks.FROND_THATCH_SLAB.get());
 		this.tag(BlockTags.STAIRS).add(NeapolitanBlocks.CHOCOLATE_BRICK_STAIRS.get(), NeapolitanBlocks.CHOCOLATE_TILE_STAIRS.get(), NeapolitanBlocks.FROND_THATCH_STAIRS.get());
 		this.tag(BlockTags.WALLS).add(NeapolitanBlocks.CHOCOLATE_BRICK_WALL.get(), NeapolitanBlocks.CHOCOLATE_TILE_WALL.get());
+		this.tag(BlockTags.FLOWER_POTS).add(NeapolitanBlocks.POTTED_BANANA_FROND.get());
 
 		this.tag(NeapolitanBlockTags.CHIMPANZEE_JUMPING_BLOCKS).addTag(BlockTags.BEDS).add(Blocks.SLIME_BLOCK);
 		this.tag(NeapolitanBlockTags.UNAFFECTED_BY_MINT).add(NeapolitanBlocks.MINT.get());
