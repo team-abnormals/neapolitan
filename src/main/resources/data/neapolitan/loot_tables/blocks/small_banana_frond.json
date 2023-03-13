@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "neapolitan:small_banana_frond"
+          "name": "neapolitan:banana_frond"
         }
       ],
       "conditions": [

@@ -2,6 +2,7 @@ package com.teamabnormals.neapolitan.core.registry;
 
 import com.teamabnormals.blueprint.common.item.BlueprintBannerPatternItem;
 import com.teamabnormals.blueprint.common.item.BlueprintRecordItem;
+import com.teamabnormals.blueprint.common.item.FuelBlockItem;
 import com.teamabnormals.blueprint.core.util.registry.ItemSubRegistryHelper;
 import com.teamabnormals.neapolitan.common.item.*;
 import com.teamabnormals.neapolitan.core.Neapolitan;
@@ -48,6 +49,7 @@ public class NeapolitanItems {
 
 	public static final RegistryObject<Item> BANANA = HELPER.createItem("banana", () -> new Item(new Item.Properties().food(NeapolitanFoods.BANANA).tab(CreativeModeTab.TAB_FOOD)));
 	public static final RegistryObject<Item> BANANA_BUNCH = HELPER.createItem("banana_bunch", () -> new BananaBunchItem(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+	public static final RegistryObject<Item> BANANA_FROND = HELPER.createItem("banana_frond", () -> new ItemNameFuelBlockItem(NeapolitanBlocks.SMALL_BANANA_FROND.get(), 100, new Item.Properties().tab(CreativeModeTab.TAB_DECORATIONS)));
 	public static final RegistryObject<Item> DRIED_BANANA = HELPER.createItem("dried_banana", () -> new Item(new Item.Properties().food(NeapolitanFoods.DRIED_BANANA).tab(CreativeModeTab.TAB_FOOD)));
 	public static final RegistryObject<Item> BANANA_BREAD = HELPER.createItem("banana_bread", () -> new Item(new Item.Properties().food(NeapolitanFoods.BANANA_BREAD).tab(CreativeModeTab.TAB_FOOD)));
 	public static final RegistryObject<Item> BANANA_ICE_CREAM = HELPER.createItem("banana_ice_cream", () -> new IceCreamItem(new Item.Properties().food(NeapolitanFoods.BANANA_ICE_CREAM).stacksTo(1).tab(CreativeModeTab.TAB_FOOD)));

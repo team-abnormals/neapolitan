@@ -3,10 +3,16 @@
   "ingredients": [
     {
       "item": "neapolitan:banana_frond"
+    },
+    {
+      "item": "neapolitan:banana_frond"
+    },
+    {
+      "item": "neapolitan:banana_frond"
     }
   ],
   "result": {
     "item": "minecraft:paper",
-    "count": 2
+    "count": 1
   }
 }
