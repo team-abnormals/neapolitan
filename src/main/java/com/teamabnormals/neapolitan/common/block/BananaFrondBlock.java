@@ -21,6 +21,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.Tags;
 
 import java.util.ArrayList;
@@ -83,7 +84,11 @@ public class BananaFrondBlock extends BushBlock implements BonemealableBlock {
 
 	@Override
 	public boolean isValidBonemealTarget(BlockGetter worldIn, BlockPos pos, BlockState state, boolean isClient) {
-		return state.getValue(FACING) == Direction.UP && worldIn instanceof Level && ((Level) worldIn).isRainingAt(pos);
+		if (state.is(NeapolitanBlocks.LARGE_BANANA_FROND.get())) {
+			return state.getValue(FACING) == Direction.UP && worldIn instanceof Level && ((Level) worldIn).isRainingAt(pos);
+		} else {
+			return true;
+		}
 	}
 
 	@Override
@@ -93,17 +98,21 @@ public class BananaFrondBlock extends BushBlock implements BonemealableBlock {
 
 	@Override
 	public void performBonemeal(ServerLevel world, RandomSource rand, BlockPos pos, BlockState state) {
-		if (rand.nextInt(6) == 0) {
+		if (state.is(NeapolitanBlocks.LARGE_BANANA_FROND.get()) && rand.nextInt(6) == 0) {
 			attemptGrowBanana(getSizeForFrond(rand, this), world, rand, pos);
+		} else if (state.is(NeapolitanBlocks.SMALL_BANANA_FROND.get())) {
+			world.setBlockAndUpdate(pos, BlockUtil.transferAllBlockStates(state, NeapolitanBlocks.BANANA_FROND.get().defaultBlockState()));
+		} else if (state.is(NeapolitanBlocks.BANANA_FROND.get())) {
+			world.setBlockAndUpdate(pos, BlockUtil.transferAllBlockStates(state, NeapolitanBlocks.LARGE_BANANA_FROND.get().defaultBlockState()));
 		}
 	}
 
 	@Override
 	public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource rand) {
 		if (this.isValidBonemealTarget(worldIn, pos, state, worldIn.isClientSide()) && canGrowOn(worldIn.getBlockState(pos.below()))) {
-			if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt(2) == 0)) {
+			if (ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt(2) == 0)) {
 				attemptGrowBanana(getSizeForFrond(rand, this), worldIn, rand, pos);
-				net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state);
+				ForgeHooks.onCropsGrowPost(worldIn, pos, state);
 			}
 		}
 	}
