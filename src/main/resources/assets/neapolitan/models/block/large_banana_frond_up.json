@@ -1,7 +1,0 @@
-{
-	"parent": "neapolitan:block/banana_frond_up",
-	"textures": {
-		"frond": "neapolitan:block/large_banana_frond",
-		"particle": "neapolitan:block/large_banana_frond"
-	}
-}
