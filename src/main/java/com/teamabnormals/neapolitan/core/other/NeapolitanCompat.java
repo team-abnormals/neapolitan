@@ -1,5 +1,6 @@
 package com.teamabnormals.neapolitan.core.other;
 
+import com.teamabnormals.blueprint.core.util.BlockUtil;
 import com.teamabnormals.blueprint.core.util.DataUtil;
 import com.teamabnormals.neapolitan.common.block.MilkCauldronBlock;
 import com.teamabnormals.neapolitan.common.entity.projectile.Bananarrow;
@@ -197,7 +198,30 @@ public class NeapolitanCompat {
 		registerMilkCauldronInteractions(NeapolitanItems.BANANA_MILKSHAKE.get(), NeapolitanBlocks.BANANA_MILKSHAKE_CAULDRON.get(), MilkCauldronBlock.BANANA_MILKSHAKE);
 		registerMilkCauldronInteractions(NeapolitanItems.MINT_MILKSHAKE.get(), NeapolitanBlocks.MINT_MILKSHAKE_CAULDRON.get(), MilkCauldronBlock.MINT_MILKSHAKE);
 		registerMilkCauldronInteractions(NeapolitanItems.ADZUKI_MILKSHAKE.get(), NeapolitanBlocks.ADZUKI_MILKSHAKE_CAULDRON.get(), MilkCauldronBlock.ADZUKI_MILKSHAKE);
+
+		registerIceCreamCauldronInteraction(NeapolitanItems.VANILLA_ICE_CREAM.get(), NeapolitanBlocks.VANILLA_MILKSHAKE_CAULDRON.get());
+		registerIceCreamCauldronInteraction(NeapolitanItems.CHOCOLATE_ICE_CREAM.get(), NeapolitanBlocks.CHOCOLATE_MILKSHAKE_CAULDRON.get());
+		registerIceCreamCauldronInteraction(NeapolitanItems.STRAWBERRY_ICE_CREAM.get(), NeapolitanBlocks.STRAWBERRY_MILKSHAKE_CAULDRON.get());
+		registerIceCreamCauldronInteraction(NeapolitanItems.BANANA_ICE_CREAM.get(), NeapolitanBlocks.BANANA_MILKSHAKE_CAULDRON.get());
+		registerIceCreamCauldronInteraction(NeapolitanItems.MINT_ICE_CREAM.get(), NeapolitanBlocks.MINT_MILKSHAKE_CAULDRON.get());
+		registerIceCreamCauldronInteraction(NeapolitanItems.ADZUKI_ICE_CREAM.get(), NeapolitanBlocks.ADZUKI_MILKSHAKE_CAULDRON.get());
 	}
+
+	public static void registerIceCreamCauldronInteraction(Item iceCream, Block filledCauldron) {
+		MilkCauldronBlock.MILK.put(iceCream, (state, level, pos, player, hand, stack) -> {
+			if (!level.isClientSide) {
+				Item item = stack.getItem();
+				player.setItemInHand(hand, ItemUtils.createFilledResult(stack, player, new ItemStack(Items.BOWL)));
+				player.awardStat(Stats.USE_CAULDRON);
+				player.awardStat(Stats.ITEM_USED.get(item));
+				level.setBlockAndUpdate(pos, BlockUtil.transferAllBlockStates(level.getBlockState(pos), filledCauldron.defaultBlockState()));
+				level.playSound(null, pos, SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
+				level.gameEvent(null, GameEvent.FLUID_PLACE, pos);
+			}
+			return InteractionResult.sidedSuccess(level.isClientSide);
+		});
+	}
+
 
 	public static void registerMilkCauldronInteractions(Item filledBottle, Block filledCauldron, Map<Item, CauldronInteraction> map) {
 		CauldronInteraction.addDefaultInteractions(map);
