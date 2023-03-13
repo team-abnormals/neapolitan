@@ -1,11 +1,14 @@
 package com.teamabnormals.neapolitan.common.block;
 
+import com.teamabnormals.blueprint.core.util.BlockUtil;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -58,7 +61,24 @@ public class BananaFrondBlock extends BushBlock implements BonemealableBlock {
 
 	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		return this.defaultBlockState().setValue(FACING, context.getClickedFace());
+		BlockState state = context.getLevel().getBlockState(context.getClickedPos());
+		if (state.is(NeapolitanBlocks.SMALL_BANANA_FROND.get())) {
+			return BlockUtil.transferAllBlockStates(state, NeapolitanBlocks.BANANA_FROND.get().defaultBlockState());
+		} else if (state.is(NeapolitanBlocks.BANANA_FROND.get())) {
+			return BlockUtil.transferAllBlockStates(state, NeapolitanBlocks.LARGE_BANANA_FROND.get().defaultBlockState());
+		} else {
+			return this.defaultBlockState().setValue(FACING, context.getClickedFace());
+		}
+	}
+
+	@Override
+	public boolean canBeReplaced(BlockState state, BlockPlaceContext useContext) {
+		return (useContext.getItemInHand().is(NeapolitanItems.BANANA_FROND.get()) && !state.is(NeapolitanBlocks.LARGE_BANANA_FROND.get())) || super.canBeReplaced(state, useContext);
+	}
+
+	@Override
+	public ItemStack getCloneItemStack(BlockGetter worldIn, BlockPos pos, BlockState state) {
+		return new ItemStack(NeapolitanItems.BANANA_FROND.get());
 	}
 
 	@Override

@@ -6,7 +6,13 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "neapolitan:large_banana_frond"
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 3
+            }
+          ],
+          "name": "neapolitan:banana_frond"
         }
       ],
       "conditions": [
