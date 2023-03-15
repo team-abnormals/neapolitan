@@ -15,13 +15,6 @@ import java.util.Map;
 import java.util.function.Predicate;
 
 public class MilkshakeCauldronBlock extends LayeredCauldronBlock {
-	public static Map<Item, CauldronInteraction> VANILLA_MILKSHAKE = CauldronInteraction.newInteractionMap();
-	public static Map<Item, CauldronInteraction> CHOCOLATE_MILKSHAKE = CauldronInteraction.newInteractionMap();
-	public static Map<Item, CauldronInteraction> STRAWBERRY_MILKSHAKE = CauldronInteraction.newInteractionMap();
-	public static Map<Item, CauldronInteraction> BANANA_MILKSHAKE = CauldronInteraction.newInteractionMap();
-	public static Map<Item, CauldronInteraction> MINT_MILKSHAKE = CauldronInteraction.newInteractionMap();
-	public static Map<Item, CauldronInteraction> ADZUKI_MILKSHAKE = CauldronInteraction.newInteractionMap();
-
 	public static final Predicate<Biome.Precipitation> FALSE = (precipitation) -> false;
 
 	public MilkshakeCauldronBlock(Map<Item, CauldronInteraction> map) {

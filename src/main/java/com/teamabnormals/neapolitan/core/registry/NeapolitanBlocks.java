@@ -9,6 +9,7 @@ import com.teamabnormals.blueprint.core.util.PropertyUtil;
 import com.teamabnormals.blueprint.core.util.registry.BlockSubRegistryHelper;
 import com.teamabnormals.neapolitan.common.block.*;
 import com.teamabnormals.neapolitan.core.Neapolitan;
+import com.teamabnormals.neapolitan.core.other.NeapolitanCauldronInteractions;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems.NeapolitanFoods;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.*;
@@ -34,12 +35,12 @@ public class NeapolitanBlocks {
 	public static final RegistryObject<Block> ADZUKI_ICE_CREAM_BLOCK = HELPER.createBlock("adzuki_ice_cream_block", () -> new Block(NeapolitanBlockProperties.ADZUKI_ICE_CREAM_BLOCK), CreativeModeTab.TAB_BUILDING_BLOCKS);
 
 	public static final RegistryObject<Block> MILK_CAULDRON = HELPER.createBlockNoItem("milk_cauldron", () -> new MilkCauldronBlock(NeapolitanBlockProperties.CAULDRON));
-	public static final RegistryObject<Block> VANILLA_MILKSHAKE_CAULDRON = HELPER.createBlockNoItem("vanilla_milkshake_cauldron", () -> new MilkshakeCauldronBlock(MilkshakeCauldronBlock.VANILLA_MILKSHAKE));
-	public static final RegistryObject<Block> CHOCOLATE_MILKSHAKE_CAULDRON = HELPER.createBlockNoItem("chocolate_milkshake_cauldron", () -> new MilkshakeCauldronBlock(MilkshakeCauldronBlock.CHOCOLATE_MILKSHAKE));
-	public static final RegistryObject<Block> STRAWBERRY_MILKSHAKE_CAULDRON = HELPER.createBlockNoItem("strawberry_milkshake_cauldron", () -> new MilkshakeCauldronBlock(MilkshakeCauldronBlock.STRAWBERRY_MILKSHAKE));
-	public static final RegistryObject<Block> BANANA_MILKSHAKE_CAULDRON = HELPER.createBlockNoItem("banana_milkshake_cauldron", () -> new MilkshakeCauldronBlock(MilkshakeCauldronBlock.BANANA_MILKSHAKE));
-	public static final RegistryObject<Block> MINT_MILKSHAKE_CAULDRON = HELPER.createBlockNoItem("mint_milkshake_cauldron", () -> new MilkshakeCauldronBlock(MilkshakeCauldronBlock.MINT_MILKSHAKE));
-	public static final RegistryObject<Block> ADZUKI_MILKSHAKE_CAULDRON = HELPER.createBlockNoItem("adzuki_milkshake_cauldron", () -> new MilkshakeCauldronBlock(MilkshakeCauldronBlock.ADZUKI_MILKSHAKE));
+	public static final RegistryObject<Block> VANILLA_MILKSHAKE_CAULDRON = HELPER.createBlockNoItem("vanilla_milkshake_cauldron", () -> new MilkshakeCauldronBlock(NeapolitanCauldronInteractions.VANILLA_MILKSHAKE.map()));
+	public static final RegistryObject<Block> CHOCOLATE_MILKSHAKE_CAULDRON = HELPER.createBlockNoItem("chocolate_milkshake_cauldron", () -> new MilkshakeCauldronBlock(NeapolitanCauldronInteractions.CHOCOLATE_MILKSHAKE.map()));
+	public static final RegistryObject<Block> STRAWBERRY_MILKSHAKE_CAULDRON = HELPER.createBlockNoItem("strawberry_milkshake_cauldron", () -> new MilkshakeCauldronBlock(NeapolitanCauldronInteractions.STRAWBERRY_MILKSHAKE.map()));
+	public static final RegistryObject<Block> BANANA_MILKSHAKE_CAULDRON = HELPER.createBlockNoItem("banana_milkshake_cauldron", () -> new MilkshakeCauldronBlock(NeapolitanCauldronInteractions.BANANA_MILKSHAKE.map()));
+	public static final RegistryObject<Block> MINT_MILKSHAKE_CAULDRON = HELPER.createBlockNoItem("mint_milkshake_cauldron", () -> new MilkshakeCauldronBlock(NeapolitanCauldronInteractions.MINT_MILKSHAKE.map()));
+	public static final RegistryObject<Block> ADZUKI_MILKSHAKE_CAULDRON = HELPER.createBlockNoItem("adzuki_milkshake_cauldron", () -> new MilkshakeCauldronBlock(NeapolitanCauldronInteractions.ADZUKI_MILKSHAKE.map()));
 
 	public static final RegistryObject<Block> CHOCOLATE_BLOCK = HELPER.createBlock("chocolate_block", () -> new Block(NeapolitanBlockProperties.CHOCOLATE), CreativeModeTab.TAB_BUILDING_BLOCKS);
 
