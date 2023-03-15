@@ -13,6 +13,7 @@ import com.teamabnormals.neapolitan.core.data.server.modifiers.NeapolitanAdvance
 import com.teamabnormals.neapolitan.core.data.server.modifiers.NeapolitanBiomeModifierProvider;
 import com.teamabnormals.neapolitan.core.data.server.modifiers.NeapolitanLootModifierProvider;
 import com.teamabnormals.neapolitan.core.data.server.tags.*;
+import com.teamabnormals.neapolitan.core.other.NeapolitanCauldronInteractions;
 import com.teamabnormals.neapolitan.core.other.NeapolitanCompat;
 import com.teamabnormals.neapolitan.core.other.NeapolitanModelLayers;
 import com.teamabnormals.neapolitan.core.registry.*;
@@ -30,13 +31,14 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(Neapolitan.MOD_ID)
-@Mod.EventBusSubscriber(modid = Neapolitan.MOD_ID)
+@EventBusSubscriber(modid = Neapolitan.MOD_ID)
 public class Neapolitan {
 	public static final String MOD_ID = "neapolitan";
 	public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MOD_ID);
@@ -70,6 +72,7 @@ public class Neapolitan {
 	}
 
 	private void commonSetup(FMLCommonSetupEvent event) {
+		NeapolitanCauldronInteractions.registerCauldronInteractions();
 		event.enqueueWork(() -> {
 			NeapolitanCompat.transformCookies();
 			NeapolitanCompat.registerCompat();

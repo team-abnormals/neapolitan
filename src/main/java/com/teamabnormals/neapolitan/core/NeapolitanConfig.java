@@ -9,6 +9,7 @@ public class NeapolitanConfig {
 		public final ConfigValue<Boolean> milkCauldron;
 		public final ConfigValue<Boolean> milkFromDripstones;
 		public final ConfigValue<Boolean> milkingWithGlassBottles;
+		public final ConfigValue<Boolean> milkshakeCauldrons;
 
 		public final ConfigValue<Integer> whiteStrawberryMinHeight;
 		public final ConfigValue<Boolean> strawberryBushArthropodInvisibility;
@@ -27,6 +28,7 @@ public class NeapolitanConfig {
 			milkCauldron = builder.comment("If milk can be inserted into cauldrons").define("Milk Cauldron", true);
 			milkFromDripstones = builder.comment("If cauldrons are filled with milk dropping from a dripstone").define("Milk from Dripstone", true);
 			milkingWithGlassBottles = builder.comment("If milkable mobs can be milked with empty glass bottles").define("Milking with Glass Bottles", false);
+			milkshakeCauldrons = builder.comment("If milkshakes can be inserted into cauldrons").define("Milkshake Cauldrons", true);
 			builder.pop();
 			builder.pop();
 			builder.push("blocks");
