@@ -80,12 +80,12 @@ public class BananaFrondBlock extends BushBlock implements BonemealableBlock {
 		BlockPos pos = context.getClickedPos();
 		BlockState state = level.getBlockState(pos);
 		Direction direction = context.getClickedFace();
-		if (isLarge(state)) {
-			return this.defaultBlockState().setValue(FACING, direction).setValue(MOIST, direction == Direction.UP && canGrowOn(level.getBlockState(pos.below())));
-		} else if (isSmall(state)) {
+		if (isSmall(state)) {
 			return BlockUtil.transferAllBlockStates(state, NeapolitanBlocks.BANANA_FROND.get().defaultBlockState());
-		} else {
+		} else if (state.is(NeapolitanBlocks.BANANA_FROND.get())) {
 			return BlockUtil.transferAllBlockStates(state, NeapolitanBlocks.LARGE_BANANA_FROND.get().defaultBlockState());
+		} else {
+			return this.defaultBlockState().setValue(FACING, direction).setValue(MOIST, direction == Direction.UP && canGrowOn(level.getBlockState(pos.below())));
 		}
 	}
 
