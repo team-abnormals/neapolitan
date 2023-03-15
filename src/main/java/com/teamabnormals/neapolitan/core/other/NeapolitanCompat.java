@@ -2,20 +2,13 @@ package com.teamabnormals.neapolitan.core.other;
 
 import com.teamabnormals.blueprint.core.util.DataUtil;
 import com.teamabnormals.neapolitan.common.entity.projectile.Bananarrow;
-import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.Position;
 import net.minecraft.core.dispenser.AbstractProjectileDispenseBehavior;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.food.Foods;
-import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.DispenserBlock;
 
@@ -27,10 +20,11 @@ public class NeapolitanCompat {
 	}
 
 	public static void registerCompat() {
+		transformCookies();
 		registerCompostables();
 		registerFlammables();
 		registerDispenserBehaviors();
-		registerItemProperties();
+		NeapolitanCauldronInteractions.registerCauldronInteractions();
 	}
 
 	public static void registerCompostables() {
@@ -150,12 +144,6 @@ public class NeapolitanCompat {
 		DataUtil.registerFlammable(NeapolitanBlocks.CHOCOLATE_TILE_VERTICAL_SLAB.get(), 60, 100);
 	}
 
-	public static void registerItemProperties() {
-		ItemProperties.register(Items.CROSSBOW, new ResourceLocation(Neapolitan.MOD_ID, "bananarrow"), (stack, world, entity, i) -> {
-			return entity != null && CrossbowItem.isCharged(stack) && CrossbowItem.containsChargedProjectile(stack, NeapolitanItems.BANANARROW.get()) ? 1.0F : 0.0F;
-		});
-	}
-
 	public static void registerDispenserBehaviors() {
 		DispenserBlock.registerBehavior(NeapolitanItems.BANANARROW.get(), new AbstractProjectileDispenseBehavior() {
 			@Override
@@ -163,26 +151,5 @@ public class NeapolitanCompat {
 				return new Bananarrow(worldIn, position.x(), position.y(), position.z());
 			}
 		});
-	}
-
-	public static void registerRenderLayers() {
-		ItemBlockRenderTypes.setRenderLayer(NeapolitanBlocks.STRAWBERRY_BUSH.get(), RenderType.cutout());
-		ItemBlockRenderTypes.setRenderLayer(NeapolitanBlocks.VANILLA_VINE.get(), RenderType.cutout());
-		ItemBlockRenderTypes.setRenderLayer(NeapolitanBlocks.VANILLA_VINE_PLANT.get(), RenderType.cutout());
-		ItemBlockRenderTypes.setRenderLayer(NeapolitanBlocks.POTTED_VANILLA_VINE.get(), RenderType.cutout());
-		ItemBlockRenderTypes.setRenderLayer(NeapolitanBlocks.MINT.get(), RenderType.cutout());
-		ItemBlockRenderTypes.setRenderLayer(NeapolitanBlocks.POTTED_MINT.get(), RenderType.cutout());
-		ItemBlockRenderTypes.setRenderLayer(NeapolitanBlocks.ADZUKI_SPROUTS.get(), RenderType.cutout());
-		ItemBlockRenderTypes.setRenderLayer(NeapolitanBlocks.BEANSTALK_THORNS.get(), RenderType.cutout());
-
-		ItemBlockRenderTypes.setRenderLayer(NeapolitanBlocks.SMALL_BANANA_FROND.get(), RenderType.cutout());
-		ItemBlockRenderTypes.setRenderLayer(NeapolitanBlocks.BANANA_FROND.get(), RenderType.cutout());
-		ItemBlockRenderTypes.setRenderLayer(NeapolitanBlocks.LARGE_BANANA_FROND.get(), RenderType.cutout());
-		ItemBlockRenderTypes.setRenderLayer(NeapolitanBlocks.POTTED_BANANA_FROND.get(), RenderType.cutout());
-
-		ItemBlockRenderTypes.setRenderLayer(NeapolitanBlocks.FROND_THATCH.get(), RenderType.cutout());
-		ItemBlockRenderTypes.setRenderLayer(NeapolitanBlocks.FROND_THATCH_STAIRS.get(), RenderType.cutout());
-		ItemBlockRenderTypes.setRenderLayer(NeapolitanBlocks.FROND_THATCH_SLAB.get(), RenderType.cutout());
-		ItemBlockRenderTypes.setRenderLayer(NeapolitanBlocks.FROND_THATCH_VERTICAL_SLAB.get(), RenderType.cutout());
 	}
 }
