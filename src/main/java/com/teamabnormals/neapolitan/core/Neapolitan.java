@@ -14,6 +14,7 @@ import com.teamabnormals.neapolitan.core.data.server.modifiers.NeapolitanBiomeMo
 import com.teamabnormals.neapolitan.core.data.server.modifiers.NeapolitanLootModifierProvider;
 import com.teamabnormals.neapolitan.core.data.server.tags.*;
 import com.teamabnormals.neapolitan.core.other.NeapolitanCauldronInteractions;
+import com.teamabnormals.neapolitan.core.other.NeapolitanClientCompat;
 import com.teamabnormals.neapolitan.core.other.NeapolitanCompat;
 import com.teamabnormals.neapolitan.core.other.NeapolitanModelLayers;
 import com.teamabnormals.neapolitan.core.registry.*;
@@ -72,16 +73,14 @@ public class Neapolitan {
 	}
 
 	private void commonSetup(FMLCommonSetupEvent event) {
-		NeapolitanCauldronInteractions.registerCauldronInteractions();
 		event.enqueueWork(() -> {
-			NeapolitanCompat.transformCookies();
 			NeapolitanCompat.registerCompat();
 			NeapolitanEntityTypes.registerEntitySpawns();
 		});
 	}
 
 	private void clientSetup(FMLClientSetupEvent event) {
-		event.enqueueWork(NeapolitanCompat::registerRenderLayers);
+		event.enqueueWork(NeapolitanClientCompat::registerClientCompat);
 	}
 
 	private void dataSetup(GatherDataEvent event) {

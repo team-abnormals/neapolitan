@@ -24,14 +24,14 @@ public class NeapolitanEntityTypes {
 	public static final RegistryObject<EntityType<Chimpanzee>> CHIMPANZEE = HELPER.createLivingEntity("chimpanzee", Chimpanzee::new, MobCategory.CREATURE, 0.6F, 1.6F);
 	public static final RegistryObject<EntityType<PlantainSpider>> PLANTAIN_SPIDER = HELPER.createLivingEntity("plantain_spider", PlantainSpider::new, MobCategory.MONSTER, 0.65F, 0.55F);
 
-	public static void registerEntitySpawns() {
-		SpawnPlacements.register(PLANTAIN_SPIDER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, PlantainSpider::canPlantainSpiderSpawn);
-		SpawnPlacements.register(CHIMPANZEE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, Chimpanzee::canChimpanzeeSpawn);
-	}
-
 	@SubscribeEvent
 	public static void registerEntityAttributes(EntityAttributeCreationEvent event) {
 		event.put(PLANTAIN_SPIDER.get(), PlantainSpider.registerAttributes().build());
 		event.put(CHIMPANZEE.get(), Chimpanzee.registerAttributes().build());
+	}
+
+	public static void registerEntitySpawns() {
+		SpawnPlacements.register(PLANTAIN_SPIDER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, PlantainSpider::canPlantainSpiderSpawn);
+		SpawnPlacements.register(CHIMPANZEE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, Chimpanzee::canChimpanzeeSpawn);
 	}
 }
