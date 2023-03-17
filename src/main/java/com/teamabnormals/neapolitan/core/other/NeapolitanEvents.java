@@ -38,12 +38,14 @@ import net.minecraft.world.level.block.PointedDripstoneBlock;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingTickEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.living.MobEffectEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteractSpecific;
 import net.minecraftforge.event.level.ExplosionEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
@@ -64,6 +66,12 @@ public class NeapolitanEvents {
 		if (entity instanceof Monster mobEntity && !entity.getType().is(NeapolitanEntityTypeTags.UNAFFECTED_BY_HARMONY)) {
 			mobEntity.goalSelector.addGoal(0, new AvoidEntityGoal<>(mobEntity, Player.class, 12.0F, 1.0D, 1.0D, (player) -> player.getEffect(NeapolitanMobEffects.HARMONY.get()) != null));
 		}
+	}
+
+	@SubscribeEvent
+	public static void onPlayerBreak(PlayerEvent.BreakSpeed event) {
+		if (event.getState().is(NeapolitanBlocks.BANANA_BUNDLE.get()) && event.getEntity().getMainHandItem().is(Tags.Items.SHEARS))
+			event.setNewSpeed(5.0F);
 	}
 
 	@SubscribeEvent

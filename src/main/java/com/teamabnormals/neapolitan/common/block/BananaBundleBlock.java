@@ -13,6 +13,7 @@ import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.Tags.Items;
 
 public class BananaBundleBlock extends Block {
 
@@ -23,7 +24,7 @@ public class BananaBundleBlock extends Block {
 	@Override
 	public void spawnAfterBreak(BlockState state, ServerLevel world, BlockPos pos, ItemStack stack, boolean bool) {
 		super.spawnAfterBreak(state, world, pos, stack, bool);
-		if (world.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) && EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SILK_TOUCH, stack) == 0) {
+		if (world.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) && EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SILK_TOUCH, stack) == 0 && !stack.is(Items.SHEARS)) {
 			this.spawnSpider(world, pos);
 		}
 	}
