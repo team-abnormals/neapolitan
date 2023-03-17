@@ -2,7 +2,7 @@ package com.teamabnormals.neapolitan.core.other;
 
 import com.google.common.collect.ImmutableMap;
 import com.teamabnormals.neapolitan.core.Neapolitan;
-import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -28,8 +28,8 @@ public class NeapolitanMappingEvents {
 	public static void itemRemapping(MissingMappingsEvent event) {
 		List<Mapping<Item>> mappings = event.getMappings(ForgeRegistries.Keys.ITEMS, Neapolitan.MOD_ID);
 		Map<ResourceLocation, Supplier<Item>> itemRemapping = (new ImmutableMap.Builder<ResourceLocation, Supplier<Item>>())
-				.put(location("small_banana_frond"), () -> NeapolitanBlocks.BANANA_FROND.get().asItem())
-				.put(location("large_banana_frond"), () -> NeapolitanBlocks.BANANA_FROND.get().asItem())
+				.put(location("small_banana_frond"), () -> NeapolitanItems.BANANA_FROND.get())
+				.put(location("large_banana_frond"), () -> NeapolitanItems.BANANA_FROND.get())
 				.build();
 
 		for (Mapping<Item> mapping : mappings) {
