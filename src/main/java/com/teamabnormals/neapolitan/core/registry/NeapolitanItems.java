@@ -110,7 +110,7 @@ public class NeapolitanItems {
 		public static final FoodProperties VANILLA_PUDDING = createFood(6, 1.2F).effect(() -> new MobEffectInstance(NeapolitanMobEffects.VANILLA_SCENT.get(), 300), 1.0F).build();
 		public static final FoodProperties VANILLA_ICE_CREAM = createFood(6, 0.4F).effect(() -> new MobEffectInstance(NeapolitanMobEffects.VANILLA_SCENT.get(), 400), 1.0F).build();
 		public static final FoodProperties VANILLA_CAKE = createFood(1, 0.1F).effect(() -> new MobEffectInstance(NeapolitanMobEffects.VANILLA_SCENT.get(), 100), 1.0F).build();
-		public static final FoodProperties VANILLA_MILKSHAKE = createMilkshake(() -> new MobEffectInstance(NeapolitanMobEffects.SUGAR_RUSH.get(), 200)).build();
+		public static final FoodProperties VANILLA_MILKSHAKE = createMilkshake(() -> new MobEffectInstance(NeapolitanMobEffects.VANILLA_SCENT.get(), 200)).build();
 
 		public static final FoodProperties BANANA = createFood(2, 0.2F).effect(() -> new MobEffectInstance(NeapolitanMobEffects.AGILITY.get(), 300), 1.0F).build();
 		public static final FoodProperties BANANA_BREAD = createFood(5, 0.6F).effect(() -> new MobEffectInstance(NeapolitanMobEffects.AGILITY.get(), 600), 1.0F).build();
