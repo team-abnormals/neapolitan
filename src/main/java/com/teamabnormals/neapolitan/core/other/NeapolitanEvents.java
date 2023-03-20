@@ -35,6 +35,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.PointedDripstoneBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
@@ -70,8 +71,16 @@ public class NeapolitanEvents {
 
 	@SubscribeEvent
 	public static void onPlayerBreak(PlayerEvent.BreakSpeed event) {
-		if (event.getState().is(NeapolitanBlocks.BANANA_BUNDLE.get()) && event.getEntity().getMainHandItem().is(Tags.Items.SHEARS))
-			event.setNewSpeed(5.0F);
+		if (event.getEntity().getMainHandItem().is(Tags.Items.SHEARS)) {
+			BlockState state = event.getState();
+			if (state.is(NeapolitanBlocks.BANANA_BUNDLE.get())) {
+				event.setNewSpeed(5.0F);
+			}
+
+			if (state.is(NeapolitanBlocks.BEANSTALK_THORNS.get())) {
+				event.setNewSpeed(15.0F);
+			}
+		}
 	}
 
 	@SubscribeEvent
