@@ -27,7 +27,7 @@ public abstract class LivingEntityMixin extends Entity {
 
 	@Inject(at = @At("RETURN"), method = "onClimbable", cancellable = true)
 	private void onClimbable(CallbackInfoReturnable<Boolean> cir) {
-		if (this.level.isClientSide() && this.hasEffect(NeapolitanMobEffects.AGILITY.get())) {
+		if (!this.isSpectator() && this.hasEffect(NeapolitanMobEffects.AGILITY.get())) {
 			for (Direction direction : Direction.Plane.HORIZONTAL) {
 				Vec3i normal = direction.getNormal();
 				Vec3 vec3 = this.collide(Vec3.atLowerCornerOf(normal));
