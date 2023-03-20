@@ -6,11 +6,17 @@ import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
 import net.minecraft.core.Position;
 import net.minecraft.core.dispenser.AbstractProjectileDispenseBehavior;
+import net.minecraft.world.entity.animal.Chicken;
+import net.minecraft.world.entity.animal.Parrot;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.DispenserBlock;
+import net.minecraftforge.common.crafting.CompoundIngredient;
+
+import java.util.Collections;
 
 public class NeapolitanCompat {
 
@@ -24,7 +30,13 @@ public class NeapolitanCompat {
 		registerCompostables();
 		registerFlammables();
 		registerDispenserBehaviors();
+		registerAnimalFoods();
 		NeapolitanCauldronInteractions.registerCauldronInteractions();
+	}
+
+	public static void registerAnimalFoods() {
+		Chicken.FOOD_ITEMS = CompoundIngredient.of(Chicken.FOOD_ITEMS, Ingredient.of(NeapolitanItems.STRAWBERRY_PIPS.get()));
+		Collections.addAll(Parrot.TAME_FOOD, NeapolitanItems.STRAWBERRY_PIPS.get());
 	}
 
 	public static void registerCompostables() {
