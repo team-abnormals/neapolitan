@@ -80,7 +80,7 @@ public class NeapolitanCompat {
 		DataUtil.registerCompostable(NeapolitanBlocks.BANANA_BUNDLE.get(), 0.85F);
 		DataUtil.registerCompostable(NeapolitanBlocks.BANANA_STALK.get(), 0.85F);
 		DataUtil.registerCompostable(NeapolitanBlocks.CARVED_BANANA_STALK.get(), 0.85F);
-		DataUtil.registerCompostable(NeapolitanBlocks.BANANA_FROND.get(), 0.3F);
+		DataUtil.registerCompostable(NeapolitanItems.BANANA_FROND.get(), 0.3F);
 		DataUtil.registerCompostable(NeapolitanBlocks.FROND_THATCH.get(), 0.65F);
 		DataUtil.registerCompostable(NeapolitanBlocks.FROND_THATCH_SLAB.get(), 0.65F);
 		DataUtil.registerCompostable(NeapolitanBlocks.FROND_THATCH_STAIRS.get(), 0.65F);
