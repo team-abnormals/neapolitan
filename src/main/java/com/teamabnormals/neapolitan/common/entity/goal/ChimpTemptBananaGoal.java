@@ -61,7 +61,7 @@ public class ChimpTemptBananaGoal extends Goal {
 	@Override
 	public void start() {
 		this.forgetTimer = this.adjustedTickDelay(100);
-		this.patience = this.adjustedTickDelay(60);
+		this.patience = this.adjustedTickDelay(300);
 		this.playerDistance = this.chimpanzee.distanceToSqr(this.closestPlayer);
 	}
 
