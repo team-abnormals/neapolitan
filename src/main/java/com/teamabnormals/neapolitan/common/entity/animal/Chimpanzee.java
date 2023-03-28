@@ -511,7 +511,7 @@ public class Chimpanzee extends Animal implements NeutralMob {
 
 		if (!itemstack.isEmpty()) {
 			if (!(this.isFood(itemstack) && !this.isHungry())) {
-				if (this.getMainHandItem().isEmpty() || (this.isHungry() && this.isSnack(itemstack) && !this.isSnack(this.getMainHandItem()))) {
+				if ((this.getMainHandItem().isEmpty() && (this.isSnack(itemstack) || player.isSecondaryUseActive())) || (this.isHungry() && this.isSnack(itemstack) && !this.isSnack(this.getMainHandItem()))) {
 					if (!this.getMainHandItem().isEmpty()) {
 						this.dropItem(this.getMainHandItem());
 					}
