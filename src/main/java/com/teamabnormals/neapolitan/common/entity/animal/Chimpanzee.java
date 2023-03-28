@@ -444,7 +444,7 @@ public class Chimpanzee extends Animal implements NeutralMob {
 		if (this.isDoingAction(ChimpanzeeAction.EATING)) {
 			ItemStack food = this.getSnack();
 			if (this.tickCount % 10 == 0 && !food.isEmpty()) {
-				if (this.level.isClientSide) {
+				if (this.level.isClientSide && food.getUseAnimation() != UseAnim.DRINK) {
 					for (int i = 0; i < 6; ++i) {
 						Vec3 vector3d = new Vec3(((double) this.random.nextFloat() - 0.5D) * 0.1D, Math.random() * 0.1D + 0.1D, ((double) this.random.nextFloat() - 0.5D) * 0.1D);
 						vector3d = vector3d.xRot(-this.getXRot() * ((float) Math.PI / 180F));
@@ -511,7 +511,7 @@ public class Chimpanzee extends Animal implements NeutralMob {
 
 		if (!itemstack.isEmpty()) {
 			if (!(this.isFood(itemstack) && !this.isHungry())) {
-				if ((this.getMainHandItem().isEmpty() && (this.isSnack(itemstack) || player.isSecondaryUseActive())) || (this.isHungry() && this.isSnack(itemstack) && !this.isSnack(this.getMainHandItem()))) {
+				if ((this.getMainHandItem().isEmpty() && ((this.isSnack(itemstack)) || player.isSecondaryUseActive())) || (this.isHungry() && this.isSnack(itemstack) && !this.isSnack(this.getMainHandItem()))) {
 					if (!this.getMainHandItem().isEmpty()) {
 						this.dropItem(this.getMainHandItem());
 					}
@@ -552,6 +552,9 @@ public class Chimpanzee extends Animal implements NeutralMob {
 				this.heal((float) NeapolitanItems.BANANA.get().getFoodProperties().getNutrition());
 				this.hurt(DamageSource.GENERIC, 0.0F);
 				this.setItemInHand(this.getSnackHand(), new ItemStack(Items.ARROW));
+			} else if (this.getSnack().getItem() == Items.POTION) {
+				this.getSnack().finishUsingItem(this.level, this);
+				this.setItemInHand(this.getSnackHand(), new ItemStack(Items.GLASS_BOTTLE));
 			} else {
 				if (this.getSnack().isEdible()) {
 					this.heal((float) this.getSnack().getItem().getFoodProperties().getNutrition());
