@@ -4,12 +4,16 @@ import com.teamabnormals.blueprint.core.util.DataUtil;
 import com.teamabnormals.neapolitan.common.entity.projectile.Bananarrow;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
+import net.minecraft.core.BlockSource;
 import net.minecraft.core.Position;
 import net.minecraft.core.dispenser.AbstractProjectileDispenseBehavior;
+import net.minecraft.core.dispenser.DispenseItemBehavior;
+import net.minecraft.core.dispenser.OptionalDispenseItemBehavior;
 import net.minecraft.world.entity.animal.Chicken;
 import net.minecraft.world.entity.animal.Parrot;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.food.Foods;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
@@ -163,5 +167,14 @@ public class NeapolitanCompat {
 				return new Bananarrow(worldIn, position.x(), position.y(), position.z());
 			}
 		});
+
+		DispenseItemBehavior armorDispenseBehavior = new OptionalDispenseItemBehavior() {
+			protected ItemStack execute(BlockSource source, ItemStack stack) {
+				this.setSuccess(ArmorItem.dispenseArmor(source, stack));
+				return stack;
+			}
+		};
+
+		DispenserBlock.registerBehavior(NeapolitanItems.CHIMPANZEE_HEAD.get(), armorDispenseBehavior);
 	}
 }

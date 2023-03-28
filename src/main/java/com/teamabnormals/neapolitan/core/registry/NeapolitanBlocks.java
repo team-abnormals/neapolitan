@@ -99,6 +99,9 @@ public class NeapolitanBlocks {
 	public static final RegistryObject<Block> ADZUKI_CRATE = HELPER.createCompatBlock("quark", "adzuki_crate", () -> new Block(NeapolitanBlockProperties.ADZUKI_CRATE), CreativeModeTab.TAB_DECORATIONS);
 	public static final RegistryObject<Block> ROASTED_ADZUKI_CRATE = HELPER.createCompatBlock("quark", "roasted_adzuki_crate", () -> new Block(NeapolitanBlockProperties.ROASTED_ADZUKI_CRATE), CreativeModeTab.TAB_DECORATIONS);
 
+	public static final RegistryObject<Block> CHIMPANZEE_HEAD = HELPER.createBlockNoItem("chimpanzee_head", () -> new NeapolitanSkullBlock(NeapolitanSkullTypes.CHIMPANZEE, BlockBehaviour.Properties.of(Material.DECORATION).strength(1.0F)));
+	public static final RegistryObject<Block> CHIMPANZEE_WALL_HEAD = HELPER.createBlockNoItem("chimpanzee_wall_head", () -> new NeapolitanWallSkullBlock(NeapolitanSkullTypes.CHIMPANZEE, BlockBehaviour.Properties.of(Material.DECORATION).strength(1.0F).lootFrom(() -> CHIMPANZEE_HEAD.get())));
+
 	public static final RegistryObject<Block> CHOCOLATE_CANDLE_CAKE = HELPER.createBlockNoItem("chocolate_candle_cake", () -> new FlavoredCandleCakeBlock(CHOCOLATE_CAKE, Blocks.CANDLE, NeapolitanBlockProperties.CHOCOLATE_CANDLE_CAKE));
 	public static final RegistryObject<Block> WHITE_CHOCOLATE_CANDLE_CAKE = HELPER.createBlockNoItem("white_chocolate_candle_cake", () -> new FlavoredCandleCakeBlock(CHOCOLATE_CAKE, Blocks.WHITE_CANDLE, NeapolitanBlockProperties.CHOCOLATE_CANDLE_CAKE));
 	public static final RegistryObject<Block> ORANGE_CHOCOLATE_CANDLE_CAKE = HELPER.createBlockNoItem("orange_chocolate_candle_cake", () -> new FlavoredCandleCakeBlock(CHOCOLATE_CAKE, Blocks.ORANGE_CANDLE, NeapolitanBlockProperties.CHOCOLATE_CANDLE_CAKE));
@@ -206,6 +209,10 @@ public class NeapolitanBlocks {
 	public static final RegistryObject<Block> GREEN_ADZUKI_CANDLE_CAKE = HELPER.createBlockNoItem("green_adzuki_candle_cake", () -> new FlavoredCandleCakeBlock(ADZUKI_CAKE, Blocks.GREEN_CANDLE, NeapolitanBlockProperties.ADZUKI_CANDLE_CAKE));
 	public static final RegistryObject<Block> RED_ADZUKI_CANDLE_CAKE = HELPER.createBlockNoItem("red_adzuki_candle_cake", () -> new FlavoredCandleCakeBlock(ADZUKI_CAKE, Blocks.RED_CANDLE, NeapolitanBlockProperties.ADZUKI_CANDLE_CAKE));
 	public static final RegistryObject<Block> BLACK_ADZUKI_CANDLE_CAKE = HELPER.createBlockNoItem("black_adzuki_candle_cake", () -> new FlavoredCandleCakeBlock(ADZUKI_CAKE, Blocks.BLACK_CANDLE, NeapolitanBlockProperties.ADZUKI_CANDLE_CAKE));
+
+	public enum NeapolitanSkullTypes implements SkullBlock.Type {
+		CHIMPANZEE
+	}
 
 	public static final class NeapolitanBlockProperties {
 		public static final BlockBehaviour.Properties VANILLA_ICE_CREAM_BLOCK = BlockBehaviour.Properties.of(Material.SNOW, MaterialColor.TERRACOTTA_WHITE).strength(0.2F).sound(SoundType.SNOW);

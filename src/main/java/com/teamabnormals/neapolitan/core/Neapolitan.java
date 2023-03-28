@@ -2,6 +2,7 @@ package com.teamabnormals.neapolitan.core;
 
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import com.teamabnormals.neapolitan.client.model.BananaPeelModel;
+import com.teamabnormals.neapolitan.client.model.ChimpanzeeHeadModel;
 import com.teamabnormals.neapolitan.client.model.ChimpanzeeModel;
 import com.teamabnormals.neapolitan.client.renderer.entity.BananaPeelRenderer;
 import com.teamabnormals.neapolitan.client.renderer.entity.BananarrowRenderer;
@@ -13,14 +14,16 @@ import com.teamabnormals.neapolitan.core.data.server.modifiers.NeapolitanAdvance
 import com.teamabnormals.neapolitan.core.data.server.modifiers.NeapolitanBiomeModifierProvider;
 import com.teamabnormals.neapolitan.core.data.server.modifiers.NeapolitanLootModifierProvider;
 import com.teamabnormals.neapolitan.core.data.server.tags.*;
-import com.teamabnormals.neapolitan.core.other.NeapolitanCauldronInteractions;
 import com.teamabnormals.neapolitan.core.other.NeapolitanClientCompat;
 import com.teamabnormals.neapolitan.core.other.NeapolitanCompat;
 import com.teamabnormals.neapolitan.core.other.NeapolitanModelLayers;
 import com.teamabnormals.neapolitan.core.registry.*;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks.NeapolitanSkullTypes;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanFeatures.NeapolitanConfiguredFeatures;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanFeatures.NeapolitanPlacedFeatures;
+import net.minecraft.client.renderer.blockentity.SkullBlockRenderer;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -67,6 +70,7 @@ public class Neapolitan {
 		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
 			bus.addListener(this::registerLayerDefinitions);
 			bus.addListener(this::registerRenderers);
+			bus.addListener(this::createSkullModels);
 		});
 
 		context.registerConfig(ModConfig.Type.COMMON, NeapolitanConfig.COMMON_SPEC);
@@ -80,7 +84,10 @@ public class Neapolitan {
 	}
 
 	private void clientSetup(FMLClientSetupEvent event) {
-		event.enqueueWork(NeapolitanClientCompat::registerClientCompat);
+		event.enqueueWork(() -> {
+			SkullBlockRenderer.SKIN_BY_TYPE.put(NeapolitanSkullTypes.CHIMPANZEE, new ResourceLocation(Neapolitan.MOD_ID, "textures/entity/chimpanzee/jungle_chimpanzee.png"));
+			NeapolitanClientCompat.registerClientCompat();
+		});
 	}
 
 	private void dataSetup(GatherDataEvent event) {
@@ -112,6 +119,7 @@ public class Neapolitan {
 		event.registerLayerDefinition(NeapolitanModelLayers.CHIMPANZEE, () -> ChimpanzeeModel.createBodyLayer(0.0F, false, false));
 		event.registerLayerDefinition(NeapolitanModelLayers.CHIMPANZEE_INNER_ARMOR, () -> ChimpanzeeModel.createBodyLayer(0.5F, true, true));
 		event.registerLayerDefinition(NeapolitanModelLayers.CHIMPANZEE_OUTER_ARMOR, () -> ChimpanzeeModel.createBodyLayer(1.0F, true, false));
+		event.registerLayerDefinition(NeapolitanModelLayers.CHIMPANZEE_HEAD, ChimpanzeeHeadModel::createHeadLayer);
 	}
 
 	@OnlyIn(Dist.CLIENT)
@@ -120,5 +128,12 @@ public class Neapolitan {
 		event.registerEntityRenderer(NeapolitanEntityTypes.PLANTAIN_SPIDER.get(), PlantainSpiderRenderer::new);
 		event.registerEntityRenderer(NeapolitanEntityTypes.BANANA_PEEL.get(), BananaPeelRenderer::new);
 		event.registerEntityRenderer(NeapolitanEntityTypes.BANANARROW.get(), BananarrowRenderer::new);
+
+		event.registerBlockEntityRenderer(NeapolitanBlockEntityTypes.SKULL.get(), SkullBlockRenderer::new);
+	}
+
+	@OnlyIn(Dist.CLIENT)
+	private void createSkullModels(EntityRenderersEvent.CreateSkullModels event) {
+		event.registerSkullModel(NeapolitanSkullTypes.CHIMPANZEE, new ChimpanzeeHeadModel(event.getEntityModelSet().bakeLayer(NeapolitanModelLayers.CHIMPANZEE_HEAD)));
 	}
 }

@@ -5,7 +5,6 @@ import com.teamabnormals.blueprint.core.other.tags.BlueprintItemTags;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.other.NeapolitanConstants;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanItemTags;
-import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
@@ -47,6 +46,7 @@ public class NeapolitanItemTagsProvider extends ItemTagsProvider {
 		this.tag(NeapolitanItemTags.FRUITS_BANANA).add(NeapolitanItems.BANANA.get());
 		this.tag(NeapolitanItemTags.ICE_CUBES).add(NeapolitanItems.ICE_CUBES.get());
 		this.tag(BlueprintItemTags.MILK).addTag(NeapolitanItemTags.BOTTLES_MILK);
+		this.tag(Tags.Items.HEADS).add(NeapolitanItems.CHIMPANZEE_HEAD.get());
 
 		this.copy(BlueprintBlockTags.VERTICAL_SLABS, BlueprintItemTags.VERTICAL_SLABS);
 	}

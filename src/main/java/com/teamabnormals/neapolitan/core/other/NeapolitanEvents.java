@@ -1,6 +1,7 @@
 package com.teamabnormals.neapolitan.core.other;
 
 import com.teamabnormals.blueprint.core.other.tags.BlueprintEntityTypeTags;
+import com.teamabnormals.blueprint.core.util.MathUtil;
 import com.teamabnormals.blueprint.core.util.TradeUtil;
 import com.teamabnormals.blueprint.core.util.TradeUtil.BlueprintTrade;
 import com.teamabnormals.neapolitan.common.entity.animal.Chimpanzee;
@@ -21,6 +22,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
@@ -44,6 +46,7 @@ import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingTickEvent;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingVisibilityEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.living.MobEffectEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -94,16 +97,21 @@ public class NeapolitanEvents {
 
 			if (level.getGameTime() % 60 == 0 && PointedDripstoneBlock.canDrip(level.getBlockState(dripstonePos))) {
 				Vec3 vec3 = level.getBlockState(entityPos).getOffset(level, entityPos);
-				double d1 = (double) entityPos.getX() + 0.5D + vec3.x + makeNegativeRandomly(random.nextFloat() * 0.25F, random);
+				double d1 = (double) entityPos.getX() + 0.5D + vec3.x + MathUtil.makeNegativeRandomly(random.nextFloat() * 0.25F, random);
 				double d2 = entityPos.getY() + entity.getBbHeight() / 2;
-				double d3 = (double) entityPos.getZ() + 0.5D + vec3.z + makeNegativeRandomly(random.nextFloat() * 0.25F, random);
+				double d3 = (double) entityPos.getZ() + 0.5D + vec3.z + MathUtil.makeNegativeRandomly(random.nextFloat() * 0.25F, random);
 				level.addParticle(NeapolitanParticleTypes.DRIPPING_DRIPSTONE_MILK.get(), d1, d2, d3, 0.0D, 0.0D, 0.0D);
 			}
 		}
 	}
 
-	public static double makeNegativeRandomly(double value, RandomSource rand) {
-		return rand.nextBoolean() ? -value : value;
+	@SubscribeEvent
+	public static void visibilityEvent(LivingVisibilityEvent event) {
+		Entity lookingEntity = event.getLookingEntity();
+		LivingEntity entity = event.getEntity();
+		if (lookingEntity.getType() == NeapolitanEntityTypes.CHIMPANZEE.get() && entity.getItemBySlot(EquipmentSlot.HEAD).is(NeapolitanItems.CHIMPANZEE_HEAD.get())) {
+			event.modifyVisibility(0.5F);
+		}
 	}
 
 	@SubscribeEvent
