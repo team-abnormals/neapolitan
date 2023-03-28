@@ -21,9 +21,9 @@ public class ChimpanzeeHeadModel extends SkullModel {
 		CubeDeformation deformation = CubeDeformation.NONE;
 		MeshDefinition meshdefinition = SkullModel.createHeadModel();
 		PartDefinition root = meshdefinition.getRoot();
-		PartDefinition head = root.addOrReplaceChild("head", CubeListBuilder.create().texOffs(1, 1).addBox(-4.0F, -8.0F, -2.5F, 8.0F, 8.0F, 6.0F, deformation).texOffs(30, 11).addBox(-2.0F, -5.0F, -3.5F, 4.0F, 5.0F, 1.0F, false), PartPose.ZERO);
-		PartDefinition leftEar = head.addOrReplaceChild("left_ear", CubeListBuilder.create().texOffs(25, 1).mirror().addBox(4.0F, -7.0F, -0.5F, 2.0F, 3.0F, 1.0F, deformation), PartPose.ZERO);
-		PartDefinition rightEar = head.addOrReplaceChild("right_ear", CubeListBuilder.create().texOffs(25, 1).addBox(-6.0F, -7.0F, -0.5F, 2.0F, 3.0F, 1.0F, deformation), PartPose.ZERO);
+		PartDefinition head = root.addOrReplaceChild("head", CubeListBuilder.create().texOffs(1, 1).addBox(-4.0F, -8.0F, -3.0F, 8.0F, 8.0F, 6.0F, deformation).texOffs(30, 11).addBox(-2.0F, -5.0F, -4.0F, 4.0F, 5.0F, 1.0F, false), PartPose.ZERO);
+		PartDefinition leftEar = head.addOrReplaceChild("left_ear", CubeListBuilder.create().texOffs(25, 1).mirror().addBox(4.0F, -7.0F, -1.0F, 2.0F, 3.0F, 1.0F, deformation), PartPose.ZERO);
+		PartDefinition rightEar = head.addOrReplaceChild("right_ear", CubeListBuilder.create().texOffs(25, 1).addBox(-6.0F, -7.0F, -1.0F, 2.0F, 3.0F, 1.0F, deformation), PartPose.ZERO);
 
 		return LayerDefinition.create(meshdefinition, 64, 32);
 	}
