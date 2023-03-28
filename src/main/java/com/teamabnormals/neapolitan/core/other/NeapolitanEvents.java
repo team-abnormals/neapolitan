@@ -263,7 +263,7 @@ public class NeapolitanEvents {
 		TradeUtil.addWandererTrades(event,
 				new BlueprintTrade(1, NeapolitanItems.STRAWBERRY_PIPS.get(), 1, 12, 1),
 				new BlueprintTrade(2, NeapolitanItems.VANILLA_PODS.get(), 1, 5, 1),
-				new BlueprintTrade(2, NeapolitanBlocks.BANANA_FROND.get().asItem(), 1, 5, 1),
+				new BlueprintTrade(2, NeapolitanItems.BANANA_FROND.get(), 1, 5, 1),
 				new BlueprintTrade(2, NeapolitanItems.MINT_SPROUT.get(), 1, 5, 1),
 				new BlueprintTrade(2, NeapolitanItems.ADZUKI_BEANS.get(), 1, 5, 1)
 		);
