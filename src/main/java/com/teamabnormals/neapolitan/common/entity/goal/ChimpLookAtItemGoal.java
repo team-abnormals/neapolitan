@@ -10,7 +10,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraft.world.entity.ai.util.DefaultRandomPos;
+import net.minecraft.world.entity.ai.util.LandRandomPos;
 import net.minecraft.world.item.*;
 import net.minecraft.world.phys.Vec3;
 
@@ -143,7 +143,7 @@ public class ChimpLookAtItemGoal extends Goal {
 	}
 
 	private void runAway() {
-		Vec3 vector3d = DefaultRandomPos.getPos(this.chimpanzee, 10, 5);
+		Vec3 vector3d = LandRandomPos.getPos(this.chimpanzee, 10, 5);
 		if (vector3d != null) {
 			this.chimpanzee.getNavigation().moveTo(vector3d.x, vector3d.y, vector3d.z, 1.25D);
 		}

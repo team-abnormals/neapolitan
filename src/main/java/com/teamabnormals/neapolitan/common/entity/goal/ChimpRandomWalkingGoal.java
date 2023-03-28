@@ -27,9 +27,7 @@ public class ChimpRandomWalkingGoal extends WaterAvoidingRandomStrollGoal {
 	@Nullable
 	protected Vec3 getPosition() {
 		if (!this.chimpanzee.isLeader() && !this.chimpanzee.isInWaterOrBubble()) {
-			Predicate<Chimpanzee> predicate = (chimpanzeeentity) -> {
-				return chimpanzeeentity != this.chimpanzee && chimpanzeeentity.getAge() >= 0;
-			};
+			Predicate<Chimpanzee> predicate = (chimp) -> chimp != this.chimpanzee && chimp.getAge() >= 0;
 			List<Chimpanzee> list = this.chimpanzee.level.getEntitiesOfClass(Chimpanzee.class, this.chimpanzee.getBoundingBox().inflate(12.0D, 8.0D, 12.0D), predicate);
 
 			if (!list.isEmpty()) {
@@ -37,6 +35,6 @@ public class ChimpRandomWalkingGoal extends WaterAvoidingRandomStrollGoal {
 			}
 		}
 
-		return this.mob.getRandom().nextFloat() >= this.probability ? LandRandomPos.getPos(this.mob, 10, 7) : super.getPosition();
+		return super.getPosition();
 	}
 }
