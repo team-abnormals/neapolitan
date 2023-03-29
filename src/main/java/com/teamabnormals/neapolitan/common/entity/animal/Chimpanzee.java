@@ -881,9 +881,12 @@ public class Chimpanzee extends Animal implements NeutralMob {
 	}
 
 	@Override
-	public Chimpanzee getBreedOffspring(ServerLevel world, AgeableMob ageableEntity) {
+	public Chimpanzee getBreedOffspring(ServerLevel world, AgeableMob ageableMob) {
 		Chimpanzee baby = NeapolitanEntityTypes.CHIMPANZEE.get().create(world);
-		baby.setChimpanzeeType(this.random.nextBoolean() ? this.getChimpanzeeType() : ((Chimpanzee) ageableEntity).getChimpanzeeType());
+		if (ageableMob instanceof Chimpanzee parent) {
+			baby.setChimpanzeeType(this.random.nextBoolean() ? this.getChimpanzeeType() : parent.getChimpanzeeType());
+			baby.setPaleness((this.getPaleness() + parent.getPaleness()) / 2);
+		}
 		return baby;
 	}
 
