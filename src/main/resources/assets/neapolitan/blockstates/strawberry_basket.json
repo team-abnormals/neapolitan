@@ -1,7 +1,30 @@
 {
   "variants": {
-    "": {
+    "facing=down": {
+      "model": "neapolitan:block/strawberry_basket",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "neapolitan:block/strawberry_basket",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "neapolitan:block/strawberry_basket",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "neapolitan:block/strawberry_basket",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
       "model": "neapolitan:block/strawberry_basket"
+    },
+    "facing=west": {
+      "model": "neapolitan:block/strawberry_basket",
+      "x": 90,
+      "y": 270
     }
   }
 }

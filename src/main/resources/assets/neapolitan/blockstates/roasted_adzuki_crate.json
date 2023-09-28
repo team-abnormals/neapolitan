@@ -1,5 +1,30 @@
 {
-    "variants": {
-        "": { "model": "neapolitan:block/roasted_adzuki_crate" }
+  "variants": {
+    "facing=down": {
+      "model": "neapolitan:block/roasted_adzuki_crate",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "neapolitan:block/roasted_adzuki_crate",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "neapolitan:block/roasted_adzuki_crate",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "neapolitan:block/roasted_adzuki_crate",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "neapolitan:block/roasted_adzuki_crate"
+    },
+    "facing=west": {
+      "model": "neapolitan:block/roasted_adzuki_crate",
+      "x": 90,
+      "y": 270
     }
+  }
 }

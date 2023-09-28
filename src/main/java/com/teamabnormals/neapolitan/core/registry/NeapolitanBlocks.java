@@ -1,5 +1,6 @@
 package com.teamabnormals.neapolitan.core.registry;
 
+import com.teamabnormals.blueprint.common.block.BlueprintDirectionalBlock;
 import com.teamabnormals.blueprint.common.block.VerticalSlabBlock;
 import com.teamabnormals.blueprint.common.block.thatch.ThatchBlock;
 import com.teamabnormals.blueprint.common.block.thatch.ThatchSlabBlock;
@@ -92,12 +93,12 @@ public class NeapolitanBlocks {
 	public static final RegistryObject<Block> DRIED_VANILLA_POD_BLOCK = HELPER.createBlock("dried_vanilla_pod_block", () -> new RotatedPillarBlock(NeapolitanBlockProperties.DRIED_VANILLA_POD_BLOCK), CreativeModeTab.TAB_DECORATIONS);
 	public static final RegistryObject<Block> BANANA_BUNDLE = HELPER.createBlock("banana_bundle", () -> new BananaBundleBlock(NeapolitanBlockProperties.BANANA_BUNDLE), CreativeModeTab.TAB_DECORATIONS);
 
-	public static final RegistryObject<Block> STRAWBERRY_BASKET = HELPER.createCompatBlock("quark", "strawberry_basket", () -> new Block(NeapolitanBlockProperties.STRAWBERRY_BASKET), CreativeModeTab.TAB_DECORATIONS);
-	public static final RegistryObject<Block> WHITE_STRAWBERRY_BASKET = HELPER.createCompatBlock("quark", "white_strawberry_basket", () -> new Block(NeapolitanBlockProperties.WHITE_STRAWBERRY_BASKET), CreativeModeTab.TAB_DECORATIONS);
-	public static final RegistryObject<Block> BANANA_CRATE = HELPER.createCompatBlock("quark", "banana_crate", () -> new Block(NeapolitanBlockProperties.BANANA_CRATE), CreativeModeTab.TAB_DECORATIONS);
-	public static final RegistryObject<Block> MINT_BASKET = HELPER.createCompatBlock("quark", "mint_basket", () -> new Block(NeapolitanBlockProperties.MINT_BASKET), CreativeModeTab.TAB_DECORATIONS);
-	public static final RegistryObject<Block> ADZUKI_CRATE = HELPER.createCompatBlock("quark", "adzuki_crate", () -> new Block(NeapolitanBlockProperties.ADZUKI_CRATE), CreativeModeTab.TAB_DECORATIONS);
-	public static final RegistryObject<Block> ROASTED_ADZUKI_CRATE = HELPER.createCompatBlock("quark", "roasted_adzuki_crate", () -> new Block(NeapolitanBlockProperties.ROASTED_ADZUKI_CRATE), CreativeModeTab.TAB_DECORATIONS);
+	public static final RegistryObject<Block> STRAWBERRY_BASKET = HELPER.createCompatBlock("berry_good", "strawberry_basket", () -> new BlueprintDirectionalBlock(NeapolitanBlockProperties.STRAWBERRY_BASKET), CreativeModeTab.TAB_DECORATIONS);
+	public static final RegistryObject<Block> WHITE_STRAWBERRY_BASKET = HELPER.createCompatBlock("berry_good", "white_strawberry_basket", () -> new BlueprintDirectionalBlock(NeapolitanBlockProperties.WHITE_STRAWBERRY_BASKET), CreativeModeTab.TAB_DECORATIONS);
+	public static final RegistryObject<Block> BANANA_CRATE = HELPER.createCompatBlock("quark", "banana_crate", () -> new BlueprintDirectionalBlock(NeapolitanBlockProperties.BANANA_CRATE), CreativeModeTab.TAB_DECORATIONS);
+	public static final RegistryObject<Block> MINT_BASKET = HELPER.createCompatBlock("berry_good", "mint_basket", () -> new BlueprintDirectionalBlock(NeapolitanBlockProperties.MINT_BASKET), CreativeModeTab.TAB_DECORATIONS);
+	public static final RegistryObject<Block> ADZUKI_CRATE = HELPER.createCompatBlock("quark", "adzuki_crate", () -> new BlueprintDirectionalBlock(NeapolitanBlockProperties.ADZUKI_CRATE), CreativeModeTab.TAB_DECORATIONS);
+	public static final RegistryObject<Block> ROASTED_ADZUKI_CRATE = HELPER.createCompatBlock("quark", "roasted_adzuki_crate", () -> new BlueprintDirectionalBlock(NeapolitanBlockProperties.ROASTED_ADZUKI_CRATE), CreativeModeTab.TAB_DECORATIONS);
 
 	public static final RegistryObject<Block> CHIMPANZEE_HEAD = HELPER.createBlockNoItem("chimpanzee_head", () -> new NeapolitanSkullBlock(NeapolitanSkullTypes.CHIMPANZEE, BlockBehaviour.Properties.of(Material.DECORATION).strength(1.0F)));
 	public static final RegistryObject<Block> CHIMPANZEE_WALL_HEAD = HELPER.createBlockNoItem("chimpanzee_wall_head", () -> new NeapolitanWallSkullBlock(NeapolitanSkullTypes.CHIMPANZEE, BlockBehaviour.Properties.of(Material.DECORATION).strength(1.0F).lootFrom(() -> CHIMPANZEE_HEAD.get())));
