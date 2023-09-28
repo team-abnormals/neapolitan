@@ -22,15 +22,15 @@ public class NeapolitanBiomeTagsProvider extends BiomeTagsProvider {
 		this.tag(NeapolitanBiomeTags.SPAWNS_BAMBOO_VARIANT_CHIMPANZEES).add(Biomes.BAMBOO_JUNGLE);
 
 		this.tag(NeapolitanBiomeTags.HAS_PLANTAIN_SPIDER).addTag(BiomeTags.IS_JUNGLE).addOptionalTag(NeapolitanConstants.IS_RAINFOREST);
-		this.tag(NeapolitanBiomeTags.HAS_CHIMPANZEE).addTag(NeapolitanBiomeTags.HAS_COMMON_BANANA_PLANT).addTag(NeapolitanBiomeTags.HAS_UNCOMMON_BANANA_PLANT).addTag(NeapolitanBiomeTags.HAS_RARE_BANANA_PLANT);
+		this.tag(NeapolitanBiomeTags.HAS_CHIMPANZEE).addTag(NeapolitanBiomeTags.HAS_COMMON_BANANA_PLANT).addTag(NeapolitanBiomeTags.HAS_UNCOMMON_BANANA_PLANT);
 
 		this.tag(NeapolitanBiomeTags.HAS_STRAWBERRY_BUSH).add(Biomes.PLAINS);
 		this.tag(NeapolitanBiomeTags.HAS_ADZUKI_SPROUTS).addTag(BiomeTags.IS_FOREST);
 		this.tag(NeapolitanBiomeTags.HAS_VANILLA_VINE).addTag(BiomeTags.IS_SAVANNA);
 		this.tag(NeapolitanBiomeTags.HAS_MINT_POND).addTag(BiomeTags.IS_HILL);
 
-		this.tag(NeapolitanBiomeTags.HAS_COMMON_BANANA_PLANT).add(Biomes.JUNGLE, Biomes.BAMBOO_JUNGLE);
-		this.tag(NeapolitanBiomeTags.HAS_UNCOMMON_BANANA_PLANT).add(Biomes.SPARSE_JUNGLE).addOptional(new ResourceLocation("atmospheric", "rainforest")).addOptional(new ResourceLocation("atmospheric", "rainforest_basin"));
-		this.tag(NeapolitanBiomeTags.HAS_RARE_BANANA_PLANT).add(Biomes.BEACH, Biomes.STONY_SHORE).addOptional(new ResourceLocation("atmospheric", "sparse_rainforest")).addOptional(new ResourceLocation("atmospheric", "sparse_rainforest_basin"));
+		this.tag(NeapolitanBiomeTags.HAS_COMMON_BANANA_PLANT).add(Biomes.JUNGLE, Biomes.BAMBOO_JUNGLE).addOptional(NeapolitanConstants.RAINFOREST).addOptional(NeapolitanConstants.RAINFOREST_BASIN);
+		this.tag(NeapolitanBiomeTags.HAS_UNCOMMON_BANANA_PLANT).add(Biomes.SPARSE_JUNGLE).addOptional(NeapolitanConstants.SPARSE_RAINFOREST).addOptional(NeapolitanConstants.SPARSE_RAINFOREST_BASIN);
+		this.tag(NeapolitanBiomeTags.HAS_RARE_BANANA_PLANT).add(Biomes.BEACH, Biomes.STONY_SHORE);
 	}
 }

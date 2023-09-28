@@ -1,14 +1,6 @@
 {
   "values": [
     "minecraft:beach",
-    "minecraft:stony_shore",
-    {
-      "id": "atmospheric:sparse_rainforest",
-      "required": false
-    },
-    {
-      "id": "atmospheric:sparse_rainforest_basin",
-      "required": false
-    }
+    "minecraft:stony_shore"
   ]
 }

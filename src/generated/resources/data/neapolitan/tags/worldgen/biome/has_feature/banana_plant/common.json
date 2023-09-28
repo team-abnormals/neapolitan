@@ -1,6 +1,14 @@
 {
   "values": [
     "minecraft:jungle",
-    "minecraft:bamboo_jungle"
+    "minecraft:bamboo_jungle",
+    {
+      "id": "atmospheric:rainforest",
+      "required": false
+    },
+    {
+      "id": "atmospheric:rainforest_basin",
+      "required": false
+    }
   ]
 }

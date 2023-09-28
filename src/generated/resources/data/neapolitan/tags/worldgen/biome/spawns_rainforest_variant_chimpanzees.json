@@ -1,7 +1,7 @@
 {
   "values": [
     {
-      "id": "#forge:is_rainforest",
+      "id": "#atmospheric:is_rainforest",
       "required": false
     }
   ]

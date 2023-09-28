@@ -2,11 +2,11 @@
   "values": [
     "minecraft:sparse_jungle",
     {
-      "id": "atmospheric:rainforest",
+      "id": "atmospheric:sparse_rainforest",
       "required": false
     },
     {
-      "id": "atmospheric:rainforest_basin",
+      "id": "atmospheric:sparse_rainforest_basin",
       "required": false
     }
   ]
