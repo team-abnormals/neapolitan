@@ -1,6 +1,6 @@
 {
   "type": "forge:add_features",
   "biomes": "#neapolitan:has_feature/banana_plant/rare",
-  "features": "neapolitan:banana_plant_very_rare",
+  "features": "neapolitan:banana_plant_rare",
   "step": "vegetal_decoration"
 }

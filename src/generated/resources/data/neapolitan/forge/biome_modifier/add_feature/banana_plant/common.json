@@ -1,6 +1,6 @@
 {
   "type": "forge:add_features",
   "biomes": "#neapolitan:has_feature/banana_plant/common",
-  "features": "neapolitan:banana_plant_jungle",
+  "features": "neapolitan:banana_plant_common",
   "step": "vegetal_decoration"
 }

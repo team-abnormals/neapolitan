@@ -66,10 +66,9 @@ public class NeapolitanFeatures {
 		public static final RegistryObject<PlacedFeature> PATCH_ADZUKI_SPROUTS = register("patch_adzuki_sprouts", NeapolitanConfiguredFeatures.PATCH_ADZUKI_SPROUTS, RarityFilter.onAverageOnceEvery(64), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 		public static final RegistryObject<PlacedFeature> MINT_POND = register("mint_pond", NeapolitanConfiguredFeatures.MINT_POND, RarityFilter.onAverageOnceEvery(8), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 
-		public static final RegistryObject<PlacedFeature> BANANA_PLANT_BEACH = register("banana_plant_beach", NeapolitanConfiguredFeatures.BANANA_PLANT, PlacementUtils.countExtra(0, 0.05F, 1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
-		public static final RegistryObject<PlacedFeature> BANANA_PLANT_JUNGLE = register("banana_plant_jungle", NeapolitanConfiguredFeatures.BANANA_PLANT, PlacementUtils.countExtra(0, 0.25F, 3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
-		public static final RegistryObject<PlacedFeature> BANANA_PLANT_RARE = register("banana_plant_rare", NeapolitanConfiguredFeatures.BANANA_PLANT, PlacementUtils.countExtra(0, 0.25F, 1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
-		public static final RegistryObject<PlacedFeature> BANANA_PLANT_VERY_RARE = register("banana_plant_very_rare", NeapolitanConfiguredFeatures.BANANA_PLANT, PlacementUtils.countExtra(0, 0.125F, 1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
+		public static final RegistryObject<PlacedFeature> BANANA_PLANT_COMMON = register("banana_plant_common", NeapolitanConfiguredFeatures.BANANA_PLANT, PlacementUtils.countExtra(0, 0.25F, 3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
+		public static final RegistryObject<PlacedFeature> BANANA_PLANT_UNCOMMON = register("banana_plant_uncommon", NeapolitanConfiguredFeatures.BANANA_PLANT, PlacementUtils.countExtra(0, 0.1F, 1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
+		public static final RegistryObject<PlacedFeature> BANANA_PLANT_RARE = register("banana_plant_rare", NeapolitanConfiguredFeatures.BANANA_PLANT, PlacementUtils.countExtra(0, 0.05F, 1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
 
 		@SuppressWarnings("unchecked")
 		private static RegistryObject<PlacedFeature> register(String name, RegistryObject<? extends ConfiguredFeature<?, ?>> feature, PlacementModifier... placementModifiers) {

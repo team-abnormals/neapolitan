@@ -38,10 +38,9 @@ public class NeapolitanBiomeModifierProvider {
 		addModifier(modifiers, "add_feature/vanilla_vine", new AddFeaturesBiomeModifier(tag(biomeRegistry, NeapolitanBiomeTags.HAS_VANILLA_VINE), of(placedFeatures, NeapolitanPlacedFeatures.PATCH_VANILLA_VINE), GenerationStep.Decoration.VEGETAL_DECORATION));
 		addModifier(modifiers, "add_feature/mint_pond", new AddFeaturesBiomeModifier(tag(biomeRegistry, NeapolitanBiomeTags.HAS_MINT_POND), of(placedFeatures, NeapolitanPlacedFeatures.MINT_POND), GenerationStep.Decoration.VEGETAL_DECORATION));
 
-		addModifier(modifiers, "add_feature/banana_plant/common", new AddFeaturesBiomeModifier(tag(biomeRegistry, NeapolitanBiomeTags.HAS_COMMON_BANANA_PLANT), of(placedFeatures, NeapolitanPlacedFeatures.BANANA_PLANT_JUNGLE), GenerationStep.Decoration.VEGETAL_DECORATION));
-		addModifier(modifiers, "add_feature/banana_plant/uncommon", new AddFeaturesBiomeModifier(tag(biomeRegistry, NeapolitanBiomeTags.HAS_UNCOMMON_BANANA_PLANT), of(placedFeatures, NeapolitanPlacedFeatures.BANANA_PLANT_RARE), GenerationStep.Decoration.VEGETAL_DECORATION));
-		addModifier(modifiers, "add_feature/banana_plant/rare", new AddFeaturesBiomeModifier(tag(biomeRegistry, NeapolitanBiomeTags.HAS_RARE_BANANA_PLANT), of(placedFeatures, NeapolitanPlacedFeatures.BANANA_PLANT_VERY_RARE), GenerationStep.Decoration.VEGETAL_DECORATION));
-		addModifier(modifiers, "add_feature/banana_plant/sparse", new AddFeaturesBiomeModifier(tag(biomeRegistry, NeapolitanBiomeTags.HAS_SPARSE_BANANA_PLANT), of(placedFeatures, NeapolitanPlacedFeatures.BANANA_PLANT_BEACH), GenerationStep.Decoration.VEGETAL_DECORATION));
+		addModifier(modifiers, "add_feature/banana_plant/common", new AddFeaturesBiomeModifier(tag(biomeRegistry, NeapolitanBiomeTags.HAS_COMMON_BANANA_PLANT), of(placedFeatures, NeapolitanPlacedFeatures.BANANA_PLANT_COMMON), GenerationStep.Decoration.VEGETAL_DECORATION));
+		addModifier(modifiers, "add_feature/banana_plant/uncommon", new AddFeaturesBiomeModifier(tag(biomeRegistry, NeapolitanBiomeTags.HAS_UNCOMMON_BANANA_PLANT), of(placedFeatures, NeapolitanPlacedFeatures.BANANA_PLANT_UNCOMMON), GenerationStep.Decoration.VEGETAL_DECORATION));
+		addModifier(modifiers, "add_feature/banana_plant/rare", new AddFeaturesBiomeModifier(tag(biomeRegistry, NeapolitanBiomeTags.HAS_RARE_BANANA_PLANT), of(placedFeatures, NeapolitanPlacedFeatures.BANANA_PLANT_RARE), GenerationStep.Decoration.VEGETAL_DECORATION));
 
 		return JsonCodecProvider.forDatapackRegistry(generator, existingFileHelper, Neapolitan.MOD_ID, RegistryOps.create(JsonOps.INSTANCE, access), ForgeRegistries.Keys.BIOME_MODIFIERS, modifiers);
 	}

@@ -1,6 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "#neapolitan:has_feature/banana_plant/sparse",
-  "features": "neapolitan:banana_plant_beach",
-  "step": "vegetal_decoration"
-}
