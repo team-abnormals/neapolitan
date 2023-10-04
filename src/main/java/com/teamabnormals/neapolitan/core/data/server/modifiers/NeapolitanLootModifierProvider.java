@@ -8,6 +8,7 @@ import com.teamabnormals.neapolitan.core.registry.NeapolitanEntityTypes;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
 import net.minecraft.advancements.critereon.EnchantmentPredicate;
 import net.minecraft.advancements.critereon.EntityPredicate;
+import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.ItemPredicate.Builder;
 import net.minecraft.advancements.critereon.MinMaxBounds.Ints;
 import net.minecraft.data.DataGenerator;
@@ -25,6 +26,7 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyC
 import net.minecraft.world.level.storage.loot.predicates.MatchTool;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+import net.minecraftforge.common.Tags;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -45,7 +47,7 @@ public class NeapolitanLootModifierProvider extends LootModifierProvider {
 		this.entry("jungle_temple_dispenser").selects(BuiltInLootTables.JUNGLE_TEMPLE_DISPENSER).addModifier(new LootPoolEntriesModifier(false, 0, Collections.singletonList(createLootEntry(NeapolitanItems.BANANARROW.get(), 20, 2, 5))));
 
 		this.entry("ravager").selects("entities/ravager").addModifier(new LootPoolsModifier(Collections.singletonList(LootPool.lootPool().name("neapolitan:ravager").setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(NeapolitanItems.MUSIC_DISC_HULLABALOO.get()).when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.KILLER, EntityPredicate.Builder.entity().of(NeapolitanEntityTypes.CHIMPANZEE.get())))).build()), false));
-		this.entry("ice").selects("blocks/ice").addModifier(new LootPoolsModifier(Collections.singletonList(LootPool.lootPool().name("neapolitan:ice").setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(NeapolitanItems.ICE_CUBES.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 2))).apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)).apply(ApplyExplosionDecay.explosionDecay())).when(MatchTool.toolMatches(Builder.item().hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, Ints.atLeast(1)))).invert()).build()), false));
+		this.entry("ice").selects("blocks/ice").addModifier(new LootPoolsModifier(Collections.singletonList(LootPool.lootPool().name("neapolitan:ice").setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(NeapolitanItems.ICE_CUBES.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 2))).apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)).apply(ApplyExplosionDecay.explosionDecay())).when(MatchTool.toolMatches(ItemPredicate.Builder.item().of(Tags.Items.TOOLS_PICKAXES))).when(MatchTool.toolMatches(Builder.item().hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, Ints.atLeast(1)))).invert()).build()), false));
 	}
 
 	private static LootPoolEntryContainer createLootEntry(ItemLike item, int weight, int min, int max) {

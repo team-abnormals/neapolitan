@@ -8,6 +8,12 @@
             "bonus_rolls": 0.0,
             "conditions": [
               {
+                "condition": "minecraft:match_tool",
+                "predicate": {
+                  "tag": "forge:tools/pickaxes"
+                }
+              },
+              {
                 "condition": "minecraft:inverted",
                 "term": {
                   "condition": "minecraft:match_tool",
