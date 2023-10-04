@@ -128,7 +128,7 @@ public class BananaPlantFeature extends Feature<NoneFeatureConfiguration> {
 		RandomSource random = level.getRandom();
 		int minSpawnAttempts = NeapolitanConfig.COMMON.chimpanzeeMinSpawnAttempts.get();
 		int maxSpawnAttempts = NeapolitanConfig.COMMON.chimpanzeeMaxSpawnAttempts.get();
-		if (maxSpawnAttempts < minSpawnAttempts) return;
+		if (maxSpawnAttempts < minSpawnAttempts || maxSpawnAttempts <= 0 || minSpawnAttempts < 0) return;
 		int spawnCount = minSpawnAttempts + random.nextInt(maxSpawnAttempts - minSpawnAttempts);
 
 		int spawnedChimps = 0;
