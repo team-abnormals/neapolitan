@@ -1,6 +1,7 @@
 package com.teamabnormals.neapolitan.common.levelgen.feature;
 
 import com.mojang.serialization.Codec;
+import com.teamabnormals.blueprint.common.levelgen.feature.BlueprintTreeFeature;
 import com.teamabnormals.blueprint.core.util.TreeUtil;
 import com.teamabnormals.neapolitan.common.block.BananaFrondBlock;
 import com.teamabnormals.neapolitan.common.entity.animal.Chimpanzee;
@@ -91,29 +92,29 @@ public class BananaPlantFeature extends Feature<NoneFeatureConfiguration> {
 
 		if (isAirAt(level, pos, size) && pos.getY() < level.getMaxBuildHeight() - size) {
 			for (BlockPos blockPos2 : stalks) {
-				TreeUtil.setForcedState(level, blockPos2, NeapolitanBlocks.BANANA_STALK.get().defaultBlockState());
+				level.setBlock(blockPos2, NeapolitanBlocks.BANANA_STALK.get().defaultBlockState(), 19);
 			}
-			TreeUtil.setForcedState(level, upFrond, NeapolitanBlocks.LARGE_BANANA_FROND.get().defaultBlockState());
+			level.setBlock(upFrond, NeapolitanBlocks.LARGE_BANANA_FROND.get().defaultBlockState(), 19);
 			if (bundle != null) {
-				TreeUtil.setForcedState(level, bundle, NeapolitanBlocks.BANANA_BUNDLE.get().defaultBlockState());
+				level.setBlock(bundle, NeapolitanBlocks.BANANA_BUNDLE.get().defaultBlockState(), 19);
 				if (random.nextDouble() < NeapolitanConfig.COMMON.chimpanzeeGroupChance.get() && level.getBiome(pos).containsTag(NeapolitanBiomeTags.HAS_CHIMPANZEE)) {
 					spawnChimps(level, pos);
 				}
 			}
 			for (BlockPos blockPos2 : smallFronds.keySet()) {
-				TreeUtil.setForcedState(level, blockPos2, NeapolitanBlocks.SMALL_BANANA_FROND.get().defaultBlockState().setValue(BananaFrondBlock.FACING, smallFronds.get(blockPos2)));
+				level.setBlock(blockPos2, NeapolitanBlocks.SMALL_BANANA_FROND.get().defaultBlockState().setValue(BananaFrondBlock.FACING, smallFronds.get(blockPos2)), 19);
 			}
 			for (BlockPos blockPos2 : fronds.keySet()) {
-				TreeUtil.setForcedState(level, blockPos2, NeapolitanBlocks.BANANA_FROND.get().defaultBlockState().setValue(BananaFrondBlock.FACING, fronds.get(blockPos2)));
+				level.setBlock(blockPos2, NeapolitanBlocks.BANANA_FROND.get().defaultBlockState().setValue(BananaFrondBlock.FACING, fronds.get(blockPos2)), 19);
 			}
 			for (BlockPos blockPos2 : largeFronds.keySet()) {
-				TreeUtil.setForcedState(level, blockPos2, NeapolitanBlocks.LARGE_BANANA_FROND.get().defaultBlockState().setValue(BananaFrondBlock.FACING, largeFronds.get(blockPos2)));
+				level.setBlock(blockPos2, NeapolitanBlocks.LARGE_BANANA_FROND.get().defaultBlockState().setValue(BananaFrondBlock.FACING, largeFronds.get(blockPos2)), 19);
 			}
 			if (isGrass(level, pos.below())) {
-				TreeUtil.setForcedState(level, pos.below(), Blocks.GRAVEL.defaultBlockState());
+				level.setBlock(pos.below(), Blocks.GRAVEL.defaultBlockState(), 19);
 				for (BlockPos blockpos : BlockPos.betweenClosed(pos.getX() - 3, pos.getY() - 2, pos.getZ() - 3, pos.getX() + 3, pos.getY() + 2, pos.getZ() + 3)) {
-					if (isGrass(level, blockpos) && level.isStateAtPosition(blockpos.above(), BlockStateBase::isAir))
-						TreeUtil.setForcedState(level, blockpos, Blocks.GRAVEL.defaultBlockState());
+					if (isGrass(level, blockpos) && level.isStateAtPosition(blockpos.above(), BlockStateBase::isAir) && random.nextInt(3) != 0)
+						level.setBlock(blockpos, Blocks.GRAVEL.defaultBlockState(), 19);
 				}
 			}
 
