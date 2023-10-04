@@ -15,6 +15,7 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.BushBlock;
@@ -24,6 +25,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.ForgeHooks;
@@ -85,7 +87,18 @@ public class BananaFrondBlock extends BushBlock implements BonemealableBlock {
 		} else if (state.is(NeapolitanBlocks.BANANA_FROND.get())) {
 			return BlockUtil.transferAllBlockStates(state, NeapolitanBlocks.LARGE_BANANA_FROND.get().defaultBlockState());
 		} else {
-			return this.defaultBlockState().setValue(FACING, direction).setValue(MOIST, direction == Direction.UP && canGrowOn(level.getBlockState(pos.below())));
+			return this.defaultBlockState().setValue(FACING, direction).setValue(MOIST, direction == Direction.UP && canGrowOn(level.getBlockState(pos.below())) && canRainAt(level, pos));
+		}
+	}
+
+	public static boolean canRainAt(Level level, BlockPos pos) {
+		if (!level.canSeeSky(pos)) {
+			return false;
+		} else if (level.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING, pos).getY() > pos.getY()) {
+			return false;
+		} else {
+			Biome biome = level.getBiome(pos).value();
+			return biome.getPrecipitation() == Biome.Precipitation.RAIN && biome.warmEnoughToRain(pos);
 		}
 	}
 
