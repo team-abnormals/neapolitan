@@ -63,7 +63,7 @@ public class NeapolitanFeatures {
 
 		public static final RegistryObject<PlacedFeature> PATCH_STRAWBERRY_BUSH = register("patch_strawberry_bush", NeapolitanConfiguredFeatures.PATCH_STRAWBERRY_BUSH, RarityFilter.onAverageOnceEvery(64), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 		public static final RegistryObject<PlacedFeature> PATCH_VANILLA_VINE = register("patch_vanilla_vine", NeapolitanConfiguredFeatures.PATCH_VANILLA_VINE, RarityFilter.onAverageOnceEvery(64), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
-		public static final RegistryObject<PlacedFeature> PATCH_ADZUKI_SPROUTS = register("patch_adzuki_sprouts", NeapolitanConfiguredFeatures.PATCH_ADZUKI_SPROUTS, RarityFilter.onAverageOnceEvery(64), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+		public static final RegistryObject<PlacedFeature> PATCH_ADZUKI_SPROUTS = register("patch_adzuki_sprouts", NeapolitanConfiguredFeatures.PATCH_ADZUKI_SPROUTS, RarityFilter.onAverageOnceEvery(128), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 		public static final RegistryObject<PlacedFeature> MINT_POND = register("mint_pond", NeapolitanConfiguredFeatures.MINT_POND, RarityFilter.onAverageOnceEvery(4), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 
 		public static final RegistryObject<PlacedFeature> BANANA_PLANT_COMMON = register("banana_plant_common", NeapolitanConfiguredFeatures.BANANA_PLANT, PlacementUtils.countExtra(0, 0.25F, 3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
