@@ -84,7 +84,7 @@ public class MintPondFeature extends Feature<NoneFeatureConfiguration> {
 
 	private static void placeMint(WorldGenLevel world, BlockPos pos, RandomSource random) {
 		if (world.getBlockState(pos).isAir() && world.getBlockState(pos.below()).is(Blocks.GRASS_BLOCK) && random.nextInt(4) == 0)
-			world.setBlock(pos, NeapolitanBlocks.MINT.get().defaultBlockState().setValue(MintBlock.AGE, 4).setValue(MintBlock.SPROUTS, 1 + random.nextInt(3)), 2);
+			world.setBlock(pos, NeapolitanBlocks.MINT.get().defaultBlockState().setValue(MintBlock.AGE, 4).setValue(MintBlock.SPROUTS, 1 + random.nextInt(3) + random.nextInt(2)), 2);
 	}
 
 	private static void placeWater(WorldGenLevel world, BlockPos pos) {
@@ -93,7 +93,7 @@ public class MintPondFeature extends Feature<NoneFeatureConfiguration> {
 			world.setBlock(pos.below(), Blocks.DIRT.defaultBlockState(), 2);
 	}
 
-	private static boolean isSafeSpotForWater(WorldGenLevel world, BlockPos pos) {
-		return world.getBlockState(pos).is(Blocks.GRASS_BLOCK) && !world.getBlockState(pos.west()).isAir() && !world.getBlockState(pos.east()).isAir() && !world.getBlockState(pos.north()).isAir() && !world.getBlockState(pos.south()).isAir();
+	private static boolean isSafeSpotForWater(WorldGenLevel level, BlockPos pos) {
+		return isGrassOrDirt(level, pos) && isGrassOrDirt(level, pos.west()) && isGrassOrDirt(level, pos.east()) && isGrassOrDirt(level, pos.north()) && isGrassOrDirt(level, pos.south());
 	}
 }
