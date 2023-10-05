@@ -1,5 +1,9 @@
 {
   "values": [
-    "#minecraft:is_forest"
+    "minecraft:forest",
+    "minecraft:flower_forest",
+    "minecraft:birch_forest",
+    "minecraft:old_growth_birch_forest",
+    "minecraft:dark_forest"
   ]
 }

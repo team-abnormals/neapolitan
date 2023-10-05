@@ -26,36 +26,35 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class NeapolitanBiomeModifierProvider {
+	private static final RegistryAccess ACCESS = RegistryAccess.builtinCopy();
+	private static final Registry<Biome> BIOMES = ACCESS.registryOrThrow(Registry.BIOME_REGISTRY);
+	private static final Registry<PlacedFeature> PLACED_FEATURES = ACCESS.registryOrThrow(Registry.PLACED_FEATURE_REGISTRY);
+	private static final HashMap<ResourceLocation, BiomeModifier> MODIFIERS = new HashMap<>();
 
 	public static JsonCodecProvider<BiomeModifier> create(DataGenerator generator, ExistingFileHelper existingFileHelper) {
-		RegistryAccess access = RegistryAccess.builtinCopy();
-		Registry<Biome> biomeRegistry = access.registryOrThrow(Registry.BIOME_REGISTRY);
-		Registry<PlacedFeature> placedFeatures = access.registryOrThrow(Registry.PLACED_FEATURE_REGISTRY);
-		HashMap<ResourceLocation, BiomeModifier> modifiers = new HashMap<>();
+		addFeature("strawberry_bush", NeapolitanBiomeTags.HAS_STRAWBERRY_BUSH, GenerationStep.Decoration.VEGETAL_DECORATION, NeapolitanPlacedFeatures.PATCH_STRAWBERRY_BUSH);
+		addFeature("adzuki_sprouts", NeapolitanBiomeTags.HAS_ADZUKI_SPROUTS, GenerationStep.Decoration.VEGETAL_DECORATION, NeapolitanPlacedFeatures.PATCH_ADZUKI_SPROUTS);
+		addFeature("vanilla_vine", NeapolitanBiomeTags.HAS_VANILLA_VINE, GenerationStep.Decoration.VEGETAL_DECORATION, NeapolitanPlacedFeatures.PATCH_VANILLA_VINE);
+		addFeature("mint_pond", NeapolitanBiomeTags.HAS_MINT_POND, GenerationStep.Decoration.VEGETAL_DECORATION, NeapolitanPlacedFeatures.MINT_POND);
 
-		addModifier(modifiers, "add_feature/strawberry_bush", new AddFeaturesBiomeModifier(tag(biomeRegistry, NeapolitanBiomeTags.HAS_STRAWBERRY_BUSH), of(placedFeatures, NeapolitanPlacedFeatures.PATCH_STRAWBERRY_BUSH), GenerationStep.Decoration.VEGETAL_DECORATION));
-		addModifier(modifiers, "add_feature/adzuki_sprouts", new AddFeaturesBiomeModifier(tag(biomeRegistry, NeapolitanBiomeTags.HAS_ADZUKI_SPROUTS), of(placedFeatures, NeapolitanPlacedFeatures.PATCH_ADZUKI_SPROUTS), GenerationStep.Decoration.VEGETAL_DECORATION));
-		addModifier(modifiers, "add_feature/vanilla_vine", new AddFeaturesBiomeModifier(tag(biomeRegistry, NeapolitanBiomeTags.HAS_VANILLA_VINE), of(placedFeatures, NeapolitanPlacedFeatures.PATCH_VANILLA_VINE), GenerationStep.Decoration.VEGETAL_DECORATION));
-		addModifier(modifiers, "add_feature/mint_pond", new AddFeaturesBiomeModifier(tag(biomeRegistry, NeapolitanBiomeTags.HAS_MINT_POND), of(placedFeatures, NeapolitanPlacedFeatures.MINT_POND), GenerationStep.Decoration.VEGETAL_DECORATION));
+		addFeature("banana_plant/common", NeapolitanBiomeTags.HAS_COMMON_BANANA_PLANT, GenerationStep.Decoration.VEGETAL_DECORATION, NeapolitanPlacedFeatures.BANANA_PLANT_COMMON);
+		addFeature("banana_plant/uncommon", NeapolitanBiomeTags.HAS_UNCOMMON_BANANA_PLANT, GenerationStep.Decoration.VEGETAL_DECORATION, NeapolitanPlacedFeatures.BANANA_PLANT_UNCOMMON);
+		addFeature("banana_plant/rare", NeapolitanBiomeTags.HAS_RARE_BANANA_PLANT, GenerationStep.Decoration.VEGETAL_DECORATION, NeapolitanPlacedFeatures.BANANA_PLANT_RARE);
 
-		addModifier(modifiers, "add_feature/banana_plant/common", new AddFeaturesBiomeModifier(tag(biomeRegistry, NeapolitanBiomeTags.HAS_COMMON_BANANA_PLANT), of(placedFeatures, NeapolitanPlacedFeatures.BANANA_PLANT_COMMON), GenerationStep.Decoration.VEGETAL_DECORATION));
-		addModifier(modifiers, "add_feature/banana_plant/uncommon", new AddFeaturesBiomeModifier(tag(biomeRegistry, NeapolitanBiomeTags.HAS_UNCOMMON_BANANA_PLANT), of(placedFeatures, NeapolitanPlacedFeatures.BANANA_PLANT_UNCOMMON), GenerationStep.Decoration.VEGETAL_DECORATION));
-		addModifier(modifiers, "add_feature/banana_plant/rare", new AddFeaturesBiomeModifier(tag(biomeRegistry, NeapolitanBiomeTags.HAS_RARE_BANANA_PLANT), of(placedFeatures, NeapolitanPlacedFeatures.BANANA_PLANT_RARE), GenerationStep.Decoration.VEGETAL_DECORATION));
-
-		return JsonCodecProvider.forDatapackRegistry(generator, existingFileHelper, Neapolitan.MOD_ID, RegistryOps.create(JsonOps.INSTANCE, access), ForgeRegistries.Keys.BIOME_MODIFIERS, modifiers);
+		return JsonCodecProvider.forDatapackRegistry(generator, existingFileHelper, Neapolitan.MOD_ID, RegistryOps.create(JsonOps.INSTANCE, ACCESS), ForgeRegistries.Keys.BIOME_MODIFIERS, MODIFIERS);
 	}
 
-	private static HolderSet<Biome> tag(Registry<Biome> biomeRegistry, TagKey<Biome> tagKey) {
-		return new HolderSet.Named<>(biomeRegistry, tagKey);
-	}
-
-	private static void addModifier(HashMap<ResourceLocation, BiomeModifier> modifiers, String name, BiomeModifier modifier) {
-		modifiers.put(new ResourceLocation(Neapolitan.MOD_ID, name), modifier);
+	private static void addModifier(String name, BiomeModifier modifier) {
+		MODIFIERS.put(new ResourceLocation(Neapolitan.MOD_ID, name), modifier);
 	}
 
 	@SafeVarargs
-	@SuppressWarnings("ConstantConditions")
-	private static HolderSet<PlacedFeature> of(Registry<PlacedFeature> placedFeatures, RegistryObject<PlacedFeature>... features) {
-		return HolderSet.direct(Stream.of(features).map(registryObject -> placedFeatures.getOrCreateHolderOrThrow(registryObject.getKey())).collect(Collectors.toList()));
+	private static void addFeature(String name, TagKey<Biome> biomes, GenerationStep.Decoration step, RegistryObject<PlacedFeature>... features) {
+		addModifier("add_feature/" + name, new AddFeaturesBiomeModifier(new HolderSet.Named<>(BIOMES, biomes), featureSet(features), step));
+	}
+
+	@SafeVarargs
+	private static HolderSet<PlacedFeature> featureSet(RegistryObject<PlacedFeature>... features) {
+		return HolderSet.direct(Stream.of(features).map(registryObject -> PLACED_FEATURES.getOrCreateHolderOrThrow(registryObject.getKey())).collect(Collectors.toList()));
 	}
 }

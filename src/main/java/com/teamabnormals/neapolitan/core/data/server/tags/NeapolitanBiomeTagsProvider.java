@@ -25,7 +25,7 @@ public class NeapolitanBiomeTagsProvider extends BiomeTagsProvider {
 		this.tag(NeapolitanBiomeTags.HAS_CHIMPANZEE).addTag(NeapolitanBiomeTags.HAS_COMMON_BANANA_PLANT).addTag(NeapolitanBiomeTags.HAS_UNCOMMON_BANANA_PLANT);
 
 		this.tag(NeapolitanBiomeTags.HAS_STRAWBERRY_BUSH).add(Biomes.PLAINS);
-		this.tag(NeapolitanBiomeTags.HAS_ADZUKI_SPROUTS).addTag(BiomeTags.IS_FOREST);
+		this.tag(NeapolitanBiomeTags.HAS_ADZUKI_SPROUTS).add(Biomes.FOREST, Biomes.FLOWER_FOREST, Biomes.BIRCH_FOREST, Biomes.OLD_GROWTH_BIRCH_FOREST, Biomes.DARK_FOREST);
 		this.tag(NeapolitanBiomeTags.HAS_VANILLA_VINE).addTag(BiomeTags.IS_SAVANNA);
 		this.tag(NeapolitanBiomeTags.HAS_MINT_POND).addTag(BiomeTags.IS_HILL);
 
