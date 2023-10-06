@@ -7,7 +7,13 @@
   "block.neapolitan.adzuki_ice_cream_block": "Bloque de helado de azuki",
 
   "block.neapolitan.milk_cauldron": "Caldero con leche",
-
+  "block.neapolitan.vanilla_milkshake_cauldron": "Caldero con batido de vainilla",
+  "block.neapolitan.chocolate_milkshake_cauldron": "Caldero con batido de chocolate",
+  "block.neapolitan.strawberry_milkshake_cauldron": "Caldero con batido de fresa",
+  "block.neapolitan.banana_milkshake_cauldron": "Caldero con batido de plátano",
+  "block.neapolitan.mint_milkshake_cauldron": "Caldero con batido de menta",
+  "block.neapolitan.adzuki_milkshake_cauldron": "Caldero con batido de azuki",
+  
   "block.neapolitan.chocolate_block": "Bloque de chocolate",
   "block.neapolitan.chocolate_bricks": "Ladrillos de chocolate",
   "block.neapolitan.chocolate_brick_slab": "Losa de ladrillos de chocolate",
@@ -28,19 +34,21 @@
   "block.neapolitan.frond_thatch_slab": "Losa de paja de hojas de plátano",
   "block.neapolitan.frond_thatch_vertical_slab": "Losa vertical de paja de hojas de plátano",
 
-  "block.neapolitan.strawberry_basket": "Cesta de fresas",
-  "block.neapolitan.white_strawberry_basket": "Cesta de fresas blancas",
+  "block.neapolitan.strawberry_basket": "Canasta de fresas",
+  "block.neapolitan.white_strawberry_basket": "Canasta de fresas blancas",
   "block.neapolitan.vanilla_pod_block": "Bloque de vainas de vainilla",
   "block.neapolitan.dried_vanilla_pod_block": "Bloque de vainas de vainilla secas",
-  "block.neapolitan.banana_crate": "Cajón de plátanos",
-  "block.neapolitan.mint_basket": "Cesta de menta",
-  "block.neapolitan.adzuki_crate": "Cajón de frijoles azuki",
-  "block.neapolitan.roasted_adzuki_crate": "Cajón de frijoles azuki asados",
+  "block.neapolitan.banana_crate": "Caja de plátanos",
+  "block.neapolitan.mint_basket": "Canasta de menta",
+  "block.neapolitan.adzuki_crate": "Caja de frijoles azuki",
+  "block.neapolitan.roasted_adzuki_crate": "Caja de frijoles azuki asados",
 
   "block.neapolitan.strawberry_bush": "Arbusto de fresas",
   "block.neapolitan.vanilla_vine": "Lianas de vainilla",
   "block.neapolitan.vanilla_vine_plant": "Planta de lianas de vainilla",
+  "block.neapolitan.potted_vanilla_vine": "Vaina de vainilla en maceta",
   "block.neapolitan.mint": "Menta",
+  "block.neapolitan.potted_mint": "Brote de menta en maceta",
 
   "block.neapolitan.banana_stalk": "Tallo de platanera",
   "block.neapolitan.carved_banana_stalk": "Tallo de platanera tallado",
@@ -49,6 +57,7 @@
   "block.neapolitan.small_banana_frond": "Hoja de plátano pequeña",
   "block.neapolitan.banana_frond": "Hoja de plátano",
   "block.neapolitan.large_banana_frond": "Hoja de plátano grande",
+  "block.neapolitan.potted_banana_frond": "hoja de plátano en maceta",
 
   "block.neapolitan.adzuki_sprouts": "Brotes de azuki",
   "block.neapolitan.adzuki_soil": "Tierra con azukis",
@@ -165,6 +174,8 @@
   "block.neapolitan.yellow_strawberry_candle_cake": "Pastel de fresa con vela amarilla",
   "block.neapolitan.yellow_vanilla_candle_cake": "Pastel de vainilla con vela amarilla",
 
+  "block.neapolitan.chimpanzee_head": "Cabeza de chimpancé",
+  
   "item.neapolitan.milk_bottle": "Botella de leche",
   "item.neapolitan.ice_cubes": "Cubos de hielo",
 
@@ -188,6 +199,7 @@
 
   "item.neapolitan.banana": "Plátano",
   "item.neapolitan.banana_bunch": "Racimo de plátanos",
+  "item.neapolitan.banana_frond": "Hoja de plátano",
   "item.neapolitan.dried_banana": "Plátano seco",
   "item.neapolitan.banana_ice_cream": "Helado de plátano",
   "item.neapolitan.banana_milkshake": "Batido de plátano",
