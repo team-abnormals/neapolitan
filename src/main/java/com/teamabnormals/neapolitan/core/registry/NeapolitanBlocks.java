@@ -59,10 +59,10 @@ public class NeapolitanBlocks {
 	public static final RegistryObject<Block> CHOCOLATE_TILE_WALL = HELPER.createBlock("chocolate_tile_wall", () -> new WallBlock(NeapolitanBlockProperties.CHOCOLATE_TILES), CreativeModeTab.TAB_DECORATIONS);
 	public static final RegistryObject<Block> CHOCOLATE_TILE_VERTICAL_SLAB = HELPER.createCompatBlock("quark", "chocolate_tile_vertical_slab", () -> new VerticalSlabBlock(NeapolitanBlockProperties.CHOCOLATE_TILES), CreativeModeTab.TAB_BUILDING_BLOCKS);
 
-	public static final RegistryObject<Block> STRAWBERRY_BUSH = HELPER.createBlockNoItem("strawberry_bush", () -> new StrawberryBushBlock(NeapolitanBlockProperties.STRAWBERRY_BUSH));
 	public static final RegistryObject<Block> VANILLA_VINE = HELPER.createBlockNoItem("vanilla_vine", () -> new VanillaVineTopBlock(NeapolitanBlockProperties.VANILLA_VINE));
 	public static final RegistryObject<Block> VANILLA_VINE_PLANT = HELPER.createBlockNoItem("vanilla_vine_plant", () -> new VanillaVineBlock(NeapolitanBlockProperties.VANILLA_VINE));
 	public static final RegistryObject<Block> POTTED_VANILLA_VINE = HELPER.createBlockNoItem("potted_vanilla_vine", () -> new FlowerPotBlock(VANILLA_VINE.get(), PropertyUtil.flowerPot()));
+	public static final RegistryObject<Block> STRAWBERRY_BUSH = HELPER.createBlockNoItem("strawberry_bush", () -> new StrawberryBushBlock(NeapolitanBlockProperties.STRAWBERRY_BUSH));
 	public static final RegistryObject<Block> MINT = HELPER.createBlockNoItem("mint", () -> new MintBlock(NeapolitanBlockProperties.MINT));
 	public static final RegistryObject<Block> POTTED_MINT = HELPER.createBlockNoItem("potted_mint", () -> new FlowerPotBlock(MINT.get(), PropertyUtil.flowerPot()));
 
@@ -82,9 +82,9 @@ public class NeapolitanBlocks {
 	public static final RegistryObject<Block> BEANSTALK = HELPER.createBlock("beanstalk", () -> new BeanstalkBlock(NeapolitanBlockProperties.BEANSTALK), CreativeModeTab.TAB_BUILDING_BLOCKS);
 	public static final RegistryObject<Block> BEANSTALK_THORNS = HELPER.createBlock("beanstalk_thorns", () -> new BeanstalkThornsBlock(NeapolitanBlockProperties.BEANSTALK_THORNS), CreativeModeTab.TAB_DECORATIONS);
 
+	public static final RegistryObject<Block> VANILLA_CAKE = HELPER.createBlockNoItem("vanilla_cake", () -> new FlavoredCakeBlock(NeapolitanFoods.VANILLA_CAKE, NeapolitanBlockProperties.VANILLA_CAKE));
 	public static final RegistryObject<Block> CHOCOLATE_CAKE = HELPER.createBlockNoItem("chocolate_cake", () -> new FlavoredCakeBlock(NeapolitanFoods.CHOCOLATE_CAKE, NeapolitanBlockProperties.CHOCOLATE_CAKE));
 	public static final RegistryObject<Block> STRAWBERRY_CAKE = HELPER.createBlockNoItem("strawberry_cake", () -> new FlavoredCakeBlock(NeapolitanFoods.STRAWBERRY_CAKE, NeapolitanBlockProperties.STRAWBERRY_CAKE));
-	public static final RegistryObject<Block> VANILLA_CAKE = HELPER.createBlockNoItem("vanilla_cake", () -> new FlavoredCakeBlock(NeapolitanFoods.VANILLA_CAKE, NeapolitanBlockProperties.VANILLA_CAKE));
 	public static final RegistryObject<Block> BANANA_CAKE = HELPER.createBlockNoItem("banana_cake", () -> new FlavoredCakeBlock(NeapolitanFoods.BANANA_CAKE, NeapolitanBlockProperties.BANANA_CAKE));
 	public static final RegistryObject<Block> MINT_CAKE = HELPER.createBlockNoItem("mint_cake", () -> new FlavoredCakeBlock(NeapolitanFoods.MINT_CAKE, NeapolitanBlockProperties.MINT_CAKE));
 	public static final RegistryObject<Block> ADZUKI_CAKE = HELPER.createBlockNoItem("adzuki_cake", () -> new FlavoredCakeBlock(NeapolitanFoods.ADZUKI_CAKE, NeapolitanBlockProperties.ADZUKI_CAKE));
@@ -102,6 +102,24 @@ public class NeapolitanBlocks {
 
 	public static final RegistryObject<Block> CHIMPANZEE_HEAD = HELPER.createBlockNoItem("chimpanzee_head", () -> new NeapolitanSkullBlock(NeapolitanSkullTypes.CHIMPANZEE, BlockBehaviour.Properties.of(Material.DECORATION).strength(1.0F)));
 	public static final RegistryObject<Block> CHIMPANZEE_WALL_HEAD = HELPER.createBlockNoItem("chimpanzee_wall_head", () -> new NeapolitanWallSkullBlock(NeapolitanSkullTypes.CHIMPANZEE, BlockBehaviour.Properties.of(Material.DECORATION).strength(1.0F).lootFrom(() -> CHIMPANZEE_HEAD.get())));
+
+	public static final RegistryObject<Block> VANILLA_CANDLE_CAKE = HELPER.createBlockNoItem("vanilla_candle_cake", () -> new FlavoredCandleCakeBlock(VANILLA_CAKE, Blocks.CANDLE, NeapolitanBlockProperties.VANILLA_CANDLE_CAKE));
+	public static final RegistryObject<Block> WHITE_VANILLA_CANDLE_CAKE = HELPER.createBlockNoItem("white_vanilla_candle_cake", () -> new FlavoredCandleCakeBlock(VANILLA_CAKE, Blocks.WHITE_CANDLE, NeapolitanBlockProperties.VANILLA_CANDLE_CAKE));
+	public static final RegistryObject<Block> ORANGE_VANILLA_CANDLE_CAKE = HELPER.createBlockNoItem("orange_vanilla_candle_cake", () -> new FlavoredCandleCakeBlock(VANILLA_CAKE, Blocks.ORANGE_CANDLE, NeapolitanBlockProperties.VANILLA_CANDLE_CAKE));
+	public static final RegistryObject<Block> MAGENTA_VANILLA_CANDLE_CAKE = HELPER.createBlockNoItem("magenta_vanilla_candle_cake", () -> new FlavoredCandleCakeBlock(VANILLA_CAKE, Blocks.MAGENTA_CANDLE, NeapolitanBlockProperties.VANILLA_CANDLE_CAKE));
+	public static final RegistryObject<Block> LIGHT_BLUE_VANILLA_CANDLE_CAKE = HELPER.createBlockNoItem("light_blue_vanilla_candle_cake", () -> new FlavoredCandleCakeBlock(VANILLA_CAKE, Blocks.LIGHT_BLUE_CANDLE, NeapolitanBlockProperties.VANILLA_CANDLE_CAKE));
+	public static final RegistryObject<Block> YELLOW_VANILLA_CANDLE_CAKE = HELPER.createBlockNoItem("yellow_vanilla_candle_cake", () -> new FlavoredCandleCakeBlock(VANILLA_CAKE, Blocks.YELLOW_CANDLE, NeapolitanBlockProperties.VANILLA_CANDLE_CAKE));
+	public static final RegistryObject<Block> LIME_VANILLA_CANDLE_CAKE = HELPER.createBlockNoItem("lime_vanilla_candle_cake", () -> new FlavoredCandleCakeBlock(VANILLA_CAKE, Blocks.LIME_CANDLE, NeapolitanBlockProperties.VANILLA_CANDLE_CAKE));
+	public static final RegistryObject<Block> PINK_VANILLA_CANDLE_CAKE = HELPER.createBlockNoItem("pink_vanilla_candle_cake", () -> new FlavoredCandleCakeBlock(VANILLA_CAKE, Blocks.PINK_CANDLE, NeapolitanBlockProperties.VANILLA_CANDLE_CAKE));
+	public static final RegistryObject<Block> GRAY_VANILLA_CANDLE_CAKE = HELPER.createBlockNoItem("gray_vanilla_candle_cake", () -> new FlavoredCandleCakeBlock(VANILLA_CAKE, Blocks.GRAY_CANDLE, NeapolitanBlockProperties.VANILLA_CANDLE_CAKE));
+	public static final RegistryObject<Block> LIGHT_GRAY_VANILLA_CANDLE_CAKE = HELPER.createBlockNoItem("light_gray_vanilla_candle_cake", () -> new FlavoredCandleCakeBlock(VANILLA_CAKE, Blocks.LIGHT_GRAY_CANDLE, NeapolitanBlockProperties.VANILLA_CANDLE_CAKE));
+	public static final RegistryObject<Block> CYAN_VANILLA_CANDLE_CAKE = HELPER.createBlockNoItem("cyan_vanilla_candle_cake", () -> new FlavoredCandleCakeBlock(VANILLA_CAKE, Blocks.CYAN_CANDLE, NeapolitanBlockProperties.VANILLA_CANDLE_CAKE));
+	public static final RegistryObject<Block> PURPLE_VANILLA_CANDLE_CAKE = HELPER.createBlockNoItem("purple_vanilla_candle_cake", () -> new FlavoredCandleCakeBlock(VANILLA_CAKE, Blocks.PURPLE_CANDLE, NeapolitanBlockProperties.VANILLA_CANDLE_CAKE));
+	public static final RegistryObject<Block> BLUE_VANILLA_CANDLE_CAKE = HELPER.createBlockNoItem("blue_vanilla_candle_cake", () -> new FlavoredCandleCakeBlock(VANILLA_CAKE, Blocks.BLUE_CANDLE, NeapolitanBlockProperties.VANILLA_CANDLE_CAKE));
+	public static final RegistryObject<Block> BROWN_VANILLA_CANDLE_CAKE = HELPER.createBlockNoItem("brown_vanilla_candle_cake", () -> new FlavoredCandleCakeBlock(VANILLA_CAKE, Blocks.BROWN_CANDLE, NeapolitanBlockProperties.VANILLA_CANDLE_CAKE));
+	public static final RegistryObject<Block> GREEN_VANILLA_CANDLE_CAKE = HELPER.createBlockNoItem("green_vanilla_candle_cake", () -> new FlavoredCandleCakeBlock(VANILLA_CAKE, Blocks.GREEN_CANDLE, NeapolitanBlockProperties.VANILLA_CANDLE_CAKE));
+	public static final RegistryObject<Block> RED_VANILLA_CANDLE_CAKE = HELPER.createBlockNoItem("red_vanilla_candle_cake", () -> new FlavoredCandleCakeBlock(VANILLA_CAKE, Blocks.RED_CANDLE, NeapolitanBlockProperties.VANILLA_CANDLE_CAKE));
+	public static final RegistryObject<Block> BLACK_VANILLA_CANDLE_CAKE = HELPER.createBlockNoItem("black_vanilla_candle_cake", () -> new FlavoredCandleCakeBlock(VANILLA_CAKE, Blocks.BLACK_CANDLE, NeapolitanBlockProperties.VANILLA_CANDLE_CAKE));
 
 	public static final RegistryObject<Block> CHOCOLATE_CANDLE_CAKE = HELPER.createBlockNoItem("chocolate_candle_cake", () -> new FlavoredCandleCakeBlock(CHOCOLATE_CAKE, Blocks.CANDLE, NeapolitanBlockProperties.CHOCOLATE_CANDLE_CAKE));
 	public static final RegistryObject<Block> WHITE_CHOCOLATE_CANDLE_CAKE = HELPER.createBlockNoItem("white_chocolate_candle_cake", () -> new FlavoredCandleCakeBlock(CHOCOLATE_CAKE, Blocks.WHITE_CANDLE, NeapolitanBlockProperties.CHOCOLATE_CANDLE_CAKE));
@@ -138,24 +156,6 @@ public class NeapolitanBlocks {
 	public static final RegistryObject<Block> GREEN_STRAWBERRY_CANDLE_CAKE = HELPER.createBlockNoItem("green_strawberry_candle_cake", () -> new FlavoredCandleCakeBlock(STRAWBERRY_CAKE, Blocks.GREEN_CANDLE, NeapolitanBlockProperties.STRAWBERRY_CANDLE_CAKE));
 	public static final RegistryObject<Block> RED_STRAWBERRY_CANDLE_CAKE = HELPER.createBlockNoItem("red_strawberry_candle_cake", () -> new FlavoredCandleCakeBlock(STRAWBERRY_CAKE, Blocks.RED_CANDLE, NeapolitanBlockProperties.STRAWBERRY_CANDLE_CAKE));
 	public static final RegistryObject<Block> BLACK_STRAWBERRY_CANDLE_CAKE = HELPER.createBlockNoItem("black_strawberry_candle_cake", () -> new FlavoredCandleCakeBlock(STRAWBERRY_CAKE, Blocks.BLACK_CANDLE, NeapolitanBlockProperties.STRAWBERRY_CANDLE_CAKE));
-
-	public static final RegistryObject<Block> VANILLA_CANDLE_CAKE = HELPER.createBlockNoItem("vanilla_candle_cake", () -> new FlavoredCandleCakeBlock(VANILLA_CAKE, Blocks.CANDLE, NeapolitanBlockProperties.VANILLA_CANDLE_CAKE));
-	public static final RegistryObject<Block> WHITE_VANILLA_CANDLE_CAKE = HELPER.createBlockNoItem("white_vanilla_candle_cake", () -> new FlavoredCandleCakeBlock(VANILLA_CAKE, Blocks.WHITE_CANDLE, NeapolitanBlockProperties.VANILLA_CANDLE_CAKE));
-	public static final RegistryObject<Block> ORANGE_VANILLA_CANDLE_CAKE = HELPER.createBlockNoItem("orange_vanilla_candle_cake", () -> new FlavoredCandleCakeBlock(VANILLA_CAKE, Blocks.ORANGE_CANDLE, NeapolitanBlockProperties.VANILLA_CANDLE_CAKE));
-	public static final RegistryObject<Block> MAGENTA_VANILLA_CANDLE_CAKE = HELPER.createBlockNoItem("magenta_vanilla_candle_cake", () -> new FlavoredCandleCakeBlock(VANILLA_CAKE, Blocks.MAGENTA_CANDLE, NeapolitanBlockProperties.VANILLA_CANDLE_CAKE));
-	public static final RegistryObject<Block> LIGHT_BLUE_VANILLA_CANDLE_CAKE = HELPER.createBlockNoItem("light_blue_vanilla_candle_cake", () -> new FlavoredCandleCakeBlock(VANILLA_CAKE, Blocks.LIGHT_BLUE_CANDLE, NeapolitanBlockProperties.VANILLA_CANDLE_CAKE));
-	public static final RegistryObject<Block> YELLOW_VANILLA_CANDLE_CAKE = HELPER.createBlockNoItem("yellow_vanilla_candle_cake", () -> new FlavoredCandleCakeBlock(VANILLA_CAKE, Blocks.YELLOW_CANDLE, NeapolitanBlockProperties.VANILLA_CANDLE_CAKE));
-	public static final RegistryObject<Block> LIME_VANILLA_CANDLE_CAKE = HELPER.createBlockNoItem("lime_vanilla_candle_cake", () -> new FlavoredCandleCakeBlock(VANILLA_CAKE, Blocks.LIME_CANDLE, NeapolitanBlockProperties.VANILLA_CANDLE_CAKE));
-	public static final RegistryObject<Block> PINK_VANILLA_CANDLE_CAKE = HELPER.createBlockNoItem("pink_vanilla_candle_cake", () -> new FlavoredCandleCakeBlock(VANILLA_CAKE, Blocks.PINK_CANDLE, NeapolitanBlockProperties.VANILLA_CANDLE_CAKE));
-	public static final RegistryObject<Block> GRAY_VANILLA_CANDLE_CAKE = HELPER.createBlockNoItem("gray_vanilla_candle_cake", () -> new FlavoredCandleCakeBlock(VANILLA_CAKE, Blocks.GRAY_CANDLE, NeapolitanBlockProperties.VANILLA_CANDLE_CAKE));
-	public static final RegistryObject<Block> LIGHT_GRAY_VANILLA_CANDLE_CAKE = HELPER.createBlockNoItem("light_gray_vanilla_candle_cake", () -> new FlavoredCandleCakeBlock(VANILLA_CAKE, Blocks.LIGHT_GRAY_CANDLE, NeapolitanBlockProperties.VANILLA_CANDLE_CAKE));
-	public static final RegistryObject<Block> CYAN_VANILLA_CANDLE_CAKE = HELPER.createBlockNoItem("cyan_vanilla_candle_cake", () -> new FlavoredCandleCakeBlock(VANILLA_CAKE, Blocks.CYAN_CANDLE, NeapolitanBlockProperties.VANILLA_CANDLE_CAKE));
-	public static final RegistryObject<Block> PURPLE_VANILLA_CANDLE_CAKE = HELPER.createBlockNoItem("purple_vanilla_candle_cake", () -> new FlavoredCandleCakeBlock(VANILLA_CAKE, Blocks.PURPLE_CANDLE, NeapolitanBlockProperties.VANILLA_CANDLE_CAKE));
-	public static final RegistryObject<Block> BLUE_VANILLA_CANDLE_CAKE = HELPER.createBlockNoItem("blue_vanilla_candle_cake", () -> new FlavoredCandleCakeBlock(VANILLA_CAKE, Blocks.BLUE_CANDLE, NeapolitanBlockProperties.VANILLA_CANDLE_CAKE));
-	public static final RegistryObject<Block> BROWN_VANILLA_CANDLE_CAKE = HELPER.createBlockNoItem("brown_vanilla_candle_cake", () -> new FlavoredCandleCakeBlock(VANILLA_CAKE, Blocks.BROWN_CANDLE, NeapolitanBlockProperties.VANILLA_CANDLE_CAKE));
-	public static final RegistryObject<Block> GREEN_VANILLA_CANDLE_CAKE = HELPER.createBlockNoItem("green_vanilla_candle_cake", () -> new FlavoredCandleCakeBlock(VANILLA_CAKE, Blocks.GREEN_CANDLE, NeapolitanBlockProperties.VANILLA_CANDLE_CAKE));
-	public static final RegistryObject<Block> RED_VANILLA_CANDLE_CAKE = HELPER.createBlockNoItem("red_vanilla_candle_cake", () -> new FlavoredCandleCakeBlock(VANILLA_CAKE, Blocks.RED_CANDLE, NeapolitanBlockProperties.VANILLA_CANDLE_CAKE));
-	public static final RegistryObject<Block> BLACK_VANILLA_CANDLE_CAKE = HELPER.createBlockNoItem("black_vanilla_candle_cake", () -> new FlavoredCandleCakeBlock(VANILLA_CAKE, Blocks.BLACK_CANDLE, NeapolitanBlockProperties.VANILLA_CANDLE_CAKE));
 
 	public static final RegistryObject<Block> BANANA_CANDLE_CAKE = HELPER.createBlockNoItem("banana_candle_cake", () -> new FlavoredCandleCakeBlock(BANANA_CAKE, Blocks.CANDLE, NeapolitanBlockProperties.BANANA_CANDLE_CAKE));
 	public static final RegistryObject<Block> WHITE_BANANA_CANDLE_CAKE = HELPER.createBlockNoItem("white_banana_candle_cake", () -> new FlavoredCandleCakeBlock(BANANA_CAKE, Blocks.WHITE_CANDLE, NeapolitanBlockProperties.BANANA_CANDLE_CAKE));
