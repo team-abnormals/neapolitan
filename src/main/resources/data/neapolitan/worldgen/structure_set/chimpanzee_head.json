@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "neapolitan:chimpanzee_head",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 623652636,
+    "spacing": 64,
+    "separation": 32,
+    "type": "minecraft:random_spread"
+  }
+}
