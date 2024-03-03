@@ -25,12 +25,12 @@ public class ChimpGroomGoal extends Goal {
 		if (this.chimpanzee.isBaby()) {
 			return false;
 		} else if (this.chimpanzee.getRandom().nextInt(40) == 0) {
-			List<Chimpanzee> list = this.chimpanzee.level.getEntitiesOfClass(Chimpanzee.class, this.chimpanzee.getBoundingBox().inflate(8.0D, 4.0D, 8.0D));
+			List<Chimpanzee> list = this.chimpanzee.level().getEntitiesOfClass(Chimpanzee.class, this.chimpanzee.getBoundingBox().inflate(8.0D, 4.0D, 8.0D));
 			Chimpanzee chimpanzeeentity = null;
 			double d0 = Double.MAX_VALUE;
 
 			for (Chimpanzee chimpanzeeentity1 : list) {
-				if (chimpanzeeentity1 != this.chimpanzee && chimpanzeeentity1.isOnGround() && chimpanzeeentity1.isDirty() && chimpanzeeentity1.getGroomer() == null) {
+				if (chimpanzeeentity1 != this.chimpanzee && chimpanzeeentity1.onGround() && chimpanzeeentity1.isDirty() && chimpanzeeentity1.getGroomer() == null) {
 					double d1 = this.chimpanzee.distanceToSqr(chimpanzeeentity1);
 					if (!(d1 > d0)) {
 						d0 = d1;

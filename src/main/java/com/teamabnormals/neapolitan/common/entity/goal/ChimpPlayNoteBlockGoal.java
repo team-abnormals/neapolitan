@@ -84,13 +84,13 @@ public class ChimpPlayNoteBlockGoal extends MoveToBlockGoal {
 			this.chimpanzee.setSitting(true);
 
 			if (--this.noteTime <= 0) {
-				if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.chimpanzee.level, this.chimpanzee)) {
-					BlockState state = this.chimpanzee.level.getBlockState(this.blockPos);
+				if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.chimpanzee.level(), this.chimpanzee)) {
+					BlockState state = this.chimpanzee.level().getBlockState(this.blockPos);
 					int note = state.getValue(NoteBlock.NOTE);
 					note = Mth.clamp(note + this.chimpanzee.getRandom().nextInt(7) - 3, 0, 24);
-					this.chimpanzee.level.setBlock(this.blockPos, state.setValue(NoteBlock.NOTE, note), 3);
+					this.chimpanzee.level().setBlock(this.blockPos, state.setValue(NoteBlock.NOTE, note), 3);
 				}
-				this.chimpanzee.level.blockEvent(this.blockPos, Blocks.NOTE_BLOCK, 0, 0);
+				this.chimpanzee.level().blockEvent(this.blockPos, Blocks.NOTE_BLOCK, 0, 0);
 				this.noteTime = 8 + this.chimpanzee.getRandom().nextInt(5);
 			}
 

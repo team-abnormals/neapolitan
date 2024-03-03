@@ -105,7 +105,7 @@ public class FlavoredCandleCakeBlock extends AbstractCandleBlock {
 
 	@Override
 	public boolean canSurvive(BlockState p_152891_, LevelReader p_152892_, BlockPos p_152893_) {
-		return p_152892_.getBlockState(p_152893_.below()).getMaterial().isSolid();
+		return p_152892_.getBlockState(p_152893_.below()).isSolid();
 	}
 
 	@Override

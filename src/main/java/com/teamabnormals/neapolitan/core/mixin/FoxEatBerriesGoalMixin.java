@@ -31,13 +31,13 @@ public abstract class FoxEatBerriesGoalMixin extends MoveToBlockGoal {
 
 	@Inject(at = @At("HEAD"), method = "onReachedTarget")
 	private void onReachedTarget(CallbackInfo ci) {
-		if (ForgeEventFactory.getMobGriefingEvent(this.mob.level, this.mob)) {
-			BlockState state = this.mob.level.getBlockState(this.blockPos);
+		if (ForgeEventFactory.getMobGriefingEvent(this.mob.level(), this.mob)) {
+			BlockState state = this.mob.level().getBlockState(this.blockPos);
 			if (state.is(NeapolitanBlocks.STRAWBERRY_BUSH.get())) {
 				state.setValue(StrawberryBushBlock.AGE, 1);
 
 				Item strawberry = state.getValue(StrawberryBushBlock.TYPE) == StrawberryType.WHITE ? NeapolitanItems.WHITE_STRAWBERRIES.get() : NeapolitanItems.STRAWBERRIES.get();
-				int strawberryCount = 1 + this.mob.level.random.nextInt(2);
+				int strawberryCount = 1 + this.mob.level().random.nextInt(2);
 
 				ItemStack mainStack = this.mob.getItemBySlot(EquipmentSlot.MAINHAND);
 				if (mainStack.isEmpty()) {
@@ -45,11 +45,11 @@ public abstract class FoxEatBerriesGoalMixin extends MoveToBlockGoal {
 					--strawberryCount;
 				}
 				if (strawberryCount > 0) {
-					Block.popResource(this.mob.level, this.blockPos, new ItemStack(strawberry, strawberryCount));
+					Block.popResource(this.mob.level(), this.blockPos, new ItemStack(strawberry, strawberryCount));
 				}
 
 				this.mob.playSound(SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, 1.0F, 1.0F);
-				this.mob.level.setBlock(this.blockPos, state.setValue(StrawberryBushBlock.AGE, 1).setValue(StrawberryBushBlock.TYPE, StrawberryType.NONE), 2);
+				this.mob.level().setBlock(this.blockPos, state.setValue(StrawberryBushBlock.AGE, 1).setValue(StrawberryBushBlock.TYPE, StrawberryType.NONE), 2);
 			}
 		}
 	}

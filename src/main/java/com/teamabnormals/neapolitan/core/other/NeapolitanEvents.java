@@ -45,8 +45,8 @@ import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingTickEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingVisibilityEvent;
-import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.living.MobEffectEvent;
+import net.minecraftforge.event.entity.living.MobSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteractSpecific;
 import net.minecraftforge.event.level.ExplosionEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
@@ -73,7 +73,7 @@ public class NeapolitanEvents {
 	public static void onLivingUpdate(LivingTickEvent event) {
 		LivingEntity entity = event.getEntity();
 		if (entity.getType().is(BlueprintEntityTypeTags.MILKABLE)) {
-			Level level = event.getEntity().getLevel();
+			Level level = event.getEntity().level();
 			BlockPos entityPos = entity.blockPosition();
 			BlockPos dripstonePos = entity.getOnPos().below();
 			RandomSource random = level.random;
@@ -98,13 +98,13 @@ public class NeapolitanEvents {
 	}
 
 	@SubscribeEvent
-	public static void onLivingSpawn(LivingSpawnEvent.CheckSpawn event) {
+	public static void onLivingSpawn(MobSpawnEvent.FinalizeSpawn event) {
 		Entity entity = event.getEntity();
 		LevelAccessor level = event.getLevel();
 		Holder<Biome> biome = level.getBiome(entity.blockPosition());
 
 		if (event.getResult() != Event.Result.DENY && level.getRandom().nextInt(4) != 0) {
-			boolean validSpawn = event.getSpawnReason() == MobSpawnType.NATURAL || event.getSpawnReason() == MobSpawnType.CHUNK_GENERATION || event.getSpawnReason() == MobSpawnType.MOB_SUMMONED;
+			boolean validSpawn = event.getSpawnType() == MobSpawnType.NATURAL || event.getSpawnType() == MobSpawnType.CHUNK_GENERATION || event.getSpawnType() == MobSpawnType.MOB_SUMMONED;
 			if (validSpawn && biome.is(NeapolitanBiomeTags.HAS_PLANTAIN_SPIDER)) {
 				if (entity.getType().is(NeapolitanEntityTypeTags.PLANTAIN_SPIDERS_CAN_REPLACE) && event.getY() > 60) {
 					Spider spider = (Spider) entity;
@@ -164,7 +164,7 @@ public class NeapolitanEvents {
 
 	@SubscribeEvent
 	public static void onExplosion(ExplosionEvent.Detonate event) {
-		LivingEntity source = event.getExplosion().getSourceMob();
+		Entity source = event.getExplosion().getExploder();
 		if (source != null && (source.getType().is(NeapolitanEntityTypeTags.EXPLOSION_HEALS_IN_STRAWBERRY))) {
 			if (event.getLevel().getBlockState(source.blockPosition()).getBlock() == NeapolitanBlocks.STRAWBERRY_BUSH.get()) {
 				for (Entity entity : event.getAffectedEntities()) {
@@ -206,7 +206,7 @@ public class NeapolitanEvents {
 			}
 		}
 
-		if (effect == NeapolitanMobEffects.SUGAR_RUSH.get() && !entity.level.isClientSide) {
+		if (effect == NeapolitanMobEffects.SUGAR_RUSH.get() && !entity.level().isClientSide()) {
 			entity.getPersistentData().putInt("SugarRushDuration", event.getEffectInstance().getDuration());
 		}
 	}

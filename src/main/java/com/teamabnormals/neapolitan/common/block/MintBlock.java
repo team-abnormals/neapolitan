@@ -19,6 +19,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.BushBlock;
@@ -109,7 +110,7 @@ public class MintBlock extends BushBlock implements IPlantable, BonemealableBloc
 				double d6 = (double) posIn.getX() + random.nextDouble();
 				double d7 = (double) posIn.getY() + random.nextDouble() * d1;
 				double d8 = (double) posIn.getZ() + random.nextDouble();
-				if (!worldIn.getBlockState((new BlockPos(d6, d7, d8)).below()).isAir()) {
+				if (!worldIn.getBlockState((BlockPos.containing(d6, d7, d8)).below()).isAir()) {
 					NetworkUtil.spawnParticle("neapolitan:mint_boost", d6, d7, d8, d2, d3, d4);
 				}
 			}
@@ -141,7 +142,7 @@ public class MintBlock extends BushBlock implements IPlantable, BonemealableBloc
 	}
 
 	@Override
-	public boolean isValidBonemealTarget(BlockGetter block, BlockPos pos, BlockState state, boolean isClient) {
+	public boolean isValidBonemealTarget(LevelReader block, BlockPos pos, BlockState state, boolean isClient) {
 		return !this.isMaxAge(state);
 	}
 

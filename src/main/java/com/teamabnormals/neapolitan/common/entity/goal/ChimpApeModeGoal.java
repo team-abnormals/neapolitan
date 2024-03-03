@@ -34,7 +34,7 @@ public class ChimpApeModeGoal extends RandomStrollGoal {
 	@Override
 	public void start() {
 		super.start();
-		if (this.mob.isOnGround()) {
+		if (this.mob.onGround()) {
 			this.chimpanzee.getJumpControl().jump();
 		}
 	}

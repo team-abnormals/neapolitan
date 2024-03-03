@@ -48,7 +48,7 @@ public class ChimpOpenBunchGoal extends Goal {
 			if (flag) {
 				this.chimpanzee.openBunch(hand);
 				this.chimpanzee.swingArms();
-				this.chimpanzee.level.broadcastEntityEvent(this.chimpanzee, (byte) 4);
+				this.chimpanzee.level().broadcastEntityEvent(this.chimpanzee, (byte) 4);
 			}
 		}
 	}

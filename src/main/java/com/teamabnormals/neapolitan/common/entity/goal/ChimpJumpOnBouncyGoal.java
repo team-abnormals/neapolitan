@@ -67,7 +67,7 @@ public class ChimpJumpOnBouncyGoal extends MoveToBlockGoal {
 
 		if (this.isReachedTarget() && this.chimpanzee.getAction().canBeInterrupted()) {
 			this.chimpanzee.setAction(ChimpanzeeAction.JUMPING);
-			if (this.chimpanzee.isOnGround()) {
+			if (this.chimpanzee.onGround()) {
 				this.chimpanzee.getJumpControl().jump();
 				Vec3 vector3d = this.chimpanzee.getDeltaMovement();
 				this.chimpanzee.setDeltaMovement(new Vec3(vector3d.x * 0.1D, vector3d.y, vector3d.z * 0.1D));

@@ -5,6 +5,7 @@ import com.teamabnormals.neapolitan.common.block.MintBlock;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.features.TreeFeatures;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
@@ -71,7 +72,7 @@ public class MintPondFeature extends Feature<NoneFeatureConfiguration> {
 			for (BlockPos blockPos : waterPositions) placeWater(level, blockPos);
 			for (BlockPos blockPos : mintPositions) {
 				if (!spruce && random.nextInt(3) == 0) {
-					TreeFeatures.SPRUCE.value().place(level, context.chunkGenerator(), random, blockPos);
+					level.registryAccess().registry(Registries.CONFIGURED_FEATURE).get().get(TreeFeatures.SPRUCE).place(level, context.chunkGenerator(), random, blockPos);
 					spruce = true;
 				} else placeMint(level, blockPos, random);
 			}

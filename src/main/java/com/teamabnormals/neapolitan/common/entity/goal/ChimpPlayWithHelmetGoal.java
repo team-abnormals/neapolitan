@@ -32,7 +32,7 @@ public class ChimpPlayWithHelmetGoal extends Goal {
 			return false;
 		} else {
 			ItemStack helmet = this.chimpanzee.getItemBySlot(EquipmentSlot.HEAD);
-			if (!helmet.isEmpty() && helmet.getItem() instanceof ArmorItem && ((ArmorItem) helmet.getItem()).getSlot() == EquipmentSlot.HEAD) {
+			if (!helmet.isEmpty() && helmet.getItem() instanceof ArmorItem && ((ArmorItem) helmet.getItem()).getEquipmentSlot() == EquipmentSlot.HEAD) {
 				this.itemStack = helmet;
 				return true;
 			}
@@ -74,12 +74,12 @@ public class ChimpPlayWithHelmetGoal extends Goal {
 		--this.playTimer;
 
 		if (this.playTimer == 6 && !EnchantmentHelper.hasBindingCurse(this.itemStack)) {
-			ItemEntity itementity = new ItemEntity(this.chimpanzee.level, this.chimpanzee.getX(), this.chimpanzee.getY(1.0D), this.chimpanzee.getZ(), this.itemStack);
+			ItemEntity itementity = new ItemEntity(this.chimpanzee.level(), this.chimpanzee.getX(), this.chimpanzee.getY(1.0D), this.chimpanzee.getZ(), this.itemStack);
 			Vec3 vector3d = itementity.getDeltaMovement();
 			itementity.setDeltaMovement(vector3d.x * 1.6D, vector3d.y, vector3d.z * 1.6D);
 			itementity.setPickUpDelay(40);
 			itementity.setThrower(this.chimpanzee.getUUID());
-			this.chimpanzee.level.addFreshEntity(itementity);
+			this.chimpanzee.level().addFreshEntity(itementity);
 
 			this.chimpanzee.setItemSlot(EquipmentSlot.HEAD, ItemStack.EMPTY);
 			this.itemStack = this.chimpanzee.getItemBySlot(EquipmentSlot.HEAD);

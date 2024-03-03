@@ -41,7 +41,7 @@ public class ChimpAvoidEntityGoal<T extends LivingEntity> extends Goal {
 
 	@Override
 	public boolean canUse() {
-		this.toAvoid = this.chimpanzee.level.getNearestEntity(this.chimpanzee.level.getEntitiesOfClass(this.avoidClass, this.chimpanzee.getBoundingBox().inflate(this.maxDist, 3.0D, this.maxDist), (p_148078_) -> true), this.avoidEntityTargeting, this.chimpanzee, this.chimpanzee.getX(), this.chimpanzee.getY(), this.chimpanzee.getZ());
+		this.toAvoid = this.chimpanzee.level().getNearestEntity(this.chimpanzee.level().getEntitiesOfClass(this.avoidClass, this.chimpanzee.getBoundingBox().inflate(this.maxDist, 3.0D, this.maxDist), (p_148078_) -> true), this.avoidEntityTargeting, this.chimpanzee, this.chimpanzee.getX(), this.chimpanzee.getY(), this.chimpanzee.getZ());
 		if (this.toAvoid == null) {
 			return false;
 		} else {

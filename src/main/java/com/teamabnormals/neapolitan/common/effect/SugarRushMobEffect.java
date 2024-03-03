@@ -22,7 +22,7 @@ public class SugarRushMobEffect extends MobEffect {
 
 	@Override
 	public void addAttributeModifiers(LivingEntity entity, AttributeMap attributeMapIn, int amplifier) {
-		if (!entity.level.isClientSide) {
+		if (!entity.level().isClientSide) {
 			int duration = entity.getEffect(NeapolitanMobEffects.SUGAR_RUSH.get()).getDuration();
 			int totalDuration = entity.getPersistentData().contains("SugarRushDuration") ? entity.getPersistentData().getInt("SugarRushDuration") : 0;
 			float amount = duration >= totalDuration / 3 ? (amplifier + 2) * 0.5F : -(amplifier + 2) * 1.25F;

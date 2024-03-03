@@ -30,14 +30,14 @@ public class NeapolitanParticleTypes {
 
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public static void registerParticleTypes(RegisterParticleProvidersEvent event) {
-		event.register(MINT_BOOST.get(), MintBoostParticle.Provider::new);
-		event.register(CHIMPANZEE_NEEDS_FOOD.get(), ChimpanzeeNeedParticle.Provider::new);
-		event.register(CHIMPANZEE_NEEDS_FRIEND.get(), ChimpanzeeNeedParticle.Provider::new);
-		event.register(CHIMPANZEE_NEEDS_SUN.get(), ChimpanzeeNeedParticle.Provider::new);
-		event.register(FLY.get(), FlyParticle.Provider::new);
-		event.register(TEAR.get(), TearParticle.Provider::new);
-		event.register(DRIPPING_DRIPSTONE_MILK.get(), MilkDripParticle.DripstoneWaterHangProvider::new);
-		event.register(FALLING_DRIPSTONE_MILK.get(), MilkDripParticle.DripstoneWaterFallProvider::new);
-		event.register(MILK_SPLASH.get(), SplashParticle.Provider::new);
+		event.registerSpriteSet(MINT_BOOST.get(), MintBoostParticle.Provider::new);
+		event.registerSpriteSet(CHIMPANZEE_NEEDS_FOOD.get(), ChimpanzeeNeedParticle.Provider::new);
+		event.registerSpriteSet(CHIMPANZEE_NEEDS_FRIEND.get(), ChimpanzeeNeedParticle.Provider::new);
+		event.registerSpriteSet(CHIMPANZEE_NEEDS_SUN.get(), ChimpanzeeNeedParticle.Provider::new);
+		event.registerSpriteSet(FLY.get(), FlyParticle.Provider::new);
+		event.registerSpriteSet(TEAR.get(), TearParticle.Provider::new);
+		event.registerSpriteSet(DRIPPING_DRIPSTONE_MILK.get(), MilkDripParticle.DripstoneWaterHangProvider::new);
+		event.registerSpriteSet(FALLING_DRIPSTONE_MILK.get(), MilkDripParticle.DripstoneWaterFallProvider::new);
+		event.registerSpriteSet(MILK_SPLASH.get(), SplashParticle.Provider::new);
 	}
 }

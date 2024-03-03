@@ -71,7 +71,7 @@ public class AdzukiBeansItem extends Item {
 		List<BlockPos> beanstalkPositions = new ArrayList<>();
 		BlockPos offsetPos = pos.relative(face);
 
-		if (state.getMaterial().isReplaceable()) offsetPos = pos;
+		if (state.canBeReplaced()) offsetPos = pos;
 		world.playSound(null, pos, SoundEvents.CROP_PLANTED, SoundSource.BLOCKS, 1.0F, 1.0F);
 		if (!world.isClientSide() && pos.getY() >= world.getMinBuildHeight()) {
 			for (Direction direction : offsetDirections) {
@@ -85,7 +85,7 @@ public class AdzukiBeansItem extends Item {
 			for (int i = 0; i < 3 + random.nextInt(4); ++i) {
 				for (int j = 0; j < 3 + random.nextInt(3); ++j) {
 					if (j != 0) offsetPos = offsetPos.relative(face);
-					if (world.getBlockState(offsetPos).getMaterial().isReplaceable())
+					if (world.getBlockState(offsetPos).canBeReplaced())
 						beanstalkPositions.add(offsetPos);
 					else break stem;
 				}
@@ -104,7 +104,7 @@ public class AdzukiBeansItem extends Item {
 				for (Direction direction : Direction.values()) {
 					BlockPos thornPos = blockPos.relative(direction);
 					BlockState beanState = NeapolitanBlocks.BEANSTALK_THORNS.get().defaultBlockState().setValue(BeanstalkThornsBlock.FACING, direction).setValue(BeanstalkThornsBlock.WATERLOGGED, world.getFluidState(thornPos).getType() == Fluids.WATER);
-					if (world.getBlockState(blockPos).is(NeapolitanBlocks.BEANSTALK.get()) && world.getBlockState(thornPos).getMaterial().isReplaceable() && random.nextInt(4) == 0 && beanState.canSurvive(world, thornPos))
+					if (world.getBlockState(blockPos).is(NeapolitanBlocks.BEANSTALK.get()) && world.getBlockState(thornPos).canBeReplaced() && random.nextInt(4) == 0 && beanState.canSurvive(world, thornPos))
 						world.setBlockAndUpdate(thornPos, beanState);
 				}
 			}
@@ -114,7 +114,7 @@ public class AdzukiBeansItem extends Item {
 	}
 
 	private static boolean attemptPlaceBeanstalk(Level world, BlockPos pos, Direction direction) {
-		if (world.getBlockState(pos).getMaterial().isReplaceable())
+		if (world.getBlockState(pos).canBeReplaced())
 			return world.setBlockAndUpdate(pos, NeapolitanBlocks.BEANSTALK.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, direction.getAxis()));
 		return false;
 	}

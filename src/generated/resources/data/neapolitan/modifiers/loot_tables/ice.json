@@ -10,7 +10,7 @@
               {
                 "condition": "minecraft:match_tool",
                 "predicate": {
-                  "tag": "forge:tools/pickaxes"
+                  "tag": "minecraft:pickaxes"
                 }
               },
               {

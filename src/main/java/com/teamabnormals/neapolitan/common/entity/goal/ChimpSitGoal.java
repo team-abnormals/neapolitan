@@ -23,7 +23,7 @@ public class ChimpSitGoal extends Goal {
 			return false;
 		} else if (this.chimpanzee.isSitting()) {
 			return true;
-		} else if (this.chimpanzee.isPassenger() || !this.chimpanzee.isOnGround() || this.chimpanzee.isInWater()) {
+		} else if (this.chimpanzee.isPassenger() || !this.chimpanzee.onGround() || this.chimpanzee.isInWater()) {
 			return false;
 		} else if (this.chimpanzee.xxa != 0.0F || this.chimpanzee.yya != 0.0F || this.chimpanzee.zza != 0.0F) {
 			return false;
@@ -32,14 +32,14 @@ public class ChimpSitGoal extends Goal {
 				Predicate<Chimpanzee> predicate = (chimpanzeeentity) -> {
 					return chimpanzeeentity != this.chimpanzee && chimpanzeeentity.isLeader();
 				};
-				List<Chimpanzee> list = this.chimpanzee.level.getEntitiesOfClass(Chimpanzee.class, this.chimpanzee.getBoundingBox().inflate(6.0D, 4.0D, 6.0D), predicate);
+				List<Chimpanzee> list = this.chimpanzee.level().getEntitiesOfClass(Chimpanzee.class, this.chimpanzee.getBoundingBox().inflate(6.0D, 4.0D, 6.0D), predicate);
 
 				for (Chimpanzee chimpanzeeentity : list) {
 					if (chimpanzeeentity.isSitting()) {
 						return true;
 					}
 				}
-			} else if (this.chimpanzee.level.isNight()) {
+			} else if (this.chimpanzee.level().isNight()) {
 				return this.chimpanzee.getRandom().nextInt(150) == 0;
 			} else return this.chimpanzee.getRandom().nextInt(1200) == 0;
 		}

@@ -6,19 +6,34 @@
         "criteria": {
           "neapolitan:adzuki_soil": {
             "conditions": {
-              "block": "neapolitan:adzuki_soil"
+              "location": [
+                {
+                  "block": "neapolitan:adzuki_soil",
+                  "condition": "minecraft:block_state_property"
+                }
+              ]
             },
             "trigger": "minecraft:placed_block"
           },
           "neapolitan:mint": {
             "conditions": {
-              "block": "neapolitan:mint"
+              "location": [
+                {
+                  "block": "neapolitan:mint",
+                  "condition": "minecraft:block_state_property"
+                }
+              ]
             },
             "trigger": "minecraft:placed_block"
           },
           "neapolitan:strawberry_bush": {
             "conditions": {
-              "block": "neapolitan:strawberry_bush"
+              "location": [
+                {
+                  "block": "neapolitan:strawberry_bush",
+                  "condition": "minecraft:block_state_property"
+                }
+              ]
             },
             "trigger": "minecraft:placed_block"
           }

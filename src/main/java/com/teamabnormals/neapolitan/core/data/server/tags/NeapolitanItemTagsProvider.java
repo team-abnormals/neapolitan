@@ -1,28 +1,32 @@
 package com.teamabnormals.neapolitan.core.data.server.tags;
 
-import com.teamabnormals.blueprint.core.other.tags.BlueprintBlockTags;
 import com.teamabnormals.blueprint.core.other.tags.BlueprintItemTags;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.other.NeapolitanConstants;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanItemTags;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.tags.BlockTagsProvider;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.HolderLookup.Provider;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
+import java.util.concurrent.CompletableFuture;
+
 public class NeapolitanItemTagsProvider extends ItemTagsProvider {
 
-	public NeapolitanItemTagsProvider(DataGenerator generator, BlockTagsProvider blockTags, ExistingFileHelper existingFileHelper) {
-		super(generator, blockTags, Neapolitan.MOD_ID, existingFileHelper);
+	public NeapolitanItemTagsProvider(PackOutput output, CompletableFuture<Provider> lookupProvider, CompletableFuture<TagsProvider.TagLookup<Block>> tagLookup, ExistingFileHelper fileHelper) {
+		super(output, lookupProvider, tagLookup, Neapolitan.MOD_ID, fileHelper);
 	}
 
 	@Override
-	public void addTags() {
+	public void addTags(HolderLookup.Provider provider) {
 		this.tag(ItemTags.ARROWS).add(NeapolitanItems.BANANARROW.get());
 		this.tag(ItemTags.FOX_FOOD).add(NeapolitanItems.STRAWBERRIES.get(), NeapolitanItems.WHITE_STRAWBERRIES.get());
 		this.tag(ItemTags.MUSIC_DISCS).add(NeapolitanItems.MUSIC_DISC_HULLABALOO.get());
@@ -47,7 +51,5 @@ public class NeapolitanItemTagsProvider extends ItemTagsProvider {
 		this.tag(NeapolitanItemTags.ICE_CUBES).add(NeapolitanItems.ICE_CUBES.get());
 		this.tag(BlueprintItemTags.MILK).addTag(NeapolitanItemTags.BOTTLES_MILK);
 		this.tag(Tags.Items.HEADS).add(NeapolitanItems.CHIMPANZEE_HEAD.get());
-
-		this.copy(BlueprintBlockTags.VERTICAL_SLABS, BlueprintItemTags.VERTICAL_SLABS);
 	}
 }

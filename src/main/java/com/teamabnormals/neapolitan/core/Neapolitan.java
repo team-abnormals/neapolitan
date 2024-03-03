@@ -9,6 +9,8 @@ import com.teamabnormals.neapolitan.client.renderer.entity.BananarrowRenderer;
 import com.teamabnormals.neapolitan.client.renderer.entity.ChimpanzeeRenderer;
 import com.teamabnormals.neapolitan.client.renderer.entity.PlantainSpiderRenderer;
 import com.teamabnormals.neapolitan.core.data.client.NeapolitanBlockStateProvider;
+import com.teamabnormals.neapolitan.core.data.client.NeapolitanLanguageProvider;
+import com.teamabnormals.neapolitan.core.data.server.NeapolitanDatapackBuiltinEntriesProvider;
 import com.teamabnormals.neapolitan.core.data.server.NeapolitanLootTableProvider;
 import com.teamabnormals.neapolitan.core.data.server.modifiers.NeapolitanAdvancementModifierProvider;
 import com.teamabnormals.neapolitan.core.data.server.modifiers.NeapolitanBiomeModifierProvider;
@@ -22,7 +24,9 @@ import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks.NeapolitanSku
 import com.teamabnormals.neapolitan.core.registry.NeapolitanFeatures.NeapolitanConfiguredFeatures;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanFeatures.NeapolitanPlacedFeatures;
 import net.minecraft.client.renderer.blockentity.SkullBlockRenderer;
+import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -41,6 +45,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
+import java.util.concurrent.CompletableFuture;
+
 @Mod(Neapolitan.MOD_ID)
 @EventBusSubscriber(modid = Neapolitan.MOD_ID)
 public class Neapolitan {
@@ -57,8 +63,6 @@ public class Neapolitan {
 		REGISTRY_HELPER.register(bus);
 		NeapolitanMobEffects.MOB_EFFECTS.register(bus);
 		NeapolitanFeatures.FEATURES.register(bus);
-		NeapolitanConfiguredFeatures.CONFIGURED_FEATURES.register(bus);
-		NeapolitanPlacedFeatures.PLACED_FEATURES.register(bus);
 		NeapolitanPaintingVariants.PAINTING_VARIANTS.register(bus);
 		NeapolitanBannerPatterns.BANNER_PATTERNS.register(bus);
 		NeapolitanParticleTypes.PARTICLE_TYPES.register(bus);
@@ -92,25 +96,27 @@ public class Neapolitan {
 
 	private void dataSetup(GatherDataEvent event) {
 		DataGenerator generator = event.getGenerator();
+		PackOutput output = generator.getPackOutput();
+		CompletableFuture<Provider> provider = event.getLookupProvider();
 		ExistingFileHelper helper = event.getExistingFileHelper();
 
 		boolean includeServer = event.includeServer();
-		NeapolitanBlockTagsProvider blockTagsProvider = new NeapolitanBlockTagsProvider(generator, helper);
-		generator.addProvider(includeServer, blockTagsProvider);
-		generator.addProvider(includeServer, new NeapolitanItemTagsProvider(generator, blockTagsProvider, helper));
-		generator.addProvider(includeServer, new NeapolitanEntityTypeTagsProvider(generator, helper));
-		generator.addProvider(includeServer, new NeapolitanBannerPatternTagsProvider(generator, helper));
-		generator.addProvider(includeServer, new NeapolitanBiomeTagsProvider(generator, helper));
-		generator.addProvider(includeServer, new NeapolitanMobEffectTagsProvider(generator, helper));
-		generator.addProvider(includeServer, new NeapolitanPaintingVariantTagsProvider(generator, helper));
-		generator.addProvider(includeServer, new NeapolitanLootTableProvider(generator));
-		generator.addProvider(includeServer, new NeapolitanLootModifierProvider(generator));
-		generator.addProvider(includeServer, new NeapolitanAdvancementModifierProvider(generator));
-		generator.addProvider(includeServer, NeapolitanBiomeModifierProvider.create(generator, helper));
+		NeapolitanBlockTagsProvider blockTags = new NeapolitanBlockTagsProvider(output, provider, helper);
+		generator.addProvider(includeServer, blockTags);
+		generator.addProvider(includeServer, new NeapolitanItemTagsProvider(output, provider, blockTags.contentsGetter(), helper));
+		generator.addProvider(includeServer, new NeapolitanEntityTypeTagsProvider(output, provider, helper));
+		generator.addProvider(includeServer, new NeapolitanBannerPatternTagsProvider(output, provider, helper));
+		generator.addProvider(includeServer, new NeapolitanBiomeTagsProvider(output, provider, helper));
+		generator.addProvider(includeServer, new NeapolitanMobEffectTagsProvider(output, provider, helper));
+		generator.addProvider(includeServer, new NeapolitanPaintingVariantTagsProvider(output, provider, helper));
+		generator.addProvider(includeServer, new NeapolitanLootTableProvider(output));
+		generator.addProvider(includeServer, new NeapolitanLootModifierProvider(output, provider));
+		generator.addProvider(includeServer, new NeapolitanAdvancementModifierProvider(output, provider));
+		generator.addProvider(includeServer, new NeapolitanDatapackBuiltinEntriesProvider(output, provider));
 
 		boolean includeClient = event.includeClient();
-		generator.addProvider(includeClient, new NeapolitanBlockStateProvider(generator, helper));
-		//generator.addProvider(new NeapolitanLanguageProvider(generator));
+		generator.addProvider(includeClient, new NeapolitanBlockStateProvider(output, helper));
+//		generator.addProvider(includeClient, new NeapolitanLanguageProvider(output));
 	}
 
 	@OnlyIn(Dist.CLIENT)

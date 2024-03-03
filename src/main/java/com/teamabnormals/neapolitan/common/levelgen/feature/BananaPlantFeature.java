@@ -1,8 +1,6 @@
 package com.teamabnormals.neapolitan.common.levelgen.feature;
 
 import com.mojang.serialization.Codec;
-import com.teamabnormals.blueprint.common.levelgen.feature.BlueprintTreeFeature;
-import com.teamabnormals.blueprint.core.util.TreeUtil;
 import com.teamabnormals.neapolitan.common.block.BananaFrondBlock;
 import com.teamabnormals.neapolitan.common.entity.animal.Chimpanzee;
 import com.teamabnormals.neapolitan.core.NeapolitanConfig;
@@ -139,7 +137,7 @@ public class BananaPlantFeature extends Feature<NoneFeatureConfiguration> {
 			double d1 = pos.getY() + random.nextInt(3) - 1;
 			double d2 = (double) pos.getZ() + (random.nextDouble() - random.nextDouble()) * (double) spawnRange + 0.5D;
 			if (level.noCollision(NeapolitanEntityTypes.CHIMPANZEE.get().getAABB(d0, d1, d2))) {
-				if (spawnedChimps < NeapolitanConfig.COMMON.chimpanzeeMaxGroupSize.get() && SpawnPlacements.checkSpawnRules(NeapolitanEntityTypes.CHIMPANZEE.get(), level, MobSpawnType.STRUCTURE, new BlockPos(d0, d1, d2), level.getRandom())) {
+				if (spawnedChimps < NeapolitanConfig.COMMON.chimpanzeeMaxGroupSize.get() && SpawnPlacements.checkSpawnRules(NeapolitanEntityTypes.CHIMPANZEE.get(), level, MobSpawnType.STRUCTURE, BlockPos.containing(d0, d1, d2), level.getRandom())) {
 					Chimpanzee chimp = NeapolitanEntityTypes.CHIMPANZEE.get().create(level.getLevel());
 					if (chimp != null) {
 						chimp.moveTo(d0, d1, d2, level.getRandom().nextFloat() * 360.0F, 0.0F);

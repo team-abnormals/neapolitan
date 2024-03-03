@@ -43,7 +43,7 @@ public class BananaBunchItem extends Item {
 	@Override
 	public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity target, InteractionHand hand) {
 		if (!target.getType().is(NeapolitanEntityTypeTags.UNAFFECTED_BY_SLIPPING)) {
-			Level world = player.level;
+			Level world = player.level();
 			this.placeBanana(world, target.getX(), target.getY(), target.getZ(), player.getViewYRot(1.0F));
 			this.handleOpening(world, player, hand, stack);
 			return InteractionResult.sidedSuccess(world.isClientSide);
@@ -75,7 +75,7 @@ public class BananaBunchItem extends Item {
 			float f1 = -Mth.sin(pitch * ((float) Math.PI / 180F)) * 0.6F;
 			float f2 = Mth.cos(yaw * ((float) Math.PI / 180F)) * Mth.cos(pitch * ((float) Math.PI / 180F)) * 0.6F;
 			Vec3 vector3d = player.getDeltaMovement();
-			bananapeel.setDeltaMovement(new Vec3(f, f1, f2).add(vector3d.x, player.isOnGround() ? 0.0D : vector3d.y, vector3d.z));
+			bananapeel.setDeltaMovement(new Vec3(f, f1, f2).add(vector3d.x, player.onGround() ? 0.0D : vector3d.y, vector3d.z));
 			world.addFreshEntity(bananapeel);
 		}
 	}

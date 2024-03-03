@@ -2,7 +2,7 @@ package com.teamabnormals.neapolitan.core.data.client;
 
 import com.teamabnormals.neapolitan.common.block.FlavoredCandleCakeBlock;
 import com.teamabnormals.neapolitan.core.Neapolitan;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -18,8 +18,8 @@ import java.util.function.Function;
 
 public class NeapolitanBlockStateProvider extends BlockStateProvider {
 
-	public NeapolitanBlockStateProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
-		super(generator, Neapolitan.MOD_ID, existingFileHelper);
+	public NeapolitanBlockStateProvider(PackOutput output, ExistingFileHelper helper) {
+		super(output, Neapolitan.MOD_ID, helper);
 	}
 
 	@Override

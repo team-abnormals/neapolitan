@@ -5,6 +5,8 @@ import com.google.gson.JsonSyntaxException;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.GsonHelper;
@@ -22,7 +24,7 @@ public class HarvestStrawberriesCriteraTrigger extends SimpleCriterionTrigger<Ha
 	}
 
 	@Override
-	public HarvestStrawberriesCriteraTrigger.Instance createInstance(JsonObject json, EntityPredicate.Composite entityPredicate, DeserializationContext conditionsParser) {
+	public HarvestStrawberriesCriteraTrigger.Instance createInstance(JsonObject json, ContextAwarePredicate entityPredicate, DeserializationContext conditionsParser) {
 		Block block = deserializeBlock(json);
 		StatePropertiesPredicate statepropertiespredicate = StatePropertiesPredicate.fromJson(json.get("state"));
 		if (block != null) {
@@ -38,7 +40,7 @@ public class HarvestStrawberriesCriteraTrigger extends SimpleCriterionTrigger<Ha
 	private static Block deserializeBlock(JsonObject object) {
 		if (object.has("block")) {
 			ResourceLocation resourcelocation = new ResourceLocation(GsonHelper.getAsString(object, "block"));
-			return Registry.BLOCK.getOptional(resourcelocation).orElseThrow(() -> {
+			return BuiltInRegistries.BLOCK.getOptional(resourcelocation).orElseThrow(() -> {
 				return new JsonSyntaxException("Unknown block type '" + resourcelocation + "'");
 			});
 		} else {
@@ -54,21 +56,21 @@ public class HarvestStrawberriesCriteraTrigger extends SimpleCriterionTrigger<Ha
 		private final Block block;
 		private final StatePropertiesPredicate stateCondition;
 
-		public Instance(EntityPredicate.Composite player, @Nullable Block block, StatePropertiesPredicate stateCondition) {
+		public Instance(ContextAwarePredicate player, @Nullable Block block, StatePropertiesPredicate stateCondition) {
 			super(HarvestStrawberriesCriteraTrigger.ID, player);
 			this.block = block;
 			this.stateCondition = stateCondition;
 		}
 
 		public static HarvestStrawberriesCriteraTrigger.Instance create(Block block) {
-			return new HarvestStrawberriesCriteraTrigger.Instance(EntityPredicate.Composite.ANY, block, StatePropertiesPredicate.ANY);
+			return new HarvestStrawberriesCriteraTrigger.Instance(ContextAwarePredicate.ANY, block, StatePropertiesPredicate.ANY);
 		}
 
 		@Override
 		public JsonObject serializeToJson(SerializationContext conditions) {
 			JsonObject jsonobject = super.serializeToJson(conditions);
 			if (this.block != null) {
-				jsonobject.addProperty("block", Registry.BLOCK.getKey(this.block).toString());
+				jsonobject.addProperty("block", BuiltInRegistries.BLOCK.getKey(this.block).toString());
 			}
 
 			jsonobject.add("state", this.stateCondition.serializeToJson());

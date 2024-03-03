@@ -205,7 +205,7 @@ public class Chimpanzee extends Animal implements NeutralMob {
 	@Override
 	public void readAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
-		this.readPersistentAngerSaveData(this.level, compound);
+		this.readPersistentAngerSaveData(this.level(), compound);
 		this.setChimpanzeeType(compound.getInt("ChimpanzeeType"));
 		this.setApeModeTime(compound.getInt("ApeModeTime"));
 		this.setHunger(compound.getInt("Hunger"));
@@ -274,8 +274,8 @@ public class Chimpanzee extends Animal implements NeutralMob {
 
 	@Override
 	protected void customServerAiStep() {
-		if (!this.level.isClientSide) {
-			this.updatePersistentAnger((ServerLevel) this.level, true);
+		if (!this.level().isClientSide) {
+			this.updatePersistentAnger((ServerLevel) this.level(), true);
 		}
 
 		if (this.isAngry()) {
@@ -295,11 +295,11 @@ public class Chimpanzee extends Animal implements NeutralMob {
 	@Override
 	public boolean doHurtTarget(Entity entityIn) {
 		this.swingArms();
-		this.level.broadcastEntityEvent(this, (byte) 4);
+		this.level().broadcastEntityEvent(this, (byte) 4);
 		float f = (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE);
 		float f1 = (int) f > 0 ? f / 2.0F + (float) this.random.nextInt((int) f) : f;
 		float f2 = this.isChimpanzeeWeapon(this.getMainHandItem()) || this.isChimpanzeeWeapon(this.getOffhandItem()) ? f1 + 1.0F : f1;
-		boolean flag = entityIn.hurt(DamageSource.mobAttack(this), f2);
+		boolean flag = entityIn.hurt(this.damageSources().mobAttack(this), f2);
 		if (flag) {
 			this.doEnchantDamageEffects(this, entityIn);
 		}
@@ -326,7 +326,7 @@ public class Chimpanzee extends Animal implements NeutralMob {
 
 	@Override
 	public void tick() {
-		if (!this.level.isClientSide) {
+		if (!this.level().isClientSide) {
 			if (this.isDoingAction(ChimpanzeeAction.DEFAULT, ChimpanzeeAction.CLIMBING)) {
 				this.setDefaultAction();
 			}
@@ -335,14 +335,14 @@ public class Chimpanzee extends Animal implements NeutralMob {
 		super.tick();
 
 		if (this.isAlive()) {
-			if (!this.level.isClientSide) {
+			if (!this.level().isClientSide) {
 				this.handleClimbing();
 
 				if (this.random.nextInt(60) == 0) {
 					this.setLeader(this.shouldBeLeader());
 				}
 
-				if (this.random.nextInt(100) == 0 && (this.isInWaterRainOrBubble() || this.level.isRainingAt(this.blockPosition()))) {
+				if (this.random.nextInt(100) == 0 && (this.isInWaterRainOrBubble() || this.level().isRainingAt(this.blockPosition()))) {
 					this.setHandDyed(false, this.random.nextBoolean() ? HumanoidArm.LEFT : HumanoidArm.RIGHT);
 				}
 			}
@@ -384,14 +384,14 @@ public class Chimpanzee extends Animal implements NeutralMob {
 			--this.attackTimer;
 		}
 
-		if (this.jukeboxPosition == null || !this.jukeboxPosition.closerToCenterThan(this.position(), 3.46D) || this.level.getBlockState(jukeboxPosition).getBlock() != Blocks.JUKEBOX) {
+		if (this.jukeboxPosition == null || !this.jukeboxPosition.closerToCenterThan(this.position(), 3.46D) || this.level().getBlockState(jukeboxPosition).getBlock() != Blocks.JUKEBOX) {
 			this.isPartying = false;
 			this.jukeboxPosition = null;
 		}
 
 		this.refreshDimensions();
 
-		if (!this.level.isClientSide) {
+		if (!this.level().isClientSide) {
 			if (this.getApeModeTime() > 0) {
 				this.setApeModeTime(this.getApeModeTime() - 1);
 			}
@@ -419,7 +419,7 @@ public class Chimpanzee extends Animal implements NeutralMob {
 				if (--this.climbingStamina <= 0) {
 					this.climbingStamina = -20;
 				}
-			} else if (this.onGround) {
+			} else if (this.onGround()) {
 				if (this.climbingStamina < 0) {
 					++this.climbingStamina;
 				} else {
@@ -437,14 +437,14 @@ public class Chimpanzee extends Animal implements NeutralMob {
 				double d2 = ((double) this.random.nextFloat() + 1.0D) * 14.0D;
 				d2 *= this.random.nextBoolean() ? 1.0D : -1.0D;
 
-				level.addParticle(NeapolitanParticleTypes.FLY.get(), this.getRandomX(0.5D), this.getEyeY() + this.random.nextDouble() * 0.2D + 0.3D, this.getRandomZ(0.5D), d0, d1, d2);
+				this.level().addParticle(NeapolitanParticleTypes.FLY.get(), this.getRandomX(0.5D), this.getEyeY() + this.random.nextDouble() * 0.2D + 0.3D, this.getRandomZ(0.5D), d0, d1, d2);
 			}
 		}
 
 		if (this.isDoingAction(ChimpanzeeAction.EATING)) {
 			ItemStack food = this.getSnack();
 			if (this.tickCount % 10 == 0 && !food.isEmpty()) {
-				if (this.level.isClientSide && food.getUseAnimation() != UseAnim.DRINK) {
+				if (this.level().isClientSide && food.getUseAnimation() != UseAnim.DRINK) {
 					for (int i = 0; i < 6; ++i) {
 						Vec3 vector3d = new Vec3(((double) this.random.nextFloat() - 0.5D) * 0.1D, Math.random() * 0.1D + 0.1D, ((double) this.random.nextFloat() - 0.5D) * 0.1D);
 						vector3d = vector3d.xRot(-this.getXRot() * ((float) Math.PI / 180F));
@@ -453,7 +453,7 @@ public class Chimpanzee extends Animal implements NeutralMob {
 						Vec3 vector3d1 = new Vec3(((double) this.random.nextFloat() - 0.5D) * 0.2D, d0, 0.6D * this.getScale() + ((double) this.random.nextFloat() - 0.5D) * 0.2D);
 						vector3d1 = vector3d1.yRot(-this.yBodyRot * ((float) Math.PI / 180F));
 						vector3d1 = vector3d1.add(this.getX(), this.getEyeY(), this.getZ());
-						this.level.addParticle(new ItemParticleOption(ParticleTypes.ITEM, this.getItemInHand(this.getSnackHand())), vector3d1.x, vector3d1.y, vector3d1.z, vector3d.x, vector3d.y + 0.05D, vector3d.z);
+						this.level().addParticle(new ItemParticleOption(ParticleTypes.ITEM, this.getItemInHand(this.getSnackHand())), vector3d1.x, vector3d1.y, vector3d1.z, vector3d.x, vector3d.y + 0.05D, vector3d.z);
 					}
 				}
 
@@ -464,7 +464,7 @@ public class Chimpanzee extends Animal implements NeutralMob {
 				}
 			}
 		} else if (this.isDoingAction(ChimpanzeeAction.CRYING)) {
-			if (this.level.isClientSide) {
+			if (this.level().isClientSide) {
 				if (this.tickCount % 2 == 0 && this.random.nextInt(4) > 0) {
 					for (int i = 0; i < 2; ++i) {
 						double d0 = i == 0 ? (double) (this.random.nextFloat()) * 0.15D + 0.1D : (double) (-this.random.nextFloat()) * 0.15D - 0.1D;
@@ -477,7 +477,7 @@ public class Chimpanzee extends Animal implements NeutralMob {
 						vector3d1 = vector3d1.yRot(-this.yBodyRot * ((float) Math.PI / 180F));
 						vector3d1 = vector3d1.add(this.getX(), this.getEyeY(), this.getZ());
 
-						this.level.addParticle(NeapolitanParticleTypes.TEAR.get(), vector3d1.x, vector3d1.y, vector3d1.z, vector3d.x, vector3d.y + 0.05D, vector3d.z);
+						this.level().addParticle(NeapolitanParticleTypes.TEAR.get(), vector3d1.x, vector3d1.y, vector3d1.z, vector3d.x, vector3d.y + 0.05D, vector3d.z);
 					}
 				}
 			}
@@ -526,7 +526,7 @@ public class Chimpanzee extends Animal implements NeutralMob {
 					this.handDropChances[EquipmentSlot.MAINHAND.getIndex()] = 2.0F;
 					this.usePlayerItem(player, InteractionHand.MAIN_HAND, itemstack);
 
-					return InteractionResult.sidedSuccess(this.level.isClientSide);
+					return InteractionResult.sidedSuccess(this.level().isClientSide);
 				}
 				return InteractionResult.PASS;
 			}
@@ -536,11 +536,11 @@ public class Chimpanzee extends Animal implements NeutralMob {
 	}
 
 	public void openBunch(InteractionHand hand) {
-		if (!this.level.isClientSide) {
-			BananaPeel bananapeel = NeapolitanEntityTypes.BANANA_PEEL.get().create(this.level);
+		if (!this.level().isClientSide) {
+			BananaPeel bananapeel = NeapolitanEntityTypes.BANANA_PEEL.get().create(this.level());
 			bananapeel.moveTo(this.getX(), this.getEyeY(), this.getZ(), this.getYRot(), 0.0F);
 			bananapeel.setDeltaMovement(this.random.nextDouble() * 0.4D - 0.2D, 0.4D, this.random.nextDouble() * 0.4D - 0.2D);
-			this.level.addFreshEntity(bananapeel);
+			this.level().addFreshEntity(bananapeel);
 
 			this.setItemInHand(hand, new ItemStack(NeapolitanItems.BANANA.get()));
 		}
@@ -550,34 +550,24 @@ public class Chimpanzee extends Animal implements NeutralMob {
 		if (!this.getSnack().isEmpty()) {
 			if (this.getSnack().getItem() == NeapolitanItems.BANANARROW.get()) {
 				this.heal((float) NeapolitanItems.BANANA.get().getFoodProperties().getNutrition());
-				this.hurt(DamageSource.GENERIC, 0.0F);
+				this.hurt(this.damageSources().generic(), 0.0F);
 				this.setItemInHand(this.getSnackHand(), new ItemStack(Items.ARROW));
 			} else if (this.getSnack().getItem() == Items.POTION) {
-				this.getSnack().finishUsingItem(this.level, this);
+				this.getSnack().finishUsingItem(this.level(), this);
 				this.setItemInHand(this.getSnackHand(), new ItemStack(Items.GLASS_BOTTLE));
 			} else {
 				if (this.getSnack().isEdible()) {
 					this.heal((float) this.getSnack().getItem().getFoodProperties().getNutrition());
 				}
-				this.setItemInHand(this.getSnackHand(), this.getSnack().finishUsingItem(this.level, this));
+				this.setItemInHand(this.getSnackHand(), this.getSnack().finishUsingItem(this.level(), this));
 			}
 		}
 		this.setHunger(0);
 	}
 
 	@Override
-	public void calculateEntityAnimation(LivingEntity entity, boolean isFlying) {
-		this.animationSpeedOld = this.animationSpeed;
-		double d0 = this.getX() - this.xo;
-		double d1 = this.isDoingAction(ChimpanzeeAction.CLIMBING) ? this.getY() - this.yo : 0.0D;
-		double d2 = this.getZ() - this.zo;
-		float f = Mth.sqrt((float) (d0 * d0 + d1 * d1 + d2 * d2)) * 4.0F;
-		if (f > 1.0F) {
-			f = 1.0F;
-		}
-
-		this.animationSpeed += (f - this.animationSpeed) * 0.4F;
-		this.animationPosition += this.animationSpeed;
+	public void calculateEntityAnimation(boolean isFlying) {
+		super.calculateEntityAnimation(this.isDoingAction(ChimpanzeeAction.CLIMBING));
 	}
 
 	@Override
@@ -586,7 +576,7 @@ public class Chimpanzee extends Animal implements NeutralMob {
 	}
 
 	public boolean shouldClimb() {
-		return !this.onGround && this.onClimbable();
+		return !this.onGround() && this.onClimbable();
 	}
 
 	@Override
@@ -624,7 +614,7 @@ public class Chimpanzee extends Animal implements NeutralMob {
 		Vec3 vector3d = new Vec3(this.getX() - (double) f, this.getY(), this.getZ() - (double) f);
 		Vec3 vector3d1 = new Vec3(this.getX() + (double) f, this.getY() + (double) entitysize.height, this.getZ() + (double) f);
 		AABB axisalignedbb = new AABB(vector3d, vector3d1);
-		return this.level.noCollision(this, axisalignedbb.deflate(1.0E-7D));
+		return this.level().noCollision(this, axisalignedbb.deflate(1.0E-7D));
 	}
 
 	@Override
@@ -672,8 +662,8 @@ public class Chimpanzee extends Animal implements NeutralMob {
 		if (!this.isDoingAction(ChimpanzeeAction.LOOKING_AT_ITEM, ChimpanzeeAction.PLAYING_WITH_ITEM) && this.canHoldItem(itemstack)) {
 			int i = itemstack.getCount();
 			if (i > 1) {
-				ItemEntity itementity = new ItemEntity(this.level, this.getX(), this.getY(), this.getZ(), itemstack.split(i - 1));
-				this.level.addFreshEntity(itementity);
+				ItemEntity itementity = new ItemEntity(this.level(), this.getX(), this.getY(), this.getZ(), itemstack.split(i - 1));
+				this.level().addFreshEntity(itementity);
 			}
 
 			this.dropItem(this.getMainHandItem());
@@ -696,11 +686,11 @@ public class Chimpanzee extends Animal implements NeutralMob {
 
 	public void throwHeldItem(InteractionHand hand) {
 		ItemStack stack = this.getItemInHand(hand);
-		if (!stack.isEmpty() && !this.level.isClientSide) {
+		if (!stack.isEmpty() && !this.level().isClientSide) {
 			Item item = stack.getItem();
 
 			if (item instanceof ArrowItem arrowItem) {
-				List<Entity> list = this.level.getEntitiesOfClass(Entity.class, this.getBoundingBox().inflate(8.0D, 4.0D, 8.0D), (entity) -> entity.getType().is(NeapolitanEntityTypeTags.CHIMPANZEE_DART_TARGETS));
+				List<Entity> list = this.level().getEntitiesOfClass(Entity.class, this.getBoundingBox().inflate(8.0D, 4.0D, 8.0D), (entity) -> entity.getType().is(NeapolitanEntityTypeTags.CHIMPANZEE_DART_TARGETS));
 				Entity target = null;
 
 				double maxValue = Double.MAX_VALUE;
@@ -713,7 +703,7 @@ public class Chimpanzee extends Animal implements NeutralMob {
 				}
 
 				if (target != null) {
-					AbstractArrow arrow = arrowItem.createArrow(level, stack, this);
+					AbstractArrow arrow = arrowItem.createArrow(this.level(), stack, this);
 					double d0 = target.getEyeY() - (double) 1.1F;
 					double d1 = target.getX() - this.getX();
 					double d2 = d0 - arrow.getY();
@@ -722,11 +712,11 @@ public class Chimpanzee extends Animal implements NeutralMob {
 					this.lookAt(target, 90.0F, 90.0F);
 					arrow.shoot(d1, d2 + (double) f, d3, 1.6F, 6.0F);
 					this.playSound(SoundEvents.ARROW_SHOOT, 1.0F, 0.4F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
-					this.level.addFreshEntity(arrow);
+					this.level().addFreshEntity(arrow);
 					this.setItemInHand(hand, ItemStack.EMPTY);
 
 					this.swingArms();
-					this.level.broadcastEntityEvent(this, (byte) 4);
+					this.level().broadcastEntityEvent(this, (byte) 4);
 				}
 
 			} else {
@@ -736,44 +726,44 @@ public class Chimpanzee extends Animal implements NeutralMob {
 					this.setHandDyeColor(item instanceof DyeItem ? ((DyeItem) item).getDyeColor() : DyeColor.BROWN, handside);
 				}
 
-				ItemEntity itemEntity = new ItemEntity(this.level, this.getX() + this.getLookAngle().x * 0.2D, this.getY() + this.getBbHeight() * 0.625F, this.getZ() + this.getLookAngle().z * 0.2D, stack);
+				ItemEntity itemEntity = new ItemEntity(this.level(), this.getX() + this.getLookAngle().x * 0.2D, this.getY() + this.getBbHeight() * 0.625F, this.getZ() + this.getLookAngle().z * 0.2D, stack);
 				Vec3 vector3d = new Vec3(this.getLookAngle().x * 0.25D, 0.0D, this.getLookAngle().z * 0.25D);
 				itemEntity.setDeltaMovement(vector3d);
 				itemEntity.setPickUpDelay(40);
 				itemEntity.setThrower(this.getUUID());
-				this.level.addFreshEntity(itemEntity);
+				this.level().addFreshEntity(itemEntity);
 				this.setItemInHand(hand, ItemStack.EMPTY);
 
 				this.swingArms();
-				this.level.broadcastEntityEvent(this, (byte) 4);
+				this.level().broadcastEntityEvent(this, (byte) 4);
 			}
 		}
 	}
 
 	public void dropItem(ItemStack itemStack) {
-		ItemEntity itementity = new ItemEntity(this.level, this.getX(), this.getEyeY() - (double) 0.3F, this.getZ(), itemStack);
+		ItemEntity itementity = new ItemEntity(this.level(), this.getX(), this.getEyeY() - (double) 0.3F, this.getZ(), itemStack);
 		itementity.setPickUpDelay(40);
 		itementity.setThrower(this.getUUID());
-		this.level.addFreshEntity(itementity);
+		this.level().addFreshEntity(itementity);
 	}
 
 	public void spawnItemFromBucket(ItemStack itemStack, HumanoidArm hand) {
 		Vec3 vector3d = new Vec3(hand == HumanoidArm.LEFT ? 0.35D : -0.35D, 0.0D, 0.5D);
 		vector3d = vector3d.yRot(-this.yBodyRot * ((float) Math.PI / 180F));
 
-		ItemEntity itementity = new ItemEntity(this.level, this.getX() + vector3d.x * this.getScale(), this.getEyeY() - (double) 0.15F, this.getZ() + vector3d.z * this.getScale(), itemStack);
+		ItemEntity itementity = new ItemEntity(this.level(), this.getX() + vector3d.x * this.getScale(), this.getEyeY() - (double) 0.15F, this.getZ() + vector3d.z * this.getScale(), itemStack);
 		itementity.setDeltaMovement(0.0D, 0.25D, 0.0D);
 		itementity.setPickUpDelay(40);
 		itementity.setThrower(this.getUUID());
-		this.level.addFreshEntity(itementity);
+		this.level().addFreshEntity(itementity);
 	}
 
 	public void setOffFirework(ItemStack itemStack, HumanoidArm hand) {
 		Vec3 vector3d = new Vec3(hand == HumanoidArm.LEFT ? 0.35D : -0.35D, 0.0D, 0.5D);
 		vector3d = vector3d.yRot(-this.yBodyRot * ((float) Math.PI / 180F));
 
-		FireworkRocketEntity fireworkrocketentity = new FireworkRocketEntity(this.level, this, this.getX() + vector3d.x * this.getScale(), this.getEyeY(), this.getZ() + vector3d.z * this.getScale(), itemStack);
-		this.level.addFreshEntity(fireworkrocketentity);
+		FireworkRocketEntity fireworkrocketentity = new FireworkRocketEntity(this.level(), this, this.getX() + vector3d.x * this.getScale(), this.getEyeY(), this.getZ() + vector3d.z * this.getScale(), itemStack);
+		this.level().addFreshEntity(fireworkrocketentity);
 	}
 
 	// GROUP BEHAVIOR //
@@ -798,7 +788,7 @@ public class Chimpanzee extends Animal implements NeutralMob {
 			Predicate<Chimpanzee> predicate = (chimpanzeeentity) -> {
 				return chimpanzeeentity != this && chimpanzeeentity.getAge() >= 0;
 			};
-			List<Chimpanzee> list = this.level.getEntitiesOfClass(Chimpanzee.class, this.getBoundingBox().inflate(12.0D, 8.0D, 12.0D), predicate);
+			List<Chimpanzee> list = this.level().getEntitiesOfClass(Chimpanzee.class, this.getBoundingBox().inflate(12.0D, 8.0D, 12.0D), predicate);
 
 			for (Chimpanzee chimpanzeeentity : list) {
 				chimpanzeeentity.setLeader(chimpanzeeentity.shouldBeLeader());
@@ -810,7 +800,7 @@ public class Chimpanzee extends Animal implements NeutralMob {
 		Predicate<Chimpanzee> predicate = (chimpanzeeentity) -> {
 			return chimpanzeeentity != this && chimpanzeeentity.getAge() >= 0;
 		};
-		List<Chimpanzee> list = this.level.getEntitiesOfClass(Chimpanzee.class, this.getBoundingBox().inflate(8.0D, 8.0D, 8.0D), predicate);
+		List<Chimpanzee> list = this.level().getEntitiesOfClass(Chimpanzee.class, this.getBoundingBox().inflate(8.0D, 8.0D, 8.0D), predicate);
 
 		if (list.isEmpty()) {
 			return false;
@@ -866,7 +856,7 @@ public class Chimpanzee extends Animal implements NeutralMob {
 			float f = this.random.nextFloat();
 			ItemStack itemstack;
 			if (f < 0.6F) {
-				if (this.level.getBiome(this.blockPosition()).is(NeapolitanBiomeTags.SPAWNS_BAMBOO_VARIANT_CHIMPANZEES)) {
+				if (this.level().getBiome(this.blockPosition()).is(NeapolitanBiomeTags.SPAWNS_BAMBOO_VARIANT_CHIMPANZEES)) {
 					itemstack = new ItemStack(Items.BAMBOO);
 				} else {
 					itemstack = new ItemStack(Items.STICK);
@@ -1072,8 +1062,8 @@ public class Chimpanzee extends Animal implements NeutralMob {
 	}
 
 	public boolean isInSunlight() {
-		BlockPos blockpos = this.getVehicle() instanceof Boat ? (new BlockPos(this.getX(), (double) Math.round(this.getY()), this.getZ())).above() : new BlockPos(this.getX(), (double) Math.round(this.getY()), this.getZ());
-		return this.level.getBrightness(LightLayer.SKY, blockpos) > 8;
+		BlockPos blockpos = this.getVehicle() instanceof Boat ? (BlockPos.containing(this.getX(), (double) Math.round(this.getY()), this.getZ())).above() : BlockPos.containing(this.getX(), (double) Math.round(this.getY()), this.getZ());
+		return this.level().getBrightness(LightLayer.SKY, blockpos) > 8;
 	}
 
 	// ACTION STUFF //
@@ -1166,7 +1156,7 @@ public class Chimpanzee extends Animal implements NeutralMob {
 		double d1 = this.random.nextGaussian() * 0.02D;
 		double d2 = this.random.nextGaussian() * 0.02D;
 
-		this.level.addParticle(particleData, this.getX(), this.getY(1.0D), this.getZ(), d0, d1, d2);
+		this.level().addParticle(particleData, this.getX(), this.getY(1.0D), this.getZ(), d0, d1, d2);
 	}
 
 	@Override

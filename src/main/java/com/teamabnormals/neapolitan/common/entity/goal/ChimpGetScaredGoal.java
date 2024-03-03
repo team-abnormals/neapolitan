@@ -32,7 +32,7 @@ public class ChimpGetScaredGoal extends Goal {
 		if (this.chimpanzee.isDoingAction(ChimpanzeeAction.PLAYING_WITH_ITEM)) {
 			return false;
 		} else {
-			List<Entity> list = this.chimpanzee.level.getEntitiesOfClass(Entity.class, this.chimpanzee.getBoundingBox().inflate(8.0D, 4.0D, 8.0D), (entity) -> entity.getType().is(NeapolitanEntityTypeTags.SCARES_CHIMPANZEES));
+			List<Entity> list = this.chimpanzee.level().getEntitiesOfClass(Entity.class, this.chimpanzee.getBoundingBox().inflate(8.0D, 4.0D, 8.0D), (entity) -> entity.getType().is(NeapolitanEntityTypeTags.SCARES_CHIMPANZEES));
 			double d0 = Double.MAX_VALUE;
 
 			for (Entity entity : list) {

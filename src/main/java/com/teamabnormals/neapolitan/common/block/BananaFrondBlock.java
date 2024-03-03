@@ -98,7 +98,7 @@ public class BananaFrondBlock extends BushBlock implements BonemealableBlock {
 			return false;
 		} else {
 			Biome biome = level.getBiome(pos).value();
-			return biome.getPrecipitation() == Biome.Precipitation.RAIN && biome.warmEnoughToRain(pos);
+			return biome.getPrecipitationAt(pos) == Biome.Precipitation.RAIN && biome.warmEnoughToRain(pos);
 		}
 	}
 
@@ -113,7 +113,7 @@ public class BananaFrondBlock extends BushBlock implements BonemealableBlock {
 	}
 
 	@Override
-	public boolean isValidBonemealTarget(BlockGetter level, BlockPos pos, BlockState state, boolean isClient) {
+	public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, boolean isClient) {
 		if (isLarge(state)) {
 			return state.getValue(FACING) == Direction.UP && level instanceof Level && ((Level) level).isRainingAt(pos);
 		} else {
@@ -222,11 +222,11 @@ public class BananaFrondBlock extends BushBlock implements BonemealableBlock {
 
 	private static boolean isAirAt(Level level, BlockPos pos, int size) {
 		for (int i = 0; i < size + 1; i++) {
-			if (i != 0 && !(level.isEmptyBlock(pos) || level.getBlockState(pos).getMaterial().isReplaceable()))
+			if (i != 0 && !(level.isEmptyBlock(pos) || level.getBlockState(pos).canBeReplaced()))
 				return false;
 			for (Direction direction : Direction.values()) {
 				if (direction.getAxis().isHorizontal()) {
-					if (!(level.isEmptyBlock(pos.relative(direction)) || level.getBlockState(pos.relative(direction)).getMaterial().isReplaceable()))
+					if (!(level.isEmptyBlock(pos.relative(direction)) || level.getBlockState(pos.relative(direction)).canBeReplaced()))
 						return false;
 				}
 			}

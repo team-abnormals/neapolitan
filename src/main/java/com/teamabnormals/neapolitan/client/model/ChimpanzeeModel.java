@@ -364,7 +364,7 @@ public class ChimpanzeeModel<T extends Chimpanzee> extends HumanoidModel<T> {
 
 		if (itemstack.is(NeapolitanItemTags.HIDES_CHIMPANZEE_EARS)) {
 			return 2;
-		} else if (item instanceof BlockItem || (item instanceof ArmorItem && ((ArmorItem) item).getSlot() == EquipmentSlot.HEAD)) {
+		} else if (item instanceof BlockItem || (item instanceof ArmorItem && ((ArmorItem) item).getEquipmentSlot() == EquipmentSlot.HEAD)) {
 			return 1;
 		}
 

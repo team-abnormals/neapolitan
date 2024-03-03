@@ -25,7 +25,7 @@ public class ChimpanzeeEyesLayer<T extends Chimpanzee> extends EyesLayer<T, Chim
 
 	@Override
 	public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, T chimpanzee, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
-		if (chimpanzee.level.getMaxLocalRawBrightness(chimpanzee.blockPosition()) > 5)
+		if (chimpanzee.level().getMaxLocalRawBrightness(chimpanzee.blockPosition()) > 5)
 			return;
 		VertexConsumer ivertexbuilder = bufferIn.getBuffer(this.renderType());
 		this.getParentModel().renderToBuffer(matrixStackIn, ivertexbuilder, 15728640, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);

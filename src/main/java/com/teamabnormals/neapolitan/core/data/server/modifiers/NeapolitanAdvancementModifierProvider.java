@@ -10,7 +10,8 @@ import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanMobEffects;
 import net.minecraft.advancements.RequirementsStrategy;
 import net.minecraft.advancements.critereon.*;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.core.HolderLookup.Provider;
+import net.minecraft.data.PackOutput;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -19,17 +20,18 @@ import org.apache.commons.compress.utils.Lists;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.concurrent.CompletableFuture;
 
 public class NeapolitanAdvancementModifierProvider extends AdvancementModifierProvider {
 	private static final EntityType<?>[] BREEDABLE_ANIMALS = new EntityType[]{NeapolitanEntityTypes.CHIMPANZEE.get()};
 	private static final EntityType<?>[] MOBS_TO_KILL = new EntityType[]{NeapolitanEntityTypes.PLANTAIN_SPIDER.get()};
 
-	public NeapolitanAdvancementModifierProvider(DataGenerator generator) {
-		super(generator, Neapolitan.MOD_ID);
+	public NeapolitanAdvancementModifierProvider(PackOutput output, CompletableFuture<Provider> provider) {
+		super(Neapolitan.MOD_ID, output, provider);
 	}
 
 	@Override
-	protected void registerEntries() {
+	protected void registerEntries(Provider provider) {
 		MobEffectsPredicate predicate = MobEffectsPredicate.effects();
 		NeapolitanMobEffects.MOB_EFFECTS.getEntries().forEach(mobEffect -> predicate.and(mobEffect.get()));
 		this.entry("nether/all_effects").selects("nether/all_effects").addModifier(new EffectsChangedModifier("all_effects", false, predicate));
@@ -50,9 +52,9 @@ public class NeapolitanAdvancementModifierProvider extends AdvancementModifierPr
 		this.entry("husbandry/bred_all_animals").selects("husbandry/bred_all_animals").addModifier(breedAllAnimals.requirements(RequirementsStrategy.AND).build());
 
 		this.entry("husbandry/plant_seed").selects("husbandry/plant_seed").addModifier(CriteriaModifier.builder(this.modId)
-				.addCriterion("strawberry_bush", PlacedBlockTrigger.TriggerInstance.placedBlock(NeapolitanBlocks.STRAWBERRY_BUSH.get()))
-				.addCriterion("mint", PlacedBlockTrigger.TriggerInstance.placedBlock(NeapolitanBlocks.MINT.get()))
-				.addCriterion("adzuki_soil", PlacedBlockTrigger.TriggerInstance.placedBlock(NeapolitanBlocks.ADZUKI_SOIL.get()))
+				.addCriterion("strawberry_bush", ItemUsedOnLocationTrigger.TriggerInstance.placedBlock(NeapolitanBlocks.STRAWBERRY_BUSH.get()))
+				.addCriterion("mint", ItemUsedOnLocationTrigger.TriggerInstance.placedBlock(NeapolitanBlocks.MINT.get()))
+				.addCriterion("adzuki_soil", ItemUsedOnLocationTrigger.TriggerInstance.placedBlock(NeapolitanBlocks.ADZUKI_SOIL.get()))
 				.addIndexedRequirements(0, false, "strawberry_bush", "mint", "adzuki_soil").build());
 
 		CriteriaModifier.Builder killAMob = CriteriaModifier.builder(this.modId);

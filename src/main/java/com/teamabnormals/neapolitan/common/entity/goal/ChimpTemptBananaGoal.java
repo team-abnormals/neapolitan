@@ -34,7 +34,7 @@ public class ChimpTemptBananaGoal extends Goal {
 		} else if (!this.chimpanzee.needsSnack()) {
 			return false;
 		} else {
-			this.closestPlayer = this.chimpanzee.level.getNearestPlayer(ENTITY_PREDICATE, this.chimpanzee);
+			this.closestPlayer = this.chimpanzee.level().getNearestPlayer(ENTITY_PREDICATE, this.chimpanzee);
 			if (this.closestPlayer == null) {
 				return false;
 			} else {

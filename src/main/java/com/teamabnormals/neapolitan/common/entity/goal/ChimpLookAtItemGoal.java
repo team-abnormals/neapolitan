@@ -97,7 +97,7 @@ public class ChimpLookAtItemGoal extends Goal {
 				}
 			} else if (this.lookTimer == 4) {
 				if (this.itemStack.getItem() instanceof TieredItem) {
-					this.chimpanzee.hurt(DamageSource.GENERIC, 0.0F);
+					this.chimpanzee.hurt(chimpanzee.damageSources().generic(), 0.0F);
 					this.wasHurt = true;
 				} else if (this.itemStack.getItem() instanceof FireworkRocketItem) {
 					this.chimpanzee.setOffFirework(this.itemStack, this.chimpanzee.getMainArm());
@@ -118,7 +118,7 @@ public class ChimpLookAtItemGoal extends Goal {
 			this.lookTimer = 60 + this.chimpanzee.getRandom().nextInt(20);
 			this.chimpanzee.setAction(ChimpanzeeAction.PLAYING_WITH_ITEM);
 		} else {
-			if (!this.chimpanzee.isBaby() && item instanceof ArmorItem armorItem && armorItem.getSlot() == EquipmentSlot.HEAD && this.chimpanzee.getItemBySlot(EquipmentSlot.HEAD).isEmpty()) {
+			if (!this.chimpanzee.isBaby() && item instanceof ArmorItem armorItem && armorItem.getEquipmentSlot() == EquipmentSlot.HEAD && this.chimpanzee.getItemBySlot(EquipmentSlot.HEAD).isEmpty()) {
 				this.chimpanzee.setItemSlot(EquipmentSlot.HEAD, this.itemStack);
 				this.chimpanzee.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
 				this.chimpanzee.setDropChance(EquipmentSlot.HEAD, 2.0F);

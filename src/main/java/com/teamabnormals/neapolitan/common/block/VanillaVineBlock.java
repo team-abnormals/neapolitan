@@ -93,7 +93,7 @@ public class VanillaVineBlock extends Block implements BonemealableBlock {
 
 
 	@Override
-	public boolean isValidBonemealTarget(BlockGetter worldIn, BlockPos pos, BlockState state, boolean isClient) {
+	public boolean isValidBonemealTarget(LevelReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
 		Optional<BlockPos> optional = this.nextGrowPosition(worldIn, pos, state);
 		return optional.isPresent() && NetherVines.isValidGrowthState(worldIn.getBlockState(optional.get().relative(state.getValue(FACING))));
 	}

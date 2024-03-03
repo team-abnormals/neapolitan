@@ -57,14 +57,14 @@ public class BeanstalkThornsBlock extends Block implements SimpleWaterloggedBloc
 	}
 
 	@Override
-	public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
+	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entityIn) {
 		if (entityIn instanceof LivingEntity) {
 			entityIn.makeStuckInBlock(state, new Vec3(0.95F, 0.95D, 0.95F));
-			if (!worldIn.isClientSide && (entityIn.xOld != entityIn.getX() || entityIn.zOld != entityIn.getZ())) {
+			if (!level.isClientSide && (entityIn.xOld != entityIn.getX() || entityIn.zOld != entityIn.getZ())) {
 				double d0 = Math.abs(entityIn.getX() - entityIn.xOld);
 				double d1 = Math.abs(entityIn.getZ() - entityIn.zOld);
 				if (d0 >= (double) 0.003F || d1 >= (double) 0.003F) {
-					entityIn.hurt(NeapolitanDamageSources.BEANSTALK_THORNS, 1.0F);
+					entityIn.hurt(NeapolitanDamageSources.beanstalkThorns(level), 1.0F);
 				}
 			}
 		}

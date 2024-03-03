@@ -21,13 +21,13 @@ public class ChimpShakeHeadGoal extends Goal {
 			return false;
 		} else if (this.chimpanzee.getNavigation().isDone() && this.chimpanzee.getRandom().nextInt(120) == 0) {
 			if (this.chimpanzee.isDirty() && this.chimpanzee.getGroomer() == null) {
-				this.chimpanzee.level.broadcastEntityEvent(this.chimpanzee, (byte) 6);
+				this.chimpanzee.level().broadcastEntityEvent(this.chimpanzee, (byte) 6);
 				return true;
 			} else if (this.chimpanzee.needsSunlight() && !this.chimpanzee.isInSunlight()) {
-				this.chimpanzee.level.broadcastEntityEvent(this.chimpanzee, (byte) 7);
+				this.chimpanzee.level().broadcastEntityEvent(this.chimpanzee, (byte) 7);
 				return true;
 			} else if (this.chimpanzee.needsSnack()) {
-				this.chimpanzee.level.broadcastEntityEvent(this.chimpanzee, (byte) 8);
+				this.chimpanzee.level().broadcastEntityEvent(this.chimpanzee, (byte) 8);
 				return true;
 			}
 		}

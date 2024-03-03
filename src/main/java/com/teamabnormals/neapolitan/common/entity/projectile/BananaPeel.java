@@ -6,6 +6,7 @@ import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanMobEffects;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -31,7 +32,7 @@ public class BananaPeel extends Entity {
 	}
 
 	@Override
-	public Packet<?> getAddEntityPacket() {
+	public Packet<ClientGamePacketListener> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 
@@ -68,7 +69,7 @@ public class BananaPeel extends Entity {
 	public void tick() {
 		super.tick();
 
-		if (this.onGround) {
+		if (this.onGround()) {
 			this.setDeltaMovement(this.getDeltaMovement().multiply(0.65F, 1.0F, 0.65F));
 		}
 
@@ -78,7 +79,7 @@ public class BananaPeel extends Entity {
 		this.getDeltaMovement().multiply(0.9F, 0.9F, 0.9F);
 		this.move(MoverType.SELF, this.getDeltaMovement());
 
-		if (!this.level.isClientSide) {
+		if (!this.level().isClientSide) {
 			++this.age;
 			if (this.age >= 1200) {
 				this.discard();
@@ -89,7 +90,7 @@ public class BananaPeel extends Entity {
 	@Override
 	public void push(Entity entityIn) {
 		super.push(entityIn);
-		if (this.onGround && !this.isInWater() && entityIn instanceof LivingEntity && this.getY() <= entityIn.getY() && !entityIn.getType().is(NeapolitanEntityTypeTags.UNAFFECTED_BY_SLIPPING) && !this.level.isClientSide()) {
+		if (this.onGround() && !this.isInWater() && entityIn instanceof LivingEntity && this.getY() <= entityIn.getY() && !entityIn.getType().is(NeapolitanEntityTypeTags.UNAFFECTED_BY_SLIPPING) && !this.level().isClientSide()) {
 			((LivingEntity) entityIn).addEffect(new MobEffectInstance(NeapolitanMobEffects.SLIPPING.get(), 100));
 		}
 	}
@@ -99,7 +100,7 @@ public class BananaPeel extends Entity {
 		if (this.isInvulnerableTo(source)) {
 			return false;
 		} else {
-			if (this.isAlive() && !this.level.isClientSide) {
+			if (this.isAlive() && !this.level().isClientSide) {
 				this.discard();
 				this.markHurt();
 				this.playSound(SoundEvents.ITEM_FRAME_BREAK, 1.0F, 1.0F);

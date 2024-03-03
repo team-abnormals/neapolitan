@@ -24,7 +24,7 @@ public class ChimpFollowOthersGoal extends Goal {
 		Predicate<Chimpanzee> predicate = (chimpanzeeentity) -> {
 			return chimpanzeeentity != this.chimpanzee && chimpanzeeentity.getAge() >= 0;
 		};
-		List<Chimpanzee> list = this.chimpanzee.level.getEntitiesOfClass(Chimpanzee.class, this.chimpanzee.getBoundingBox().inflate(12.0D, 8.0D, 12.0D), predicate);
+		List<Chimpanzee> list = this.chimpanzee.level().getEntitiesOfClass(Chimpanzee.class, this.chimpanzee.getBoundingBox().inflate(12.0D, 8.0D, 12.0D), predicate);
 
 		if (list.isEmpty()) {
 			return false;

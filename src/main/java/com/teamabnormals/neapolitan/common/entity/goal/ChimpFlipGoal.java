@@ -17,14 +17,14 @@ public class ChimpFlipGoal extends Goal {
 
 	@Override
 	public boolean canUse() {
-		return this.chimpanzee.getApeModeTime() > 0 && !this.chimpanzee.isPassenger() && this.chimpanzee.isOnGround() && this.chimpanzee.isDoingAction(ChimpanzeeAction.DEFAULT) && this.chimpanzee.getRandom().nextInt(40) == 0;
+		return this.chimpanzee.getApeModeTime() > 0 && !this.chimpanzee.isPassenger() && this.chimpanzee.onGround() && this.chimpanzee.isDoingAction(ChimpanzeeAction.DEFAULT) && this.chimpanzee.getRandom().nextInt(40) == 0;
 	}
 
 	@Override
 	public void start() {
 		this.chimpanzee.setAction(ChimpanzeeAction.JUMPING);
 		this.chimpanzee.doFlip();
-		this.chimpanzee.level.broadcastEntityEvent(this.chimpanzee, (byte) 9);
+		this.chimpanzee.level().broadcastEntityEvent(this.chimpanzee, (byte) 9);
 		this.chimpanzee.setSitting(false);
 
 		this.chimpanzee.setJumping(true);
@@ -36,7 +36,7 @@ public class ChimpFlipGoal extends Goal {
 
 	@Override
 	public boolean canContinueToUse() {
-		return !this.chimpanzee.isPassenger() && !this.chimpanzee.isOnGround() && !this.chimpanzee.isInWater();
+		return !this.chimpanzee.isPassenger() && !this.chimpanzee.onGround() && !this.chimpanzee.isInWater();
 	}
 
 	@Override

@@ -1,7 +1,7 @@
 package com.teamabnormals.neapolitan.client.renderer.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import com.teamabnormals.neapolitan.client.model.ChimpanzeeModel;
 import com.teamabnormals.neapolitan.client.renderer.entity.layers.ChimpanzeeDirtLayer;
 import com.teamabnormals.neapolitan.client.renderer.entity.layers.ChimpanzeeDyeLayer;
@@ -27,7 +27,7 @@ public class ChimpanzeeRenderer extends MobRenderer<Chimpanzee, ChimpanzeeModel<
 
 	public ChimpanzeeRenderer(EntityRendererProvider.Context context) {
 		super(context, new ChimpanzeeModel<>(context.bakeLayer(NeapolitanModelLayers.CHIMPANZEE)), 0.4F);
-		this.addLayer(new HumanoidArmorLayer<>(this, new ChimpanzeeModel<>(context.bakeLayer(NeapolitanModelLayers.CHIMPANZEE_INNER_ARMOR)), new ChimpanzeeModel<>(context.bakeLayer(NeapolitanModelLayers.CHIMPANZEE_OUTER_ARMOR))));
+		this.addLayer(new HumanoidArmorLayer<>(this, new ChimpanzeeModel<>(context.bakeLayer(NeapolitanModelLayers.CHIMPANZEE_INNER_ARMOR)), new ChimpanzeeModel<>(context.bakeLayer(NeapolitanModelLayers.CHIMPANZEE_OUTER_ARMOR)), context.getModelManager()));
 		this.addLayer(new ChimpanzeePaleSkinLayer<>(this));
 		this.addLayer(new ChimpanzeeDirtLayer<>(this));
 		this.addLayer(new ChimpanzeeDyeLayer<>(this));
@@ -49,7 +49,7 @@ public class ChimpanzeeRenderer extends MobRenderer<Chimpanzee, ChimpanzeeModel<
 		if (f > 0.0F) {
 			float f1 = Mth.PI * f / 10F;
 			matrixStackIn.translate(0.0D, -Mth.cos(f1) * 0.8D + 0.8D, Mth.sin(f1) * 0.8D);
-			matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(-f * 18F));
+			matrixStackIn.mulPose(Axis.XP.rotationDegrees(-f * 18F));
 		}
 	}
 

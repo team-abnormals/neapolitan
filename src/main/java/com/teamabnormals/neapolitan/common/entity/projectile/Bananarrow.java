@@ -6,6 +6,7 @@ import com.teamabnormals.neapolitan.core.registry.NeapolitanEntityTypes;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanMobEffects;
 import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
@@ -46,9 +47,9 @@ public class Bananarrow extends AbstractArrow {
 	protected void onHitBlock(BlockHitResult result) {
 		super.onHitBlock(result);
 		if (!impacted) {
-			BananaPeel bananaPeel = NeapolitanEntityTypes.BANANA_PEEL.get().create(level);
+			BananaPeel bananaPeel = NeapolitanEntityTypes.BANANA_PEEL.get().create(this.level());
 			bananaPeel.moveTo(this.getX(), this.getY(), this.getZ(), 0.0F, 0.0F);
-			this.level.addFreshEntity(bananaPeel);
+			this.level().addFreshEntity(bananaPeel);
 			this.impacted = true;
 		}
 	}
@@ -58,17 +59,17 @@ public class Bananarrow extends AbstractArrow {
 		super.onHitEntity(result);
 		Entity entity = result.getEntity();
 		if (!impacted && !(entity instanceof BananaPeel)) {
-			BananaPeel bananaPeel = NeapolitanEntityTypes.BANANA_PEEL.get().create(level);
+			BananaPeel bananaPeel = NeapolitanEntityTypes.BANANA_PEEL.get().create(this.level());
 			bananaPeel.moveTo(this.getX(), this.getY(), this.getZ(), 0.0F, 0.0F);
-			this.level.addFreshEntity(bananaPeel);
+			this.level().addFreshEntity(bananaPeel);
 			this.impacted = true;
-			if (entity instanceof LivingEntity && !level.isClientSide()) {
+			if (entity instanceof LivingEntity && !this.level().isClientSide()) {
 				((LivingEntity) entity).addEffect(new MobEffectInstance(NeapolitanMobEffects.SLIPPING.get(), 100));
 			}
 		}
 
 		if (entity instanceof LivingEntity livingEntity && !(entity instanceof Chimpanzee)) {
-			List<Chimpanzee> chimps = level.getEntitiesOfClass(Chimpanzee.class, livingEntity.getBoundingBox().inflate(16.0D, 6.0D, 16.0D));
+			List<Chimpanzee> chimps = this.level().getEntitiesOfClass(Chimpanzee.class, livingEntity.getBoundingBox().inflate(16.0D, 6.0D, 16.0D));
 			for (Chimpanzee chimp : chimps) {
 				if (!chimp.isBaby() && livingEntity.canBeSeenAsEnemy()) {
 					chimp.setTarget(livingEntity);
@@ -86,7 +87,7 @@ public class Bananarrow extends AbstractArrow {
 	}
 
 	@Override
-	public Packet<?> getAddEntityPacket() {
+	public Packet<ClientGamePacketListener> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 }

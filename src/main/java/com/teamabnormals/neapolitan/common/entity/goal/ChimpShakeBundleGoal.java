@@ -92,15 +92,15 @@ public class ChimpShakeBundleGoal extends MoveToBlockGoal {
 					double d1 = this.bundlePos.getZ() + this.chimpanzee.getRandom().nextDouble() * 0.5D + 0.25D;
 
 					if (this.chimpanzee.getRandom().nextInt(4) == 0) {
-						BananaPeel bananapeel = NeapolitanEntityTypes.BANANA_PEEL.get().create(this.chimpanzee.level);
+						BananaPeel bananapeel = NeapolitanEntityTypes.BANANA_PEEL.get().create(this.chimpanzee.level());
 						bananapeel.moveTo(d0, this.bundlePos.getY() - 0.5D, d1, this.chimpanzee.getYRot(), 0.0F);
 						bananapeel.setDeltaMovement(this.chimpanzee.getRandom().nextDouble() * 0.4D - 0.2D, -0.1D, this.chimpanzee.getRandom().nextDouble() * 0.4D - 0.2D);
-						this.chimpanzee.level.addFreshEntity(bananapeel);
+						this.chimpanzee.level().addFreshEntity(bananapeel);
 					} else {
-						ItemEntity itementity = new ItemEntity(this.chimpanzee.level, d0, this.bundlePos.getY() - 0.25D, d1, new ItemStack(NeapolitanItems.BANANA_BUNCH.get()));
+						ItemEntity itementity = new ItemEntity(this.chimpanzee.level(), d0, this.bundlePos.getY() - 0.25D, d1, new ItemStack(NeapolitanItems.BANANA_BUNCH.get()));
 						itementity.setDeltaMovement(this.chimpanzee.getRandom().nextDouble() * 0.4D - 0.2D, -0.1D, this.chimpanzee.getRandom().nextDouble() * 0.4D - 0.2D);
 						itementity.setDefaultPickUpDelay();
-						this.chimpanzee.level.addFreshEntity(itementity);
+						this.chimpanzee.level().addFreshEntity(itementity);
 					}
 
 					this.nextBananaTime = this.shakingTime + this.getNextBananaTime();
@@ -111,7 +111,7 @@ public class ChimpShakeBundleGoal extends MoveToBlockGoal {
 
 			++this.shakingTime;
 		} else {
-			if (this.isReachedTarget() && this.chimpanzee.getAction().canBeInterrupted() && this.chimpanzee.isOnGround()) {
+			if (this.isReachedTarget() && this.chimpanzee.getAction().canBeInterrupted() && this.chimpanzee.onGround()) {
 				this.chimpanzee.setJumping(true);
 				double d0 = this.blockPos.getX() + 0.5D - this.chimpanzee.getX();
 				double d1 = this.blockPos.getZ() + 0.5D - this.chimpanzee.getZ();

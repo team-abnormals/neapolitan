@@ -30,7 +30,7 @@ public class ChimpShareBananaGoal extends Goal {
 		if (this.chimpanzee.isBaby() || this.chimpanzee.getSnack().isEmpty() || this.chimpanzee.isHungry()) {
 			return false;
 		} else if (this.chimpanzee.getRandom().nextInt(60) == 0) {
-			List<Chimpanzee> list = this.chimpanzee.level.getEntitiesOfClass(Chimpanzee.class, this.chimpanzee.getBoundingBox().inflate(8.0D, 4.0D, 8.0D));
+			List<Chimpanzee> list = this.chimpanzee.level().getEntitiesOfClass(Chimpanzee.class, this.chimpanzee.getBoundingBox().inflate(8.0D, 4.0D, 8.0D));
 			Chimpanzee chimpanzeeentity = null;
 			double d0 = Double.MAX_VALUE;
 
@@ -105,12 +105,12 @@ public class ChimpShareBananaGoal extends Goal {
 					ItemStack itemstack = this.chimpanzee.getItemInHand(hand);
 					int i = itemstack.getCount();
 
-					ItemEntity itementity = new ItemEntity(this.chimpanzee.level, this.chimpanzee.getX(), this.chimpanzee.getEyeY() - (double) 0.3F, this.chimpanzee.getZ(), itemstack.split(1));
+					ItemEntity itementity = new ItemEntity(this.chimpanzee.level(), this.chimpanzee.getX(), this.chimpanzee.getEyeY() - (double) 0.3F, this.chimpanzee.getZ(), itemstack.split(1));
 					Vec3 vector3d = this.buddy.position().subtract(this.chimpanzee.position());
 					vector3d = vector3d.normalize().scale(0.3F);
 					itementity.setDeltaMovement(vector3d);
 					itementity.setDefaultPickUpDelay();
-					this.chimpanzee.level.addFreshEntity(itementity);
+					this.chimpanzee.level().addFreshEntity(itementity);
 
 					this.chimpanzee.setItemInHand(hand, itemstack.split(i - 1));
 					this.throwTimer = 12;

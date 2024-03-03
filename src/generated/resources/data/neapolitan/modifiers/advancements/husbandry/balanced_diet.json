@@ -390,6 +390,21 @@
             "neapolitan:ice_cubes"
           ],
           [
+            "neapolitan:dried_vanilla_pods"
+          ],
+          [
+            "neapolitan:vanilla_fudge"
+          ],
+          [
+            "neapolitan:vanilla_pudding"
+          ],
+          [
+            "neapolitan:vanilla_ice_cream"
+          ],
+          [
+            "neapolitan:vanilla_milkshake"
+          ],
+          [
             "neapolitan:chocolate_bar"
           ],
           [
@@ -415,21 +430,6 @@
           ],
           [
             "neapolitan:strawberry_milkshake"
-          ],
-          [
-            "neapolitan:dried_vanilla_pods"
-          ],
-          [
-            "neapolitan:vanilla_fudge"
-          ],
-          [
-            "neapolitan:vanilla_pudding"
-          ],
-          [
-            "neapolitan:vanilla_ice_cream"
-          ],
-          [
-            "neapolitan:vanilla_milkshake"
           ],
           [
             "neapolitan:banana"
@@ -480,10 +480,10 @@
             "neapolitan:adzuki_milkshake"
           ],
           [
-            "neapolitan:chocolate_strawberries"
+            "neapolitan:vanilla_chocolate_fingers"
           ],
           [
-            "neapolitan:vanilla_chocolate_fingers"
+            "neapolitan:chocolate_strawberries"
           ],
           [
             "neapolitan:strawberry_banana_smoothie"

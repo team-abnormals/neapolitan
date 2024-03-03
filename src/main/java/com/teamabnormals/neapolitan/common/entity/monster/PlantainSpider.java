@@ -34,7 +34,7 @@ public class PlantainSpider extends Spider {
 	public boolean doHurtTarget(Entity entityIn) {
 		if (super.doHurtTarget(entityIn)) {
 			if (entityIn instanceof LivingEntity livingEntity && NeapolitanConfig.COMMON.plantainSpidersGiveSlipping.get()) {
-				livingEntity.addEffect(new MobEffectInstance(NeapolitanMobEffects.SLIPPING.get(), this.level.getDifficulty().getId() * 60));
+				livingEntity.addEffect(new MobEffectInstance(NeapolitanMobEffects.SLIPPING.get(), this.level().getDifficulty().getId() * 60));
 			}
 			return true;
 		} else {
