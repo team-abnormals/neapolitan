@@ -9,6 +9,7 @@
     "FoxEatBerriesGoalMixin",
     "LivingEntityMixin",
     "PointedDripstoneBlockMixin",
+    "ShearsItemMixin",
     "SpreadingSnowyDirtBlockMixin"
   ],
   "client": [
