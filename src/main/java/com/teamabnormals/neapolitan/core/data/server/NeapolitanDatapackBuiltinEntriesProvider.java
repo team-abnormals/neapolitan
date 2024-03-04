@@ -3,6 +3,7 @@ package com.teamabnormals.neapolitan.core.data.server;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.data.server.modifiers.NeapolitanBiomeModifierProvider;
 import com.teamabnormals.neapolitan.core.other.NeapolitanDamageSources;
+import com.teamabnormals.neapolitan.core.other.NeapolitanTrimPatterns;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanFeatures.NeapolitanConfiguredFeatures;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanFeatures.NeapolitanPlacedFeatures;
 import net.minecraft.core.HolderLookup.Provider;
@@ -21,6 +22,7 @@ public class NeapolitanDatapackBuiltinEntriesProvider extends DatapackBuiltinEnt
 			.add(Registries.CONFIGURED_FEATURE, NeapolitanConfiguredFeatures::bootstrap)
 			.add(Registries.PLACED_FEATURE, NeapolitanPlacedFeatures::bootstrap)
 			.add(ForgeRegistries.Keys.BIOME_MODIFIERS, NeapolitanBiomeModifierProvider::bootstrap)
+			.add(Registries.TRIM_PATTERN, NeapolitanTrimPatterns::bootstrap)
 			.add(Registries.DAMAGE_TYPE, NeapolitanDamageSources::bootstrap);
 
 	public NeapolitanDatapackBuiltinEntriesProvider(PackOutput output, CompletableFuture<Provider> provider) {

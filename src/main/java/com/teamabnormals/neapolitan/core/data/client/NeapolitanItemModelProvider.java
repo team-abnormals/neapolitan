@@ -21,6 +21,7 @@ public class NeapolitanItemModelProvider extends ItemModelProvider {
 	@Override
 	protected void registerModels() {
 		this.generatedItem(
+				PRIMAL_ARMOR_TRIM_SMITHING_TEMPLATE.get(),
 				REFLECTION_POTTERY_SHERD.get(), ANGER_POTTERY_SHERD.get(), SPIDER_POTTERY_SHERD.get(), BANANA_POTTERY_SHERD.get()
 		);
 	}

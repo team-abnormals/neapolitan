@@ -25,12 +25,4 @@ public abstract class NoteBlockMixin {
 			ci.cancel();
 		}
 	}
-
-	@Redirect(at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/properties/NoteBlockInstrument;isTunable()Z"), method = "triggerEvent")
-	private boolean isTunable(NoteBlockInstrument instrument, BlockState state, Level level, BlockPos pos) {
-		if (level.getBlockState(pos.above()).is(NeapolitanBlocks.CHIMPANZEE_HEAD.get())) {
-			return false;
-		}
-		return instrument.isTunable();
-	}
 }

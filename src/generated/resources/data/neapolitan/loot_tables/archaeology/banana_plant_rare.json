@@ -22,6 +22,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "neapolitan:primal_armor_trim_smithing_template"
+        },
+        {
+          "type": "minecraft:item",
           "name": "neapolitan:chimpanzee_head"
         }
       ],

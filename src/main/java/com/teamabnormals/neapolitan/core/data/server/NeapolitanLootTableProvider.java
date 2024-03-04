@@ -81,6 +81,7 @@ public class NeapolitanLootTableProvider extends LootTableProvider {
 					.add(LootItem.lootTableItem(NeapolitanItems.ANGER_POTTERY_SHERD.get()))
 					.add(LootItem.lootTableItem(NeapolitanItems.SPIDER_POTTERY_SHERD.get()))
 					.add(LootItem.lootTableItem(NeapolitanItems.BANANA_POTTERY_SHERD.get()))
+					.add(LootItem.lootTableItem(NeapolitanItems.PRIMAL_ARMOR_TRIM_SMITHING_TEMPLATE.get()))
 					.add(LootItem.lootTableItem(NeapolitanItems.CHIMPANZEE_HEAD.get()))));
 
 		}

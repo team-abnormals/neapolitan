@@ -1,0 +1,7 @@
+{
+  "asset_id": "neapolitan:primal",
+  "description": {
+    "translate": "trim_pattern.neapolitan.primal"
+  },
+  "template_item": "neapolitan:primal_armor_trim_smithing_template"
+}

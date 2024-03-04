@@ -4,6 +4,7 @@ import com.teamabnormals.blueprint.common.item.BlueprintRecordItem;
 import com.teamabnormals.blueprint.core.util.registry.ItemSubRegistryHelper;
 import com.teamabnormals.neapolitan.common.item.*;
 import com.teamabnormals.neapolitan.core.Neapolitan;
+import com.teamabnormals.neapolitan.core.other.NeapolitanTrimPatterns;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanBannerPatternTags;
 import net.minecraft.core.Direction;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -90,6 +91,7 @@ public class NeapolitanItems {
 
 	public static final RegistryObject<Item> MUSIC_DISC_HULLABALOO = HELPER.createItem("music_disc_hullabaloo", () -> new BlueprintRecordItem(3, NeapolitanSoundEvents.HULLABALOO, new Item.Properties().stacksTo(1).rarity(Rarity.RARE), 132));
 	public static final RegistryObject<Item> CHIMPANZEE_BANNER_PATTERN = HELPER.createItem("chimpanzee_banner_pattern", () -> new BannerPatternItem(NeapolitanBannerPatternTags.PATTERN_ITEM_CHIMPANZEE, new Item.Properties().stacksTo(1)));
+	public static final RegistryObject<Item> PRIMAL_ARMOR_TRIM_SMITHING_TEMPLATE = HELPER.createItem("primal_armor_trim_smithing_template", () -> SmithingTemplateItem.createArmorTrimTemplate(NeapolitanTrimPatterns.PRIMAL));
 
 	public static final RegistryObject<ForgeSpawnEggItem> CHIMPANZEE_SPAWN_EGG = HELPER.createSpawnEggItem("chimpanzee", NeapolitanEntityTypes.CHIMPANZEE::get, 0x1F1626, 0xAD8064);
 	public static final RegistryObject<ForgeSpawnEggItem> PLANTAIN_SPIDER_SPAWN_EGG = HELPER.createSpawnEggItem("plantain_spider", NeapolitanEntityTypes.PLANTAIN_SPIDER::get, 0xAD870A, 0x33202A);
