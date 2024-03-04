@@ -103,6 +103,6 @@ public class BananaBunchItem extends Item {
 			}
 		}
 
-		world.playSound(player, player.blockPosition(), NeapolitanSoundEvents.ITEM_BANANA_BUNCH_OPEN.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+		world.playSound(player, player.blockPosition(), NeapolitanSoundEvents.BANANA_BUNCH_OPEN.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
 	}
 }

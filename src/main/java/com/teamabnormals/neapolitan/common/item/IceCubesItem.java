@@ -12,11 +12,11 @@ public class IceCubesItem extends Item {
 
 	@Override
 	public SoundEvent getDrinkingSound() {
-		return NeapolitanSoundEvents.ITEM_ICE_CUBES_EAT.get();
+		return NeapolitanSoundEvents.ICE_CUBES_EAT.get();
 	}
 
 	@Override
 	public SoundEvent getEatingSound() {
-		return NeapolitanSoundEvents.ITEM_ICE_CUBES_EAT.get();
+		return NeapolitanSoundEvents.ICE_CUBES_EAT.get();
 	}
 }

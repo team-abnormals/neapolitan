@@ -8,6 +8,7 @@
     "CauldronBlockMixin",
     "FoxEatBerriesGoalMixin",
     "LivingEntityMixin",
+    "NoteBlockMixin",
     "PointedDripstoneBlockMixin",
     "ShearsItemMixin",
     "SpreadingSnowyDirtBlockMixin"

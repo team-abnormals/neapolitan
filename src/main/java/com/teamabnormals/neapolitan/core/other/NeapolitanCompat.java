@@ -1,10 +1,13 @@
 package com.teamabnormals.neapolitan.core.other;
 
 import com.teamabnormals.blueprint.core.util.DataUtil;
+import com.teamabnormals.blueprint.core.util.DataUtil.CustomNoteBlockInstrument;
 import com.teamabnormals.neapolitan.common.entity.projectile.Bananarrow;
+import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanDecoratedPotPatterns;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanSoundEvents;
 import net.minecraft.core.BlockSource;
 import net.minecraft.core.Position;
 import net.minecraft.core.dispenser.AbstractProjectileDispenseBehavior;
@@ -15,6 +18,7 @@ import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DispenserBlock;
 
 public class NeapolitanCompat {
@@ -30,6 +34,7 @@ public class NeapolitanCompat {
 		registerFlammables();
 		registerDispenserBehaviors();
 		registerAnimalFoods();
+		NeapolitanSoundEvents.registerNoteBlocks();
 		NeapolitanDecoratedPotPatterns.registerDecoratedPotPatterns();
 		NeapolitanCauldronInteractions.registerCauldronInteractions();
 	}

@@ -8,6 +8,15 @@
       }
     ]
   },
+  "block.note_block.imitate.chimpanzee": {
+    "sounds": [
+      {
+        "name": "neapolitan:entity.chimpanzee.ambient",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.neapolitan.entity.chimpanzee.ambient"
+  },
   "entity.chimpanzee.scream": {
     "sounds": [
       "neapolitan:mob/chimpanzee/scream1",

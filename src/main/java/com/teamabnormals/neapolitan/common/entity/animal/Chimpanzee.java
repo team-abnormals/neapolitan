@@ -237,22 +237,22 @@ public class Chimpanzee extends Animal implements NeutralMob {
 
 	@Override
 	protected SoundEvent getAmbientSound() {
-		return (this.isAngry() || this.getApeModeTime() > 0) ? NeapolitanSoundEvents.ENTITY_CHIMPANZEE_SCREAM.get() : NeapolitanSoundEvents.ENTITY_CHIMPANZEE_AMBIENT.get();
+		return (this.isAngry() || this.getApeModeTime() > 0) ? NeapolitanSoundEvents.CHIMPANZEE_SCREAM.get() : NeapolitanSoundEvents.CHIMPANZEE_AMBIENT.get();
 	}
 
 	@Override
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return NeapolitanSoundEvents.ENTITY_CHIMPANZEE_HURT.get();
+		return NeapolitanSoundEvents.CHIMPANZEE_HURT.get();
 	}
 
 	@Override
 	protected SoundEvent getDeathSound() {
-		return NeapolitanSoundEvents.ENTITY_CHIMPANZEE_DEATH.get();
+		return NeapolitanSoundEvents.CHIMPANZEE_DEATH.get();
 	}
 
 	@Override
 	protected void playStepSound(BlockPos pos, BlockState blockIn) {
-		this.playSound(NeapolitanSoundEvents.ENTITY_CHIMPANZEE_STEP.get(), 0.15F, 1.0F);
+		this.playSound(NeapolitanSoundEvents.CHIMPANZEE_STEP.get(), 0.15F, 1.0F);
 	}
 
 	@Nullable
@@ -262,7 +262,7 @@ public class Chimpanzee extends Animal implements NeutralMob {
 	}
 
 	public void playScreamSound() {
-		this.playSound(NeapolitanSoundEvents.ENTITY_CHIMPANZEE_SCREAM.get(), this.getSoundVolume(), this.getVoicePitch());
+		this.playSound(NeapolitanSoundEvents.CHIMPANZEE_SCREAM.get(), this.getSoundVolume(), this.getVoicePitch());
 	}
 
 	@Override
