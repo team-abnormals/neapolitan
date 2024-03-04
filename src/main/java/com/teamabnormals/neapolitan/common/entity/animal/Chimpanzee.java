@@ -258,7 +258,7 @@ public class Chimpanzee extends Animal implements NeutralMob {
 	@Nullable
 	@Override
 	public SoundEvent getEatingSound(ItemStack itemStackIn) {
-		return null;
+		return SoundEvents.EMPTY;
 	}
 
 	public void playScreamSound() {

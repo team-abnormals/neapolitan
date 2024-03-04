@@ -81,6 +81,11 @@ public class NeapolitanItems {
 	public static final RegistryObject<Item> ADZUKI_CURRY = HELPER.createItem("adzuki_curry", () -> new BowlFoodItem(new Item.Properties().food(NeapolitanFoods.ADZUKI_CURRY).stacksTo(1)));
 	public static final RegistryObject<Item> NEAPOLITAN_ICE_CREAM = HELPER.createItem("neapolitan_ice_cream", () -> new HealingIceCreamItem(2.0F, new Item.Properties().food(NeapolitanFoods.NEAPOLITAN_ICE_CREAM).craftRemainder(Items.BOWL).stacksTo(1)));
 
+	public static final RegistryObject<Item> REFLECTION_POTTERY_SHERD = HELPER.createItem("reflection_pottery_sherd", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> ANGER_POTTERY_SHERD = HELPER.createItem("anger_pottery_sherd", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> SPIDER_POTTERY_SHERD = HELPER.createItem("spider_pottery_sherd", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> BANANA_POTTERY_SHERD = HELPER.createItem("banana_pottery_sherd", () -> new Item(new Item.Properties()));
+
 	public static final RegistryObject<Item> CHIMPANZEE_HEAD = HELPER.createItem("chimpanzee_head", () -> new StandingAndWallBlockItem(NeapolitanBlocks.CHIMPANZEE_HEAD.get(), NeapolitanBlocks.CHIMPANZEE_WALL_HEAD.get(), new Item.Properties().rarity(Rarity.UNCOMMON), Direction.DOWN));
 
 	public static final RegistryObject<Item> MUSIC_DISC_HULLABALOO = HELPER.createItem("music_disc_hullabaloo", () -> new BlueprintRecordItem(3, NeapolitanSoundEvents.HULLABALOO, new Item.Properties().stacksTo(1).rarity(Rarity.RARE), 132));

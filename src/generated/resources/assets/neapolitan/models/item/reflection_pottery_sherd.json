@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "neapolitan:item/reflection_pottery_sherd"
+  }
+}

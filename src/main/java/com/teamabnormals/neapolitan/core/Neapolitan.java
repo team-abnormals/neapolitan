@@ -9,6 +9,7 @@ import com.teamabnormals.neapolitan.client.renderer.entity.BananarrowRenderer;
 import com.teamabnormals.neapolitan.client.renderer.entity.ChimpanzeeRenderer;
 import com.teamabnormals.neapolitan.client.renderer.entity.PlantainSpiderRenderer;
 import com.teamabnormals.neapolitan.core.data.client.NeapolitanBlockStateProvider;
+import com.teamabnormals.neapolitan.core.data.client.NeapolitanItemModelProvider;
 import com.teamabnormals.neapolitan.core.data.client.NeapolitanLanguageProvider;
 import com.teamabnormals.neapolitan.core.data.server.NeapolitanDatapackBuiltinEntriesProvider;
 import com.teamabnormals.neapolitan.core.data.server.NeapolitanLootTableProvider;
@@ -66,6 +67,7 @@ public class Neapolitan {
 		NeapolitanPaintingVariants.PAINTING_VARIANTS.register(bus);
 		NeapolitanBannerPatterns.BANNER_PATTERNS.register(bus);
 		NeapolitanParticleTypes.PARTICLE_TYPES.register(bus);
+		NeapolitanDecoratedPotPatterns.DECORATED_POT_PATTERNS.register(bus);
 
 		bus.addListener(this::commonSetup);
 		bus.addListener(this::clientSetup);
@@ -116,6 +118,7 @@ public class Neapolitan {
 
 		boolean includeClient = event.includeClient();
 		generator.addProvider(includeClient, new NeapolitanBlockStateProvider(output, helper));
+		generator.addProvider(includeClient, new NeapolitanItemModelProvider(output, helper));
 //		generator.addProvider(includeClient, new NeapolitanLanguageProvider(output));
 	}
 

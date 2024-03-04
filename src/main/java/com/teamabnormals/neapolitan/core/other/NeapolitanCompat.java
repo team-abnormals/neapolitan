@@ -3,24 +3,19 @@ package com.teamabnormals.neapolitan.core.other;
 import com.teamabnormals.blueprint.core.util.DataUtil;
 import com.teamabnormals.neapolitan.common.entity.projectile.Bananarrow;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanDecoratedPotPatterns;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
 import net.minecraft.core.BlockSource;
 import net.minecraft.core.Position;
 import net.minecraft.core.dispenser.AbstractProjectileDispenseBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.core.dispenser.OptionalDispenseItemBehavior;
-import net.minecraft.world.entity.animal.Chicken;
-import net.minecraft.world.entity.animal.Parrot;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.DispenserBlock;
-import net.minecraftforge.common.crafting.CompoundIngredient;
-
-import java.util.Collections;
 
 public class NeapolitanCompat {
 
@@ -35,12 +30,12 @@ public class NeapolitanCompat {
 		registerFlammables();
 		registerDispenserBehaviors();
 		registerAnimalFoods();
+		NeapolitanDecoratedPotPatterns.registerDecoratedPotPatterns();
 		NeapolitanCauldronInteractions.registerCauldronInteractions();
 	}
 
 	public static void registerAnimalFoods() {
-		Chicken.FOOD_ITEMS = CompoundIngredient.of(Chicken.FOOD_ITEMS, Ingredient.of(NeapolitanItems.STRAWBERRY_PIPS.get()));
-		Collections.addAll(Parrot.TAME_FOOD, NeapolitanItems.STRAWBERRY_PIPS.get());
+		DataUtil.addParrotFood(NeapolitanItems.STRAWBERRY_PIPS.get());
 	}
 
 	public static void registerCompostables() {

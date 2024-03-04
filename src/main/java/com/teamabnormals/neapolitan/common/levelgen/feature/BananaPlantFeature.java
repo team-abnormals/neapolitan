@@ -4,22 +4,27 @@ import com.mojang.serialization.Codec;
 import com.teamabnormals.neapolitan.common.block.BananaFrondBlock;
 import com.teamabnormals.neapolitan.common.entity.animal.Chimpanzee;
 import com.teamabnormals.neapolitan.core.NeapolitanConfig;
+import com.teamabnormals.neapolitan.core.other.NeapolitanLootTables;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanBiomeTags;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.level.LevelSimulatedReader;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour.BlockStateBase;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.TreeFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -71,7 +76,7 @@ public class BananaPlantFeature extends Feature<NoneFeatureConfiguration> {
 							if (random.nextBoolean()) {
 								fronds.put(stalk.relative(direction), direction);
 							} else {
-								if (random.nextBoolean() && bundle == null) {
+								if (random.nextInt(4) == 0 && bundle == null) {
 									bundle = stalk.relative(direction);
 								} else {
 									smallFronds.put(stalk.relative(direction), direction);
@@ -109,10 +114,60 @@ public class BananaPlantFeature extends Feature<NoneFeatureConfiguration> {
 				level.setBlock(blockPos2, NeapolitanBlocks.LARGE_BANANA_FROND.get().defaultBlockState().setValue(BananaFrondBlock.FACING, largeFronds.get(blockPos2)), 19);
 			}
 			if (isGrass(level, pos.below())) {
+				boolean suspicious = random.nextFloat() < 0.2F;
+
 				level.setBlock(pos.below(), Blocks.GRAVEL.defaultBlockState(), 19);
-				for (BlockPos blockpos : BlockPos.betweenClosed(pos.getX() - 3, pos.getY() - 2, pos.getZ() - 3, pos.getX() + 3, pos.getY() + 2, pos.getZ() + 3)) {
-					if (isGrass(level, blockpos) && level.isStateAtPosition(blockpos.above(), BlockStateBase::isAir) && random.nextInt(3) != 0)
-						level.setBlock(blockpos, Blocks.GRAVEL.defaultBlockState(), 19);
+
+				int horizontalRange = (suspicious ? 3 : 2) + random.nextInt(2);
+				int verticalMin = suspicious ? -9 : -2;
+
+				int rareSusGravel = 0;
+				int commonSusGravel = 0;
+
+				for (int x = -horizontalRange; x <= horizontalRange; x++) {
+					for (int y = verticalMin; y < 2; y++) {
+						for (int z = -horizontalRange; z <= horizontalRange; z++) {
+							if (Mth.abs(x) == Math.abs(z) && Mth.abs(x) == horizontalRange) {
+								continue;
+							}
+
+							if (y < -3 && (Math.abs(x) >= horizontalRange || Math.abs(z) >= horizontalRange)) {
+								continue;
+							}
+
+							if (y < -6 && (Math.abs(x) >= horizontalRange - 1 || Math.abs(z) >= horizontalRange - 1)) {
+								continue;
+							}
+
+							BlockPos offsetPos = pos.offset(x, y, z);
+							int dist = (int) Mth.sqrt((float) offsetPos.distSqr(pos));
+							int clamped = Math.max(1, Math.min((y >= -1 || (Math.abs(x) < 3 && Math.abs(z) < 3)) ? 3 : dist, dist)) + (suspicious ? 0 : random.nextInt(2));
+							if (random.nextInt(clamped) == 0 && ((suspicious && isStone(level.getBlockState(offsetPos))) || isDirt(level, offsetPos))) {
+								if (!suspicious) {
+									level.setBlock(offsetPos, Blocks.GRAVEL.defaultBlockState(), 19);
+								} else {
+									if (commonSusGravel + rareSusGravel < 9 && y < -1 && random.nextFloat() < (0.05F * (Math.abs(y) + 1))) {
+										level.setBlock(offsetPos, Blocks.SUSPICIOUS_GRAVEL.defaultBlockState(), 19);
+
+										boolean rare = (rareSusGravel < 3 && random.nextInt(3) == 0) || commonSusGravel == 6;
+										if (rare) {
+											rareSusGravel++;
+										} else {
+											commonSusGravel++;
+										}
+
+										level.getBlockEntity(offsetPos, BlockEntityType.BRUSHABLE_BLOCK).ifPresent((block) -> block.setLootTable(rare ? NeapolitanLootTables.BANANA_PLANT_ARCHAEOLOGY_RARE : NeapolitanLootTables.BANANA_PLANT_ARCHAEOLOGY_COMMON, offsetPos.asLong()));
+									} else {
+										level.setBlock(offsetPos, Blocks.GRAVEL.defaultBlockState(), 19);
+									}
+								}
+
+								if (!level.isStateAtPosition(offsetPos.above(), state -> state.canSurvive(level, offsetPos.above()))) {
+									level.setBlock(offsetPos.above(), Blocks.AIR.defaultBlockState(), 19);
+								}
+							}
+						}
+					}
 				}
 			}
 
@@ -174,5 +229,9 @@ public class BananaPlantFeature extends Feature<NoneFeatureConfiguration> {
 
 	public static boolean isGrass(LevelSimulatedReader worldIn, BlockPos pos) {
 		return worldIn.isStateAtPosition(pos, (state) -> state.is(Blocks.GRASS_BLOCK));
+	}
+
+	public static boolean isDirt(LevelSimulatedReader worldIn, BlockPos pos) {
+		return worldIn.isStateAtPosition(pos, (state) -> state.is(BlockTags.DIRT));
 	}
 }

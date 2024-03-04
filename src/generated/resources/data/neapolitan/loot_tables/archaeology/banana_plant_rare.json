@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:archaeology",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "neapolitan:reflection_pottery_sherd"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "neapolitan:anger_pottery_sherd"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "neapolitan:spider_pottery_sherd"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "neapolitan:banana_pottery_sherd"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "neapolitan:chimpanzee_head"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "neapolitan:archaeology/banana_plant_rare"
+}
