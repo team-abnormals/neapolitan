@@ -94,7 +94,7 @@ public class BananaPlantFeature extends Feature<NoneFeatureConfiguration> {
 		}
 
 		if (isAirAt(level, pos, size) && pos.getY() < level.getMaxBuildHeight() - size) {
-			boolean suspicious = isGrass(level, pos.below()) && random.nextFloat() < 0.2F;
+			boolean suspicious = isGrass(level, pos.below()) && random.nextFloat() < 0.15F;
 
 			for (BlockPos blockPos2 : stalks) {
 				boolean carved = suspicious && random.nextBoolean();

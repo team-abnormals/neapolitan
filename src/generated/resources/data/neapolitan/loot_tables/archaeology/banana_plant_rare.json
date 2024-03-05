@@ -6,19 +6,23 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "neapolitan:reflection_pottery_sherd"
+          "name": "neapolitan:reflection_pottery_sherd",
+          "weight": 2
         },
         {
           "type": "minecraft:item",
-          "name": "neapolitan:scream_pottery_sherd"
+          "name": "neapolitan:scream_pottery_sherd",
+          "weight": 2
         },
         {
           "type": "minecraft:item",
-          "name": "neapolitan:spider_pottery_sherd"
+          "name": "neapolitan:spider_pottery_sherd",
+          "weight": 2
         },
         {
           "type": "minecraft:item",
-          "name": "neapolitan:snack_pottery_sherd"
+          "name": "neapolitan:snack_pottery_sherd",
+          "weight": 2
         },
         {
           "type": "minecraft:item",

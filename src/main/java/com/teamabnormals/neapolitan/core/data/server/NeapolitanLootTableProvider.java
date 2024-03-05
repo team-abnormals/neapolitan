@@ -74,10 +74,10 @@ public class NeapolitanLootTableProvider extends LootTableProvider {
 					.add(LootItem.lootTableItem(Items.BONE))
 					.add(LootItem.lootTableItem(Items.STICK))));
 			consumer.accept(NeapolitanLootTables.BANANA_PLANT_ARCHAEOLOGY_RARE, LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-					.add(LootItem.lootTableItem(NeapolitanItems.REFLECTION_POTTERY_SHERD.get()))
-					.add(LootItem.lootTableItem(NeapolitanItems.SCREAM_POTTERY_SHERD.get()))
-					.add(LootItem.lootTableItem(NeapolitanItems.SPIDER_POTTERY_SHERD.get()))
-					.add(LootItem.lootTableItem(NeapolitanItems.SNACK_POTTERY_SHERD.get()))
+					.add(LootItem.lootTableItem(NeapolitanItems.REFLECTION_POTTERY_SHERD.get()).setWeight(2))
+					.add(LootItem.lootTableItem(NeapolitanItems.SCREAM_POTTERY_SHERD.get()).setWeight(2))
+					.add(LootItem.lootTableItem(NeapolitanItems.SPIDER_POTTERY_SHERD.get()).setWeight(2))
+					.add(LootItem.lootTableItem(NeapolitanItems.SNACK_POTTERY_SHERD.get()).setWeight(2))
 					.add(LootItem.lootTableItem(NeapolitanItems.PRIMAL_ARMOR_TRIM_SMITHING_TEMPLATE.get()))
 					.add(LootItem.lootTableItem(NeapolitanItems.CHIMPANZEE_HEAD.get()))));
 
