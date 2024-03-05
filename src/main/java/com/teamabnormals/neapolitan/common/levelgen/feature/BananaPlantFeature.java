@@ -94,8 +94,11 @@ public class BananaPlantFeature extends Feature<NoneFeatureConfiguration> {
 		}
 
 		if (isAirAt(level, pos, size) && pos.getY() < level.getMaxBuildHeight() - size) {
+			boolean suspicious = isGrass(level, pos.below()) && random.nextFloat() < 0.2F;
+
 			for (BlockPos blockPos2 : stalks) {
-				level.setBlock(blockPos2, NeapolitanBlocks.BANANA_STALK.get().defaultBlockState(), 19);
+				boolean carved = suspicious && random.nextBoolean();
+				level.setBlock(blockPos2, (carved ? NeapolitanBlocks.CARVED_BANANA_STALK : NeapolitanBlocks.BANANA_STALK).get().defaultBlockState(), 19);
 			}
 			level.setBlock(upFrond, NeapolitanBlocks.LARGE_BANANA_FROND.get().defaultBlockState(), 19);
 			if (bundle != null) {
@@ -114,8 +117,6 @@ public class BananaPlantFeature extends Feature<NoneFeatureConfiguration> {
 				level.setBlock(blockPos2, NeapolitanBlocks.LARGE_BANANA_FROND.get().defaultBlockState().setValue(BananaFrondBlock.FACING, largeFronds.get(blockPos2)), 19);
 			}
 			if (isGrass(level, pos.below())) {
-				boolean suspicious = random.nextFloat() < 0.2F;
-
 				level.setBlock(pos.below(), Blocks.GRAVEL.defaultBlockState(), 19);
 
 				int horizontalRange = (suspicious ? 3 : 2) + random.nextInt(2);
