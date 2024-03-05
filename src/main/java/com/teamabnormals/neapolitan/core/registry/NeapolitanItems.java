@@ -102,7 +102,6 @@ public class NeapolitanItems {
 	public static final RegistryObject<ForgeSpawnEggItem> CHIMPANZEE_SPAWN_EGG = HELPER.createSpawnEggItem("chimpanzee", NeapolitanEntityTypes.CHIMPANZEE::get, 0x1F1626, 0xAD8064);
 	public static final RegistryObject<ForgeSpawnEggItem> PLANTAIN_SPIDER_SPAWN_EGG = HELPER.createSpawnEggItem("plantain_spider", NeapolitanEntityTypes.PLANTAIN_SPIDER::get, 0xAD870A, 0x33202A);
 
-
 	public static void setupTabEditors() {
 		CreativeModeTabContentsPopulator.mod(Neapolitan.MOD_ID)
 				.tab(FOOD_AND_DRINKS)
@@ -132,7 +131,8 @@ public class NeapolitanItems {
 				.tab(FUNCTIONAL_BLOCKS)
 				.addItemsAfter(of(Items.CREEPER_HEAD), CHIMPANZEE_HEAD)
 				.tab(NATURAL_BLOCKS)
-				.addItemsAfter(of(Items.SUGAR_CANE), VANILLA_PODS, BANANA_FROND)
+				.addItemsAfter(of(Items.SUGAR_CANE), VANILLA_PODS)
+				.addItemsAfter(of(Items.CACTUS), NeapolitanBlocks.BANANA_STALK, BANANA_FROND)
 				.addItemsAfter(of(Items.COCOA_BEANS), ADZUKI_BEANS, MAGIC_BEANS)
 				.addItemsAfter(of(Items.BEETROOT_SEEDS), STRAWBERRY_PIPS, MINT_SPROUT)
 				.tab(SPAWN_EGGS)

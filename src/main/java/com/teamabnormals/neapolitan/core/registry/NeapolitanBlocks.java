@@ -5,6 +5,7 @@ import com.teamabnormals.blueprint.common.block.thatch.ThatchBlock;
 import com.teamabnormals.blueprint.common.block.thatch.ThatchSlabBlock;
 import com.teamabnormals.blueprint.common.block.thatch.ThatchStairBlock;
 import com.teamabnormals.blueprint.core.util.PropertyUtil;
+import com.teamabnormals.blueprint.core.util.item.CreativeModeTabContentsPopulator;
 import com.teamabnormals.blueprint.core.util.registry.BlockSubRegistryHelper;
 import com.teamabnormals.neapolitan.common.block.*;
 import com.teamabnormals.neapolitan.core.Neapolitan;
@@ -16,10 +17,15 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.function.ToIntFunction;
+
+import static net.minecraft.world.item.CreativeModeTabs.BUILDING_BLOCKS;
+import static net.minecraft.world.item.CreativeModeTabs.NATURAL_BLOCKS;
+import static net.minecraft.world.item.crafting.Ingredient.of;
 
 @EventBusSubscriber(modid = Neapolitan.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class NeapolitanBlocks {
@@ -204,6 +210,26 @@ public class NeapolitanBlocks {
 	public static final RegistryObject<Block> GREEN_ADZUKI_CANDLE_CAKE = HELPER.createBlockNoItem("green_adzuki_candle_cake", () -> new FlavoredCandleCakeBlock(ADZUKI_CAKE, Blocks.GREEN_CANDLE, NeapolitanBlockProperties.ADZUKI_CANDLE_CAKE));
 	public static final RegistryObject<Block> RED_ADZUKI_CANDLE_CAKE = HELPER.createBlockNoItem("red_adzuki_candle_cake", () -> new FlavoredCandleCakeBlock(ADZUKI_CAKE, Blocks.RED_CANDLE, NeapolitanBlockProperties.ADZUKI_CANDLE_CAKE));
 	public static final RegistryObject<Block> BLACK_ADZUKI_CANDLE_CAKE = HELPER.createBlockNoItem("black_adzuki_candle_cake", () -> new FlavoredCandleCakeBlock(ADZUKI_CAKE, Blocks.BLACK_CANDLE, NeapolitanBlockProperties.ADZUKI_CANDLE_CAKE));
+
+	public static void setupTabEditors() {
+		CreativeModeTabContentsPopulator.mod(Neapolitan.MOD_ID)
+				.tab(BUILDING_BLOCKS)
+				.addItems(
+						BANANA_STALK, CARVED_BANANA_STALK, FROND_THATCH, FROND_THATCH_STAIRS, FROND_THATCH_SLAB,
+						CHOCOLATE_BLOCK, CHOCOLATE_BRICKS, CHOCOLATE_BRICK_STAIRS, CHOCOLATE_BRICK_SLAB, CHOCOLATE_BRICK_WALL, CHISELED_CHOCOLATE_BRICKS, CHOCOLATE_TILES, CHOCOLATE_TILE_STAIRS, CHOCOLATE_TILE_SLAB, CHOCOLATE_TILE_WALL,
+						VANILLA_ICE_CREAM_BLOCK, CHOCOLATE_ICE_CREAM_BLOCK, STRAWBERRY_ICE_CREAM_BLOCK, BANANA_ICE_CREAM_BLOCK, MINT_ICE_CREAM_BLOCK, ADZUKI_ICE_CREAM_BLOCK
+				)
+				.tab(NATURAL_BLOCKS)
+				.addItemsAfter(of(Blocks.ROOTED_DIRT), ADZUKI_SOIL)
+				.addItemsAfter(of(Blocks.CACTUS), BEANSTALK, BEANSTALK_THORNS)
+				.addItemsAfter(of(Blocks.MELON), BANANA_BUNDLE)
+				.addItemsAfter(of(Blocks.HAY_BLOCK), VANILLA_POD_BLOCK, DRIED_VANILLA_POD_BLOCK)
+				.predicate(event -> event.getTabKey() == NATURAL_BLOCKS && ModList.get().isLoaded("berry_good"))
+				.addItemsAfter(of(Blocks.HAY_BLOCK), STRAWBERRY_BASKET, WHITE_STRAWBERRY_BASKET, MINT_BASKET)
+				.predicate(event -> event.getTabKey() == NATURAL_BLOCKS && ModList.get().isLoaded("quark"))
+				.addItemsAfter(of(Blocks.HAY_BLOCK), BANANA_CRATE, ADZUKI_CRATE, ROASTED_ADZUKI_CRATE);
+
+	}
 
 	public enum NeapolitanSkullTypes implements SkullBlock.Type {
 		CHIMPANZEE

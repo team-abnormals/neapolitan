@@ -74,6 +74,7 @@ public class Neapolitan {
 		bus.addListener(this::dataSetup);
 
 		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
+			NeapolitanBlocks.setupTabEditors();
 			NeapolitanItems.setupTabEditors();
 			bus.addListener(this::registerLayerDefinitions);
 			bus.addListener(this::registerRenderers);
