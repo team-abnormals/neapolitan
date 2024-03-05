@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "neapolitan:item/anger_pottery_sherd"
+    "layer0": "neapolitan:item/scream_pottery_sherd"
   }
 }

@@ -9,7 +9,6 @@ import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.data.loot.LootTableSubProvider;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -22,10 +21,8 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.LootTable.Builder;
 import net.minecraft.world.level.storage.loot.ValidationContext;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.functions.SetStewEffectFunction;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
-import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 import java.util.Map;
 import java.util.Set;
@@ -78,9 +75,9 @@ public class NeapolitanLootTableProvider extends LootTableProvider {
 					.add(LootItem.lootTableItem(Items.STICK))));
 			consumer.accept(NeapolitanLootTables.BANANA_PLANT_ARCHAEOLOGY_RARE, LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
 					.add(LootItem.lootTableItem(NeapolitanItems.REFLECTION_POTTERY_SHERD.get()))
-					.add(LootItem.lootTableItem(NeapolitanItems.ANGER_POTTERY_SHERD.get()))
+					.add(LootItem.lootTableItem(NeapolitanItems.SCREAM_POTTERY_SHERD.get()))
 					.add(LootItem.lootTableItem(NeapolitanItems.SPIDER_POTTERY_SHERD.get()))
-					.add(LootItem.lootTableItem(NeapolitanItems.BANANA_POTTERY_SHERD.get()))
+					.add(LootItem.lootTableItem(NeapolitanItems.SNACK_POTTERY_SHERD.get()))
 					.add(LootItem.lootTableItem(NeapolitanItems.PRIMAL_ARMOR_TRIM_SMITHING_TEMPLATE.get()))
 					.add(LootItem.lootTableItem(NeapolitanItems.CHIMPANZEE_HEAD.get()))));
 

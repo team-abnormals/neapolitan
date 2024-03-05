@@ -5,7 +5,6 @@ import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.other.NeapolitanConstants;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanItemTags;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
-import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
@@ -33,7 +32,7 @@ public class NeapolitanItemTagsProvider extends ItemTagsProvider {
 		this.tag(ItemTags.ARROWS).add(BANANARROW.get());
 		this.tag(ItemTags.FOX_FOOD).add(STRAWBERRIES.get(), WHITE_STRAWBERRIES.get());
 		this.tag(ItemTags.MUSIC_DISCS).add(MUSIC_DISC_HULLABALOO.get());
-		this.tag(ItemTags.DECORATED_POT_SHERDS).add(REFLECTION_POTTERY_SHERD.get(), ANGER_POTTERY_SHERD.get(), SPIDER_POTTERY_SHERD.get(), BANANA_POTTERY_SHERD.get());
+		this.tag(ItemTags.DECORATED_POT_SHERDS).add(REFLECTION_POTTERY_SHERD.get(), SCREAM_POTTERY_SHERD.get(), SPIDER_POTTERY_SHERD.get(), SNACK_POTTERY_SHERD.get());
 		this.tag(ItemTags.NOTE_BLOCK_TOP_INSTRUMENTS).add(NeapolitanBlocks.CHIMPANZEE_HEAD.get().asItem());
 		this.tag(ItemTags.TRIM_TEMPLATES).add(PRIMAL_ARMOR_TRIM_SMITHING_TEMPLATE.get());
 		this.copy(BlockTags.SLABS, ItemTags.SLABS);

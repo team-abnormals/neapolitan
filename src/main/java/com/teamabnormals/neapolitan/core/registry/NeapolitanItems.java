@@ -1,12 +1,14 @@
 package com.teamabnormals.neapolitan.core.registry;
 
 import com.teamabnormals.blueprint.common.item.BlueprintRecordItem;
+import com.teamabnormals.blueprint.core.util.item.CreativeModeTabContentsPopulator;
 import com.teamabnormals.blueprint.core.util.registry.ItemSubRegistryHelper;
 import com.teamabnormals.neapolitan.common.item.*;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.other.NeapolitanTrimPatterns;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanBannerPatternTags;
 import net.minecraft.core.Direction;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
@@ -16,6 +18,10 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.function.Supplier;
+
+import static com.teamabnormals.blueprint.core.util.item.ItemStackUtil.is;
+import static net.minecraft.world.item.CreativeModeTabs.*;
+import static net.minecraft.world.item.crafting.Ingredient.of;
 
 @EventBusSubscriber(modid = Neapolitan.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class NeapolitanItems {
@@ -83,9 +89,9 @@ public class NeapolitanItems {
 	public static final RegistryObject<Item> NEAPOLITAN_ICE_CREAM = HELPER.createItem("neapolitan_ice_cream", () -> new HealingIceCreamItem(2.0F, new Item.Properties().food(NeapolitanFoods.NEAPOLITAN_ICE_CREAM).craftRemainder(Items.BOWL).stacksTo(1)));
 
 	public static final RegistryObject<Item> REFLECTION_POTTERY_SHERD = HELPER.createItem("reflection_pottery_sherd", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item> ANGER_POTTERY_SHERD = HELPER.createItem("anger_pottery_sherd", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> SCREAM_POTTERY_SHERD = HELPER.createItem("scream_pottery_sherd", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item> SNACK_POTTERY_SHERD = HELPER.createItem("snack_pottery_sherd", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> SPIDER_POTTERY_SHERD = HELPER.createItem("spider_pottery_sherd", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item> BANANA_POTTERY_SHERD = HELPER.createItem("banana_pottery_sherd", () -> new Item(new Item.Properties()));
 
 	public static final RegistryObject<Item> CHIMPANZEE_HEAD = HELPER.createItem("chimpanzee_head", () -> new StandingAndWallBlockItem(NeapolitanBlocks.CHIMPANZEE_HEAD.get(), NeapolitanBlocks.CHIMPANZEE_WALL_HEAD.get(), new Item.Properties().rarity(Rarity.UNCOMMON), Direction.DOWN));
 
@@ -95,6 +101,19 @@ public class NeapolitanItems {
 
 	public static final RegistryObject<ForgeSpawnEggItem> CHIMPANZEE_SPAWN_EGG = HELPER.createSpawnEggItem("chimpanzee", NeapolitanEntityTypes.CHIMPANZEE::get, 0x1F1626, 0xAD8064);
 	public static final RegistryObject<ForgeSpawnEggItem> PLANTAIN_SPIDER_SPAWN_EGG = HELPER.createSpawnEggItem("plantain_spider", NeapolitanEntityTypes.PLANTAIN_SPIDER::get, 0xAD870A, 0x33202A);
+
+
+	public static void setupTabEditors() {
+		CreativeModeTabContentsPopulator.mod(Neapolitan.MOD_ID)
+				.tab(INGREDIENTS)
+				.addItemsAlphabetically(stack -> stack.is(ItemTags.DECORATED_POT_SHERDS), SCREAM_POTTERY_SHERD, REFLECTION_POTTERY_SHERD, SNACK_POTTERY_SHERD, SPIDER_POTTERY_SHERD)
+				.addItemsAfter(of(Items.HOST_ARMOR_TRIM_SMITHING_TEMPLATE), PRIMAL_ARMOR_TRIM_SMITHING_TEMPLATE)
+				.addItemsAfter(of(Items.GLOBE_BANNER_PATTERN), CHIMPANZEE_BANNER_PATTERN)
+				.tab(TOOLS_AND_UTILITIES)
+				.addItemsAfter(of(Items.MUSIC_DISC_WAIT), MUSIC_DISC_HULLABALOO)
+				.tab(SPAWN_EGGS)
+				.addItemsAlphabetically(is(SpawnEggItem.class), CHIMPANZEE_SPAWN_EGG, PLANTAIN_SPIDER_SPAWN_EGG);
+	}
 
 	public static final class NeapolitanFoods {
 		public static final FoodProperties ICE_CUBES = new FoodProperties.Builder().alwaysEat().build();

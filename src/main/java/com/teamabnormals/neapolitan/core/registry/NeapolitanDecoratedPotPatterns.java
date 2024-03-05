@@ -21,8 +21,8 @@ public class NeapolitanDecoratedPotPatterns {
 
 	public static void registerDecoratedPotPatterns() {
 		DataUtil.registerDecoratedPotPattern(Pair.of(NeapolitanItems.REFLECTION_POTTERY_SHERD.get(), REFLECTION));
-		DataUtil.registerDecoratedPotPattern(Pair.of(NeapolitanItems.ANGER_POTTERY_SHERD.get(), ANGER));
+		DataUtil.registerDecoratedPotPattern(Pair.of(NeapolitanItems.SCREAM_POTTERY_SHERD.get(), ANGER));
 		DataUtil.registerDecoratedPotPattern(Pair.of(NeapolitanItems.SPIDER_POTTERY_SHERD.get(), SPIDER));
-		DataUtil.registerDecoratedPotPattern(Pair.of(NeapolitanItems.BANANA_POTTERY_SHERD.get(), BANANA));
+		DataUtil.registerDecoratedPotPattern(Pair.of(NeapolitanItems.SNACK_POTTERY_SHERD.get(), BANANA));
 	}
 }

@@ -22,7 +22,7 @@ public class NeapolitanItemModelProvider extends ItemModelProvider {
 	protected void registerModels() {
 		this.generatedItem(
 				PRIMAL_ARMOR_TRIM_SMITHING_TEMPLATE.get(),
-				REFLECTION_POTTERY_SHERD.get(), ANGER_POTTERY_SHERD.get(), SPIDER_POTTERY_SHERD.get(), BANANA_POTTERY_SHERD.get()
+				REFLECTION_POTTERY_SHERD.get(), SCREAM_POTTERY_SHERD.get(), SPIDER_POTTERY_SHERD.get(), SNACK_POTTERY_SHERD.get()
 		);
 	}
 

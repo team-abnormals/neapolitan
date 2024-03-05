@@ -74,6 +74,7 @@ public class Neapolitan {
 		bus.addListener(this::dataSetup);
 
 		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
+			NeapolitanItems.setupTabEditors();
 			bus.addListener(this::registerLayerDefinitions);
 			bus.addListener(this::registerRenderers);
 			bus.addListener(this::createSkullModels);
