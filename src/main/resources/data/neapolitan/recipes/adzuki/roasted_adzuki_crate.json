@@ -16,8 +16,17 @@
   },
   "conditions": [
     {
-      "type": "blueprint:quark_flag",
-      "flag": "apple_crate"
+      "type": "blueprint:and",
+      "values": [
+        {
+          "modid": "quark",
+          "type": "forge:mod_loaded"
+        },
+        {
+          "flag": "apple_crate",
+          "type": "quark:flag"
+        }
+      ]
     }
   ]
 }

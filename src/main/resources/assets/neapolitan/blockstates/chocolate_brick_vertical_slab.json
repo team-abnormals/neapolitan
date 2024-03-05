@@ -1,9 +1,0 @@
-{
-    "variants": {
- 	"type=north": { "model": "neapolitan:block/chocolate_brick_vertical_slab", "y": 0, "uvlock": true },
- 	"type=south": { "model": "neapolitan:block/chocolate_brick_vertical_slab", "y": 180, "uvlock": true },
-  	"type=east": { "model": "neapolitan:block/chocolate_brick_vertical_slab", "y": 90, "uvlock": true },
- 	"type=west": { "model": "neapolitan:block/chocolate_brick_vertical_slab", "y": 270, "uvlock": true },
-        "type=double": { "model": "neapolitan:block/chocolate_bricks" }
-    }
-}

@@ -1,5 +1,5 @@
 {
-  "parent": "blueprint:block/thatch/thatch_slab",
+  "parent": "blueprint:block/template_thatch_slab",
   "textures": {
     "thatch": "neapolitan:block/frond_thatch",
     "extrudes": "neapolitan:block/frond_thatch_extrudes"

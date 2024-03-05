@@ -1,8 +1,0 @@
-{
-    "parent": "blueprint:block/vertical_slab",
-    "textures": {
-        "side": "neapolitan:block/chocolate_bricks",
-        "top": "neapolitan:block/chocolate_bricks",
-        "bottom": "neapolitan:block/chocolate_bricks"
-    }
-}
