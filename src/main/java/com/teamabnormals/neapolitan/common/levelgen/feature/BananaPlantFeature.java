@@ -124,6 +124,9 @@ public class BananaPlantFeature extends Feature<NoneFeatureConfiguration> {
 				int rareSusGravel = 0;
 				int commonSusGravel = 0;
 
+				int rareSusGravelMax = 2 + random.nextInt(2);
+				int susGravelAmount = 8 + random.nextInt(3) + random.nextInt(2);
+
 				for (int x = -horizontalRange; x <= horizontalRange; x++) {
 					for (int y = verticalMin; y < 2; y++) {
 						for (int z = -horizontalRange; z <= horizontalRange; z++) {
@@ -146,10 +149,10 @@ public class BananaPlantFeature extends Feature<NoneFeatureConfiguration> {
 								if (!suspicious) {
 									level.setBlock(offsetPos, Blocks.GRAVEL.defaultBlockState(), 19);
 								} else {
-									if (commonSusGravel + rareSusGravel < 9 && y < -1 && random.nextFloat() < (0.05F * (Math.abs(y) + 1))) {
+									if (commonSusGravel + rareSusGravel < susGravelAmount && random.nextFloat() < (0.05F * (Math.abs(y) + 1))) {
 										level.setBlock(offsetPos, Blocks.SUSPICIOUS_GRAVEL.defaultBlockState(), 19);
 
-										boolean rare = (rareSusGravel < 3 && random.nextInt(3) == 0) || commonSusGravel == 6;
+										boolean rare = (rareSusGravel < rareSusGravelMax && random.nextInt(3) == 0) || commonSusGravel == susGravelAmount - rareSusGravelMax;
 										if (rare) {
 											rareSusGravel++;
 										} else {
