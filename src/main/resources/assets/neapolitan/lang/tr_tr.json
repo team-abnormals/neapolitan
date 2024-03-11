@@ -7,6 +7,12 @@
   "block.neapolitan.adzuki_ice_cream_block": "Adzukili Dondurma Bloğu",
 
   "block.neapolitan.milk_cauldron": "Süt Kazanı",
+    "block.neapolitan.vanilla_milkshake_cauldron": "Vanilla Süt Kazanı",
+  "block.neapolitan.chocolate_milkshake_cauldron": "Çikolatalı Süt Kazanı",
+  "block.neapolitan.strawberry_milkshake_cauldron": "Çilekli Süt Kazanı",
+  "block.neapolitan.banana_milkshake_cauldron": "Muzlu Süt Kazanı",
+  "block.neapolitan.mint_milkshake_cauldron": "Naneli Süt Kazanı",
+  "block.neapolitan.adzuki_milkshake_cauldron": "Adzukili Süt Kazanı",
   
   "block.neapolitan.chocolate_block": "Çikolata Bloğu",
   "block.neapolitan.chocolate_bricks": "Çikolata Tuğlası",
@@ -165,6 +171,8 @@
   "block.neapolitan.yellow_strawberry_candle_cake": "Çilek Kek ile Sarı Mum",
   "block.neapolitan.yellow_vanilla_candle_cake": "Vanilya Kek ile Sarı Mum",
   
+    "block.neapolitan.chimpanzee_head": "Şempanze Kafası",
+  
   "item.neapolitan.milk_bottle": "Süt Şişesi",
   "item.neapolitan.ice_cubes": "Buz Küpleri",
   
@@ -223,9 +231,22 @@
   "item.neapolitan.music_disc_hullabaloo.desc": "RENREN - Hullabaloo",
   "item.neapolitan.chimpanzee_banner_pattern": "Sancak Deseni",
   "item.neapolitan.chimpanzee_banner_pattern.desc": "Şempanze",
+    "trim_pattern.neapolitan.primal": "İlkel Zırh Süslemesi",
+	
+	  "item.neapolitan.reflection_pottery_sherd": "Yansıma Çömlek Parçası",
+  "item.neapolitan.scream_pottery_sherd": "Çığlık Çömlek Parçası",
+  "item.neapolitan.snack_pottery_sherd": "Atıştırmalık Çömlek Parçası",
+  "item.neapolitan.spider_pottery_sherd": "Örümcek PÇömlek Parçası",
   
   "item.neapolitan.chimpanzee_spawn_egg": "Şempanze Çağırma Yumurtası",
   "item.neapolitan.plantain_spider_spawn_egg": "Muz Örümceği Çağırma Yumurtası",
+  
+    "painting.neapolitan.cone.author": "Paradiscal",
+  "painting.neapolitan.cone.title": "Külah",
+  "painting.neapolitan.scream.author": "Paradiscal",
+  "painting.neapolitan.scream.title": "Çığlık",
+  "painting.neapolitan.dawn.author": "Paradiscal",
+  "painting.neapolitan.dawn.title": "Şafak",
   
   "entity.neapolitan.banana_peel": "Muz Kabuğu",
   "entity.neapolitan.chimpanzee": "Şempanze",
@@ -251,7 +272,7 @@
   "advancements.neapolitan.husbandry.harvest_white_strawberries.title": "Bulutlarda Piknik",
   "advancements.neapolitan.husbandry.harvest_white_strawberries.description": "Yüksek rakımlarda Çilek Çalısı yetiştirerek Beyaz Çilekler elde edin.",
 
-  "advancements.neapolitan.adventure.chimpanzee_attack.title": "Kordine Şempanze Etkinliği",
+  "advancements.neapolitan.adventure.chimpanzee_attack.title": "Koordine Şempanze Etkinliği",
   "advancements.neapolitan.adventure.chimpanzee_attack.description": "Başka bir yaratığın peşinden bir Şempanze göndermek için Muz Oku kullanın",
 
   "death.attack.neapolitan.beanstalkThorns": "%1$s, fasulye sapı dikenleri tarafından dürtülerek öldürüldü",
