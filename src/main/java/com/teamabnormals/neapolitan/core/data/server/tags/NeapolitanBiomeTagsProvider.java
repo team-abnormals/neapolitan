@@ -35,5 +35,6 @@ public class NeapolitanBiomeTagsProvider extends BiomeTagsProvider {
 		this.tag(NeapolitanBiomeTags.HAS_COMMON_BANANA_PLANT).add(Biomes.JUNGLE, Biomes.BAMBOO_JUNGLE).addOptional(NeapolitanConstants.RAINFOREST).addOptional(NeapolitanConstants.RAINFOREST_BASIN);
 		this.tag(NeapolitanBiomeTags.HAS_UNCOMMON_BANANA_PLANT).add(Biomes.SPARSE_JUNGLE).addOptional(NeapolitanConstants.SPARSE_RAINFOREST).addOptional(NeapolitanConstants.SPARSE_RAINFOREST_BASIN);
 		this.tag(NeapolitanBiomeTags.HAS_RARE_BANANA_PLANT).add(Biomes.BEACH, Biomes.STONY_SHORE);
+		this.tag(NeapolitanBiomeTags.BANANA_PLANT_REQUIRES_SAND).add(Biomes.BEACH);
 	}
 }

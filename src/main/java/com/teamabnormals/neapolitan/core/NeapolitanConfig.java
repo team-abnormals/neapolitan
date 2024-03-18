@@ -22,6 +22,11 @@ public class NeapolitanConfig {
 		public final ConfigValue<Integer> chimpanzeeMinSpawnAttempts;
 		public final ConfigValue<Integer> chimpanzeeMaxSpawnAttempts;
 
+		public final ConfigValue<Boolean> suspiciousBananaPlants;
+		public final ConfigValue<Double> suspiciousBananaPlantChance;
+		public final ConfigValue<Integer> suspiciousGravelMin;
+		public final ConfigValue<Integer> rareSuspiciousGravelMin;
+
 		Common(ForgeConfigSpec.Builder builder) {
 			builder.push("items");
 			builder.push("milk_bottles");
@@ -47,6 +52,14 @@ public class NeapolitanConfig {
 			chimpanzeeMaxGroupSize = builder.comment("The maximum amount of Chimpanzees that can spawn with a Banana Plant").define("Chimpanzee maximum group size", 10);
 			chimpanzeeMinSpawnAttempts = builder.comment("The minimum attempts for Chimpanzees to spawn with a Banana Plant").define("Chimpanzee minimum spawn attempts", 12);
 			chimpanzeeMaxSpawnAttempts = builder.comment("The maximum attempts for Chimpanzees to spawn with a Banana Plant").define("Chimpanzee maximum spawn attempts", 24);
+			builder.pop();
+			builder.pop();
+			builder.push("worldgen");
+			builder.push("suspicious_banana_plant");
+			suspiciousBananaPlants = builder.comment("If Banana Plants can rarely generate with Suspicious Gravel and archaeology").define("Suspicious Banana Plants", true);
+			suspiciousBananaPlantChance = builder.comment("The percentage chance for a Suspicious Banana Plant to generate").define("Suspicious Banana Plant chance", 0.05D);
+			suspiciousGravelMin = builder.comment("The minimum amount of Suspicious Gravel total that can spawn at a Suspicious Banana Plant").define("Common Suspicious Gravel minimum", 8);
+			rareSuspiciousGravelMin = builder.comment("The minimum amount of Suspicious Gravel with the rare archaeology loot table that can spawn at a Suspicious Banana Plant").define("Rare Suspicious Gravel minimum", 2);
 			builder.pop();
 			builder.pop();
 		}

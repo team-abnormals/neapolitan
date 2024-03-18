@@ -20,6 +20,7 @@ public class NeapolitanBiomeTags {
 	public static final TagKey<Biome> HAS_COMMON_BANANA_PLANT = biomeTag("has_feature/banana_plant/common");
 	public static final TagKey<Biome> HAS_UNCOMMON_BANANA_PLANT = biomeTag("has_feature/banana_plant/uncommon");
 	public static final TagKey<Biome> HAS_RARE_BANANA_PLANT = biomeTag("has_feature/banana_plant/rare");
+	public static final TagKey<Biome> BANANA_PLANT_REQUIRES_SAND = biomeTag("banana_plant_requires_sand");
 
 	private static TagKey<Biome> biomeTag(String name) {
 		return TagUtil.biomeTag(Neapolitan.MOD_ID, name);

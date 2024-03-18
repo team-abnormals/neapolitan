@@ -24,7 +24,6 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.TreeFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -94,7 +93,8 @@ public class BananaPlantFeature extends Feature<NoneFeatureConfiguration> {
 		}
 
 		if (isAirAt(level, pos, size) && pos.getY() < level.getMaxBuildHeight() - size) {
-			boolean suspicious = isGrass(level, pos.below()) && random.nextFloat() < 0.15F;
+			boolean canSpawnChimps = level.getBiome(pos).containsTag(NeapolitanBiomeTags.HAS_CHIMPANZEE);
+			boolean suspicious = canSpawnChimps && isGrass(level, pos.below()) && NeapolitanConfig.COMMON.suspiciousBananaPlants.get() && random.nextFloat() < NeapolitanConfig.COMMON.suspiciousBananaPlantChance.get();
 
 			for (BlockPos blockPos2 : stalks) {
 				boolean carved = suspicious && random.nextBoolean();
@@ -103,7 +103,7 @@ public class BananaPlantFeature extends Feature<NoneFeatureConfiguration> {
 			level.setBlock(upFrond, NeapolitanBlocks.LARGE_BANANA_FROND.get().defaultBlockState(), 19);
 			if (bundle != null) {
 				level.setBlock(bundle, NeapolitanBlocks.BANANA_BUNDLE.get().defaultBlockState(), 19);
-				if (random.nextDouble() < NeapolitanConfig.COMMON.chimpanzeeGroupChance.get() && level.getBiome(pos).containsTag(NeapolitanBiomeTags.HAS_CHIMPANZEE)) {
+				if (random.nextDouble() < NeapolitanConfig.COMMON.chimpanzeeGroupChance.get() && canSpawnChimps) {
 					spawnChimps(level, pos);
 				}
 			}
@@ -125,7 +125,7 @@ public class BananaPlantFeature extends Feature<NoneFeatureConfiguration> {
 				int rareSusGravel = 0;
 				int commonSusGravel = 0;
 
-				int rareSusGravelMax = 2 + random.nextInt(2);
+				int rareSusGravelMax = NeapolitanConfig.COMMON.rareSuspiciousGravelMin.get() + random.nextInt(2);
 				int susGravelAmount = 8 + random.nextInt(3) + random.nextInt(2);
 
 				for (int x = -horizontalRange; x <= horizontalRange; x++) {
@@ -227,8 +227,10 @@ public class BananaPlantFeature extends Feature<NoneFeatureConfiguration> {
 		return true;
 	}
 
-	public static boolean isValidGround(LevelSimulatedReader worldIn, BlockPos pos) {
-		return worldIn.isStateAtPosition(pos, (state) -> state.is(Blocks.GRAVEL) || state.is(Blocks.SAND) || state.is(Blocks.GRASS_BLOCK));
+	public static boolean isValidGround(WorldGenLevel level, BlockPos pos) {
+		return level.isStateAtPosition(pos, (state) ->
+				(level.getBiome(pos).containsTag(NeapolitanBiomeTags.BANANA_PLANT_REQUIRES_SAND) && state.is(Blocks.SAND)) ||
+						(state.is(Blocks.GRAVEL) || state.is(Blocks.GRASS_BLOCK)));
 	}
 
 	public static boolean isGrass(LevelSimulatedReader worldIn, BlockPos pos) {
