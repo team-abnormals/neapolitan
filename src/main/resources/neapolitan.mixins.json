@@ -14,7 +14,9 @@
     "SpreadingSnowyDirtBlockMixin"
   ],
   "client": [
-    "client.HumanoidArmorLayerMixin"
+    "client.CustomHeadLayerMixin",
+    "client.HumanoidArmorLayerMixin",
+    "client.SkullBlockRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
