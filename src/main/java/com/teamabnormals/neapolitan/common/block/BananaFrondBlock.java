@@ -14,6 +14,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
@@ -87,11 +88,21 @@ public class BananaFrondBlock extends BushBlock implements BonemealableBlock {
 		} else if (state.is(NeapolitanBlocks.BANANA_FROND.get())) {
 			return BlockUtil.transferAllBlockStates(state, NeapolitanBlocks.LARGE_BANANA_FROND.get().defaultBlockState());
 		} else {
-			return this.defaultBlockState().setValue(FACING, direction).setValue(MOIST, direction == Direction.UP && canGrowOn(level.getBlockState(pos.below())) && canRainAt(level, pos));
+			return this.defaultBlockState().setValue(FACING, direction).setValue(MOIST, checkMoisture(direction, level, pos));
 		}
 	}
 
-	public static boolean canRainAt(Level level, BlockPos pos) {
+	@Override
+	public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos pos, BlockPos facingPos) {
+		level.scheduleTick(pos, this, 4);
+		return super.updateShape(state, facing, facingState, level, pos, facingPos);
+	}
+
+	public static boolean checkMoisture(Direction direction, LevelAccessor level, BlockPos pos) {
+		return direction == Direction.UP && canGrowOn(level.getBlockState(pos.below())) && canRainAt(level, pos);
+	}
+
+	public static boolean canRainAt(LevelAccessor level, BlockPos pos) {
 		if (!level.canSeeSky(pos)) {
 			return false;
 		} else if (level.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING, pos).getY() > pos.getY()) {
@@ -139,11 +150,21 @@ public class BananaFrondBlock extends BushBlock implements BonemealableBlock {
 
 	@Override
 	public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
+		level.scheduleTick(pos, this, 4);
 		if (state.getValue(MOIST) && level.isRainingAt(pos) && canGrowOn(level.getBlockState(pos.below()))) {
 			if (ForgeHooks.onCropsGrowPre(level, pos, state, rand.nextInt(2) == 0)) {
 				attemptGrowBanana(getSizeForFrond(rand, this), level, rand, pos);
 				ForgeHooks.onCropsGrowPost(level, pos, state);
 			}
+		}
+	}
+
+	@Override
+	public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+		boolean shouldBeMoist = checkMoisture(state.getValue(FACING), level, pos);
+		boolean moist = state.getValue(MOIST);
+		if ((shouldBeMoist && !moist) || (!shouldBeMoist && moist)) {
+			level.setBlockAndUpdate(pos, state.setValue(MOIST, shouldBeMoist));
 		}
 	}
 
