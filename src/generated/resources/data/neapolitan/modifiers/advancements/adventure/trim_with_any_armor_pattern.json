@@ -1,0 +1,28 @@
+{
+  "modifiers": [
+    {
+      "type": "criteria",
+      "config": {
+        "criteria": {
+          "neapolitan:armor_trimmed_neapolitan:primal_armor_trim_smithing_template": {
+            "conditions": {
+              "recipe_id": "neapolitan:primal_armor_trim_smithing_template"
+            },
+            "trigger": "minecraft:recipe_crafted"
+          }
+        },
+        "indexed_requirements": [
+          {
+            "index": 0,
+            "replace": false,
+            "requirements": [
+              "neapolitan:armor_trimmed_neapolitan:primal_armor_trim_smithing_template"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "priority": "normal",
+  "selector": "minecraft:adventure/trim_with_any_armor_pattern"
+}
