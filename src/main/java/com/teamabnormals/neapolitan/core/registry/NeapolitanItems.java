@@ -57,9 +57,9 @@ public class NeapolitanItems {
 	public static final RegistryObject<Item> BANANA_FROND = HELPER.createItem("banana_frond", () -> new ItemNameFuelBlockItem(NeapolitanBlocks.SMALL_BANANA_FROND.get(), 100, new Item.Properties()));
 	public static final RegistryObject<Item> DRIED_BANANA = HELPER.createItem("dried_banana", () -> new Item(new Item.Properties().food(NeapolitanFoods.DRIED_BANANA)));
 	public static final RegistryObject<Item> BANANA_BREAD = HELPER.createItem("banana_bread", () -> new Item(new Item.Properties().food(NeapolitanFoods.BANANA_BREAD)));
-	public static final RegistryObject<Item> BANANA_ICE_CREAM = HELPER.createItem("banana_ice_cream", () -> new IceCreamItem(new Item.Properties().food(NeapolitanFoods.BANANA_ICE_CREAM).stacksTo(1)));
+	public static final RegistryObject<Item> BANANA_ICE_CREAM = HELPER.createItem("banana_ice_cream", () -> new IceCreamItem(new Item.Properties().food(NeapolitanFoods.BANANA_ICE_CREAM).craftRemainder(Items.BOWL).stacksTo(1)));
 	public static final RegistryObject<Item> BANANA_CAKE = HELPER.createItem("banana_cake", () -> new BlockItem(NeapolitanBlocks.BANANA_CAKE.get(), new Item.Properties().stacksTo(1)));
-	public static final RegistryObject<Item> BANANA_MILKSHAKE = HELPER.createItem("banana_milkshake", () -> new MilkshakeItem(new Item.Properties().food(NeapolitanFoods.BANANA_MILKSHAKE).stacksTo(16)));
+	public static final RegistryObject<Item> BANANA_MILKSHAKE = HELPER.createItem("banana_milkshake", () -> new MilkshakeItem(new Item.Properties().food(NeapolitanFoods.BANANA_MILKSHAKE).craftRemainder(Items.GLASS_BOTTLE).stacksTo(16)));
 	public static final RegistryObject<Item> BANANARROW = HELPER.createItem("bananarrow", () -> new BananarrowItem(new Item.Properties()));
 
 	public static final RegistryObject<Item> MINT_SPROUT = HELPER.createItem("mint_sprout", () -> new ItemNameBlockItem(NeapolitanBlocks.MINT.get(), new Item.Properties()));
@@ -67,22 +67,22 @@ public class NeapolitanItems {
 	public static final RegistryObject<Item> MINT_CANDIES = HELPER.createItem("mint_candies", () -> new Item(new Item.Properties().food(NeapolitanFoods.MINT_CANDIES)));
 	public static final RegistryObject<Item> MINT_CHOPS = HELPER.createItem("mint_chops", () -> new Item(new Item.Properties().food(NeapolitanFoods.MINT_CHOPS)));
 	public static final RegistryObject<Item> COOKED_MINT_CHOPS = HELPER.createItem("cooked_mint_chops", () -> new Item(new Item.Properties().food(NeapolitanFoods.COOKED_MINT_CHOPS)));
-	public static final RegistryObject<Item> MINT_ICE_CREAM = HELPER.createItem("mint_ice_cream", () -> new IceCreamItem(new Item.Properties().food(NeapolitanFoods.MINT_ICE_CREAM).stacksTo(1)));
+	public static final RegistryObject<Item> MINT_ICE_CREAM = HELPER.createItem("mint_ice_cream", () -> new IceCreamItem(new Item.Properties().food(NeapolitanFoods.MINT_ICE_CREAM).craftRemainder(Items.BOWL).stacksTo(1)));
 	public static final RegistryObject<Item> MINT_CAKE = HELPER.createItem("mint_cake", () -> new BlockItem(NeapolitanBlocks.MINT_CAKE.get(), new Item.Properties().stacksTo(1)));
-	public static final RegistryObject<Item> MINT_MILKSHAKE = HELPER.createItem("mint_milkshake", () -> new MilkshakeItem(new Item.Properties().food(NeapolitanFoods.MINT_MILKSHAKE).stacksTo(16)));
+	public static final RegistryObject<Item> MINT_MILKSHAKE = HELPER.createItem("mint_milkshake", () -> new MilkshakeItem(new Item.Properties().food(NeapolitanFoods.MINT_MILKSHAKE).craftRemainder(Items.GLASS_BOTTLE).stacksTo(16)));
 
 	public static final RegistryObject<Item> ADZUKI_BEANS = HELPER.createItem("adzuki_beans", () -> new AdzukiBeansItem(false, new Item.Properties()));
 	public static final RegistryObject<Item> ROASTED_ADZUKI_BEANS = HELPER.createItem("roasted_adzuki_beans", () -> new Item(new Item.Properties().food(NeapolitanFoods.ROASTED_ADZUKI_BEANS)));
 	public static final RegistryObject<Item> ADZUKI_BUN = HELPER.createItem("adzuki_bun", () -> new Item(new Item.Properties().food(NeapolitanFoods.ADZUKI_BUN)));
 	public static final RegistryObject<Item> ADZUKI_STEW = HELPER.createItem("adzuki_stew", () -> new BowlFoodItem(new Item.Properties().food(NeapolitanFoods.ADZUKI_STEW).stacksTo(1)));
-	public static final RegistryObject<Item> ADZUKI_ICE_CREAM = HELPER.createItem("adzuki_ice_cream", () -> new IceCreamItem(new Item.Properties().food(NeapolitanFoods.ADZUKI_ICE_CREAM).stacksTo(1)));
+	public static final RegistryObject<Item> ADZUKI_ICE_CREAM = HELPER.createItem("adzuki_ice_cream", () -> new IceCreamItem(new Item.Properties().food(NeapolitanFoods.ADZUKI_ICE_CREAM).craftRemainder(Items.BOWL).stacksTo(1)));
 	public static final RegistryObject<Item> ADZUKI_CAKE = HELPER.createItem("adzuki_cake", () -> new BlockItem(NeapolitanBlocks.ADZUKI_CAKE.get(), new Item.Properties().stacksTo(1)));
-	public static final RegistryObject<Item> ADZUKI_MILKSHAKE = HELPER.createItem("adzuki_milkshake", () -> new MilkshakeItem(new Item.Properties().food(NeapolitanFoods.ADZUKI_MILKSHAKE).stacksTo(16)));
+	public static final RegistryObject<Item> ADZUKI_MILKSHAKE = HELPER.createItem("adzuki_milkshake", () -> new MilkshakeItem(new Item.Properties().food(NeapolitanFoods.ADZUKI_MILKSHAKE).craftRemainder(Items.GLASS_BOTTLE).stacksTo(16)));
 	public static final RegistryObject<Item> MAGIC_BEANS = HELPER.createItem("magic_beans", () -> new AdzukiBeansItem(true, new Item.Properties()));
 
 	public static final RegistryObject<Item> VANILLA_CHOCOLATE_FINGERS = HELPER.createItem("vanilla_chocolate_fingers", () -> new Item(new Item.Properties().food(NeapolitanFoods.VANILLA_CHOCOLATE_FINGERS)));
 	public static final RegistryObject<Item> CHOCOLATE_STRAWBERRIES = HELPER.createItem("chocolate_strawberries", () -> new HealingItem(1.0F, new Item.Properties().food(NeapolitanFoods.CHOCOLATE_STRAWBERRIES)));
-	public static final RegistryObject<Item> STRAWBERRY_BANANA_SMOOTHIE = HELPER.createItem("strawberry_banana_smoothie", () -> new HealingDrinkItem(2.0F, new Item.Properties().food(NeapolitanFoods.STRAWBERRY_BANANA_SMOOTHIE).stacksTo(16)));
+	public static final RegistryObject<Item> STRAWBERRY_BANANA_SMOOTHIE = HELPER.createItem("strawberry_banana_smoothie", () -> new HealingDrinkItem(2.0F, new Item.Properties().food(NeapolitanFoods.STRAWBERRY_BANANA_SMOOTHIE).craftRemainder(Items.GLASS_BOTTLE).stacksTo(16)));
 	public static final RegistryObject<Item> MINT_CHOCOLATE = HELPER.createItem("mint_chocolate", () -> new Item(new Item.Properties().food(NeapolitanFoods.MINT_CHOCOLATE)));
 	public static final RegistryObject<Item> STRAWBERRY_BEAN_BONBONS = HELPER.createItem("strawberry_bean_bonbons", () -> new HealingItem(2.0F, new Item.Properties().food(NeapolitanFoods.STRAWBERRY_BEAN_BONBONS)));
 	public static final RegistryObject<Item> ADZUKI_CURRY = HELPER.createItem("adzuki_curry", () -> new BowlFoodItem(new Item.Properties().food(NeapolitanFoods.ADZUKI_CURRY).stacksTo(1)));
