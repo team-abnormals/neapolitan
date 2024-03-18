@@ -1,0 +1,35 @@
+{
+  "modifiers": [
+    {
+      "type": "criteria",
+      "config": {
+        "criteria": {
+          "neapolitan:banana_plant_common": {
+            "conditions": {
+              "loot_table": "neapolitan:archaeology/banana_plant_common"
+            },
+            "trigger": "minecraft:player_generates_container_loot"
+          },
+          "neapolitan:banana_plant_rare": {
+            "conditions": {
+              "loot_table": "neapolitan:archaeology/banana_plant_rare"
+            },
+            "trigger": "minecraft:player_generates_container_loot"
+          }
+        },
+        "indexed_requirements": [
+          {
+            "index": 0,
+            "replace": false,
+            "requirements": [
+              "neapolitan:banana_plant_common",
+              "neapolitan:banana_plant_rare"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "priority": "normal",
+  "selector": "minecraft:adventure/salvage_sherd"
+}

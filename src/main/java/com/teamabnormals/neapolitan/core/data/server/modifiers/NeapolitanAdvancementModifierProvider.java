@@ -4,6 +4,7 @@ import com.teamabnormals.blueprint.common.advancement.modification.AdvancementMo
 import com.teamabnormals.blueprint.common.advancement.modification.modifiers.CriteriaModifier;
 import com.teamabnormals.blueprint.common.advancement.modification.modifiers.EffectsChangedModifier;
 import com.teamabnormals.neapolitan.core.Neapolitan;
+import com.teamabnormals.neapolitan.core.other.NeapolitanLootTables;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanEntityTypes;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
@@ -14,6 +15,7 @@ import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.apache.commons.compress.utils.Lists;
@@ -56,6 +58,11 @@ public class NeapolitanAdvancementModifierProvider extends AdvancementModifierPr
 				.addCriterion("mint", ItemUsedOnLocationTrigger.TriggerInstance.placedBlock(NeapolitanBlocks.MINT.get()))
 				.addCriterion("adzuki_soil", ItemUsedOnLocationTrigger.TriggerInstance.placedBlock(NeapolitanBlocks.ADZUKI_SOIL.get()))
 				.addIndexedRequirements(0, false, "strawberry_bush", "mint", "adzuki_soil").build());
+
+		this.entry("adventure/salvage_sherd").selects("adventure/salvage_sherd").addModifier(CriteriaModifier.builder(this.modId)
+				.addCriterion("banana_plant_common", LootTableTrigger.TriggerInstance.lootTableUsed(NeapolitanLootTables.BANANA_PLANT_ARCHAEOLOGY_COMMON))
+				.addCriterion("banana_plant_rare", LootTableTrigger.TriggerInstance.lootTableUsed(NeapolitanLootTables.BANANA_PLANT_ARCHAEOLOGY_RARE))
+				.addIndexedRequirements(0, false, "banana_plant_common", "banana_plant_rare").build());
 
 		CriteriaModifier.Builder killAMob = CriteriaModifier.builder(this.modId);
 		CriteriaModifier.Builder killAllMobs = CriteriaModifier.builder(this.modId);
