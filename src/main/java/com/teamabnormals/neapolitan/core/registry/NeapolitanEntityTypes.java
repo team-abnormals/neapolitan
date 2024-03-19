@@ -11,6 +11,8 @@ import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
+import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
+import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent.Operation;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.registries.RegistryObject;
@@ -30,8 +32,9 @@ public class NeapolitanEntityTypes {
 		event.put(CHIMPANZEE.get(), Chimpanzee.registerAttributes().build());
 	}
 
-	public static void registerEntitySpawns() {
-		SpawnPlacements.register(PLANTAIN_SPIDER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, PlantainSpider::canPlantainSpiderSpawn);
-		SpawnPlacements.register(CHIMPANZEE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, Chimpanzee::canChimpanzeeSpawn);
+	@SubscribeEvent
+	public static void registerEntityAttributes(SpawnPlacementRegisterEvent event) {
+		event.register(PLANTAIN_SPIDER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, PlantainSpider::canPlantainSpiderSpawn, Operation.AND);
+		event.register(CHIMPANZEE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, Chimpanzee::canChimpanzeeSpawn, Operation.AND);
 	}
 }
