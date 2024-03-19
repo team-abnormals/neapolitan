@@ -5,7 +5,6 @@
   "block.neapolitan.banana_ice_cream_block": "Блок бананового морозива",
   "block.neapolitan.mint_ice_cream_block": "Блок м'ятного морозива",
   "block.neapolitan.adzuki_ice_cream_block": "Блок квасолевого морозива",
-
   "block.neapolitan.milk_cauldron": "Казан молока",
   "block.neapolitan.vanilla_milkshake_cauldron": "Казан ванільного молочного коктейлю",
   "block.neapolitan.chocolate_milkshake_cauldron": "Казан шоколадного молочного коктейлю",
@@ -13,27 +12,19 @@
   "block.neapolitan.banana_milkshake_cauldron": "Казан бананового молочного коктейлю",
   "block.neapolitan.mint_milkshake_cauldron": "Казан м'ятного молочного коктейлю",
   "block.neapolitan.adzuki_milkshake_cauldron": "Казан квасолевого молочного коктейлю",
-
   "block.neapolitan.chocolate_block": "Шоколадний блок",
   "block.neapolitan.chocolate_bricks": "Шоколадна цегла",
   "block.neapolitan.chocolate_brick_slab": "Плита із шоколадної цегли",
   "block.neapolitan.chocolate_brick_stairs": "Сходи із шоколадної цегли",
   "block.neapolitan.chocolate_brick_wall": "Стіна із шоколадної цегли",
-  "block.neapolitan.chocolate_brick_vertical_slab": "Вертикальна плита із шоколадної цегли",
-
   "block.neapolitan.chiseled_chocolate_bricks": "Різьблена шоколадна цегла",
-
   "block.neapolitan.chocolate_tiles": "Шоколадні кахлі",
   "block.neapolitan.chocolate_tile_slab": "Плита із шоколадних кахлів",
   "block.neapolitan.chocolate_tile_stairs": "Сходи із шоколадних кахлів",
   "block.neapolitan.chocolate_tile_wall": "Стіна із шоколадних кахлів",
-  "block.neapolitan.chocolate_tile_vertical_slab": "Вертикальна плита із шоколадних кахлів",
-
   "block.neapolitan.frond_thatch": "Вайєва покрівля",
   "block.neapolitan.frond_thatch_stairs": "Сходи з вайєвої покрівлі",
   "block.neapolitan.frond_thatch_slab": "Плита з вайєвої покрівлі",
-  "block.neapolitan.frond_thatch_vertical_slab": "Вертикальна плита з вайєвої покрівлі",
-
   "block.neapolitan.strawberry_basket": "Кошик полуниці",
   "block.neapolitan.white_strawberry_basket": "Кошик білої полуниці",
   "block.neapolitan.vanilla_pod_block": "Блок стручків ванілі",
@@ -42,35 +33,29 @@
   "block.neapolitan.mint_basket": "Кошик м'яти",
   "block.neapolitan.adzuki_crate": "Ящик квасолі",
   "block.neapolitan.roasted_adzuki_crate": "Ящик смаженої квасолі",
-
   "block.neapolitan.strawberry_bush": "Полуничний кущ",
   "block.neapolitan.vanilla_vine": "Ванільна лоза",
   "block.neapolitan.vanilla_vine_plant": "Ванільна лоза",
   "block.neapolitan.potted_vanilla_vine": "Ванільна лоза в горщику",
   "block.neapolitan.mint": "М'ята",
   "block.neapolitan.potted_mint": "М'ята в горщику",
-
   "block.neapolitan.banana_stalk": "Бананове стебло",
   "block.neapolitan.carved_banana_stalk": "Різьблене бананове стебло",
   "block.neapolitan.banana_bundle": "В'язка бананів",
-
   "block.neapolitan.small_banana_frond": "Мала бананова вайя",
   "block.neapolitan.banana_frond": "Бананова вайя",
   "block.neapolitan.large_banana_frond": "Велика бананова вайя",
   "block.neapolitan.potted_banana_frond": "Бананова вайя в горщику",
-
   "block.neapolitan.adzuki_sprouts": "Паростки квасолі",
   "block.neapolitan.adzuki_soil": "Квасолевий ґрунт",
   "block.neapolitan.beanstalk": "Квасолеве стебло",
   "block.neapolitan.beanstalk_thorns": "Колючки квасолевого стебла",
-
   "block.neapolitan.chocolate_cake": "Шоколадний торт",
   "block.neapolitan.strawberry_cake": "Полуничний торт",
   "block.neapolitan.vanilla_cake": "Ванільний торт",
   "block.neapolitan.banana_cake": "Банановий торт",
   "block.neapolitan.mint_cake": "М'ятний торт",
   "block.neapolitan.adzuki_cake": "Квасолевий торт",
-
   "block.neapolitan.adzuki_candle_cake": "Квасолевий торт зі свічкою",
   "block.neapolitan.banana_candle_cake": "Банановий торт зі свічкою",
   "block.neapolitan.black_adzuki_candle_cake": "Квасолевий торт із чорною свічкою",
@@ -173,30 +158,24 @@
   "block.neapolitan.yellow_mint_candle_cake": "М'ятний торт із жовтою свічкою",
   "block.neapolitan.yellow_strawberry_candle_cake": "Полуничний торт із жовтою свічкою",
   "block.neapolitan.yellow_vanilla_candle_cake": "Ванільний торт із жовтою свічкою",
-
   "block.neapolitan.chimpanzee_head": "Голова шимпанзе",
-
   "item.neapolitan.milk_bottle": "Пляшка молока",
   "item.neapolitan.ice_cubes": "Кубики льоду",
-
   "item.neapolitan.chocolate_bar": "Плитка шоколаду",
   "item.neapolitan.chocolate_ice_cream": "Шоколадне морозиво",
   "item.neapolitan.chocolate_milkshake": "Шоколадний молочний коктейль",
   "item.neapolitan.chocolate_spider_eye": "Павуче око в шоколаді",
-
   "item.neapolitan.strawberry_pips": "Кісточки полуниці",
   "item.neapolitan.strawberries": "Полуниця",
   "item.neapolitan.strawberry_ice_cream": "Полуничне морозиво",
   "item.neapolitan.strawberry_scones": "Полуничні скони",
   "item.neapolitan.strawberry_milkshake": "Полуничний молочний коктейль",
-
   "item.neapolitan.vanilla_pods": "Стручки ванілі",
   "item.neapolitan.dried_vanilla_pods": "Висушені стручки ванілі",
   "item.neapolitan.vanilla_ice_cream": "Ванільне морозиво",
   "item.neapolitan.vanilla_pudding": "Ванільний пудинг",
   "item.neapolitan.vanilla_milkshake": "Ванільний молочний коктейль",
   "item.neapolitan.vanilla_fudge": "Ванільний фадж",
-
   "item.neapolitan.banana": "Банан",
   "item.neapolitan.banana_bunch": "В'язка бананів",
   "item.neapolitan.banana_frond": "Бананова вайя",
@@ -205,7 +184,6 @@
   "item.neapolitan.banana_milkshake": "Банановий молочний коктейль",
   "item.neapolitan.banana_bread": "Банановий хліб",
   "item.neapolitan.bananarrow": "Бананостріла",
-
   "item.neapolitan.mint_sprout": "Паросток м'яти",
   "item.neapolitan.mint_leaves": "М'ятне листя",
   "item.neapolitan.mint_chops": "Сирі м'ятні відбивні",
@@ -213,15 +191,13 @@
   "item.neapolitan.mint_ice_cream": "М'ятне морозиво",
   "item.neapolitan.mint_milkshake": "М'ятний молочний коктейль",
   "item.neapolitan.mint_candies": "М'ятні цукерки",
-
   "item.neapolitan.adzuki_beans": "Квасоля",
   "item.neapolitan.roasted_adzuki_beans": "Смажена квасоля",
-  "item.neapolitan.adzuki_bun": "Квасолева булочка",
+  "item.neapolitan.adzuki_bun": "Квасолева булка",
   "item.neapolitan.adzuki_stew": "Тушкована квасоля",
   "item.neapolitan.adzuki_ice_cream": "Квасолеве морозиво",
   "item.neapolitan.adzuki_milkshake": "Квасолевий молочний коктейль",
   "item.neapolitan.magic_beans": "Чарівні боби",
-
   "item.neapolitan.chocolate_strawberries": "Полуниця в шоколаді",
   "item.neapolitan.white_strawberries": "Біла полуниця",
   "item.neapolitan.vanilla_chocolate_fingers": "Ванільно-шоколадні пальчики",
@@ -230,57 +206,55 @@
   "item.neapolitan.strawberry_bean_bonbons": "Полунично-бобові бонбони",
   "item.neapolitan.adzuki_curry": "Квасолеве карі",
   "item.neapolitan.neapolitan_ice_cream": "Неаполітанське морозиво",
-
   "item.neapolitan.music_disc_hullabaloo": "Платівка",
   "item.neapolitan.music_disc_hullabaloo.desc": "RENREN — Hullabaloo",
   "item.neapolitan.chimpanzee_banner_pattern": "Шаблон стяга",
   "item.neapolitan.chimpanzee_banner_pattern.desc": "Шимпанзе",
-
+  "trim_pattern.neapolitan.primal": "Орнамент обладунків «Первісність»",
+  "item.neapolitan.reflection_pottery_sherd": "Гончарний черепок «Роздуми»",
+  "item.neapolitan.scream_pottery_sherd": "Гончарний черепок «Крик»",
+  "item.neapolitan.snack_pottery_sherd": "Гончарний черепок «Перекус»",
+  "item.neapolitan.spider_pottery_sherd": "Гончарний черепок «Павук»",
   "item.neapolitan.chimpanzee_spawn_egg": "Яйце виклику шимпанзе",
   "item.neapolitan.plantain_spider_spawn_egg": "Яйце виклику бананового павука",
-
+  "painting.neapolitan.cone.author": "five",
+  "painting.neapolitan.cone.title": "Конус",
+  "painting.neapolitan.scream.author": "five",
+  "painting.neapolitan.scream.title": "Крик",
+  "painting.neapolitan.dawn.author": "five",
+  "painting.neapolitan.dawn.title": "Світанок",
   "entity.neapolitan.banana_peel": "Бананова шкірка",
   "entity.neapolitan.chimpanzee": "Шимпанзе",
   "entity.neapolitan.plantain_spider": "Банановий павук",
   "entity.neapolitan.bananarrow": "Бананостріла",
-
   "effect.neapolitan.sugar_rush": "Цукровий прилив",
   "effect.neapolitan.vanilla_scent": "Ванільний аромат",
   "effect.neapolitan.agility": "Моторність",
   "effect.neapolitan.slipping": "Ковзання",
-  "effect.neapolitan.berserking": "Берсеркінг",
+  "effect.neapolitan.berserking": "Берсерк",
   "effect.neapolitan.harmony": "Гармонія",
-
   "advancements.neapolitan.husbandry.creeper_heal.title": "Вибухове кохання",
-  "advancements.neapolitan.husbandry.creeper_heal.description": "Отримайте зцілення від кріпера, що вибухнув всередині полуничного куща",
-
+  "advancements.neapolitan.husbandry.creeper_heal.description": "Отримайте зцілення від кріпера, що вибухнув усередині полуничного куща",
   "advancements.neapolitan.husbandry.vanilla_poison.title": "Ванільний убивця",
   "advancements.neapolitan.husbandry.vanilla_poison.description": "Зламайте ваніль ножицями, щоб запобігти вивільненню шкідливої аури",
-
   "advancements.neapolitan.husbandry.place_all_chocolate_blocks.title": "Чарлі та шоколадна фабрика",
   "advancements.neapolitan.husbandry.place_all_chocolate_blocks.description": "Розмістіть кожен різновид шоколадного блока",
-
   "advancements.neapolitan.husbandry.harvest_white_strawberries.title": "Пікнік у хмарах",
   "advancements.neapolitan.husbandry.harvest_white_strawberries.description": "Отримайте білі полуниці виростивши полуничні кущі на великій висоті",
-
-  "advancements.neapolitan.adventure.chimpanzee_attack.title": "Я руда мавпа",
+  "advancements.neapolitan.adventure.chimpanzee_attack.title": "Бананова указка",
   "advancements.neapolitan.adventure.chimpanzee_attack.description": "Використайте бананострілу, щоб відправити шимпанзе за іншим мобом",
-
   "death.attack.neapolitan.beanstalkThorns": "%1$s проткнуто до смерті шипами квасолевого стебла",
   "death.attack.neapolitan.beanstalkThorns.player": "%1$s проткнуто до смерті шипами квасолевого стебла під час спроби втекти від %2$s",
-
   "subtitles.neapolitan.entity.chimpanzee.scream": "Шимпанзе кричить",
   "subtitles.neapolitan.entity.chimpanzee.death": "Шимпанзе гине",
   "subtitles.neapolitan.entity.chimpanzee.eat": "Шимпанзе їсть",
   "subtitles.neapolitan.entity.chimpanzee.howl": "Шимпанзе виє",
   "subtitles.neapolitan.entity.chimpanzee.hurt": "Шимпанзе поранено",
   "subtitles.neapolitan.entity.chimpanzee.ambient": "Шимпанзе ууу-ууу ааа-ааакає",
-  "subtitles.neapolitan.entity.chimpanzee.step": "Шимпанзе ходить",
+  "subtitles.neapolitan.entity.chimpanzee.step": "Шимпанзе крокує",
   "subtitles.neapolitan.entity.chimpanzee.swing": "Шимпанзе качається",
-
   "subtitles.neapolitan.item.ice_cubes.eat": "Хрумкіт",
   "subtitles.neapolitan.item.banana_bunch.open": "В'язка бананів відкривається",
-
   "block.minecraft.banner.neapolitan.chimpanzee.black": "Чорний шимпанзе",
   "block.minecraft.banner.neapolitan.chimpanzee.red": "Червоний шимпанзе",
   "block.minecraft.banner.neapolitan.chimpanzee.green": "Зелений шимпанзе",
