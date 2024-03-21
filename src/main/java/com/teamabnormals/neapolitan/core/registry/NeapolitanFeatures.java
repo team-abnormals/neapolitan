@@ -42,11 +42,11 @@ public class NeapolitanFeatures {
 		public static final ResourceKey<ConfiguredFeature<?, ?>> BANANA_PLANT = createKey("banana_plant");
 
 		public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
-			register(context, PATCH_STRAWBERRY_BUSH, () -> new ConfiguredFeature<>(Feature.RANDOM_PATCH, new RandomPatchConfiguration(512, 5, 3, PlacementUtils.filtered(STRAWBERRY_BUSH.get(), new SimpleBlockConfiguration(BlockStateProvider.simple(NeapolitanBlocks.STRAWBERRY_BUSH.get().defaultBlockState())), simplePatchPredicate(List.of(Blocks.GRASS_BLOCK, Blocks.COARSE_DIRT))))));
-			register(context, PATCH_VANILLA_VINE, () -> new ConfiguredFeature<>(NeapolitanFeatures.VANILLA_VINE_PATCH.get(), new RandomPatchConfiguration(64, 7, 3, PlacementUtils.filtered(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(NeapolitanBlocks.VANILLA_VINE.get().defaultBlockState())), BlockPredicate.allOf(BlockPredicate.replaceable(), BlockPredicate.ONLY_IN_AIR_PREDICATE)))));
-			register(context, PATCH_ADZUKI_SPROUTS, () -> new ConfiguredFeature<>(Feature.RANDOM_PATCH, new RandomPatchConfiguration(256, 3, 2, PlacementUtils.filtered(ADZUKI_SPROUTS.get(), new SimpleBlockConfiguration(BlockStateProvider.simple(NeapolitanBlocks.ADZUKI_SPROUTS.get().defaultBlockState())), simplePatchPredicate(List.of(Blocks.GRASS_BLOCK))))));
-			register(context, MINT_POND, () -> new ConfiguredFeature<>(NeapolitanFeatures.MINT_POND.get(), FeatureConfiguration.NONE));
-			register(context, BANANA_PLANT, () -> new ConfiguredFeature<>(NeapolitanFeatures.BANANA_PLANT.get(), FeatureConfiguration.NONE));
+			register(context, PATCH_STRAWBERRY_BUSH, Feature.RANDOM_PATCH, new RandomPatchConfiguration(512, 5, 3, PlacementUtils.filtered(STRAWBERRY_BUSH.get(), new SimpleBlockConfiguration(BlockStateProvider.simple(NeapolitanBlocks.STRAWBERRY_BUSH.get().defaultBlockState())), simplePatchPredicate(List.of(Blocks.GRASS_BLOCK, Blocks.COARSE_DIRT)))));
+			register(context, PATCH_VANILLA_VINE, NeapolitanFeatures.VANILLA_VINE_PATCH.get(), new RandomPatchConfiguration(64, 7, 3, PlacementUtils.filtered(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(NeapolitanBlocks.VANILLA_VINE.get().defaultBlockState())), BlockPredicate.allOf(BlockPredicate.replaceable(), BlockPredicate.ONLY_IN_AIR_PREDICATE))));
+			register(context, PATCH_ADZUKI_SPROUTS, Feature.RANDOM_PATCH, new RandomPatchConfiguration(256, 3, 2, PlacementUtils.filtered(ADZUKI_SPROUTS.get(), new SimpleBlockConfiguration(BlockStateProvider.simple(NeapolitanBlocks.ADZUKI_SPROUTS.get().defaultBlockState())), simplePatchPredicate(List.of(Blocks.GRASS_BLOCK)))));
+			register(context, MINT_POND, NeapolitanFeatures.MINT_POND.get(), FeatureConfiguration.NONE);
+			register(context, BANANA_PLANT, NeapolitanFeatures.BANANA_PLANT.get(), FeatureConfiguration.NONE);
 		}
 
 		private static BlockPredicate simplePatchPredicate(List<Block> matchBlocks) {
@@ -64,8 +64,8 @@ public class NeapolitanFeatures {
 			return ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(Neapolitan.MOD_ID, name));
 		}
 
-		public static void register(BootstapContext<ConfiguredFeature<?, ?>> context, ResourceKey<ConfiguredFeature<?, ?>> key, Supplier<? extends ConfiguredFeature<?, ?>> configuredFeature) {
-			context.register(key, configuredFeature.get());
+		public static <FC extends FeatureConfiguration, F extends Feature<FC>> void register(BootstapContext<ConfiguredFeature<?, ?>> context, ResourceKey<ConfiguredFeature<?, ?>> key, F feature, FC config) {
+			context.register(key, new ConfiguredFeature<>(feature, config));
 		}
 	}
 

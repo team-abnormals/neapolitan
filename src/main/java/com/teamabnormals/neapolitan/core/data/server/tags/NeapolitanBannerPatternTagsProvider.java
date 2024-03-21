@@ -18,7 +18,7 @@ public class NeapolitanBannerPatternTagsProvider extends BannerPatternTagsProvid
 	}
 
 	@Override
-	public void addTags(HolderLookup.Provider provider) {
+	public void addTags(Provider provider) {
 		this.tag(NeapolitanBannerPatternTags.PATTERN_ITEM_CHIMPANZEE).add(NeapolitanBannerPatterns.CHIMPANZEE.getKey());
 	}
 }

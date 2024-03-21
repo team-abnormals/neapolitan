@@ -33,7 +33,7 @@ public class NeapolitanEntityTypes {
 	}
 
 	@SubscribeEvent
-	public static void registerEntityAttributes(SpawnPlacementRegisterEvent event) {
+	public static void registerEntitySpawnPlacements(SpawnPlacementRegisterEvent event) {
 		event.register(PLANTAIN_SPIDER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, PlantainSpider::canPlantainSpiderSpawn, Operation.AND);
 		event.register(CHIMPANZEE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, Chimpanzee::canChimpanzeeSpawn, Operation.AND);
 	}
