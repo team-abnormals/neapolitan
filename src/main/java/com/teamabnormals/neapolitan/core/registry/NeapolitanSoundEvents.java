@@ -28,6 +28,6 @@ public class NeapolitanSoundEvents {
 	public static final RegistryObject<SoundEvent> BANANA_BUNCH_OPEN = HELPER.createSoundEvent("item.banana_bunch.open");
 
 	public static void registerNoteBlocks() {
-		DataUtil.registerNoteBlockInstrument(new CustomNoteBlockInstrument(Neapolitan.MOD_ID, source -> source.getLevel().getBlockState(source.getPos().above(2)).is(NeapolitanBlocks.CHIMPANZEE_HEAD.get()), NOTE_BLOCK_IMITATE_CHIMPANZEE.get()));
+		DataUtil.registerNoteBlockInstrument(new CustomNoteBlockInstrument(Neapolitan.MOD_ID, source -> source.getBlockState().is(NeapolitanBlocks.CHIMPANZEE_HEAD.get()), NOTE_BLOCK_IMITATE_CHIMPANZEE.get(), true));
 	}
 }

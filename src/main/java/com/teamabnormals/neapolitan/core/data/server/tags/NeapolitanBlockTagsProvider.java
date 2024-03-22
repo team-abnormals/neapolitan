@@ -1,8 +1,10 @@
 package com.teamabnormals.neapolitan.core.data.server.tags;
 
+import com.teamabnormals.blueprint.core.other.tags.BlueprintBlockTags;
 import com.teamabnormals.neapolitan.common.block.FlavoredCandleCakeBlock;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanBlockTags;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
@@ -32,6 +34,8 @@ public class NeapolitanBlockTagsProvider extends BlockTagsProvider {
 		this.tag(BlockTags.STAIRS).add(CHOCOLATE_BRICK_STAIRS.get(), CHOCOLATE_TILE_STAIRS.get(), FROND_THATCH_STAIRS.get());
 		this.tag(BlockTags.WALLS).add(CHOCOLATE_BRICK_WALL.get(), CHOCOLATE_TILE_WALL.get());
 		this.tag(BlockTags.FLOWER_POTS).add(POTTED_VANILLA_VINE.get(), POTTED_MINT.get(), POTTED_BANANA_FROND.get());
+
+		this.tag(BlueprintBlockTags.NOTE_BLOCK_TOP_INSTRUMENTS).add(CHIMPANZEE_HEAD.get());
 
 		this.tag(NeapolitanBlockTags.CHIMPANZEE_JUMPING_BLOCKS).addTag(BlockTags.BEDS).add(Blocks.SLIME_BLOCK);
 		this.tag(NeapolitanBlockTags.UNAFFECTED_BY_MINT).add(MINT.get());

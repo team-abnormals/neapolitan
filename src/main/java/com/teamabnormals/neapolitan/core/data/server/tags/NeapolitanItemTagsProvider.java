@@ -1,5 +1,6 @@
 package com.teamabnormals.neapolitan.core.data.server.tags;
 
+import com.teamabnormals.blueprint.core.other.tags.BlueprintBlockTags;
 import com.teamabnormals.blueprint.core.other.tags.BlueprintItemTags;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.other.NeapolitanConstants;
@@ -33,11 +34,11 @@ public class NeapolitanItemTagsProvider extends ItemTagsProvider {
 		this.tag(ItemTags.FOX_FOOD).add(STRAWBERRIES.get(), WHITE_STRAWBERRIES.get());
 		this.tag(ItemTags.MUSIC_DISCS).add(MUSIC_DISC_HULLABALOO.get());
 		this.tag(ItemTags.DECORATED_POT_SHERDS).add(REFLECTION_POTTERY_SHERD.get(), SCREAM_POTTERY_SHERD.get(), SPIDER_POTTERY_SHERD.get(), SNACK_POTTERY_SHERD.get());
-		this.tag(ItemTags.NOTE_BLOCK_TOP_INSTRUMENTS).add(NeapolitanBlocks.CHIMPANZEE_HEAD.get().asItem());
 		this.tag(ItemTags.TRIM_TEMPLATES).add(PRIMAL_ARMOR_TRIM_SMITHING_TEMPLATE.get());
 		this.copy(BlockTags.SLABS, ItemTags.SLABS);
 		this.copy(BlockTags.STAIRS, ItemTags.STAIRS);
 		this.copy(BlockTags.WALLS, ItemTags.WALLS);
+		this.copy(BlueprintBlockTags.NOTE_BLOCK_TOP_INSTRUMENTS, ItemTags.NOTE_BLOCK_TOP_INSTRUMENTS);
 
 		this.tag(NeapolitanItemTags.CHIMPANZEE_APE_MODE_ITEMS).addOptional(NeapolitanConstants.WARM_MONKEY_BRUSH).addOptional(NeapolitanConstants.HOT_MONKEY_BRUSH).addOptional(NeapolitanConstants.SCALDING_MONKEY_BRUSH);
 		this.tag(NeapolitanItemTags.CHIMPANZEE_FAVORITES).add(Items.STICK, Items.BAMBOO, BANANA_FROND.get());
