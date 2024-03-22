@@ -1,4 +1,4 @@
-package com.teamabnormals.neapolitan.core.data.server.modifiers;
+package com.teamabnormals.neapolitan.core.other;
 
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanBiomeTags;
@@ -16,13 +16,12 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraftforge.common.world.BiomeModifier;
 import net.minecraftforge.common.world.ForgeBiomeModifiers.AddFeaturesBiomeModifier;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
 
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class NeapolitanBiomeModifierProvider {
+public class NeapolitanBiomeModifiers {
 
 	public static void bootstrap(BootstapContext<BiomeModifier> context) {
 		addFeature(context, "strawberry_bush", NeapolitanBiomeTags.HAS_STRAWBERRY_BUSH, GenerationStep.Decoration.VEGETAL_DECORATION, NeapolitanPlacedFeatures.PATCH_STRAWBERRY_BUSH);
