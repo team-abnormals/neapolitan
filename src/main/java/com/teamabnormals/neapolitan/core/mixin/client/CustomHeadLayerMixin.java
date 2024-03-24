@@ -26,7 +26,7 @@ public abstract class CustomHeadLayerMixin<T extends LivingEntity, M extends Ent
 	@Inject(at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/vertex/PoseStack;scale(FFF)V", ordinal = 2, shift = Shift.AFTER), method = "render(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;ILnet/minecraft/world/entity/LivingEntity;FFFFFF)V")
 	private void renderSkull(PoseStack stack, MultiBufferSource source, int p_116733_, T entity, float p_116735_, float p_116736_, float p_116737_, float p_116738_, float p_116739_, float p_116740_, CallbackInfo ci) {
 		if (entity.getItemBySlot(EquipmentSlot.HEAD).is(NeapolitanItems.CHIMPANZEE_HEAD.get())) {
-			stack.scale(1.0F, 1.0F, 1.2F);
+			stack.scale(1.0F, 1.0F, 1.28F);
 		}
 	}
 }
