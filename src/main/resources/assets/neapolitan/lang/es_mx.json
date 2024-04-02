@@ -19,7 +19,6 @@
   "block.neapolitan.chocolate_brick_slab": "Losa de ladrillos de chocolate",
   "block.neapolitan.chocolate_brick_stairs": "Escaleras de ladrillos de chocolate",
   "block.neapolitan.chocolate_brick_wall": "Pared de ladrillos de chocolate",
-  "block.neapolitan.chocolate_brick_vertical_slab": "Losa vertical de ladrillos de chocolate",
 
   "block.neapolitan.chiseled_chocolate_bricks": "Ladrillos de chocolate grabados",
 
@@ -27,12 +26,10 @@
   "block.neapolitan.chocolate_tile_slab": "Losa de azulejo de chocolate",
   "block.neapolitan.chocolate_tile_stairs": "Escaleras de azulejo de chocolate",
   "block.neapolitan.chocolate_tile_wall": "Pared de azulejo de chocolate",
-  "block.neapolitan.chocolate_tile_vertical_slab": "Losa vertical de azulejo de chocolate",
 
   "block.neapolitan.frond_thatch": "Paja de hojas de plátano",
   "block.neapolitan.frond_thatch_stairs": "Escaleras de paja de hojas de plátano",
   "block.neapolitan.frond_thatch_slab": "Losa de paja de hojas de plátano",
-  "block.neapolitan.frond_thatch_vertical_slab": "Losa vertical de paja de hojas de plátano",
 
   "block.neapolitan.strawberry_basket": "Canasta de fresas",
   "block.neapolitan.white_strawberry_basket": "Canasta de fresas blancas",
@@ -235,10 +232,23 @@
   "item.neapolitan.music_disc_hullabaloo.desc": "RENREN - Hullabaloo",
   "item.neapolitan.chimpanzee_banner_pattern": "Diseño de estandarte",
   "item.neapolitan.chimpanzee_banner_pattern.desc": "Chimpancé",
+  "trim_pattern.neapolitan.primal": "Ornamento primario",
 
+  "item.neapolitan.reflection_pottery_sherd": "Fragmento de cerámica de reflejo",
+  "item.neapolitan.scream_pottery_sherd": "Fragmento de cerámica de grito",
+  "item.neapolitan.snack_pottery_sherd": "Fragmento de cerámica de refrigerio",
+  "item.neapolitan.spider_pottery_sherd": "Fragmento de cerámica de araña",
+  
   "item.neapolitan.chimpanzee_spawn_egg": "Generar chimpancé",
   "item.neapolitan.plantain_spider_spawn_egg": "Generar araña platanera",
 
+  "painting.neapolitan.cone.author": "five",
+  "painting.neapolitan.cone.title": "Cone",
+  "painting.neapolitan.scream.author": "five",
+  "painting.neapolitan.scream.title": "Scream",
+  "painting.neapolitan.dawn.author": "five",
+  "painting.neapolitan.dawn.title": "Dawn",
+  
   "entity.neapolitan.banana_peel": "Cáscara de plátano",
   "entity.neapolitan.chimpanzee": "Chimpancé",
   "entity.neapolitan.plantain_spider": "Araña platanera",
