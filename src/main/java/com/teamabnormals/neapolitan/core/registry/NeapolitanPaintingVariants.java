@@ -12,4 +12,5 @@ public final class NeapolitanPaintingVariants {
 	public static final RegistryObject<PaintingVariant> SCREAM = PAINTING_VARIANTS.register("scream", () -> new PaintingVariant(32, 32));
 	public static final RegistryObject<PaintingVariant> CONE = PAINTING_VARIANTS.register("cone", () -> new PaintingVariant(16, 32));
 	public static final RegistryObject<PaintingVariant> DAWN = PAINTING_VARIANTS.register("dawn", () -> new PaintingVariant(64, 64));
+	public static final RegistryObject<PaintingVariant> NEAPOLEON = PAINTING_VARIANTS.register("neapoleon", () -> new PaintingVariant(64, 64));
 }

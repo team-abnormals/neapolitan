@@ -1,0 +1,46 @@
+{
+  "molding": "json",
+  "remolder": [
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "neapolitan:item/painting/scream",
+        "predicate": {
+          "neapolitan:scream": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "neapolitan:item/painting/cone",
+        "predicate": {
+          "neapolitan:cone": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "neapolitan:item/painting/dawn",
+        "predicate": {
+          "neapolitan:dawn": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "neapolitan:item/painting/neapoleon",
+        "predicate": {
+          "neapolitan:neapoleon": 1.0
+        }
+      }
+    }
+  ],
+  "selector": "minecraft:models/item/painting"
+}

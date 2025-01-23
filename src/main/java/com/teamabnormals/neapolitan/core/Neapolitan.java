@@ -1,6 +1,8 @@
 package com.teamabnormals.neapolitan.core;
 
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
+import com.teamabnormals.gallery.core.data.client.GalleryAssetsRemolderProvider;
+import com.teamabnormals.gallery.core.data.client.GalleryItemModelProvider;
 import com.teamabnormals.neapolitan.client.model.BananaPeelModel;
 import com.teamabnormals.neapolitan.client.model.ChimpanzeeHeadModel;
 import com.teamabnormals.neapolitan.client.model.ChimpanzeeModel;
@@ -122,6 +124,9 @@ public class Neapolitan {
 		generator.addProvider(client, new NeapolitanItemModelProvider(output, helper));
 		generator.addProvider(client, new NeapolitanSpriteSourceProvider(output, helper));
 //		generator.addProvider(includeClient, new NeapolitanLanguageProvider(output));
+
+		generator.addProvider(client, new GalleryItemModelProvider(MOD_ID, output, helper));
+		generator.addProvider(client, new GalleryAssetsRemolderProvider(MOD_ID, output, provider));
 	}
 
 	@OnlyIn(Dist.CLIENT)
