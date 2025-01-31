@@ -632,6 +632,11 @@ public class Chimpanzee extends Animal implements NeutralMob {
 		}
 	}
 
+	@Override
+	protected boolean shouldDropLoot() {
+		return true;
+	}
+
 	public int getApeModeTime() {
 		return this.entityData.get(APE_MODE_TIME);
 	}
