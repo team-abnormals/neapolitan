@@ -63,6 +63,7 @@ public class Neapolitan {
 		REGISTRY_HELPER.register(bus);
 		NeapolitanMobEffects.MOB_EFFECTS.register(bus);
 		NeapolitanFeatures.FEATURES.register(bus);
+		NeapolitanPoiTypes.POI_TYPES.register(bus);
 		NeapolitanPaintingVariants.PAINTING_VARIANTS.register(bus);
 		NeapolitanBannerPatterns.BANNER_PATTERNS.register(bus);
 		NeapolitanParticleTypes.PARTICLE_TYPES.register(bus);

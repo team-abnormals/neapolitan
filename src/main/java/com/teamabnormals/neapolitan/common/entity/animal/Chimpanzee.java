@@ -144,7 +144,7 @@ public class Chimpanzee extends Animal implements NeutralMob {
 		this.goalSelector.addGoal(14, new ChimpBeGroomedGoal(this));
 		this.goalSelector.addGoal(15, new ChimpGroomGoal(this, 1.0D));
 		this.goalSelector.addGoal(16, new ChimpFollowOthersGoal(this, 1.0D));
-		this.goalSelector.addGoal(17, new ChimpShakeBundleGoal(this, 1.0D, 48, 16));
+		this.goalSelector.addGoal(17, new ChimpShakeBundleGoal(this, 1.0D));
 		this.goalSelector.addGoal(18, new ChimpPlayWithHelmetGoal(this));
 		this.goalSelector.addGoal(19, new ChimpCryGoal(this));
 		this.goalSelector.addGoal(20, new ChimpShakeHeadGoal(this));
