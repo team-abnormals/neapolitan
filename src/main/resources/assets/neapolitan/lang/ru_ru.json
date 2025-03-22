@@ -195,7 +195,7 @@
   "item.neapolitan.banana_ice_cream": "Банановое мороженое",
   "item.neapolitan.banana_milkshake": "Банановый молочный коктейль",
   "item.neapolitan.banana_bread": "Банановый хлеб",
-  "item.neapolitan.bananarrow": "Банано-стрела",
+  "item.neapolitan.bananarrow": "Бананострела",
 
   "item.neapolitan.mint_sprout": "Росток мяты",
   "item.neapolitan.mint_leaves": "Листья мяты",
@@ -235,7 +235,7 @@
   "entity.neapolitan.chimpanzee": "Шимпанзе",
   "block.neapolitan.chimpanzee_head": "Голова шимпанзе",
   "entity.neapolitan.plantain_spider": "Банановый паук",
-  "entity.neapolitan.bananarrow": "Банано-стрела",
+  "entity.neapolitan.bananarrow": "Бананострела",
 
   "effect.neapolitan.sugar_rush": "Сахарный прилив",
   "effect.neapolitan.sugar_rush.desc": "Увеличенная скорость передвижения в течении две трети эффекта, но медлительность в последней трети",
@@ -246,7 +246,7 @@
   "effect.neapolitan.slipping": "Скольжение",
   "effect.neapolitan.slipping.desc": "Непроизвольные движения в случайное направление",
   "effect.neapolitan.berserking": "Слепая ярость",
-  "effect.neapolitan.berserking.desc": "Каждое убийство увеличивает уровень эффекта, что даёт прирост к силе и сопротивлению к входящему урону", 
+  "effect.neapolitan.berserking.desc": "Каждое убийство увеличивает уровень эффекта, что даёт прирост к силе и сопротивление к входящему урону", 
   "effect.neapolitan.harmony": "Гармония",
   "effect.neapolitan.harmony.desc": "Приблизившиеся враждебные и агрессивные мобы впадают в бегство",
 
@@ -259,7 +259,7 @@
   "advancements.neapolitan.husbandry.harvest_white_strawberries.title": "Облачный перекус",
   "advancements.neapolitan.husbandry.harvest_white_strawberries.description": "Получите белую клубнику, вырастив куст клубники высоко в небе",
   "advancements.neapolitan.adventure.chimpanzee_attack.title": "Скоординированная атака шимпанзе",
-  "advancements.neapolitan.adventure.chimpanzee_attack.description": "Используйте банано-стрелу для провоцирования шимпанзе на атаку другого существа",
+  "advancements.neapolitan.adventure.chimpanzee_attack.description": "Используйте бананострелу для провоцирования шимпанзе на атаку другого существа",
   "death.attack.neapolitan.beanstalkThorns": "%1$s был заколот до смерти бобовыми шипами",
   "death.attack.neapolitan.beanstalkThorns.player": "%1$s был заколот до смерти бобовыми шипами, убегая от %2$s",
 
