@@ -7,55 +7,57 @@
   "block.neapolitan.adzuki_ice_cream_block": "Блок адзукового мороженого",
 
   "block.neapolitan.milk_cauldron": "Котёл с молоком",
-  
+  "block.neapolitan.adzuki_milkshake_cauldron": "Котёл с адзуковым молочным коктейлем",
+  "block.neapolitan.chocolate_milkshake_cauldron": "Котёл с шоколадным молочным коктейлем",
+  "block.neapolitan.banana_milkshake_cauldron": "Котёл с банановым молочным коктейлем",
+  "block.neapolitan.mint_milkshake_cauldron": "Котёл с мятным молочным коктейлем",
+  "block.neapolitan.strawberry_milkshake_cauldron": "Котёл с клубничным молочным коктейлем",
+  "block.neapolitan.vanilla_milkshake_cauldron": "Котёл с ванильным молочным коктейлем",
+
   "block.neapolitan.chocolate_block": "Шоколадный блок",
   "block.neapolitan.chocolate_bricks": "Шоколадные кирпичи",
-  "block.neapolitan.chocolate_brick_slab": "Плита из шоколодных кирпичей",
-  "block.neapolitan.chocolate_brick_stairs": "Ступеньки из шоколадных кирпичей",
-  "block.neapolitan.chocolate_brick_wall": "Ограда из шоколадных кирпичей",
-  "block.neapolitan.chocolate_brick_vertical_slab": "Вертикальная плита из шоколадных кирпичей",
-  
+  "block.neapolitan.chocolate_brick_slab": "Плита из шоколадного кирпича",
+  "block.neapolitan.chocolate_brick_stairs": "Ступеньки из шоколадного кирпича",
+  "block.neapolitan.chocolate_brick_wall": "Ограда из шоколадного кирпича",
   "block.neapolitan.chiseled_chocolate_bricks": "Резные шоколадные кирпичи",
-  
-  "block.neapolitan.chocolate_tiles": "Резной шоколад",
-  "block.neapolitan.chocolate_tile_slab": "Плита из резного шоколада",
-  "block.neapolitan.chocolate_tile_stairs": "Ступеньки из резного шоколада",
-  "block.neapolitan.chocolate_tile_wall": "Ограда из резного шоколада",
-  "block.neapolitan.chocolate_tile_vertical_slab": "Вертикальная плита из резного шоколада",
-  
-  "block.neapolitan.frond_thatch": "Блок банановых листьев",
-  "block.neapolitan.frond_thatch_stairs": "Ступеньки из банановых листьев",
-  "block.neapolitan.frond_thatch_slab": "Плита из банановых листьев",
-  "block.neapolitan.frond_thatch_vertical_slab": "Вертикальная плита из банановых листьев",
-  
-  "block.neapolitan.strawberry_basket": "Корзина клубники",
-  "block.neapolitan.white_strawberry_basket": "Корзина белой клубники",
+  "block.neapolitan.chocolate_tiles": "Шоколадный плитняк",
+  "block.neapolitan.chocolate_tile_slab": "Плита из шоколадного плитняка",
+  "block.neapolitan.chocolate_tile_stairs": "Ступеньки из шоколадного плитняка",
+  "block.neapolitan.chocolate_tile_wall": "Ограда из шоколадного плитняка",
+
+  "block.neapolitan.frond_thatch": "Банановая солома",
+  "block.neapolitan.frond_thatch_stairs": "Ступеньки из банановой соломы",
+  "block.neapolitan.frond_thatch_slab": "Плита из банановой соломы",
+
+  "block.neapolitan.strawberry_basket": "Корзина с клубникой",
+  "block.neapolitan.white_strawberry_basket": "Корзина с белой клубникой",
   "block.neapolitan.vanilla_pod_block": "Блок стручков ванили",
   "block.neapolitan.dried_vanilla_pod_block": "Блок высушенных стручков ванили",
-  "block.neapolitan.banana_crate": "Ящик бананов",
-  "block.neapolitan.mint_basket": "Корзина мяты",
-  "block.neapolitan.adzuki_crate": "Ящик адзуки",
-  "block.neapolitan.roasted_adzuki_crate": "Ящик поджаренной адзуки",
+  "block.neapolitan.banana_crate": "Ящик с бананами",
+  "block.neapolitan.mint_basket": "Корзина с мятой",
+  "block.neapolitan.adzuki_crate": "Ящик с адзуки",
+  "block.neapolitan.roasted_adzuki_crate": "Ящик с поджаренными адзуки",
 
-  "block.neapolitan.strawberry_bush": "Клубничный куст",
+  "block.neapolitan.strawberry_bush": "Куст клубники",
 
   "block.neapolitan.vanilla_vine": "Ванильная лоза",
-  "block.neapolitan.vanilla_vine_plant": "Ванильная лоза",
+  "block.neapolitan.vanilla_vine_plant": "Стебель ванильной лозы",
   "block.neapolitan.mint": "Мята",
-  
-  "block.neapolitan.banana_stalk": "Банановая пальма",
-  "block.neapolitan.carved_banana_stalk": "Обтёсанная банановая пальма",
+
+  "block.neapolitan.banana_stalk": "Банановый ствол",
+  "block.neapolitan.carved_banana_stalk": "Вырезанный банановый ствол",
   "block.neapolitan.banana_bundle": "Гроздь бананов",
-  
-  "block.neapolitan.small_banana_frond": "Маленький банановый лист",
-  "block.neapolitan.banana_frond": "Банановый лист",
+
+  "item.neapolitan.banana_frond": "Банановый лист",
+  "block.neapolitan.small_banana_frond": "Малый банановый лист",
+  "block.neapolitan.banana_frond": "Средний банановый лист",
   "block.neapolitan.large_banana_frond": "Большой банановый лист",
 
   "block.neapolitan.adzuki_sprouts": "Побеги адзуки",
   "block.neapolitan.adzuki_soil": "Адзуковая почва",
   "block.neapolitan.beanstalk": "Бобовый стебель",
   "block.neapolitan.beanstalk_thorns": "Бобовые шипы",
-    
+
   "block.neapolitan.chocolate_cake": "Шоколадный торт",
   "block.neapolitan.strawberry_cake": "Клубничный торт",
   "block.neapolitan.vanilla_cake": "Ванильный торт",
@@ -165,28 +167,28 @@
   "block.neapolitan.yellow_mint_candle_cake": "Мятный торт c жёлтой свечой",
   "block.neapolitan.yellow_strawberry_candle_cake": "Клубничный торт c жёлтой свечой",
   "block.neapolitan.yellow_vanilla_candle_cake": "Ванильный торт c жёлтой свечой",
-  
+
   "item.neapolitan.milk_bottle": "Бутылочка молока",
   "item.neapolitan.ice_cubes": "Кубики льда",
-  
+
   "item.neapolitan.chocolate_bar": "Плитка шоколада",
   "item.neapolitan.chocolate_ice_cream": "Шоколадное мороженое",
   "item.neapolitan.chocolate_milkshake": "Шоколадный молочный коктейль",
-  "item.neapolitan.chocolate_spider_eye": "Паучий глаз в шоколаде",
-  
-  "item.neapolitan.strawberry_pips": "Зёрнышки клубники",
-  "item.neapolitan.strawberries": "Клубника",
+  "item.neapolitan.chocolate_spider_eye": "Паучий глаз в шоколадной глазури",
+
+  "item.neapolitan.strawberry_pips": "Косточки клубники",
+  "item.neapolitan.strawberries": "Клубники",
   "item.neapolitan.strawberry_ice_cream": "Клубничное мороженое",
-  "item.neapolitan.strawberry_scones": "Мороженое с печеньем и клубникой",
+  "item.neapolitan.strawberry_scones": "Клубничные сконсы",
   "item.neapolitan.strawberry_milkshake": "Клубничный молочный коктейль",
-  
+
   "item.neapolitan.vanilla_pods": "Стручки ванили",
   "item.neapolitan.dried_vanilla_pods": "Высушенные стручки ванили",
   "item.neapolitan.vanilla_ice_cream": "Ванильное мороженое",
   "item.neapolitan.vanilla_pudding": "Ванильный пудинг",
   "item.neapolitan.vanilla_milkshake": "Ванильный молочный коктейль",
-  "item.neapolitan.vanilla_fudge": "Ванильная стряпня",
-  
+  "item.neapolitan.vanilla_fudge": "Ванильная помадка",
+
   "item.neapolitan.banana": "Банан",
   "item.neapolitan.banana_bunch": "Связка бананов",
   "item.neapolitan.dried_banana": "Сушёный банан",
@@ -197,79 +199,83 @@
 
   "item.neapolitan.mint_sprout": "Росток мяты",
   "item.neapolitan.mint_leaves": "Листья мяты",
-  "item.neapolitan.mint_chops": "Сырая мятная нарезка",
-  "item.neapolitan.cooked_mint_chops": "Запечённая мятная нарезка",
+  "item.neapolitan.mint_chops": "Сырые мятные отбивные",
+  "item.neapolitan.cooked_mint_chops": "Жареные мятные отбивные",
   "item.neapolitan.mint_ice_cream": "Мятное мороженое",
   "item.neapolitan.mint_milkshake": "Мятный молочный коктейль",
   "item.neapolitan.mint_candies": "Мятные конфеты",
-  
+
   "item.neapolitan.adzuki_beans": "Бобы адзуки",
   "item.neapolitan.roasted_adzuki_beans": "Поджаренные бобы адзуки",
-  "item.neapolitan.adzuki_bun": "Адзуковый хлеб",
-  "item.neapolitan.adzuki_stew": "Адзуковое рагу",
+  "item.neapolitan.adzuki_bun": "Адзуковая булочка",
+  "item.neapolitan.adzuki_stew": "Тушёная адзуки",
   "item.neapolitan.adzuki_ice_cream": "Адзуковое мороженое",
   "item.neapolitan.adzuki_milkshake": "Адзуковый молочный коктейль",
-  "item.neapolitan.magic_beans": "Волшебные бобы",
-  
-  "item.neapolitan.chocolate_strawberries": "Клубника в шоколаде",
-  "item.neapolitan.white_strawberries": "Белая клубника",
+  "block.neapolitan.magic_beans": "Волшебные бобы",
+
+  "item.neapolitan.chocolate_strawberries": "Клубники в шоколадной глазури",
+  "item.neapolitan.white_strawberries": "Белые клубники",
   "item.neapolitan.vanilla_chocolate_fingers": "Ванильно-шоколадные палочки",
   "item.neapolitan.strawberry_banana_smoothie": "Клубнично-банановый смузи",
   "item.neapolitan.mint_chocolate": "Мятный шоколад",
   "item.neapolitan.strawberry_bean_bonbons": "Клубнично-адзуковые карамельки",
   "item.neapolitan.adzuki_curry": "Адзуковое карри",
   "item.neapolitan.neapolitan_ice_cream": "Неаполитанское мороженое",
-  
+
   "item.neapolitan.music_disc_hullabaloo": "Пластинка",
-  "item.neapolitan.music_disc_hullabaloo.desc": "RENREN — Hullabaloo",
   "item.neapolitan.chimpanzee_banner_pattern": "Узор флага",
   "item.neapolitan.chimpanzee_banner_pattern.desc": "Шимпанзе",
-  
+
   "item.neapolitan.chimpanzee_spawn_egg": "Яйцо призыва шимпанзе",
   "item.neapolitan.plantain_spider_spawn_egg": "Яйцо призыва бананового паука",
-  
+
+  "biome.neapolitan.strawberry_fields": "Клубничные поля",
+
   "entity.neapolitan.banana_peel": "Банановая кожура",
   "entity.neapolitan.chimpanzee": "Шимпанзе",
+  "block.neapolitan.chimpanzee_head": "Голова шимпанзе",
   "entity.neapolitan.plantain_spider": "Банановый паук",
   "entity.neapolitan.bananarrow": "Бананострела",
-  
+
   "effect.neapolitan.sugar_rush": "Сахарный прилив",
+  "effect.neapolitan.sugar_rush.desc": "Увеличенная скорость передвижения в течении две трети эффекта, но медлительность в последней трети",
   "effect.neapolitan.vanilla_scent": "Ванильный аромат",
+  "effect.neapolitan.vanilla_scent.desc": "Блокирует все входящие эффекты",
   "effect.neapolitan.agility": "Ловкость",
+  "effect.neapolitan.agility.desc": "Позволяет взбираться на любой блок, словно это лестница",
   "effect.neapolitan.slipping": "Скольжение",
+  "effect.neapolitan.slipping.desc": "Непроизвольные движения в случайное направление",
   "effect.neapolitan.berserking": "Слепая ярость",
+  "effect.neapolitan.berserking.desc": "Каждое убийство увеличивает уровень эффекта, что даёт прирост к силе и сопротивление к входящему урону", 
   "effect.neapolitan.harmony": "Гармония",
-  
+  "effect.neapolitan.harmony.desc": "Приблизившиеся враждебные и агрессивные мобы впадают в бегство",
+
   "advancements.neapolitan.husbandry.creeper_heal.title": "Бомба любви",
   "advancements.neapolitan.husbandry.creeper_heal.description": "Подлечитесь от крипера, взорвавшегося в клубничном кусте",
-  
-  "advancements.neapolitan.husbandry.vanilla_poison.title": "Ваниль-убийца",
+  "advancements.neapolitan.husbandry.vanilla_poison.title": "Убийственная ваниль",
   "advancements.neapolitan.husbandry.vanilla_poison.description": "Срежьте ваниль ножницами, предотвратив высвобождение ядовитого газа",
-  
-  "advancements.neapolitan.husbandry.place_all_chocolate_blocks.title": "В шоколаде",
+  "advancements.neapolitan.husbandry.place_all_chocolate_blocks.title": "Я в шоке",
   "advancements.neapolitan.husbandry.place_all_chocolate_blocks.description": "Поставьте все виды шоколадных блоков",
-  
   "advancements.neapolitan.husbandry.harvest_white_strawberries.title": "Облачный перекус",
-  "advancements.neapolitan.husbandry.harvest_white_strawberries.description": "Получите белую клубнику, вырастив куст клубники на большой высоте",
-
+  "advancements.neapolitan.husbandry.harvest_white_strawberries.description": "Получите белую клубнику, вырастив куст клубники высоко в небе",
   "advancements.neapolitan.adventure.chimpanzee_attack.title": "Скоординированная атака шимпанзе",
   "advancements.neapolitan.adventure.chimpanzee_attack.description": "Используйте бананострелу для провоцирования шимпанзе на атаку другого существа",
-  
   "death.attack.neapolitan.beanstalkThorns": "%1$s был заколот до смерти бобовыми шипами",
   "death.attack.neapolitan.beanstalkThorns.player": "%1$s был заколот до смерти бобовыми шипами, убегая от %2$s",
-  
+
   "subtitles.neapolitan.entity.chimpanzee.scream": "Шимпанзе кричит",
-  "subtitles.neapolitan.entity.chimpanzee.death": "Шимпанзе умирает",
+  "subtitles.neapolitan.entity.chimpanzee.death": "Шимпанзе погибает",
   "subtitles.neapolitan.entity.chimpanzee.eat": "Шимпанзе ест",
   "subtitles.neapolitan.entity.chimpanzee.howl": "Шимпанзе воет",
-  "subtitles.neapolitan.entity.chimpanzee.hurt": "Шимпанзе получает урон",
+  "subtitles.neapolitan.entity.chimpanzee.hurt": "Шимпанзе ранена",
   "subtitles.neapolitan.entity.chimpanzee.ambient": "Шимпанзе у-у а-акает",
-  "subtitles.neapolitan.entity.chimpanzee.step": "Шимпанзе идёт",
+  "subtitles.neapolitan.entity.chimpanzee.step": "Шаги шимпанзе",
   "subtitles.neapolitan.entity.chimpanzee.swing": "Шимпанзе качается",
-  
-  "subtitles.neapolitan.item.ice_cubes.eat": "Хруст",
+
+  "subtitles.neapolitan.item.ice_cream.eat": "Хрустение мороженого",
+  "subtitles.neapolitan.item.ice_cubes.eat": "Трескание кубиков льда",
   "subtitles.neapolitan.item.banana_bunch.open": "Разделяется связка бананов",
-  
+
   "block.minecraft.banner.neapolitan.chimpanzee.black": "Чёрная шимпанзе",
   "block.minecraft.banner.neapolitan.chimpanzee.red": "Красная шимпанзе",
   "block.minecraft.banner.neapolitan.chimpanzee.green": "Зелёная шимпанзе",
@@ -285,5 +291,20 @@
   "block.minecraft.banner.neapolitan.chimpanzee.light_blue": "Голубая шимпанзе",
   "block.minecraft.banner.neapolitan.chimpanzee.magenta": "Пурпурная шимпанзе",
   "block.minecraft.banner.neapolitan.chimpanzee.orange": "Оранжевая шимпанзе",
-  "block.minecraft.banner.neapolitan.chimpanzee.white": "Белая шимпанзе"
+  "block.minecraft.banner.neapolitan.chimpanzee.white": "Белая шимпанзе",
+
+  "painting.neapolitan.cone.title": "Рожок",
+  "painting.neapolitan.dawn.title": "Рассвет",
+  "painting.neapolitan.neapoleon.title": "Неаполеон",
+  "painting.neapolitan.scream.title": "Крик",
+
+  "block.neapolitan.potted_banana_frond": "Банановый лист в горшке",
+  "block.neapolitan.potted_mint": "Мята в горшке",
+  "block.neapolitan.potted_vanilla_vine": "Ванильная лоза в горшке",
+
+  "item.neapolitan.reflection_pottery_sherd": "Глиняный черепок «Размышление»",
+  "item.neapolitan.scream_pottery_sherd": "Глиняный черепок «Крик»",
+  "item.neapolitan.snack_pottery_sherd": "Глиняный черепок «Закуска»",
+  "item.neapolitan.spider_pottery_sherd": "Глиняный черепок «Паук»",
+  "trim_pattern.neapolitan.primal": "Отделка «Первобытный»"
 }
