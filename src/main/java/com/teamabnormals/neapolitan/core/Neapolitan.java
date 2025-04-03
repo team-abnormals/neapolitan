@@ -15,6 +15,7 @@ import com.teamabnormals.neapolitan.core.data.client.NeapolitanItemModelProvider
 import com.teamabnormals.neapolitan.core.data.client.NeapolitanSpriteSourceProvider;
 import com.teamabnormals.neapolitan.core.data.server.NeapolitanDatapackBuiltinEntriesProvider;
 import com.teamabnormals.neapolitan.core.data.server.NeapolitanLootTableProvider;
+import com.teamabnormals.neapolitan.core.data.server.NeapolitanRecipeProvider;
 import com.teamabnormals.neapolitan.core.data.server.modifiers.NeapolitanAdvancementModifierProvider;
 import com.teamabnormals.neapolitan.core.data.server.modifiers.NeapolitanLootModifierProvider;
 import com.teamabnormals.neapolitan.core.data.server.tags.*;
@@ -119,6 +120,7 @@ public class Neapolitan {
 		generator.addProvider(server, new NeapolitanLootTableProvider(output));
 		generator.addProvider(server, new NeapolitanLootModifierProvider(output, provider));
 		generator.addProvider(server, new NeapolitanAdvancementModifierProvider(output, provider));
+		generator.addProvider(server, new NeapolitanRecipeProvider(output));
 
 		boolean client = event.includeClient();
 		generator.addProvider(client, new NeapolitanBlockStateProvider(output, helper));

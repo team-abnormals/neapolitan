@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "neapolitan:ice_cubes"
+    },
+    {
+      "item": "neapolitan:ice_cubes"
+    },
+    {
+      "item": "neapolitan:ice_cubes"
+    },
+    {
+      "item": "neapolitan:ice_cubes"
+    },
+    {
+      "item": "neapolitan:ice_cubes"
+    },
+    {
+      "item": "neapolitan:ice_cubes"
+    },
+    {
+      "item": "neapolitan:ice_cubes"
+    },
+    {
+      "item": "neapolitan:ice_cubes"
+    },
+    {
+      "item": "neapolitan:ice_cubes"
+    }
+  ],
+  "result": {
+    "item": "minecraft:ice"
+  }
+}

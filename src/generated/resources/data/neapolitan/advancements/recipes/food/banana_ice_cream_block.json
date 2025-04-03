@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_banana_ice_cream": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "neapolitan:banana_ice_cream"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "neapolitan:banana_ice_cream_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_banana_ice_cream",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "neapolitan:banana_ice_cream_block"
+    ]
+  },
+  "sends_telemetry_event": false
+}

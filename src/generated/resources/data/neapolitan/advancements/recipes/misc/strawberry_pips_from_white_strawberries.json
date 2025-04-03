@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "neapolitan:strawberry_pips_from_white_strawberries"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_white_strawberries": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "neapolitan:white_strawberries"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_white_strawberries",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "neapolitan:strawberry_pips_from_white_strawberries"
+    ]
+  },
+  "sends_telemetry_event": false
+}

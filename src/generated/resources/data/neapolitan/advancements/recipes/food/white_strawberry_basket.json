@@ -1,0 +1,47 @@
+{
+  "advancements": [
+    {
+      "advancement": {
+        "parent": "minecraft:recipes/root",
+        "criteria": {
+          "has_the_recipe": {
+            "conditions": {
+              "recipe": "neapolitan:white_strawberry_basket"
+            },
+            "trigger": "minecraft:recipe_unlocked"
+          },
+          "has_white_strawberries": {
+            "conditions": {
+              "items": [
+                {
+                  "items": [
+                    "neapolitan:white_strawberries"
+                  ]
+                }
+              ]
+            },
+            "trigger": "minecraft:inventory_changed"
+          }
+        },
+        "requirements": [
+          [
+            "has_white_strawberries",
+            "has_the_recipe"
+          ]
+        ],
+        "rewards": {
+          "recipes": [
+            "neapolitan:white_strawberry_basket"
+          ]
+        },
+        "sends_telemetry_event": false
+      },
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "berry_good"
+        }
+      ]
+    }
+  ]
+}

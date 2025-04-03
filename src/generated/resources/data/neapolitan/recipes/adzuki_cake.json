@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "tag": "forge:milk"
+    },
+    "B": {
+      "item": "minecraft:sugar"
+    },
+    "C": {
+      "item": "minecraft:wheat"
+    },
+    "D": {
+      "item": "neapolitan:roasted_adzuki_beans"
+    },
+    "E": {
+      "tag": "forge:eggs"
+    }
+  },
+  "pattern": [
+    "ADA",
+    "BEB",
+    "CDC"
+  ],
+  "result": {
+    "item": "neapolitan:adzuki_cake"
+  },
+  "show_notification": true
+}

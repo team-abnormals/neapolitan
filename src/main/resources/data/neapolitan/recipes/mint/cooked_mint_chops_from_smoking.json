@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smoking",
-  "ingredient": {
-    "item": "neapolitan:mint_chops"
-  },
-  "result": "neapolitan:cooked_mint_chops",
-  "experience": 0.35,
-  "cookingtime": 100
-}
