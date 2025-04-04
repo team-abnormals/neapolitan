@@ -9,40 +9,22 @@
         }
       ],
       "recipe": {
-        "type": "minecraft:crafting_shapeless",
+        "type": "minecraft:crafting_shaped",
         "category": "misc",
-        "ingredients": [
-          {
-            "item": "neapolitan:mint_leaves"
-          },
-          {
-            "item": "neapolitan:mint_leaves"
-          },
-          {
-            "item": "neapolitan:mint_leaves"
-          },
-          {
-            "item": "neapolitan:mint_leaves"
-          },
-          {
-            "item": "neapolitan:mint_leaves"
-          },
-          {
-            "item": "neapolitan:mint_leaves"
-          },
-          {
-            "item": "neapolitan:mint_leaves"
-          },
-          {
-            "item": "neapolitan:mint_leaves"
-          },
-          {
+        "key": {
+          "#": {
             "item": "neapolitan:mint_leaves"
           }
+        },
+        "pattern": [
+          "###",
+          "###",
+          "###"
         ],
         "result": {
           "item": "neapolitan:mint_basket"
-        }
+        },
+        "show_notification": true
       }
     }
   ]

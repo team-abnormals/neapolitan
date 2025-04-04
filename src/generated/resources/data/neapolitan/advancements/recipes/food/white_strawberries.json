@@ -10,12 +10,12 @@
             },
             "trigger": "minecraft:recipe_unlocked"
           },
-          "has_white_strawberries": {
+          "has_white_strawberry_basket": {
             "conditions": {
               "items": [
                 {
                   "items": [
-                    "neapolitan:white_strawberries"
+                    "neapolitan:white_strawberry_basket"
                   ]
                 }
               ]
@@ -25,7 +25,7 @@
         },
         "requirements": [
           [
-            "has_white_strawberries",
+            "has_white_strawberry_basket",
             "has_the_recipe"
           ]
         ],

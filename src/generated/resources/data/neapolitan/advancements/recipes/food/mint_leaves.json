@@ -4,12 +4,12 @@
       "advancement": {
         "parent": "minecraft:recipes/root",
         "criteria": {
-          "has_mint_leaves": {
+          "has_mint_basket": {
             "conditions": {
               "items": [
                 {
                   "items": [
-                    "neapolitan:mint_leaves"
+                    "neapolitan:mint_basket"
                   ]
                 }
               ]
@@ -25,7 +25,7 @@
         },
         "requirements": [
           [
-            "has_mint_leaves",
+            "has_mint_basket",
             "has_the_recipe"
           ]
         ],

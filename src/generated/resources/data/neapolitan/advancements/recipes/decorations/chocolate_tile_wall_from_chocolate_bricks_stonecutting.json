@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_chocolate_tiles": {
+    "has_chocolate_bricks": {
       "conditions": {
         "items": [
           {
             "items": [
-              "neapolitan:chocolate_tiles"
+              "neapolitan:chocolate_bricks"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "neapolitan:chocolate_tile_wall_from_stonecutting"
+        "recipe": "neapolitan:chocolate_tile_wall_from_chocolate_bricks_stonecutting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_chocolate_tiles",
+      "has_chocolate_bricks",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "neapolitan:chocolate_tile_wall_from_stonecutting"
+      "neapolitan:chocolate_tile_wall_from_chocolate_bricks_stonecutting"
     ]
   },
   "sends_telemetry_event": false

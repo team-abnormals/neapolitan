@@ -9,40 +9,22 @@
         }
       ],
       "recipe": {
-        "type": "minecraft:crafting_shapeless",
+        "type": "minecraft:crafting_shaped",
         "category": "misc",
-        "ingredients": [
-          {
-            "item": "neapolitan:white_strawberries"
-          },
-          {
-            "item": "neapolitan:white_strawberries"
-          },
-          {
-            "item": "neapolitan:white_strawberries"
-          },
-          {
-            "item": "neapolitan:white_strawberries"
-          },
-          {
-            "item": "neapolitan:white_strawberries"
-          },
-          {
-            "item": "neapolitan:white_strawberries"
-          },
-          {
-            "item": "neapolitan:white_strawberries"
-          },
-          {
-            "item": "neapolitan:white_strawberries"
-          },
-          {
+        "key": {
+          "#": {
             "item": "neapolitan:white_strawberries"
           }
+        },
+        "pattern": [
+          "###",
+          "###",
+          "###"
         ],
         "result": {
           "item": "neapolitan:white_strawberry_basket"
-        }
+        },
+        "show_notification": true
       }
     }
   ]
