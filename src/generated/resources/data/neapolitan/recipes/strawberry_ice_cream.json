@@ -3,7 +3,7 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "neapolitan:strawberries"
+      "tag": "forge:fruits/strawberry"
     },
     {
       "item": "neapolitan:ice_cubes"

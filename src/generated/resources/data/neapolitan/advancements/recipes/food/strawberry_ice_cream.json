@@ -13,6 +13,16 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
+    "has_strawberries": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:fruits/strawberry"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "has_the_recipe": {
       "conditions": {
         "recipe": "neapolitan:strawberry_ice_cream"
@@ -22,6 +32,7 @@
   },
   "requirements": [
     [
+      "has_strawberries",
       "has_ice_cubes",
       "has_the_recipe"
     ]

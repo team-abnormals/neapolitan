@@ -1,6 +1,18 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
+    "has_dried_vanilla_pods": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "neapolitan:dried_vanilla_pods"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "has_ice_cubes": {
       "conditions": {
         "items": [
@@ -22,6 +34,7 @@
   },
   "requirements": [
     [
+      "has_dried_vanilla_pods",
       "has_ice_cubes",
       "has_the_recipe"
     ]

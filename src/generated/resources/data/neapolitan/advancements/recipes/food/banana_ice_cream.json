@@ -1,6 +1,16 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
+    "has_banana": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:fruits/banana"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "has_ice_cubes": {
       "conditions": {
         "items": [
@@ -22,6 +32,7 @@
   },
   "requirements": [
     [
+      "has_banana",
       "has_ice_cubes",
       "has_the_recipe"
     ]

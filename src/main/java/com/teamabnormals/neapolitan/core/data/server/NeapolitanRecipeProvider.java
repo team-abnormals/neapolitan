@@ -6,6 +6,7 @@ import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.other.NeapolitanBlockFamilies;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanItemTags;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
+import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
@@ -34,9 +35,7 @@ public class NeapolitanRecipeProvider extends BlueprintRecipeProvider {
 	@Override
 	public void buildRecipes(Consumer<FinishedRecipe> consumer) {
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ADZUKI_BUN.get()).requires(ROASTED_ADZUKI_BEANS.get()).requires(WHEAT).requires(BlueprintItemTags.MILK).unlockedBy(getHasName(ADZUKI_BEANS.get()), has(ADZUKI_BEANS.get())).save(consumer);
-		cakeRecipe(consumer, ROASTED_ADZUKI_BEANS.get(), NeapolitanItems.ADZUKI_CAKE.get());
-		iceCreamRecipes(consumer, ROASTED_ADZUKI_BEANS.get(), ADZUKI_ICE_CREAM.get(), ADZUKI_ICE_CREAM_BLOCK.get());
-		milkshake(consumer, ADZUKI_ICE_CREAM.get(), ADZUKI_MILKSHAKE.get());
+		flavorRecipes(consumer, ROASTED_ADZUKI_BEANS.get(), ADZUKI_ICE_CREAM.get(), ADZUKI_MILKSHAKE.get(), NeapolitanItems.ADZUKI_CAKE.get(), ADZUKI_ICE_CREAM_BLOCK.get());
 		conditionalRecipe(consumer, ABNORMALS_DELIGHT_NOT_LOADED, RecipeCategory.FOOD, ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ADZUKI_STEW.get()).requires(ROASTED_ADZUKI_BEANS.get(), 2).requires(BEETROOT).requires(CARROT).requires(BROWN_MUSHROOM).requires(BOWL).unlockedBy(getHasName(ROASTED_ADZUKI_BEANS.get()), has(ROASTED_ADZUKI_BEANS.get())));
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, MAGIC_BEANS.get(), 3).requires(ADZUKI_BEANS.get(), 3).requires(FERMENTED_SPIDER_EYE).unlockedBy(getHasName(ADZUKI_BEANS.get()), has(ADZUKI_BEANS.get())).save(consumer);
 		foodCookingRecipes(consumer, ADZUKI_BEANS.get(), ROASTED_ADZUKI_BEANS.get());
@@ -45,9 +44,7 @@ public class NeapolitanRecipeProvider extends BlueprintRecipeProvider {
 		generateRecipes(consumer, NeapolitanBlockFamilies.FROND_THATCH_FAMILY);
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, BANANA_BREAD.get()).requires(NeapolitanItemTags.FRUITS_BANANA).requires(WHEAT).requires(SUGAR).unlockedBy(getHasName(BANANA.get()), has(NeapolitanItemTags.FRUITS_BANANA)).save(consumer);
 		threeByThreePacker(consumer, RecipeCategory.BUILDING_BLOCKS, BANANA_BUNDLE.get(), BANANA_BUNCH.get());
-		cakeRecipe(consumer, NeapolitanItemTags.FRUITS_BANANA, NeapolitanItems.BANANA_CAKE.get(), getHasName(BANANA.get()));
-		iceCreamRecipes(consumer, NeapolitanItemTags.FRUITS_BANANA, BANANA_ICE_CREAM.get(), BANANA_ICE_CREAM_BLOCK.get());
-		milkshake(consumer, BANANA_ICE_CREAM.get(), BANANA_MILKSHAKE.get());
+		flavorRecipes(consumer, NeapolitanItemTags.FRUITS_BANANA, getHasName(BANANA.get()), BANANA_ICE_CREAM.get(), BANANA_MILKSHAKE.get(), NeapolitanItems.BANANA_CAKE.get(), BANANA_ICE_CREAM_BLOCK.get());
 		foodCookingRecipes(consumer, NeapolitanItemTags.FRUITS_BANANA, DRIED_BANANA.get(), getHasName(BANANA.get()));
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, PAPER).requires(NeapolitanItems.BANANA_FROND.get(), 3).unlockedBy(getHasName(NeapolitanItems.BANANA_FROND.get()), has(NeapolitanItems.BANANA_FROND.get())).save(consumer, getModConversionRecipeName(PAPER, NeapolitanItems.BANANA_FROND.get()));
 		trimRecipes(consumer, PRIMAL_ARMOR_TRIM_SMITHING_TEMPLATE.get(), BANANA_STALK.get());
@@ -57,9 +54,7 @@ public class NeapolitanRecipeProvider extends BlueprintRecipeProvider {
 
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, CHOCOLATE_BAR.get(), 4).requires(COCOA_BEANS, 2).requires(SUGAR).requires(BlueprintItemTags.MILK).unlockedBy(getHasName(COCOA_BEANS), has(COCOA_BEANS)).save(consumer);
 		storageRecipesWithCustomUnpacking(consumer, RecipeCategory.BUILDING_BLOCKS, CHOCOLATE_BAR.get(), RecipeCategory.FOOD, CHOCOLATE_BLOCK.get(), getConversionRecipeName(CHOCOLATE_BAR.get(), CHOCOLATE_BLOCK.get()), null);
-		cakeRecipe(consumer, CHOCOLATE_BAR.get(), NeapolitanItems.CHOCOLATE_CAKE.get());
-		iceCreamRecipes(consumer, CHOCOLATE_BAR.get(), CHOCOLATE_ICE_CREAM.get(), CHOCOLATE_ICE_CREAM_BLOCK.get());
-		milkshake(consumer, CHOCOLATE_ICE_CREAM.get(), CHOCOLATE_MILKSHAKE.get());
+		flavorRecipes(consumer, CHOCOLATE_BAR.get(), CHOCOLATE_ICE_CREAM.get(), CHOCOLATE_MILKSHAKE.get(), NeapolitanItems.CHOCOLATE_CAKE.get(), CHOCOLATE_ICE_CREAM_BLOCK.get());
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, CHOCOLATE_SPIDER_EYE.get(), 2).requires(SPIDER_EYE).requires(SPIDER_EYE).requires(CHOCOLATE_BAR.get()).unlockedBy(getHasName(CHOCOLATE_BAR.get()), has(CHOCOLATE_BAR.get())).save(consumer);
 
 		twoByTwoPacker(consumer, RecipeCategory.BUILDING_BLOCKS, CHOCOLATE_BRICKS.get(), CHOCOLATE_BAR.get());
@@ -85,18 +80,14 @@ public class NeapolitanRecipeProvider extends BlueprintRecipeProvider {
 		foodCookingRecipes(consumer, MINT_CHOPS.get(), COOKED_MINT_CHOPS.get());
 
 		conditionalStorageRecipes(consumer, BERRY_GOOD_LOADED, RecipeCategory.FOOD, MINT_LEAVES.get(), RecipeCategory.DECORATIONS, MINT_BASKET.get());
-		cakeRecipe(consumer, MINT_LEAVES.get(), NeapolitanItems.MINT_CAKE.get());
-		iceCreamRecipes(consumer, MINT_LEAVES.get(), MINT_ICE_CREAM.get(), MINT_ICE_CREAM_BLOCK.get());
-		milkshake(consumer, MINT_ICE_CREAM.get(), MINT_MILKSHAKE.get());
+		flavorRecipes(consumer, MINT_LEAVES.get(), MINT_ICE_CREAM.get(), MINT_MILKSHAKE.get(), NeapolitanItems.MINT_CAKE.get(), MINT_ICE_CREAM_BLOCK.get());
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, MINT_CANDIES.get()).requires(MINT_LEAVES.get()).requires(SUGAR, 2).unlockedBy(getHasName(MINT_LEAVES.get()), has(MINT_LEAVES.get())).save(consumer);
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, MINT_CHOPS.get()).requires(MUTTON).requires(MINT_LEAVES.get()).unlockedBy(getHasName(MINT_LEAVES.get()), has(MINT_LEAVES.get())).save(consumer);
 		conversionRecipe(consumer, MINT_SPROUT.get(), MINT_LEAVES.get(), getSimpleRecipeName(MINT_SPROUT.get()));
 
 		conditionalStorageRecipes(consumer, BERRY_GOOD_LOADED, RecipeCategory.FOOD, STRAWBERRIES.get(), RecipeCategory.DECORATIONS, STRAWBERRY_BASKET.get());
 		conditionalStorageRecipes(consumer, BERRY_GOOD_LOADED, RecipeCategory.FOOD, WHITE_STRAWBERRIES.get(), RecipeCategory.DECORATIONS, WHITE_STRAWBERRY_BASKET.get());
-		cakeRecipe(consumer, STRAWBERRIES.get(), NeapolitanItems.STRAWBERRY_CAKE.get());
-		iceCreamRecipes(consumer, STRAWBERRIES.get(), STRAWBERRY_ICE_CREAM.get(), STRAWBERRY_ICE_CREAM_BLOCK.get());
-		milkshake(consumer, STRAWBERRY_ICE_CREAM.get(), STRAWBERRY_MILKSHAKE.get());
+		flavorRecipes(consumer, NeapolitanItemTags.FRUITS_STRAWBERRY, getHasName(STRAWBERRIES.get()), STRAWBERRY_ICE_CREAM.get(), STRAWBERRY_MILKSHAKE.get(), NeapolitanItems.STRAWBERRY_CAKE.get(), STRAWBERRY_ICE_CREAM_BLOCK.get());
 		conversionRecipe(consumer, STRAWBERRY_PIPS.get(), STRAWBERRIES.get(), getSimpleRecipeName(STRAWBERRY_PIPS.get()));
 		conversionRecipe(consumer, STRAWBERRY_PIPS.get(), WHITE_STRAWBERRIES.get(), getConversionRecipeName(STRAWBERRY_PIPS.get(), WHITE_STRAWBERRIES.get()));
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, STRAWBERRY_SCONES.get(), 2).requires(WHEAT, 2).requires(NeapolitanItemTags.FRUITS_STRAWBERRY).requires(SUGAR).unlockedBy(getHasName(STRAWBERRIES.get()), has(NeapolitanItemTags.FRUITS_STRAWBERRY)).save(consumer);
@@ -104,9 +95,7 @@ public class NeapolitanRecipeProvider extends BlueprintRecipeProvider {
 		storageRecipesWithCustomUnpacking(consumer, RecipeCategory.BUILDING_BLOCKS, DRIED_VANILLA_PODS.get(), RecipeCategory.FOOD, DRIED_VANILLA_POD_BLOCK.get(), getConversionRecipeName(DRIED_VANILLA_PODS.get(), DRIED_VANILLA_POD_BLOCK.get()), null);
 		storageRecipesWithCustomUnpacking(consumer, RecipeCategory.BUILDING_BLOCKS, VANILLA_PODS.get(), RecipeCategory.FOOD, VANILLA_POD_BLOCK.get(), getConversionRecipeName(VANILLA_PODS.get(), VANILLA_POD_BLOCK.get()), null);
 		foodCookingRecipes(consumer, VANILLA_PODS.get(), DRIED_VANILLA_PODS.get());
-		cakeRecipe(consumer, DRIED_VANILLA_PODS.get(), NeapolitanItems.VANILLA_CAKE.get());
-		iceCreamRecipes(consumer, DRIED_VANILLA_PODS.get(), VANILLA_ICE_CREAM.get(), VANILLA_ICE_CREAM_BLOCK.get());
-		milkshake(consumer, DRIED_VANILLA_PODS.get(), VANILLA_MILKSHAKE.get());
+		flavorRecipes(consumer, DRIED_VANILLA_PODS.get(), VANILLA_ICE_CREAM.get(), VANILLA_MILKSHAKE.get(), NeapolitanItems.VANILLA_CAKE.get(), VANILLA_ICE_CREAM_BLOCK.get());
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, VANILLA_FUDGE.get(), 4).requires(DRIED_VANILLA_PODS.get(), 2).requires(SUGAR).requires(BlueprintItemTags.MILK).unlockedBy(getHasName(VANILLA_PODS.get()), has(VANILLA_PODS.get())).save(consumer);
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, VANILLA_PUDDING.get()).requires(EGG).requires(SUGAR).requires(DRIED_VANILLA_PODS.get()).requires(BOWL).unlockedBy(getHasName(VANILLA_PODS.get()), has(VANILLA_PODS.get())).save(consumer);
 
@@ -122,79 +111,19 @@ public class NeapolitanRecipeProvider extends BlueprintRecipeProvider {
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ICE).requires(ICE_CUBES.get(), 9).unlockedBy(getHasName(ICE_CUBES.get()), has(ICE_CUBES.get())).save(consumer, new ResourceLocation(Neapolitan.MOD_ID, getSimpleRecipeName(ICE)));
 	}
 
-	public static void cakeRecipe(Consumer<FinishedRecipe> consumer, ItemLike ingredient, ItemLike output) {
-		ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, output)
-				.pattern("ADA")
-				.pattern("BEB")
-				.pattern("CDC")
-				.define('A', BlueprintItemTags.MILK)
-				.define('D', ingredient)
-				.define('B', SUGAR)
-				.define('C', WHEAT)
-				.define('E', Tags.Items.EGGS)
-				.unlockedBy(getHasName(ingredient), has(ingredient))
-				.save(consumer);
+	public static void flavorRecipes(Consumer<FinishedRecipe> consumer, ItemLike item, ItemLike iceCream, ItemLike milkshake, ItemLike cake, ItemLike iceCreamBlock) {
+		flavorRecipes(consumer, Ingredient.of(item), iceCream, milkshake, cake, iceCreamBlock, getHasName(item), has(item));
 	}
 
-	public static void cakeRecipe(Consumer<FinishedRecipe> consumer, TagKey<Item> ingredient, ItemLike output, String hasName) {
-		ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, output)
-				.pattern("ADA")
-				.pattern("BEB")
-				.pattern("CDC")
-				.define('A', BlueprintItemTags.MILK)
-				.define('D', ingredient)
-				.define('B', SUGAR)
-				.define('C', WHEAT)
-				.define('E', Tags.Items.EGGS)
-				.unlockedBy(hasName, has(ingredient))
-				.save(consumer);
+	public static void flavorRecipes(Consumer<FinishedRecipe> consumer, TagKey<Item> tag, String hasName, ItemLike iceCream, ItemLike milkshake, ItemLike cake, ItemLike iceCreamBlock) {
+		flavorRecipes(consumer, Ingredient.of(tag), iceCream, milkshake, cake, iceCreamBlock, hasName, has(tag));
 	}
 
-	public static void iceCreamRecipes(Consumer<FinishedRecipe> consumer, ItemLike ingredient, ItemLike iceCream, ItemLike iceCreamBlock) {
-		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, iceCream)
-				.requires(ingredient)
-				.requires(ICE_CUBES.get())
-				.requires(SUGAR)
-				.requires(BlueprintItemTags.MILK)
-				.requires(BOWL)
-				.unlockedBy(getHasName(ICE_CUBES.get()), has(ICE_CUBES.get()))
-				.save(consumer);
-		ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, iceCreamBlock, 8)
-				.pattern("###")
-				.pattern("#X#")
-				.pattern("###")
-				.define('X', iceCream)
-				.define('#', SNOW_BLOCK)
-				.unlockedBy(getHasName(iceCream), has(iceCream))
-				.save(consumer);
-	}
-
-	public static void iceCreamRecipes(Consumer<FinishedRecipe> consumer, TagKey<Item> ingredient, ItemLike iceCream, ItemLike iceCreamBlock) {
-		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, iceCream)
-				.requires(ingredient)
-				.requires(ICE_CUBES.get())
-				.requires(SUGAR)
-				.requires(BlueprintItemTags.MILK)
-				.requires(BOWL)
-				.unlockedBy(getHasName(ICE_CUBES.get()), has(ICE_CUBES.get()))
-				.save(consumer);
-		ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, iceCreamBlock, 8)
-				.pattern("###")
-				.pattern("#X#")
-				.pattern("###")
-				.define('X', iceCream)
-				.define('#', SNOW_BLOCK)
-				.unlockedBy(getHasName(iceCream), has(iceCream))
-				.save(consumer);
-	}
-
-	public static void milkshake(Consumer<FinishedRecipe> consumer, ItemLike iceCream, ItemLike milkshake) {
-		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, milkshake, 3)
-				.requires(GLASS_BOTTLE, 3)
-				.requires(iceCream)
-				.requires(BlueprintItemTags.MILK)
-				.unlockedBy(getHasName(iceCream), has(iceCream))
-				.save(consumer);
+	public static void flavorRecipes(Consumer<FinishedRecipe> consumer, Ingredient ingredient, ItemLike iceCream, ItemLike milkshake, ItemLike cake, ItemLike iceCreamBlock, String hasName, InventoryChangeTrigger.TriggerInstance has) {
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, iceCream).requires(ingredient).requires(ICE_CUBES.get()).requires(SUGAR).requires(BlueprintItemTags.MILK).requires(BOWL).unlockedBy(hasName, has).unlockedBy(getHasName(ICE_CUBES.get()), has(ICE_CUBES.get())).save(consumer);
+		ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, cake).pattern("ADA").pattern("BEB").pattern("CDC").define('A', BlueprintItemTags.MILK).define('D', ingredient).define('B', SUGAR).define('C', WHEAT).define('E', Tags.Items.EGGS).unlockedBy(hasName, has).save(consumer);
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, milkshake, 3).requires(GLASS_BOTTLE, 3).requires(iceCream).requires(BlueprintItemTags.MILK).unlockedBy(getHasName(iceCream), has(iceCream)).save(consumer);
+		ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, iceCreamBlock, 8).pattern("###").pattern("#X#").pattern("###").define('X', iceCream).define('#', SNOW_BLOCK).unlockedBy(getHasName(iceCream), has(iceCream)).save(consumer);
 	}
 
 	public static void foodCookingRecipes(Consumer<FinishedRecipe> consumer, TagKey<Item> input, ItemLike output, String hasName) {

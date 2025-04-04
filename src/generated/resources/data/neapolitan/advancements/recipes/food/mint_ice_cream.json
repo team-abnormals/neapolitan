@@ -13,6 +13,18 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
+    "has_mint_leaves": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "neapolitan:mint_leaves"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "has_the_recipe": {
       "conditions": {
         "recipe": "neapolitan:mint_ice_cream"
@@ -22,6 +34,7 @@
   },
   "requirements": [
     [
+      "has_mint_leaves",
       "has_ice_cubes",
       "has_the_recipe"
     ]

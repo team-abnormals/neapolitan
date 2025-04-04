@@ -13,6 +13,18 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
+    "has_roasted_adzuki_beans": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "neapolitan:roasted_adzuki_beans"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "has_the_recipe": {
       "conditions": {
         "recipe": "neapolitan:adzuki_ice_cream"
@@ -22,6 +34,7 @@
   },
   "requirements": [
     [
+      "has_roasted_adzuki_beans",
       "has_ice_cubes",
       "has_the_recipe"
     ]
