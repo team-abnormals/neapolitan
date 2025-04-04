@@ -41,15 +41,15 @@ public class NeapolitanRecipeProvider extends BlueprintRecipeProvider {
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, MAGIC_BEANS.get(), 3).requires(ADZUKI_BEANS.get(), 3).requires(FERMENTED_SPIDER_EYE).unlockedBy(getHasName(ADZUKI_BEANS.get()), has(ADZUKI_BEANS.get())).save(consumer);
 		foodCookingRecipes(consumer, ADZUKI_BEANS.get(), ROASTED_ADZUKI_BEANS.get());
 
-		twoByTwoPacker(consumer, RecipeCategory.DECORATIONS, FROND_THATCH.get(), NeapolitanItems.BANANA_FROND.get());
+		twoByTwoPacker(consumer, RecipeCategory.BUILDING_BLOCKS, FROND_THATCH.get(), NeapolitanItems.BANANA_FROND.get());
 		generateRecipes(consumer, NeapolitanBlockFamilies.FROND_THATCH_FAMILY);
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, BANANA_BREAD.get()).requires(NeapolitanItemTags.FRUITS_BANANA).requires(WHEAT).requires(SUGAR).unlockedBy(getHasName(BANANA.get()), has(NeapolitanItemTags.FRUITS_BANANA)).save(consumer);
-		threeByThreePacker(consumer, RecipeCategory.FOOD, BANANA_BUNDLE.get(), BANANA_BUNCH.get());
+		threeByThreePacker(consumer, RecipeCategory.BUILDING_BLOCKS, BANANA_BUNDLE.get(), BANANA_BUNCH.get());
 		cakeRecipe(consumer, NeapolitanItemTags.FRUITS_BANANA, NeapolitanItems.BANANA_CAKE.get(), getHasName(BANANA.get()));
 		iceCreamRecipes(consumer, NeapolitanItemTags.FRUITS_BANANA, BANANA_ICE_CREAM.get(), BANANA_ICE_CREAM_BLOCK.get());
 		milkshake(consumer, BANANA_ICE_CREAM.get(), BANANA_MILKSHAKE.get());
 		foodCookingRecipes(consumer, NeapolitanItemTags.FRUITS_BANANA, DRIED_BANANA.get(), getHasName(BANANA.get()));
-		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, PAPER).requires(NeapolitanItems.BANANA_FROND.get()).requires(NeapolitanItems.BANANA_FROND.get()).requires(NeapolitanItems.BANANA_FROND.get()).unlockedBy(getHasName(NeapolitanItems.BANANA_FROND.get()), has(NeapolitanItems.BANANA_FROND.get())).save(consumer, new ResourceLocation(Neapolitan.MOD_ID, getSimpleRecipeName(PAPER)));
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, PAPER).requires(NeapolitanItems.BANANA_FROND.get(), 3).unlockedBy(getHasName(NeapolitanItems.BANANA_FROND.get()), has(NeapolitanItems.BANANA_FROND.get())).save(consumer, getModConversionRecipeName(PAPER, NeapolitanItems.BANANA_FROND.get()));
 		trimRecipes(consumer, PRIMAL_ARMOR_TRIM_SMITHING_TEMPLATE.get(), BANANA_STALK.get());
 		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, CARVED_BANANA_STALK.get()).pattern("##").pattern("##").define('#', BANANA_STALK.get()).unlockedBy(getHasName(BANANA_STALK.get()), has(BANANA_STALK.get())).save(consumer);
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT, BANANARROW.get()).requires(NeapolitanItemTags.FRUITS_BANANA).requires(ARROW).unlockedBy(getHasName(BANANA.get()), has(NeapolitanItemTags.FRUITS_BANANA)).save(consumer);
@@ -119,7 +119,7 @@ public class NeapolitanRecipeProvider extends BlueprintRecipeProvider {
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, STRAWBERRY_BEAN_BONBONS.get()).requires(NeapolitanItemTags.FRUITS_STRAWBERRY).requires(ROASTED_ADZUKI_BEANS.get()).requires(SUGAR).unlockedBy(getHasName(STRAWBERRIES.get()), has(STRAWBERRIES.get())).unlockedBy(getHasName(ROASTED_ADZUKI_BEANS.get()), has(ROASTED_ADZUKI_BEANS.get())).save(consumer);
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, VANILLA_CHOCOLATE_FINGERS.get()).requires(CHOCOLATE_BAR.get()).requires(DRIED_VANILLA_PODS.get()).unlockedBy(getHasName(VANILLA_PODS.get()), has(VANILLA_PODS.get())).unlockedBy(getHasName(CHOCOLATE_BAR.get()), has(CHOCOLATE_BAR.get())).save(consumer);
 		ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, CAKE).pattern("AAA").pattern("BEB").pattern("CCC").define('A', BlueprintItemTags.MILK).define('B', SUGAR).define('C', WHEAT).define('E', Tags.Items.EGGS).unlockedBy(getHasName(EGG), has(EGG)).save(consumer, new ResourceLocation(Neapolitan.MOD_ID, getSimpleRecipeName(CAKE)));
-		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ICE).requires(ICE_CUBES.get(), 9).unlockedBy(getHasName(ICE_CUBES.get()), has(ICE_CUBES.get())).save(consumer, new ResourceLocation(Neapolitan.MOD_ID, getSimpleRecipeName(ICE)));
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ICE).requires(ICE_CUBES.get(), 9).unlockedBy(getHasName(ICE_CUBES.get()), has(ICE_CUBES.get())).save(consumer, new ResourceLocation(Neapolitan.MOD_ID, getSimpleRecipeName(ICE)));
 	}
 
 	public static void cakeRecipe(Consumer<FinishedRecipe> consumer, ItemLike ingredient, ItemLike output) {

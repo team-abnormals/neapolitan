@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "neapolitan:paper"
+        "recipe": "neapolitan:paper_from_banana_frond"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "neapolitan:paper"
+      "neapolitan:paper_from_banana_frond"
     ]
   },
   "sends_telemetry_event": false
