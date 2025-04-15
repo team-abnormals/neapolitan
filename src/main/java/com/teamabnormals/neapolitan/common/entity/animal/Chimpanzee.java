@@ -95,8 +95,6 @@ public class Chimpanzee extends Animal implements NeutralMob, VariantHolder<Hold
 
 	private static final AttributeModifier SPEED_MODIFIER_SITTING = new AttributeModifier(Neapolitan.location("sitting_speed"), -0.75D, Operation.ADD_MULTIPLIED_BASE);
 
-	public static final EntityDimensions SITTING_DIMENSIONS = NeapolitanEntityTypes.CHIMPANZEE.get().getDimensions().scale(1.0F, 0.625F);
-
 	private static final UniformInt ANGER_RANGE = TimeUtil.rangeOfSeconds(20, 39);
 	private UUID lastHurtBy;
 	private int attackTimer;
@@ -611,9 +609,15 @@ public class Chimpanzee extends Animal implements NeutralMob, VariantHolder<Hold
 		this.entityData.set(CLIMBING, b0);
 	}
 
+	public static final EntityDimensions SITTING_DIMENSIONS = NeapolitanEntityTypes.CHIMPANZEE.get().getDimensions().scale(1.0F, 0.65F);
+
 	@Override
 	public EntityDimensions getDefaultDimensions(Pose pose) {
 		return this.isSitting() ? SITTING_DIMENSIONS.scale(this.getAgeScale()) : super.getDefaultDimensions(pose);
+	}
+
+	public float getAgeScale() {
+		return this.isBaby() ? 0.55F : 1.0F;
 	}
 
 	public boolean canStandUp() {

@@ -25,9 +25,8 @@ public class NeapolitanEntityTypes {
 			.sized(0.5F, 0.5F).eyeHeight(0.13F).clientTrackingRange(4).updateInterval(20));
 	public static final DeferredHolder<EntityType<?>, EntityType<BananaPeel>> BANANA_PEEL = ENTITY_TYPES.createEntity("banana_peel", BananaPeel::new, MobCategory.MISC, builder -> builder
 			.sized(0.5F, 0.5F).eyeHeight(0.13F).clientTrackingRange(4).updateInterval(20));
-	//TODO: Fix eye height n stuff
 	public static final DeferredHolder<EntityType<?>, EntityType<Chimpanzee>> CHIMPANZEE = ENTITY_TYPES.createEntity("chimpanzee", Chimpanzee::new, MobCategory.CREATURE, builder -> builder
-			.sized(0.6F, 1.6F).ridingOffset(-0.3F).clientTrackingRange(10));
+			.sized(0.6F, 1.65F).eyeHeight(1.55F).ridingOffset(-0.55F).clientTrackingRange(10));
 	public static final DeferredHolder<EntityType<?>, EntityType<PlantainSpider>> PLANTAIN_SPIDER = ENTITY_TYPES.createEntity("plantain_spider", PlantainSpider::new, MobCategory.MONSTER, builder -> builder
 			.sized(0.65F, 0.55F).eyeHeight(0.4F).clientTrackingRange(8));
 
