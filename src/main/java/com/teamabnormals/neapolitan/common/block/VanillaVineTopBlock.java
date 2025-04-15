@@ -65,9 +65,9 @@ public class VanillaVineTopBlock extends Block implements BonemealableBlock {
 	}
 
 	@Override
-	public void playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
-		super.playerWillDestroy(world, pos, state, player);
+	public BlockState playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
 		VanillaVineBlock.createPoisonCloud(world, pos, state, player);
+		return super.playerWillDestroy(world, pos, state, player);
 	}
 
 	@Override
@@ -85,11 +85,11 @@ public class VanillaVineTopBlock extends Block implements BonemealableBlock {
 
 	@Override
 	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
-		if (this.canGrowUp(state, worldIn, pos) && net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos.relative(state.getValue(FACING)), worldIn.getBlockState(pos.relative(state.getValue(FACING))), random.nextDouble() < 0.1D)) {
+		if (this.canGrowUp(state, worldIn, pos) && net.neoforged.neoforge.common.CommonHooks.canCropGrow(worldIn, pos.relative(state.getValue(FACING)), worldIn.getBlockState(pos.relative(state.getValue(FACING))), random.nextDouble() < 0.1D)) {
 			BlockPos blockpos = pos.relative(state.getValue(FACING));
 			if (this.canGrowIn(worldIn.getBlockState(blockpos))) {
 				worldIn.setBlockAndUpdate(blockpos, state);
-				net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, blockpos, worldIn.getBlockState(blockpos));
+				net.neoforged.neoforge.common.CommonHooks.fireCropGrowPost(worldIn, blockpos, worldIn.getBlockState(blockpos));
 			}
 		}
 	}
@@ -135,7 +135,7 @@ public class VanillaVineTopBlock extends Block implements BonemealableBlock {
 	}
 
 	@Override
-	public boolean isValidBonemealTarget(LevelReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
+	public boolean isValidBonemealTarget(LevelReader worldIn, BlockPos pos, BlockState state) {
 		return this.canGrowIn(worldIn.getBlockState(pos.relative(state.getValue(FACING))));
 	}
 

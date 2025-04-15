@@ -1,10 +1,9 @@
 package com.teamabnormals.neapolitan.core.data.server.tags;
 
-import com.teamabnormals.blueprint.core.other.tags.BlueprintBiomeTags;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.other.NeapolitanConstants;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanBiomeTags;
-import com.teamabnormals.neapolitan.core.registry.NeapolitanBiomes;
+import com.teamabnormals.neapolitan.core.registry.datapack.NeapolitanBiomes;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
@@ -14,8 +13,8 @@ import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -30,7 +29,7 @@ public class NeapolitanBiomeTagsProvider extends BiomeTagsProvider {
 		this.tag(NeapolitanBiomes.STRAWBERRY_FIELDS,
 				BiomeTags.IS_OVERWORLD,
 				BiomeTags.HAS_MINESHAFT, BiomeTags.STRONGHOLD_BIASED_TO, BiomeTags.HAS_RUINED_PORTAL_STANDARD,
-				BlueprintBiomeTags.IS_GRASSLAND, Tags.Biomes.IS_PLAINS, Tags.Biomes.IS_RARE
+				Tags.Biomes.IS_PLAINS, Tags.Biomes.IS_RARE
 		);
 
 		this.tag(NeapolitanBiomeTags.SPAWNS_RAINFOREST_VARIANT_CHIMPANZEES).addOptionalTag(NeapolitanConstants.IS_RAINFOREST);

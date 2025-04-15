@@ -1,8 +1,11 @@
 package com.teamabnormals.neapolitan.common.block;
 
+import com.mojang.serialization.MapCodec;
+import com.teamabnormals.blueprint.common.network.particle.SpawnParticlesPayload.ParticleInstance;
 import com.teamabnormals.blueprint.core.util.NetworkUtil;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanBlockTags;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanParticleTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Plane;
@@ -12,6 +15,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -29,12 +33,12 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.common.IPlantable;
+import net.neoforged.neoforge.common.CommonHooks;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
-public class MintBlock extends BushBlock implements IPlantable, BonemealableBlock {
+public class MintBlock extends BushBlock implements BonemealableBlock {
 	public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 4);
 	public static final IntegerProperty SPROUTS = IntegerProperty.create("sprouts", 1, 4);
 	private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
@@ -51,16 +55,24 @@ public class MintBlock extends BushBlock implements IPlantable, BonemealableBloc
 	}
 
 	@Override
-	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
-		if (!this.isMaxAge(state) && player.getItemInHand(handIn).getItem() == Items.BONE_MEAL) {
-			return InteractionResult.PASS;
-		} else if (this.isMaxAge(state)) {
+	protected MapCodec<? extends BushBlock> codec() {
+		return null;
+	}
+
+	@Override
+	protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+		return !this.isMaxAge(state) && stack.is(Items.BONE_MEAL) ? ItemInteractionResult.SKIP_DEFAULT_BLOCK_INTERACTION : super.useItemOn(stack, state, level, pos, player, hand, hitResult);
+	}
+
+	@Override
+	public InteractionResult useWithoutItem(BlockState state, Level worldIn, BlockPos pos, Player player, BlockHitResult hit) {
+		if (this.isMaxAge(state)) {
 			popResource(worldIn, pos, new ItemStack(NeapolitanItems.MINT_LEAVES.get(), state.getValue(SPROUTS)));
 			worldIn.playSound(null, pos, SoundEvents.CROP_BREAK, SoundSource.BLOCKS, 1.0F, 0.8F + worldIn.random.nextFloat() * 0.4F);
 			worldIn.setBlock(pos, state.setValue(AGE, 1), 2);
 			return InteractionResult.sidedSuccess(worldIn.isClientSide);
 		} else {
-			return super.use(state, worldIn, pos, player, handIn, hit);
+			return super.useWithoutItem(state, worldIn, pos, player, hit);
 		}
 	}
 
@@ -75,7 +87,7 @@ public class MintBlock extends BushBlock implements IPlantable, BonemealableBloc
 	}
 
 	@Override
-	public ItemStack getCloneItemStack(BlockGetter worldIn, BlockPos pos, BlockState state) {
+	public ItemStack getCloneItemStack(LevelReader worldIn, BlockPos pos, BlockState state) {
 		return new ItemStack(NeapolitanItems.MINT_SPROUT.get());
 	}
 
@@ -83,9 +95,9 @@ public class MintBlock extends BushBlock implements IPlantable, BonemealableBloc
 	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
 		if (!worldIn.isAreaLoaded(pos, 1)) return;
 		int i = state.getValue(AGE);
-		if (worldIn.getRawBrightness(pos, 0) >= 9 && !this.isMaxAge(state) && ForgeHooks.onCropsGrowPre(worldIn, pos, state, random.nextInt(9) == 0)) {
+		if (worldIn.getRawBrightness(pos, 0) >= 9 && !this.isMaxAge(state) && CommonHooks.canCropGrow(worldIn, pos, state, random.nextInt(9) == 0)) {
 			worldIn.setBlock(pos, state.setValue(AGE, i + 1), 2);
-			ForgeHooks.onCropsGrowPost(worldIn, pos, state);
+			CommonHooks.fireCropGrowPost(worldIn, pos, state);
 		} else {
 			if (this.isMaxAge(state) && random.nextInt(3) != 0) {
 				spawnGrowthParticles(worldIn, pos, random);
@@ -99,10 +111,10 @@ public class MintBlock extends BushBlock implements IPlantable, BonemealableBloc
 		}
 	}
 
-	private static void spawnGrowthParticles(ServerLevel worldIn, BlockPos posIn, RandomSource random) {
-		BlockState blockstate = worldIn.getBlockState(posIn);
+	private static void spawnGrowthParticles(ServerLevel level, BlockPos posIn, RandomSource random) {
+		BlockState blockstate = level.getBlockState(posIn);
 		if (!blockstate.isAir()) {
-			double d1 = blockstate.getShape(worldIn, posIn).max(Direction.Axis.Y);
+			double d1 = blockstate.getShape(level, posIn).max(Direction.Axis.Y);
 			for (int i = 0; i < 8; ++i) {
 				double d2 = random.nextGaussian() * 0.02D;
 				double d3 = random.nextGaussian() * 0.02D;
@@ -110,8 +122,8 @@ public class MintBlock extends BushBlock implements IPlantable, BonemealableBloc
 				double d6 = (double) posIn.getX() + random.nextDouble();
 				double d7 = (double) posIn.getY() + random.nextDouble() * d1;
 				double d8 = (double) posIn.getZ() + random.nextDouble();
-				if (!worldIn.getBlockState((BlockPos.containing(d6, d7, d8)).below()).isAir()) {
-					NetworkUtil.spawnParticle("neapolitan:mint_boost", d6, d7, d8, d2, d3, d4);
+				if (!level.getBlockState((BlockPos.containing(d6, d7, d8)).below()).isAir()) {
+					NetworkUtil.spawnParticle(level, NeapolitanParticleTypes.MINT_BOOST.get(), List.of(new ParticleInstance(d6, d7, d8, d2, d3, d4)));
 				}
 			}
 		}
@@ -142,7 +154,7 @@ public class MintBlock extends BushBlock implements IPlantable, BonemealableBloc
 	}
 
 	@Override
-	public boolean isValidBonemealTarget(LevelReader block, BlockPos pos, BlockState state, boolean isClient) {
+	public boolean isValidBonemealTarget(LevelReader block, BlockPos pos, BlockState state) {
 		return !this.isMaxAge(state);
 	}
 

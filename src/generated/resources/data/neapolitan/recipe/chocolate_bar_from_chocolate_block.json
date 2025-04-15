@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "neapolitan:chocolate_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "neapolitan:chocolate_bar"
+  }
+}

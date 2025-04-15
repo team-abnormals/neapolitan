@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "count": 1,
-  "ingredient": {
-    "item": "neapolitan:chocolate_bricks"
-  },
-  "result": "neapolitan:chiseled_chocolate_bricks"
-}

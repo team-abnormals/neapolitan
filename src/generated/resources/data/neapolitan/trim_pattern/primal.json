@@ -1,5 +1,6 @@
 {
   "asset_id": "neapolitan:primal",
+  "decal": false,
   "description": {
     "translate": "trim_pattern.neapolitan.primal"
   },

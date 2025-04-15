@@ -19,6 +19,7 @@
             "trigger": "minecraft:player_killed_entity"
           }
         },
+        "indexed_requirements": [],
         "requirements": [
           [
             "neapolitan:plantain_spider"

@@ -3,7 +3,6 @@ package com.teamabnormals.neapolitan.common.entity.monster;
 import com.teamabnormals.neapolitan.core.NeapolitanConfig;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanMobEffects;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -35,7 +34,7 @@ public class PlantainSpider extends Spider {
 	public boolean doHurtTarget(Entity entityIn) {
 		if (super.doHurtTarget(entityIn)) {
 			if (entityIn instanceof LivingEntity livingEntity && NeapolitanConfig.COMMON.plantainSpidersGiveSlipping.get()) {
-				livingEntity.addEffect(new MobEffectInstance(NeapolitanMobEffects.SLIPPING.get(), this.level().getDifficulty().getId() * 60));
+				livingEntity.addEffect(new MobEffectInstance(NeapolitanMobEffects.SLIPPING, this.level().getDifficulty().getId() * 60));
 			}
 			return true;
 		} else {
@@ -45,12 +44,7 @@ public class PlantainSpider extends Spider {
 
 	@Override
 	@Nullable
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn) {
 		return spawnDataIn;
-	}
-
-	@Override
-	protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
-		return 0.40F;
 	}
 }

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_ice_cubes": {
+      "conditions": {
+        "items": [
+          {
+            "items": "neapolitan:ice_cubes"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "neapolitan:neapolitan_ice_cream_from_vanilla_ice_cream"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_ice_cubes"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "neapolitan:neapolitan_ice_cream_from_vanilla_ice_cream"
+    ]
+  }
+}

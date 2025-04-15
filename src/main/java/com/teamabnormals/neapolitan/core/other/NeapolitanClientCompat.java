@@ -2,19 +2,25 @@ package com.teamabnormals.neapolitan.core.other;
 
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks.NeapolitanSkullTypes;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.blockentity.SkullBlockRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.ChargedProjectiles;
 
 public class NeapolitanClientCompat {
 
-	public static void registerClientCompat() {
+	public static void register() {
+		NeapolitanBlocks.setupTabEditors();
+		NeapolitanItems.setupTabEditors();
 		registerRenderLayers();
 		registerItemProperties();
+		SkullBlockRenderer.SKIN_BY_TYPE.put(NeapolitanSkullTypes.CHIMPANZEE, Neapolitan.location("textures/entity/chimpanzee/jungle_chimpanzee.png"));
 	}
 
 	private static void registerRenderLayers() {
@@ -39,8 +45,9 @@ public class NeapolitanClientCompat {
 	}
 
 	public static void registerItemProperties() {
-		ItemProperties.register(Items.CROSSBOW, new ResourceLocation(Neapolitan.MOD_ID, "bananarrow"), (stack, world, entity, i) -> {
-			return entity != null && CrossbowItem.isCharged(stack) && CrossbowItem.containsChargedProjectile(stack, NeapolitanItems.BANANARROW.get()) ? 1.0F : 0.0F;
+		ItemProperties.register(Items.CROSSBOW, Neapolitan.location("bananarrow"), (stack, world, entity, i) -> {
+			ChargedProjectiles projectiles = stack.get(DataComponents.CHARGED_PROJECTILES);
+			return projectiles != null && CrossbowItem.isCharged(stack) && projectiles.contains(NeapolitanItems.BANANARROW.get()) ? 1.0F : 0.0F;
 		});
 	}
 }

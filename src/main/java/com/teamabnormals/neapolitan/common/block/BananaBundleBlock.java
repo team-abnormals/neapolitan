@@ -2,18 +2,19 @@ package com.teamabnormals.neapolitan.common.block;
 
 import com.teamabnormals.neapolitan.common.entity.monster.PlantainSpider;
 import com.teamabnormals.neapolitan.core.NeapolitanConfig;
+import com.teamabnormals.neapolitan.core.other.tags.NeapolitanEnchantmentTags;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.EnchantmentTags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.Tags.Items;
+import net.neoforged.neoforge.common.Tags;
 
 public class BananaBundleBlock extends Block {
 
@@ -24,7 +25,7 @@ public class BananaBundleBlock extends Block {
 	@Override
 	public void spawnAfterBreak(BlockState state, ServerLevel world, BlockPos pos, ItemStack stack, boolean bool) {
 		super.spawnAfterBreak(state, world, pos, stack, bool);
-		if (world.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) && EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SILK_TOUCH, stack) == 0 && !stack.is(Items.SHEARS)) {
+		if (world.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) && EnchantmentHelper.hasTag(stack, NeapolitanEnchantmentTags.PREVENTS_PLANTAIN_SPIDER_SPAWNS_WHEN_MINING) && !stack.is(Tags.Items.TOOLS_SHEAR)) {
 			this.spawnSpider(world, pos);
 		}
 	}

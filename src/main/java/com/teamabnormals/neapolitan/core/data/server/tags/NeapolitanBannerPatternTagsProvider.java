@@ -2,12 +2,11 @@ package com.teamabnormals.neapolitan.core.data.server.tags;
 
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanBannerPatternTags;
-import com.teamabnormals.neapolitan.core.registry.NeapolitanBannerPatterns;
-import net.minecraft.core.HolderLookup;
+import com.teamabnormals.neapolitan.core.registry.datapack.NeapolitanBannerPatterns;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.BannerPatternTagsProvider;
-import net.minecraftforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -19,6 +18,6 @@ public class NeapolitanBannerPatternTagsProvider extends BannerPatternTagsProvid
 
 	@Override
 	public void addTags(Provider provider) {
-		this.tag(NeapolitanBannerPatternTags.PATTERN_ITEM_CHIMPANZEE).add(NeapolitanBannerPatterns.CHIMPANZEE.getKey());
+		this.tag(NeapolitanBannerPatternTags.PATTERN_ITEM_CHIMPANZEE).add(NeapolitanBannerPatterns.CHIMPANZEE);
 	}
 }

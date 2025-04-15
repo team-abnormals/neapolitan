@@ -11,7 +11,7 @@ import com.teamabnormals.neapolitan.core.other.tags.NeapolitanEntityTypeTags;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanMobEffectTags;
 import com.teamabnormals.neapolitan.core.registry.*;
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.core.Holder;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
@@ -33,21 +33,19 @@ import net.minecraft.world.level.block.PointedDripstoneBlock;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.entity.EntityJoinLevelEvent;
-import net.minecraftforge.event.entity.ProjectileImpactEvent;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.LivingEvent.LivingTickEvent;
-import net.minecraftforge.event.entity.living.LivingEvent.LivingVisibilityEvent;
-import net.minecraftforge.event.entity.living.MobEffectEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteractSpecific;
-import net.minecraftforge.event.level.ExplosionEvent;
-import net.minecraftforge.event.village.VillagerTradesEvent;
-import net.minecraftforge.event.village.WandererTradesEvent;
-import net.minecraftforge.eventbus.api.Event.Result;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.tags.ITagManager;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
+import net.neoforged.neoforge.event.entity.ProjectileImpactEvent;
+import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
+import net.neoforged.neoforge.event.entity.living.LivingEvent.LivingVisibilityEvent;
+import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
+import net.neoforged.neoforge.event.entity.living.MobEffectEvent.Applicable.Result;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent.EntityInteractSpecific;
+import net.neoforged.neoforge.event.level.ExplosionEvent;
+import net.neoforged.neoforge.event.tick.EntityTickEvent;
+import net.neoforged.neoforge.event.village.VillagerTradesEvent;
+import net.neoforged.neoforge.event.village.WandererTradesEvent;
 
 @EventBusSubscriber(modid = Neapolitan.MOD_ID)
 public class NeapolitanEvents {
@@ -56,13 +54,13 @@ public class NeapolitanEvents {
 	public static void onEntityJoinWorld(EntityJoinLevelEvent event) {
 		Entity entity = event.getEntity();
 		if (entity instanceof Monster mobEntity && !entity.getType().is(NeapolitanEntityTypeTags.UNAFFECTED_BY_HARMONY)) {
-			mobEntity.goalSelector.addGoal(0, new AvoidEntityGoal<>(mobEntity, Player.class, 12.0F, 1.0D, 1.0D, (player) -> player.getEffect(NeapolitanMobEffects.HARMONY.get()) != null));
+			mobEntity.goalSelector.addGoal(0, new AvoidEntityGoal<>(mobEntity, Player.class, 12.0F, 1.0D, 1.0D, (player) -> player.getEffect(NeapolitanMobEffects.HARMONY) != null));
 		}
 	}
 
 	@SubscribeEvent
-	public static void onLivingUpdate(LivingTickEvent event) {
-		LivingEntity entity = event.getEntity();
+	public static void onLivingUpdate(EntityTickEvent.Post event) {
+		Entity entity = event.getEntity();
 		if (entity.getType().is(BlueprintEntityTypeTags.MILKABLE)) {
 			Level level = event.getEntity().level();
 			BlockPos entityPos = entity.blockPosition();
@@ -120,11 +118,11 @@ public class NeapolitanEvents {
 	@SubscribeEvent
 	public static void onLivingDeath(LivingDeathEvent event) {
 		if (event.getSource().getEntity() instanceof LivingEntity attacker) {
-			if (attacker.getEffect(NeapolitanMobEffects.BERSERKING.get()) != null) {
-				MobEffectInstance berserking = attacker.getEffect(NeapolitanMobEffects.BERSERKING.get());
+			if (attacker.getEffect(NeapolitanMobEffects.BERSERKING) != null) {
+				MobEffectInstance berserking = attacker.getEffect(NeapolitanMobEffects.BERSERKING);
 				if (berserking.getAmplifier() < 9) {
 					MobEffectInstance upgrade = new MobEffectInstance(berserking.getEffect(), berserking.getDuration(), berserking.getAmplifier() + 1, berserking.isAmbient(), berserking.isVisible(), berserking.showIcon());
-					attacker.removeEffectNoUpdate(NeapolitanMobEffects.BERSERKING.get());
+					attacker.removeEffectNoUpdate(NeapolitanMobEffects.BERSERKING);
 					attacker.addEffect(upgrade);
 				}
 			}
@@ -133,15 +131,15 @@ public class NeapolitanEvents {
 
 	@SubscribeEvent
 	public static void onExplosion(ExplosionEvent.Detonate event) {
-		Entity source = event.getExplosion().getExploder();
+		Entity source = event.getExplosion().getDirectSourceEntity();
 		if (source != null && (source.getType().is(NeapolitanEntityTypeTags.EXPLOSION_HEALS_IN_STRAWBERRY))) {
 			if (event.getLevel().getBlockState(source.blockPosition()).getBlock() == NeapolitanBlocks.STRAWBERRY_BUSH.get()) {
 				for (Entity entity : event.getAffectedEntities()) {
 					if (entity instanceof LivingEntity livingEntity) {
 						livingEntity.heal(5.0F);
 					}
-					if (entity instanceof ServerPlayer)
-						NeapolitanCriteriaTriggers.CREEPER_HEAL.trigger((ServerPlayer) entity);
+					// TODO: Advancements
+					//if (entity instanceof ServerPlayer)NeapolitanCriteriaTriggers.CREEPER_HEAL.trigger((ServerPlayer) entity);
 				}
 
 				event.getAffectedEntities().clear();
@@ -165,13 +163,12 @@ public class NeapolitanEvents {
 
 	@SubscribeEvent
 	public static void onPotionAdded(MobEffectEvent.Applicable event) {
-		MobEffect effect = event.getEffectInstance().getEffect();
+		Holder<MobEffect> effect = event.getEffectInstance().getEffect();
 		LivingEntity entity = event.getEntity();
 
-		if (entity.getEffect(NeapolitanMobEffects.VANILLA_SCENT.get()) != null) {
-			ITagManager<MobEffect> mobEffectTags = ForgeRegistries.MOB_EFFECTS.tags();
-			if (mobEffectTags != null && !mobEffectTags.getTag(NeapolitanMobEffectTags.UNAFFECTED_BY_VANILLA_SCENT).contains(effect)) {
-				event.setResult(Result.DENY);
+		if (entity.hasEffect(NeapolitanMobEffects.VANILLA_SCENT)) {
+			if (!effect.is(NeapolitanMobEffectTags.UNAFFECTED_BY_VANILLA_SCENT)) {
+				event.setResult(Result.DO_NOT_APPLY);
 			}
 		}
 

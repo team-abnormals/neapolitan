@@ -17,8 +17,8 @@ import net.minecraft.client.renderer.entity.layers.CustomHeadLayer;
 import net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 
 import java.util.Locale;
 
@@ -39,12 +39,12 @@ public class ChimpanzeeRenderer extends MobRenderer<Chimpanzee, ChimpanzeeModel<
 	public ResourceLocation getTextureLocation(Chimpanzee chimpanzee) {
 		ChimpanzeeType type = ChimpanzeeType.byId(chimpanzee.getChimpanzeeType());
 		String textureend = chimpanzee.isMouthOpen() ? "_chimpanzee_mouth_open.png" : "_chimpanzee.png";
-		return new ResourceLocation(Neapolitan.MOD_ID, "textures/entity/chimpanzee/" + type.name().toLowerCase(Locale.ROOT) + textureend);
+		return Neapolitan.location("textures/entity/chimpanzee/" + type.name().toLowerCase(Locale.ROOT) + textureend);
 	}
 
 	@Override
-	protected void setupRotations(Chimpanzee chimpanzee, PoseStack matrixStackIn, float ageInTicks, float rotationYaw, float partialTicks) {
-		super.setupRotations(chimpanzee, matrixStackIn, ageInTicks, rotationYaw, partialTicks);
+	protected void setupRotations(Chimpanzee chimpanzee, PoseStack matrixStackIn, float ageInTicks, float rotationYaw, float partialTicks, float scale) {
+		super.setupRotations(chimpanzee, matrixStackIn, ageInTicks, rotationYaw, partialTicks, scale);
 		float f = chimpanzee.getFlipAnim(partialTicks);
 		if (f > 0.0F) {
 			float f1 = Mth.PI * f / 10F;

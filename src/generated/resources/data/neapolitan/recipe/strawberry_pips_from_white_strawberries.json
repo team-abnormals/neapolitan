@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "strawberry_pips_from_white_strawberries",
+  "ingredients": [
+    {
+      "item": "neapolitan:white_strawberries"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "neapolitan:strawberry_pips"
+  }
+}

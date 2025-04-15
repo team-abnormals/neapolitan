@@ -1,0 +1,8 @@
+{
+  "comparator_output": 3,
+  "description": {
+    "translate": "jukebox_song.neapolitan.hullabaloo"
+  },
+  "length_in_seconds": 132.0,
+  "sound_event": "neapolitan:music.record.hullabaloo"
+}

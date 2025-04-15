@@ -19,7 +19,8 @@
               "neapolitan:armor_trimmed_neapolitan:primal_armor_trim_smithing_template"
             ]
           }
-        ]
+        ],
+        "should_replace_requirements": false
       }
     }
   ],

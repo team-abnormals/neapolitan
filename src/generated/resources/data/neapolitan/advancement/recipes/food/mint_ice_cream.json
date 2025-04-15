@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_ice_cubes": {
+      "conditions": {
+        "items": [
+          {
+            "items": "neapolitan:ice_cubes"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_mint_leaves": {
+      "conditions": {
+        "items": [
+          {
+            "items": "neapolitan:mint_leaves"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "neapolitan:mint_ice_cream"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_mint_leaves",
+      "has_ice_cubes"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "neapolitan:mint_ice_cream"
+    ]
+  }
+}

@@ -11,13 +11,12 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.EyesLayer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class ChimpanzeeEyesLayer<T extends Chimpanzee> extends EyesLayer<T, ChimpanzeeModel<T>> {
-	private static final RenderType RENDER_TYPE = BlueprintRenderTypes.getUnshadedCutoutEntity(new ResourceLocation(Neapolitan.MOD_ID, "textures/entity/chimpanzee/chimpanzee_eyes.png"), true);
+	private static final RenderType RENDER_TYPE = BlueprintRenderTypes.getUnshadedCutoutEntity(Neapolitan.location("textures/entity/chimpanzee/chimpanzee_eyes.png"), true);
 
 	public ChimpanzeeEyesLayer(RenderLayerParent<T, ChimpanzeeModel<T>> rendererIn) {
 		super(rendererIn);
@@ -28,7 +27,7 @@ public class ChimpanzeeEyesLayer<T extends Chimpanzee> extends EyesLayer<T, Chim
 		if (chimpanzee.level().getMaxLocalRawBrightness(chimpanzee.blockPosition()) > 5)
 			return;
 		VertexConsumer ivertexbuilder = bufferIn.getBuffer(this.renderType());
-		this.getParentModel().renderToBuffer(matrixStackIn, ivertexbuilder, 15728640, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+		this.getParentModel().renderToBuffer(matrixStackIn, ivertexbuilder, 15728640, OverlayTexture.NO_OVERLAY);
 	}
 
 	@Override

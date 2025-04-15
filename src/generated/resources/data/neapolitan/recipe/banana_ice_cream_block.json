@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:snow_block"
+    },
+    "X": {
+      "item": "neapolitan:banana_ice_cream"
+    }
+  },
+  "pattern": [
+    "###",
+    "#X#",
+    "###"
+  ],
+  "result": {
+    "count": 8,
+    "id": "neapolitan:banana_ice_cream_block"
+  }
+}

@@ -48,7 +48,8 @@
               "neapolitan:adzuki_soil"
             ]
           }
-        ]
+        ],
+        "should_replace_requirements": false
       }
     }
   ],

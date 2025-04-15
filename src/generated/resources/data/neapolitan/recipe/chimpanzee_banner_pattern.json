@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:paper"
+    },
+    {
+      "item": "neapolitan:chimpanzee_head"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "neapolitan:chimpanzee_banner_pattern"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "tag": "c:milk"
+    },
+    "B": {
+      "item": "minecraft:sugar"
+    },
+    "C": {
+      "item": "minecraft:wheat"
+    },
+    "D": {
+      "item": "neapolitan:chocolate_bar"
+    },
+    "E": {
+      "tag": "c:eggs"
+    }
+  },
+  "pattern": [
+    "ADA",
+    "BEB",
+    "CDC"
+  ],
+  "result": {
+    "count": 1,
+    "id": "neapolitan:chocolate_cake"
+  }
+}

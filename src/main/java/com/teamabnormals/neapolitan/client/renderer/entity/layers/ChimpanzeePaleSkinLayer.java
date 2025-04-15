@@ -11,25 +11,28 @@ import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraft.util.FastColor;
+import net.minecraft.util.Mth;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class ChimpanzeePaleSkinLayer<E extends Chimpanzee, M extends ChimpanzeeModel<E>> extends RenderLayer<E, M> {
-	public static final ResourceLocation PALE_SKIN = new ResourceLocation(Neapolitan.MOD_ID, "textures/entity/chimpanzee/chimpanzee_skin_pale.png");
-	public static final ResourceLocation PALE_SKIN_MOUTH_OPEN = new ResourceLocation(Neapolitan.MOD_ID, "textures/entity/chimpanzee/chimpanzee_skin_pale_mouth_open.png");
+	public static final ResourceLocation PALE_SKIN = Neapolitan.location("textures/entity/chimpanzee/chimpanzee_skin_pale.png");
+	public static final ResourceLocation PALE_SKIN_MOUTH_OPEN = Neapolitan.location("textures/entity/chimpanzee/chimpanzee_skin_pale_mouth_open.png");
 
 	public ChimpanzeePaleSkinLayer(RenderLayerParent<E, M> entityRenderer) {
 		super(entityRenderer);
 	}
 
 	@Override
-	public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, E chimpanzee, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
+	public void render(PoseStack poseStack, MultiBufferSource bufferIn, int packedLightIn, E chimpanzee, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
 		float f = chimpanzee.getVisiblePaleness();
 		if (!chimpanzee.isInvisible() && f > 0.0F) {
-			ResourceLocation resourcelocation = chimpanzee.isMouthOpen() ? PALE_SKIN_MOUTH_OPEN : PALE_SKIN;
-			VertexConsumer ivertexbuilder = bufferIn.getBuffer(RenderType.entityTranslucent(resourcelocation));
-			this.getParentModel().renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, LivingEntityRenderer.getOverlayCoords(chimpanzee, 0.0F), 1.0F, 1.0F, 1.0F, f);
+			ResourceLocation texture = chimpanzee.isMouthOpen() ? PALE_SKIN_MOUTH_OPEN : PALE_SKIN;
+			VertexConsumer ivertexbuilder = bufferIn.getBuffer(RenderType.entityTranslucent(texture));
+			int i = FastColor.ARGB32.color(Mth.floor(f * 255.0F), 255, 255, 255);
+			this.getParentModel().renderToBuffer(poseStack, ivertexbuilder, packedLightIn, LivingEntityRenderer.getOverlayCoords(chimpanzee, 0.0F), i);
 		}
 	}
 }

@@ -1,24 +1,24 @@
 package com.teamabnormals.neapolitan.common.block;
 
+import com.mojang.serialization.MapCodec;
 import com.teamabnormals.neapolitan.core.NeapolitanConfig;
-import com.teamabnormals.neapolitan.core.other.NeapolitanCriteriaTriggers;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.Ravager;
 import net.minecraft.world.entity.player.Player;
@@ -37,17 +37,16 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.event.ForgeEventFactory;
+import net.neoforged.neoforge.common.CommonHooks;
+import net.neoforged.neoforge.event.EventHooks;
 
 import javax.annotation.Nullable;
 
-public class StrawberryBushBlock extends BushBlock implements IPlantable, BonemealableBlock {
+public class StrawberryBushBlock extends BushBlock implements BonemealableBlock {
 	public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 6);
 	public static final EnumProperty<StrawberryType> TYPE = EnumProperty.create("type", StrawberryType.class);
 	private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
@@ -66,22 +65,26 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, Boneme
 	}
 
 	@Override
-	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-		int age = state.getValue(AGE);
-		boolean fullyGrown = age == this.getMaxAge();
-		if (!fullyGrown && player.getItemInHand(hand).getItem() == Items.BONE_MEAL) {
-			return InteractionResult.PASS;
-		} else if (fullyGrown) {
+	protected MapCodec<? extends BushBlock> codec() {
+		return null;
+	}
+
+	@Override
+	protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+		return state.getValue(AGE) != this.getMaxAge() && stack.is(Items.BONE_MEAL) ? ItemInteractionResult.SKIP_DEFAULT_BLOCK_INTERACTION : super.useItemOn(stack, state, level, pos, player, hand, hitResult);
+	}
+
+	@Override
+	protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+		if (state.getValue(AGE) == this.getMaxAge()) {
 			int strawberryCount = 1 + level.random.nextInt(2);
 			Item strawberry = state.getValue(TYPE) == StrawberryType.WHITE ? NeapolitanItems.WHITE_STRAWBERRIES.get() : NeapolitanItems.STRAWBERRIES.get();
 			popResource(level, pos, new ItemStack(strawberry, strawberryCount));
 			level.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + level.random.nextFloat() * 0.4F);
 			level.setBlock(pos, state.setValue(AGE, 1).setValue(TYPE, StrawberryType.NONE), 2);
-			if (player instanceof ServerPlayer)
-				NeapolitanCriteriaTriggers.HARVEST_STRAWBERRIES.trigger((ServerPlayer) player, state);
 			return InteractionResult.sidedSuccess(level.isClientSide);
 		} else {
-			return super.use(state, level, pos, player, hand, hit);
+			return super.useWithoutItem(state, level, pos, player, hitResult);
 		}
 	}
 
@@ -99,13 +102,13 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, Boneme
 			int maxAgeForPos = worldIn.getBlockState(pos.below()).is(Blocks.COARSE_DIRT) ? 2 : this.getMaxAge();
 			int growthChance = !worldIn.isRaining() ? 7 : 5;
 			if (age < maxAgeForPos) {
-				if (ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt(growthChance) == 0)) {
+				if (CommonHooks.canCropGrow(worldIn, pos, state, rand.nextInt(growthChance) == 0)) {
 					if (age != 5) {
 						worldIn.setBlock(pos, this.withAge(age + 1), 2);
 					} else {
 						worldIn.setBlock(pos, this.withAge(age + 1).setValue(TYPE, this.isWhite(worldIn, pos) ? StrawberryType.WHITE : StrawberryType.RED), 2);
 					}
-					ForgeHooks.onCropsGrowPost(worldIn, pos, state);
+					CommonHooks.fireCropGrowPost(worldIn, pos, state);
 				}
 			}
 		}
@@ -123,10 +126,10 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, Boneme
 				}
 			}
 		}
-		if (entityIn instanceof Ravager && ForgeEventFactory.getMobGriefingEvent(worldIn, entityIn)) {
+		if (entityIn instanceof Ravager && EventHooks.canEntityGrief(worldIn, entityIn)) {
 			worldIn.destroyBlock(pos, true, entityIn);
 		}
-		if (entityIn instanceof LivingEntity entity && entity.getMobType() == MobType.ARTHROPOD && state.getValue(AGE) > 0 && NeapolitanConfig.COMMON.strawberryBushArthropodInvisibility.get()) {
+		if (entityIn instanceof LivingEntity entity && entity.getType().is(EntityTypeTags.ARTHROPOD) && state.getValue(AGE) > 0 && NeapolitanConfig.COMMON.strawberryBushArthropodInvisibility.get()) {
 			entity.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 3, 0, false, false, false));
 
 		}
@@ -135,9 +138,9 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, Boneme
 
 	@Nullable
 	@Override
-	public BlockPathTypes getBlockPathType(BlockState state, BlockGetter world, BlockPos pos, @Nullable Mob entity) {
+	public PathType getBlockPathType(BlockState state, BlockGetter world, BlockPos pos, @Nullable Mob entity) {
 		if (entity instanceof Creeper)
-			return BlockPathTypes.DANGER_OTHER;
+			return PathType.DANGER_OTHER;
 		return super.getBlockPathType(state, world, pos, entity);
 	}
 
@@ -146,7 +149,7 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, Boneme
 	}
 
 	@Override
-	public ItemStack getCloneItemStack(BlockGetter worldIn, BlockPos pos, BlockState state) {
+	public ItemStack getCloneItemStack(LevelReader worldIn, BlockPos pos, BlockState state) {
 		return new ItemStack(this.getSeedsItem());
 	}
 
@@ -185,7 +188,7 @@ public class StrawberryBushBlock extends BushBlock implements IPlantable, Boneme
 	}
 
 	@Override
-	public boolean isValidBonemealTarget(LevelReader block, BlockPos pos, BlockState state, boolean isClient) {
+	public boolean isValidBonemealTarget(LevelReader block, BlockPos pos, BlockState state) {
 		return !this.isMaxAge(state);
 	}
 

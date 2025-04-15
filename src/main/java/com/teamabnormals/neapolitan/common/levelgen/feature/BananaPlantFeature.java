@@ -266,12 +266,12 @@ public class BananaPlantFeature extends Feature<NoneFeatureConfiguration> {
 			double d0 = (double) pos.getX() + (random.nextDouble() - random.nextDouble()) * (double) spawnRange + 0.5D;
 			double d1 = pos.getY() + random.nextInt(3) - 1;
 			double d2 = (double) pos.getZ() + (random.nextDouble() - random.nextDouble()) * (double) spawnRange + 0.5D;
-			if (level.noCollision(NeapolitanEntityTypes.CHIMPANZEE.get().getAABB(d0, d1, d2))) {
+			if (level.noCollision(NeapolitanEntityTypes.CHIMPANZEE.get().getSpawnAABB(d0, d1, d2))) {
 				if (spawnedChimps < NeapolitanConfig.COMMON.chimpanzeeMaxGroupSize.get()) {
 					Chimpanzee chimp = NeapolitanEntityTypes.CHIMPANZEE.get().create(level.getLevel());
 					if (chimp != null) {
 						chimp.moveTo(d0, d1, d2, level.getRandom().nextFloat() * 360.0F, 0.0F);
-						chimp.finalizeSpawn(level, level.getCurrentDifficultyAt(chimp.blockPosition()), MobSpawnType.STRUCTURE, null, null);
+						chimp.finalizeSpawn(level, level.getCurrentDifficultyAt(chimp.blockPosition()), MobSpawnType.STRUCTURE, null);
 						chimp.setBaby(random.nextInt(4) == 0);
 						level.addFreshEntity(chimp);
 						chimp.spawnAnim();
@@ -300,7 +300,7 @@ public class BananaPlantFeature extends Feature<NoneFeatureConfiguration> {
 
 	public static boolean isValidGround(WorldGenLevel level, BlockPos pos) {
 		return level.isStateAtPosition(pos, (state) ->
-				(level.getBiome(pos).containsTag(NeapolitanBiomeTags.BANANA_PLANT_REQUIRES_SAND) && state.is(Blocks.SAND)) ||
+				(level.getBiome(pos).is(NeapolitanBiomeTags.BANANA_PLANT_REQUIRES_SAND) && state.is(Blocks.SAND)) ||
 						(state.is(Blocks.GRAVEL) || state.is(Blocks.GRASS_BLOCK)));
 	}
 

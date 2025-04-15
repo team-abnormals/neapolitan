@@ -12,13 +12,13 @@ import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.HumanoidArm;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class ChimpanzeeDyeLayer<E extends Chimpanzee, M extends ChimpanzeeModel<E>> extends RenderLayer<E, M> {
-	public static final ResourceLocation DYED_HAND_LEFT = new ResourceLocation(Neapolitan.MOD_ID, "textures/entity/chimpanzee/chimpanzee_dyed_hand_left.png");
-	public static final ResourceLocation DYED_HAND_RIGHT = new ResourceLocation(Neapolitan.MOD_ID, "textures/entity/chimpanzee/chimpanzee_dyed_hand_right.png");
+	public static final ResourceLocation DYED_HAND_LEFT = Neapolitan.location("textures/entity/chimpanzee/chimpanzee_dyed_hand_left.png");
+	public static final ResourceLocation DYED_HAND_RIGHT = Neapolitan.location("textures/entity/chimpanzee/chimpanzee_dyed_hand_right.png");
 
 	public ChimpanzeeDyeLayer(RenderLayerParent<E, M> entityRenderer) {
 		super(entityRenderer);
@@ -30,9 +30,9 @@ public class ChimpanzeeDyeLayer<E extends Chimpanzee, M extends ChimpanzeeModel<
 			for (int i = 0; i < 2; ++i) {
 				HumanoidArm handside = i == 0 ? HumanoidArm.LEFT : HumanoidArm.RIGHT;
 				if (chimpanzee.getHandDyed(handside)) {
-					float[] afloat = chimpanzee.getHandDyeColor(handside).getTextureDiffuseColors();
+					int afloat = chimpanzee.getHandDyeColor(handside).getTextureDiffuseColor();
 					VertexConsumer ivertexbuilder = bufferIn.getBuffer(RenderType.entityTranslucent(handside == HumanoidArm.LEFT ? DYED_HAND_LEFT : DYED_HAND_RIGHT));
-					this.getParentModel().renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, LivingEntityRenderer.getOverlayCoords(chimpanzee, 0.0F), afloat[0], afloat[1], afloat[2], 1.0F);
+					this.getParentModel().renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, LivingEntityRenderer.getOverlayCoords(chimpanzee, 0.0F), afloat);
 				}
 			}
 		}

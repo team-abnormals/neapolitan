@@ -1,6 +1,5 @@
 package com.teamabnormals.neapolitan.common.block;
 
-import com.mojang.datafixers.util.Pair;
 import com.teamabnormals.neapolitan.common.item.HealingItem;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import net.minecraft.core.BlockPos;
@@ -10,9 +9,11 @@ import net.minecraft.stats.Stats;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.food.FoodProperties.PossibleEffect;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -33,36 +34,33 @@ public class FlavoredCakeBlock extends CakeBlock {
 	}
 
 	@Override
-	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
-		ItemStack stack = player.getItemInHand(handIn);
+	protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
 		Item item = stack.getItem();
-		if (stack.is(ItemTags.CANDLES) && state.getValue(BITES) == 0) {
-			Block block = Block.byItem(item);
-			if (block instanceof CandleBlock && FlavoredCandleCakeBlock.hasEntry(block, this)) {
-				if (!player.isCreative()) {
-					stack.shrink(1);
-				}
-
-				worldIn.playSound(null, pos, SoundEvents.CAKE_ADD_CANDLE, SoundSource.BLOCKS, 1.0F, 1.0F);
-				worldIn.setBlockAndUpdate(pos, FlavoredCandleCakeBlock.byCandle(block, this));
-				worldIn.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
-				player.awardStat(Stats.ITEM_USED.get(item));
-				return InteractionResult.SUCCESS;
-			}
+		if (stack.is(ItemTags.CANDLES) && state.getValue(BITES) == 0 && Block.byItem(item) instanceof CandleBlock candleblock && FlavoredCandleCakeBlock.hasEntry(candleblock, this)) {
+			stack.consume(1, player);
+			level.playSound(null, pos, SoundEvents.CAKE_ADD_CANDLE, SoundSource.BLOCKS, 1.0F, 1.0F);
+			level.setBlockAndUpdate(pos, FlavoredCandleCakeBlock.byCandle(candleblock, this));
+			level.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
+			player.awardStat(Stats.ITEM_USED.get(item));
+			return ItemInteractionResult.SUCCESS;
+		} else {
+			return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 		}
+	}
 
-		if (worldIn.isClientSide) {
-			ItemStack itemstack = player.getItemInHand(handIn);
-			if (eatSlice(worldIn, pos, state, player).consumesAction()) {
+	@Override
+	protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+		if (level.isClientSide()) {
+			if (eatSlice(level, pos, state, player).consumesAction()) {
 				return InteractionResult.SUCCESS;
 			}
 
-			if (itemstack.isEmpty()) {
+			if (player.getItemInHand(InteractionHand.MAIN_HAND).isEmpty()) {
 				return InteractionResult.CONSUME;
 			}
 		}
 
-		return eatSlice(worldIn, pos, state, player);
+		return eatSlice(level, pos, state, player);
 	}
 
 	public InteractionResult eatSlice(LevelAccessor level, BlockPos pos, BlockState state, Player player) {
@@ -70,13 +68,13 @@ public class FlavoredCakeBlock extends CakeBlock {
 			return InteractionResult.PASS;
 		} else {
 			player.awardStat(Stats.EAT_CAKE_SLICE);
-			player.getFoodData().eat(food.getNutrition(), food.getSaturationModifier());
+			player.getFoodData().eat(food.nutrition(), food.saturation());
 
 			if (this == NeapolitanBlocks.STRAWBERRY_CAKE.get())
 				HealingItem.applyHealing(1.0F, level, player);
-			for (Pair<MobEffectInstance, Float> pair : food.getEffects()) {
-				if (!level.isClientSide() && pair.getFirst() != null && level.getRandom().nextFloat() < pair.getSecond()) {
-					player.addEffect(new MobEffectInstance(pair.getFirst()));
+			for (PossibleEffect possibleEffect : food.effects()) {
+				if (!level.isClientSide() && level.getRandom().nextFloat() < possibleEffect.probability()) {
+					player.addEffect(new MobEffectInstance(possibleEffect.effect()));
 				}
 			}
 

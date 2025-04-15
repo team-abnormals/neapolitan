@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.NoteBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
+import net.neoforged.neoforge.event.EventHooks;
 
 import java.util.EnumSet;
 
@@ -84,7 +85,7 @@ public class ChimpPlayNoteBlockGoal extends MoveToBlockGoal {
 			this.chimpanzee.setSitting(true);
 
 			if (--this.noteTime <= 0) {
-				if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.chimpanzee.level(), this.chimpanzee)) {
+				if (EventHooks.canEntityGrief(this.chimpanzee.level(), this.chimpanzee)) {
 					BlockState state = this.chimpanzee.level().getBlockState(this.blockPos);
 					int note = state.getValue(NoteBlock.NOTE);
 					note = Mth.clamp(note + this.chimpanzee.getRandom().nextInt(7) - 3, 0, 24);

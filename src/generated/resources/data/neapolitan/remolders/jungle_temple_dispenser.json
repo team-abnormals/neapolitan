@@ -1,0 +1,24 @@
+{
+  "molding": "json",
+  "remolder": {
+    "type": "add",
+    "target": "pools[0].entries[]",
+    "value": {
+      "type": "minecraft:item",
+      "functions": [
+        {
+          "add": false,
+          "count": {
+            "type": "minecraft:uniform",
+            "max": 5.0,
+            "min": 2.0
+          },
+          "function": "minecraft:set_count"
+        }
+      ],
+      "name": "neapolitan:bananarrow",
+      "weight": 20
+    }
+  },
+  "selector": "minecraft:loot_table/chests/jungle_temple_dispenser"
+}

@@ -2,6 +2,7 @@ package com.teamabnormals.neapolitan.common.block;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
+import com.mojang.serialization.MapCodec;
 import com.teamabnormals.blueprint.core.util.BlockUtil;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
@@ -29,8 +30,8 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.common.Tags;
+import net.neoforged.neoforge.common.CommonHooks;
+import net.neoforged.neoforge.common.Tags;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,6 +49,11 @@ public class BananaFrondBlock extends BushBlock implements BonemealableBlock {
 	public BananaFrondBlock(Properties properties) {
 		super(properties);
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.UP).setValue(MOIST, false));
+	}
+
+	@Override
+	protected MapCodec<? extends BushBlock> codec() {
+		return null;
 	}
 
 	@Override
@@ -119,12 +125,12 @@ public class BananaFrondBlock extends BushBlock implements BonemealableBlock {
 	}
 
 	@Override
-	public ItemStack getCloneItemStack(BlockGetter level, BlockPos pos, BlockState state) {
+	public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
 		return new ItemStack(NeapolitanItems.BANANA_FROND.get());
 	}
 
 	@Override
-	public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, boolean isClient) {
+	public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
 		if (isLarge(state)) {
 			return state.getValue(FACING) == Direction.UP && level instanceof Level && ((Level) level).isRainingAt(pos);
 		} else {
@@ -152,9 +158,9 @@ public class BananaFrondBlock extends BushBlock implements BonemealableBlock {
 	public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
 		level.scheduleTick(pos, this, 4);
 		if (state.getValue(MOIST) && level.isRainingAt(pos) && canGrowOn(level.getBlockState(pos.below()))) {
-			if (ForgeHooks.onCropsGrowPre(level, pos, state, rand.nextInt(2) == 0)) {
+			if (CommonHooks.canCropGrow(level, pos, state, rand.nextInt(2) == 0)) {
 				attemptGrowBanana(getSizeForFrond(rand, this), level, rand, pos);
-				ForgeHooks.onCropsGrowPost(level, pos, state);
+				CommonHooks.fireCropGrowPost(level, pos, state);
 			}
 		}
 	}
@@ -238,7 +244,7 @@ public class BananaFrondBlock extends BushBlock implements BonemealableBlock {
 	}
 
 	public static boolean canGrowOn(BlockState state) {
-		return state.is(Tags.Blocks.GRAVEL) || state.is(Tags.Blocks.SAND);
+		return state.is(Tags.Blocks.GRAVELS) || state.is(Tags.Blocks.SANDS);
 	}
 
 	private static boolean isAirAt(Level level, BlockPos pos, int size) {

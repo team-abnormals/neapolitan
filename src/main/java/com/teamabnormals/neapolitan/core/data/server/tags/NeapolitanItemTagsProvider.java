@@ -5,7 +5,6 @@ import com.teamabnormals.blueprint.core.other.tags.BlueprintItemTags;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.other.NeapolitanConstants;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanItemTags;
-import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
@@ -15,8 +14,8 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -32,7 +31,7 @@ public class NeapolitanItemTagsProvider extends ItemTagsProvider {
 	public void addTags(HolderLookup.Provider provider) {
 		this.tag(ItemTags.ARROWS).add(BANANARROW.get());
 		this.tag(ItemTags.FOX_FOOD).add(STRAWBERRIES.get(), WHITE_STRAWBERRIES.get());
-		this.tag(ItemTags.MUSIC_DISCS).add(MUSIC_DISC_HULLABALOO.get());
+		this.tag(Tags.Items.MUSIC_DISCS).add(MUSIC_DISC_HULLABALOO.get());
 		this.tag(ItemTags.DECORATED_POT_SHERDS).add(REFLECTION_POTTERY_SHERD.get(), SCREAM_POTTERY_SHERD.get(), SPIDER_POTTERY_SHERD.get(), SNACK_POTTERY_SHERD.get());
 		this.tag(ItemTags.TRIM_TEMPLATES).add(PRIMAL_ARMOR_TRIM_SMITHING_TEMPLATE.get());
 		this.copy(BlockTags.SLABS, ItemTags.SLABS);
@@ -44,7 +43,7 @@ public class NeapolitanItemTagsProvider extends ItemTagsProvider {
 		this.tag(NeapolitanItemTags.CHIMPANZEE_FAVORITES).add(Items.STICK, Items.BAMBOO, BANANA_FROND.get());
 		this.tag(NeapolitanItemTags.CHIMPANZEE_FOOD).add(BANANA_BUNCH.get());
 		this.tag(NeapolitanItemTags.CHIMPANZEE_SNACKS).add(BANANA.get(), BANANA_BUNCH.get(), BANANA_BREAD.get(), DRIED_BANANA.get(), BANANARROW.get(), Items.POTION);
-		this.tag(NeapolitanItemTags.HIDES_CHIMPANZEE_EARS).addTag(Tags.Items.HEADS).addOptional(NeapolitanConstants.GRIEFER_HELMET).addOptional(NeapolitanConstants.SANGUINE_HELMET);
+		this.tag(NeapolitanItemTags.HIDES_CHIMPANZEE_EARS).addOptional(NeapolitanConstants.GRIEFER_HELMET).addOptional(NeapolitanConstants.SANGUINE_HELMET);
 		this.tag(NeapolitanItemTags.ICE_CREAM).add(CHOCOLATE_ICE_CREAM.get(), VANILLA_ICE_CREAM.get(), STRAWBERRY_ICE_CREAM.get(), BANANA_ICE_CREAM.get(), MINT_ICE_CREAM.get(), ADZUKI_ICE_CREAM.get(), NEAPOLITAN_ICE_CREAM.get());
 
 		this.tag(NeapolitanItemTags.BOTTLES).addTag(NeapolitanItemTags.BOTTLES_MILK);
@@ -56,7 +55,8 @@ public class NeapolitanItemTagsProvider extends ItemTagsProvider {
 		this.tag(NeapolitanItemTags.FRUITS_BANANA).add(BANANA.get());
 		this.tag(NeapolitanItemTags.ICE_CUBES).add(ICE_CUBES.get());
 		this.tag(BlueprintItemTags.MILK).addTag(NeapolitanItemTags.BOTTLES_MILK);
-		this.tag(Tags.Items.HEADS).add(CHIMPANZEE_HEAD.get());
-		this.tag(BlueprintItemTags.CHICKEN_FOOD).add(STRAWBERRY_PIPS.get());
+		this.tag(ItemTags.CHICKEN_FOOD).add(STRAWBERRY_PIPS.get());
+		this.tag(ItemTags.PARROT_FOOD).add(STRAWBERRY_PIPS.get());
+		this.tag(ItemTags.MEAT).add(MINT_CHOPS.get(), COOKED_MINT_CHOPS.get());
 	}
 }

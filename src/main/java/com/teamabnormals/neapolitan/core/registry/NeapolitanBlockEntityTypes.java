@@ -4,14 +4,12 @@ import com.teamabnormals.blueprint.core.util.registry.BlockEntitySubRegistryHelp
 import com.teamabnormals.neapolitan.common.block.entity.NeapolitanSkullBlockEntity;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.Set;
 
-@EventBusSubscriber(modid = Neapolitan.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class NeapolitanBlockEntityTypes {
-	public static final BlockEntitySubRegistryHelper HELPER = Neapolitan.REGISTRY_HELPER.getBlockEntitySubHelper();
+	public static final BlockEntitySubRegistryHelper BLOCK_ENTITY_TYPES = Neapolitan.REGISTRY_HELPER.getBlockEntitySubHelper();
 
-	public static final RegistryObject<BlockEntityType<NeapolitanSkullBlockEntity>> SKULL = HELPER.createBlockEntity("skull", NeapolitanSkullBlockEntity::new, () -> Set.of(NeapolitanBlocks.CHIMPANZEE_HEAD.get(), NeapolitanBlocks.CHIMPANZEE_WALL_HEAD.get()));
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<NeapolitanSkullBlockEntity>> SKULL = BLOCK_ENTITY_TYPES.createBlockEntity("skull", NeapolitanSkullBlockEntity::new, () -> Set.of(NeapolitanBlocks.CHIMPANZEE_HEAD.get(), NeapolitanBlocks.CHIMPANZEE_WALL_HEAD.get()));
 }

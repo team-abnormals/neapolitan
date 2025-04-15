@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "neapolitan:chocolate_bar"
+    },
+    {
+      "item": "neapolitan:dried_vanilla_pods"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "neapolitan:vanilla_chocolate_fingers"
+  }
+}

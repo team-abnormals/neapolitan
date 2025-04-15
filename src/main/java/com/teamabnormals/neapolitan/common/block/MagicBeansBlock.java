@@ -1,5 +1,7 @@
 package com.teamabnormals.neapolitan.common.block;
 
+import com.mojang.serialization.MapCodec;
+import com.teamabnormals.blueprint.common.network.particle.SpawnParticlesPayload;
 import com.teamabnormals.blueprint.core.util.NetworkUtil;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import net.minecraft.core.BlockPos;
@@ -43,6 +45,11 @@ public class MagicBeansBlock extends DirectionalBlock implements SimpleWaterlogg
 	public MagicBeansBlock(Properties properties) {
 		super(properties);
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.UP).setValue(WATERLOGGED, false));
+	}
+
+	@Override
+	protected MapCodec<? extends DirectionalBlock> codec() {
+		return null;
 	}
 
 	public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
@@ -105,7 +112,7 @@ public class MagicBeansBlock extends DirectionalBlock implements SimpleWaterlogg
 		builder.add(FACING, WATERLOGGED);
 	}
 
-	private static void growBeanstalk(Level level, BlockPos origin, Direction direction) {
+	private static void growBeanstalk(ServerLevel level, BlockPos origin, Direction direction) {
 		RandomSource random = level.getRandom();
 
 		List<BlockPos> beanstalkPositions = new ArrayList<>();
@@ -154,7 +161,7 @@ public class MagicBeansBlock extends DirectionalBlock implements SimpleWaterlogg
 					double d0 = random.nextGaussian() * 0.02D;
 					double d1 = random.nextGaussian() * 0.02D;
 					double d2 = random.nextGaussian() * 0.02D;
-					NetworkUtil.spawnParticle("minecraft:happy_villager", blockPos1.getX() - 0.1D + random.nextDouble() * 1.2D, blockPos1.getY() - 0.1D + random.nextDouble() * 1.2D, blockPos1.getZ() - 0.1D + random.nextDouble() * 1.2D, d0, d1, d2);
+					NetworkUtil.spawnParticle(level, ParticleTypes.HAPPY_VILLAGER, List.of(new SpawnParticlesPayload.ParticleInstance(blockPos1.getX() - 0.1D + random.nextDouble() * 1.2D, blockPos1.getY() - 0.1D + random.nextDouble() * 1.2D, blockPos1.getZ() - 0.1D + random.nextDouble() * 1.2D, d0, d1, d2)));
 				}
 			}
 		}

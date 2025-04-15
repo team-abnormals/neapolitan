@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:fruits/strawberry"
+    },
+    {
+      "item": "neapolitan:chocolate_bar"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "neapolitan:chocolate_strawberries"
+  }
+}

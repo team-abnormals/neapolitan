@@ -1,18 +1,16 @@
 package com.teamabnormals.neapolitan.common.entity.goal;
 
-import com.teamabnormals.blueprint.core.other.tags.BlueprintItemTags;
 import com.teamabnormals.neapolitan.common.entity.animal.Chimpanzee;
 import com.teamabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanItemTags;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.util.LandRandomPos;
 import net.minecraft.world.item.*;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.common.Tags;
 
 import java.util.EnumSet;
 
@@ -92,7 +90,7 @@ public class ChimpLookAtItemGoal extends Goal {
 			this.doItemInteraction();
 		} else if (chimpanzee.isDoingAction(ChimpanzeeAction.PLAYING_WITH_ITEM)) {
 			if (this.lookTimer == 20) {
-				if (this.chimpanzee.getRandom().nextInt(10) == 0 && this.itemStack.is(BlueprintItemTags.BUCKETS_EMPTY)) {
+				if (this.chimpanzee.getRandom().nextInt(10) == 0 && this.itemStack.is(Tags.Items.BUCKETS_EMPTY)) {
 					this.chimpanzee.spawnItemFromBucket(new ItemStack(NeapolitanItems.BANANA.get()), this.chimpanzee.getMainArm());
 				}
 			} else if (this.lookTimer == 4) {
@@ -122,7 +120,7 @@ public class ChimpLookAtItemGoal extends Goal {
 				this.chimpanzee.setItemSlot(EquipmentSlot.HEAD, this.itemStack);
 				this.chimpanzee.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
 				this.chimpanzee.setDropChance(EquipmentSlot.HEAD, 2.0F);
-				this.playEquipSound(item);
+				this.playEquipSound(armorItem);
 			} else {
 				if (this.chimpanzee.getMainHandItem() == this.itemStack) {
 					this.chimpanzee.throwHeldItem(InteractionHand.MAIN_HAND);
@@ -137,9 +135,8 @@ public class ChimpLookAtItemGoal extends Goal {
 		}
 	}
 
-	private void playEquipSound(Item item) {
-		SoundEvent soundevent = ((ArmorItem) item).getMaterial().getEquipSound();
-		this.chimpanzee.playSound(soundevent, 1.0F, 1.0F);
+	private void playEquipSound(ArmorItem item) {
+		this.chimpanzee.playSound(item.getMaterial().value().equipSound().value(), 1.0F, 1.0F);
 	}
 
 	private void runAway() {
@@ -157,6 +154,6 @@ public class ChimpLookAtItemGoal extends Goal {
 	}
 
 	private boolean shouldPlayWithItem(ItemStack stack) {
-		return stack.getItem() instanceof TieredItem || stack.getItem() instanceof FireworkRocketItem || stack.is(BlueprintItemTags.BUCKETS_EMPTY);
+		return stack.getItem() instanceof TieredItem || stack.getItem() instanceof FireworkRocketItem || stack.is(Tags.Items.BUCKETS_EMPTY);
 	}
 }

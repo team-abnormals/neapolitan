@@ -1,22 +1,20 @@
 package com.teamabnormals.neapolitan.core.data.client;
 
+import com.teamabnormals.blueprint.core.data.client.BlueprintBlockStateProvider;
 import com.teamabnormals.neapolitan.common.block.FlavoredCandleCakeBlock;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import net.minecraft.data.PackOutput;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraftforge.client.model.generators.BlockStateProvider;
-import net.minecraftforge.client.model.generators.ConfiguredModel;
-import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import java.util.function.Function;
 
 
-public class NeapolitanBlockStateProvider extends BlockStateProvider {
+public class NeapolitanBlockStateProvider extends BlueprintBlockStateProvider {
 
 	public NeapolitanBlockStateProvider(PackOutput output, ExistingFileHelper helper) {
 		super(output, Neapolitan.MOD_ID, helper);
@@ -50,17 +48,5 @@ public class NeapolitanBlockStateProvider extends BlockStateProvider {
 
 	public void candleCakeBlock(Block block, Function<BlockState, ModelFile> modelFunc) {
 		this.getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder().modelFile(modelFunc.apply(state)).build());
-	}
-
-	private String name(Block block) {
-		return ForgeRegistries.BLOCKS.getKey(block).getPath();
-	}
-
-	private ResourceLocation prefix(String prefix, ResourceLocation rl) {
-		return new ResourceLocation(rl.getNamespace(), prefix + rl.getPath());
-	}
-
-	private ResourceLocation suffix(ResourceLocation rl, String suffix) {
-		return new ResourceLocation(rl.getNamespace(), rl.getPath() + suffix);
 	}
 }

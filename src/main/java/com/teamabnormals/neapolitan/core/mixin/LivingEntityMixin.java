@@ -2,6 +2,7 @@ package com.teamabnormals.neapolitan.core.mixin;
 
 import com.teamabnormals.neapolitan.core.registry.NeapolitanMobEffects;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Holder;
 import net.minecraft.core.Vec3i;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.Entity;
@@ -18,8 +19,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity {
 
+
 	@Shadow
-	public abstract boolean hasEffect(MobEffect effect);
+	public abstract boolean hasEffect(Holder<MobEffect> effect);
 
 	public LivingEntityMixin(EntityType<?> entityTypeIn, Level level) {
 		super(entityTypeIn, level);
@@ -27,7 +29,7 @@ public abstract class LivingEntityMixin extends Entity {
 
 	@Inject(at = @At("RETURN"), method = "onClimbable", cancellable = true)
 	private void onClimbable(CallbackInfoReturnable<Boolean> cir) {
-		if (!this.isSpectator() && this.hasEffect(NeapolitanMobEffects.AGILITY.get())) {
+		if (!this.isSpectator() && this.hasEffect(NeapolitanMobEffects.AGILITY)) {
 			for (Direction direction : Direction.Plane.HORIZONTAL) {
 				Vec3i normal = direction.getNormal();
 				Vec3 vec3 = this.collide(Vec3.atLowerCornerOf(normal));

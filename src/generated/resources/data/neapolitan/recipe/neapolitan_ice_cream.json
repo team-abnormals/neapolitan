@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "neapolitan:chocolate_bar"
+    },
+    {
+      "item": "neapolitan:dried_vanilla_pods"
+    },
+    {
+      "tag": "c:fruits/strawberry"
+    },
+    {
+      "tag": "c:milk"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "neapolitan:ice_cubes"
+    },
+    {
+      "item": "minecraft:bowl"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "neapolitan:neapolitan_ice_cream"
+  }
+}

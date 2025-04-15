@@ -13,9 +13,13 @@ public class SlippingMobEffect extends MobEffect {
 	}
 
 	@Override
-	public void applyEffectTick(LivingEntity entity, int amplifier) {
-		if (entity.onGround() && !entity.isInWater() && !entity.getType().is(NeapolitanEntityTypeTags.UNAFFECTED_BY_SLIPPING)) {
-			RandomSource rand = entity.getCommandSenderWorld().getRandom();
+	public boolean applyEffectTick(LivingEntity entity, int amplifier) {
+		if (entity.getType().is(NeapolitanEntityTypeTags.UNAFFECTED_BY_SLIPPING)) {
+			return false;
+		}
+
+		if (entity.onGround() && !entity.isInWater()) {
+			RandomSource rand = entity.getRandom();
 			float amount = rand.nextFloat() * 0.2F;
 			float x = 0.0F;
 			float z = 0.0F;
@@ -28,10 +32,11 @@ public class SlippingMobEffect extends MobEffect {
 
 			entity.setDeltaMovement(entity.getDeltaMovement().add(x, 0.0F, z));
 		}
+		return true;
 	}
 
 	@Override
-	public boolean isDurationEffectTick(int duration, int amplifier) {
-		return true;
+	public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
+		return duration % 2 == 0;
 	}
 }

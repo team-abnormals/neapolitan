@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "neapolitan:banana_bunch"
+    },
+    {
+      "item": "neapolitan:banana_bunch"
+    },
+    {
+      "item": "neapolitan:banana_bunch"
+    },
+    {
+      "item": "neapolitan:banana_bunch"
+    },
+    {
+      "item": "neapolitan:banana_bunch"
+    },
+    {
+      "item": "neapolitan:banana_bunch"
+    },
+    {
+      "item": "neapolitan:banana_bunch"
+    },
+    {
+      "item": "neapolitan:banana_bunch"
+    },
+    {
+      "item": "neapolitan:banana_bunch"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "neapolitan:banana_bundle"
+  }
+}

@@ -6,12 +6,11 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.data.worldgen.placement.TreePlacements;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
@@ -21,19 +20,18 @@ import net.minecraft.world.level.levelgen.feature.WeightedPlacedFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.placement.*;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.List;
 
 public class NeapolitanFeatures {
-	public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, Neapolitan.MOD_ID);
-	public static final RegistryObject<Feature<SimpleBlockConfiguration>> STRAWBERRY_BUSH = FEATURES.register("strawberry_bush", () -> new StrawberryBushFeature(SimpleBlockConfiguration.CODEC));
-	public static final RegistryObject<Feature<RandomPatchConfiguration>> VANILLA_VINE_PATCH = FEATURES.register("vanilla_patch", () -> new VanillaPatchFeature(RandomPatchConfiguration.CODEC));
-	public static final RegistryObject<Feature<NoneFeatureConfiguration>> BANANA_PLANT = FEATURES.register("banana_plant", () -> new BananaPlantFeature(NoneFeatureConfiguration.CODEC));
-	public static final RegistryObject<Feature<SimpleBlockConfiguration>> ADZUKI_SPROUTS = FEATURES.register("adzuki_sprouts", () -> new AdzukiSproutsFeature(SimpleBlockConfiguration.CODEC));
-	public static final RegistryObject<Feature<NoneFeatureConfiguration>> MINT_POND = FEATURES.register("mint_pond", () -> new MintPondFeature(NoneFeatureConfiguration.CODEC));
+	public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(Registries.FEATURE, Neapolitan.MOD_ID);
+	public static final DeferredHolder<Feature<?>, Feature<SimpleBlockConfiguration>> STRAWBERRY_BUSH = FEATURES.register("strawberry_bush", () -> new StrawberryBushFeature(SimpleBlockConfiguration.CODEC));
+	public static final DeferredHolder<Feature<?>, Feature<RandomPatchConfiguration>> VANILLA_VINE_PATCH = FEATURES.register("vanilla_patch", () -> new VanillaPatchFeature(RandomPatchConfiguration.CODEC));
+	public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> BANANA_PLANT = FEATURES.register("banana_plant", () -> new BananaPlantFeature(NoneFeatureConfiguration.CODEC));
+	public static final DeferredHolder<Feature<?>, Feature<SimpleBlockConfiguration>> ADZUKI_SPROUTS = FEATURES.register("adzuki_sprouts", () -> new AdzukiSproutsFeature(SimpleBlockConfiguration.CODEC));
+	public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> MINT_POND = FEATURES.register("mint_pond", () -> new MintPondFeature(NoneFeatureConfiguration.CODEC));
 
 	public static final class NeapolitanConfiguredFeatures {
 		public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_STRAWBERRY_BUSH = createKey("patch_strawberry_bush");
@@ -45,7 +43,7 @@ public class NeapolitanFeatures {
 		public static final ResourceKey<ConfiguredFeature<?, ?>> SINGLE_CORNFLOWER = createKey("single_cornflower");
 		public static final ResourceKey<ConfiguredFeature<?, ?>> TREES_STRAWBERRY_FIELDS = createKey("trees_strawberry_fields");
 
-		public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
+		public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
 			HolderGetter<PlacedFeature> placedFeatures = context.lookup(Registries.PLACED_FEATURE);
 
 			register(context, PATCH_STRAWBERRY_BUSH, Feature.RANDOM_PATCH, new RandomPatchConfiguration(512, 5, 3, PlacementUtils.filtered(STRAWBERRY_BUSH.get(), new SimpleBlockConfiguration(BlockStateProvider.simple(NeapolitanBlocks.STRAWBERRY_BUSH.get().defaultBlockState())), simplePatchPredicate(List.of(Blocks.GRASS_BLOCK, Blocks.COARSE_DIRT)))));
@@ -70,10 +68,10 @@ public class NeapolitanFeatures {
 		}
 
 		public static ResourceKey<ConfiguredFeature<?, ?>> createKey(String name) {
-			return ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(Neapolitan.MOD_ID, name));
+			return ResourceKey.create(Registries.CONFIGURED_FEATURE, Neapolitan.location(name));
 		}
 
-		public static <FC extends FeatureConfiguration, F extends Feature<FC>> void register(BootstapContext<ConfiguredFeature<?, ?>> context, ResourceKey<ConfiguredFeature<?, ?>> key, F feature, FC config) {
+		public static <FC extends FeatureConfiguration, F extends Feature<FC>> void register(BootstrapContext<ConfiguredFeature<?, ?>> context, ResourceKey<ConfiguredFeature<?, ?>> key, F feature, FC config) {
 			context.register(key, new ConfiguredFeature<>(feature, config));
 		}
 	}
@@ -91,7 +89,7 @@ public class NeapolitanFeatures {
 		public static final ResourceKey<PlacedFeature> SINGLE_CORNFLOWER = createKey("single_cornflower");
 		public static final ResourceKey<PlacedFeature> TREES_STRAWBERRY_FIELDS = createKey("trees_strawberry_fields");
 
-		public static void bootstrap(BootstapContext<PlacedFeature> context) {
+		public static void bootstrap(BootstrapContext<PlacedFeature> context) {
 			register(context, PATCH_STRAWBERRY_BUSH, NeapolitanConfiguredFeatures.PATCH_STRAWBERRY_BUSH, RarityFilter.onAverageOnceEvery(64), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 			register(context, PATCH_STRAWBERRY_BUSH_COMMON, NeapolitanConfiguredFeatures.PATCH_STRAWBERRY_BUSH, RarityFilter.onAverageOnceEvery(32), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 			register(context, PATCH_STRAWBERRY_BUSH_SMALL, NeapolitanConfiguredFeatures.PATCH_STRAWBERRY_BUSH_SMALL, CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
@@ -106,14 +104,14 @@ public class NeapolitanFeatures {
 		}
 
 		public static ResourceKey<PlacedFeature> createKey(String name) {
-			return ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Neapolitan.MOD_ID, name));
+			return ResourceKey.create(Registries.PLACED_FEATURE, Neapolitan.location(name));
 		}
 
-		public static void register(BootstapContext<PlacedFeature> context, ResourceKey<PlacedFeature> key, ResourceKey<ConfiguredFeature<?, ?>> feature, List<PlacementModifier> modifiers) {
+		public static void register(BootstrapContext<PlacedFeature> context, ResourceKey<PlacedFeature> key, ResourceKey<ConfiguredFeature<?, ?>> feature, List<PlacementModifier> modifiers) {
 			context.register(key, new PlacedFeature(context.lookup(Registries.CONFIGURED_FEATURE).getOrThrow(feature), modifiers));
 		}
 
-		public static void register(BootstapContext<PlacedFeature> context, ResourceKey<PlacedFeature> key, ResourceKey<ConfiguredFeature<?, ?>> configuredFeatureHolder, PlacementModifier... modifiers) {
+		public static void register(BootstrapContext<PlacedFeature> context, ResourceKey<PlacedFeature> key, ResourceKey<ConfiguredFeature<?, ?>> configuredFeatureHolder, PlacementModifier... modifiers) {
 			context.register(key, new PlacedFeature(context.lookup(Registries.CONFIGURED_FEATURE).getOrThrow(configuredFeatureHolder), List.of(modifiers)));
 		}
 	}

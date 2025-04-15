@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:fruits/strawberry"
+    },
+    {
+      "tag": "c:fruits/strawberry"
+    },
+    {
+      "tag": "c:fruits/banana"
+    },
+    {
+      "item": "minecraft:glass_bottle"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "neapolitan:strawberry_banana_smoothie"
+  }
+}

@@ -1,72 +1,52 @@
 package com.teamabnormals.neapolitan.core;
 
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
-import com.teamabnormals.gallery.core.data.client.GalleryAssetsRemolderProvider;
 import com.teamabnormals.gallery.core.data.client.GalleryItemModelProvider;
-import com.teamabnormals.neapolitan.client.model.BananaPeelModel;
-import com.teamabnormals.neapolitan.client.model.ChimpanzeeHeadModel;
-import com.teamabnormals.neapolitan.client.model.ChimpanzeeModel;
-import com.teamabnormals.neapolitan.client.renderer.entity.BananaPeelRenderer;
-import com.teamabnormals.neapolitan.client.renderer.entity.BananarrowRenderer;
-import com.teamabnormals.neapolitan.client.renderer.entity.ChimpanzeeRenderer;
-import com.teamabnormals.neapolitan.client.renderer.entity.PlantainSpiderRenderer;
+import com.teamabnormals.neapolitan.core.data.server.NeapolitanDataMapProvider;
 import com.teamabnormals.neapolitan.core.data.client.NeapolitanBlockStateProvider;
 import com.teamabnormals.neapolitan.core.data.client.NeapolitanItemModelProvider;
 import com.teamabnormals.neapolitan.core.data.client.NeapolitanSpriteSourceProvider;
-import com.teamabnormals.neapolitan.core.data.server.NeapolitanDatapackBuiltinEntriesProvider;
+import com.teamabnormals.neapolitan.core.data.server.NeapolitanDatapackProvider;
 import com.teamabnormals.neapolitan.core.data.server.NeapolitanLootTableProvider;
 import com.teamabnormals.neapolitan.core.data.server.NeapolitanRecipeProvider;
-import com.teamabnormals.neapolitan.core.data.server.modifiers.NeapolitanAdvancementModifierProvider;
-import com.teamabnormals.neapolitan.core.data.server.modifiers.NeapolitanLootModifierProvider;
+import com.teamabnormals.neapolitan.core.data.server.NeapolitanAdvancementModifierProvider;
+import com.teamabnormals.neapolitan.core.data.server.NeapolitanDataRemolderProvider;
 import com.teamabnormals.neapolitan.core.data.server.tags.*;
 import com.teamabnormals.neapolitan.core.other.NeapolitanClientCompat;
 import com.teamabnormals.neapolitan.core.other.NeapolitanCompat;
-import com.teamabnormals.neapolitan.core.other.NeapolitanModelLayers;
 import com.teamabnormals.neapolitan.core.registry.*;
-import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks.NeapolitanSkullTypes;
-import net.minecraft.client.renderer.blockentity.SkullBlockRenderer;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.EntityRenderersEvent;
-import net.minecraftforge.common.ForgeMod;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.data.event.GatherDataEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.common.NeoForgeMod;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.data.event.GatherDataEvent;
 
 import java.util.concurrent.CompletableFuture;
 
 @Mod(Neapolitan.MOD_ID)
-@EventBusSubscriber(modid = Neapolitan.MOD_ID)
 public class Neapolitan {
 	public static final String MOD_ID = "neapolitan";
 	public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MOD_ID);
 
-	public Neapolitan() {
-		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-		ModLoadingContext context = ModLoadingContext.get();
-		MinecraftForge.EVENT_BUS.register(this);
+	public Neapolitan(IEventBus bus, ModContainer container) {
+		NeoForgeMod.enableMilkFluid();
 
-		ForgeMod.enableMilkFluid();
-
-		REGISTRY_HELPER.register(bus);
+		NeapolitanBlocks.BLOCKS.register(bus);
+		NeapolitanItems.ITEMS.register(bus);
+		NeapolitanEntityTypes.ENTITY_TYPES.register(bus);
+		NeapolitanBlockEntityTypes.BLOCK_ENTITY_TYPES.register(bus);
+		NeapolitanSoundEvents.SOUND_EVENTS.register(bus);
 		NeapolitanMobEffects.MOB_EFFECTS.register(bus);
 		NeapolitanFeatures.FEATURES.register(bus);
 		NeapolitanPoiTypes.POI_TYPES.register(bus);
-		NeapolitanPaintingVariants.PAINTING_VARIANTS.register(bus);
-		NeapolitanBannerPatterns.BANNER_PATTERNS.register(bus);
 		NeapolitanParticleTypes.PARTICLE_TYPES.register(bus);
 		NeapolitanDecoratedPotPatterns.DECORATED_POT_PATTERNS.register(bus);
 
@@ -74,28 +54,15 @@ public class Neapolitan {
 		bus.addListener(this::clientSetup);
 		bus.addListener(this::dataSetup);
 
-		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
-			NeapolitanBlocks.setupTabEditors();
-			NeapolitanItems.setupTabEditors();
-			bus.addListener(this::registerLayerDefinitions);
-			bus.addListener(this::registerRenderers);
-			bus.addListener(this::createSkullModels);
-		});
-
-		context.registerConfig(ModConfig.Type.COMMON, NeapolitanConfig.COMMON_SPEC);
+		container.registerConfig(ModConfig.Type.COMMON, NeapolitanConfig.COMMON_SPEC);
 	}
 
 	private void commonSetup(FMLCommonSetupEvent event) {
-		event.enqueueWork(() -> {
-			NeapolitanCompat.registerCompat();
-		});
+		event.enqueueWork(NeapolitanCompat::registerCompat);
 	}
 
 	private void clientSetup(FMLClientSetupEvent event) {
-		event.enqueueWork(() -> {
-			SkullBlockRenderer.SKIN_BY_TYPE.put(NeapolitanSkullTypes.CHIMPANZEE, new ResourceLocation(Neapolitan.MOD_ID, "textures/entity/chimpanzee/jungle_chimpanzee.png"));
-			NeapolitanClientCompat.registerClientCompat();
-		});
+		event.enqueueWork(NeapolitanClientCompat::register);
 	}
 
 	private void dataSetup(GatherDataEvent event) {
@@ -105,7 +72,7 @@ public class Neapolitan {
 		ExistingFileHelper helper = event.getExistingFileHelper();
 
 		boolean server = event.includeServer();
-		NeapolitanDatapackBuiltinEntriesProvider datapackEntries = new NeapolitanDatapackBuiltinEntriesProvider(output, provider);
+		NeapolitanDatapackProvider datapackEntries = new NeapolitanDatapackProvider(output, provider);
 		generator.addProvider(server, datapackEntries);
 		provider = datapackEntries.getRegistryProvider();
 
@@ -117,42 +84,23 @@ public class Neapolitan {
 		generator.addProvider(server, new NeapolitanBiomeTagsProvider(output, provider, helper));
 		generator.addProvider(server, new NeapolitanMobEffectTagsProvider(output, provider, helper));
 		generator.addProvider(server, new NeapolitanPaintingVariantTagsProvider(output, provider, helper));
-		generator.addProvider(server, new NeapolitanLootTableProvider(output));
-		generator.addProvider(server, new NeapolitanLootModifierProvider(output, provider));
+		generator.addProvider(server, new NeapolitanEnchantmentTagsProvider(output, provider, helper));
+		generator.addProvider(server, new NeapolitanLootTableProvider(output, provider));
+		generator.addProvider(server, new NeapolitanDataRemolderProvider(output, provider));
 		generator.addProvider(server, new NeapolitanAdvancementModifierProvider(output, provider));
-		generator.addProvider(server, new NeapolitanRecipeProvider(output));
+		generator.addProvider(server, new NeapolitanRecipeProvider(output, provider));
+		generator.addProvider(server, new NeapolitanDataMapProvider(output, provider));
 
 		boolean client = event.includeClient();
 		generator.addProvider(client, new NeapolitanBlockStateProvider(output, helper));
 		generator.addProvider(client, new NeapolitanItemModelProvider(output, helper));
-		generator.addProvider(client, new NeapolitanSpriteSourceProvider(output, helper));
+		generator.addProvider(client, new NeapolitanSpriteSourceProvider(output, provider, helper));
 //		generator.addProvider(includeClient, new NeapolitanLanguageProvider(output));
 
-		generator.addProvider(client, new GalleryItemModelProvider(MOD_ID, output, helper));
-		generator.addProvider(client, new GalleryAssetsRemolderProvider(MOD_ID, output, provider));
+		generator.addProvider(client, new GalleryItemModelProvider(MOD_ID, output, helper, provider));
 	}
 
-	@OnlyIn(Dist.CLIENT)
-	private void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
-		event.registerLayerDefinition(NeapolitanModelLayers.BANANA_PEEL, BananaPeelModel::createBodyLayer);
-		event.registerLayerDefinition(NeapolitanModelLayers.CHIMPANZEE, () -> ChimpanzeeModel.createBodyLayer(0.0F, false, false));
-		event.registerLayerDefinition(NeapolitanModelLayers.CHIMPANZEE_INNER_ARMOR, () -> ChimpanzeeModel.createBodyLayer(0.5F, true, true));
-		event.registerLayerDefinition(NeapolitanModelLayers.CHIMPANZEE_OUTER_ARMOR, () -> ChimpanzeeModel.createBodyLayer(1.0F, true, false));
-		event.registerLayerDefinition(NeapolitanModelLayers.CHIMPANZEE_HEAD, ChimpanzeeHeadModel::createHeadLayer);
-	}
-
-	@OnlyIn(Dist.CLIENT)
-	private void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
-		event.registerEntityRenderer(NeapolitanEntityTypes.CHIMPANZEE.get(), ChimpanzeeRenderer::new);
-		event.registerEntityRenderer(NeapolitanEntityTypes.PLANTAIN_SPIDER.get(), PlantainSpiderRenderer::new);
-		event.registerEntityRenderer(NeapolitanEntityTypes.BANANA_PEEL.get(), BananaPeelRenderer::new);
-		event.registerEntityRenderer(NeapolitanEntityTypes.BANANARROW.get(), BananarrowRenderer::new);
-
-		event.registerBlockEntityRenderer(NeapolitanBlockEntityTypes.SKULL.get(), SkullBlockRenderer::new);
-	}
-
-	@OnlyIn(Dist.CLIENT)
-	private void createSkullModels(EntityRenderersEvent.CreateSkullModels event) {
-		event.registerSkullModel(NeapolitanSkullTypes.CHIMPANZEE, new ChimpanzeeHeadModel(event.getEntityModelSet().bakeLayer(NeapolitanModelLayers.CHIMPANZEE_HEAD)));
+	public static ResourceLocation location(String path) {
+		return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
 	}
 }

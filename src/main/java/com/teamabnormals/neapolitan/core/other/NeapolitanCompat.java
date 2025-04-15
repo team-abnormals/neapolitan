@@ -2,25 +2,22 @@ package com.teamabnormals.neapolitan.core.other;
 
 import com.teamabnormals.blueprint.core.util.DataUtil;
 import com.teamabnormals.neapolitan.common.dispenser.BananaBunchDispenseBehavior;
-import com.teamabnormals.neapolitan.common.entity.projectile.Bananarrow;
-import com.teamabnormals.neapolitan.core.registry.*;
-import net.minecraft.core.BlockSource;
-import net.minecraft.core.Position;
-import net.minecraft.core.dispenser.AbstractProjectileDispenseBehavior;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanDecoratedPotPatterns;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanSoundEvents;
+import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.core.dispenser.OptionalDispenseItemBehavior;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.DispenserBlock;
 
 public class NeapolitanCompat {
 
 	public static void transformCookies() {
-		Foods.COOKIE.fastFood = true;
-		Foods.COOKIE.saturationModifier = 0.3F;
+		Foods.COOKIE = new FoodProperties.Builder().nutrition(2).saturationModifier(0.3F).fast().build();
 	}
 
 	public static void registerCompat() {
@@ -28,15 +25,9 @@ public class NeapolitanCompat {
 		registerCompostables();
 		registerFlammables();
 		registerDispenserBehaviors();
-		registerAnimalFoods();
-		registerParrotImitations();
 		NeapolitanSoundEvents.registerNoteBlocks();
 		NeapolitanDecoratedPotPatterns.registerDecoratedPotPatterns();
 		NeapolitanCauldronInteractions.registerCauldronInteractions();
-	}
-
-	public static void registerAnimalFoods() {
-		DataUtil.addParrotFood(NeapolitanItems.STRAWBERRY_PIPS.get());
 	}
 
 	public static void registerCompostables() {
@@ -153,12 +144,7 @@ public class NeapolitanCompat {
 	public static void registerDispenserBehaviors() {
 		DispenserBlock.registerBehavior(NeapolitanItems.BANANA_BUNCH.get(), new BananaBunchDispenseBehavior());
 
-		DispenserBlock.registerBehavior(NeapolitanItems.BANANARROW.get(), new AbstractProjectileDispenseBehavior() {
-			@Override
-			protected Projectile getProjectile(Level worldIn, Position position, ItemStack stackIn) {
-				return new Bananarrow(worldIn, position.x(), position.y(), position.z());
-			}
-		});
+		DispenserBlock.registerProjectileBehavior(NeapolitanItems.BANANARROW.get());
 
 		DispenserBlock.registerBehavior(NeapolitanItems.CHIMPANZEE_HEAD.get(), new OptionalDispenseItemBehavior() {
 			@Override
@@ -167,9 +153,5 @@ public class NeapolitanCompat {
 				return stack;
 			}
 		});
-	}
-
-	private static void registerParrotImitations() {
-		DataUtil.registerParrotImitation(NeapolitanEntityTypes.PLANTAIN_SPIDER.get(), SoundEvents.PARROT_IMITATE_SPIDER);
 	}
 }

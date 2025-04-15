@@ -1,5 +1,6 @@
 package com.teamabnormals.neapolitan.common.block;
 
+import com.mojang.serialization.MapCodec;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
 import net.minecraft.core.BlockPos;
@@ -23,10 +24,9 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.common.IPlantable;
+import net.neoforged.neoforge.common.CommonHooks;
 
-public class AdzukiSproutsBlock extends BushBlock implements IPlantable, BonemealableBlock {
+public class AdzukiSproutsBlock extends BushBlock implements BonemealableBlock {
 	public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 6);
 	public static final BooleanProperty FLOWERING = BooleanProperty.create("flowering");
 	private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
@@ -45,6 +45,11 @@ public class AdzukiSproutsBlock extends BushBlock implements IPlantable, Bonemea
 	}
 
 	@Override
+	protected MapCodec<? extends BushBlock> codec() {
+		return null;
+	}
+
+	@Override
 	public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
 		super.entityInside(state, worldIn, pos, entityIn);
 		if (entityIn instanceof Animal && !state.getValue(FLOWERING)) {
@@ -55,7 +60,7 @@ public class AdzukiSproutsBlock extends BushBlock implements IPlantable, Bonemea
 	}
 
 	@Override
-	public ItemStack getCloneItemStack(BlockGetter worldIn, BlockPos pos, BlockState state) {
+	public ItemStack getCloneItemStack(LevelReader worldIn, BlockPos pos, BlockState state) {
 		return new ItemStack(NeapolitanItems.ADZUKI_BEANS.get());
 	}
 
@@ -64,9 +69,9 @@ public class AdzukiSproutsBlock extends BushBlock implements IPlantable, Bonemea
 		if (!worldIn.isAreaLoaded(pos, 1)) return;
 		int i = state.getValue(AGE);
 		int speed = state.getValue(FLOWERING) ? 3 : 6;
-		if (worldIn.getRawBrightness(pos, 0) >= 9 && !this.isMaxAge(state) && ForgeHooks.onCropsGrowPre(worldIn, pos, state, random.nextInt(speed) == 0)) {
+		if (worldIn.getRawBrightness(pos, 0) >= 9 && !this.isMaxAge(state) && CommonHooks.canCropGrow(worldIn, pos, state, random.nextInt(speed) == 0)) {
 			worldIn.setBlock(pos, state.setValue(AGE, i + 1), 2);
-			ForgeHooks.onCropsGrowPost(worldIn, pos, state);
+			CommonHooks.fireCropGrowPost(worldIn, pos, state);
 		}
 	}
 
@@ -77,9 +82,9 @@ public class AdzukiSproutsBlock extends BushBlock implements IPlantable, Bonemea
 	}
 
 	@Override
-	public void playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
-		super.playerWillDestroy(level, pos, state, player);
+	public BlockState playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
 		this.replant(state, level, pos);
+		return super.playerWillDestroy(level, pos, state, player);
 	}
 
 	private void replant(BlockState state, Level level, BlockPos pos) {
@@ -103,7 +108,7 @@ public class AdzukiSproutsBlock extends BushBlock implements IPlantable, Bonemea
 	}
 
 	@Override
-	public boolean isValidBonemealTarget(LevelReader block, BlockPos pos, BlockState state, boolean isClient) {
+	public boolean isValidBonemealTarget(LevelReader block, BlockPos pos, BlockState state) {
 		return !this.isMaxAge(state);
 	}
 

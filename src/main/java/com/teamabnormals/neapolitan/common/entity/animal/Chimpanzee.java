@@ -5,6 +5,7 @@ import com.teamabnormals.neapolitan.common.entity.monster.PlantainSpider;
 import com.teamabnormals.neapolitan.common.entity.projectile.BananaPeel;
 import com.teamabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
 import com.teamabnormals.neapolitan.common.entity.util.ChimpanzeeType;
+import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.other.NeapolitanConstants;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanBiomeTags;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanEntityTypeTags;
@@ -16,6 +17,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -34,6 +36,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.BodyRotationControl;
@@ -51,6 +54,7 @@ import net.minecraft.world.entity.projectile.FireworkRocketEntity;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LightLayer;
@@ -60,10 +64,9 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.fml.ModList;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -86,10 +89,9 @@ public class Chimpanzee extends Animal implements NeutralMob {
 	private static final EntityDataAccessor<Byte> CLIMBING = SynchedEntityData.defineId(Chimpanzee.class, EntityDataSerializers.BYTE);
 	private static final EntityDataAccessor<Direction> FACING = SynchedEntityData.defineId(Chimpanzee.class, EntityDataSerializers.DIRECTION);
 
-	private static final UUID SPEED_MODIFIER_SITTING_UUID = UUID.fromString("2EF64346-9E56-44E9-9574-1BF9FD6443CF");
-	private static final AttributeModifier SPEED_MODIFIER_SITTING = new AttributeModifier(SPEED_MODIFIER_SITTING_UUID, "Sitting speed reduction", -0.75D, AttributeModifier.Operation.MULTIPLY_BASE);
+	private static final AttributeModifier SPEED_MODIFIER_SITTING = new AttributeModifier(Neapolitan.location("sitting_speed"), -0.75D, Operation.ADD_MULTIPLIED_BASE);
 
-	public static final EntityDimensions SITTING_DIMENSIONS = EntityDimensions.scalable(0.6F, 1.0F);
+	public static final EntityDimensions SITTING_DIMENSIONS = NeapolitanEntityTypes.CHIMPANZEE.get().getDimensions().scale(1.0F, 0.625F);
 
 	private static final UniformInt ANGER_RANGE = TimeUtil.rangeOfSeconds(20, 39);
 	private UUID lastHurtBy;
@@ -168,22 +170,22 @@ public class Chimpanzee extends Animal implements NeutralMob {
 	}
 
 	@Override
-	protected void defineSynchedData() {
-		super.defineSynchedData();
-		this.entityData.define(CHIMPANZEE_TYPE, 0);
-		this.entityData.define(ANGER_TIME, 0);
-		this.entityData.define(APE_MODE_TIME, 0);
-		this.entityData.define(HUNGER, 0);
-		this.entityData.define(DIRTINESS, 0);
-		this.entityData.define(PALENESS, 0);
-		this.entityData.define(LEFT_HAND_DYE_COLOR, 0);
-		this.entityData.define(RIGHT_HAND_DYE_COLOR, 0);
-		this.entityData.define(SITTING, false);
-		this.entityData.define(IS_LEFT_HAND_DYED, false);
-		this.entityData.define(IS_RIGHT_HAND_DYED, false);
-		this.entityData.define(ACTION, (byte) 0);
-		this.entityData.define(CLIMBING, (byte) 0);
-		this.entityData.define(FACING, Direction.DOWN);
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
+		builder.define(CHIMPANZEE_TYPE, 0);
+		builder.define(ANGER_TIME, 0);
+		builder.define(APE_MODE_TIME, 0);
+		builder.define(HUNGER, 0);
+		builder.define(DIRTINESS, 0);
+		builder.define(PALENESS, 0);
+		builder.define(LEFT_HAND_DYE_COLOR, 0);
+		builder.define(RIGHT_HAND_DYE_COLOR, 0);
+		builder.define(SITTING, false);
+		builder.define(IS_LEFT_HAND_DYED, false);
+		builder.define(IS_RIGHT_HAND_DYED, false);
+		builder.define(ACTION, (byte) 0);
+		builder.define(CLIMBING, (byte) 0);
+		builder.define(FACING, Direction.DOWN);
 	}
 
 	@Override
@@ -292,19 +294,21 @@ public class Chimpanzee extends Animal implements NeutralMob {
 		super.customServerAiStep();
 	}
 
+	// TODO: Why does this work differently / not call super?
 	@Override
-	public boolean doHurtTarget(Entity entityIn) {
+	public boolean doHurtTarget(Entity target) {
 		this.swingArms();
 		this.level().broadcastEntityEvent(this, (byte) 4);
-		float f = (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE);
-		float f1 = (int) f > 0 ? f / 2.0F + (float) this.random.nextInt((int) f) : f;
-		float f2 = this.isChimpanzeeWeapon(this.getMainHandItem()) || this.isChimpanzeeWeapon(this.getOffhandItem()) ? f1 + 1.0F : f1;
-		boolean flag = entityIn.hurt(this.damageSources().mobAttack(this), f2);
-		if (flag) {
-			this.doEnchantDamageEffects(this, entityIn);
+		float attackDamage = (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE);
+		float f1 = (int) attackDamage > 0 ? attackDamage / 2.0F + (float) this.random.nextInt((int) attackDamage) : attackDamage;
+		float damage = this.isChimpanzeeWeapon(this.getMainHandItem()) || this.isChimpanzeeWeapon(this.getOffhandItem()) ? f1 + 1.0F : f1;
+		DamageSource source = this.damageSources().mobAttack(this);
+		boolean hurt = target.hurt(source, damage);
+		if (hurt && this.level() instanceof ServerLevel serverLevel) {
+			EnchantmentHelper.doPostAttackEffects(serverLevel, target, source);
 		}
 
-		return flag;
+		return hurt;
 	}
 
 	public boolean isChimpanzeeWeapon(ItemStack stack) {
@@ -548,16 +552,16 @@ public class Chimpanzee extends Animal implements NeutralMob {
 
 	public void eatSnack() {
 		if (!this.getSnack().isEmpty()) {
-			if (this.getSnack().getItem() == NeapolitanItems.BANANARROW.get()) {
-				this.heal((float) NeapolitanItems.BANANA.get().getFoodProperties().getNutrition());
+			if (this.getSnack().is(NeapolitanItems.BANANARROW.get())) {
+				this.heal((float) NeapolitanItems.BANANA.get().getFoodProperties(NeapolitanItems.BANANA.toStack(), this).nutrition());
 				this.hurt(this.damageSources().generic(), 0.0F);
 				this.setItemInHand(this.getSnackHand(), new ItemStack(Items.ARROW));
-			} else if (this.getSnack().getItem() == Items.POTION) {
+			} else if (this.getSnack().is(Items.POTION)) {
 				this.getSnack().finishUsingItem(this.level(), this);
 				this.setItemInHand(this.getSnackHand(), new ItemStack(Items.GLASS_BOTTLE));
 			} else {
-				if (this.getSnack().isEdible()) {
-					this.heal((float) this.getSnack().getItem().getFoodProperties().getNutrition());
+				if (this.getSnack().getFoodProperties(this).nutrition() > 0.0F) {
+					this.heal((float) this.getSnack().getFoodProperties(this).nutrition());
 				}
 				this.setItemInHand(this.getSnackHand(), this.getSnack().finishUsingItem(this.level(), this));
 			}
@@ -600,31 +604,22 @@ public class Chimpanzee extends Animal implements NeutralMob {
 	}
 
 	@Override
-	public EntityDimensions getDimensions(Pose pose) {
-		if (this.isSitting()) {
-			return SITTING_DIMENSIONS.scale(this.getScale());
-		} else {
-			return super.getDimensions(pose);
-		}
+	public EntityDimensions getDefaultDimensions(Pose pose) {
+		return this.isSitting() ? SITTING_DIMENSIONS.scale(this.getAgeScale()) : super.getDefaultDimensions(pose);
 	}
 
 	public boolean canStandUp() {
-		EntityDimensions entitysize = this.getType().getDimensions();
-		float f = entitysize.width / 2.0F;
+		EntityDimensions dimensions = this.getType().getDimensions();
+		float f = dimensions.width() / 2.0F;
 		Vec3 vector3d = new Vec3(this.getX() - (double) f, this.getY(), this.getZ() - (double) f);
-		Vec3 vector3d1 = new Vec3(this.getX() + (double) f, this.getY() + (double) entitysize.height, this.getZ() + (double) f);
+		Vec3 vector3d1 = new Vec3(this.getX() + (double) f, this.getY() + (double) dimensions.height(), this.getZ() + (double) f);
 		AABB axisalignedbb = new AABB(vector3d, vector3d1);
 		return this.level().noCollision(this, axisalignedbb.deflate(1.0E-7D));
 	}
 
 	@Override
-	public double getMyRidingOffset() {
-		return this.isBaby() ? -0.05D : -0.3D;
-	}
-
-	@Override
 	public boolean canTakeItem(ItemStack itemstackIn) {
-		EquipmentSlot equipmentslottype = Mob.getEquipmentSlotForItem(itemstackIn);
+		EquipmentSlot equipmentslottype = this.getEquipmentSlotForItem(itemstackIn);
 		if (!this.getItemBySlot(equipmentslottype).isEmpty()) {
 			return false;
 		} else {
@@ -708,7 +703,7 @@ public class Chimpanzee extends Animal implements NeutralMob {
 				}
 
 				if (target != null) {
-					AbstractArrow arrow = arrowItem.createArrow(this.level(), stack, this);
+					AbstractArrow arrow = arrowItem.createArrow(this.level(), stack, this, null);
 					double d0 = target.getEyeY() - (double) 1.1F;
 					double d1 = target.getX() - this.getX();
 					double d2 = d0 - arrow.getY();
@@ -725,7 +720,7 @@ public class Chimpanzee extends Animal implements NeutralMob {
 				}
 
 			} else {
-				if (item instanceof DyeItem || (ModList.get().isLoaded(NeapolitanConstants.ENVIRONMENTAL) && item == ForgeRegistries.ITEMS.getValue(NeapolitanConstants.MUD_BALL))) {
+				if (item instanceof DyeItem || (ModList.get().isLoaded(NeapolitanConstants.ENVIRONMENTAL) && item == BuiltInRegistries.ITEM.get(NeapolitanConstants.MUD_BALL))) {
 					HumanoidArm handside = hand == InteractionHand.MAIN_HAND ? this.getMainArm() : this.getMainArm().getOpposite();
 					this.setHandDyed(true, handside);
 					this.setHandDyeColor(item instanceof DyeItem ? ((DyeItem) item).getDyeColor() : DyeColor.BROWN, handside);
@@ -735,7 +730,7 @@ public class Chimpanzee extends Animal implements NeutralMob {
 				Vec3 vector3d = new Vec3(this.getLookAngle().x * 0.25D, 0.0D, this.getLookAngle().z * 0.25D);
 				itemEntity.setDeltaMovement(vector3d);
 				itemEntity.setPickUpDelay(40);
-				itemEntity.setThrower(this.getUUID());
+				itemEntity.setThrower(this);
 				this.level().addFreshEntity(itemEntity);
 				this.setItemInHand(hand, ItemStack.EMPTY);
 
@@ -748,7 +743,7 @@ public class Chimpanzee extends Animal implements NeutralMob {
 	public void dropItem(ItemStack itemStack) {
 		ItemEntity itementity = new ItemEntity(this.level(), this.getX(), this.getEyeY() - (double) 0.3F, this.getZ(), itemStack);
 		itementity.setPickUpDelay(40);
-		itementity.setThrower(this.getUUID());
+		itementity.setThrower(this);
 		this.level().addFreshEntity(itementity);
 	}
 
@@ -759,7 +754,7 @@ public class Chimpanzee extends Animal implements NeutralMob {
 		ItemEntity itementity = new ItemEntity(this.level(), this.getX() + vector3d.x * this.getScale(), this.getEyeY() - (double) 0.15F, this.getZ() + vector3d.z * this.getScale(), itemStack);
 		itementity.setDeltaMovement(0.0D, 0.25D, 0.0D);
 		itementity.setPickUpDelay(40);
-		itementity.setThrower(this.getUUID());
+		itementity.setThrower(this);
 		this.level().addFreshEntity(itementity);
 	}
 
@@ -836,8 +831,8 @@ public class Chimpanzee extends Animal implements NeutralMob {
 	}
 
 	@Override
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
-		spawnDataIn = super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn) {
+		spawnDataIn = super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn);
 		this.setChimpanzeeType(this.getChimpanzeeTypeForPosition(worldIn).getId());
 		this.setHunger(this.random.nextInt(4800));
 		this.setDirtiness(this.random.nextInt(4800));
@@ -939,13 +934,13 @@ public class Chimpanzee extends Animal implements NeutralMob {
 
 	public void setSitting(boolean sitting) {
 		this.entityData.set(SITTING, sitting);
-		AttributeInstance modifiableattributeinstance = this.getAttribute(Attributes.MOVEMENT_SPEED);
-		if (modifiableattributeinstance.getModifier(SPEED_MODIFIER_SITTING_UUID) != null) {
-			modifiableattributeinstance.removeModifier(SPEED_MODIFIER_SITTING);
+		AttributeInstance attributeInstance = this.getAttribute(Attributes.MOVEMENT_SPEED);
+		if (attributeInstance.hasModifier(SPEED_MODIFIER_SITTING.id())) {
+			attributeInstance.removeModifier(SPEED_MODIFIER_SITTING);
 		}
 
 		if (sitting) {
-			modifiableattributeinstance.addTransientModifier(SPEED_MODIFIER_SITTING);
+			attributeInstance.addTransientModifier(SPEED_MODIFIER_SITTING);
 		}
 	}
 

@@ -1,0 +1,22 @@
+{
+  "values": {
+    "neapolitan:banana_frond": {
+      "burn_time": 100
+    },
+    "neapolitan:banana_stalk": {
+      "burn_time": 800
+    },
+    "neapolitan:carved_banana_stalk": {
+      "burn_time": 800
+    },
+    "neapolitan:frond_thatch": {
+      "burn_time": 100
+    },
+    "neapolitan:frond_thatch_slab": {
+      "burn_time": 50
+    },
+    "neapolitan:frond_thatch_stairs": {
+      "burn_time": 100
+    }
+  }
+}

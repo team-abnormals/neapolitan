@@ -1,7 +1,7 @@
 package com.teamabnormals.neapolitan.core;
 
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
+import net.neoforged.neoforge.common.ModConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec.ConfigValue;
 import org.apache.commons.lang3.tuple.Pair;
 
 public class NeapolitanConfig {
@@ -27,7 +27,7 @@ public class NeapolitanConfig {
 		public final ConfigValue<Integer> suspiciousGravelMin;
 		public final ConfigValue<Integer> rareSuspiciousGravelMin;
 
-		Common(ForgeConfigSpec.Builder builder) {
+		Common(ModConfigSpec.Builder builder) {
 			builder.push("items");
 			builder.push("milk_bottles");
 			milkCauldron = builder.comment("If milk can be inserted into cauldrons").define("Milk Cauldron", true);
@@ -65,11 +65,11 @@ public class NeapolitanConfig {
 		}
 	}
 
-	public static final ForgeConfigSpec COMMON_SPEC;
+	public static final ModConfigSpec COMMON_SPEC;
 	public static final Common COMMON;
 
 	static {
-		final Pair<Common, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder().configure(Common::new);
+		final Pair<Common, ModConfigSpec> specPair = new ModConfigSpec.Builder().configure(Common::new);
 		COMMON_SPEC = specPair.getRight();
 		COMMON = specPair.getLeft();
 	}

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "neapolitan:adzuki_beans"
+    },
+    {
+      "item": "neapolitan:adzuki_beans"
+    },
+    {
+      "item": "neapolitan:adzuki_beans"
+    },
+    {
+      "item": "minecraft:fermented_spider_eye"
+    }
+  ],
+  "result": {
+    "count": 3,
+    "id": "neapolitan:magic_beans"
+  }
+}

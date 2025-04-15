@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "count": 2,
-  "ingredient": {
-    "item": "neapolitan:chocolate_bricks"
-  },
-  "result": "neapolitan:chocolate_tile_slab"
-}

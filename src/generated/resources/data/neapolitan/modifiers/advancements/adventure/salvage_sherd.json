@@ -26,7 +26,8 @@
               "neapolitan:banana_plant_rare"
             ]
           }
-        ]
+        ],
+        "should_replace_requirements": false
       }
     }
   ],

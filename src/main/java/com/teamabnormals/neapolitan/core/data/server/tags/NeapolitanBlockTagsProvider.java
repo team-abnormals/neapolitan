@@ -4,15 +4,14 @@ import com.teamabnormals.blueprint.core.other.tags.BlueprintBlockTags;
 import com.teamabnormals.neapolitan.common.block.FlavoredCandleCakeBlock;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanBlockTags;
-import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderLookup.Provider;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.common.data.BlockTagsProvider;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.common.data.BlockTagsProvider;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -49,7 +48,7 @@ public class NeapolitanBlockTagsProvider extends BlockTagsProvider {
 		this.tag(NeapolitanBlockTags.DROPS_ADZUKI_CAKE_SLICE).add(ADZUKI_CAKE.get());
 
 		FlavoredCandleCakeBlock.getCandleCakes().forEach(block -> {
-			String name = ForgeRegistries.BLOCKS.getKey(block).getPath();
+			String name = BuiltInRegistries.BLOCK.getKey(block).getPath();
 			this.tag(BlockTags.CANDLE_CAKES).add(block);
 			if (name.contains("vanilla")) this.tag(NeapolitanBlockTags.DROPS_VANILLA_CAKE_SLICE).add(block);
 			if (name.contains("chocolate")) this.tag(NeapolitanBlockTags.DROPS_CHOCOLATE_CAKE_SLICE).add(block);

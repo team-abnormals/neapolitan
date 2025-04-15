@@ -1,9 +1,15 @@
 package com.teamabnormals.neapolitan.core.other;
 
 import com.teamabnormals.neapolitan.core.Neapolitan;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.storage.loot.LootTable;
 
 public class NeapolitanLootTables {
-	public static final ResourceLocation BANANA_PLANT_ARCHAEOLOGY_COMMON = new ResourceLocation(Neapolitan.MOD_ID, "archaeology/banana_plant_common");
-	public static final ResourceLocation BANANA_PLANT_ARCHAEOLOGY_RARE = new ResourceLocation(Neapolitan.MOD_ID, "archaeology/banana_plant_rare");
+	public static final ResourceKey<LootTable> BANANA_PLANT_ARCHAEOLOGY_COMMON = create("archaeology/banana_plant_common");
+	public static final ResourceKey<LootTable> BANANA_PLANT_ARCHAEOLOGY_RARE = create("archaeology/banana_plant_rare");
+
+	private static ResourceKey<LootTable> create(String name) {
+		return ResourceKey.create(Registries.LOOT_TABLE, Neapolitan.location(name));
+	}
 }

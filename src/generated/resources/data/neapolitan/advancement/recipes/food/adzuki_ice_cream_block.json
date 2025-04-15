@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_adzuki_ice_cream": {
+      "conditions": {
+        "items": [
+          {
+            "items": "neapolitan:adzuki_ice_cream"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "neapolitan:adzuki_ice_cream_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_adzuki_ice_cream"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "neapolitan:adzuki_ice_cream_block"
+    ]
+  }
+}

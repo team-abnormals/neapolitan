@@ -10,7 +10,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
-import net.minecraftforge.common.ForgeMod;
+import net.neoforged.neoforge.common.NeoForgeMod;
 
 public class MilkCauldronBlock extends MilkshakeCauldronBlock {
 
@@ -32,6 +32,6 @@ public class MilkCauldronBlock extends MilkshakeCauldronBlock {
 
 	@Override
 	protected boolean canReceiveStalactiteDrip(Fluid fluid) {
-		return fluid == ForgeMod.MILK.get() && NeapolitanConfig.COMMON.milkFromDripstones.get();
+		return fluid == NeoForgeMod.MILK.get() && NeapolitanConfig.COMMON.milkFromDripstones.get();
 	}
 }

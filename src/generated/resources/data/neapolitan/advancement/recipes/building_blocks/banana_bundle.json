@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_banana_bunch": {
+      "conditions": {
+        "items": [
+          {
+            "items": "neapolitan:banana_bunch"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "neapolitan:banana_bundle"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_banana_bunch"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "neapolitan:banana_bundle"
+    ]
+  }
+}

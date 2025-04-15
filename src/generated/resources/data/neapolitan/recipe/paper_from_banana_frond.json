@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "neapolitan:banana_frond"
+    },
+    {
+      "item": "neapolitan:banana_frond"
+    },
+    {
+      "item": "neapolitan:banana_frond"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:paper"
+  }
+}

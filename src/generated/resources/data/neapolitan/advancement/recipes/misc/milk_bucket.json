@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_milk_bottle": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:bottles/milk"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "neapolitan:milk_bucket"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_milk_bottle"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "neapolitan:milk_bucket"
+    ]
+  }
+}

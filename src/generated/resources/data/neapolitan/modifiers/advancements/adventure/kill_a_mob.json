@@ -27,7 +27,8 @@
               "neapolitan:plantain_spider"
             ]
           }
-        ]
+        ],
+        "should_replace_requirements": false
       }
     }
   ],

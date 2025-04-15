@@ -1,7 +1,6 @@
 package com.teamabnormals.neapolitan.core.mixin;
 
-import com.teamabnormals.neapolitan.core.registry.NeapolitanBiomes;
-import net.minecraft.nbt.CompoundTag;
+import com.teamabnormals.neapolitan.core.registry.datapack.NeapolitanBiomes;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
@@ -29,7 +28,7 @@ public abstract class SheepMixin extends Animal {
 	}
 
 	@Inject(method = "finalizeSpawn", at = @At("TAIL"))
-	public void finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData, @Nullable CompoundTag tag, CallbackInfoReturnable<SpawnGroupData> cir) {
+	public void finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData, CallbackInfoReturnable<SpawnGroupData> cir) {
 		if (level.getBiome(this.blockPosition()).is(NeapolitanBiomes.STRAWBERRY_FIELDS) && level.getRandom().nextBoolean())
 			this.setColor(DyeColor.RED);
 	}

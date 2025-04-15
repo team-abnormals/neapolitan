@@ -8,7 +8,7 @@ import net.minecraft.world.level.block.CauldronBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.Fluid;
-import net.minecraftforge.common.ForgeMod;
+import net.neoforged.neoforge.common.NeoForgeMod;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -19,7 +19,7 @@ public abstract class CauldronBlockMixin {
 
 	@Inject(at = @At("HEAD"), method = "receiveStalactiteDrip")
 	private void receiveStalactiteDrip(BlockState state, Level level, BlockPos pos, Fluid fluid, CallbackInfo ci) {
-		if (fluid == ForgeMod.MILK.get() && NeapolitanConfig.COMMON.milkCauldron.get() && NeapolitanConfig.COMMON.milkFromDripstones.get()) {
+		if (fluid == NeoForgeMod.MILK.get() && NeapolitanConfig.COMMON.milkCauldron.get() && NeapolitanConfig.COMMON.milkFromDripstones.get()) {
 			level.setBlockAndUpdate(pos, NeapolitanBlocks.MILK_CAULDRON.get().defaultBlockState());
 			level.levelEvent(1047, pos, 0);
 			level.gameEvent(null, GameEvent.FLUID_PLACE, pos);

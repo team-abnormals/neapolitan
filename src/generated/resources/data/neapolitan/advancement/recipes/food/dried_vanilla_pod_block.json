@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_dried_vanilla_pods": {
+      "conditions": {
+        "items": [
+          {
+            "items": "neapolitan:dried_vanilla_pods"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "neapolitan:dried_vanilla_pod_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_dried_vanilla_pods"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "neapolitan:dried_vanilla_pod_block"
+    ]
+  }
+}

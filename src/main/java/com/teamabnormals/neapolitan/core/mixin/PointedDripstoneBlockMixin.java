@@ -16,8 +16,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.entity.EntityTypeTest;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.phys.AABB;
-import net.minecraftforge.common.ForgeMod;
-import net.minecraftforge.common.Tags;
+import net.neoforged.neoforge.common.NeoForgeMod;
+import net.neoforged.neoforge.common.Tags;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -64,7 +64,7 @@ public abstract class PointedDripstoneBlockMixin {
 
 	@Inject(at = @At("RETURN"), method = "canFillCauldron", cancellable = true)
 	private static void canFillCauldron(Fluid fluid, CallbackInfoReturnable<Boolean> cir) {
-		if (fluid == ForgeMod.MILK.get())
+		if (fluid == NeoForgeMod.MILK.get())
 			cir.setReturnValue(true);
 	}
 
@@ -72,7 +72,7 @@ public abstract class PointedDripstoneBlockMixin {
 	private static void getFluidAboveStalactite(Level level, BlockPos pos, BlockState state, CallbackInfoReturnable<Optional<FluidInfo>> cir) {
 		Optional<List<Entity>> entities = findRootBlock(level, pos, state, 11).map((newPos) -> level.getEntities(EntityTypeTest.forClass(Entity.class), new AABB(newPos.above()), (entity) -> entity.getType().is(BlueprintEntityTypeTags.MILKABLE)));
 		if (isStalactite(state) && entities.isPresent() && !entities.get().isEmpty()) {
-			cir.setReturnValue(Optional.of(new PointedDripstoneBlock.FluidInfo(pos, ForgeMod.MILK.get(), Blocks.AIR.defaultBlockState())));
+			cir.setReturnValue(Optional.of(new PointedDripstoneBlock.FluidInfo(pos, NeoForgeMod.MILK.get(), Blocks.AIR.defaultBlockState())));
 		}
 	}
 
@@ -91,7 +91,7 @@ public abstract class PointedDripstoneBlockMixin {
 		if (!(chance > 0.17578125F) || !(chance > 0.05859375F)) {
 			if (isStalactiteStartPos(state, level, pos)) {
 				Fluid fluid = PointedDripstoneBlock.getCauldronFillFluidType(level, pos);
-				if (fluid == ForgeMod.MILK.get()) {
+				if (fluid == NeoForgeMod.MILK.get()) {
 					if (!(chance >= 0.1171875F)) {
 						BlockPos tipPos = findTip(state, level, pos, 11, false);
 						if (tipPos != null) {

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "neapolitan:vanilla_pod_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "neapolitan:vanilla_pods"
+  }
+}

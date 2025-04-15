@@ -1,13 +1,11 @@
 package com.teamabnormals.neapolitan.common.block;
 
-import com.teamabnormals.neapolitan.core.other.NeapolitanCriteriaTriggers;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanBlockTags;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -29,7 +27,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.Tags;
+import net.neoforged.neoforge.common.Tags;
 
 import java.util.Optional;
 
@@ -87,13 +85,13 @@ public class VanillaVineBlock extends Block implements BonemealableBlock {
 
 
 	@Override
-	public ItemStack getCloneItemStack(BlockGetter worldIn, BlockPos pos, BlockState state) {
+	public ItemStack getCloneItemStack(LevelReader worldIn, BlockPos pos, BlockState state) {
 		return new ItemStack(NeapolitanItems.VANILLA_PODS.get());
 	}
 
 
 	@Override
-	public boolean isValidBonemealTarget(LevelReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
+	public boolean isValidBonemealTarget(LevelReader worldIn, BlockPos pos, BlockState state) {
 		Optional<BlockPos> optional = this.nextGrowPosition(worldIn, pos, state);
 		return optional.isPresent() && NetherVines.isValidGrowthState(worldIn.getBlockState(optional.get().relative(state.getValue(FACING))));
 	}
@@ -134,9 +132,9 @@ public class VanillaVineBlock extends Block implements BonemealableBlock {
 	}
 
 	@Override
-	public void playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
-		super.playerWillDestroy(world, pos, state, player);
+	public BlockState playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
 		createPoisonCloud(world, pos, state, player);
+		return super.playerWillDestroy(world, pos, state, player);
 	}
 
 	@Override
@@ -147,7 +145,7 @@ public class VanillaVineBlock extends Block implements BonemealableBlock {
 
 	public static void createPoisonCloud(Level world, BlockPos pos, BlockState state, Player player) {
 		if (!player.getAbilities().instabuild) {
-			if (!player.getMainHandItem().is(Tags.Items.SHEARS)) {
+			if (!player.getMainHandItem().is(Tags.Items.TOOLS_SHEAR)) {
 				AreaEffectCloud areaeffectcloudentity = new AreaEffectCloud(world, pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F);
 				areaeffectcloudentity.addEffect(new MobEffectInstance(new MobEffectInstance(MobEffects.POISON, 300)));
 				areaeffectcloudentity.setRadius(1.0F);
@@ -157,8 +155,10 @@ public class VanillaVineBlock extends Block implements BonemealableBlock {
 				areaeffectcloudentity.setRadiusPerTick(-areaeffectcloudentity.getRadius() / (float) areaeffectcloudentity.getDuration());
 
 				world.addFreshEntity(areaeffectcloudentity);
-			} else if (player instanceof ServerPlayer)
-				NeapolitanCriteriaTriggers.VANILLA_POISON.trigger((ServerPlayer) player);
+			}
+
+			// TODO: Advancements
+			// else if (player instanceof ServerPlayer) NeapolitanCriteriaTriggers.VANILLA_POISON.trigger((ServerPlayer) player);
 		}
 	}
 }

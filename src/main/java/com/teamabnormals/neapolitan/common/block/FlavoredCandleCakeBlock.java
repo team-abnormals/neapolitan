@@ -2,11 +2,14 @@ package com.teamabnormals.neapolitan.common.block;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
+import com.mojang.serialization.MapCodec;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -27,7 +30,6 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.Map;
@@ -55,6 +57,11 @@ public class FlavoredCandleCakeBlock extends AbstractCandleBlock {
 	}
 
 	@Override
+	protected MapCodec<? extends AbstractCandleBlock> codec() {
+		return null;
+	}
+
+	@Override
 	protected Iterable<Vec3> getParticleOffsets(BlockState p_152868_) {
 		return PARTICLE_OFFSETS;
 	}
@@ -65,27 +72,32 @@ public class FlavoredCandleCakeBlock extends AbstractCandleBlock {
 	}
 
 	@Override
-	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
-		ItemStack itemstack = player.getItemInHand(hand);
-		if (!itemstack.is(Items.FLINT_AND_STEEL) && !itemstack.is(Items.FIRE_CHARGE) && baseCake.get() instanceof FlavoredCakeBlock cakeBlock) {
-			if (candleHit(result) && player.getItemInHand(hand).isEmpty() && state.getValue(LIT)) {
-				extinguish(player, state, level, pos);
-				return InteractionResult.sidedSuccess(level.isClientSide);
-			} else {
-				InteractionResult interactionresult = cakeBlock.eatSlice(level, pos, cakeBlock.defaultBlockState(), player);
-				if (interactionresult.consumesAction()) {
-					dropResources(state, level, pos);
-				}
-
-				return interactionresult;
-			}
+	protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+		if (stack.is(Items.FLINT_AND_STEEL) || stack.is(Items.FIRE_CHARGE)) {
+			return ItemInteractionResult.SKIP_DEFAULT_BLOCK_INTERACTION;
+		} else if (baseCake.get() instanceof FlavoredCakeBlock && candleHit(hitResult) && stack.isEmpty() && state.getValue(LIT)) {
+			extinguish(player, state, level, pos);
+			return ItemInteractionResult.sidedSuccess(level.isClientSide);
 		} else {
-			return InteractionResult.PASS;
+			return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
 		}
 	}
 
 	@Override
-	public ItemStack getCloneItemStack(BlockGetter level, BlockPos pos, BlockState state) {
+	protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+		if (baseCake.get() instanceof FlavoredCakeBlock cakeBlock) {
+			InteractionResult result = cakeBlock.eatSlice(level, pos, cakeBlock.defaultBlockState(), player);
+			if (result.consumesAction()) {
+				dropResources(state, level, pos);
+			}
+
+			return result;
+		}
+		return super.useWithoutItem(state, level, pos, player, hitResult);
+	}
+
+	@Override
+	public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
 		return new ItemStack(baseCake.get());
 	}
 
@@ -119,7 +131,7 @@ public class FlavoredCandleCakeBlock extends AbstractCandleBlock {
 	}
 
 	@Override
-	public boolean isPathfindable(BlockState p_152870_, BlockGetter p_152871_, BlockPos p_152872_, PathComputationType p_152873_) {
+	public boolean isPathfindable(BlockState p_152870_, PathComputationType p_152873_) {
 		return false;
 	}
 
@@ -140,6 +152,6 @@ public class FlavoredCandleCakeBlock extends AbstractCandleBlock {
 	}
 
 	public static Iterable<Block> getCandleCakes() {
-		return ForgeRegistries.BLOCKS.getValues().stream().filter(block -> ForgeRegistries.BLOCKS.getKey(block) != null && Neapolitan.MOD_ID.equals(ForgeRegistries.BLOCKS.getKey(block).getNamespace()) && block instanceof FlavoredCandleCakeBlock).collect(Collectors.toList());
+		return BuiltInRegistries.BLOCK.stream().filter(block -> Neapolitan.MOD_ID.equals(BuiltInRegistries.BLOCK.getKey(block).getNamespace()) && block instanceof FlavoredCandleCakeBlock).collect(Collectors.toList());
 	}
 }

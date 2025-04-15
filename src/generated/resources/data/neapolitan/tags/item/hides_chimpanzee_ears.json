@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "savage_and_ravage:griefer_helmet",
+      "required": false
+    },
+    {
+      "id": "caverns_and_chasms:sanguine_helmet",
+      "required": false
+    }
+  ]
+}

@@ -7,6 +7,7 @@ import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.phys.Vec3;
 
@@ -73,12 +74,12 @@ public class ChimpPlayWithHelmetGoal extends Goal {
 	public void tick() {
 		--this.playTimer;
 
-		if (this.playTimer == 6 && !EnchantmentHelper.hasBindingCurse(this.itemStack)) {
+		if (this.playTimer == 6 && !EnchantmentHelper.has(this.itemStack, EnchantmentEffectComponents.PREVENT_ARMOR_CHANGE)) {
 			ItemEntity itementity = new ItemEntity(this.chimpanzee.level(), this.chimpanzee.getX(), this.chimpanzee.getY(1.0D), this.chimpanzee.getZ(), this.itemStack);
 			Vec3 vector3d = itementity.getDeltaMovement();
 			itementity.setDeltaMovement(vector3d.x * 1.6D, vector3d.y, vector3d.z * 1.6D);
 			itementity.setPickUpDelay(40);
-			itementity.setThrower(this.chimpanzee.getUUID());
+			itementity.setThrower(this.chimpanzee);
 			this.chimpanzee.level().addFreshEntity(itementity);
 
 			this.chimpanzee.setItemSlot(EquipmentSlot.HEAD, ItemStack.EMPTY);

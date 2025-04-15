@@ -11,8 +11,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.living.MobEffectEvent;
+import net.neoforged.neoforge.common.EffectCures;
+import net.neoforged.neoforge.event.EventHooks;
 
 import java.util.Random;
 
@@ -54,7 +54,7 @@ public class MilkBottleItem extends Item {
 			if (effects.size() > 0) {
 				Random rand = new Random();
 				MobEffectInstance effectToRemove = effects.get(rand.nextInt(effects.size()));
-				if (!MinecraftForge.EVENT_BUS.post(new MobEffectEvent.Remove(entity, effectToRemove.getEffect()))) {
+				if (!EventHooks.onEffectRemoved(entity, effectToRemove, EffectCures.MILK)) {
 					entity.removeEffect(effectToRemove.getEffect());
 				}
 			}
@@ -62,7 +62,7 @@ public class MilkBottleItem extends Item {
 	}
 
 	@Override
-	public int getUseDuration(ItemStack stack) {
+	public int getUseDuration(ItemStack stack, LivingEntity entity) {
 		return 32;
 	}
 

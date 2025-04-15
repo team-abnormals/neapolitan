@@ -1,12 +1,10 @@
 package com.teamabnormals.neapolitan.common.entity.projectile;
 
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanEntityTypeTags;
-import com.teamabnormals.neapolitan.core.registry.NeapolitanEntityTypes;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanMobEffects;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
@@ -19,8 +17,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.network.NetworkHooks;
-import net.minecraftforge.network.PlayMessages;
 
 public class BananaPeel extends Entity {
 	private int age;
@@ -29,17 +25,8 @@ public class BananaPeel extends Entity {
 		super(type, worldIn);
 	}
 
-	public BananaPeel(PlayMessages.SpawnEntity spawnEntity, Level world) {
-		this(NeapolitanEntityTypes.BANANA_PEEL.get(), world);
-	}
-
 	@Override
-	public Packet<ClientGamePacketListener> getAddEntityPacket() {
-		return NetworkHooks.getEntitySpawningPacket(this);
-	}
-
-	@Override
-	protected void defineSynchedData() {
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
 	}
 
 	@Override
@@ -93,7 +80,7 @@ public class BananaPeel extends Entity {
 	public void push(Entity entityIn) {
 		super.push(entityIn);
 		if (this.onGround() && !this.isInWater() && entityIn instanceof LivingEntity && this.getY() <= entityIn.getY() && !entityIn.getType().is(NeapolitanEntityTypeTags.UNAFFECTED_BY_SLIPPING) && !this.level().isClientSide()) {
-			((LivingEntity) entityIn).addEffect(new MobEffectInstance(NeapolitanMobEffects.SLIPPING.get(), 100));
+			((LivingEntity) entityIn).addEffect(new MobEffectInstance(NeapolitanMobEffects.SLIPPING, 100));
 		}
 	}
 

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:bottles/milk"
+    },
+    {
+      "tag": "c:bottles/milk"
+    },
+    {
+      "tag": "c:bottles/milk"
+    },
+    {
+      "item": "minecraft:bucket"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:milk_bucket"
+  }
+}

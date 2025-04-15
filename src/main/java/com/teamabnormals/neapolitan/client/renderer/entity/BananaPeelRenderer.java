@@ -13,7 +13,7 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 
 public class BananaPeelRenderer extends EntityRenderer<BananaPeel> {
-	private static final ResourceLocation BANANA_PEEL_LOCATION = new ResourceLocation(Neapolitan.MOD_ID, "textures/entity/banana_peel.png");
+	private static final ResourceLocation BANANA_PEEL_LOCATION = Neapolitan.location("textures/entity/banana_peel.png");
 	private final BananaPeelModel model;
 
 	public BananaPeelRenderer(EntityRendererProvider.Context context) {
@@ -27,7 +27,7 @@ public class BananaPeelRenderer extends EntityRenderer<BananaPeel> {
 		matrixStack.pushPose();
 		matrixStack.scale(-1.0F, -1.0F, 1.0F);
 		VertexConsumer ivertexbuilder = bufferIn.getBuffer(this.model.renderType(this.getTextureLocation(entityIn)));
-		this.model.renderToBuffer(matrixStack, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+		this.model.renderToBuffer(matrixStack, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY);
 		matrixStack.popPose();
 	}
 

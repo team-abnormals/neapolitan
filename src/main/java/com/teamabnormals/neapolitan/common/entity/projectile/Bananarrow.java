@@ -1,13 +1,9 @@
 package com.teamabnormals.neapolitan.common.entity.projectile;
 
 import com.teamabnormals.neapolitan.common.entity.animal.Chimpanzee;
-import com.teamabnormals.neapolitan.core.other.NeapolitanCriteriaTriggers;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanEntityTypes;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanMobEffects;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -18,29 +14,23 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
-import net.minecraftforge.network.NetworkHooks;
-import net.minecraftforge.network.PlayMessages;
 
+import javax.annotation.Nullable;
 import java.util.List;
-import java.util.Objects;
 
 public class Bananarrow extends AbstractArrow {
 	public boolean impacted = false;
 
-	public Bananarrow(EntityType<? extends Bananarrow> type, Level worldIn) {
-		super(type, worldIn);
+	public Bananarrow(EntityType<? extends Bananarrow> entityType, Level level) {
+		super(entityType, level);
 	}
 
-	public Bananarrow(Level worldIn, double x, double y, double z) {
-		super(NeapolitanEntityTypes.BANANARROW.get(), x, y, z, worldIn);
+	public Bananarrow(Level level, LivingEntity owner, ItemStack pickupItemStack, @Nullable ItemStack firedFromWeapon) {
+		super(NeapolitanEntityTypes.BANANARROW.get(), owner, level, pickupItemStack, firedFromWeapon);
 	}
 
-	public Bananarrow(PlayMessages.SpawnEntity spawnEntity, Level world) {
-		this(NeapolitanEntityTypes.BANANARROW.get(), world);
-	}
-
-	public Bananarrow(Level worldIn, LivingEntity shooter) {
-		super(NeapolitanEntityTypes.BANANARROW.get(), shooter, worldIn);
+	public Bananarrow(Level level, double x, double y, double z, ItemStack pickupItemStack, @Nullable ItemStack firedFromWeapon) {
+		super(NeapolitanEntityTypes.BANANARROW.get(), x, y, z, level, pickupItemStack, firedFromWeapon);
 	}
 
 	@Override
@@ -64,7 +54,7 @@ public class Bananarrow extends AbstractArrow {
 			this.level().addFreshEntity(bananaPeel);
 			this.impacted = true;
 			if (entity instanceof LivingEntity && !this.level().isClientSide()) {
-				((LivingEntity) entity).addEffect(new MobEffectInstance(NeapolitanMobEffects.SLIPPING.get(), 100));
+				((LivingEntity) entity).addEffect(new MobEffectInstance(NeapolitanMobEffects.SLIPPING, 100));
 			}
 		}
 
@@ -76,18 +66,13 @@ public class Bananarrow extends AbstractArrow {
 				}
 			}
 
-			if (!chimps.isEmpty() && this.getOwner() instanceof ServerPlayer)
-				NeapolitanCriteriaTriggers.CHIMPANZEE_ATTACK.trigger((ServerPlayer) Objects.requireNonNull(this.getOwner()));
+			// TODO: Advancements
+			// if (!chimps.isEmpty() && this.getOwner() instanceof ServerPlayer) NeapolitanCriteriaTriggers.CHIMPANZEE_ATTACK.trigger((ServerPlayer) Objects.requireNonNull(this.getOwner()));
 		}
 	}
 
 	@Override
-	protected ItemStack getPickupItem() {
+	protected ItemStack getDefaultPickupItem() {
 		return new ItemStack(!this.impacted ? NeapolitanItems.BANANARROW.get() : Items.ARROW);
-	}
-
-	@Override
-	public Packet<ClientGamePacketListener> getAddEntityPacket() {
-		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 }
