@@ -1,3 +1,160 @@
 {
-  "values": {}
+  "values": {
+    "neapolitan:adzuki_beans": {
+      "chance": 0.3
+    },
+    "neapolitan:adzuki_bun": {
+      "chance": 0.85
+    },
+    "neapolitan:adzuki_cake": {
+      "chance": 1.0
+    },
+    "neapolitan:adzuki_crate": {
+      "chance": 1.0
+    },
+    "neapolitan:banana": {
+      "chance": 0.3
+    },
+    "neapolitan:banana_bread": {
+      "chance": 0.65
+    },
+    "neapolitan:banana_bunch": {
+      "chance": 0.5
+    },
+    "neapolitan:banana_bundle": {
+      "chance": 0.85
+    },
+    "neapolitan:banana_cake": {
+      "chance": 1.0
+    },
+    "neapolitan:banana_crate": {
+      "chance": 1.0
+    },
+    "neapolitan:banana_frond": {
+      "chance": 0.3
+    },
+    "neapolitan:banana_stalk": {
+      "chance": 0.85
+    },
+    "neapolitan:beanstalk": {
+      "chance": 0.65
+    },
+    "neapolitan:beanstalk_thorns": {
+      "chance": 0.5
+    },
+    "neapolitan:carved_banana_stalk": {
+      "chance": 0.85
+    },
+    "neapolitan:chiseled_chocolate_bricks": {
+      "chance": 0.85
+    },
+    "neapolitan:chocolate_bar": {
+      "chance": 0.3
+    },
+    "neapolitan:chocolate_block": {
+      "chance": 1.0
+    },
+    "neapolitan:chocolate_brick_slab": {
+      "chance": 0.3
+    },
+    "neapolitan:chocolate_brick_stairs": {
+      "chance": 0.85
+    },
+    "neapolitan:chocolate_brick_wall": {
+      "chance": 0.85
+    },
+    "neapolitan:chocolate_bricks": {
+      "chance": 0.85
+    },
+    "neapolitan:chocolate_cake": {
+      "chance": 1.0
+    },
+    "neapolitan:chocolate_strawberries": {
+      "chance": 0.85
+    },
+    "neapolitan:chocolate_tile_slab": {
+      "chance": 0.3
+    },
+    "neapolitan:chocolate_tile_stairs": {
+      "chance": 0.85
+    },
+    "neapolitan:chocolate_tile_wall": {
+      "chance": 0.85
+    },
+    "neapolitan:chocolate_tiles": {
+      "chance": 0.85
+    },
+    "neapolitan:dried_banana": {
+      "chance": 0.5
+    },
+    "neapolitan:dried_vanilla_pod_block": {
+      "chance": 0.5
+    },
+    "neapolitan:dried_vanilla_pods": {
+      "chance": 0.3
+    },
+    "neapolitan:frond_thatch": {
+      "chance": 0.65
+    },
+    "neapolitan:frond_thatch_slab": {
+      "chance": 0.65
+    },
+    "neapolitan:frond_thatch_stairs": {
+      "chance": 0.65
+    },
+    "neapolitan:mint_basket": {
+      "chance": 1.0
+    },
+    "neapolitan:mint_cake": {
+      "chance": 1.0
+    },
+    "neapolitan:mint_chocolate": {
+      "chance": 0.85
+    },
+    "neapolitan:mint_leaves": {
+      "chance": 0.5
+    },
+    "neapolitan:mint_sprout": {
+      "chance": 0.3
+    },
+    "neapolitan:roasted_adzuki_beans": {
+      "chance": 0.5
+    },
+    "neapolitan:roasted_adzuki_crate": {
+      "chance": 1.0
+    },
+    "neapolitan:strawberries": {
+      "chance": 0.3
+    },
+    "neapolitan:strawberry_basket": {
+      "chance": 1.0
+    },
+    "neapolitan:strawberry_cake": {
+      "chance": 1.0
+    },
+    "neapolitan:strawberry_pips": {
+      "chance": 0.3
+    },
+    "neapolitan:strawberry_scones": {
+      "chance": 0.65
+    },
+    "neapolitan:vanilla_cake": {
+      "chance": 1.0
+    },
+    "neapolitan:vanilla_chocolate_fingers": {
+      "chance": 0.85
+    },
+    "neapolitan:vanilla_pod_block": {
+      "chance": 0.5
+    },
+    "neapolitan:vanilla_pods": {
+      "chance": 0.3
+    },
+    "neapolitan:white_strawberries": {
+      "chance": 0.65
+    },
+    "neapolitan:white_strawberry_basket": {
+      "chance": 1.0
+    }
+  }
 }
