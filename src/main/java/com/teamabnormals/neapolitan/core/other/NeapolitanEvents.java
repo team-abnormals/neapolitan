@@ -162,7 +162,6 @@ public class NeapolitanEvents {
 		}
 	}
 
-
 	@SubscribeEvent
 	public static void onPotionAdded(MobEffectEvent.Applicable event) {
 		Holder<MobEffect> effect = event.getEffectInstance().getEffect();
@@ -174,8 +173,18 @@ public class NeapolitanEvents {
 			}
 		}
 
-		if (effect == NeapolitanMobEffects.SUGAR_RUSH.get() && !entity.level().isClientSide()) {
+		if (effect.value() == NeapolitanMobEffects.SUGAR_RUSH.get() && !entity.level().isClientSide()) {
 			entity.getPersistentData().putInt("SugarRushDuration", event.getEffectInstance().getDuration());
+		}
+	}
+
+	@SubscribeEvent
+	public static void onPotionExpire(MobEffectEvent.Expired event) {
+		Holder<MobEffect> effect = event.getEffectInstance().getEffect();
+		LivingEntity entity = event.getEntity();
+		if (effect.value() == NeapolitanMobEffects.SUGAR_RUSH.get() && !entity.level().isClientSide()) {
+			int duration = entity.getPersistentData().getInt("SugarRushDuration");
+			entity.addEffect(new MobEffectInstance(NeapolitanMobEffects.SUGAR_CRASH, duration, event.getEffectInstance().getAmplifier()));
 		}
 	}
 
