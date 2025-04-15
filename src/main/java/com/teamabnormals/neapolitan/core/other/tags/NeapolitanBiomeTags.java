@@ -6,6 +6,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biome;
 
 public class NeapolitanBiomeTags {
+	public static final TagKey<Biome> SPAWNS_JUNGLE_VARIANT_CHIMPANZEES = biomeTag("spawns_jungle_variant_chimpanzees");
 	public static final TagKey<Biome> SPAWNS_RAINFOREST_VARIANT_CHIMPANZEES = biomeTag("spawns_rainforest_variant_chimpanzees");
 	public static final TagKey<Biome> SPAWNS_BAMBOO_VARIANT_CHIMPANZEES = biomeTag("spawns_bamboo_variant_chimpanzees");
 

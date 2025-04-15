@@ -4,16 +4,17 @@ import com.teamabnormals.neapolitan.common.entity.goal.*;
 import com.teamabnormals.neapolitan.common.entity.monster.PlantainSpider;
 import com.teamabnormals.neapolitan.common.entity.projectile.BananaPeel;
 import com.teamabnormals.neapolitan.common.entity.util.ChimpanzeeAction;
-import com.teamabnormals.neapolitan.common.entity.util.ChimpanzeeType;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.other.NeapolitanConstants;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanBiomeTags;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanEntityTypeTags;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanItemTags;
 import com.teamabnormals.neapolitan.core.registry.*;
+import com.teamabnormals.neapolitan.core.registry.datapack.NeapolitanChimpanzeeVariants;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
+import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -22,6 +23,8 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -70,11 +73,12 @@ import net.neoforged.fml.ModList;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Predicate;
 
-public class Chimpanzee extends Animal implements NeutralMob {
-	private static final EntityDataAccessor<Integer> CHIMPANZEE_TYPE = SynchedEntityData.defineId(Chimpanzee.class, EntityDataSerializers.INT);
+public class Chimpanzee extends Animal implements NeutralMob, VariantHolder<Holder<ChimpanzeeVariant>> {
+	private static final EntityDataAccessor<Holder<ChimpanzeeVariant>> CHIMPANZEE_TYPE = SynchedEntityData.defineId(Chimpanzee.class, NeapolitanEntityDataSerializers.CHIMPANZEE_VARIANT.get());
 	private static final EntityDataAccessor<Integer> ANGER_TIME = SynchedEntityData.defineId(Chimpanzee.class, EntityDataSerializers.INT);
 	private static final EntityDataAccessor<Integer> APE_MODE_TIME = SynchedEntityData.defineId(Chimpanzee.class, EntityDataSerializers.INT);
 	private static final EntityDataAccessor<Integer> HUNGER = SynchedEntityData.defineId(Chimpanzee.class, EntityDataSerializers.INT);
@@ -172,7 +176,8 @@ public class Chimpanzee extends Animal implements NeutralMob {
 	@Override
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
 		super.defineSynchedData(builder);
-		builder.define(CHIMPANZEE_TYPE, 0);
+		Registry<ChimpanzeeVariant> registry = this.registryAccess().registryOrThrow(NeapolitanRegistries.CHIMPANZEE_VARIANT);
+		builder.define(CHIMPANZEE_TYPE, registry.getHolder(NeapolitanChimpanzeeVariants.DEFAULT).or(registry::getAny).orElseThrow());
 		builder.define(ANGER_TIME, 0);
 		builder.define(APE_MODE_TIME, 0);
 		builder.define(HUNGER, 0);
@@ -192,7 +197,7 @@ public class Chimpanzee extends Animal implements NeutralMob {
 	public void addAdditionalSaveData(CompoundTag compound) {
 		super.addAdditionalSaveData(compound);
 		this.addPersistentAngerSaveData(compound);
-		compound.putInt("ChimpanzeeType", this.getChimpanzeeType());
+		this.getVariant().unwrapKey().ifPresent(variant -> compound.putString("variant", variant.location().toString()));
 		compound.putInt("ApeModeTime", this.getApeModeTime());
 		compound.putInt("Hunger", this.getHunger());
 		compound.putInt("Dirtiness", this.getDirtiness());
@@ -208,7 +213,10 @@ public class Chimpanzee extends Animal implements NeutralMob {
 	public void readAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
 		this.readPersistentAngerSaveData(this.level(), compound);
-		this.setChimpanzeeType(compound.getInt("ChimpanzeeType"));
+		Optional.ofNullable(ResourceLocation.tryParse(compound.getString("variant")))
+				.map(location -> ResourceKey.create(NeapolitanRegistries.CHIMPANZEE_VARIANT, location))
+				.flatMap(key -> this.registryAccess().registryOrThrow(NeapolitanRegistries.CHIMPANZEE_VARIANT).getHolder(key))
+				.ifPresent(this::setVariant);
 		this.setApeModeTime(compound.getInt("ApeModeTime"));
 		this.setHunger(compound.getInt("Hunger"));
 		this.setDirtiness(compound.getInt("Dirtiness"));
@@ -831,24 +839,41 @@ public class Chimpanzee extends Animal implements NeutralMob {
 	}
 
 	@Override
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn) {
-		spawnDataIn = super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn);
-		this.setChimpanzeeType(this.getChimpanzeeTypeForPosition(worldIn).getId());
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn) {
+		spawnDataIn = super.finalizeSpawn(level, difficultyIn, reason, spawnDataIn);
+		Holder<Biome> biome = level.getBiome(this.blockPosition());
+		Holder<ChimpanzeeVariant> variant;
+		if (spawnDataIn instanceof ChimpGroupData chimpData) {
+			variant = chimpData.type;
+		} else {
+			variant = NeapolitanChimpanzeeVariants.getSpawnVariant(this.registryAccess(), biome);
+			spawnDataIn = new ChimpGroupData(variant);
+		}
+
+		this.setVariant(variant);
 		this.setHunger(this.random.nextInt(4800));
 		this.setDirtiness(this.random.nextInt(4800));
 		this.populateDefaultEquipmentSlots(difficultyIn);
 		return spawnDataIn;
 	}
 
-	public ChimpanzeeType getChimpanzeeTypeForPosition(LevelAccessor worldIn) {
-		Holder<Biome> biome = worldIn.getBiome(this.blockPosition());
-		if (biome.is(NeapolitanBiomeTags.SPAWNS_RAINFOREST_VARIANT_CHIMPANZEES)) {
-			return ChimpanzeeType.RAINFOREST;
-		} else if (biome.is(NeapolitanBiomeTags.SPAWNS_BAMBOO_VARIANT_CHIMPANZEES)) {
-			return ChimpanzeeType.BAMBOO;
-		}
+	@Override
+	public void setVariant(Holder<ChimpanzeeVariant> variant) {
+		this.entityData.set(CHIMPANZEE_TYPE, variant);
+	}
 
-		return ChimpanzeeType.JUNGLE;
+	@Override
+	public Holder<ChimpanzeeVariant> getVariant() {
+		return this.entityData.get(CHIMPANZEE_TYPE);
+	}
+
+	public static class ChimpGroupData extends AgeableMob.AgeableMobGroupData {
+		public final Holder<ChimpanzeeVariant> type;
+
+		public ChimpGroupData(Holder<ChimpanzeeVariant> type) {
+			super(false);
+			this.type = type;
+		}
 	}
 
 	protected void populateDefaultEquipmentSlots(DifficultyInstance difficultyIn) {
@@ -874,21 +899,13 @@ public class Chimpanzee extends Animal implements NeutralMob {
 	public Chimpanzee getBreedOffspring(ServerLevel world, AgeableMob ageableMob) {
 		Chimpanzee baby = NeapolitanEntityTypes.CHIMPANZEE.get().create(world);
 		if (ageableMob instanceof Chimpanzee parent) {
-			baby.setChimpanzeeType(this.random.nextBoolean() ? this.getChimpanzeeType() : parent.getChimpanzeeType());
+			baby.setVariant(this.random.nextBoolean() ? this.getVariant() : parent.getVariant());
 			baby.setPaleness((this.getPaleness() + parent.getPaleness()) / 2);
 		}
 		return baby;
 	}
 
 	// DATA //
-
-	public int getChimpanzeeType() {
-		return this.entityData.get(CHIMPANZEE_TYPE);
-	}
-
-	public void setChimpanzeeType(int type) {
-		this.entityData.set(CHIMPANZEE_TYPE, type);
-	}
 
 	public int getAttackTimer() {
 		return this.attackTimer;

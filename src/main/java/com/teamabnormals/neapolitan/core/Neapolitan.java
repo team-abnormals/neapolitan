@@ -2,15 +2,10 @@ package com.teamabnormals.neapolitan.core;
 
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import com.teamabnormals.gallery.core.data.client.GalleryItemModelProvider;
-import com.teamabnormals.neapolitan.core.data.server.NeapolitanDataMapProvider;
 import com.teamabnormals.neapolitan.core.data.client.NeapolitanBlockStateProvider;
 import com.teamabnormals.neapolitan.core.data.client.NeapolitanItemModelProvider;
 import com.teamabnormals.neapolitan.core.data.client.NeapolitanSpriteSourceProvider;
-import com.teamabnormals.neapolitan.core.data.server.NeapolitanDatapackProvider;
-import com.teamabnormals.neapolitan.core.data.server.NeapolitanLootTableProvider;
-import com.teamabnormals.neapolitan.core.data.server.NeapolitanRecipeProvider;
-import com.teamabnormals.neapolitan.core.data.server.NeapolitanAdvancementModifierProvider;
-import com.teamabnormals.neapolitan.core.data.server.NeapolitanDataRemolderProvider;
+import com.teamabnormals.neapolitan.core.data.server.*;
 import com.teamabnormals.neapolitan.core.data.server.tags.*;
 import com.teamabnormals.neapolitan.core.other.NeapolitanClientCompat;
 import com.teamabnormals.neapolitan.core.other.NeapolitanCompat;
@@ -49,6 +44,9 @@ public class Neapolitan {
 		NeapolitanPoiTypes.POI_TYPES.register(bus);
 		NeapolitanParticleTypes.PARTICLE_TYPES.register(bus);
 		NeapolitanDecoratedPotPatterns.DECORATED_POT_PATTERNS.register(bus);
+		NeapolitanEntityDataSerializers.ENTITY_DATA_SERIALIZERS.register(bus);
+
+		bus.addListener(NeapolitanRegistries::registerRegistries);
 
 		bus.addListener(this::commonSetup);
 		bus.addListener(this::clientSetup);

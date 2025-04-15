@@ -8,8 +8,7 @@ import com.teamabnormals.neapolitan.client.renderer.entity.layers.ChimpanzeeDyeL
 import com.teamabnormals.neapolitan.client.renderer.entity.layers.ChimpanzeeItemLayer;
 import com.teamabnormals.neapolitan.client.renderer.entity.layers.ChimpanzeePaleSkinLayer;
 import com.teamabnormals.neapolitan.common.entity.animal.Chimpanzee;
-import com.teamabnormals.neapolitan.common.entity.util.ChimpanzeeType;
-import com.teamabnormals.neapolitan.core.Neapolitan;
+import com.teamabnormals.neapolitan.common.entity.animal.ChimpanzeeVariant;
 import com.teamabnormals.neapolitan.core.other.NeapolitanModelLayers;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -19,8 +18,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-
-import java.util.Locale;
 
 @OnlyIn(Dist.CLIENT)
 public class ChimpanzeeRenderer extends MobRenderer<Chimpanzee, ChimpanzeeModel<Chimpanzee>> {
@@ -37,9 +34,8 @@ public class ChimpanzeeRenderer extends MobRenderer<Chimpanzee, ChimpanzeeModel<
 
 	@Override
 	public ResourceLocation getTextureLocation(Chimpanzee chimpanzee) {
-		ChimpanzeeType type = ChimpanzeeType.byId(chimpanzee.getChimpanzeeType());
-		String textureend = chimpanzee.isMouthOpen() ? "_chimpanzee_mouth_open.png" : "_chimpanzee.png";
-		return Neapolitan.location("textures/entity/chimpanzee/" + type.name().toLowerCase(Locale.ROOT) + textureend);
+		ChimpanzeeVariant type = chimpanzee.getVariant().value();
+		return chimpanzee.isMouthOpen() ? type.screamingTextureFull() : type.textureFull();
 	}
 
 	@Override

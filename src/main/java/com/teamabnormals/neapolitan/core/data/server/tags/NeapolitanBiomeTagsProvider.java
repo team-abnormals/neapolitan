@@ -32,6 +32,7 @@ public class NeapolitanBiomeTagsProvider extends BiomeTagsProvider {
 				Tags.Biomes.IS_PLAINS, Tags.Biomes.IS_RARE
 		);
 
+		this.tag(NeapolitanBiomeTags.SPAWNS_JUNGLE_VARIANT_CHIMPANZEES).add(Biomes.JUNGLE, Biomes.SPARSE_JUNGLE);
 		this.tag(NeapolitanBiomeTags.SPAWNS_RAINFOREST_VARIANT_CHIMPANZEES).addOptionalTag(NeapolitanConstants.IS_RAINFOREST);
 		this.tag(NeapolitanBiomeTags.SPAWNS_BAMBOO_VARIANT_CHIMPANZEES).add(Biomes.BAMBOO_JUNGLE);
 
