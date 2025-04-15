@@ -1,80 +1,7 @@
 {
   "parent": "minecraft:husbandry/plant_seed",
-  "display": {
-    "icon": {
-      "item": "neapolitan:chocolate_bar"
-    },
-    "title": {
-      "translate": "advancements.neapolitan.husbandry.place_all_chocolate_blocks.title"
-    },
-    "description": {
-      "translate": "advancements.neapolitan.husbandry.place_all_chocolate_blocks.description"
-    },
-    "frame": "challenge",
-    "show_toast": true,
-    "announce_to_chat": true,
-    "hidden": false
-  },
-  "rewards": {
-    "experience": 100
-  },
   "criteria": {
-    "chocolate_block": {
-      "conditions": {
-        "location": [
-          {
-            "block": "neapolitan:chocolate_block",
-            "condition": "minecraft:block_state_property"
-          }
-        ]
-      },
-      "trigger": "minecraft:placed_block"
-    },
-    "chocolate_tiles": {
-      "conditions": {
-        "location": [
-          {
-            "block": "neapolitan:chocolate_tiles",
-            "condition": "minecraft:block_state_property"
-          }
-        ]
-      },
-      "trigger": "minecraft:placed_block"
-    },
-    "chocolate_tile_stairs": {
-      "conditions": {
-        "location": [
-          {
-            "block": "neapolitan:chocolate_tile_stairs",
-            "condition": "minecraft:block_state_property"
-          }
-        ]
-      },
-      "trigger": "minecraft:placed_block"
-    },
-    "chocolate_tile_slab": {
-      "conditions": {
-        "location": [
-          {
-            "block": "neapolitan:chocolate_tile_slab",
-            "condition": "minecraft:block_state_property"
-          }
-        ]
-      },
-      "trigger": "minecraft:placed_block"
-    },
-    "chocolate_tile_wall": {
-      "conditions": {
-        "location": [
-          {
-            "block": "neapolitan:chocolate_tile_wall",
-            "condition": "minecraft:block_state_property"
-          }
-        ]
-      },
-      "trigger": "minecraft:placed_block"
-    },
-    "chiseled_chocolate_bricks": {
+    "neapolitan:chiseled_chocolate_bricks": {
       "conditions": {
         "location": [
           {
@@ -85,29 +12,18 @@
       },
       "trigger": "minecraft:placed_block"
     },
-    "chocolate_bricks": {
+    "neapolitan:chocolate_block": {
       "conditions": {
         "location": [
           {
-            "block": "neapolitan:chocolate_bricks",
+            "block": "neapolitan:chocolate_block",
             "condition": "minecraft:block_state_property"
           }
         ]
       },
       "trigger": "minecraft:placed_block"
     },
-    "chocolate_brick_stairs": {
-      "conditions": {
-        "location": [
-          {
-            "block": "neapolitan:chocolate_brick_stairs",
-            "condition": "minecraft:block_state_property"
-          }
-        ]
-      },
-      "trigger": "minecraft:placed_block"
-    },
-    "chocolate_brick_slab": {
+    "neapolitan:chocolate_brick_slab": {
       "conditions": {
         "location": [
           {
@@ -118,7 +34,18 @@
       },
       "trigger": "minecraft:placed_block"
     },
-    "chocolate_brick_wall": {
+    "neapolitan:chocolate_brick_stairs": {
+      "conditions": {
+        "location": [
+          {
+            "block": "neapolitan:chocolate_brick_stairs",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "neapolitan:chocolate_brick_wall": {
       "conditions": {
         "location": [
           {
@@ -128,6 +55,107 @@
         ]
       },
       "trigger": "minecraft:placed_block"
+    },
+    "neapolitan:chocolate_bricks": {
+      "conditions": {
+        "location": [
+          {
+            "block": "neapolitan:chocolate_bricks",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "neapolitan:chocolate_tile_slab": {
+      "conditions": {
+        "location": [
+          {
+            "block": "neapolitan:chocolate_tile_slab",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "neapolitan:chocolate_tile_stairs": {
+      "conditions": {
+        "location": [
+          {
+            "block": "neapolitan:chocolate_tile_stairs",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "neapolitan:chocolate_tile_wall": {
+      "conditions": {
+        "location": [
+          {
+            "block": "neapolitan:chocolate_tile_wall",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "neapolitan:chocolate_tiles": {
+      "conditions": {
+        "location": [
+          {
+            "block": "neapolitan:chocolate_tiles",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
     }
-  }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.neapolitan.husbandry.place_all_chocolate_blocks.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "neapolitan:chocolate_bar"
+    },
+    "title": {
+      "translate": "advancements.neapolitan.husbandry.place_all_chocolate_blocks.title"
+    }
+  },
+  "requirements": [
+    [
+      "neapolitan:chocolate_block"
+    ],
+    [
+      "neapolitan:chocolate_bricks"
+    ],
+    [
+      "neapolitan:chocolate_brick_stairs"
+    ],
+    [
+      "neapolitan:chocolate_brick_slab"
+    ],
+    [
+      "neapolitan:chocolate_brick_wall"
+    ],
+    [
+      "neapolitan:chiseled_chocolate_bricks"
+    ],
+    [
+      "neapolitan:chocolate_tiles"
+    ],
+    [
+      "neapolitan:chocolate_tile_stairs"
+    ],
+    [
+      "neapolitan:chocolate_tile_slab"
+    ],
+    [
+      "neapolitan:chocolate_tile_wall"
+    ]
+  ],
+  "sends_telemetry_event": true
 }

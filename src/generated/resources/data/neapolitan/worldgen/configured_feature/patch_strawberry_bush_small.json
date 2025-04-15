@@ -10,8 +10,8 @@
             "state": {
               "Name": "neapolitan:strawberry_bush",
               "Properties": {
-                "type": "none",
-                "age": "0"
+                "age": "0",
+                "white": "false"
               }
             }
           }

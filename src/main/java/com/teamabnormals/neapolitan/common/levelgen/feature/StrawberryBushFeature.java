@@ -31,7 +31,7 @@ public class StrawberryBushFeature extends Feature<SimpleBlockConfiguration> {
 				int age = level.getBlockState(origin.below()).is(Blocks.COARSE_DIRT) ? 2 : 6;
 				level.setBlock(origin, state.setValue(StrawberryBushBlock.AGE, age), 2);
 			} else {
-				level.setBlock(origin, state.setValue(StrawberryBushBlock.TYPE, StrawberryBushBlock.StrawberryType.NONE).setValue(StrawberryBushBlock.AGE, 2), 2);
+				level.setBlock(origin, state.setValue(StrawberryBushBlock.AGE, 2), 2);
 				level.setBlock(downPos, Blocks.COARSE_DIRT.defaultBlockState(), 2);
 			}
 

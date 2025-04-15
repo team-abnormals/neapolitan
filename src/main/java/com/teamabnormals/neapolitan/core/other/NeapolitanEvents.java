@@ -12,6 +12,7 @@ import com.teamabnormals.neapolitan.core.other.tags.NeapolitanMobEffectTags;
 import com.teamabnormals.neapolitan.core.registry.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
@@ -137,9 +138,10 @@ public class NeapolitanEvents {
 				for (Entity entity : event.getAffectedEntities()) {
 					if (entity instanceof LivingEntity livingEntity) {
 						livingEntity.heal(5.0F);
+						if (livingEntity instanceof ServerPlayer serverPlayer) {
+							NeapolitanCriteriaTriggers.HEAL_FROM_CREEPER.get().trigger(serverPlayer);
+						}
 					}
-					// TODO: Advancements
-					//if (entity instanceof ServerPlayer)NeapolitanCriteriaTriggers.CREEPER_HEAL.trigger((ServerPlayer) entity);
 				}
 
 				event.getAffectedEntities().clear();

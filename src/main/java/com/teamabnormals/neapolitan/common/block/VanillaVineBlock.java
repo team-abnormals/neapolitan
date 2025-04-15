@@ -2,10 +2,12 @@ package com.teamabnormals.neapolitan.common.block;
 
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanBlockTags;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanCriteriaTriggers;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -144,8 +146,9 @@ public class VanillaVineBlock extends Block implements BonemealableBlock {
 	}
 
 	public static void createPoisonCloud(Level world, BlockPos pos, BlockState state, Player player) {
+		ItemStack stack = player.getMainHandItem();
 		if (!player.getAbilities().instabuild) {
-			if (!player.getMainHandItem().is(Tags.Items.TOOLS_SHEAR)) {
+			if (!stack.is(Tags.Items.TOOLS_SHEAR)) {
 				AreaEffectCloud areaeffectcloudentity = new AreaEffectCloud(world, pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F);
 				areaeffectcloudentity.addEffect(new MobEffectInstance(new MobEffectInstance(MobEffects.POISON, 300)));
 				areaeffectcloudentity.setRadius(1.0F);
@@ -156,9 +159,10 @@ public class VanillaVineBlock extends Block implements BonemealableBlock {
 
 				world.addFreshEntity(areaeffectcloudentity);
 			}
+		}
 
-			// TODO: Advancements
-			// else if (player instanceof ServerPlayer) NeapolitanCriteriaTriggers.VANILLA_POISON.trigger((ServerPlayer) player);
+		if (player instanceof ServerPlayer serverPlayer) {
+			NeapolitanCriteriaTriggers.VANILLA_VINE_DESTROYED.get().trigger(serverPlayer, pos, stack);
 		}
 	}
 }

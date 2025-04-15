@@ -1,9 +1,11 @@
 package com.teamabnormals.neapolitan.common.entity.projectile;
 
 import com.teamabnormals.neapolitan.common.entity.animal.Chimpanzee;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanCriteriaTriggers;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanEntityTypes;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanMobEffects;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -66,8 +68,9 @@ public class Bananarrow extends AbstractArrow {
 				}
 			}
 
-			// TODO: Advancements
-			// if (!chimps.isEmpty() && this.getOwner() instanceof ServerPlayer) NeapolitanCriteriaTriggers.CHIMPANZEE_ATTACK.trigger((ServerPlayer) Objects.requireNonNull(this.getOwner()));
+			if (!chimps.isEmpty() && this.getOwner() instanceof ServerPlayer serverPlayer) {
+				NeapolitanCriteriaTriggers.ATTACK_WITH_CHIMPANZEES.get().trigger(serverPlayer);
+			}
 		}
 	}
 

@@ -10,7 +10,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
-import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
@@ -25,6 +24,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
@@ -35,8 +35,9 @@ import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -48,7 +49,7 @@ import javax.annotation.Nullable;
 
 public class StrawberryBushBlock extends BushBlock implements BonemealableBlock {
 	public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 6);
-	public static final EnumProperty<StrawberryType> TYPE = EnumProperty.create("type", StrawberryType.class);
+	public static final BooleanProperty WHITE = BooleanProperty.create("white");
 	private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
 			Block.box(2.0D, 0.0D, 2.0D, 14.0D, 2.0D, 14.0D),
 			Block.box(2.0D, 0.0D, 2.0D, 14.0D, 6.0D, 14.0D),
@@ -61,7 +62,7 @@ public class StrawberryBushBlock extends BushBlock implements BonemealableBlock 
 
 	public StrawberryBushBlock(Properties properties) {
 		super(properties);
-		this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0).setValue(TYPE, StrawberryType.NONE));
+		this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0).setValue(WHITE, false));
 	}
 
 	@Override
@@ -78,14 +79,21 @@ public class StrawberryBushBlock extends BushBlock implements BonemealableBlock 
 	protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
 		if (state.getValue(AGE) == this.getMaxAge()) {
 			int strawberryCount = 1 + level.random.nextInt(2);
-			Item strawberry = state.getValue(TYPE) == StrawberryType.WHITE ? NeapolitanItems.WHITE_STRAWBERRIES.get() : NeapolitanItems.STRAWBERRIES.get();
+			Item strawberry = state.getValue(WHITE) ? NeapolitanItems.WHITE_STRAWBERRIES.get() : NeapolitanItems.STRAWBERRIES.get();
 			popResource(level, pos, new ItemStack(strawberry, strawberryCount));
 			level.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + level.random.nextFloat() * 0.4F);
-			level.setBlock(pos, state.setValue(AGE, 1).setValue(TYPE, StrawberryType.NONE), 2);
+			BlockState newState = state.setValue(AGE, 1);
+			level.setBlock(pos, newState, 2);
+			level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, newState));
 			return InteractionResult.sidedSuccess(level.isClientSide);
 		} else {
 			return super.useWithoutItem(state, level, pos, player, hitResult);
 		}
+	}
+
+	@Override
+	public BlockState getStateForPlacement(BlockPlaceContext context) {
+		return super.getStateForPlacement(context).setValue(WHITE, this.isWhite(context.getLevel(), context.getClickedPos()));
 	}
 
 	protected int getBonemealAgeIncrease(Level worldIn) {
@@ -93,26 +101,21 @@ public class StrawberryBushBlock extends BushBlock implements BonemealableBlock 
 	}
 
 	@Override
-	public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource rand) {
-		super.tick(state, worldIn, pos, rand);
-		if (!worldIn.isAreaLoaded(pos, 1))
+	public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
+		super.tick(state, level, pos, rand);
+		if (!level.isAreaLoaded(pos, 1))
 			return;
-		if (worldIn.getRawBrightness(pos, 0) >= 13) {
+		if (level.getRawBrightness(pos, 0) >= 13) {
 			int age = this.getAge(state);
-			int maxAgeForPos = worldIn.getBlockState(pos.below()).is(Blocks.COARSE_DIRT) ? 2 : this.getMaxAge();
-			int growthChance = !worldIn.isRaining() ? 7 : 5;
+			int maxAgeForPos = level.getBlockState(pos.below()).is(Blocks.COARSE_DIRT) ? 2 : this.getMaxAge();
+			int growthChance = !level.isRaining() ? 7 : 5;
 			if (age < maxAgeForPos) {
-				if (CommonHooks.canCropGrow(worldIn, pos, state, rand.nextInt(growthChance) == 0)) {
-					if (age != 5) {
-						worldIn.setBlock(pos, this.withAge(age + 1), 2);
-					} else {
-						worldIn.setBlock(pos, this.withAge(age + 1).setValue(TYPE, this.isWhite(worldIn, pos) ? StrawberryType.WHITE : StrawberryType.RED), 2);
-					}
-					CommonHooks.fireCropGrowPost(worldIn, pos, state);
+				if (CommonHooks.canCropGrow(level, pos, state, rand.nextInt(growthChance) == 0)) {
+					level.setBlock(pos, state.setValue(AGE, age + 1), 2);
+					CommonHooks.fireCropGrowPost(level, pos, state);
 				}
 			}
 		}
-
 	}
 
 	@Override
@@ -157,17 +160,13 @@ public class StrawberryBushBlock extends BushBlock implements BonemealableBlock 
 		return state.getValue(this.getAgeProperty());
 	}
 
-	public BlockState withAge(int age) {
-		return this.defaultBlockState().setValue(this.getAgeProperty(), age);
-	}
-
 	public boolean isMaxAge(BlockState state) {
 		return state.getValue(this.getAgeProperty()) >= this.getMaxAge();
 	}
 
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		builder.add(AGE, TYPE);
+		builder.add(AGE, WHITE);
 	}
 
 	@Override
@@ -183,8 +182,8 @@ public class StrawberryBushBlock extends BushBlock implements BonemealableBlock 
 		return 6;
 	}
 
-	private boolean isWhite(ServerLevel worldIn, BlockPos pos) {
-		return (pos.getY() >= NeapolitanConfig.COMMON.whiteStrawberryMinHeight.get() && worldIn.dimension() == Level.OVERWORLD) || worldIn.dimension() == Level.END;
+	private boolean isWhite(Level level, BlockPos pos) {
+		return (pos.getY() >= NeapolitanConfig.COMMON.whiteStrawberryMinHeight.get() && level.dimension() == Level.OVERWORLD) || level.dimension() == Level.END;
 	}
 
 	@Override
@@ -198,27 +197,8 @@ public class StrawberryBushBlock extends BushBlock implements BonemealableBlock 
 	}
 
 	@Override
-	public void performBonemeal(ServerLevel worldIn, RandomSource rand, BlockPos pos, BlockState state) {
-		int age = Math.min(this.getAge(state) + this.getBonemealAgeIncrease(worldIn), this.getMaxAge());
-		if (age != 6) {
-			worldIn.setBlock(pos, this.withAge(age), 2);
-		} else {
-			worldIn.setBlock(pos, this.withAge(age).setValue(TYPE, this.isWhite(worldIn, pos) ? StrawberryType.WHITE : StrawberryType.RED), 2);
-		}
-	}
-
-	public enum StrawberryType implements StringRepresentable {
-		NONE("none"), RED("red"), WHITE("white");
-
-		private final String name;
-
-		StrawberryType(String name) {
-			this.name = name;
-		}
-
-		@Override
-		public String getSerializedName() {
-			return this.name;
-		}
+	public void performBonemeal(ServerLevel level, RandomSource rand, BlockPos pos, BlockState state) {
+		int age = Math.min(this.getAge(state) + this.getBonemealAgeIncrease(level), this.getMaxAge());
+		level.setBlock(pos, state.setValue(AGE, age), 2);
 	}
 }

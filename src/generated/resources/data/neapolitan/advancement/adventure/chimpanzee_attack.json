@@ -1,0 +1,26 @@
+{
+  "parent": "minecraft:adventure/shoot_arrow",
+  "criteria": {
+    "chimpanzee_attack": {
+      "trigger": "neapolitan:attack_with_chimpanzees"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.neapolitan.adventure.chimpanzee_attack.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "neapolitan:bananarrow"
+    },
+    "title": {
+      "translate": "advancements.neapolitan.adventure.chimpanzee_attack.title"
+    }
+  },
+  "requirements": [
+    [
+      "chimpanzee_attack"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

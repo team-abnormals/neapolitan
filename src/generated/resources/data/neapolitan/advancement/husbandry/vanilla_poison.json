@@ -1,0 +1,41 @@
+{
+  "parent": "minecraft:husbandry/plant_seed",
+  "criteria": {
+    "vanilla_poison": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "equipment": {
+                "mainhand": {
+                  "items": "#c:tools/shear"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "neapolitan:break_vanilla_vine"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.neapolitan.husbandry.vanilla_poison.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "neapolitan:vanilla_pods"
+    },
+    "title": {
+      "translate": "advancements.neapolitan.husbandry.vanilla_poison.title"
+    }
+  },
+  "requirements": [
+    [
+      "vanilla_poison"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

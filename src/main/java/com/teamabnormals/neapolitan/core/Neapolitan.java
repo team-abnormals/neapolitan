@@ -45,6 +45,7 @@ public class Neapolitan {
 		NeapolitanParticleTypes.PARTICLE_TYPES.register(bus);
 		NeapolitanDecoratedPotPatterns.DECORATED_POT_PATTERNS.register(bus);
 		NeapolitanEntityDataSerializers.ENTITY_DATA_SERIALIZERS.register(bus);
+		NeapolitanCriteriaTriggers.TRIGGERS.register(bus);
 
 		bus.addListener(NeapolitanRegistries::registerRegistries);
 
@@ -88,6 +89,7 @@ public class Neapolitan {
 		generator.addProvider(server, new NeapolitanAdvancementModifierProvider(output, provider));
 		generator.addProvider(server, new NeapolitanRecipeProvider(output, provider));
 		generator.addProvider(server, new NeapolitanDataMapProvider(output, provider));
+		generator.addProvider(server, new NeapolitanAdvancementProvider(output, provider, helper));
 
 		boolean client = event.includeClient();
 		generator.addProvider(client, new NeapolitanBlockStateProvider(output, helper));

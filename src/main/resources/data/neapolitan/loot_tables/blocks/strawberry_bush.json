@@ -15,7 +15,7 @@
                   "block": "neapolitan:strawberry_bush",
                   "properties": {
                     "age": "6",
-                    "type": "red"
+                    "white": "false"
                   }
                 }
               ],
@@ -29,7 +29,7 @@
                   "block": "neapolitan:strawberry_bush",
                   "properties": {
                     "age": "6",
-                    "type": "white"
+                    "white": true
                   }
                 }
               ],

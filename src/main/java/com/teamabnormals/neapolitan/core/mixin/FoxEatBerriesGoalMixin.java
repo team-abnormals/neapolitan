@@ -1,7 +1,6 @@
 package com.teamabnormals.neapolitan.core.mixin;
 
 import com.teamabnormals.neapolitan.common.block.StrawberryBushBlock;
-import com.teamabnormals.neapolitan.common.block.StrawberryBushBlock.StrawberryType;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
 import net.minecraft.core.BlockPos;
@@ -36,7 +35,7 @@ public abstract class FoxEatBerriesGoalMixin extends MoveToBlockGoal {
 			if (state.is(NeapolitanBlocks.STRAWBERRY_BUSH.get())) {
 				state.setValue(StrawberryBushBlock.AGE, 1);
 
-				Item strawberry = state.getValue(StrawberryBushBlock.TYPE) == StrawberryType.WHITE ? NeapolitanItems.WHITE_STRAWBERRIES.get() : NeapolitanItems.STRAWBERRIES.get();
+				Item strawberry = state.getValue(StrawberryBushBlock.WHITE) ? NeapolitanItems.WHITE_STRAWBERRIES.get() : NeapolitanItems.STRAWBERRIES.get();
 				int strawberryCount = 1 + this.mob.level().random.nextInt(2);
 
 				ItemStack mainStack = this.mob.getItemBySlot(EquipmentSlot.MAINHAND);
@@ -49,7 +48,7 @@ public abstract class FoxEatBerriesGoalMixin extends MoveToBlockGoal {
 				}
 
 				this.mob.playSound(SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, 1.0F, 1.0F);
-				this.mob.level().setBlock(this.blockPos, state.setValue(StrawberryBushBlock.AGE, 1).setValue(StrawberryBushBlock.TYPE, StrawberryType.NONE), 2);
+				this.mob.level().setBlock(this.blockPos, state.setValue(StrawberryBushBlock.AGE, 1), 2);
 			}
 		}
 	}

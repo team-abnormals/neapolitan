@@ -1,0 +1,26 @@
+{
+  "parent": "minecraft:husbandry/plant_seed",
+  "criteria": {
+    "creeper_heal": {
+      "trigger": "neapolitan:heal_from_creeper"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.neapolitan.husbandry.creeper_heal.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "neapolitan:strawberries"
+    },
+    "title": {
+      "translate": "advancements.neapolitan.husbandry.creeper_heal.title"
+    }
+  },
+  "requirements": [
+    [
+      "creeper_heal"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
