@@ -1,5 +1,6 @@
 package com.teamabnormals.neapolitan.core.registry;
 
+import com.mojang.datafixers.util.Pair;
 import com.teamabnormals.blueprint.core.util.DataUtil;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import net.minecraft.core.registries.Registries;
@@ -20,9 +21,11 @@ public class NeapolitanDecoratedPotPatterns {
 	}
 
 	public static void registerDecoratedPotPatterns() {
-		DataUtil.registerDecoratedPotPattern(NeapolitanItems.REFLECTION_POTTERY_SHERD.get(), REFLECTION);
-		DataUtil.registerDecoratedPotPattern(NeapolitanItems.SCREAM_POTTERY_SHERD.get(), SCREAM);
-		DataUtil.registerDecoratedPotPattern(NeapolitanItems.SNACK_POTTERY_SHERD.get(), SNACK);
-		DataUtil.registerDecoratedPotPattern(NeapolitanItems.SPIDER_POTTERY_SHERD.get(), SPIDER);
+		DataUtil.registerDecoratedPotPattern(
+				Pair.of(NeapolitanItems.REFLECTION_POTTERY_SHERD.get(), REFLECTION),
+				Pair.of(NeapolitanItems.SCREAM_POTTERY_SHERD.get(), SCREAM),
+				Pair.of(NeapolitanItems.SNACK_POTTERY_SHERD.get(), SNACK),
+				Pair.of(NeapolitanItems.SPIDER_POTTERY_SHERD.get(), SPIDER)
+		);
 	}
 }
