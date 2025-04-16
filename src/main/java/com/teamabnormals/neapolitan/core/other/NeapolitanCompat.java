@@ -24,7 +24,7 @@ import net.neoforged.neoforge.event.ModifyDefaultComponentsEvent;
 
 import java.util.ArrayList;
 
-@EventBusSubscriber(modid = Neapolitan.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+@EventBusSubscriber(modid = Neapolitan.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class NeapolitanCompat {
 
 	@SubscribeEvent
