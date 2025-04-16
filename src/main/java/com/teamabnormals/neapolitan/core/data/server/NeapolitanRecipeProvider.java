@@ -93,6 +93,10 @@ public class NeapolitanRecipeProvider extends BlueprintRecipeProvider {
 		conversionRecipe(consumer, STRAWBERRY_PIPS.get(), WHITE_STRAWBERRIES.get(), getConversionRecipeName(STRAWBERRY_PIPS.get(), WHITE_STRAWBERRIES.get()));
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, STRAWBERRY_SCONES.get(), 2).requires(WHEAT, 2).requires(NeapolitanItemTags.FRUITS_STRAWBERRY).requires(SUGAR).unlockedBy(getHasName(STRAWBERRIES.get()), has(NeapolitanItemTags.FRUITS_STRAWBERRY)).save(consumer);
 
+		conditionalStorageRecipesWithCustomUnpacking(consumer, BERRY_GOOD_LOADED, RecipeCategory.FOOD, ADZUKI_BEANS.get(), RecipeCategory.DECORATIONS, ADZUKI_CRATE.get(), getConversionRecipeName(ADZUKI_BEANS.get(), ADZUKI_CRATE.get()), null);
+		conditionalStorageRecipesWithCustomUnpacking(consumer, BERRY_GOOD_LOADED, RecipeCategory.FOOD, ROASTED_ADZUKI_BEANS.get(), RecipeCategory.DECORATIONS, ROASTED_ADZUKI_CRATE.get(), getConversionRecipeName(ROASTED_ADZUKI_BEANS.get(), ROASTED_ADZUKI_CRATE.get()), null);
+		conditionalStorageRecipes(consumer, BERRY_GOOD_LOADED, RecipeCategory.FOOD, BANANA.get(), RecipeCategory.DECORATIONS, BANANA_CRATE.get());
+
 		storageRecipesWithCustomUnpacking(consumer, RecipeCategory.BUILDING_BLOCKS, DRIED_VANILLA_PODS.get(), RecipeCategory.FOOD, DRIED_VANILLA_POD_BLOCK.get(), getConversionRecipeName(DRIED_VANILLA_PODS.get(), DRIED_VANILLA_POD_BLOCK.get()), null);
 		storageRecipesWithCustomUnpacking(consumer, RecipeCategory.BUILDING_BLOCKS, VANILLA_PODS.get(), RecipeCategory.FOOD, VANILLA_POD_BLOCK.get(), getConversionRecipeName(VANILLA_PODS.get(), VANILLA_POD_BLOCK.get()), null);
 		foodCookingRecipes(consumer, VANILLA_PODS.get(), DRIED_VANILLA_PODS.get());
