@@ -9,7 +9,7 @@
     "FoxEatBerriesGoalMixin",
     "LivingEntityMixin",
     "PointedDripstoneBlockMixin",
-    "ShearsItemMixin",
+    "ItemMixin",
     "SheepMixin",
     "SpreadingSnowyDirtBlockMixin"
   ],

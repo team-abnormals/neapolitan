@@ -2,26 +2,37 @@ package com.teamabnormals.neapolitan.core.other;
 
 import com.teamabnormals.blueprint.core.util.DataUtil;
 import com.teamabnormals.neapolitan.common.dispenser.BananaBunchDispenseBehavior;
+import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanDecoratedPotPatterns;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanSoundEvents;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.core.dispenser.OptionalDispenseItemBehavior;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.Tool;
+import net.minecraft.world.item.component.Tool.Rule;
 import net.minecraft.world.level.block.DispenserBlock;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.ModifyDefaultComponentsEvent;
 
+import java.util.ArrayList;
+
+@EventBusSubscriber(modid = Neapolitan.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class NeapolitanCompat {
 
-	public static void transformCookies() {
-		Foods.COOKIE = new FoodProperties.Builder().nutrition(2).saturationModifier(0.3F).fast().build();
+	@SubscribeEvent
+	public static void onModifyComponenets(ModifyDefaultComponentsEvent event) {
+		event.modify(Items.COOKIE, c -> c.set(DataComponents.FOOD, new FoodProperties.Builder().nutrition(2).saturationModifier(0.3F).fast().build()));
 	}
 
-	public static void registerCompat() {
-		transformCookies();
+	public static void register() {
 		registerFlammables();
 		registerDispenserBehaviors();
 		NeapolitanSoundEvents.registerNoteBlocks();

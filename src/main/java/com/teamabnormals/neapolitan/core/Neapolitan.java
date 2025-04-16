@@ -57,7 +57,7 @@ public class Neapolitan {
 	}
 
 	private void commonSetup(FMLCommonSetupEvent event) {
-		event.enqueueWork(NeapolitanCompat::registerCompat);
+		event.enqueueWork(NeapolitanCompat::register);
 	}
 
 	private void clientSetup(FMLClientSetupEvent event) {
