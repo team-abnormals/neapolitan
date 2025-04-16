@@ -18,6 +18,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -170,6 +171,9 @@ public class NeapolitanEvents {
 		if (entity.hasEffect(NeapolitanMobEffects.VANILLA_SCENT)) {
 			if (!effect.is(NeapolitanMobEffectTags.UNAFFECTED_BY_VANILLA_SCENT)) {
 				event.setResult(Result.DO_NOT_APPLY);
+				if (effect.value().getCategory() == MobEffectCategory.HARMFUL && entity instanceof ServerPlayer serverPlayer) {
+					NeapolitanCriteriaTriggers.PREVENT_HARMFUL_EFFECT.get().trigger(serverPlayer);
+				}
 			}
 		}
 

@@ -1,0 +1,26 @@
+{
+  "parent": "neapolitan:husbandry/vanilla_poison",
+  "criteria": {
+    "prevent_harmful_effect": {
+      "trigger": "neapolitan:prevent_harmful_effect"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.neapolitan.husbandry.prevent_harmful_effect.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "neapolitan:dried_vanilla_pods"
+    },
+    "title": {
+      "translate": "advancements.neapolitan.husbandry.prevent_harmful_effect.title"
+    }
+  },
+  "requirements": [
+    [
+      "prevent_harmful_effect"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

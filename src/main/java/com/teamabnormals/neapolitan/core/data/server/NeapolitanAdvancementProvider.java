@@ -54,10 +54,6 @@ public class NeapolitanAdvancementProvider extends AdvancementProvider {
 					.addCriterion("creeper_heal", NeapolitanCriteriaTriggers.healedFromCreeper())
 					.save(consumer, Neapolitan.MOD_ID + ":husbandry/creeper_heal");
 
-			advancementBuilder("vanilla_poison", "husbandry", ResourceLocation.withDefaultNamespace("husbandry/plant_seed"), NeapolitanItems.VANILLA_PODS.get(), AdvancementType.TASK, true, true, false)
-					.addCriterion("vanilla_poison", NeapolitanCriteriaTriggers.vanillaVineDestroyedWithShears())
-					.save(consumer, Neapolitan.MOD_ID + ":husbandry/vanilla_poison");
-
 			advancementBuilder("harvest_white_strawberries", "husbandry", advancement.id(), NeapolitanItems.WHITE_STRAWBERRIES.get(), AdvancementType.TASK, true, true, false)
 					.addCriterion("harvest_white_strawberries", CriteriaTriggers.DEFAULT_BLOCK_USE.createCriterion(new DefaultBlockInteractionTrigger.TriggerInstance(
 							Optional.empty(),
@@ -69,12 +65,19 @@ public class NeapolitanAdvancementProvider extends AdvancementProvider {
 					))
 					.save(consumer, Neapolitan.MOD_ID + ":husbandry/harvest_white_strawberries");
 
+			AdvancementHolder vanillaAdvancement = advancementBuilder("vanilla_poison", "husbandry", ResourceLocation.withDefaultNamespace("husbandry/plant_seed"), NeapolitanItems.VANILLA_PODS.get(), AdvancementType.TASK, true, true, false)
+					.addCriterion("vanilla_poison", NeapolitanCriteriaTriggers.vanillaVineDestroyedWithShears())
+					.save(consumer, Neapolitan.MOD_ID + ":husbandry/vanilla_poison");
+
+			advancementBuilder("prevent_harmful_effect", "husbandry", vanillaAdvancement.id(), NeapolitanItems.DRIED_VANILLA_PODS.get(), AdvancementType.TASK, true, true, false)
+					.addCriterion("prevent_harmful_effect", NeapolitanCriteriaTriggers.preventIncomingEffect())
+					.save(consumer, Neapolitan.MOD_ID + ":husbandry/prevent_harmful_effect");
+
 			Advancement.Builder chocolateBuilder = advancementBuilder("place_all_chocolate_blocks", "husbandry", ResourceLocation.withDefaultNamespace("husbandry/plant_seed"), NeapolitanItems.CHOCOLATE_BAR.get(), AdvancementType.CHALLENGE, true, true, false);
 			for (DeferredBlock<Block> block : CHOCOLATE_BLOCKS) {
 				chocolateBuilder.addCriterion(block.getId().toString(), ItemUsedOnLocationTrigger.TriggerInstance.placedBlock(block.get()));
 			}
 			chocolateBuilder.save(consumer, Neapolitan.MOD_ID + ":husbandry/place_all_chocolate_blocks");
-
 		}
 
 		private static Advancement.Builder advancementBuilder(String name, String category, ResourceLocation parent, ItemLike icon, AdvancementType frame, boolean showToast, boolean announceToChat, boolean hidden) {

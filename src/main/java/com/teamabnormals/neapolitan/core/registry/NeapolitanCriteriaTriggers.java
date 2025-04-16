@@ -17,6 +17,7 @@ public class NeapolitanCriteriaTriggers {
 
 	public static final DeferredHolder<CriterionTrigger<?>, PlayerTrigger> ATTACK_WITH_CHIMPANZEES = TRIGGERS.register("attack_with_chimpanzees", PlayerTrigger::new);
 	public static final DeferredHolder<CriterionTrigger<?>, PlayerTrigger> HEAL_FROM_CREEPER = TRIGGERS.register("heal_from_creeper", PlayerTrigger::new);
+	public static final DeferredHolder<CriterionTrigger<?>, PlayerTrigger> PREVENT_HARMFUL_EFFECT = TRIGGERS.register("prevent_harmful_effect", PlayerTrigger::new);
 	public static final DeferredHolder<CriterionTrigger<?>, AnyBlockInteractionTrigger> VANILLA_VINE_DESTROYED = TRIGGERS.register("break_vanilla_vine", AnyBlockInteractionTrigger::new);
 
 	public static Criterion<TriggerInstance> attackedWithChimpanzees() {
@@ -25,6 +26,10 @@ public class NeapolitanCriteriaTriggers {
 
 	public static Criterion<TriggerInstance> healedFromCreeper() {
 		return HEAL_FROM_CREEPER.get().createCriterion(new PlayerTrigger.TriggerInstance(Optional.empty()));
+	}
+
+	public static Criterion<TriggerInstance> preventIncomingEffect() {
+		return PREVENT_HARMFUL_EFFECT.get().createCriterion(new PlayerTrigger.TriggerInstance(Optional.empty()));
 	}
 
 	public static Criterion<AnyBlockInteractionTrigger.TriggerInstance> vanillaVineDestroyedWithShears() {
