@@ -19,6 +19,7 @@ public abstract class ShearsItemMixin {
 		Tool ret = cir.getReturnValue();
 		ArrayList<Tool.Rule> rules = Lists.newArrayList();
 		rules.addAll(ret.rules());
+		//TODO: add rules
 		//rules.add(Tool.Rule.overrideSpeed(List.of(NeapolitanBlocks.BEANSTALK_THORNS.get()), 15.0F));
 		//rules.add(Tool.Rule.overrideSpeed(List.of(NeapolitanBlocks.BANANA_BUNDLE.get()), 5.0F));
 

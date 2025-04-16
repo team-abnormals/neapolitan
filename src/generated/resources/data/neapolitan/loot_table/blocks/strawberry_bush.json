@@ -1,0 +1,60 @@
+{
+  "type": "minecraft:block",
+  "functions": [
+    {
+      "function": "minecraft:explosion_decay"
+    }
+  ],
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "block": "neapolitan:strawberry_bush",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "age": "6",
+                    "white": "false"
+                  }
+                }
+              ],
+              "name": "neapolitan:strawberries"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "block": "neapolitan:strawberry_bush",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "age": "6",
+                    "white": "true"
+                  }
+                }
+              ],
+              "name": "neapolitan:white_strawberries"
+            }
+          ]
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "neapolitan:strawberry_pips"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "neapolitan:blocks/strawberry_bush"
+}

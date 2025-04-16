@@ -1,0 +1,129 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "neapolitan:mint",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "age": "4"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "neapolitan:mint",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "sprouts": "2"
+                  }
+                }
+              ],
+              "count": 2.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "neapolitan:mint",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "sprouts": "3"
+                  }
+                }
+              ],
+              "count": 3.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "neapolitan:mint",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "sprouts": "4"
+                  }
+                }
+              ],
+              "count": 4.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "function": "minecraft:explosion_decay"
+            }
+          ],
+          "name": "neapolitan:mint_leaves"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "neapolitan:mint",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "sprouts": "2"
+                  }
+                }
+              ],
+              "count": 2.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "neapolitan:mint",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "sprouts": "3"
+                  }
+                }
+              ],
+              "count": 3.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "neapolitan:mint",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "sprouts": "4"
+                  }
+                }
+              ],
+              "count": 4.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "function": "minecraft:explosion_decay"
+            }
+          ],
+          "name": "neapolitan:mint_sprout"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "neapolitan:blocks/mint"
+}
