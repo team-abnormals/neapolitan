@@ -226,11 +226,7 @@ public class NeapolitanBlocks {
 				.addItemsAfter(of(Blocks.CACTUS), BEANSTALK, BEANSTALK_THORNS)
 				.addItemsAfter(of(Blocks.MELON), BANANA_BUNDLE)
 				.addItemsAfter(of(Blocks.HAY_BLOCK), VANILLA_POD_BLOCK, DRIED_VANILLA_POD_BLOCK)
-				.predicate(event -> event.getTabKey() == NATURAL_BLOCKS && ModList.get().isLoaded("berry_good"))
-				.addItemsAfter(of(Blocks.HAY_BLOCK), STRAWBERRY_BASKET, WHITE_STRAWBERRY_BASKET, MINT_BASKET)
-				.predicate(event -> event.getTabKey() == NATURAL_BLOCKS && ModList.get().isLoaded("quark"))
-				.addItemsAfter(of(Blocks.HAY_BLOCK), BANANA_CRATE, ADZUKI_CRATE, ROASTED_ADZUKI_CRATE);
-
+				.addItemsAfter(of(Blocks.HAY_BLOCK), STRAWBERRY_BASKET, WHITE_STRAWBERRY_BASKET, MINT_BASKET, BANANA_CRATE, ADZUKI_CRATE, ROASTED_ADZUKI_CRATE);
 	}
 
 	public enum NeapolitanSkullTypes implements SkullBlock.Type {
