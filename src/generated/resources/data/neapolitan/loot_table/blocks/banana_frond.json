@@ -9,7 +9,30 @@
           "functions": [
             {
               "add": false,
+              "conditions": [
+                {
+                  "block": "neapolitan:banana_frond",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "size": "2"
+                  }
+                }
+              ],
               "count": 2.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "neapolitan:banana_frond",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "size": "3"
+                  }
+                }
+              ],
+              "count": 3.0,
               "function": "minecraft:set_count"
             },
             {

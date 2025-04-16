@@ -40,13 +40,13 @@ public class NeapolitanRecipeProvider extends BlueprintRecipeProvider {
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, MAGIC_BEANS.get(), 3).requires(ADZUKI_BEANS.get(), 3).requires(FERMENTED_SPIDER_EYE).unlockedBy(getHasName(ADZUKI_BEANS.get()), has(ADZUKI_BEANS.get())).save(consumer);
 		foodCookingRecipes(consumer, ADZUKI_BEANS.get(), ROASTED_ADZUKI_BEANS.get());
 
-		twoByTwoPacker(consumer, RecipeCategory.BUILDING_BLOCKS, FROND_THATCH.get(), NeapolitanItems.BANANA_FROND.get());
+		twoByTwoPacker(consumer, RecipeCategory.BUILDING_BLOCKS, FROND_THATCH.get(), BANANA_FROND.get());
 		generateRecipes(consumer, NeapolitanBlockFamilies.FROND_THATCH_FAMILY, FeatureFlags.VANILLA_SET);
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, BANANA_BREAD.get()).requires(NeapolitanItemTags.FRUITS_BANANA).requires(WHEAT).requires(SUGAR).unlockedBy(getHasName(BANANA.get()), has(NeapolitanItemTags.FRUITS_BANANA)).save(consumer);
 		threeByThreePacker(consumer, RecipeCategory.BUILDING_BLOCKS, BANANA_BUNDLE.get(), BANANA_BUNCH.get());
 		flavorRecipes(consumer, NeapolitanItemTags.FRUITS_BANANA, getHasName(BANANA.get()), BANANA_ICE_CREAM.get(), BANANA_MILKSHAKE.get(), NeapolitanItems.BANANA_CAKE.get(), BANANA_ICE_CREAM_BLOCK.get());
 		foodCookingRecipes(consumer, NeapolitanItemTags.FRUITS_BANANA, DRIED_BANANA.get(), getHasName(BANANA.get()));
-		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, PAPER).requires(NeapolitanItems.BANANA_FROND.get(), 3).unlockedBy(getHasName(NeapolitanItems.BANANA_FROND.get()), has(NeapolitanItems.BANANA_FROND.get())).save(consumer, getModConversionRecipeName(PAPER, NeapolitanItems.BANANA_FROND.get()));
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, PAPER).requires(BANANA_FROND.get(), 3).unlockedBy(getHasName(BANANA_FROND.get()), has(BANANA_FROND.get())).save(consumer, getModConversionRecipeName(PAPER, BANANA_FROND.get()));
 		trimRecipes(consumer, PRIMAL_ARMOR_TRIM_SMITHING_TEMPLATE.get(), BANANA_STALK.get());
 		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, CARVED_BANANA_STALK.get()).pattern("##").pattern("##").define('#', BANANA_STALK.get()).unlockedBy(getHasName(BANANA_STALK.get()), has(BANANA_STALK.get())).save(consumer);
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT, BANANARROW.get()).requires(NeapolitanItemTags.FRUITS_BANANA).requires(ARROW).unlockedBy(getHasName(BANANA.get()), has(NeapolitanItemTags.FRUITS_BANANA)).save(consumer);

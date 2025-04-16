@@ -50,7 +50,6 @@ public class NeapolitanItems {
 
 	public static final DeferredItem<Item> BANANA = ITEMS.createItem("banana", () -> new Item(new Item.Properties().food(NeapolitanFoods.BANANA)));
 	public static final DeferredItem<Item> BANANA_BUNCH = ITEMS.createItem("banana_bunch", () -> new BananaBunchItem(new Item.Properties()));
-	public static final DeferredItem<Item> BANANA_FROND = ITEMS.createItem("banana_frond", () -> new ItemNameBlockItem(NeapolitanBlocks.SMALL_BANANA_FROND.get(), new Item.Properties()));
 	public static final DeferredItem<Item> DRIED_BANANA = ITEMS.createItem("dried_banana", () -> new Item(new Item.Properties().food(NeapolitanFoods.DRIED_BANANA)));
 	public static final DeferredItem<Item> BANANA_BREAD = ITEMS.createItem("banana_bread", () -> new Item(new Item.Properties().food(NeapolitanFoods.BANANA_BREAD)));
 	public static final DeferredItem<Item> BANANA_ICE_CREAM = ITEMS.createItem("banana_ice_cream", () -> new IceCreamItem(new Item.Properties().food(NeapolitanFoods.BANANA_ICE_CREAM).craftRemainder(Items.BOWL).stacksTo(1)));
@@ -127,7 +126,6 @@ public class NeapolitanItems {
 				.addItemsAfter(of(Items.CREEPER_HEAD), CHIMPANZEE_HEAD)
 				.tab(NATURAL_BLOCKS)
 				.addItemsAfter(of(Items.SUGAR_CANE), VANILLA_PODS)
-				.addItemsAfter(of(Items.CACTUS), NeapolitanBlocks.BANANA_STALK, BANANA_FROND)
 				.addItemsAfter(of(Items.COCOA_BEANS), ADZUKI_BEANS)
 				.addItemsAfter(of(Items.BEETROOT_SEEDS), STRAWBERRY_PIPS, MINT_SPROUT)
 				.tab(SPAWN_EGGS)

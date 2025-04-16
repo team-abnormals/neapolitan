@@ -15,6 +15,7 @@ import net.minecraft.world.phys.BlockHitResult;
 
 public class BeanstalkBlock extends RotatedPillarBlock {
 
+	// TODO: Make bonemealable
 	public BeanstalkBlock(Properties properties) {
 		super(properties);
 	}

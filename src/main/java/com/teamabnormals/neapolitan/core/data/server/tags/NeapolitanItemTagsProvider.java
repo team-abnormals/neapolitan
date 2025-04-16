@@ -5,6 +5,7 @@ import com.teamabnormals.blueprint.core.other.tags.BlueprintItemTags;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.other.NeapolitanConstants;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanItemTags;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
@@ -40,7 +41,7 @@ public class NeapolitanItemTagsProvider extends ItemTagsProvider {
 		this.copy(BlueprintBlockTags.NOTE_BLOCK_TOP_INSTRUMENTS, ItemTags.NOTE_BLOCK_TOP_INSTRUMENTS);
 
 		this.tag(NeapolitanItemTags.CHIMPANZEE_APE_MODE_ITEMS).addOptional(NeapolitanConstants.WARM_MONKEY_BRUSH).addOptional(NeapolitanConstants.HOT_MONKEY_BRUSH).addOptional(NeapolitanConstants.SCALDING_MONKEY_BRUSH);
-		this.tag(NeapolitanItemTags.CHIMPANZEE_FAVORITES).add(BANANA_FROND.get()).addTag(NeapolitanItemTags.CHIMPANZEE_WEAPONS);
+		this.tag(NeapolitanItemTags.CHIMPANZEE_FAVORITES).add(NeapolitanBlocks.BANANA_FROND.asItem()).addTag(NeapolitanItemTags.CHIMPANZEE_WEAPONS);
 		this.tag(NeapolitanItemTags.CHIMPANZEE_WEAPONS).add(Items.STICK, Items.BAMBOO);
 		this.tag(NeapolitanItemTags.CHIMPANZEE_FOOD).add(BANANA_BUNCH.get());
 		this.tag(NeapolitanItemTags.CHIMPANZEE_SNACKS).add(BANANA.get(), BANANA_BUNCH.get(), BANANA_BREAD.get(), DRIED_BANANA.get(), BANANARROW.get(), Items.POTION);

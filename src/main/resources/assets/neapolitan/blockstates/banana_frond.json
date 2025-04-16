@@ -1,29 +1,79 @@
 {
   "variants": {
-    "facing=down": {
+    "size=1,facing=down": {
+      "model": "neapolitan:block/small_banana_frond",
+      "x": 180
+    },
+    "size=1,facing=north": {
+      "model": "neapolitan:block/small_banana_frond_wall"
+    },
+    "size=1,facing=south": {
+      "model": "neapolitan:block/small_banana_frond_wall",
+      "y": 180
+    },
+    "size=1,facing=west": {
+      "model": "neapolitan:block/small_banana_frond_wall",
+      "y": 270
+    },
+    "size=1,facing=east": {
+      "model": "neapolitan:block/small_banana_frond_wall",
+      "y": 90
+    },
+    "size=1,facing=up,moist=false": {
+      "model": "neapolitan:block/small_banana_frond"
+    },
+    "size=1,facing=up,moist=true": {
+      "model": "neapolitan:block/small_banana_frond_moist"
+    },
+    "size=2,facing=down": {
       "model": "neapolitan:block/banana_frond",
       "x": 180
     },
-    "facing=north": {
+    "size=2,facing=north": {
       "model": "neapolitan:block/banana_frond_wall"
     },
-    "facing=south": {
+    "size=2,facing=south": {
       "model": "neapolitan:block/banana_frond_wall",
       "y": 180
     },
-    "facing=west": {
+    "size=2,facing=west": {
       "model": "neapolitan:block/banana_frond_wall",
       "y": 270
     },
-    "facing=east": {
+    "size=2,facing=east": {
       "model": "neapolitan:block/banana_frond_wall",
       "y": 90
     },
-    "facing=up,moist=false": {
+    "size=2,facing=up,moist=false": {
       "model": "neapolitan:block/banana_frond"
     },
-    "facing=up,moist=true": {
+    "size=2,facing=up,moist=true": {
       "model": "neapolitan:block/banana_frond_moist"
+    },
+    "size=3,facing=down": {
+      "model": "neapolitan:block/large_banana_frond",
+      "x": 180
+    },
+    "size=3,facing=north": {
+      "model": "neapolitan:block/large_banana_frond_wall"
+    },
+    "size=3,facing=south": {
+      "model": "neapolitan:block/large_banana_frond_wall",
+      "y": 180
+    },
+    "size=3,facing=west": {
+      "model": "neapolitan:block/large_banana_frond_wall",
+      "y": 270
+    },
+    "size=3,facing=east": {
+      "model": "neapolitan:block/large_banana_frond_wall",
+      "y": 90
+    },
+    "size=3,facing=up,moist=false": {
+      "model": "neapolitan:block/large_banana_frond"
+    },
+    "size=3,facing=up,moist=true": {
+      "model": "neapolitan:block/large_banana_frond_moist"
     }
   }
 }

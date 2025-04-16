@@ -26,7 +26,7 @@ public class NeapolitanDataMapProvider extends DataMapProvider {
 				.add(NeapolitanEntityTypes.PLANTAIN_SPIDER, new ParrotImitation(SoundEvents.PARROT_IMITATE_SPIDER), false);
 
 		this.builder(NeoForgeDataMaps.FURNACE_FUELS)
-				.add(NeapolitanItems.BANANA_FROND, new FurnaceFuel(100), false)
+				.add(NeapolitanBlocks.BANANA_FROND.getId(), new FurnaceFuel(100), false)
 				.add(NeapolitanBlocks.BANANA_STALK.getId(), new FurnaceFuel(800), false)
 				.add(NeapolitanBlocks.CARVED_BANANA_STALK.getId(), new FurnaceFuel(800), false)
 				.add(NeapolitanBlocks.FROND_THATCH.getId(), new FurnaceFuel(100), false)
@@ -74,7 +74,7 @@ public class NeapolitanDataMapProvider extends DataMapProvider {
 				.add(NeapolitanBlocks.BANANA_BUNDLE.getId(), new Compostable(0.85F), false)
 				.add(NeapolitanBlocks.BANANA_STALK.getId(), new Compostable(0.85F), false)
 				.add(NeapolitanBlocks.CARVED_BANANA_STALK.getId(), new Compostable(0.85F), false)
-				.add(NeapolitanItems.BANANA_FROND, new Compostable(0.3F), false)
+				.add(NeapolitanBlocks.BANANA_FROND.getId(), new Compostable(0.3F), false)
 				.add(NeapolitanBlocks.FROND_THATCH.getId(), new Compostable(0.65F), false)
 				.add(NeapolitanBlocks.FROND_THATCH_SLAB.getId(), new Compostable(0.65F), false)
 				.add(NeapolitanBlocks.FROND_THATCH_STAIRS.getId(), new Compostable(0.65F), false)

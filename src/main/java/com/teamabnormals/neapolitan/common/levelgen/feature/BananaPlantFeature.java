@@ -106,7 +106,7 @@ public class BananaPlantFeature extends Feature<NoneFeatureConfiguration> {
 				boolean carved = suspicious && random.nextBoolean();
 				level.setBlock(blockPos2, (carved ? NeapolitanBlocks.CARVED_BANANA_STALK : NeapolitanBlocks.BANANA_STALK).get().defaultBlockState(), 19);
 			}
-			level.setBlock(upFrond, NeapolitanBlocks.LARGE_BANANA_FROND.get().defaultBlockState(), 19);
+			level.setBlock(upFrond, NeapolitanBlocks.BANANA_FROND.get().defaultBlockState().setValue(BananaFrondBlock.SIZE, 3), 19);
 			if (bundle != null) {
 				level.setBlock(bundle, NeapolitanBlocks.BANANA_BUNDLE.get().defaultBlockState(), 19);
 				if (random.nextDouble() < NeapolitanConfig.COMMON.chimpanzeeGroupChance.get() && canSpawnChimps) {
@@ -114,13 +114,13 @@ public class BananaPlantFeature extends Feature<NoneFeatureConfiguration> {
 				}
 			}
 			for (BlockPos blockPos2 : smallFronds.keySet()) {
-				level.setBlock(blockPos2, NeapolitanBlocks.SMALL_BANANA_FROND.get().defaultBlockState().setValue(BananaFrondBlock.FACING, smallFronds.get(blockPos2)), 19);
+				level.setBlock(blockPos2, NeapolitanBlocks.BANANA_FROND.get().defaultBlockState().setValue(BananaFrondBlock.SIZE, 1).setValue(BananaFrondBlock.FACING, smallFronds.get(blockPos2)), 19);
 			}
 			for (BlockPos blockPos2 : fronds.keySet()) {
-				level.setBlock(blockPos2, NeapolitanBlocks.BANANA_FROND.get().defaultBlockState().setValue(BananaFrondBlock.FACING, fronds.get(blockPos2)), 19);
+				level.setBlock(blockPos2, NeapolitanBlocks.BANANA_FROND.get().defaultBlockState().setValue(BananaFrondBlock.SIZE, 2).setValue(BananaFrondBlock.FACING, fronds.get(blockPos2)), 19);
 			}
 			for (BlockPos blockPos2 : largeFronds.keySet()) {
-				level.setBlock(blockPos2, NeapolitanBlocks.LARGE_BANANA_FROND.get().defaultBlockState().setValue(BananaFrondBlock.FACING, largeFronds.get(blockPos2)), 19);
+				level.setBlock(blockPos2, NeapolitanBlocks.BANANA_FROND.get().defaultBlockState().setValue(BananaFrondBlock.SIZE, 3).setValue(BananaFrondBlock.FACING, largeFronds.get(blockPos2)), 19);
 			}
 			if (isGrass(level, pos.below())) {
 				level.setBlock(pos.below(), Blocks.GRAVEL.defaultBlockState(), 19);

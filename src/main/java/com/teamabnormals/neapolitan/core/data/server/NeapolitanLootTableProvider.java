@@ -1,12 +1,10 @@
 package com.teamabnormals.neapolitan.core.data.server;
 
 import com.google.common.collect.ImmutableList;
-import com.teamabnormals.neapolitan.common.block.AdzukiSproutsBlock;
-import com.teamabnormals.neapolitan.common.block.FlavoredCandleCakeBlock;
-import com.teamabnormals.neapolitan.common.block.MintBlock;
-import com.teamabnormals.neapolitan.common.block.StrawberryBushBlock;
+import com.teamabnormals.neapolitan.common.block.*;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.other.NeapolitanLootTables;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanEntityTypes;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
@@ -137,9 +135,13 @@ public class NeapolitanLootTableProvider extends LootTableProvider {
 							.apply(LimitCount.limitCount(IntRange.upperBound(9)))
 			)));
 
-			this.dropSelf(SMALL_BANANA_FROND.get());
-			this.add(BANANA_FROND.get(), this.createSingleItemTable(NeapolitanItems.BANANA_FROND, ConstantValue.exactly(2.0F)));
-			this.add(LARGE_BANANA_FROND.get(), this.createSingleItemTable(NeapolitanItems.BANANA_FROND, ConstantValue.exactly(3.0F)));
+			this.add(BANANA_FROND.get(), block -> LootTable.lootTable().withPool(LootPool.lootPool()
+					.setRolls(ConstantValue.exactly(1.0F))
+					.add(this.applyExplosionDecay(BANANA_FROND.get(), LootItem.lootTableItem(block).apply(List.of(2, 3), i -> SetItemCountFunction
+							.setCount(ConstantValue.exactly((float) i.intValue()))
+							.when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties()
+									.hasProperty(BananaFrondBlock.SIZE, i.intValue())))))))
+			);
 
 			this.dropSelf(VANILLA_VINE.get());
 			this.dropSelf(VANILLA_VINE_PLANT.get());
@@ -243,7 +245,7 @@ public class NeapolitanLootTableProvider extends LootTableProvider {
 			consumer.accept(NeapolitanLootTables.BANANA_PLANT_ARCHAEOLOGY_COMMON, LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
 					.add(LootItem.lootTableItem(NeapolitanItems.DRIED_BANANA.get()).setWeight(2))
 					.add(LootItem.lootTableItem(Items.FERMENTED_SPIDER_EYE).setWeight(2))
-					.add(LootItem.lootTableItem(NeapolitanItems.BANANA_FROND.get()))
+					.add(LootItem.lootTableItem(NeapolitanBlocks.BANANA_FROND.get()))
 					.add(LootItem.lootTableItem(Items.COCOA_BEANS))
 					.add(LootItem.lootTableItem(Items.SPIDER_EYE))
 					.add(LootItem.lootTableItem(Items.STRING))

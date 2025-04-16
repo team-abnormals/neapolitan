@@ -48,9 +48,7 @@ public class NeapolitanCompat {
 		DataUtil.registerFlammable(NeapolitanBlocks.ROASTED_ADZUKI_CRATE.get(), 5, 20);
 
 		DataUtil.registerFlammable(NeapolitanBlocks.BANANA_STALK.get(), 5, 5);
-		DataUtil.registerFlammable(NeapolitanBlocks.SMALL_BANANA_FROND.get(), 60, 100);
 		DataUtil.registerFlammable(NeapolitanBlocks.BANANA_FROND.get(), 60, 100);
-		DataUtil.registerFlammable(NeapolitanBlocks.LARGE_BANANA_FROND.get(), 60, 100);
 
 		DataUtil.registerFlammable(NeapolitanBlocks.FROND_THATCH.get(), 60, 20);
 		DataUtil.registerFlammable(NeapolitanBlocks.FROND_THATCH_STAIRS.get(), 60, 20);

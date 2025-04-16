@@ -69,10 +69,8 @@ public class NeapolitanBlocks {
 
 	public static final DeferredBlock<Block> BANANA_STALK = BLOCKS.createBlock("banana_stalk", () -> new RotatedPillarBlock(NeapolitanBlockProperties.BANANA_STALK));
 	public static final DeferredBlock<Block> CARVED_BANANA_STALK = BLOCKS.createBlock("carved_banana_stalk", () -> new RotatedPillarBlock(NeapolitanBlockProperties.BANANA_STALK));
-	public static final DeferredBlock<Block> SMALL_BANANA_FROND = BLOCKS.createBlockNoItem("small_banana_frond", () -> new BananaFrondBlock(NeapolitanBlockProperties.BANANA_FROND));
-	public static final DeferredBlock<Block> BANANA_FROND = BLOCKS.createBlockNoItem("banana_frond", () -> new BananaFrondBlock(NeapolitanBlockProperties.BANANA_FROND));
-	public static final DeferredBlock<Block> LARGE_BANANA_FROND = BLOCKS.createBlockNoItem("large_banana_frond", () -> new BananaFrondBlock(NeapolitanBlockProperties.BANANA_FROND));
-	public static final DeferredBlock<Block> POTTED_BANANA_FROND = BLOCKS.createBlockNoItem("potted_banana_frond", () -> new FlowerPotBlock(SMALL_BANANA_FROND.get(), PropertyUtil.flowerPot()));
+	public static final DeferredBlock<Block> BANANA_FROND = BLOCKS.createBlock("banana_frond", () -> new BananaFrondBlock(NeapolitanBlockProperties.BANANA_FROND));
+	public static final DeferredBlock<Block> POTTED_BANANA_FROND = BLOCKS.createBlockNoItem("potted_banana_frond", () -> new FlowerPotBlock(BANANA_FROND.get(), PropertyUtil.flowerPot()));
 	public static final DeferredBlock<Block> FROND_THATCH = BLOCKS.createBlock("frond_thatch", () -> new ThatchBlock(NeapolitanBlockProperties.FROND_THATCH));
 	public static final DeferredBlock<Block> FROND_THATCH_SLAB = BLOCKS.createBlock("frond_thatch_slab", () -> new ThatchSlabBlock(NeapolitanBlockProperties.FROND_THATCH));
 	public static final DeferredBlock<Block> FROND_THATCH_STAIRS = BLOCKS.createBlock("frond_thatch_stairs", () -> new ThatchStairBlock(FROND_THATCH.get().defaultBlockState(), NeapolitanBlockProperties.FROND_THATCH));
@@ -223,7 +221,7 @@ public class NeapolitanBlocks {
 				.tab(NATURAL_BLOCKS)
 				.addItemsAfter(of(Blocks.ROOTED_DIRT), ADZUKI_SOIL)
 				.addItemsAfter(of(Items.COCOA_BEANS), MAGIC_BEANS)
-				.addItemsAfter(of(Blocks.CACTUS), BEANSTALK, BEANSTALK_THORNS)
+				.addItemsAfter(of(Blocks.CACTUS), BANANA_STALK, BANANA_FROND, BEANSTALK, BEANSTALK_THORNS)
 				.addItemsAfter(of(Blocks.MELON), BANANA_BUNDLE)
 				.addItemsAfter(of(Blocks.HAY_BLOCK), VANILLA_POD_BLOCK, DRIED_VANILLA_POD_BLOCK)
 				.addItemsAfter(of(Blocks.HAY_BLOCK), STRAWBERRY_BASKET, WHITE_STRAWBERRY_BASKET, MINT_BASKET, BANANA_CRATE, ADZUKI_CRATE, ROASTED_ADZUKI_CRATE);
