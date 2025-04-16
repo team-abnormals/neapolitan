@@ -28,7 +28,7 @@ public class AdzukiSoilBlock extends Block implements BonemealableBlock {
 
 	@Override
 	public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
-		if (stack.canPerformAction(ItemAbilities.SHOVEL_FLATTEN)) {
+		if (stack.canPerformAction(ItemAbilities.HOE_DIG)) {
 			popResource(worldIn, pos.above(), new ItemStack(NeapolitanItems.ADZUKI_BEANS.get()));
 		}
 		return super.useItemOn(stack, state, worldIn, pos, player, handIn, hit);
@@ -36,8 +36,12 @@ public class AdzukiSoilBlock extends Block implements BonemealableBlock {
 
 	@Override
 	public BlockState getToolModifiedState(BlockState state, UseOnContext context, ItemAbility action, boolean simulate) {
-		if (action == ItemAbilities.SHOVEL_FLATTEN)
+		if (action == ItemAbilities.SHOVEL_FLATTEN) {
+			return Blocks.DIRT_PATH.defaultBlockState();
+		}
+		if (action == ItemAbilities.HOE_DIG) {
 			return Blocks.DIRT.defaultBlockState();
+		}
 		return super.getToolModifiedState(state, context, action, simulate);
 	}
 
