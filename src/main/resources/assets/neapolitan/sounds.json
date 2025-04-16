@@ -8,6 +8,55 @@
       }
     ]
   },
+  "block.banana_stalk.break": {
+    "sounds": [
+      "neapolitan:block/banana_stalk/break1",
+      "neapolitan:block/banana_stalk/break2",
+      "neapolitan:block/banana_stalk/break3",
+      "neapolitan:block/banana_stalk/break4",
+      "neapolitan:block/banana_stalk/break5"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.banana_stalk.fall": {
+    "sounds": [
+      "neapolitan:block/banana_stalk/step1",
+      "neapolitan:block/banana_stalk/step2",
+      "neapolitan:block/banana_stalk/step3",
+      "neapolitan:block/banana_stalk/step4",
+      "neapolitan:block/banana_stalk/step5"
+    ]
+  },
+  "block.banana_stalk.hit": {
+    "sounds": [
+      "neapolitan:block/banana_stalk/step1",
+      "neapolitan:block/banana_stalk/step2",
+      "neapolitan:block/banana_stalk/step3",
+      "neapolitan:block/banana_stalk/step4",
+      "neapolitan:block/banana_stalk/step5"
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  },
+  "block.banana_stalk.place": {
+    "sounds": [
+      "neapolitan:block/banana_stalk/break1",
+      "neapolitan:block/banana_stalk/break2",
+      "neapolitan:block/banana_stalk/break3",
+      "neapolitan:block/banana_stalk/break4",
+      "neapolitan:block/banana_stalk/break5"
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  },
+  "block.banana_stalk.step": {
+    "sounds": [
+      "neapolitan:block/banana_stalk/step1",
+      "neapolitan:block/banana_stalk/step2",
+      "neapolitan:block/banana_stalk/step3",
+      "neapolitan:block/banana_stalk/step4",
+      "neapolitan:block/banana_stalk/step5"
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
   "block.note_block.imitate.chimpanzee": {
     "sounds": [
       {

@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "neapolitan:banana_frond"
+    },
+    {
+      "item": "neapolitan:banana_frond"
+    },
+    {
+      "item": "neapolitan:banana_frond"
+    },
+    {
+      "item": "neapolitan:banana_frond"
+    },
+    {
+      "item": "neapolitan:banana_frond"
+    },
+    {
+      "item": "neapolitan:banana_frond"
+    },
+    {
+      "item": "neapolitan:banana_frond"
+    },
+    {
+      "item": "neapolitan:banana_frond"
+    },
+    {
+      "item": "neapolitan:banana_frond"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "neapolitan:banana_stalk"
+  }
+}

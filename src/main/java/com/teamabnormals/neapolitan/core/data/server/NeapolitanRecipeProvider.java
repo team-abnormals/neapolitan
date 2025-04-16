@@ -51,6 +51,7 @@ public class NeapolitanRecipeProvider extends BlueprintRecipeProvider {
 		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, CARVED_BANANA_STALK.get()).pattern("##").pattern("##").define('#', BANANA_STALK.get()).unlockedBy(getHasName(BANANA_STALK.get()), has(BANANA_STALK.get())).save(consumer);
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT, BANANARROW.get()).requires(NeapolitanItemTags.FRUITS_BANANA).requires(ARROW).unlockedBy(getHasName(BANANA.get()), has(NeapolitanItemTags.FRUITS_BANANA)).save(consumer);
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, CHIMPANZEE_BANNER_PATTERN.get()).requires(PAPER).requires(NeapolitanItems.CHIMPANZEE_HEAD.get()).unlockedBy(getHasName(NeapolitanItems.CHIMPANZEE_HEAD.get()), has(NeapolitanItems.CHIMPANZEE_HEAD.get())).save(consumer);
+		threeByThreePacker(consumer, RecipeCategory.BUILDING_BLOCKS, BANANA_STALK.get(), BANANA_FROND.get());
 
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, CHOCOLATE_BAR.get(), 4).requires(COCOA_BEANS, 2).requires(SUGAR).requires(BlueprintItemTags.MILK).unlockedBy(getHasName(COCOA_BEANS), has(COCOA_BEANS)).save(consumer);
 		storageRecipesWithCustomUnpacking(consumer, RecipeCategory.BUILDING_BLOCKS, CHOCOLATE_BAR.get(), RecipeCategory.FOOD, CHOCOLATE_BLOCK.get(), getConversionRecipeName(CHOCOLATE_BAR.get(), CHOCOLATE_BLOCK.get()), null);

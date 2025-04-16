@@ -1,6 +1,7 @@
 package com.teamabnormals.neapolitan.core.registry;
 
 import com.teamabnormals.blueprint.common.block.BlueprintDirectionalBlock;
+import com.teamabnormals.blueprint.common.block.LogBlock;
 import com.teamabnormals.blueprint.common.block.thatch.ThatchBlock;
 import com.teamabnormals.blueprint.common.block.thatch.ThatchSlabBlock;
 import com.teamabnormals.blueprint.common.block.thatch.ThatchStairBlock;
@@ -11,6 +12,7 @@ import com.teamabnormals.neapolitan.common.block.*;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.other.NeapolitanCauldronInteractions;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems.NeapolitanFoods;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanSoundEvents.NeapolitanSoundTypes;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -67,8 +69,8 @@ public class NeapolitanBlocks {
 	public static final DeferredBlock<Block> MINT = BLOCKS.createBlockNoItem("mint", () -> new MintBlock(NeapolitanBlockProperties.MINT));
 	public static final DeferredBlock<Block> POTTED_MINT = BLOCKS.createBlockNoItem("potted_mint", () -> new FlowerPotBlock(MINT.get(), PropertyUtil.flowerPot()));
 
-	public static final DeferredBlock<Block> BANANA_STALK = BLOCKS.createBlock("banana_stalk", () -> new RotatedPillarBlock(NeapolitanBlockProperties.BANANA_STALK));
 	public static final DeferredBlock<Block> CARVED_BANANA_STALK = BLOCKS.createBlock("carved_banana_stalk", () -> new RotatedPillarBlock(NeapolitanBlockProperties.BANANA_STALK));
+	public static final DeferredBlock<Block> BANANA_STALK = BLOCKS.createBlock("banana_stalk", () -> new LogBlock(() -> CARVED_BANANA_STALK.get(), NeapolitanBlockProperties.BANANA_STALK));
 	public static final DeferredBlock<Block> BANANA_FROND = BLOCKS.createBlock("banana_frond", () -> new BananaFrondBlock(NeapolitanBlockProperties.BANANA_FROND));
 	public static final DeferredBlock<Block> POTTED_BANANA_FROND = BLOCKS.createBlockNoItem("potted_banana_frond", () -> new FlowerPotBlock(BANANA_FROND.get(), PropertyUtil.flowerPot()));
 	public static final DeferredBlock<Block> FROND_THATCH = BLOCKS.createBlock("frond_thatch", () -> new ThatchBlock(NeapolitanBlockProperties.FROND_THATCH));
@@ -261,7 +263,7 @@ public class NeapolitanBlocks {
 		public static final BlockBehaviour.Properties VANILLA_VINE = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GREEN).randomTicks().instabreak().noCollission().sound(SoundType.WEEPING_VINES).pushReaction(PushReaction.DESTROY);
 		public static final BlockBehaviour.Properties MINT = BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().instabreak().randomTicks().sound(SoundType.CROP).pushReaction(PushReaction.DESTROY);
 
-		public static final BlockBehaviour.Properties BANANA_STALK = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).strength(1.0F).sound(SoundType.STEM);
+		public static final BlockBehaviour.Properties BANANA_STALK = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).strength(1.0F).sound(NeapolitanSoundTypes.BANANA_STALK);
 		public static final BlockBehaviour.Properties BANANA_FROND = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GREEN).randomTicks().instabreak().noCollission().sound(SoundType.WEEPING_VINES).pushReaction(PushReaction.DESTROY);
 		public static final BlockBehaviour.Properties FROND_THATCH = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GREEN).strength(0.5F).sound(SoundType.NETHER_SPROUTS);
 

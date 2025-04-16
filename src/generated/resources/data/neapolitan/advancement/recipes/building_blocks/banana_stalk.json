@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_banana_frond": {
+      "conditions": {
+        "items": [
+          {
+            "items": "neapolitan:banana_frond"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "neapolitan:banana_stalk"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_banana_frond"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "neapolitan:banana_stalk"
+    ]
+  }
+}

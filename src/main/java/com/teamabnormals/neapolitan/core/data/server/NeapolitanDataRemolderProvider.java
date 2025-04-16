@@ -61,7 +61,7 @@ public class NeapolitanDataRemolderProvider extends RemolderProvider {
 		));
 
 		this.entry("jungle_temple_dispenser").path("loot_table/chests/jungle_temple_dispenser").remolder(
-				addEntry(0, lootEntry(NeapolitanItems.BANANARROW.get(), 20, 2, 5))
+				addEntry(0, lootEntry(NeapolitanItems.BANANARROW.get(), 15, 2, 4))
 		);
 
 		this.entry("ravager").path("loot_table/entities/ravager").remolder(addPool(LootPool.lootPool()
