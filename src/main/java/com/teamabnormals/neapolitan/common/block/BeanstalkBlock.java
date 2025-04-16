@@ -3,37 +3,57 @@ package com.teamabnormals.neapolitan.common.block;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.ParticleUtils;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.BoneMealItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 
-public class BeanstalkBlock extends RotatedPillarBlock {
+import java.util.Arrays;
+import java.util.List;
 
-	// TODO: Make bonemealable
+public class BeanstalkBlock extends RotatedPillarBlock implements BonemealableBlock {
+
 	public BeanstalkBlock(Properties properties) {
 		super(properties);
 	}
 
 	@Override
-	public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
-		Direction face = hit.getDirection();
-		BlockPos offsetPos = pos.relative(face);
-		if (stack.getItem() instanceof BoneMealItem && worldIn.getBlockState(offsetPos).isAir()) {
-			if (!player.getAbilities().instabuild) stack.shrink(1);
-			worldIn.setBlockAndUpdate(offsetPos, NeapolitanBlocks.BEANSTALK_THORNS.get().defaultBlockState().setValue(BeanstalkThornsBlock.FACING, face));
-			if (worldIn.isClientSide()) {
-				BoneMealItem.addGrowthParticles(worldIn, offsetPos, 15);
-			}
-			return ItemInteractionResult.sidedSuccess(worldIn.isClientSide);
+	protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+		return stack.is(Items.BONE_MEAL) ? ItemInteractionResult.SKIP_DEFAULT_BLOCK_INTERACTION : super.useItemOn(stack, state, level, pos, player, hand, hitResult);
+	}
 
+	@Override
+	public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
+		return !Arrays.stream(Direction.values()).filter(d -> level.getBlockState(pos.relative(d)).isAir()).toList().isEmpty();
+	}
+
+	@Override
+	public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos pos, BlockState state) {
+		return true;
+	}
+
+	@Override
+	public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
+		List<Direction> direction = Arrays.stream(Direction.values()).filter(d -> level.getBlockState(pos.relative(d)).isAir()).toList();
+		if (!direction.isEmpty()) {
+			Direction dir = direction.get(random.nextInt(direction.size()));
+			level.setBlockAndUpdate(pos.relative(dir), NeapolitanBlocks.BEANSTALK_THORNS.get().defaultBlockState().setValue(BeanstalkThornsBlock.FACING, dir));
 		}
+	}
 
-		return super.useItemOn(stack, state, worldIn, pos, player, handIn, hit);
+	@Override
+	public BonemealableBlock.Type getType() {
+		return Type.GROWER;
 	}
 }

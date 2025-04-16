@@ -31,7 +31,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MagicBeansBlock extends DirectionalBlock implements SimpleWaterloggedBlock {
+public class MagicBeansBlock extends DirectionalBlock implements SimpleWaterloggedBlock, BonemealableBlock {
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	public static final VoxelShape[] SHAPES = new VoxelShape[]{
 			Block.box(0, 15, 0, 16, 16, 16),
@@ -204,5 +204,20 @@ public class MagicBeansBlock extends DirectionalBlock implements SimpleWaterlogg
 		}
 
 		return face;
+	}
+
+	@Override
+	public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
+		return true;
+	}
+
+	@Override
+	public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos pos, BlockState state) {
+		return true;
+	}
+
+	@Override
+	public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
+		growBeanstalk(level, pos, state.getValue(FACING));
 	}
 }
