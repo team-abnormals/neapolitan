@@ -65,7 +65,7 @@ public class NeapolitanAdvancementProvider extends AdvancementProvider {
 									LootItemBlockStatePropertyCondition.hasBlockStateProperties(NeapolitanBlocks.STRAWBERRY_BUSH.get())
 											.setProperties(StatePropertiesPredicate.Builder.properties()
 													.hasProperty(StrawberryBushBlock.WHITE, true)
-													).build())))
+											).build())))
 					))
 					.save(consumer, Neapolitan.MOD_ID + ":husbandry/harvest_white_strawberries");
 

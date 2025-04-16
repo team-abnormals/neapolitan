@@ -10,6 +10,7 @@ public class NeapolitanItemTags {
 	public static final TagKey<Item> CHIMPANZEE_SNACKS = itemTag("chimpanzee_snacks");
 	public static final TagKey<Item> CHIMPANZEE_APE_MODE_ITEMS = itemTag("chimpanzee_ape_mode_items");
 	public static final TagKey<Item> CHIMPANZEE_FAVORITES = itemTag("chimpanzee_favorites");
+	public static final TagKey<Item> CHIMPANZEE_WEAPONS = itemTag("chimpanzee_weapons");
 	public static final TagKey<Item> HIDES_CHIMPANZEE_EARS = itemTag("hides_chimpanzee_ears");
 	public static final TagKey<Item> ICE_CREAM = itemTag("ice_cream");
 

@@ -40,7 +40,8 @@ public class NeapolitanItemTagsProvider extends ItemTagsProvider {
 		this.copy(BlueprintBlockTags.NOTE_BLOCK_TOP_INSTRUMENTS, ItemTags.NOTE_BLOCK_TOP_INSTRUMENTS);
 
 		this.tag(NeapolitanItemTags.CHIMPANZEE_APE_MODE_ITEMS).addOptional(NeapolitanConstants.WARM_MONKEY_BRUSH).addOptional(NeapolitanConstants.HOT_MONKEY_BRUSH).addOptional(NeapolitanConstants.SCALDING_MONKEY_BRUSH);
-		this.tag(NeapolitanItemTags.CHIMPANZEE_FAVORITES).add(Items.STICK, Items.BAMBOO, BANANA_FROND.get());
+		this.tag(NeapolitanItemTags.CHIMPANZEE_FAVORITES).add(BANANA_FROND.get()).addTag(NeapolitanItemTags.CHIMPANZEE_WEAPONS);
+		this.tag(NeapolitanItemTags.CHIMPANZEE_WEAPONS).add(Items.STICK, Items.BAMBOO);
 		this.tag(NeapolitanItemTags.CHIMPANZEE_FOOD).add(BANANA_BUNCH.get());
 		this.tag(NeapolitanItemTags.CHIMPANZEE_SNACKS).add(BANANA.get(), BANANA_BUNCH.get(), BANANA_BREAD.get(), DRIED_BANANA.get(), BANANARROW.get(), Items.POTION);
 		this.tag(NeapolitanItemTags.HIDES_CHIMPANZEE_EARS).addOptional(NeapolitanConstants.GRIEFER_HELMET).addOptional(NeapolitanConstants.SANGUINE_HELMET);

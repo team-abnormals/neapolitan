@@ -1,7 +1,6 @@
 {
   "values": [
-    "minecraft:stick",
-    "minecraft:bamboo",
-    "neapolitan:banana_frond"
+    "neapolitan:banana_frond",
+    "#neapolitan:chimpanzee_weapons"
   ]
 }

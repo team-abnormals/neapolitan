@@ -3,7 +3,6 @@ package com.teamabnormals.neapolitan.core.other.tags;
 import com.teamabnormals.blueprint.core.util.TagUtil;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
 
 public class NeapolitanEnchantmentTags {

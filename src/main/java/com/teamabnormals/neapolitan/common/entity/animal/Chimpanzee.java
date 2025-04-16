@@ -57,7 +57,6 @@ import net.minecraft.world.entity.projectile.FireworkRocketEntity;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LightLayer;
@@ -94,6 +93,7 @@ public class Chimpanzee extends Animal implements NeutralMob, VariantHolder<Hold
 	private static final EntityDataAccessor<Direction> FACING = SynchedEntityData.defineId(Chimpanzee.class, EntityDataSerializers.DIRECTION);
 
 	private static final AttributeModifier SPEED_MODIFIER_SITTING = new AttributeModifier(Neapolitan.location("sitting_speed"), -0.75D, Operation.ADD_MULTIPLIED_BASE);
+	private static final AttributeModifier ATTACK_WEAPON_MODIFIER = new AttributeModifier(Neapolitan.location("chimpanzee_weapon_damage"), 1.0D, Operation.ADD_VALUE);
 
 	private static final UniformInt ANGER_RANGE = TimeUtil.rangeOfSeconds(20, 39);
 	private UUID lastHurtBy;
@@ -300,26 +300,15 @@ public class Chimpanzee extends Animal implements NeutralMob, VariantHolder<Hold
 		super.customServerAiStep();
 	}
 
-	// TODO: Why does this work differently / not call super?
 	@Override
 	public boolean doHurtTarget(Entity target) {
 		this.swingArms();
 		this.level().broadcastEntityEvent(this, (byte) 4);
-		float attackDamage = (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE);
-		float f1 = (int) attackDamage > 0 ? attackDamage / 2.0F + (float) this.random.nextInt((int) attackDamage) : attackDamage;
-		float damage = this.isChimpanzeeWeapon(this.getMainHandItem()) || this.isChimpanzeeWeapon(this.getOffhandItem()) ? f1 + 1.0F : f1;
-		DamageSource source = this.damageSources().mobAttack(this);
-		boolean hurt = target.hurt(source, damage);
-		if (hurt && this.level() instanceof ServerLevel serverLevel) {
-			EnchantmentHelper.doPostAttackEffects(serverLevel, target, source);
-		}
-
-		return hurt;
+		return super.doHurtTarget(target);
 	}
 
 	public boolean isChimpanzeeWeapon(ItemStack stack) {
-		Item item = stack.getItem();
-		return item == Items.STICK || item == Items.BAMBOO;
+		return stack.is(NeapolitanItemTags.CHIMPANZEE_WEAPONS);
 	}
 
 	@Override
@@ -670,25 +659,31 @@ public class Chimpanzee extends Animal implements NeutralMob, VariantHolder<Hold
 
 	@Override
 	protected void pickUpItem(ItemEntity itemEntity) {
-		ItemStack itemstack = itemEntity.getItem();
-		if (!this.isDoingAction(ChimpanzeeAction.LOOKING_AT_ITEM, ChimpanzeeAction.PLAYING_WITH_ITEM) && this.canHoldItem(itemstack)) {
-			int i = itemstack.getCount();
+		ItemStack stack = itemEntity.getItem();
+		if (!this.isDoingAction(ChimpanzeeAction.LOOKING_AT_ITEM, ChimpanzeeAction.PLAYING_WITH_ITEM) && this.canHoldItem(stack)) {
+			int i = stack.getCount();
 			if (i > 1) {
-				ItemEntity itementity = new ItemEntity(this.level(), this.getX(), this.getY(), this.getZ(), itemstack.split(i - 1));
+				ItemEntity itementity = new ItemEntity(this.level(), this.getX(), this.getY(), this.getZ(), stack.split(i - 1));
 				this.level().addFreshEntity(itementity);
 			}
 
 			this.dropItem(this.getMainHandItem());
 
 			this.onItemPickup(itemEntity);
-			this.setItemSlot(EquipmentSlot.MAINHAND, itemstack.split(1));
+			this.setItemSlot(EquipmentSlot.MAINHAND, stack.split(1));
 			this.handDropChances[EquipmentSlot.MAINHAND.getIndex()] = 2.0F;
-			this.take(itemEntity, itemstack.getCount());
+			this.take(itemEntity, stack.getCount());
 			itemEntity.discard();
 
-			if (this.isSnack(itemstack)) {
+			if (this.isSnack(stack)) {
 				this.stopBeingAngry();
 			}
+		}
+
+		AttributeInstance damageMod = this.getAttribute(Attributes.ATTACK_DAMAGE);
+		damageMod.removeModifier(ATTACK_WEAPON_MODIFIER.id());
+		if (this.isChimpanzeeWeapon(this.getMainHandItem())) {
+			damageMod.addTransientModifier(ATTACK_WEAPON_MODIFIER);
 		}
 	}
 
@@ -797,9 +792,7 @@ public class Chimpanzee extends Animal implements NeutralMob, VariantHolder<Hold
 
 		if (lookingForBundleIn) {
 			this.setLeader(this.shouldBeLeader());
-			Predicate<Chimpanzee> predicate = (chimpanzeeentity) -> {
-				return chimpanzeeentity != this && chimpanzeeentity.getAge() >= 0;
-			};
+			Predicate<Chimpanzee> predicate = (chimpanzeeentity) -> chimpanzeeentity != this && chimpanzeeentity.getAge() >= 0;
 			List<Chimpanzee> list = this.level().getEntitiesOfClass(Chimpanzee.class, this.getBoundingBox().inflate(12.0D, 8.0D, 12.0D), predicate);
 
 			for (Chimpanzee chimpanzeeentity : list) {
@@ -809,9 +802,7 @@ public class Chimpanzee extends Animal implements NeutralMob, VariantHolder<Hold
 	}
 
 	private boolean shouldBeLeader() {
-		Predicate<Chimpanzee> predicate = (chimpanzeeentity) -> {
-			return chimpanzeeentity != this && chimpanzeeentity.getAge() >= 0;
-		};
+		Predicate<Chimpanzee> predicate = (chimpanzeeentity) -> chimpanzeeentity != this && chimpanzeeentity.getAge() >= 0;
 		List<Chimpanzee> list = this.level().getEntitiesOfClass(Chimpanzee.class, this.getBoundingBox().inflate(8.0D, 8.0D, 8.0D), predicate);
 
 		if (list.isEmpty()) {
@@ -956,10 +947,7 @@ public class Chimpanzee extends Animal implements NeutralMob, VariantHolder<Hold
 	public void setSitting(boolean sitting) {
 		this.entityData.set(SITTING, sitting);
 		AttributeInstance attributeInstance = this.getAttribute(Attributes.MOVEMENT_SPEED);
-		if (attributeInstance.hasModifier(SPEED_MODIFIER_SITTING.id())) {
-			attributeInstance.removeModifier(SPEED_MODIFIER_SITTING);
-		}
-
+		attributeInstance.removeModifier(SPEED_MODIFIER_SITTING.id());
 		if (sitting) {
 			attributeInstance.addTransientModifier(SPEED_MODIFIER_SITTING);
 		}
