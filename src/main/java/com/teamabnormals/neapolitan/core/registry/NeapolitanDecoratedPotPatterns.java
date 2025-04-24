@@ -11,13 +11,13 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public class NeapolitanDecoratedPotPatterns {
 	public static final DeferredRegister<DecoratedPotPattern> DECORATED_POT_PATTERNS = DeferredRegister.create(Registries.DECORATED_POT_PATTERN, Neapolitan.MOD_ID);
 
-	public static final DeferredHolder<DecoratedPotPattern, ?> REFLECTION = register("reflection_pottery_pattern");
-	public static final DeferredHolder<DecoratedPotPattern, ?> SCREAM = register("scream_pottery_pattern");
-	public static final DeferredHolder<DecoratedPotPattern, ?> SNACK = register("snack_pottery_pattern");
-	public static final DeferredHolder<DecoratedPotPattern, ?> SPIDER = register("spider_pottery_pattern");
+	public static final DeferredHolder<DecoratedPotPattern, ?> REFLECTION = register("reflection");
+	public static final DeferredHolder<DecoratedPotPattern, ?> SCREAM = register("scream");
+	public static final DeferredHolder<DecoratedPotPattern, ?> SNACK = register("snack");
+	public static final DeferredHolder<DecoratedPotPattern, ?> SPIDER = register("spider");
 
-	public static DeferredHolder<DecoratedPotPattern, ?> register(String assetId) {
-		return DECORATED_POT_PATTERNS.register(assetId, () -> new DecoratedPotPattern(Neapolitan.location(assetId)));
+	public static DeferredHolder<DecoratedPotPattern, ?> register(String name) {
+		return DECORATED_POT_PATTERNS.register(name, () -> new DecoratedPotPattern(Neapolitan.location(name + "_pottery_pattern")));
 	}
 
 	public static void registerDecoratedPotPatterns() {
