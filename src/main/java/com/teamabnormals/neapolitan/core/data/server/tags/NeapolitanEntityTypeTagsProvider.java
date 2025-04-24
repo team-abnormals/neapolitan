@@ -23,6 +23,7 @@ public class NeapolitanEntityTypeTagsProvider extends EntityTypeTagsProvider {
 	@Override
 	protected void addTags(HolderLookup.Provider provider) {
 		this.tag(EntityTypeTags.ARROWS).add(NeapolitanEntityTypes.BANANARROW.get());
+		this.tag(EntityTypeTags.ARTHROPOD).add(NeapolitanEntityTypes.PLANTAIN_SPIDER.get());
 
 		this.tag(NeapolitanEntityTypeTags.CHIMPANZEE_DART_TARGETS).addOptional(NeapolitanConstants.BOLLOOM_FRUIT).addOptional(NeapolitanConstants.BOLLOOM_BALLOON);
 		this.tag(NeapolitanEntityTypeTags.SCARES_CHIMPANZEES).add(EntityType.DRAGON_FIREBALL, EntityType.EVOKER_FANGS, EntityType.FIREBALL, EntityType.FIREWORK_ROCKET, EntityType.LIGHTNING_BOLT, EntityType.SMALL_FIREBALL, EntityType.TNT, EntityType.WITHER_SKULL).addOptional(NeapolitanConstants.TMT).addOptional(NeapolitanConstants.SPORE_BOMB);
