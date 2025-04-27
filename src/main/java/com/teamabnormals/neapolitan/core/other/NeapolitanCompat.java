@@ -14,21 +14,16 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.component.Tool;
-import net.minecraft.world.item.component.Tool.Rule;
 import net.minecraft.world.level.block.DispenserBlock;
-import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.ModifyDefaultComponentsEvent;
-
-import java.util.ArrayList;
 
 @EventBusSubscriber(modid = Neapolitan.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class NeapolitanCompat {
 
 	@SubscribeEvent
-	public static void onModifyComponenets(ModifyDefaultComponentsEvent event) {
+	public static void onModifyComponents(ModifyDefaultComponentsEvent event) {
 		event.modify(Items.COOKIE, c -> c.set(DataComponents.FOOD, new FoodProperties.Builder().nutrition(2).saturationModifier(0.3F).fast().build()));
 	}
 
