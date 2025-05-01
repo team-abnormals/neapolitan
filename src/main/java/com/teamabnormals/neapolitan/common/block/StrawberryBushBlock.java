@@ -96,16 +96,16 @@ public class StrawberryBushBlock extends BushBlock implements BonemealableBlock 
 		return super.getStateForPlacement(context).setValue(WHITE, this.isWhite(context.getLevel(), context.getClickedPos()));
 	}
 
-	protected int getBonemealAgeIncrease(Level worldIn) {
-		return Mth.nextInt(worldIn.random, 2, 5);
+	protected int getBonemealAgeIncrease(Level level) {
+		return Mth.nextInt(level.random, 2, 5);
 	}
 
 	@Override
-	public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
-		super.tick(state, level, pos, rand);
+	public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
+		super.randomTick(state, level, pos, rand);
 		if (!level.isAreaLoaded(pos, 1))
 			return;
-		if (level.getRawBrightness(pos, 0) >= 13) {
+		if (level.getRawBrightness(pos.above(), 0) >= 13) {
 			int age = this.getAge(state);
 			int maxAgeForPos = level.getBlockState(pos.below()).is(Blocks.COARSE_DIRT) ? 2 : this.getMaxAge();
 			int growthChance = !level.isRaining() ? 7 : 5;
@@ -119,24 +119,24 @@ public class StrawberryBushBlock extends BushBlock implements BonemealableBlock 
 	}
 
 	@Override
-	public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
-		if (worldIn.random.nextInt(15) == 0) {
+	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entityIn) {
+		if (level.random.nextInt(15) == 0) {
 			if (entityIn.xOld != entityIn.getX() || entityIn.zOld != entityIn.getZ()) {
 				double d0 = Math.abs(entityIn.getX() - entityIn.xOld);
 				double d1 = Math.abs(entityIn.getZ() - entityIn.zOld);
 				if (d0 >= (double) 0.003F || d1 >= (double) 0.003F) {
-					worldIn.playSound(null, pos, SoundEvents.GRASS_STEP, SoundSource.BLOCKS, 1.5F, 0.8F + worldIn.random.nextFloat() * 0.4F);
+					level.playSound(null, pos, SoundEvents.GRASS_STEP, SoundSource.BLOCKS, 1.5F, 0.8F + level.random.nextFloat() * 0.4F);
 				}
 			}
 		}
-		if (entityIn instanceof Ravager && EventHooks.canEntityGrief(worldIn, entityIn)) {
-			worldIn.destroyBlock(pos, true, entityIn);
+		if (entityIn instanceof Ravager && EventHooks.canEntityGrief(level, entityIn)) {
+			level.destroyBlock(pos, true, entityIn);
 		}
 		if (entityIn instanceof LivingEntity entity && entity.getType().is(EntityTypeTags.ARTHROPOD) && state.getValue(AGE) > 0 && NeapolitanConfig.COMMON.strawberryBushArthropodInvisibility.get()) {
 			entity.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 3, 0, false, false, false));
 
 		}
-		super.entityInside(state, worldIn, pos, entityIn);
+		super.entityInside(state, level, pos, entityIn);
 	}
 
 	@Nullable
@@ -152,7 +152,7 @@ public class StrawberryBushBlock extends BushBlock implements BonemealableBlock 
 	}
 
 	@Override
-	public ItemStack getCloneItemStack(LevelReader worldIn, BlockPos pos, BlockState state) {
+	public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
 		return new ItemStack(this.getSeedsItem());
 	}
 
@@ -170,7 +170,7 @@ public class StrawberryBushBlock extends BushBlock implements BonemealableBlock 
 	}
 
 	@Override
-	public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+	public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
 		return SHAPE_BY_AGE[state.getValue(this.getAgeProperty())];
 	}
 

@@ -65,14 +65,14 @@ public class MintBlock extends BushBlock implements BonemealableBlock {
 	}
 
 	@Override
-	public InteractionResult useWithoutItem(BlockState state, Level worldIn, BlockPos pos, Player player, BlockHitResult hit) {
+	public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
 		if (this.isMaxAge(state)) {
-			popResource(worldIn, pos, new ItemStack(NeapolitanItems.MINT_LEAVES.get(), state.getValue(SPROUTS)));
-			worldIn.playSound(null, pos, SoundEvents.CROP_BREAK, SoundSource.BLOCKS, 1.0F, 0.8F + worldIn.random.nextFloat() * 0.4F);
-			worldIn.setBlock(pos, state.setValue(AGE, 1), 2);
-			return InteractionResult.sidedSuccess(worldIn.isClientSide);
+			popResource(level, pos, new ItemStack(NeapolitanItems.MINT_LEAVES.get(), state.getValue(SPROUTS)));
+			level.playSound(null, pos, SoundEvents.CROP_BREAK, SoundSource.BLOCKS, 1.0F, 0.8F + level.random.nextFloat() * 0.4F);
+			level.setBlock(pos, state.setValue(AGE, 1), 2);
+			return InteractionResult.sidedSuccess(level.isClientSide);
 		} else {
-			return super.useWithoutItem(state, worldIn, pos, player, hit);
+			return super.useWithoutItem(state, level, pos, player, hit);
 		}
 	}
 
@@ -82,30 +82,30 @@ public class MintBlock extends BushBlock implements BonemealableBlock {
 	}
 
 	@Override
-	public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
-		super.entityInside(state, worldIn, pos, entityIn);
+	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entityIn) {
+		super.entityInside(state, level, pos, entityIn);
 	}
 
 	@Override
-	public ItemStack getCloneItemStack(LevelReader worldIn, BlockPos pos, BlockState state) {
+	public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
 		return new ItemStack(NeapolitanItems.MINT_SPROUT.get());
 	}
 
 	@Override
-	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
-		if (!worldIn.isAreaLoaded(pos, 1)) return;
+	public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+		if (!level.isAreaLoaded(pos, 1)) return;
 		int i = state.getValue(AGE);
-		if (worldIn.getRawBrightness(pos, 0) >= 9 && !this.isMaxAge(state) && CommonHooks.canCropGrow(worldIn, pos, state, random.nextInt(9) == 0)) {
-			worldIn.setBlock(pos, state.setValue(AGE, i + 1), 2);
-			CommonHooks.fireCropGrowPost(worldIn, pos, state);
+		if (level.getRawBrightness(pos.above(), 0) >= 9 && !this.isMaxAge(state) && CommonHooks.canCropGrow(level, pos, state, random.nextInt(9) == 0)) {
+			level.setBlock(pos, state.setValue(AGE, i + 1), 2);
+			CommonHooks.fireCropGrowPost(level, pos, state);
 		} else {
 			if (this.isMaxAge(state) && random.nextInt(3) != 0) {
-				spawnGrowthParticles(worldIn, pos, random);
+				spawnGrowthParticles(level, pos, random);
 				Plane.HORIZONTAL.stream().forEach(direction -> {
 					BlockPos offsetPos = pos.relative(direction);
-					BlockState offsetState = worldIn.getBlockState(offsetPos);
+					BlockState offsetState = level.getBlockState(offsetPos);
 					if (!offsetState.is(NeapolitanBlockTags.UNAFFECTED_BY_MINT))
-						offsetState.randomTick(worldIn, offsetPos, random);
+						offsetState.randomTick(level, offsetPos, random);
 				});
 			}
 		}
@@ -149,7 +149,7 @@ public class MintBlock extends BushBlock implements BonemealableBlock {
 	}
 
 	@Override
-	public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+	public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
 		return SHAPE_BY_AGE[state.getValue(AGE)];
 	}
 
@@ -164,8 +164,8 @@ public class MintBlock extends BushBlock implements BonemealableBlock {
 	}
 
 	@Override
-	public void performBonemeal(ServerLevel worldIn, RandomSource rand, BlockPos pos, BlockState state) {
+	public void performBonemeal(ServerLevel level, RandomSource rand, BlockPos pos, BlockState state) {
 		int i = Math.min(4, state.getValue(AGE) + 1);
-		worldIn.setBlock(pos, state.setValue(AGE, i), 2);
+		level.setBlock(pos, state.setValue(AGE, i), 2);
 	}
 }

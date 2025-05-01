@@ -50,28 +50,28 @@ public class VanillaVineBlock extends Block implements BonemealableBlock {
 	}
 
 	@Override
-	public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource rand) {
-		if (!state.canSurvive(worldIn, pos)) {
-			worldIn.destroyBlock(pos, true);
+	public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
+		if (!state.canSurvive(level, pos)) {
+			level.destroyBlock(pos, true);
 		}
 	}
 
 	@Override
-	public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+	public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
 		return SHAPES[state.getValue(FACING).get3DDataValue()];
 	}
 
 	@Override
-	public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
-		BlockState otherState = worldIn.getBlockState(pos.relative(state.getValue(FACING).getOpposite()));
+	public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+		BlockState otherState = level.getBlockState(pos.relative(state.getValue(FACING).getOpposite()));
 		return VanillaVineTopBlock.facingSameDirection(state, otherState) || otherState.is(NeapolitanBlockTags.VANILLA_PLANTABLE_ON);
 	}
 
 
 	@Override
-	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
-		if (facing == stateIn.getValue(FACING).getOpposite() && !stateIn.canSurvive(worldIn, currentPos)) {
-			worldIn.scheduleTick(currentPos, this, 1);
+	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
+		if (facing == stateIn.getValue(FACING).getOpposite() && !stateIn.canSurvive(level, currentPos)) {
+			level.scheduleTick(currentPos, this, 1);
 		}
 
 		VanillaVineTopBlock topVine = (VanillaVineTopBlock) NeapolitanBlocks.VANILLA_VINE.get();
@@ -82,33 +82,33 @@ public class VanillaVineBlock extends Block implements BonemealableBlock {
 			}
 		}
 
-		return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+		return super.updateShape(stateIn, facing, facingState, level, currentPos, facingPos);
 	}
 
 
 	@Override
-	public ItemStack getCloneItemStack(LevelReader worldIn, BlockPos pos, BlockState state) {
+	public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
 		return new ItemStack(NeapolitanItems.VANILLA_PODS.get());
 	}
 
 
 	@Override
-	public boolean isValidBonemealTarget(LevelReader worldIn, BlockPos pos, BlockState state) {
-		Optional<BlockPos> optional = this.nextGrowPosition(worldIn, pos, state);
-		return optional.isPresent() && NetherVines.isValidGrowthState(worldIn.getBlockState(optional.get().relative(state.getValue(FACING))));
+	public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
+		Optional<BlockPos> optional = this.nextGrowPosition(level, pos, state);
+		return optional.isPresent() && NetherVines.isValidGrowthState(level.getBlockState(optional.get().relative(state.getValue(FACING))));
 	}
 
 	@Override
-	public boolean isBonemealSuccess(Level worldIn, RandomSource rand, BlockPos pos, BlockState state) {
+	public boolean isBonemealSuccess(Level level, RandomSource rand, BlockPos pos, BlockState state) {
 		return true;
 	}
 
 	@Override
-	public void performBonemeal(ServerLevel worldIn, RandomSource rand, BlockPos pos, BlockState state) {
-		Optional<BlockPos> optional = this.nextGrowPosition(worldIn, pos, state);
+	public void performBonemeal(ServerLevel level, RandomSource rand, BlockPos pos, BlockState state) {
+		Optional<BlockPos> optional = this.nextGrowPosition(level, pos, state);
 		if (optional.isPresent()) {
-			BlockState blockstate = worldIn.getBlockState(optional.get());
-			((VanillaVineTopBlock) blockstate.getBlock()).performBonemeal(worldIn, rand, optional.get(), blockstate);
+			BlockState blockstate = level.getBlockState(optional.get());
+			((VanillaVineTopBlock) blockstate.getBlock()).performBonemeal(level, rand, optional.get(), blockstate);
 		}
 	}
 

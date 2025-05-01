@@ -50,28 +50,28 @@ public class AdzukiSproutsBlock extends BushBlock implements BonemealableBlock {
 	}
 
 	@Override
-	public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
-		super.entityInside(state, worldIn, pos, entityIn);
+	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entityIn) {
+		super.entityInside(state, level, pos, entityIn);
 		if (entityIn instanceof Animal && !state.getValue(FLOWERING)) {
-			worldIn.setBlockAndUpdate(pos, state.setValue(FLOWERING, true));
-			if (worldIn.isClientSide())
-				BoneMealItem.addGrowthParticles(worldIn, pos, 0);
+			level.setBlockAndUpdate(pos, state.setValue(FLOWERING, true));
+			if (level.isClientSide())
+				BoneMealItem.addGrowthParticles(level, pos, 0);
 		}
 	}
 
 	@Override
-	public ItemStack getCloneItemStack(LevelReader worldIn, BlockPos pos, BlockState state) {
+	public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
 		return new ItemStack(NeapolitanItems.ADZUKI_BEANS.get());
 	}
 
 	@Override
-	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
-		if (!worldIn.isAreaLoaded(pos, 1)) return;
+	public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+		if (!level.isAreaLoaded(pos, 1)) return;
 		int i = state.getValue(AGE);
 		int speed = state.getValue(FLOWERING) ? 3 : 6;
-		if (worldIn.getRawBrightness(pos, 0) >= 9 && !this.isMaxAge(state) && CommonHooks.canCropGrow(worldIn, pos, state, random.nextInt(speed) == 0)) {
-			worldIn.setBlock(pos, state.setValue(AGE, i + 1), 2);
-			CommonHooks.fireCropGrowPost(worldIn, pos, state);
+		if (level.getRawBrightness(pos, 0) >= 9 && !this.isMaxAge(state) && CommonHooks.canCropGrow(level, pos, state, random.nextInt(speed) == 0)) {
+			level.setBlock(pos, state.setValue(AGE, i + 1), 2);
+			CommonHooks.fireCropGrowPost(level, pos, state);
 		}
 	}
 
@@ -103,7 +103,7 @@ public class AdzukiSproutsBlock extends BushBlock implements BonemealableBlock {
 	}
 
 	@Override
-	public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+	public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
 		return SHAPE_BY_AGE[state.getValue(AGE)];
 	}
 
@@ -118,13 +118,13 @@ public class AdzukiSproutsBlock extends BushBlock implements BonemealableBlock {
 	}
 
 	@Override
-	public void performBonemeal(ServerLevel worldIn, RandomSource rand, BlockPos pos, BlockState state) {
+	public void performBonemeal(ServerLevel level, RandomSource rand, BlockPos pos, BlockState state) {
 		int i = Math.min(6, state.getValue(AGE) + 1);
-		worldIn.setBlock(pos, state.setValue(AGE, i), 2);
+		level.setBlock(pos, state.setValue(AGE, i), 2);
 	}
 
 	@Override
-	protected boolean mayPlaceOn(BlockState state, BlockGetter worldIn, BlockPos pos) {
-		return state.is(NeapolitanBlocks.ADZUKI_SOIL.get()) || super.mayPlaceOn(state, worldIn, pos);
+	protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
+		return state.is(NeapolitanBlocks.ADZUKI_SOIL.get()) || super.mayPlaceOn(state, level, pos);
 	}
 }

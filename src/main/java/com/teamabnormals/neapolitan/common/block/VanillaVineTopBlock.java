@@ -23,6 +23,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.neoforged.neoforge.common.CommonHooks;
 
 public class VanillaVineTopBlock extends Block implements BonemealableBlock {
 	public static final DirectionProperty FACING = BlockStateProperties.FACING;
@@ -41,13 +42,13 @@ public class VanillaVineTopBlock extends Block implements BonemealableBlock {
 	}
 
 	@Override
-	public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
-		BlockState otherState = worldIn.getBlockState(pos.relative(state.getValue(FACING).getOpposite()));
+	public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+		BlockState otherState = level.getBlockState(pos.relative(state.getValue(FACING).getOpposite()));
 		return facingSameDirection(state, otherState) || otherState.is(NeapolitanBlockTags.VANILLA_PLANTABLE_ON);
 	}
 
 	@Override
-	public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+	public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
 		return SHAPES[state.getValue(FACING).get3DDataValue()];
 	}
 
@@ -77,19 +78,19 @@ public class VanillaVineTopBlock extends Block implements BonemealableBlock {
 	}
 
 	@Override
-	public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource rand) {
-		if (!state.canSurvive(worldIn, pos)) {
-			worldIn.destroyBlock(pos, true);
+	public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
+		if (!state.canSurvive(level, pos)) {
+			level.destroyBlock(pos, true);
 		}
 	}
 
 	@Override
-	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
-		if (this.canGrowUp(state, worldIn, pos) && net.neoforged.neoforge.common.CommonHooks.canCropGrow(worldIn, pos.relative(state.getValue(FACING)), worldIn.getBlockState(pos.relative(state.getValue(FACING))), random.nextDouble() < 0.1D)) {
+	public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+		if (this.canGrowUp(state, level, pos) && CommonHooks.canCropGrow(level, pos.relative(state.getValue(FACING)), level.getBlockState(pos.relative(state.getValue(FACING))), random.nextDouble() < 0.1D)) {
 			BlockPos blockpos = pos.relative(state.getValue(FACING));
-			if (this.canGrowIn(worldIn.getBlockState(blockpos))) {
-				worldIn.setBlockAndUpdate(blockpos, state);
-				net.neoforged.neoforge.common.CommonHooks.fireCropGrowPost(worldIn, blockpos, worldIn.getBlockState(blockpos));
+			if (this.canGrowIn(level.getBlockState(blockpos))) {
+				level.setBlockAndUpdate(blockpos, state);
+				CommonHooks.fireCropGrowPost(level, blockpos, level.getBlockState(blockpos));
 			}
 		}
 	}
@@ -122,35 +123,35 @@ public class VanillaVineTopBlock extends Block implements BonemealableBlock {
 	}
 
 	@Override
-	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
-		BlockState facingBlock = worldIn.getBlockState(currentPos.relative(stateIn.getValue(FACING)));
-		if (facing == stateIn.getValue(FACING).getOpposite() && !stateIn.canSurvive(worldIn, currentPos)) {
-			worldIn.scheduleTick(currentPos, this, 1);
+	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
+		BlockState facingBlock = level.getBlockState(currentPos.relative(stateIn.getValue(FACING)));
+		if (facing == stateIn.getValue(FACING).getOpposite() && !stateIn.canSurvive(level, currentPos)) {
+			level.scheduleTick(currentPos, this, 1);
 		}
 		if (facingBlock.hasProperty(FACING) && facingBlock.getValue(FACING) == stateIn.getValue(FACING) && facingState.is(this)) {
 			return NeapolitanBlocks.VANILLA_VINE_PLANT.get().defaultBlockState().setValue(FACING, stateIn.getValue(FACING));
 		} else {
-			return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+			return super.updateShape(stateIn, facing, facingState, level, currentPos, facingPos);
 		}
 	}
 
 	@Override
-	public boolean isValidBonemealTarget(LevelReader worldIn, BlockPos pos, BlockState state) {
-		return this.canGrowIn(worldIn.getBlockState(pos.relative(state.getValue(FACING))));
+	public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
+		return this.canGrowIn(level.getBlockState(pos.relative(state.getValue(FACING))));
 	}
 
 	@Override
-	public boolean isBonemealSuccess(Level worldIn, RandomSource rand, BlockPos pos, BlockState state) {
+	public boolean isBonemealSuccess(Level level, RandomSource rand, BlockPos pos, BlockState state) {
 		return true;
 	}
 
 	@Override
-	public void performBonemeal(ServerLevel worldIn, RandomSource rand, BlockPos pos, BlockState state) {
+	public void performBonemeal(ServerLevel level, RandomSource rand, BlockPos pos, BlockState state) {
 		BlockPos blockpos = pos.relative(state.getValue(FACING));
 		int j = this.getGrowthAmount(rand);
 
-		for (int k = 0; k < j && this.canGrowIn(worldIn.getBlockState(blockpos)); ++k) {
-			worldIn.setBlockAndUpdate(blockpos, state);
+		for (int k = 0; k < j && this.canGrowIn(level.getBlockState(blockpos)); ++k) {
+			level.setBlockAndUpdate(blockpos, state);
 			blockpos = blockpos.relative(state.getValue(FACING));
 		}
 	}

@@ -27,11 +27,11 @@ public class AdzukiSoilBlock extends Block implements BonemealableBlock {
 	}
 
 	@Override
-	public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+	public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
 		if (stack.canPerformAction(ItemAbilities.HOE_TILL)) {
-			popResource(worldIn, pos.above(), new ItemStack(NeapolitanItems.ADZUKI_BEANS.get()));
+			popResource(level, pos.above(), new ItemStack(NeapolitanItems.ADZUKI_BEANS.get()));
 		}
-		return super.useItemOn(stack, state, worldIn, pos, player, handIn, hit);
+		return super.useItemOn(stack, state, level, pos, player, handIn, hit);
 	}
 
 	@Override
@@ -46,30 +46,30 @@ public class AdzukiSoilBlock extends Block implements BonemealableBlock {
 	}
 
 	@Override
-	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
-		if (!worldIn.isAreaLoaded(pos, 1)) return;
-		if (worldIn.getRawBrightness(pos.above(), 0) >= 9 && CommonHooks.canCropGrow(worldIn, pos, state, random.nextInt(4) == 0) && worldIn.getBlockState(pos.above()).isAir()) {
-			worldIn.setBlockAndUpdate(pos.above(), NeapolitanBlocks.ADZUKI_SPROUTS.get().defaultBlockState());
-			worldIn.setBlockAndUpdate(pos, Blocks.DIRT.defaultBlockState());
-			CommonHooks.fireCropGrowPost(worldIn, pos, state);
+	public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+		if (!level.isAreaLoaded(pos, 1)) return;
+		if (level.getRawBrightness(pos.above(), 0) >= 9 && CommonHooks.canCropGrow(level, pos, state, random.nextInt(4) == 0) && level.getBlockState(pos.above()).isAir()) {
+			level.setBlockAndUpdate(pos.above(), NeapolitanBlocks.ADZUKI_SPROUTS.get().defaultBlockState());
+			level.setBlockAndUpdate(pos, Blocks.DIRT.defaultBlockState());
+			CommonHooks.fireCropGrowPost(level, pos, state);
 		}
 	}
 
 	@Override
-	public boolean isValidBonemealTarget(LevelReader worldIn, BlockPos pos, BlockState state) {
+	public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
 		return true;
 	}
 
 	@Override
-	public boolean isBonemealSuccess(Level worldIn, RandomSource rand, BlockPos pos, BlockState state) {
+	public boolean isBonemealSuccess(Level level, RandomSource rand, BlockPos pos, BlockState state) {
 		return true;
 	}
 
 	@Override
-	public void performBonemeal(ServerLevel worldIn, RandomSource rand, BlockPos pos, BlockState state) {
-		if (worldIn.getBlockState(pos.above()).isAir()) {
-			worldIn.setBlockAndUpdate(pos.above(), NeapolitanBlocks.ADZUKI_SPROUTS.get().defaultBlockState());
-			worldIn.setBlockAndUpdate(pos, Blocks.DIRT.defaultBlockState());
+	public void performBonemeal(ServerLevel level, RandomSource rand, BlockPos pos, BlockState state) {
+		if (level.getBlockState(pos.above()).isAir()) {
+			level.setBlockAndUpdate(pos.above(), NeapolitanBlocks.ADZUKI_SPROUTS.get().defaultBlockState());
+			level.setBlockAndUpdate(pos, Blocks.DIRT.defaultBlockState());
 		}
 	}
 }

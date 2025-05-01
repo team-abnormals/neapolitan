@@ -46,14 +46,14 @@ public class BeanstalkThornsBlock extends Block implements SimpleWaterloggedBloc
 	}
 
 	@Override
-	public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+	public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
 		return SHAPES[state.getValue(FACING).get3DDataValue()];
 	}
 
 	@Override
-	public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
-		BlockState otherState = worldIn.getBlockState(pos.relative(state.getValue(FACING).getOpposite()));
-		return otherState.isFaceSturdy(worldIn, pos, state.getValue(FACING));
+	public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+		BlockState otherState = level.getBlockState(pos.relative(state.getValue(FACING).getOpposite()));
+		return otherState.isFaceSturdy(level, pos, state.getValue(FACING));
 	}
 
 	@Override
@@ -96,12 +96,12 @@ public class BeanstalkThornsBlock extends Block implements SimpleWaterloggedBloc
 	}
 
 	@Override
-	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
+	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
 		if (stateIn.getValue(WATERLOGGED)) {
-			worldIn.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
+			level.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
 		}
 
-		return !stateIn.canSurvive(worldIn, currentPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+		return !stateIn.canSurvive(level, currentPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(stateIn, facing, facingState, level, currentPos, facingPos);
 	}
 
 	@Override

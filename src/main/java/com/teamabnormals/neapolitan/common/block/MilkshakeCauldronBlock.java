@@ -16,7 +16,7 @@ public class MilkshakeCauldronBlock extends LayeredCauldronBlock {
 	}
 
 	@Override
-	public ItemStack getCloneItemStack(LevelReader worldIn, BlockPos pos, BlockState state) {
+	public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
 		return new ItemStack(Items.CAULDRON);
 	}
 }
