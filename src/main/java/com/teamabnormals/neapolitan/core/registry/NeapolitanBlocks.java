@@ -41,12 +41,12 @@ public class NeapolitanBlocks {
 	public static final DeferredBlock<Block> ADZUKI_ICE_CREAM_BLOCK = BLOCKS.createBlock("adzuki_ice_cream_block", () -> new Block(NeapolitanBlockProperties.ADZUKI_ICE_CREAM_BLOCK));
 
 	public static final DeferredBlock<Block> MILK_CAULDRON = BLOCKS.createBlockNoItem("milk_cauldron", () -> new MilkCauldronBlock(NeapolitanBlockProperties.CAULDRON));
-	public static final DeferredBlock<Block> VANILLA_MILKSHAKE_CAULDRON = BLOCKS.createBlockNoItem("vanilla_milkshake_cauldron", () -> new MilkshakeCauldronBlock(NeapolitanCauldronInteractions.VANILLA_MILKSHAKE.map()));
-	public static final DeferredBlock<Block> CHOCOLATE_MILKSHAKE_CAULDRON = BLOCKS.createBlockNoItem("chocolate_milkshake_cauldron", () -> new MilkshakeCauldronBlock(NeapolitanCauldronInteractions.CHOCOLATE_MILKSHAKE.map()));
-	public static final DeferredBlock<Block> STRAWBERRY_MILKSHAKE_CAULDRON = BLOCKS.createBlockNoItem("strawberry_milkshake_cauldron", () -> new MilkshakeCauldronBlock(NeapolitanCauldronInteractions.STRAWBERRY_MILKSHAKE.map()));
-	public static final DeferredBlock<Block> BANANA_MILKSHAKE_CAULDRON = BLOCKS.createBlockNoItem("banana_milkshake_cauldron", () -> new MilkshakeCauldronBlock(NeapolitanCauldronInteractions.BANANA_MILKSHAKE.map()));
-	public static final DeferredBlock<Block> MINT_MILKSHAKE_CAULDRON = BLOCKS.createBlockNoItem("mint_milkshake_cauldron", () -> new MilkshakeCauldronBlock(NeapolitanCauldronInteractions.MINT_MILKSHAKE.map()));
-	public static final DeferredBlock<Block> ADZUKI_MILKSHAKE_CAULDRON = BLOCKS.createBlockNoItem("adzuki_milkshake_cauldron", () -> new MilkshakeCauldronBlock(NeapolitanCauldronInteractions.ADZUKI_MILKSHAKE.map()));
+	public static final DeferredBlock<Block> VANILLA_MILKSHAKE_CAULDRON = BLOCKS.createBlockNoItem("vanilla_milkshake_cauldron", () -> new MilkshakeCauldronBlock(NeapolitanCauldronInteractions.VANILLA_MILKSHAKE));
+	public static final DeferredBlock<Block> CHOCOLATE_MILKSHAKE_CAULDRON = BLOCKS.createBlockNoItem("chocolate_milkshake_cauldron", () -> new MilkshakeCauldronBlock(NeapolitanCauldronInteractions.CHOCOLATE_MILKSHAKE));
+	public static final DeferredBlock<Block> STRAWBERRY_MILKSHAKE_CAULDRON = BLOCKS.createBlockNoItem("strawberry_milkshake_cauldron", () -> new MilkshakeCauldronBlock(NeapolitanCauldronInteractions.STRAWBERRY_MILKSHAKE));
+	public static final DeferredBlock<Block> BANANA_MILKSHAKE_CAULDRON = BLOCKS.createBlockNoItem("banana_milkshake_cauldron", () -> new MilkshakeCauldronBlock(NeapolitanCauldronInteractions.BANANA_MILKSHAKE));
+	public static final DeferredBlock<Block> MINT_MILKSHAKE_CAULDRON = BLOCKS.createBlockNoItem("mint_milkshake_cauldron", () -> new MilkshakeCauldronBlock(NeapolitanCauldronInteractions.MINT_MILKSHAKE));
+	public static final DeferredBlock<Block> ADZUKI_MILKSHAKE_CAULDRON = BLOCKS.createBlockNoItem("adzuki_milkshake_cauldron", () -> new MilkshakeCauldronBlock(NeapolitanCauldronInteractions.ADZUKI_MILKSHAKE));
 
 	public static final DeferredBlock<Block> CHOCOLATE_BLOCK = BLOCKS.createBlock("chocolate_block", () -> new Block(NeapolitanBlockProperties.CHOCOLATE));
 

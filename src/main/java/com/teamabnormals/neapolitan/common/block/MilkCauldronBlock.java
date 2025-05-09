@@ -15,7 +15,7 @@ import net.neoforged.neoforge.common.NeoForgeMod;
 public class MilkCauldronBlock extends MilkshakeCauldronBlock {
 
 	public MilkCauldronBlock(BlockBehaviour.Properties properties) {
-		super(NeapolitanCauldronInteractions.MILK.map());
+		super(NeapolitanCauldronInteractions.MILK);
 	}
 
 	@Override
