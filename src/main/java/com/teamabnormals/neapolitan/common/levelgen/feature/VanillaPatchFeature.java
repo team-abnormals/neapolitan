@@ -40,10 +40,10 @@ public class VanillaPatchFeature extends Feature<RandomPatchConfiguration> {
 				BlockState vanillaVine = state.setValue(VanillaVineTopBlock.FACING, direction);
 				BlockState vanillaVinePlant = NeapolitanBlocks.VANILLA_VINE_PLANT.get().defaultBlockState().setValue(VanillaVineBlock.FACING, direction);
 
-				if ((level.isEmptyBlock(mutablePos) || level.getBlockState(mutablePos).canBeReplaced()) && vanillaVine.canSurvive(level, mutablePos)) {
+				if ((level.isEmptyBlock(mutablePos) || (level.getBlockState(mutablePos).canBeReplaced() && level.getFluidState(mutablePos).isEmpty())) && vanillaVine.canSurvive(level, mutablePos)) {
 					if (!downState.is(state.getBlock())) {
 						level.setBlock(mutablePos, vanillaVine, 2);
-						if (level.getBlockState(mutablePos.relative(direction)).isAir()) {
+						if (level.isEmptyBlock(mutablePos.relative(direction))) {
 							level.setBlock(mutablePos, vanillaVinePlant, 2);
 							level.setBlock(mutablePos.relative(direction), vanillaVine, 2);
 						}
