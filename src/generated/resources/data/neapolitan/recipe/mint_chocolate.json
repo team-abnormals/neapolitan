@@ -6,7 +6,7 @@
       "item": "neapolitan:mint_leaves"
     },
     {
-      "item": "neapolitan:chocolate_bar"
+      "tag": "c:foods/chocolate_bar"
     }
   ],
   "result": {

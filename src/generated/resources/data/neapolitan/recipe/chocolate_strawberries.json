@@ -3,10 +3,10 @@
   "category": "misc",
   "ingredients": [
     {
-      "tag": "c:fruits/strawberry"
+      "tag": "c:foods/strawberry"
     },
     {
-      "item": "neapolitan:chocolate_bar"
+      "tag": "c:foods/chocolate_bar"
     }
   ],
   "result": {

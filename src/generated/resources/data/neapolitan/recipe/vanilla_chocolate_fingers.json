@@ -3,7 +3,7 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "neapolitan:chocolate_bar"
+      "tag": "c:foods/chocolate_bar"
     },
     {
       "item": "neapolitan:dried_vanilla_pods"

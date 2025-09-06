@@ -3,13 +3,13 @@
   "category": "misc",
   "ingredients": [
     {
-      "tag": "c:fruits/strawberry"
+      "tag": "c:foods/strawberry"
     },
     {
-      "tag": "c:fruits/strawberry"
+      "tag": "c:foods/strawberry"
     },
     {
-      "tag": "c:fruits/banana"
+      "tag": "c:foods/banana"
     },
     {
       "item": "minecraft:glass_bottle"

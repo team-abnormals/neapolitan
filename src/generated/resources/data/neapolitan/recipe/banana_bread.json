@@ -3,7 +3,7 @@
   "category": "misc",
   "ingredients": [
     {
-      "tag": "c:fruits/banana"
+      "tag": "c:foods/banana"
     },
     {
       "item": "minecraft:wheat"

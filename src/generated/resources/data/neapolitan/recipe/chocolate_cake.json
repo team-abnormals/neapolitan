@@ -12,7 +12,7 @@
       "item": "minecraft:wheat"
     },
     "D": {
-      "item": "neapolitan:chocolate_bar"
+      "tag": "c:foods/chocolate_bar"
     },
     "E": {
       "tag": "c:eggs"

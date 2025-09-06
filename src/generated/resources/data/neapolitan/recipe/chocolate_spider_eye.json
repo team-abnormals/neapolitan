@@ -9,7 +9,7 @@
       "item": "minecraft:spider_eye"
     },
     {
-      "item": "neapolitan:chocolate_bar"
+      "tag": "c:foods/chocolate_bar"
     }
   ],
   "result": {

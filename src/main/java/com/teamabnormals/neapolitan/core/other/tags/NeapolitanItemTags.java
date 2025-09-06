@@ -16,10 +16,10 @@ public class NeapolitanItemTags {
 
 	public static final TagKey<Item> BOTTLES = TagUtil.itemTag("c", "bottles");
 	public static final TagKey<Item> BOTTLES_MILK = TagUtil.itemTag("c", "bottles/milk");
-	public static final TagKey<Item> FRUITS = TagUtil.itemTag("c", "fruits");
-	public static final TagKey<Item> FRUITS_BANANA = TagUtil.itemTag("c", "fruits/banana");
-	public static final TagKey<Item> FRUITS_STRAWBERRY = TagUtil.itemTag("c", "fruits/strawberry");
+	public static final TagKey<Item> FOODS_BANANA = TagUtil.itemTag("c", "foods/banana");
+	public static final TagKey<Item> FOODS_STRAWBERRY = TagUtil.itemTag("c", "foods/strawberry");
 	public static final TagKey<Item> SEEDS_STRAWBERRY = TagUtil.itemTag("c", "seeds/strawberry");
+	public static final TagKey<Item> FOODS_CHOCOLATE_BAR = TagUtil.itemTag("c", "foods/chocolate_bar");
 	public static final TagKey<Item> ICE_CUBES = TagUtil.itemTag("c", "ice_cubes");
 
 	private static TagKey<Item> itemTag(String name) {

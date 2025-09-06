@@ -3,7 +3,7 @@
   "category": "misc",
   "ingredients": [
     {
-      "tag": "c:fruits/strawberry"
+      "tag": "c:foods/strawberry"
     },
     {
       "item": "neapolitan:ice_cubes"

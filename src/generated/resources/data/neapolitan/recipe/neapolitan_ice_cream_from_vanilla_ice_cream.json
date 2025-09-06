@@ -6,10 +6,10 @@
       "item": "neapolitan:vanilla_ice_cream"
     },
     {
-      "item": "neapolitan:chocolate_bar"
+      "tag": "c:foods/chocolate_bar"
     },
     {
-      "tag": "c:fruits/strawberry"
+      "tag": "c:foods/strawberry"
     }
   ],
   "result": {

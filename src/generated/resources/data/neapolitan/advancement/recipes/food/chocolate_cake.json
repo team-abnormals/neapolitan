@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "neapolitan:chocolate_bar"
+            "items": "#c:foods/chocolate_bar"
           }
         ]
       },

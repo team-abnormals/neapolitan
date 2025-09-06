@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "#c:fruits/strawberry"
+            "items": "#c:foods/strawberry"
           }
         ]
       },

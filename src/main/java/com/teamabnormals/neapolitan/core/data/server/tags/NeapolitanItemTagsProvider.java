@@ -52,9 +52,11 @@ public class NeapolitanItemTagsProvider extends ItemTagsProvider {
 		this.tag(NeapolitanItemTags.BOTTLES_MILK).add(MILK_BOTTLE.get());
 		this.tag(Tags.Items.SEEDS).addTag(NeapolitanItemTags.SEEDS_STRAWBERRY);
 		this.tag(NeapolitanItemTags.SEEDS_STRAWBERRY).add(STRAWBERRY_PIPS.get());
-		this.tag(NeapolitanItemTags.FRUITS).addTag(NeapolitanItemTags.FRUITS_STRAWBERRY).addTag(NeapolitanItemTags.FRUITS_BANANA);
-		this.tag(NeapolitanItemTags.FRUITS_STRAWBERRY).add(STRAWBERRIES.get());
-		this.tag(NeapolitanItemTags.FRUITS_BANANA).add(BANANA.get());
+		this.tag(Tags.Items.FOODS_FRUIT).addTag(NeapolitanItemTags.FOODS_STRAWBERRY).addTag(NeapolitanItemTags.FOODS_BANANA);
+		this.tag(Tags.Items.FOODS_BERRY).addTag(NeapolitanItemTags.FOODS_STRAWBERRY);
+		this.tag(NeapolitanItemTags.FOODS_STRAWBERRY).add(STRAWBERRIES.get());
+		this.tag(NeapolitanItemTags.FOODS_BANANA).add(BANANA.get());
+		this.tag(NeapolitanItemTags.FOODS_CHOCOLATE_BAR).add(CHOCOLATE_BAR.get());
 		this.tag(NeapolitanItemTags.ICE_CUBES).add(ICE_CUBES.get());
 		this.tag(BlueprintItemTags.MILK).addTag(NeapolitanItemTags.BOTTLES_MILK);
 		this.tag(ItemTags.CHICKEN_FOOD).add(STRAWBERRY_PIPS.get());

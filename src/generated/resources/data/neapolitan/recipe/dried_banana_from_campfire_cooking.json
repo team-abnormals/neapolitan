@@ -4,7 +4,7 @@
   "cookingtime": 600,
   "experience": 0.35,
   "ingredient": {
-    "tag": "c:fruits/banana"
+    "tag": "c:foods/banana"
   },
   "result": {
     "count": 1,
