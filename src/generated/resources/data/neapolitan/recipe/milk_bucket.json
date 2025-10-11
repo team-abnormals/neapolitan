@@ -3,13 +3,13 @@
   "category": "misc",
   "ingredients": [
     {
-      "tag": "c:bottles/milk"
+      "item": "neapolitan:milk_bottle"
     },
     {
-      "tag": "c:bottles/milk"
+      "item": "neapolitan:milk_bottle"
     },
     {
-      "tag": "c:bottles/milk"
+      "item": "neapolitan:milk_bottle"
     },
     {
       "item": "minecraft:bucket"

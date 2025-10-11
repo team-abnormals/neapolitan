@@ -28,7 +28,7 @@ public class NeapolitanBiomeTagsProvider extends BiomeTagsProvider {
 	protected void addTags(HolderLookup.Provider provider) {
 		this.tag(NeapolitanBiomes.STRAWBERRY_FIELDS,
 				BiomeTags.IS_OVERWORLD,
-				BiomeTags.HAS_MINESHAFT, BiomeTags.STRONGHOLD_BIASED_TO, BiomeTags.HAS_RUINED_PORTAL_STANDARD,
+				BiomeTags.HAS_MINESHAFT, BiomeTags.HAS_TRIAL_CHAMBERS, BiomeTags.STRONGHOLD_BIASED_TO, BiomeTags.HAS_RUINED_PORTAL_STANDARD,
 				Tags.Biomes.IS_PLAINS, Tags.Biomes.IS_RARE
 		);
 

@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "#c:bottles/milk"
+            "items": "neapolitan:milk_bottle"
           }
         ]
       },

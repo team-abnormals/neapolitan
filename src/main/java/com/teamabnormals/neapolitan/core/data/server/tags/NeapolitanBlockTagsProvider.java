@@ -3,18 +3,19 @@ package com.teamabnormals.neapolitan.core.data.server.tags;
 import com.teamabnormals.blueprint.core.other.tags.BlueprintBlockTags;
 import com.teamabnormals.neapolitan.common.block.FlavoredCandleCakeBlock;
 import com.teamabnormals.neapolitan.core.Neapolitan;
-import com.teamabnormals.neapolitan.core.other.tags.NeapolitanBlockTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Blocks;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import java.util.concurrent.CompletableFuture;
 
+import static com.teamabnormals.neapolitan.core.other.tags.NeapolitanBlockTags.*;
 import static com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks.*;
 
 public class NeapolitanBlockTagsProvider extends BlockTagsProvider {
@@ -23,6 +24,7 @@ public class NeapolitanBlockTagsProvider extends BlockTagsProvider {
 		super(output, provider, Neapolitan.MOD_ID, helper);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void addTags(HolderLookup.Provider provider) {
 		this.tag(BlockTags.CAULDRONS).add(MILK_CAULDRON.get(), VANILLA_MILKSHAKE_CAULDRON.get(), CHOCOLATE_MILKSHAKE_CAULDRON.get(), STRAWBERRY_MILKSHAKE_CAULDRON.get(), BANANA_MILKSHAKE_CAULDRON.get(), MINT_MILKSHAKE_CAULDRON.get(), ADZUKI_MILKSHAKE_CAULDRON.get());
@@ -33,29 +35,31 @@ public class NeapolitanBlockTagsProvider extends BlockTagsProvider {
 		this.tag(BlockTags.STAIRS).add(CHOCOLATE_BRICK_STAIRS.get(), CHOCOLATE_TILE_STAIRS.get(), FROND_THATCH_STAIRS.get());
 		this.tag(BlockTags.WALLS).add(CHOCOLATE_BRICK_WALL.get(), CHOCOLATE_TILE_WALL.get());
 		this.tag(BlockTags.FLOWER_POTS).add(POTTED_VANILLA_VINE.get(), POTTED_MINT.get(), POTTED_BANANA_FROND.get());
+		this.tag(BlockTags.SWORD_EFFICIENT).add(VANILLA_VINE.get(), VANILLA_VINE_PLANT.get(), STRAWBERRY_BUSH.get(), MINT.get(), BANANA_FROND.get(), ADZUKI_SPROUTS.get());
+		this.tag(Tags.Blocks.STORAGE_BLOCKS).add(CHOCOLATE_BLOCK.get(), VANILLA_POD_BLOCK.get(), DRIED_VANILLA_POD_BLOCK.get(), STRAWBERRY_BASKET.get(), WHITE_STRAWBERRY_BASKET.get(), BANANA_CRATE.get(), MINT_BASKET.get(), ADZUKI_CRATE.get(), ROASTED_ADZUKI_CRATE.get());
 
 		this.tag(BlueprintBlockTags.NOTE_BLOCK_TOP_INSTRUMENTS).add(CHIMPANZEE_HEAD.get());
 
-		this.tag(NeapolitanBlockTags.CHIMPANZEE_JUMPING_BLOCKS).addTag(BlockTags.BEDS).add(Blocks.SLIME_BLOCK);
-		this.tag(NeapolitanBlockTags.UNAFFECTED_BY_MINT).add(MINT.get());
-		this.tag(NeapolitanBlockTags.VANILLA_PLANTABLE_ON).addTag(BlockTags.LEAVES).addTag(BlockTags.LOGS_THAT_BURN).addTag(BlockTags.DIRT);
+		this.tag(CHIMPANZEE_JUMPING_BLOCKS).addTag(BlockTags.BEDS).add(Blocks.SLIME_BLOCK);
+		this.tag(UNAFFECTED_BY_MINT).add(MINT.get());
+		this.tag(VANILLA_PLANTABLE_ON).addTags(BlockTags.LEAVES, BlockTags.LOGS_THAT_BURN, BlockTags.DIRT);
 
-		this.tag(NeapolitanBlockTags.DROPS_VANILLA_CAKE_SLICE).add(VANILLA_CAKE.get());
-		this.tag(NeapolitanBlockTags.DROPS_CHOCOLATE_CAKE_SLICE).add(CHOCOLATE_CAKE.get());
-		this.tag(NeapolitanBlockTags.DROPS_STRAWBERRY_CAKE_SLICE).add(STRAWBERRY_CAKE.get());
-		this.tag(NeapolitanBlockTags.DROPS_BANANA_CAKE_SLICE).add(BANANA_CAKE.get());
-		this.tag(NeapolitanBlockTags.DROPS_MINT_CAKE_SLICE).add(MINT_CAKE.get());
-		this.tag(NeapolitanBlockTags.DROPS_ADZUKI_CAKE_SLICE).add(ADZUKI_CAKE.get());
+		this.tag(DROPS_VANILLA_CAKE_SLICE).add(VANILLA_CAKE.get());
+		this.tag(DROPS_CHOCOLATE_CAKE_SLICE).add(CHOCOLATE_CAKE.get());
+		this.tag(DROPS_STRAWBERRY_CAKE_SLICE).add(STRAWBERRY_CAKE.get());
+		this.tag(DROPS_BANANA_CAKE_SLICE).add(BANANA_CAKE.get());
+		this.tag(DROPS_MINT_CAKE_SLICE).add(MINT_CAKE.get());
+		this.tag(DROPS_ADZUKI_CAKE_SLICE).add(ADZUKI_CAKE.get());
 
 		FlavoredCandleCakeBlock.getCandleCakes().forEach(block -> {
 			String name = BuiltInRegistries.BLOCK.getKey(block).getPath();
 			this.tag(BlockTags.CANDLE_CAKES).add(block);
-			if (name.contains("vanilla")) this.tag(NeapolitanBlockTags.DROPS_VANILLA_CAKE_SLICE).add(block);
-			if (name.contains("chocolate")) this.tag(NeapolitanBlockTags.DROPS_CHOCOLATE_CAKE_SLICE).add(block);
-			if (name.contains("strawberry")) this.tag(NeapolitanBlockTags.DROPS_STRAWBERRY_CAKE_SLICE).add(block);
-			if (name.contains("banana")) this.tag(NeapolitanBlockTags.DROPS_BANANA_CAKE_SLICE).add(block);
-			if (name.contains("mint")) this.tag(NeapolitanBlockTags.DROPS_MINT_CAKE_SLICE).add(block);
-			if (name.contains("adzuki")) this.tag(NeapolitanBlockTags.DROPS_ADZUKI_CAKE_SLICE).add(block);
+			if (name.contains("vanilla")) this.tag(DROPS_VANILLA_CAKE_SLICE).add(block);
+			if (name.contains("chocolate")) this.tag(DROPS_CHOCOLATE_CAKE_SLICE).add(block);
+			if (name.contains("strawberry")) this.tag(DROPS_STRAWBERRY_CAKE_SLICE).add(block);
+			if (name.contains("banana")) this.tag(DROPS_BANANA_CAKE_SLICE).add(block);
+			if (name.contains("mint")) this.tag(DROPS_MINT_CAKE_SLICE).add(block);
+			if (name.contains("adzuki")) this.tag(DROPS_ADZUKI_CAKE_SLICE).add(block);
 		});
 	}
 }
