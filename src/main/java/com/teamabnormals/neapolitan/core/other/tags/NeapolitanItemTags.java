@@ -21,6 +21,7 @@ public class NeapolitanItemTags {
 
 	public static final TagKey<Item> FOODS_ICE_CREAM = TagUtil.itemTag("c", "foods/ice_cream");
 	public static final TagKey<Item> FOODS_CAKE = TagUtil.itemTag("c", "foods/cake");
+	public static final TagKey<Item> FOODS_PASTRY = TagUtil.itemTag("c", "foods/pastry");
 	public static final TagKey<Item> DRINKS_MILKSHAKE = TagUtil.itemTag("c", "drinks/milkshake");
 
 	private static TagKey<Item> itemTag(String name) {

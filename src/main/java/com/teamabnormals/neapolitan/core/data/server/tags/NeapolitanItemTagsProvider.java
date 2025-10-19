@@ -57,9 +57,9 @@ public class NeapolitanItemTagsProvider extends ItemTagsProvider {
 		this.tag(Tags.Items.SEEDS).addTag(SEEDS_STRAWBERRY);
 		this.tag(SEEDS_STRAWBERRY).add(STRAWBERRY_PIPS.get());
 
-		this.tag(Tags.Items.FOODS).addTags(FOODS_ICE_CREAM).add(
+		this.tag(Tags.Items.FOODS).addTags(FOODS_ICE_CREAM, FOODS_PASTRY).add(
 				NeapolitanItems.ICE_CUBES.get(),
-				WHITE_STRAWBERRIES.get(), CHOCOLATE_STRAWBERRIES.get(), STRAWBERRY_SCONES.get(),
+				WHITE_STRAWBERRIES.get(), CHOCOLATE_STRAWBERRIES.get(),
 				DRIED_VANILLA_PODS.get(), VANILLA_FUDGE.get(), VANILLA_PUDDING.get(),
 				DRIED_BANANA.get(), VANILLA_CHOCOLATE_FINGERS.get(),
 				MINT_LEAVES.get(), ROASTED_ADZUKI_BEANS.get(), ADZUKI_CURRY.get()
@@ -69,7 +69,6 @@ public class NeapolitanItemTagsProvider extends ItemTagsProvider {
 		this.tag(Tags.Items.FOODS_FRUIT).addTag(FOODS_STRAWBERRY).addTag(FOODS_BANANA);
 		this.tag(Tags.Items.FOODS_RAW_MEAT).add(MINT_CHOPS.get());
 		this.tag(Tags.Items.FOODS_COOKED_MEAT).add(COOKED_MINT_CHOPS.get());
-		this.tag(Tags.Items.FOODS_BREAD).add(BANANA_BREAD.get(), ADZUKI_BUN.get());
 		this.tag(Tags.Items.FOODS_FOOD_POISONING).add(CHOCOLATE_SPIDER_EYE.get());
 		this.tag(Tags.Items.FOODS_CANDY).add(CHOCOLATE_BAR.get(), MINT_CHOCOLATE.get(), MINT_CANDIES.get(), STRAWBERRY_BEAN_BONBONS.get());
 		this.tag(Tags.Items.FOODS_SOUP).add(ADZUKI_STEW.get());
@@ -79,6 +78,7 @@ public class NeapolitanItemTagsProvider extends ItemTagsProvider {
 		this.tag(FOODS_CHOCOLATE_BAR).add(CHOCOLATE_BAR.get());
 		this.tag(FOODS_ICE_CREAM).add(CHOCOLATE_ICE_CREAM.get(), VANILLA_ICE_CREAM.get(), STRAWBERRY_ICE_CREAM.get(), BANANA_ICE_CREAM.get(), MINT_ICE_CREAM.get(), ADZUKI_ICE_CREAM.get(), NEAPOLITAN_ICE_CREAM.get());
 		this.tag(FOODS_CAKE).add(CHOCOLATE_CAKE.get(), VANILLA_CAKE.get(), STRAWBERRY_CAKE.get(), BANANA_CAKE.get(), MINT_CAKE.get(), ADZUKI_CAKE.get());
+		this.tag(FOODS_PASTRY).add(STRAWBERRY_SCONES.get(), BANANA_BREAD.get(), ADZUKI_BUN.get());
 
 		this.tag(Tags.Items.DRINKS).addTags(DRINKS_MILKSHAKE).add(STRAWBERRY_BANANA_SMOOTHIE.get());
 		this.tag(Tags.Items.DRINKS_MILK).add(MILK_BOTTLE.get());
