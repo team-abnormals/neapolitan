@@ -1,0 +1,8 @@
+{
+  "description": {
+    "color": "#DB95CC",
+    "translate": "flavor.neapolitan.strawberry"
+  },
+  "ingredient": "neapolitan:strawberries",
+  "milkshake_cauldron": "neapolitan:strawberry_milkshake_cauldron"
+}

@@ -6,6 +6,11 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 
 public class NeapolitanItemTags {
+	public static final TagKey<Item> ICE_CREAM_INGREDIENTS = itemTag("ice_cream_ingredients");
+	public static final TagKey<Item> ICE_CREAM_FLAVORS = itemTag("ice_cream_flavors");
+	public static final TagKey<Item> ICE_CREAM_SWEETENERS = itemTag("ice_cream_sweeteners");
+	public static final TagKey<Item> ICE_CREAM_CONTAINERS = itemTag("ice_cream_containers");
+
 	public static final TagKey<Item> CHIMPANZEE_FOOD = itemTag("chimpanzee_food");
 	public static final TagKey<Item> CHIMPANZEE_SNACKS = itemTag("chimpanzee_snacks");
 	public static final TagKey<Item> CHIMPANZEE_APE_MODE_ITEMS = itemTag("chimpanzee_ape_mode_items");

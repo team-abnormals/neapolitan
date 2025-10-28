@@ -6,7 +6,18 @@
       "item": "minecraft:snow_block"
     },
     "X": {
-      "item": "neapolitan:banana_ice_cream"
+      "type": "neoforge:components",
+      "components": {
+        "neapolitan:ice_cream": {
+          "primary_flavor": "neapolitan:banana",
+          "secondary_flavor": "neapolitan:banana",
+          "tertiary_flavor": "neapolitan:banana"
+        }
+      },
+      "items": [
+        "neapolitan:ice_cream",
+        "neapolitan:ice_cream_cone"
+      ]
     }
   },
   "pattern": [

@@ -1,11 +1,14 @@
 package com.teamabnormals.neapolitan.core.data.server;
 
+import com.teamabnormals.neapolitan.core.other.NeapolitanDataMaps;
+import com.teamabnormals.neapolitan.core.other.NeapolitanDataMaps.ChillboxFuel;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanEntityTypes;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.common.data.DataMapProvider;
 import net.neoforged.neoforge.registries.datamaps.builtin.Compostable;
 import net.neoforged.neoforge.registries.datamaps.builtin.FurnaceFuel;
@@ -24,6 +27,12 @@ public class NeapolitanDataMapProvider extends DataMapProvider {
 	protected void gather(Provider provider) {
 		this.builder(NeoForgeDataMaps.PARROT_IMITATIONS)
 				.add(NeapolitanEntityTypes.PLANTAIN_SPIDER, new ParrotImitation(SoundEvents.PARROT_IMITATE_SPIDER), false);
+
+		this.builder(NeapolitanDataMaps.CHILLBOX_FUELS)
+				.add(NeapolitanItems.ICE_CUBES, new ChillboxFuel(150), false)
+				.add(Items.ICE.builtInRegistryHolder(), new ChillboxFuel(1350), false)
+				.add(Items.PACKED_ICE.builtInRegistryHolder(), new ChillboxFuel(12000), false)
+				.add(Items.BLUE_ICE.builtInRegistryHolder(), new ChillboxFuel(100000), false);
 
 		this.builder(NeoForgeDataMaps.FURNACE_FUELS)
 				.add(NeapolitanBlocks.BANANA_FROND.getId(), new FurnaceFuel(100), false)

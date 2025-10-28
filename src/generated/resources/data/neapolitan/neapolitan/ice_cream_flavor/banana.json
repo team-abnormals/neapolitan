@@ -1,0 +1,8 @@
+{
+  "description": {
+    "color": "#F4B858",
+    "translate": "flavor.neapolitan.banana"
+  },
+  "ingredient": "neapolitan:banana",
+  "milkshake_cauldron": "neapolitan:banana_milkshake_cauldron"
+}

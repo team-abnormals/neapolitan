@@ -12,7 +12,18 @@
       "item": "minecraft:glass_bottle"
     },
     {
-      "item": "neapolitan:mint_ice_cream"
+      "type": "neoforge:components",
+      "components": {
+        "neapolitan:ice_cream": {
+          "primary_flavor": "neapolitan:mint",
+          "secondary_flavor": "neapolitan:mint",
+          "tertiary_flavor": "neapolitan:mint"
+        }
+      },
+      "items": [
+        "neapolitan:ice_cream",
+        "neapolitan:ice_cream_cone"
+      ]
     },
     {
       "tag": "c:milk"

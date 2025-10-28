@@ -45,7 +45,9 @@ public class Neapolitan {
 		NeapolitanParticleTypes.PARTICLE_TYPES.register(bus);
 		NeapolitanDecoratedPotPatterns.DECORATED_POT_PATTERNS.register(bus);
 		NeapolitanEntityDataSerializers.ENTITY_DATA_SERIALIZERS.register(bus);
+		NeapolitanDataComponents.DATA_COMPONENTS.register(bus);
 		NeapolitanCriteriaTriggers.TRIGGERS.register(bus);
+		NeapolitanMenuTypes.MENU_TYPES.register(bus);
 
 		bus.addListener(NeapolitanRegistries::registerRegistries);
 
@@ -93,8 +95,8 @@ public class Neapolitan {
 
 		boolean client = event.includeClient();
 		generator.addProvider(client, new NeapolitanBlockStateProvider(output, helper));
-		generator.addProvider(client, new NeapolitanItemModelProvider(output, helper));
 		generator.addProvider(client, new NeapolitanSpriteSourceProvider(output, provider, helper));
+		generator.addProvider(client, new NeapolitanItemModelProvider(output, helper));
 //		generator.addProvider(includeClient, new NeapolitanLanguageProvider(output));
 
 		generator.addProvider(client, new GalleryItemModelProvider(MOD_ID, output, helper, provider));

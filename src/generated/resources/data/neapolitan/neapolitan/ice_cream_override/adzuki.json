@@ -1,0 +1,14 @@
+{
+  "bowl_description": {
+    "translate": "item.neapolitan.adzuki_ice_cream"
+  },
+  "bowl_item_model": "neapolitan:adzuki_ice_cream",
+  "cone_description": {
+    "translate": "item.neapolitan.adzuki_ice_cream_cone"
+  },
+  "ice_cream": {
+    "primary_flavor": "neapolitan:adzuki",
+    "secondary_flavor": "neapolitan:adzuki",
+    "tertiary_flavor": "neapolitan:adzuki"
+  }
+}

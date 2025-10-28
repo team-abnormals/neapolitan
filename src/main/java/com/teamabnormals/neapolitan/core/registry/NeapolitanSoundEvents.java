@@ -12,13 +12,13 @@ public class NeapolitanSoundEvents {
 	public static final SoundSubRegistryHelper SOUND_EVENTS = Neapolitan.REGISTRY_HELPER.getSoundSubHelper();
 
 	public static final DeferredHolder<SoundEvent, SoundEvent> HULLABALOO = SOUND_EVENTS.createSoundEvent("music.record.hullabaloo");
-	
+
 	public static final DeferredHolder<SoundEvent, SoundEvent> BANANA_STALK_BREAK = SOUND_EVENTS.createSoundEvent("block.banana_stalk.break");
 	public static final DeferredHolder<SoundEvent, SoundEvent> BANANA_STALK_FALL = SOUND_EVENTS.createSoundEvent("block.banana_stalk.fall");
 	public static final DeferredHolder<SoundEvent, SoundEvent> BANANA_STALK_HIT = SOUND_EVENTS.createSoundEvent("block.banana_stalk.hit");
 	public static final DeferredHolder<SoundEvent, SoundEvent> BANANA_STALK_PLACE = SOUND_EVENTS.createSoundEvent("block.banana_stalk.place");
 	public static final DeferredHolder<SoundEvent, SoundEvent> BANANA_STALK_STEP = SOUND_EVENTS.createSoundEvent("block.banana_stalk.step");
-	
+
 	public static final DeferredHolder<SoundEvent, SoundEvent> NOTE_BLOCK_IMITATE_CHIMPANZEE = SOUND_EVENTS.createSoundEvent("block.note_block.imitate.chimpanzee");
 
 	public static final DeferredHolder<SoundEvent, SoundEvent> CHIMPANZEE_SCREAM = SOUND_EVENTS.createSoundEvent("entity.chimpanzee.scream");

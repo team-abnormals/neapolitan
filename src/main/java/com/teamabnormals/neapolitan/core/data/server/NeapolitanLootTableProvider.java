@@ -77,6 +77,8 @@ public class NeapolitanLootTableProvider extends LootTableProvider {
 		public void generate() {
 			RegistryLookup<Enchantment> enchantments = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
 
+			this.add(CHILLBOX.get(), this::createNameableBlockEntityTable);
+
 			this.add(VANILLA_CAKE.get(), noDrop());
 			this.add(CHOCOLATE_CAKE.get(), noDrop());
 			this.add(STRAWBERRY_CAKE.get(), noDrop());

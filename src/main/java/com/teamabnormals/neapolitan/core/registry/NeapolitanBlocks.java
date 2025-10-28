@@ -21,17 +21,17 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
-import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
 import java.util.function.ToIntFunction;
 
-import static net.minecraft.world.item.CreativeModeTabs.BUILDING_BLOCKS;
-import static net.minecraft.world.item.CreativeModeTabs.NATURAL_BLOCKS;
+import static net.minecraft.world.item.CreativeModeTabs.*;
 import static net.minecraft.world.item.crafting.Ingredient.of;
 
 public class NeapolitanBlocks {
 	public static final BlockSubRegistryHelper BLOCKS = Neapolitan.REGISTRY_HELPER.getBlockSubHelper();
+
+	public static final DeferredBlock<Block> CHILLBOX = BLOCKS.createBlock("chillbox", () -> new ChillboxBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BARREL)));
 
 	public static final DeferredBlock<Block> VANILLA_ICE_CREAM_BLOCK = BLOCKS.createBlock("vanilla_ice_cream_block", () -> new Block(NeapolitanBlockProperties.VANILLA_ICE_CREAM_BLOCK));
 	public static final DeferredBlock<Block> CHOCOLATE_ICE_CREAM_BLOCK = BLOCKS.createBlock("chocolate_ice_cream_block", () -> new Block(NeapolitanBlockProperties.CHOCOLATE_ICE_CREAM_BLOCK));
@@ -220,6 +220,10 @@ public class NeapolitanBlocks {
 						CHOCOLATE_BLOCK, CHOCOLATE_BRICKS, CHOCOLATE_BRICK_STAIRS, CHOCOLATE_BRICK_SLAB, CHOCOLATE_BRICK_WALL, CHISELED_CHOCOLATE_BRICKS, CHOCOLATE_TILES, CHOCOLATE_TILE_STAIRS, CHOCOLATE_TILE_SLAB, CHOCOLATE_TILE_WALL,
 						VANILLA_ICE_CREAM_BLOCK, CHOCOLATE_ICE_CREAM_BLOCK, STRAWBERRY_ICE_CREAM_BLOCK, BANANA_ICE_CREAM_BLOCK, MINT_ICE_CREAM_BLOCK, ADZUKI_ICE_CREAM_BLOCK
 				)
+				.tab(FUNCTIONAL_BLOCKS)
+				.addItemsAfter(of(Blocks.CAULDRON), CHILLBOX)
+				.tab(REDSTONE_BLOCKS)
+				.addItemsAfter(of(Blocks.CAULDRON), CHILLBOX)
 				.tab(NATURAL_BLOCKS)
 				.addItemsAfter(of(Blocks.ROOTED_DIRT), ADZUKI_SOIL)
 				.addItemsAfter(of(Items.COCOA_BEANS), MAGIC_BEANS)

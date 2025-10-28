@@ -2,9 +2,13 @@ package com.teamabnormals.neapolitan.core.other;
 
 import com.teamabnormals.blueprint.core.util.BlockUtil;
 import com.teamabnormals.blueprint.core.util.DataUtil;
+import com.teamabnormals.neapolitan.common.item.component.IceCreamFlavor;
 import com.teamabnormals.neapolitan.core.NeapolitanConfig;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanDataComponents;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanRegistries;
+import net.minecraft.core.Holder.Reference;
 import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.core.cauldron.CauldronInteraction.InteractionMap;
 import net.minecraft.sounds.SoundEvents;
@@ -38,12 +42,17 @@ public class NeapolitanCauldronInteractions {
 		}
 
 		if (NeapolitanConfig.COMMON.milkshakeCauldrons.get()) {
-			addMilkshakeInteractions(NeapolitanItems.VANILLA_MILKSHAKE.get(), NeapolitanBlocks.VANILLA_MILKSHAKE_CAULDRON.get(), NeapolitanItems.VANILLA_ICE_CREAM.get(), VANILLA_MILKSHAKE.map());
-			addMilkshakeInteractions(NeapolitanItems.CHOCOLATE_MILKSHAKE.get(), NeapolitanBlocks.CHOCOLATE_MILKSHAKE_CAULDRON.get(), NeapolitanItems.CHOCOLATE_ICE_CREAM.get(), CHOCOLATE_MILKSHAKE.map());
-			addMilkshakeInteractions(NeapolitanItems.STRAWBERRY_MILKSHAKE.get(), NeapolitanBlocks.STRAWBERRY_MILKSHAKE_CAULDRON.get(), NeapolitanItems.STRAWBERRY_ICE_CREAM.get(), STRAWBERRY_MILKSHAKE.map());
-			addMilkshakeInteractions(NeapolitanItems.BANANA_MILKSHAKE.get(), NeapolitanBlocks.BANANA_MILKSHAKE_CAULDRON.get(), NeapolitanItems.BANANA_ICE_CREAM.get(), BANANA_MILKSHAKE.map());
-			addMilkshakeInteractions(NeapolitanItems.MINT_MILKSHAKE.get(), NeapolitanBlocks.MINT_MILKSHAKE_CAULDRON.get(), NeapolitanItems.MINT_ICE_CREAM.get(), MINT_MILKSHAKE.map());
-			addMilkshakeInteractions(NeapolitanItems.ADZUKI_MILKSHAKE.get(), NeapolitanBlocks.ADZUKI_MILKSHAKE_CAULDRON.get(), NeapolitanItems.ADZUKI_ICE_CREAM.get(), ADZUKI_MILKSHAKE.map());
+			addMilkshakeInteractions(NeapolitanItems.VANILLA_MILKSHAKE.get(), NeapolitanBlocks.VANILLA_MILKSHAKE_CAULDRON.get(), VANILLA_MILKSHAKE.map());
+			addMilkshakeInteractions(NeapolitanItems.CHOCOLATE_MILKSHAKE.get(), NeapolitanBlocks.CHOCOLATE_MILKSHAKE_CAULDRON.get(), CHOCOLATE_MILKSHAKE.map());
+			addMilkshakeInteractions(NeapolitanItems.STRAWBERRY_MILKSHAKE.get(), NeapolitanBlocks.STRAWBERRY_MILKSHAKE_CAULDRON.get(), STRAWBERRY_MILKSHAKE.map());
+			addMilkshakeInteractions(NeapolitanItems.BANANA_MILKSHAKE.get(), NeapolitanBlocks.BANANA_MILKSHAKE_CAULDRON.get(), BANANA_MILKSHAKE.map());
+			addMilkshakeInteractions(NeapolitanItems.MINT_MILKSHAKE.get(), NeapolitanBlocks.MINT_MILKSHAKE_CAULDRON.get(), MINT_MILKSHAKE.map());
+			addMilkshakeInteractions(NeapolitanItems.ADZUKI_MILKSHAKE.get(), NeapolitanBlocks.ADZUKI_MILKSHAKE_CAULDRON.get(), ADZUKI_MILKSHAKE.map());
+
+			if (NeapolitanConfig.COMMON.milkCauldron.get()) {
+				MILK.map().put(NeapolitanItems.ICE_CREAM.get(), emptyIceCream(Items.BOWL));
+				MILK.map().put(NeapolitanItems.ICE_CREAM_CONE.get(), emptyIceCream(NeapolitanItems.WAFFLE_CONE.get()));
+			}
 		}
 	}
 
@@ -93,21 +102,27 @@ public class NeapolitanCauldronInteractions {
 		});
 	}
 
-	public static void addMilkshakeInteractions(Item filledBottle, Block filledCauldron, Item iceCream, Map<Item, CauldronInteraction> map) {
+	public static void addMilkshakeInteractions(Item filledBottle, Block filledCauldron, Map<Item, CauldronInteraction> map) {
 		addMilkInteractions(filledBottle, filledCauldron, map);
-		if (NeapolitanConfig.COMMON.milkCauldron.get()) {
-			MILK.map().put(iceCream, (state, level, pos, player, hand, stack) -> {
-				if (!level.isClientSide) {
-					Item item = stack.getItem();
-					player.setItemInHand(hand, ItemUtils.createFilledResult(stack, player, new ItemStack(Items.BOWL)));
-					player.awardStat(Stats.USE_CAULDRON);
-					player.awardStat(Stats.ITEM_USED.get(item));
-					level.setBlockAndUpdate(pos, BlockUtil.transferAllBlockStates(level.getBlockState(pos), filledCauldron.defaultBlockState()));
-					level.playSound(null, pos, SoundEvents.BUCKET_EMPTY_POWDER_SNOW, SoundSource.BLOCKS, 1.0F, 1.0F);
-					level.gameEvent(null, GameEvent.FLUID_PLACE, pos);
+	}
+
+	public static CauldronInteraction emptyIceCream(Item returnItem) {
+		return (state, level, pos, player, hand, stack) -> {
+			for (Reference<IceCreamFlavor> flavor : level.registryAccess().registryOrThrow(NeapolitanRegistries.ICE_CREAM_FLAVOR).holders().toList()) {
+				if (stack.has(NeapolitanDataComponents.ICE_CREAM) && stack.get(NeapolitanDataComponents.ICE_CREAM).is(flavor.key()) && flavor.value().milkshakeCauldron().isPresent()) {
+					if (!level.isClientSide) {
+						Item item = stack.getItem();
+						player.setItemInHand(hand, ItemUtils.createFilledResult(stack, player, new ItemStack(returnItem)));
+						player.awardStat(Stats.USE_CAULDRON);
+						player.awardStat(Stats.ITEM_USED.get(item));
+						level.setBlockAndUpdate(pos, BlockUtil.transferAllBlockStates(level.getBlockState(pos), flavor.value().milkshakeCauldron().get().value().defaultBlockState()));
+						level.playSound(null, pos, SoundEvents.BUCKET_EMPTY_POWDER_SNOW, SoundSource.BLOCKS, 1.0F, 1.0F);
+						level.gameEvent(null, GameEvent.FLUID_PLACE, pos);
+					}
+					return ItemInteractionResult.sidedSuccess(level.isClientSide);
 				}
-				return ItemInteractionResult.sidedSuccess(level.isClientSide);
-			});
-		}
+			}
+			return ItemInteractionResult.FAIL;
+		};
 	}
 }

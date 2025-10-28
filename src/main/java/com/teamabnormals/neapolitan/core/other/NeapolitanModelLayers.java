@@ -3,6 +3,7 @@ package com.teamabnormals.neapolitan.core.other;
 import com.teamabnormals.neapolitan.client.model.BananaPeelModel;
 import com.teamabnormals.neapolitan.client.model.ChimpanzeeHeadModel;
 import com.teamabnormals.neapolitan.client.model.ChimpanzeeModel;
+import com.teamabnormals.neapolitan.client.renderer.blockentity.ChillboxRenderer;
 import com.teamabnormals.neapolitan.client.renderer.entity.BananaPeelRenderer;
 import com.teamabnormals.neapolitan.client.renderer.entity.BananarrowRenderer;
 import com.teamabnormals.neapolitan.client.renderer.entity.ChimpanzeeRenderer;
@@ -17,9 +18,13 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.RegisterMaterialAtlasesEvent;
 
 @EventBusSubscriber(modid = Neapolitan.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class NeapolitanModelLayers {
+	public static final ModelLayerLocation CHILLBOX_BASE = register("chillbox_base");
+	public static final ModelLayerLocation CHILLBOX_TOP = register("chillbox_top");
+
 	public static final ModelLayerLocation BANANA_PEEL = register("banana_peel");
 	public static final ModelLayerLocation CHIMPANZEE = register("chimpanzee");
 	public static final ModelLayerLocation CHIMPANZEE_HEAD = register("chimpanzee_head");
@@ -41,6 +46,8 @@ public class NeapolitanModelLayers {
 		event.registerLayerDefinition(CHIMPANZEE_INNER_ARMOR, () -> ChimpanzeeModel.createBodyLayer(0.5F, true, true));
 		event.registerLayerDefinition(CHIMPANZEE_OUTER_ARMOR, () -> ChimpanzeeModel.createBodyLayer(1.0F, true, false));
 		event.registerLayerDefinition(CHIMPANZEE_HEAD, ChimpanzeeHeadModel::createHeadLayer);
+		event.registerLayerDefinition(CHILLBOX_BASE, ChillboxRenderer::createBaseLayer);
+		event.registerLayerDefinition(CHILLBOX_TOP, ChillboxRenderer::createTopLayer);
 	}
 
 	@SubscribeEvent
@@ -50,11 +57,17 @@ public class NeapolitanModelLayers {
 		event.registerEntityRenderer(NeapolitanEntityTypes.BANANA_PEEL.get(), BananaPeelRenderer::new);
 		event.registerEntityRenderer(NeapolitanEntityTypes.BANANARROW.get(), BananarrowRenderer::new);
 
+		event.registerBlockEntityRenderer(NeapolitanBlockEntityTypes.CHILLBOX.get(), ChillboxRenderer::new);
 		event.registerBlockEntityRenderer(NeapolitanBlockEntityTypes.SKULL.get(), SkullBlockRenderer::new);
 	}
 
 	@SubscribeEvent
 	public static void createSkullModels(EntityRenderersEvent.CreateSkullModels event) {
 		event.registerSkullModel(NeapolitanSkullTypes.CHIMPANZEE, new ChimpanzeeHeadModel(event.getEntityModelSet().bakeLayer(CHIMPANZEE_HEAD)));
+	}
+
+	@SubscribeEvent
+	private static void registerAtlases(RegisterMaterialAtlasesEvent event) {
+		event.register(NeapolitanMaterials.CHILLBOX_SHEET, Neapolitan.location("chillbox"));
 	}
 }

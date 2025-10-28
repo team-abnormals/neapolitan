@@ -1,0 +1,6 @@
+{
+  "parent": "neapolitan:item/ice_cream",
+  "textures": {
+    "particle": "neapolitan:item/waffle_cone"
+  }
+}

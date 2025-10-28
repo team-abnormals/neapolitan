@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_chocolate_ice_cream": {
+    "has_ice_cream": {
       "conditions": {
         "items": [
           {
-            "items": "neapolitan:chocolate_ice_cream"
+            "items": "#c:foods/ice_cream"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_chocolate_ice_cream"
+      "has_ice_cream"
     ]
   ],
   "rewards": {

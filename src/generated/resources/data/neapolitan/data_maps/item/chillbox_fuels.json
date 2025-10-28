@@ -1,0 +1,16 @@
+{
+  "values": {
+    "minecraft:blue_ice": {
+      "chill_time": 100000
+    },
+    "minecraft:ice": {
+      "chill_time": 1350
+    },
+    "minecraft:packed_ice": {
+      "chill_time": 12000
+    },
+    "neapolitan:ice_cubes": {
+      "chill_time": 150
+    }
+  }
+}

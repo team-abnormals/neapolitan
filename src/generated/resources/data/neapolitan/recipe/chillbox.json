@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "tag": "minecraft:wooden_slabs"
+    },
+    "X": {
+      "item": "minecraft:blue_ice"
+    }
+  },
+  "pattern": [
+    "#X#",
+    "#X#",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "neapolitan:chillbox"
+  }
+}

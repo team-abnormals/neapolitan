@@ -49,6 +49,11 @@ public class NeapolitanItemTagsProvider extends ItemTagsProvider {
 		this.tag(CHIMPANZEE_SNACKS).add(BANANA.get(), BANANA_BUNCH.get(), BANANA_BREAD.get(), DRIED_BANANA.get(), BANANARROW.get(), Items.POTION);
 		this.tag(HIDES_CHIMPANZEE_EARS).addOptional(NeapolitanConstants.GRIEFER_HELMET).addOptional(NeapolitanConstants.SANGUINE_HELMET);
 
+		this.tag(ICE_CREAM_INGREDIENTS).addTags(ICE_CREAM_FLAVORS, ICE_CREAM_SWEETENERS, ICE_CREAM_CONTAINERS, Tags.Items.DRINKS_MILK);
+		this.tag(ICE_CREAM_FLAVORS).add(DRIED_VANILLA_PODS.get(), CHOCOLATE_BAR.get(), STRAWBERRIES.get(), BANANA.get(), MINT_LEAVES.get(), ROASTED_ADZUKI_BEANS.get());
+		this.tag(ICE_CREAM_SWEETENERS).add(Items.SUGAR);
+		this.tag(ICE_CREAM_CONTAINERS).add(Items.BOWL, WAFFLE_CONE.get());
+
 		this.tag(ItemTags.CHICKEN_FOOD).add(STRAWBERRY_PIPS.get());
 		this.tag(ItemTags.PARROT_FOOD).add(STRAWBERRY_PIPS.get());
 		this.tag(ItemTags.FOX_FOOD).add(STRAWBERRIES.get(), WHITE_STRAWBERRIES.get());
@@ -76,9 +81,9 @@ public class NeapolitanItemTagsProvider extends ItemTagsProvider {
 		this.tag(FOODS_STRAWBERRY).add(STRAWBERRIES.get());
 		this.tag(FOODS_BANANA).add(BANANA.get());
 		this.tag(FOODS_CHOCOLATE_BAR).add(CHOCOLATE_BAR.get());
-		this.tag(FOODS_ICE_CREAM).add(CHOCOLATE_ICE_CREAM.get(), VANILLA_ICE_CREAM.get(), STRAWBERRY_ICE_CREAM.get(), BANANA_ICE_CREAM.get(), MINT_ICE_CREAM.get(), ADZUKI_ICE_CREAM.get(), NEAPOLITAN_ICE_CREAM.get());
+		this.tag(FOODS_ICE_CREAM).add(ICE_CREAM.get(), ICE_CREAM_CONE.get());
 		this.tag(FOODS_CAKE).add(CHOCOLATE_CAKE.get(), VANILLA_CAKE.get(), STRAWBERRY_CAKE.get(), BANANA_CAKE.get(), MINT_CAKE.get(), ADZUKI_CAKE.get());
-		this.tag(FOODS_PASTRY).add(STRAWBERRY_SCONES.get(), BANANA_BREAD.get(), ADZUKI_BUN.get());
+		this.tag(FOODS_PASTRY).add(STRAWBERRY_SCONES.get(), WAFFLE_CONE.get(), BANANA_BREAD.get(), ADZUKI_BUN.get());
 
 		this.tag(Tags.Items.DRINKS).addTags(DRINKS_MILKSHAKE).add(STRAWBERRY_BANANA_SMOOTHIE.get());
 		this.tag(Tags.Items.DRINKS_MILK).add(MILK_BOTTLE.get());

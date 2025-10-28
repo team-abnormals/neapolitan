@@ -1,0 +1,8 @@
+{
+  "description": {
+    "color": "#E2CAA1",
+    "translate": "flavor.neapolitan.vanilla"
+  },
+  "ingredient": "neapolitan:dried_vanilla_pods",
+  "milkshake_cauldron": "neapolitan:vanilla_milkshake_cauldron"
+}

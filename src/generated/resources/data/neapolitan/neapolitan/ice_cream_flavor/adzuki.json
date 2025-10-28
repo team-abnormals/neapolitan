@@ -1,0 +1,8 @@
+{
+  "description": {
+    "color": "#ED7D83",
+    "translate": "flavor.neapolitan.adzuki"
+  },
+  "ingredient": "neapolitan:roasted_adzuki_beans",
+  "milkshake_cauldron": "neapolitan:adzuki_milkshake_cauldron"
+}

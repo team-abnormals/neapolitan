@@ -1,0 +1,8 @@
+{
+  "description": {
+    "color": "#59B788",
+    "translate": "flavor.neapolitan.mint"
+  },
+  "ingredient": "neapolitan:mint_leaves",
+  "milkshake_cauldron": "neapolitan:mint_milkshake_cauldron"
+}
