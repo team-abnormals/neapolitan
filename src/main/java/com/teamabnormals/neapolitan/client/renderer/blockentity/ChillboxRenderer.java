@@ -62,7 +62,7 @@ public class ChillboxRenderer implements BlockEntityRenderer<ChillboxBlockEntity
 			poseStack.translate(0.0, 0.0001, 0.0);
 			IceCream iceCream = blockEntity.getItem(ChillboxBlockEntity.RESULT_SLOT).get(NeapolitanDataComponents.ICE_CREAM);
 			for (int i = 1; i <= 3; i++) {
-				this.renderTop(this.top, poseStack, bufferSource, packedLight, packedOverlay, NeapolitanMaterials.getChillboxMaterial(iceCream.flavor(i).key(), i));
+				this.renderTop(this.top, poseStack, bufferSource, packedLight, packedOverlay, NeapolitanMaterials.getChillboxMaterial(iceCream.flavor(i).getKey(), i));
 			}
 		}
 

@@ -16,7 +16,7 @@ public interface IceCreamFlavorEffect {
 	IceCreamFlavorEffectType getType();
 
 
-	default FoodProperties modifyFoodProperties(FoodProperties properties, ServerLevel level, int flavorLevel, ItemStack stack, Entity entity) {
+	default FoodProperties modifyFoodProperties(FoodProperties properties, int flavorLevel, ItemStack stack, Entity entity) {
 		return properties;
 	}
 

@@ -47,9 +47,9 @@ public class IceCreamRenderer extends BlockEntityWithoutLevelRenderer {
 			poseStack.scale(-1.0F, 1.0F, -1.0F);
 
 			ResourceLocation[] flavors = new ResourceLocation[]{
-					iceCream.primaryFlavor().key().location(),
-					iceCream.secondaryFlavor().key().location(),
-					iceCream.tertiaryFlavor().key().location()
+					iceCream.primaryFlavor().getKey().location(),
+					iceCream.secondaryFlavor().getKey().location(),
+					iceCream.tertiaryFlavor().getKey().location()
 			};
 
 			String container = "bowl_";

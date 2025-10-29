@@ -34,7 +34,7 @@ public record ApplyMobEffect(HolderSet<MobEffect> toApply, LevelBasedValue minDu
 	).apply(instance, ApplyMobEffect::new));
 
 	@Override
-	public FoodProperties modifyFoodProperties(FoodProperties properties, ServerLevel level, int flavorLevel, ItemStack stack, Entity entity) {
+	public FoodProperties modifyFoodProperties(FoodProperties properties, int flavorLevel, ItemStack stack, Entity entity) {
 		ArrayList<PossibleEffect> possibleEffects = Lists.newArrayList(properties.effects());
 		if (entity instanceof LivingEntity living) {
 			RandomSource random = living.getRandom();

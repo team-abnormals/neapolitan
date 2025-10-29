@@ -15,7 +15,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.EitherHolder;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -34,12 +33,12 @@ public class IceCreamItem extends Item {
 	@Override
 	public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
 		// entity.setTicksFrozen(entity.getTicksFrozen() + 200);
-		if (stack.has(NeapolitanDataComponents.ICE_CREAM.get()) && level instanceof ServerLevel serverLevel) {
+		if (stack.has(NeapolitanDataComponents.ICE_CREAM.get()) && entity.level() instanceof ServerLevel serverLevel) {
 			IceCream iceCream = stack.get(NeapolitanDataComponents.ICE_CREAM.get());
 			iceCream.distinctFlavors().forEach(flavor -> {
-				flavor.unwrap(level.registryAccess()).ifPresent(holder -> holder.value().effects().forEach(effect -> {
+				flavor.value().effects().forEach(effect -> {
 					effect.finishUsingItem(serverLevel, iceCream.flavorCount(flavor), stack, entity);
-				}));
+				});
 			});
 		}
 
@@ -60,12 +59,11 @@ public class IceCreamItem extends Item {
 	@Override
 	public FoodProperties getFoodProperties(ItemStack stack, @Nullable LivingEntity entity) {
 		FoodProperties base = super.getFoodProperties(stack, entity);
-		if (stack.has(NeapolitanDataComponents.ICE_CREAM.get()) && entity != null && entity.level() instanceof ServerLevel serverLevel) {
+		if (stack.has(NeapolitanDataComponents.ICE_CREAM.get())) {
 			IceCream iceCream = stack.get(NeapolitanDataComponents.ICE_CREAM.get());
-			for (EitherHolder<IceCreamFlavor> flavor : iceCream.distinctFlavors()) {
-				Holder<IceCreamFlavor> holder = flavor.unwrap(entity.registryAccess()).get();
-				for (IceCreamFlavorEffect effect : holder.value().effects()) {
-					base = effect.modifyFoodProperties(base, serverLevel, iceCream.flavorCount(flavor), stack, entity);
+			for (Holder<IceCreamFlavor> flavor : iceCream.distinctFlavors()) {
+				for (IceCreamFlavorEffect effect : flavor.value().effects()) {
+					base = effect.modifyFoodProperties(base, iceCream.flavorCount(flavor), stack, entity);
 				}
 			}
 		}

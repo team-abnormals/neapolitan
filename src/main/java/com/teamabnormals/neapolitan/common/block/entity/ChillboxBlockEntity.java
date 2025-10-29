@@ -16,7 +16,6 @@ import net.minecraft.core.Holder.Reference;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.TagKey;
@@ -168,13 +167,13 @@ public class ChillboxBlockEntity extends BaseContainerBlockEntity implements Wor
 			return ItemStack.EMPTY;
 		}
 
-		ResourceKey<IceCreamFlavor>[] flavors = new ResourceKey[3];
+		Holder<IceCreamFlavor>[] flavors = new Holder[3];
 		for (int i = 1; i <= 3; i++) {
 			Optional<Reference<IceCreamFlavor>> flavor = IceCreamFlavor.getFromIngredient(access, inventory.get(i));
 			if (flavor.isEmpty()) {
 				return ItemStack.EMPTY;
 			} else {
-				flavors[i - 1] = flavor.get().key();
+				flavors[i - 1] = flavor.get();
 			}
 		}
 

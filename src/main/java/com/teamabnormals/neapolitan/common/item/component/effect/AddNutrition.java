@@ -17,7 +17,7 @@ public record AddNutrition(LevelBasedValue minNutrition, LevelBasedValue maxNutr
 	).apply(instance, AddNutrition::new));
 
 	@Override
-	public FoodProperties modifyFoodProperties(FoodProperties properties, ServerLevel level, int flavorLevel, ItemStack stack, Entity entity) {
+	public FoodProperties modifyFoodProperties(FoodProperties properties, int flavorLevel, ItemStack stack, Entity entity) {
 		int nutrition = properties.nutrition() + Math.round(Mth.randomBetween(entity.getRandom(), this.minNutrition.calculate(flavorLevel), this.maxNutrition.calculate(flavorLevel)));
 		return new FoodProperties(nutrition, properties.saturation(), properties.canAlwaysEat(), properties.eatSeconds(), properties.usingConvertsTo(), properties.effects());
 	}

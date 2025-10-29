@@ -1,5 +1,6 @@
 package com.teamabnormals.neapolitan.common.item.component;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -8,14 +9,16 @@ import com.teamabnormals.neapolitan.core.registry.NeapolitanDataComponents;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanRegistries;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
+import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.resources.RegistryFixedCodec;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.item.EitherHolder;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -27,40 +30,32 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
 
-public record IceCream(EitherHolder<IceCreamFlavor> primaryFlavor, EitherHolder<IceCreamFlavor> secondaryFlavor, EitherHolder<IceCreamFlavor> tertiaryFlavor, ArrayList<EitherHolder<IceCreamFlavor>> flavors) implements TooltipProvider {
+public record IceCream(Holder<IceCreamFlavor> primaryFlavor, Holder<IceCreamFlavor> secondaryFlavor, Holder<IceCreamFlavor> tertiaryFlavor, ImmutableList<Holder<IceCreamFlavor>> flavors) implements TooltipProvider {
 
 	public static final Codec<IceCream> CODEC = RecordCodecBuilder.create(
 			instance -> instance.group(
-							EitherHolder.codec(NeapolitanRegistries.ICE_CREAM_FLAVOR, IceCreamFlavor.CODEC).fieldOf("primary_flavor").forGetter(iceCream -> iceCream.primaryFlavor),
-							EitherHolder.codec(NeapolitanRegistries.ICE_CREAM_FLAVOR, IceCreamFlavor.CODEC).fieldOf("secondary_flavor").forGetter(iceCream -> iceCream.secondaryFlavor),
-							EitherHolder.codec(NeapolitanRegistries.ICE_CREAM_FLAVOR, IceCreamFlavor.CODEC).fieldOf("tertiary_flavor").forGetter(iceCream -> iceCream.tertiaryFlavor)
+							RegistryFixedCodec.create(NeapolitanRegistries.ICE_CREAM_FLAVOR).fieldOf("primary_flavor").forGetter(iceCream -> iceCream.primaryFlavor),
+							RegistryFixedCodec.create(NeapolitanRegistries.ICE_CREAM_FLAVOR).fieldOf("secondary_flavor").forGetter(iceCream -> iceCream.secondaryFlavor),
+							RegistryFixedCodec.create(NeapolitanRegistries.ICE_CREAM_FLAVOR).fieldOf("tertiary_flavor").forGetter(iceCream -> iceCream.tertiaryFlavor)
 					)
 					.apply(instance, IceCream::new)
 	);
 	public static final StreamCodec<RegistryFriendlyByteBuf, IceCream> STREAM_CODEC = StreamCodec.composite(
-			EitherHolder.streamCodec(NeapolitanRegistries.ICE_CREAM_FLAVOR, IceCreamFlavor.STREAM_CODEC), IceCream::primaryFlavor,
-			EitherHolder.streamCodec(NeapolitanRegistries.ICE_CREAM_FLAVOR, IceCreamFlavor.STREAM_CODEC), IceCream::secondaryFlavor,
-			EitherHolder.streamCodec(NeapolitanRegistries.ICE_CREAM_FLAVOR, IceCreamFlavor.STREAM_CODEC), IceCream::tertiaryFlavor,
+			ByteBufCodecs.holderRegistry(NeapolitanRegistries.ICE_CREAM_FLAVOR), IceCream::primaryFlavor,
+			ByteBufCodecs.holderRegistry(NeapolitanRegistries.ICE_CREAM_FLAVOR), IceCream::secondaryFlavor,
+			ByteBufCodecs.holderRegistry(NeapolitanRegistries.ICE_CREAM_FLAVOR), IceCream::tertiaryFlavor,
 			IceCream::new
 	);
 
-	public IceCream(EitherHolder<IceCreamFlavor> flavor) {
+	public IceCream(Holder<IceCreamFlavor> flavor) {
 		this(flavor, flavor, flavor);
 	}
 
-	public IceCream(ResourceKey<IceCreamFlavor> flavor) {
-		this(new EitherHolder<>(flavor));
+	public IceCream(Holder<IceCreamFlavor> primary, Holder<IceCreamFlavor> secondary, Holder<IceCreamFlavor> tertiary) {
+		this(primary, secondary, tertiary, ImmutableList.of(primary, secondary, tertiary));
 	}
 
-	public IceCream(ResourceKey<IceCreamFlavor> primary, ResourceKey<IceCreamFlavor> secondary, ResourceKey<IceCreamFlavor> tertiary) {
-		this(new EitherHolder<>(primary), new EitherHolder<>(secondary), new EitherHolder<>(tertiary));
-	}
-
-	public IceCream(EitherHolder<IceCreamFlavor> primary, EitherHolder<IceCreamFlavor> secondary, EitherHolder<IceCreamFlavor> tertiary) {
-		this(primary, secondary, tertiary, Lists.newArrayList(primary, secondary, tertiary));
-	}
-
-	public EitherHolder<IceCreamFlavor> flavor(int i) {
+	public Holder<IceCreamFlavor> flavor(int i) {
 		return switch (i) {
 			case 3 -> tertiaryFlavor;
 			case 2 -> secondaryFlavor;
@@ -68,22 +63,18 @@ public record IceCream(EitherHolder<IceCreamFlavor> primaryFlavor, EitherHolder<
 		};
 	}
 
-	public ArrayList<ResourceKey<IceCreamFlavor>> flavorsKeys() {
-		return new ArrayList<>(this.flavors.stream().map(EitherHolder::key).toList());
-	}
-
-	public ArrayList<EitherHolder<IceCreamFlavor>> distinctFlavors() {
+	public ArrayList<Holder<IceCreamFlavor>> distinctFlavors() {
 		return new ArrayList<>(this.flavors.stream().distinct().toList());
 	}
 
-	public int flavorCount(EitherHolder<IceCreamFlavor> flavor) {
+	public int flavorCount(Holder<IceCreamFlavor> flavor) {
 		return Collections.frequency(this.flavors, flavor);
 	}
 
 	private static final Component FLAVORS_TITLE = Component.translatable(Util.makeDescriptionId("item", Neapolitan.location("ice_cream.flavors"))).withStyle(ChatFormatting.GRAY);
 
 	public boolean is(ResourceKey<IceCreamFlavor> flavor1, ResourceKey<IceCreamFlavor> flavor2, ResourceKey<IceCreamFlavor> flavor3) {
-		return this.primaryFlavor.key().equals(flavor1) && this.secondaryFlavor.key().equals(flavor2) && this.tertiaryFlavor.key().equals(flavor3);
+		return this.primaryFlavor.is(flavor1) && this.secondaryFlavor.is(flavor2) && this.tertiaryFlavor.is(flavor3);
 	}
 
 	public boolean is(ResourceKey<IceCreamFlavor> flavor) {
@@ -91,12 +82,12 @@ public record IceCream(EitherHolder<IceCreamFlavor> primaryFlavor, EitherHolder<
 	}
 
 	public boolean is(IceCream iceCream) {
-		return this.is(iceCream.primaryFlavor().key(), iceCream.secondaryFlavor().key(), iceCream.tertiaryFlavor().key());
+		return this.is(iceCream.primaryFlavor().getKey(), iceCream.secondaryFlavor().getKey(), iceCream.tertiaryFlavor().getKey());
 	}
 
 	public boolean matches(IceCream iceCream) {
-		List<ResourceKey<IceCreamFlavor>> flavors1 = flavorsKeys();
-		for (ResourceKey<IceCreamFlavor> flavor : iceCream.flavorsKeys()) {
+		List<Holder<IceCreamFlavor>> flavors1 = Lists.newArrayList(this.flavors);
+		for (Holder<IceCreamFlavor> flavor : iceCream.flavors()) {
 			flavors1.remove(flavor);
 		}
 		return flavors1.isEmpty();
@@ -107,34 +98,32 @@ public record IceCream(EitherHolder<IceCreamFlavor> primaryFlavor, EitherHolder<
 		HolderLookup.Provider registries = context.registries();
 		if (registries != null) {
 			tooltipAdder.accept(FLAVORS_TITLE);
-			List<ResourceKey<IceCreamFlavor>> added = Lists.newArrayList();
-			this.flavors().forEach(holder -> {
-				holder.unwrap(registries).ifPresent(flavor -> {
-					if (!added.contains(flavor.getKey())) {
-						MutableComponent flavorComponent = CommonComponents.space().append(flavor.value().description());
-						int flavorCount = this.getFlavorCount(flavor.getKey());
-						if (flavorCount > 1) {
-							flavorComponent.append(Component.literal(" x" + flavorCount).withStyle(ChatFormatting.GRAY));
-							added.add(flavor.getKey());
-						}
-						tooltipAdder.accept(flavorComponent);
+			List<Holder<IceCreamFlavor>> added = Lists.newArrayList();
+			this.flavors().forEach(flavor -> {
+				if (!added.contains(flavor)) {
+					MutableComponent flavorComponent = CommonComponents.space().append(flavor.value().description());
+					int flavorCount = this.getFlavorCount(flavor.getKey());
+					if (flavorCount > 1) {
+						flavorComponent.append(Component.literal(" x" + flavorCount).withStyle(ChatFormatting.GRAY));
+						added.add(flavor);
 					}
-				});
+					tooltipAdder.accept(flavorComponent);
+				}
 			});
 		}
 	}
 
 	public int getFlavorCount(ResourceKey<IceCreamFlavor> flavor) {
-		return this.flavorsKeys().stream().filter(f -> f.equals(flavor)).toList().size();
+		return this.flavors().stream().filter(f -> f.is(flavor)).toList().size();
 	}
 
-	public static ItemStack setFlavors(ItemLike item, ResourceKey<IceCreamFlavor> flavor1, ResourceKey<IceCreamFlavor> flavor2, ResourceKey<IceCreamFlavor> flavor3) {
+	public static ItemStack setFlavors(ItemLike item, Holder<IceCreamFlavor> flavor1, Holder<IceCreamFlavor> flavor2, Holder<IceCreamFlavor> flavor3) {
 		ItemStack stack = new ItemStack(item);
 		stack.set(NeapolitanDataComponents.ICE_CREAM, new IceCream(flavor1, flavor2, flavor3));
 		return stack;
 	}
 
-	public static ItemStack setFlavor(ItemLike item, ResourceKey<IceCreamFlavor> flavor) {
+	public static ItemStack setFlavor(ItemLike item, Holder<IceCreamFlavor> flavor) {
 		return setFlavors(item, flavor, flavor, flavor);
 	}
 }
