@@ -6,7 +6,7 @@ import com.teamabnormals.neapolitan.common.item.*;
 import com.teamabnormals.neapolitan.common.item.component.IceCream;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanBannerPatternTags;
-import com.teamabnormals.neapolitan.core.registry.datapack.NeapolitanFlavors;
+import com.teamabnormals.neapolitan.core.registry.datapack.NeapolitanIceCreamFlavors;
 import com.teamabnormals.neapolitan.core.registry.datapack.NeapolitanJukeboxSongs;
 import com.teamabnormals.neapolitan.core.registry.datapack.NeapolitanTrimPatterns;
 import net.minecraft.core.Direction;
@@ -29,8 +29,8 @@ public class NeapolitanItems {
 	public static final DeferredItem<Item> ICE_CUBES = ITEMS.createItem("ice_cubes", () -> new IceCubesItem(new Item.Properties().food(NeapolitanFoods.ICE_CUBES)));
 	public static final DeferredItem<Item> WAFFLE_CONE = ITEMS.createItem("waffle_cone", () -> new Item(new Item.Properties().food(NeapolitanFoods.ICE_CUBES)));
 
-	public static final DeferredItem<Item> ICE_CREAM = ITEMS.createItem("ice_cream", () -> new IceCreamItem(new Item.Properties().food(NeapolitanFoods.ICE_CREAM).craftRemainder(Items.BOWL).stacksTo(1).component(NeapolitanDataComponents.ICE_CREAM.get(), new IceCream(NeapolitanFlavors.VANILLA, NeapolitanFlavors.CHOCOLATE, NeapolitanFlavors.STRAWBERRY))));
-	public static final DeferredItem<Item> ICE_CREAM_CONE = ITEMS.createItem("ice_cream_cone", () -> new IceCreamItem(new Item.Properties().food(NeapolitanFoods.ICE_CREAM_CONE).component(NeapolitanDataComponents.ICE_CREAM.get(), new IceCream(NeapolitanFlavors.VANILLA, NeapolitanFlavors.CHOCOLATE, NeapolitanFlavors.STRAWBERRY))));
+	public static final DeferredItem<Item> ICE_CREAM = ITEMS.createItem("ice_cream", () -> new IceCreamItem(new Item.Properties().food(NeapolitanFoods.ICE_CREAM).craftRemainder(Items.BOWL).stacksTo(1).component(NeapolitanDataComponents.ICE_CREAM.get(), new IceCream(NeapolitanIceCreamFlavors.VANILLA, NeapolitanIceCreamFlavors.CHOCOLATE, NeapolitanIceCreamFlavors.STRAWBERRY))));
+	public static final DeferredItem<Item> ICE_CREAM_CONE = ITEMS.createItem("ice_cream_cone", () -> new IceCreamItem(new Item.Properties().food(NeapolitanFoods.ICE_CREAM_CONE).component(NeapolitanDataComponents.ICE_CREAM.get(), new IceCream(NeapolitanIceCreamFlavors.VANILLA, NeapolitanIceCreamFlavors.CHOCOLATE, NeapolitanIceCreamFlavors.STRAWBERRY))));
 
 	public static final DeferredItem<Item> VANILLA_PODS = ITEMS.createItem("vanilla_pods", () -> new ItemNameBlockItem(NeapolitanBlocks.VANILLA_VINE.get(), new Item.Properties()));
 	public static final DeferredItem<Item> DRIED_VANILLA_PODS = ITEMS.createItem("dried_vanilla_pods", () -> new Item(new Item.Properties().food(NeapolitanFoods.DRIED_VANILLA_PODS)));
@@ -110,19 +110,19 @@ public class NeapolitanItems {
 				.addItemsAfter(of(Items.SPIDER_EYE), CHOCOLATE_SPIDER_EYE)
 				.addItemsBefore(of(Items.MILK_BUCKET), VANILLA_PUDDING)
 				.addStacksAfter(of(Items.MILK_BUCKET),
-						() -> IceCream.setFlavor(ICE_CREAM, NeapolitanFlavors.VANILLA),
-						() -> IceCream.setFlavor(ICE_CREAM, NeapolitanFlavors.CHOCOLATE),
-						() -> IceCream.setFlavor(ICE_CREAM, NeapolitanFlavors.STRAWBERRY),
-						() -> IceCream.setFlavor(ICE_CREAM, NeapolitanFlavors.BANANA),
-						() -> IceCream.setFlavor(ICE_CREAM, NeapolitanFlavors.MINT),
-						() -> IceCream.setFlavor(ICE_CREAM, NeapolitanFlavors.ADZUKI),
+						() -> IceCream.setFlavor(ICE_CREAM, NeapolitanIceCreamFlavors.VANILLA),
+						() -> IceCream.setFlavor(ICE_CREAM, NeapolitanIceCreamFlavors.CHOCOLATE),
+						() -> IceCream.setFlavor(ICE_CREAM, NeapolitanIceCreamFlavors.STRAWBERRY),
+						() -> IceCream.setFlavor(ICE_CREAM, NeapolitanIceCreamFlavors.BANANA),
+						() -> IceCream.setFlavor(ICE_CREAM, NeapolitanIceCreamFlavors.MINT),
+						() -> IceCream.setFlavor(ICE_CREAM, NeapolitanIceCreamFlavors.ADZUKI),
 						() -> new ItemStack(ICE_CREAM.get()),
-						() -> IceCream.setFlavor(ICE_CREAM_CONE, NeapolitanFlavors.VANILLA),
-						() -> IceCream.setFlavor(ICE_CREAM_CONE, NeapolitanFlavors.CHOCOLATE),
-						() -> IceCream.setFlavor(ICE_CREAM_CONE, NeapolitanFlavors.STRAWBERRY),
-						() -> IceCream.setFlavor(ICE_CREAM_CONE, NeapolitanFlavors.BANANA),
-						() -> IceCream.setFlavor(ICE_CREAM_CONE, NeapolitanFlavors.MINT),
-						() -> IceCream.setFlavor(ICE_CREAM_CONE, NeapolitanFlavors.ADZUKI),
+						() -> IceCream.setFlavor(ICE_CREAM_CONE, NeapolitanIceCreamFlavors.VANILLA),
+						() -> IceCream.setFlavor(ICE_CREAM_CONE, NeapolitanIceCreamFlavors.CHOCOLATE),
+						() -> IceCream.setFlavor(ICE_CREAM_CONE, NeapolitanIceCreamFlavors.STRAWBERRY),
+						() -> IceCream.setFlavor(ICE_CREAM_CONE, NeapolitanIceCreamFlavors.BANANA),
+						() -> IceCream.setFlavor(ICE_CREAM_CONE, NeapolitanIceCreamFlavors.MINT),
+						() -> IceCream.setFlavor(ICE_CREAM_CONE, NeapolitanIceCreamFlavors.ADZUKI),
 						() -> new ItemStack(ICE_CREAM_CONE.get())
 				)
 				.addItemsAfter(of(Items.MILK_BUCKET), MILK_BOTTLE, VANILLA_MILKSHAKE, CHOCOLATE_MILKSHAKE, STRAWBERRY_MILKSHAKE, BANANA_MILKSHAKE, MINT_MILKSHAKE, ADZUKI_MILKSHAKE)

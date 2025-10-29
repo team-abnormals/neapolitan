@@ -23,13 +23,13 @@ public final class NeapolitanIceCreamOverrides {
 	public static final ResourceKey<IceCreamOverride> NEAPOLITAN = create("neapolitan");
 
 	public static void bootstrap(BootstrapContext<IceCreamOverride> context) {
-		register(context, VANILLA, NeapolitanFlavors.VANILLA);
-		register(context, CHOCOLATE, NeapolitanFlavors.CHOCOLATE);
-		register(context, STRAWBERRY, NeapolitanFlavors.STRAWBERRY);
-		register(context, BANANA, NeapolitanFlavors.BANANA);
-		register(context, MINT, NeapolitanFlavors.MINT);
-		register(context, ADZUKI, NeapolitanFlavors.ADZUKI);
-		register(context, NEAPOLITAN, new IceCream(NeapolitanFlavors.VANILLA, NeapolitanFlavors.CHOCOLATE, NeapolitanFlavors.STRAWBERRY), null);
+		register(context, VANILLA, NeapolitanIceCreamFlavors.VANILLA);
+		register(context, CHOCOLATE, NeapolitanIceCreamFlavors.CHOCOLATE);
+		register(context, STRAWBERRY, NeapolitanIceCreamFlavors.STRAWBERRY);
+		register(context, BANANA, NeapolitanIceCreamFlavors.BANANA);
+		register(context, MINT, NeapolitanIceCreamFlavors.MINT);
+		register(context, ADZUKI, NeapolitanIceCreamFlavors.ADZUKI);
+		register(context, NEAPOLITAN, new IceCream(NeapolitanIceCreamFlavors.VANILLA, NeapolitanIceCreamFlavors.CHOCOLATE, NeapolitanIceCreamFlavors.STRAWBERRY), null);
 	}
 
 	private static ResourceKey<IceCreamOverride> create(String name) {

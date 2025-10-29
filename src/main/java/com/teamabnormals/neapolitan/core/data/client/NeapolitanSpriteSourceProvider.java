@@ -6,7 +6,7 @@ import com.teamabnormals.blueprint.core.api.BlueprintTrims;
 import com.teamabnormals.neapolitan.common.item.component.IceCreamFlavor;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.other.NeapolitanMaterials;
-import com.teamabnormals.neapolitan.core.registry.datapack.NeapolitanFlavors;
+import com.teamabnormals.neapolitan.core.registry.datapack.NeapolitanIceCreamFlavors;
 import com.teamabnormals.neapolitan.core.registry.datapack.NeapolitanTrimPatterns;
 import net.minecraft.client.renderer.texture.atlas.sources.DirectoryLister;
 import net.minecraft.client.renderer.texture.atlas.sources.PalettedPermutations;
@@ -50,7 +50,7 @@ public final class NeapolitanSpriteSourceProvider extends SpriteSourceProvider {
 
 	private static HashMap<String, ResourceLocation> getFlavorPermutations() {
 		HashMap<String, ResourceLocation> permutations = new HashMap<>();
-		for (ResourceKey<IceCreamFlavor> flavor : new ResourceKey[]{NeapolitanFlavors.VANILLA, NeapolitanFlavors.CHOCOLATE, NeapolitanFlavors.STRAWBERRY, NeapolitanFlavors.BANANA, NeapolitanFlavors.MINT, NeapolitanFlavors.ADZUKI}) {
+		for (ResourceKey<IceCreamFlavor> flavor : new ResourceKey[]{NeapolitanIceCreamFlavors.VANILLA, NeapolitanIceCreamFlavors.CHOCOLATE, NeapolitanIceCreamFlavors.STRAWBERRY, NeapolitanIceCreamFlavors.BANANA, NeapolitanIceCreamFlavors.MINT, NeapolitanIceCreamFlavors.ADZUKI}) {
 			permutations.put(flavor.location().getNamespace() + "_" + flavor.location().getPath(), ResourceLocation.fromNamespaceAndPath(flavor.location().getNamespace(), "ice_cream/color_palettes/" + flavor.location().getPath()));
 		}
 

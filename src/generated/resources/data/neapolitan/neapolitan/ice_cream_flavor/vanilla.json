@@ -3,6 +3,24 @@
     "color": "#E2CAA1",
     "translate": "flavor.neapolitan.vanilla"
   },
+  "effects": [
+    {
+      "type": "neapolitan:apply_mob_effect",
+      "max_amplifier": 0.0,
+      "max_duration": {
+        "type": "minecraft:linear",
+        "base": 20.0,
+        "per_level_above_first": 20.0
+      },
+      "min_amplifier": 0.0,
+      "min_duration": {
+        "type": "minecraft:linear",
+        "base": 20.0,
+        "per_level_above_first": 20.0
+      },
+      "to_apply": "neapolitan:vanilla_scent"
+    }
+  ],
   "ingredient": "neapolitan:dried_vanilla_pods",
   "milkshake_cauldron": "neapolitan:vanilla_milkshake_cauldron"
 }

@@ -3,6 +3,24 @@
     "color": "#59B788",
     "translate": "flavor.neapolitan.mint"
   },
+  "effects": [
+    {
+      "type": "neapolitan:apply_mob_effect",
+      "max_amplifier": 0.0,
+      "max_duration": {
+        "type": "minecraft:linear",
+        "base": 80.0,
+        "per_level_above_first": 80.0
+      },
+      "min_amplifier": 0.0,
+      "min_duration": {
+        "type": "minecraft:linear",
+        "base": 80.0,
+        "per_level_above_first": 80.0
+      },
+      "to_apply": "neapolitan:berserking"
+    }
+  ],
   "ingredient": "neapolitan:mint_leaves",
   "milkshake_cauldron": "neapolitan:mint_milkshake_cauldron"
 }

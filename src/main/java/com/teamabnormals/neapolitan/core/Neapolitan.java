@@ -48,6 +48,7 @@ public class Neapolitan {
 		NeapolitanDataComponents.DATA_COMPONENTS.register(bus);
 		NeapolitanCriteriaTriggers.TRIGGERS.register(bus);
 		NeapolitanMenuTypes.MENU_TYPES.register(bus);
+		NeapolitanIceCreamFlavorEffects.ICE_CREAM_FLAVOR_EFFECTS.register(bus);
 
 		bus.addListener(NeapolitanRegistries::registerRegistries);
 

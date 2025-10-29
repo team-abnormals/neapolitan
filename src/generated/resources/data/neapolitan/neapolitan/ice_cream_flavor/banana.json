@@ -3,6 +3,24 @@
     "color": "#F4B858",
     "translate": "flavor.neapolitan.banana"
   },
+  "effects": [
+    {
+      "type": "neapolitan:apply_mob_effect",
+      "max_amplifier": 0.0,
+      "max_duration": {
+        "type": "minecraft:linear",
+        "base": 60.0,
+        "per_level_above_first": 60.0
+      },
+      "min_amplifier": 0.0,
+      "min_duration": {
+        "type": "minecraft:linear",
+        "base": 60.0,
+        "per_level_above_first": 60.0
+      },
+      "to_apply": "neapolitan:agility"
+    }
+  ],
   "ingredient": "neapolitan:banana",
   "milkshake_cauldron": "neapolitan:banana_milkshake_cauldron"
 }

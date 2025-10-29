@@ -3,6 +3,21 @@
     "color": "#DB95CC",
     "translate": "flavor.neapolitan.strawberry"
   },
+  "effects": [
+    {
+      "type": "neapolitan:heal_entity",
+      "max_health": {
+        "type": "minecraft:linear",
+        "base": 2.0,
+        "per_level_above_first": 2.0
+      },
+      "min_health": {
+        "type": "minecraft:linear",
+        "base": 2.0,
+        "per_level_above_first": 2.0
+      }
+    }
+  ],
   "ingredient": "neapolitan:strawberries",
   "milkshake_cauldron": "neapolitan:strawberry_milkshake_cauldron"
 }

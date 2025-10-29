@@ -3,6 +3,24 @@
     "color": "#ED7D83",
     "translate": "flavor.neapolitan.adzuki"
   },
+  "effects": [
+    {
+      "type": "neapolitan:apply_mob_effect",
+      "max_amplifier": 0.0,
+      "max_duration": {
+        "type": "minecraft:linear",
+        "base": 30.0,
+        "per_level_above_first": 30.0
+      },
+      "min_amplifier": 0.0,
+      "min_duration": {
+        "type": "minecraft:linear",
+        "base": 30.0,
+        "per_level_above_first": 30.0
+      },
+      "to_apply": "neapolitan:harmony"
+    }
+  ],
   "ingredient": "neapolitan:roasted_adzuki_beans",
   "milkshake_cauldron": "neapolitan:adzuki_milkshake_cauldron"
 }

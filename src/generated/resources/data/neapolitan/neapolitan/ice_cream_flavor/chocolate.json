@@ -3,6 +3,24 @@
     "color": "#B77861",
     "translate": "flavor.neapolitan.chocolate"
   },
+  "effects": [
+    {
+      "type": "neapolitan:apply_mob_effect",
+      "max_amplifier": 2.0,
+      "max_duration": {
+        "type": "minecraft:linear",
+        "base": 30.0,
+        "per_level_above_first": 30.0
+      },
+      "min_amplifier": 2.0,
+      "min_duration": {
+        "type": "minecraft:linear",
+        "base": 30.0,
+        "per_level_above_first": 30.0
+      },
+      "to_apply": "neapolitan:sugar_rush"
+    }
+  ],
   "ingredient": "neapolitan:chocolate_bar",
   "milkshake_cauldron": "neapolitan:chocolate_milkshake_cauldron"
 }
