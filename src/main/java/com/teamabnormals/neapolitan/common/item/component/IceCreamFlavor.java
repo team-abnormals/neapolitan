@@ -46,7 +46,7 @@ public record IceCreamFlavor(Holder<Item> ingredient, Component description, Lis
 	public static final StreamCodec<RegistryFriendlyByteBuf, Holder<IceCreamFlavor>> STREAM_CODEC = ByteBufCodecs.holder(NeapolitanRegistries.ICE_CREAM_FLAVOR, DIRECT_STREAM_CODEC);
 
 	public static IceCreamFlavor create(Item ingredient, Component description, Block cauldron, IceCreamFlavorEffect... effects) {
-		return new IceCreamFlavor(BuiltInRegistries.ITEM.wrapAsHolder(ingredient), description, List.of(effects), Optional.of(BuiltInRegistries.BLOCK.wrapAsHolder(cauldron)));
+		return new IceCreamFlavor(BuiltInRegistries.ITEM.wrapAsHolder(ingredient), description, List.of(effects), cauldron == null ? Optional.empty() : Optional.of(BuiltInRegistries.BLOCK.wrapAsHolder(cauldron)));
 	}
 
 	public static Optional<Reference<IceCreamFlavor>> getFromIngredient(HolderLookup.Provider registries, ItemStack ingredient) {

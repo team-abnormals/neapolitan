@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_sugar_cane_block": {
+    "has_ice_cream": {
       "conditions": {
         "items": [
           {
-            "items": "neapolitan:sugar_cane_block"
+            "items": "#c:foods/ice_cream"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "neapolitan:sugar_cane"
+        "recipe": "neapolitan:ice_cream_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_sugar_cane_block"
+      "has_ice_cream"
     ]
   ],
   "rewards": {
     "recipes": [
-      "neapolitan:sugar_cane"
+      "neapolitan:ice_cream_block"
     ]
   }
 }

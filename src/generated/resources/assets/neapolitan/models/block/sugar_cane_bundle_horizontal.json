@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column_horizontal",
-  "textures": {
-    "end": "neapolitan:block/sugar_cane_bundle_top",
-    "side": "neapolitan:block/sugar_cane_bundle"
-  }
-}

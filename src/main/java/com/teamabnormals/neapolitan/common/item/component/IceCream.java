@@ -7,10 +7,12 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanDataComponents;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanRegistries;
+import com.teamabnormals.neapolitan.core.registry.datapack.NeapolitanIceCreamFlavors;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.HolderLookup.RegistryLookup;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
@@ -125,5 +127,13 @@ public record IceCream(Holder<IceCreamFlavor> primaryFlavor, Holder<IceCreamFlav
 
 	public static ItemStack setFlavor(ItemLike item, Holder<IceCreamFlavor> flavor) {
 		return setFlavors(item, flavor, flavor, flavor);
+	}
+
+	public static IceCream neapolitan(RegistryLookup<IceCreamFlavor> lookup) {
+		return new IceCream(
+				lookup.getOrThrow(NeapolitanIceCreamFlavors.VANILLA),
+				lookup.getOrThrow(NeapolitanIceCreamFlavors.CHOCOLATE),
+				lookup.getOrThrow(NeapolitanIceCreamFlavors.STRAWBERRY)
+		);
 	}
 }

@@ -21,10 +21,13 @@ public final class NeapolitanIceCreamOverrides {
 	public static final ResourceKey<IceCreamOverride> BANANA = create("banana");
 	public static final ResourceKey<IceCreamOverride> MINT = create("mint");
 	public static final ResourceKey<IceCreamOverride> ADZUKI = create("adzuki");
+	public static final ResourceKey<IceCreamOverride> SNOW = create("snow");
 	public static final ResourceKey<IceCreamOverride> NEAPOLITAN = create("neapolitan");
 
 	public static void bootstrap(BootstrapContext<IceCreamOverride> context) {
 		HolderGetter<IceCreamFlavor> flavors = context.lookup(NeapolitanRegistries.ICE_CREAM_FLAVOR);
+
+		register(context, SNOW, NeapolitanIceCreamFlavors.SNOW);
 
 		register(context, VANILLA, NeapolitanIceCreamFlavors.VANILLA);
 		register(context, CHOCOLATE, NeapolitanIceCreamFlavors.CHOCOLATE);

@@ -86,6 +86,7 @@ public class NeapolitanLootTableProvider extends LootTableProvider {
 			this.add(MINT_CAKE.get(), noDrop());
 			this.add(ADZUKI_CAKE.get(), noDrop());
 
+			this.dropSelf(ICE_CREAM_BLOCK.get());
 			this.dropSelf(VANILLA_ICE_CREAM_BLOCK.get());
 			this.dropSelf(CHOCOLATE_ICE_CREAM_BLOCK.get());
 			this.dropSelf(STRAWBERRY_ICE_CREAM_BLOCK.get());
@@ -158,7 +159,7 @@ public class NeapolitanLootTableProvider extends LootTableProvider {
 			this.dropSelf(WHITE_STRAWBERRY_BASKET.get());
 			this.dropSelf(VANILLA_POD_BLOCK.get());
 			this.dropSelf(DRIED_VANILLA_POD_BLOCK.get());
-			this.dropSelf(SUGAR_CANE_BUNDLE.get());
+			this.dropSelf(SUGAR_CANE_BLOCK.get());
 
 			this.dropPottedContents(POTTED_MINT.get());
 			this.dropPottedContents(POTTED_VANILLA_VINE.get());

@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "neapolitan:sugar_cane_bundle"
+          "name": "neapolitan:ice_cream_block"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "neapolitan:blocks/sugar_cane_bundle"
+  "random_sequence": "neapolitan:blocks/ice_cream_block"
 }

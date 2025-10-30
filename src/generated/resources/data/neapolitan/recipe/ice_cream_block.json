@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:snow_block"
+    },
+    "X": {
+      "type": "neoforge:components",
+      "components": {
+        "neapolitan:ice_cream": {
+          "primary_flavor": "neapolitan:snow",
+          "secondary_flavor": "neapolitan:snow",
+          "tertiary_flavor": "neapolitan:snow"
+        }
+      },
+      "items": [
+        "neapolitan:ice_cream",
+        "neapolitan:ice_cream_cone"
+      ]
+    }
+  },
+  "pattern": [
+    "###",
+    "#X#",
+    "###"
+  ],
+  "result": {
+    "count": 8,
+    "id": "neapolitan:ice_cream_block"
+  }
+}

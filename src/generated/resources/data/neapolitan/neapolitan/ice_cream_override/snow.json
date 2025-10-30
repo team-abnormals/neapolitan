@@ -1,0 +1,14 @@
+{
+  "bowl_description": {
+    "translate": "item.neapolitan.snow_ice_cream"
+  },
+  "bowl_item_model": "neapolitan:snow_ice_cream",
+  "cone_description": {
+    "translate": "item.neapolitan.snow_ice_cream_cone"
+  },
+  "ice_cream": {
+    "primary_flavor": "neapolitan:snow",
+    "secondary_flavor": "neapolitan:snow",
+    "tertiary_flavor": "neapolitan:snow"
+  }
+}

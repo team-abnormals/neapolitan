@@ -17,10 +17,12 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import net.minecraft.client.resources.model.Material;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Holder.Direct;
 import net.minecraft.world.phys.AABB;
+
+import java.util.EnumSet;
 
 public class ChillboxRenderer implements BlockEntityRenderer<ChillboxBlockEntity> {
 	private final ModelPart top;
@@ -36,14 +38,15 @@ public class ChillboxRenderer implements BlockEntityRenderer<ChillboxBlockEntity
 	public static LayerDefinition createBaseLayer() {
 		MeshDefinition mesh = new MeshDefinition();
 		PartDefinition root = mesh.getRoot();
-		root.addOrReplaceChild("base", CubeListBuilder.create().texOffs(0, 0).addBox(1.0F, 0.0F, 1.0F, 14.0F, 16.0F, 14.0F), PartPose.offsetAndRotation(0.0F, 16.0F, 16.0F, (float) Math.PI, 0.0F, 0.0F));
+		root.addOrReplaceChild("base", CubeListBuilder.create().texOffs(0, 0).addBox(1.0F, 0.0F, 1.0F, 14.0F, 16.0F, 14.0F,
+				EnumSet.of(Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST, Direction.DOWN)), PartPose.offsetAndRotation(0.0F, 16.0F, 16.0F, (float) Math.PI, 0.0F, 0.0F));
 		return LayerDefinition.create(mesh, 64, 64);
 	}
 
 	public static LayerDefinition createTopLayer() {
 		MeshDefinition mesh = new MeshDefinition();
 		PartDefinition root = mesh.getRoot();
-		root.addOrReplaceChild("top", CubeListBuilder.create().texOffs(-22, 2).addBox(2.0F, 16.0F, 2.0F, 12.0F, 0.0F, 12.0F), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F));
+		root.addOrReplaceChild("top", CubeListBuilder.create().texOffs(-27, 1).addBox(1.0F, 16.0F, 1.0F, 14.0F, 0.0F, 14.0F, EnumSet.of(Direction.UP)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F));
 		return LayerDefinition.create(mesh, 16, 16);
 	}
 
@@ -55,22 +58,18 @@ public class ChillboxRenderer implements BlockEntityRenderer<ChillboxBlockEntity
 		poseStack.mulPose(Axis.YP.rotationDegrees(180.0F - direction.toYRot()));
 		poseStack.translate(-0.5, 0.0, -0.5);
 
-
 		this.base.render(poseStack, NeapolitanMaterials.CHILLBOX_BASE.buffer(bufferSource, RenderType::entityCutout), packedLight, packedOverlay);
 
 		if (blockEntity.getItem(ChillboxBlockEntity.RESULT_SLOT).has(NeapolitanDataComponents.ICE_CREAM)) {
-			poseStack.translate(0.0, 0.0001, 0.0);
 			IceCream iceCream = blockEntity.getItem(ChillboxBlockEntity.RESULT_SLOT).get(NeapolitanDataComponents.ICE_CREAM);
 			for (int i = 1; i <= 3; i++) {
-				this.renderTop(this.top, poseStack, bufferSource, packedLight, packedOverlay, NeapolitanMaterials.getChillboxMaterial(iceCream.flavor(i).getKey(), i));
+				this.top.render(poseStack, NeapolitanMaterials.getChillboxMaterial(iceCream.flavor(i).getKey(), i).buffer(bufferSource, RenderType::entityCutout), packedLight, packedOverlay);
 			}
+		} else {
+			this.top.render(poseStack, NeapolitanMaterials.CHILLBOX_TOP.buffer(bufferSource, RenderType::entityCutout), packedLight, packedOverlay);
 		}
 
 		poseStack.popPose();
-	}
-
-	private void renderTop(ModelPart modelPart, PoseStack poseStack, MultiBufferSource buffer, int packedLight, int packedOverlay, Material material) {
-		modelPart.render(poseStack, material.buffer(buffer, RenderType::entityCutout), packedLight, packedOverlay);
 	}
 
 	@Override

@@ -1,0 +1,17 @@
+{
+  "description": {
+    "color": "#D2DFE0",
+    "translate": "flavor.neapolitan.snow"
+  },
+  "effects": [
+    {
+      "type": "neapolitan:add_nutrition",
+      "nutrition": {
+        "type": "minecraft:linear",
+        "base": 2.0,
+        "per_level_above_first": 2.0
+      }
+    }
+  ],
+  "ingredient": "minecraft:snowball"
+}

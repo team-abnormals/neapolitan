@@ -50,7 +50,7 @@ public final class NeapolitanSpriteSourceProvider extends SpriteSourceProvider {
 
 	private static HashMap<String, ResourceLocation> getFlavorPermutations() {
 		HashMap<String, ResourceLocation> permutations = new HashMap<>();
-		for (ResourceKey<IceCreamFlavor> flavor : new ResourceKey[]{NeapolitanIceCreamFlavors.VANILLA, NeapolitanIceCreamFlavors.CHOCOLATE, NeapolitanIceCreamFlavors.STRAWBERRY, NeapolitanIceCreamFlavors.BANANA, NeapolitanIceCreamFlavors.MINT, NeapolitanIceCreamFlavors.ADZUKI}) {
+		for (ResourceKey<IceCreamFlavor> flavor : NeapolitanIceCreamFlavors.FLAVORS) {
 			permutations.put(flavor.location().getNamespace() + "_" + flavor.location().getPath(), ResourceLocation.fromNamespaceAndPath(flavor.location().getNamespace(), "ice_cream/color_palettes/" + flavor.location().getPath()));
 		}
 

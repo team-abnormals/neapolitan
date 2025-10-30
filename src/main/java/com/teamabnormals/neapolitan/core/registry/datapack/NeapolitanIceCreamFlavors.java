@@ -1,6 +1,7 @@
 package com.teamabnormals.neapolitan.core.registry.datapack;
 
 import com.teamabnormals.neapolitan.common.item.component.IceCreamFlavor;
+import com.teamabnormals.neapolitan.common.item.component.effect.AddNutrition;
 import com.teamabnormals.neapolitan.common.item.component.effect.ApplyMobEffect;
 import com.teamabnormals.neapolitan.common.item.component.effect.HealEntity;
 import com.teamabnormals.neapolitan.common.item.component.effect.IceCreamFlavorEffect;
@@ -18,10 +19,15 @@ import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.LevelBasedValue;
 import net.minecraft.world.level.block.Block;
 
+import java.util.List;
+
 public final class NeapolitanIceCreamFlavors {
+	public static final ResourceKey<IceCreamFlavor> SNOW = create("snow");
+
 	public static final ResourceKey<IceCreamFlavor> VANILLA = create("vanilla");
 	public static final ResourceKey<IceCreamFlavor> CHOCOLATE = create("chocolate");
 	public static final ResourceKey<IceCreamFlavor> STRAWBERRY = create("strawberry");
@@ -29,7 +35,12 @@ public final class NeapolitanIceCreamFlavors {
 	public static final ResourceKey<IceCreamFlavor> MINT = create("mint");
 	public static final ResourceKey<IceCreamFlavor> ADZUKI = create("adzuki");
 
+	public static final List<ResourceKey<IceCreamFlavor>> FLAVORS = List.of(SNOW, VANILLA, CHOCOLATE, STRAWBERRY, BANANA, MINT, ADZUKI);
+	public static final List<ResourceKey<IceCreamFlavor>> TOPPINGS = List.of(VANILLA, CHOCOLATE, STRAWBERRY, BANANA, MINT, ADZUKI);
+
 	public static void bootstrap(BootstrapContext<IceCreamFlavor> context) {
+		register(context, SNOW, Items.SNOWBALL, Style.EMPTY.withColor(0xD2DFE0), null, addNutrition(2));
+
 		register(context, VANILLA, NeapolitanItems.DRIED_VANILLA_PODS.get(), Style.EMPTY.withColor(0xE2CAA1), NeapolitanBlocks.VANILLA_MILKSHAKE_CAULDRON.get(), applyMobEffect(NeapolitanMobEffects.VANILLA_SCENT, 20));
 		register(context, CHOCOLATE, NeapolitanItems.CHOCOLATE_BAR.get(), Style.EMPTY.withColor(0xB77861), NeapolitanBlocks.CHOCOLATE_MILKSHAKE_CAULDRON.get(), applyMobEffect(NeapolitanMobEffects.SUGAR_RUSH, 30, 2));
 		register(context, STRAWBERRY, NeapolitanItems.STRAWBERRIES.get(), Style.EMPTY.withColor(0xDB95CC), NeapolitanBlocks.STRAWBERRY_MILKSHAKE_CAULDRON.get(), healEntity(2));
@@ -40,6 +51,10 @@ public final class NeapolitanIceCreamFlavors {
 
 	public static HealEntity healEntity(int amount) {
 		return new HealEntity(LevelBasedValue.perLevel(amount), LevelBasedValue.perLevel(amount));
+	}
+
+	public static AddNutrition addNutrition(int amount) {
+		return new AddNutrition(LevelBasedValue.perLevel(amount));
 	}
 
 	public static ApplyMobEffect applyMobEffect(Holder<MobEffect> effect, int duration) {

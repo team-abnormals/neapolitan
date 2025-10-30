@@ -1,9 +1,12 @@
 package com.teamabnormals.neapolitan.core.data.client;
 
 import com.teamabnormals.blueprint.core.data.client.BlueprintItemModelProvider;
+import com.teamabnormals.neapolitan.common.item.component.IceCreamFlavor;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
+import com.teamabnormals.neapolitan.core.registry.datapack.NeapolitanIceCreamFlavors;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceKey;
 import net.neoforged.neoforge.client.model.generators.ModelProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
@@ -13,10 +16,10 @@ public class NeapolitanItemModelProvider extends BlueprintItemModelProvider {
 
 	public NeapolitanItemModelProvider(PackOutput output, ExistingFileHelper helper) {
 		super(output, Neapolitan.MOD_ID, helper);
-		for (String flavor : new String[]{"vanilla", "chocolate", "strawberry", "banana", "mint", "adzuki"}) {
+		for (ResourceKey<IceCreamFlavor> flavor : NeapolitanIceCreamFlavors.FLAVORS) {
 			for (String dish : new String[]{"bowl_", "cone_"}) {
 				for (int i = 1; i <= 3; i++) {
-					this.existingFileHelper.trackGenerated(Neapolitan.location("ice_cream/items/" + dish + "layer" + i + "_neapolitan_" + flavor), ModelProvider.TEXTURE);
+					this.existingFileHelper.trackGenerated(flavor.location().withPrefix("ice_cream/items/" + dish + "layer" + i + "_" + flavor.location().getNamespace() + "_"), ModelProvider.TEXTURE);
 				}
 			}
 		}
@@ -29,11 +32,14 @@ public class NeapolitanItemModelProvider extends BlueprintItemModelProvider {
 				REFLECTION_POTTERY_SHERD, SCREAM_POTTERY_SHERD, SPIDER_POTTERY_SHERD, SNACK_POTTERY_SHERD
 		);
 
-		for (String flavor : new String[]{"vanilla", "chocolate", "strawberry", "banana", "mint", "adzuki"}) {
+		for (ResourceKey<IceCreamFlavor> flavor : NeapolitanIceCreamFlavors.FLAVORS) {
 			for (String dish : new String[]{"bowl_", "cone_"}) {
-				this.withExistingParent("item/ice_cream/" + dish + flavor + "_topping", "item/generated").texture("layer0", Neapolitan.location("ice_cream/toppings/" + flavor));
+				if (NeapolitanIceCreamFlavors.TOPPINGS.contains(flavor)) {
+					this.withExistingParent("item/ice_cream/" + dish + flavor.location().getPath() + "_topping", "item/generated").texture("layer0", flavor.location().withPrefix("ice_cream/toppings/"));
+				}
+
 				for (int i = 1; i <= 3; i++) {
-					String name = dish + "layer" + i + "_neapolitan_" + flavor;
+					String name = dish + "layer" + i + "_" + flavor.location().getNamespace() + "_" + flavor.location().getPath();
 					this.withExistingParent("item/ice_cream/" + name, "item/generated").texture("layer0", Neapolitan.location("ice_cream/items/" + name));
 				}
 			}

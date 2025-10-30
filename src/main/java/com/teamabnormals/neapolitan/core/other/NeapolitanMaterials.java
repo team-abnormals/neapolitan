@@ -14,6 +14,7 @@ public class NeapolitanMaterials {
 	public static final ResourceLocation CHILLBOX_SHEET = Neapolitan.location("textures/atlas/chillbox.png");
 
 	public static final Material CHILLBOX_BASE = createChillboxMaterial(Neapolitan.location("chillbox_base"));
+	public static final Material CHILLBOX_TOP = createChillboxMaterial(Neapolitan.location("chillbox_top"));
 
 	public static Map<ResourceLocation, Material> CHILLBOX_MATERIALS = new HashMap<>();
 

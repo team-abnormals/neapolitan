@@ -24,7 +24,8 @@ public class NeapolitanBlockStateProvider extends BlueprintBlockStateProvider {
 
 	@Override
 	protected void registerStatesAndModels() {
-		this.logBlock(SUGAR_CANE_BUNDLE);
+		this.block(ICE_CREAM_BLOCK);
+		this.logBlock(SUGAR_CANE_BLOCK);
 		this.directionalBlock(SUGAR_SACK);
 		this.directionalBlock(COCOA_BEAN_SACK);
 

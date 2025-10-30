@@ -23,7 +23,6 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.Tags;
@@ -50,6 +49,11 @@ public class NeapolitanRecipeProvider extends BlueprintRecipeProvider {
 	public void buildRecipes(RecipeOutput consumer, HolderLookup.Provider provider) {
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, WAFFLE_CONE, 4).requires(SUGAR).requires(WHEAT, 3).unlockedBy(getHasName(SUGAR), has(SUGAR)).save(consumer);
 		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, CHILLBOX).define('#', ItemTags.WOODEN_SLABS).define('X', BLUE_ICE).pattern("#X#").pattern("#X#").pattern("###").unlockedBy("has_blue_ice", has(BLUE_ICE)).save(consumer);
+
+		RegistryLookup<IceCreamFlavor> lookup = provider.lookupOrThrow(NeapolitanRegistries.ICE_CREAM_FLAVOR);
+		Ingredient iceCream = DataComponentIngredient.of(false, DataComponentPredicate.builder().expect(NeapolitanDataComponents.ICE_CREAM.get(), new IceCream(lookup.getOrThrow(NeapolitanIceCreamFlavors.SNOW))).build(), ICE_CREAM.get(), ICE_CREAM_CONE.get());
+		ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ICE_CREAM_BLOCK, 8).pattern("###").pattern("#X#").pattern("###").define('X', iceCream).define('#', SNOW_BLOCK).unlockedBy(getHasName(ICE_CREAM), has(NeapolitanItemTags.FOODS_ICE_CREAM)).save(consumer);
+
 
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ADZUKI_BUN).requires(ROASTED_ADZUKI_BEANS).requires(WHEAT).requires(BlueprintItemTags.MILK).unlockedBy(getHasName(ADZUKI_BEANS), has(ADZUKI_BEANS)).save(consumer);
 		flavorRecipes(consumer, provider, ROASTED_ADZUKI_BEANS, NeapolitanIceCreamFlavors.ADZUKI, ADZUKI_MILKSHAKE, NeapolitanItems.ADZUKI_CAKE, ADZUKI_ICE_CREAM_BLOCK);
@@ -121,7 +125,7 @@ public class NeapolitanRecipeProvider extends BlueprintRecipeProvider {
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, VANILLA_FUDGE, 4).requires(DRIED_VANILLA_PODS, 2).requires(SUGAR).requires(BlueprintItemTags.MILK).unlockedBy(getHasName(VANILLA_PODS), has(VANILLA_PODS)).save(consumer);
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, VANILLA_PUDDING).requires(EGG).requires(SUGAR).requires(DRIED_VANILLA_PODS).requires(BOWL).unlockedBy(getHasName(VANILLA_PODS), has(VANILLA_PODS)).save(consumer);
 
-		storageRecipes(consumer, MISC, SUGAR_CANE, BUILDING_BLOCKS, SUGAR_CANE_BUNDLE.get());
+		storageRecipes(consumer, MISC, SUGAR_CANE, BUILDING_BLOCKS, SUGAR_CANE_BLOCK.get());
 		storageRecipes(consumer, MISC, SUGAR, BUILDING_BLOCKS, SUGAR_SACK.get());
 		storageRecipes(consumer, MISC, COCOA_BEANS, BUILDING_BLOCKS, COCOA_BEAN_SACK.get());
 
