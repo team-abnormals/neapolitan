@@ -8,20 +8,27 @@ import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.block.*;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.function.Function;
 
 import static com.teamabnormals.neapolitan.core.other.tags.NeapolitanBlockTags.*;
 import static com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks.*;
 
 public class NeapolitanBlockTagsProvider extends BlockTagsProvider {
+	private Collection<DeferredHolder<Block, ? extends Block>> entries;
 
 	public NeapolitanBlockTagsProvider(PackOutput output, CompletableFuture<Provider> provider, ExistingFileHelper helper) {
 		super(output, provider, Neapolitan.MOD_ID, helper);
+		this.entries = BLOCKS.getDeferredRegister().getEntries();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -31,12 +38,13 @@ public class NeapolitanBlockTagsProvider extends BlockTagsProvider {
 		this.tag(BlockTags.MINEABLE_WITH_AXE).add(CHOCOLATE_BLOCK.get(), CHOCOLATE_BRICKS.get(), CHOCOLATE_BRICK_SLAB.get(), CHOCOLATE_BRICK_STAIRS.get(), CHOCOLATE_BRICK_WALL.get(), CHISELED_CHOCOLATE_BRICKS.get(), CHOCOLATE_TILES.get(), CHOCOLATE_TILE_SLAB.get(), CHOCOLATE_TILE_STAIRS.get(), CHOCOLATE_TILE_WALL.get(), STRAWBERRY_BUSH.get(), VANILLA_VINE.get(), VANILLA_VINE_PLANT.get(), MINT.get(), ADZUKI_SPROUTS.get(), STRAWBERRY_BASKET.get(), WHITE_STRAWBERRY_BASKET.get(), BANANA_CRATE.get(), MINT_BASKET.get(), ADZUKI_CRATE.get(), ROASTED_ADZUKI_CRATE.get());
 		this.tag(BlockTags.MINEABLE_WITH_HOE).add(FROND_THATCH.get(), FROND_THATCH_SLAB.get(), FROND_THATCH_STAIRS.get(), BANANA_STALK.get(), CARVED_BANANA_STALK.get(), BANANA_FROND.get(), BEANSTALK.get(), BEANSTALK_THORNS.get(), VANILLA_POD_BLOCK.get(), DRIED_VANILLA_POD_BLOCK.get(), BANANA_BUNDLE.get(), SUGAR_CANE_BLOCK.get(), SUGAR_SACK.get(), COCOA_BEAN_SACK.get());
 		this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(ICE_CREAM_BLOCK.get(), VANILLA_ICE_CREAM_BLOCK.get(), CHOCOLATE_ICE_CREAM_BLOCK.get(), STRAWBERRY_ICE_CREAM_BLOCK.get(), BANANA_ICE_CREAM_BLOCK.get(), MINT_ICE_CREAM_BLOCK.get(), ADZUKI_ICE_CREAM_BLOCK.get(), ADZUKI_SOIL.get());
-		this.tag(BlockTags.SLABS).add(CHOCOLATE_BRICK_SLAB.get(), CHOCOLATE_TILE_SLAB.get(), FROND_THATCH_SLAB.get());
-		this.tag(BlockTags.STAIRS).add(CHOCOLATE_BRICK_STAIRS.get(), CHOCOLATE_TILE_STAIRS.get(), FROND_THATCH_STAIRS.get());
-		this.tag(BlockTags.WALLS).add(CHOCOLATE_BRICK_WALL.get(), CHOCOLATE_TILE_WALL.get());
-		this.tag(BlockTags.FLOWER_POTS).add(POTTED_VANILLA_VINE.get(), POTTED_MINT.get(), POTTED_BANANA_FROND.get());
 		this.tag(BlockTags.SWORD_EFFICIENT).add(VANILLA_VINE.get(), VANILLA_VINE_PLANT.get(), STRAWBERRY_BUSH.get(), MINT.get(), BANANA_FROND.get(), ADZUKI_SPROUTS.get());
 		this.tag(Tags.Blocks.STORAGE_BLOCKS).add(CHOCOLATE_BLOCK.get(), VANILLA_POD_BLOCK.get(), DRIED_VANILLA_POD_BLOCK.get(), STRAWBERRY_BASKET.get(), WHITE_STRAWBERRY_BASKET.get(), BANANA_CRATE.get(), MINT_BASKET.get(), ADZUKI_CRATE.get(), ROASTED_ADZUKI_CRATE.get(), SUGAR_CANE_BLOCK.get(), SUGAR_SACK.get(), COCOA_BEAN_SACK.get());
+
+		this.tag(BlockTags.STAIRS, is(StairBlock.class));
+		this.tag(BlockTags.SLABS, is(SlabBlock.class));
+		this.tag(BlockTags.WALLS, is(WallBlock.class));
+		this.tag(BlockTags.FLOWER_POTS, is(FlowerPotBlock.class));
 
 		this.tag(BlueprintBlockTags.NOTE_BLOCK_TOP_INSTRUMENTS).add(CHIMPANZEE_HEAD.get());
 
@@ -60,6 +68,24 @@ public class NeapolitanBlockTagsProvider extends BlockTagsProvider {
 			if (name.contains("banana")) this.tag(DROPS_BANANA_CAKE_SLICE).add(block);
 			if (name.contains("mint")) this.tag(DROPS_MINT_CAKE_SLICE).add(block);
 			if (name.contains("adzuki")) this.tag(DROPS_ADZUKI_CAKE_SLICE).add(block);
+		});
+	}
+
+	public static Function<Block, Boolean> is(Class<? extends Block> blockClass) {
+		return blockClass::isInstance;
+	}
+
+	public void tag(TagKey<Block> tagKey, Function<Block, Boolean> condition) {
+		this.tag(tagKey, condition, null);
+	}
+
+	public void tag(TagKey<Block> tagKey, Function<Block, Boolean> condition, TagKey<Block> altTagKey, Block... alts) {
+		entries.forEach(holder -> {
+			Block block = holder.get();
+			IntrinsicTagAppender<Block> appender = this.tag(List.of(alts).contains(block) ? altTagKey : tagKey);
+			if (condition.apply(block)) {
+				appender.add(block);
+			}
 		});
 	}
 }

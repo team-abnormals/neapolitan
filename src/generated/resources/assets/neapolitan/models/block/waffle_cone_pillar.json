@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "neapolitan:block/waffle_cone_pillar_top",
+    "side": "neapolitan:block/waffle_cone_pillar"
+  }
+}

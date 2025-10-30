@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "neapolitan:waffle_cone_tiles"
+  },
+  "result": {
+    "count": 1,
+    "id": "neapolitan:waffle_cone_tile_stairs"
+  }
+}

@@ -23,6 +23,7 @@ import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 import net.neoforged.neoforge.common.conditions.NotCondition;
@@ -92,6 +93,15 @@ public class NeapolitanRecipeProvider extends BlueprintRecipeProvider {
 		stonecutterRecipe(consumer, RecipeCategory.BUILDING_BLOCKS, CHOCOLATE_TILE_STAIRS, CHOCOLATE_BRICKS);
 		stonecutterRecipe(consumer, RecipeCategory.DECORATIONS, CHOCOLATE_TILE_WALL, CHOCOLATE_BRICKS);
 
+		twoByTwoPacker(consumer, RecipeCategory.BUILDING_BLOCKS, WAFFLE_CONE_TILES, WAFFLE_CONE);
+		storageRecipesWithCustomUnpacking(consumer, RecipeCategory.BUILDING_BLOCKS, WAFFLE_CONE, RecipeCategory.FOOD, WAFFLE_CONE_BLOCK, getConversionRecipeName(WAFFLE_CONE, WAFFLE_CONE_BLOCK), null);
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, WAFFLE_CONE_PILLAR).define('#', WAFFLE_CONE_TILE_SLAB).pattern("#").pattern("#").unlockedBy(getHasName(WAFFLE_CONE_TILES), has(WAFFLE_CONE_TILES)).save(consumer);
+		generateRecipes(consumer, NeapolitanBlockFamilies.WAFFLE_CONE_TILE_FAMILY, FeatureFlags.VANILLA_SET);
+		stonecutterRecipe(consumer, RecipeCategory.BUILDING_BLOCKS, WAFFLE_CONE_TILE_SLAB, WAFFLE_CONE_TILES, 2);
+		stonecutterRecipe(consumer, RecipeCategory.BUILDING_BLOCKS, WAFFLE_CONE_TILE_STAIRS, WAFFLE_CONE_TILES);
+		stonecutterRecipe(consumer, RecipeCategory.DECORATIONS, WAFFLE_CONE_TILE_WALL, WAFFLE_CONE_TILES);
+		stonecutterRecipe(consumer, RecipeCategory.BUILDING_BLOCKS, WAFFLE_CONE_PILLAR, WAFFLE_CONE_TILES);
+		
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, MILK_BUCKET).requires(Ingredient.of(MILK_BOTTLE), 3).requires(BUCKET).unlockedBy(getHasName(MILK_BOTTLE), has(MILK_BOTTLE)).save(consumer, Neapolitan.location(getSimpleRecipeName(MILK_BUCKET)));
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, MILK_BOTTLE, 3).requires(Tags.Items.BUCKETS_MILK).requires(GLASS_BOTTLE, 3).unlockedBy(getHasName(MILK_BUCKET), has(Tags.Items.BUCKETS_MILK)).save(consumer);
 

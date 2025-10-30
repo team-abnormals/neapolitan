@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "neapolitan:block/waffle_cone_block"
+    }
+  }
+}

@@ -113,6 +113,13 @@ public class NeapolitanLootTableProvider extends LootTableProvider {
 			this.add(CHOCOLATE_TILE_SLAB.get(), this::createSlabItemTable);
 			this.dropSelf(CHOCOLATE_TILE_WALL.get());
 
+			this.dropSelf(WAFFLE_CONE_BLOCK.get());
+			this.dropSelf(WAFFLE_CONE_PILLAR.get());
+			this.dropSelf(WAFFLE_CONE_TILES.get());
+			this.dropSelf(WAFFLE_CONE_TILE_STAIRS.get());
+			this.add(WAFFLE_CONE_TILE_SLAB.get(), this::createSlabItemTable);
+			this.dropSelf(WAFFLE_CONE_TILE_WALL.get());
+
 			this.dropSelf(FROND_THATCH.get());
 			this.dropSelf(FROND_THATCH_STAIRS.get());
 			this.add(FROND_THATCH_SLAB.get(), this::createSlabItemTable);

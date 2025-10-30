@@ -41,6 +41,13 @@ public class NeapolitanBlocks {
 	public static final DeferredBlock<Block> MINT_ICE_CREAM_BLOCK = BLOCKS.createBlock("mint_ice_cream_block", () -> new Block(NeapolitanBlockProperties.MINT_ICE_CREAM_BLOCK));
 	public static final DeferredBlock<Block> ADZUKI_ICE_CREAM_BLOCK = BLOCKS.createBlock("adzuki_ice_cream_block", () -> new Block(NeapolitanBlockProperties.ADZUKI_ICE_CREAM_BLOCK));
 
+	public static final DeferredBlock<Block> WAFFLE_CONE_BLOCK = BLOCKS.createBlock("waffle_cone_block", () -> new Block(NeapolitanBlockProperties.WAFFLE_CONE_BLOCK));
+	public static final DeferredBlock<Block> WAFFLE_CONE_TILES = BLOCKS.createBlock("waffle_cone_tiles", () -> new Block(NeapolitanBlockProperties.WAFFLE_CONE_BLOCK));
+	public static final DeferredBlock<Block> WAFFLE_CONE_TILE_SLAB = BLOCKS.createBlock("waffle_cone_tile_slab", () -> new SlabBlock(NeapolitanBlockProperties.WAFFLE_CONE_BLOCK));
+	public static final DeferredBlock<Block> WAFFLE_CONE_TILE_STAIRS = BLOCKS.createBlock("waffle_cone_tile_stairs", () -> new StairBlock(WAFFLE_CONE_TILES.get().defaultBlockState(), NeapolitanBlockProperties.WAFFLE_CONE_BLOCK));
+	public static final DeferredBlock<Block> WAFFLE_CONE_TILE_WALL = BLOCKS.createBlock("waffle_cone_tile_wall", () -> new WallBlock(NeapolitanBlockProperties.WAFFLE_CONE_BLOCK));
+	public static final DeferredBlock<Block> WAFFLE_CONE_PILLAR = BLOCKS.createBlock("waffle_cone_pillar", () -> new RotatedPillarBlock(NeapolitanBlockProperties.WAFFLE_CONE_BLOCK));
+
 	public static final DeferredBlock<Block> MILK_CAULDRON = BLOCKS.createBlockNoItem("milk_cauldron", () -> new MilkCauldronBlock(NeapolitanBlockProperties.CAULDRON));
 	public static final DeferredBlock<Block> VANILLA_MILKSHAKE_CAULDRON = BLOCKS.createBlockNoItem("vanilla_milkshake_cauldron", () -> new MilkshakeCauldronBlock(NeapolitanCauldronInteractions.VANILLA_MILKSHAKE));
 	public static final DeferredBlock<Block> CHOCOLATE_MILKSHAKE_CAULDRON = BLOCKS.createBlockNoItem("chocolate_milkshake_cauldron", () -> new MilkshakeCauldronBlock(NeapolitanCauldronInteractions.CHOCOLATE_MILKSHAKE));
@@ -223,7 +230,8 @@ public class NeapolitanBlocks {
 				.addItems(
 						BANANA_STALK, CARVED_BANANA_STALK, FROND_THATCH, FROND_THATCH_STAIRS, FROND_THATCH_SLAB,
 						CHOCOLATE_BLOCK, CHOCOLATE_BRICKS, CHOCOLATE_BRICK_STAIRS, CHOCOLATE_BRICK_SLAB, CHOCOLATE_BRICK_WALL, CHISELED_CHOCOLATE_BRICKS, CHOCOLATE_TILES, CHOCOLATE_TILE_STAIRS, CHOCOLATE_TILE_SLAB, CHOCOLATE_TILE_WALL,
-						ICE_CREAM_BLOCK, VANILLA_ICE_CREAM_BLOCK, CHOCOLATE_ICE_CREAM_BLOCK, STRAWBERRY_ICE_CREAM_BLOCK, BANANA_ICE_CREAM_BLOCK, MINT_ICE_CREAM_BLOCK, ADZUKI_ICE_CREAM_BLOCK
+						ICE_CREAM_BLOCK, VANILLA_ICE_CREAM_BLOCK, CHOCOLATE_ICE_CREAM_BLOCK, STRAWBERRY_ICE_CREAM_BLOCK, BANANA_ICE_CREAM_BLOCK, MINT_ICE_CREAM_BLOCK, ADZUKI_ICE_CREAM_BLOCK,
+						WAFFLE_CONE_BLOCK, WAFFLE_CONE_PILLAR, WAFFLE_CONE_TILES, WAFFLE_CONE_TILE_STAIRS, WAFFLE_CONE_TILE_SLAB, WAFFLE_CONE_TILE_WALL
 				)
 				.tab(FUNCTIONAL_BLOCKS)
 				.addItemsAfter(of(Blocks.CAULDRON), CHILLBOX)
@@ -267,6 +275,8 @@ public class NeapolitanBlocks {
 		public static final BlockBehaviour.Properties CHOCOLATE = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2.0F, 3.0F).sound(SoundType.WOOD);
 		public static final BlockBehaviour.Properties CHOCOLATE_BRICKS = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2.0F, 3.0F).sound(SoundType.WOOD);
 		public static final BlockBehaviour.Properties CHOCOLATE_TILES = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2.0F, 3.0F).sound(SoundType.WOOD);
+
+		public static final BlockBehaviour.Properties WAFFLE_CONE_BLOCK = BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).strength(2.0F, 3.0F).sound(SoundType.PACKED_MUD);
 
 		public static final BlockBehaviour.Properties STRAWBERRY_BUSH = BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().instabreak().randomTicks().sound(SoundType.CROP).pushReaction(PushReaction.DESTROY);
 		public static final BlockBehaviour.Properties VANILLA_VINE = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GREEN).randomTicks().instabreak().noCollission().sound(SoundType.WEEPING_VINES).pushReaction(PushReaction.DESTROY);

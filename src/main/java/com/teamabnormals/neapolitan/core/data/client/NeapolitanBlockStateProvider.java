@@ -3,6 +3,7 @@ package com.teamabnormals.neapolitan.core.data.client;
 import com.teamabnormals.blueprint.core.data.client.BlueprintBlockStateProvider;
 import com.teamabnormals.neapolitan.common.block.FlavoredCandleCakeBlock;
 import com.teamabnormals.neapolitan.core.Neapolitan;
+import com.teamabnormals.neapolitan.core.other.NeapolitanBlockFamilies;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -24,6 +25,10 @@ public class NeapolitanBlockStateProvider extends BlueprintBlockStateProvider {
 
 	@Override
 	protected void registerStatesAndModels() {
+		this.block(WAFFLE_CONE_BLOCK);
+		this.logBlock(WAFFLE_CONE_PILLAR);
+		this.blockFamily(NeapolitanBlockFamilies.WAFFLE_CONE_TILE_FAMILY);
+
 		this.block(ICE_CREAM_BLOCK);
 		this.logBlock(SUGAR_CANE_BLOCK);
 		this.directionalBlock(SUGAR_SACK);

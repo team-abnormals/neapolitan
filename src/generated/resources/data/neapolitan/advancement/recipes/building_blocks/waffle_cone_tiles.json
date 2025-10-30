@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "neapolitan:waffle_cone_tiles"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_waffle_cone": {
+      "conditions": {
+        "items": [
+          {
+            "items": "neapolitan:waffle_cone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_waffle_cone"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "neapolitan:waffle_cone_tiles"
+    ]
+  }
+}
