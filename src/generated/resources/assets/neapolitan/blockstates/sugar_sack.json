@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "neapolitan:block/sugar_sack",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "neapolitan:block/sugar_sack",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "neapolitan:block/sugar_sack",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "neapolitan:block/sugar_sack",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "neapolitan:block/sugar_sack"
+    },
+    "facing=west": {
+      "model": "neapolitan:block/sugar_sack",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

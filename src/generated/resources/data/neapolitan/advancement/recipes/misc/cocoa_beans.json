@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cocoa_bean_sack": {
+      "conditions": {
+        "items": [
+          {
+            "items": "neapolitan:cocoa_bean_sack"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "neapolitan:cocoa_beans"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_cocoa_bean_sack"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "neapolitan:cocoa_beans"
+    ]
+  }
+}

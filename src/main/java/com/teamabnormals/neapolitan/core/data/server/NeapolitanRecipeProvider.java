@@ -23,6 +23,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.Tags;
@@ -34,6 +35,8 @@ import java.util.concurrent.CompletableFuture;
 
 import static com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks.*;
 import static com.teamabnormals.neapolitan.core.registry.NeapolitanItems.*;
+import static net.minecraft.data.recipes.RecipeCategory.BUILDING_BLOCKS;
+import static net.minecraft.data.recipes.RecipeCategory.MISC;
 import static net.minecraft.world.item.Items.*;
 
 public class NeapolitanRecipeProvider extends BlueprintRecipeProvider {
@@ -117,6 +120,10 @@ public class NeapolitanRecipeProvider extends BlueprintRecipeProvider {
 		flavorRecipes(consumer, provider, DRIED_VANILLA_PODS, NeapolitanIceCreamFlavors.VANILLA, VANILLA_MILKSHAKE, NeapolitanItems.VANILLA_CAKE, VANILLA_ICE_CREAM_BLOCK);
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, VANILLA_FUDGE, 4).requires(DRIED_VANILLA_PODS, 2).requires(SUGAR).requires(BlueprintItemTags.MILK).unlockedBy(getHasName(VANILLA_PODS), has(VANILLA_PODS)).save(consumer);
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, VANILLA_PUDDING).requires(EGG).requires(SUGAR).requires(DRIED_VANILLA_PODS).requires(BOWL).unlockedBy(getHasName(VANILLA_PODS), has(VANILLA_PODS)).save(consumer);
+
+		storageRecipes(consumer, MISC, SUGAR_CANE, BUILDING_BLOCKS, SUGAR_CANE_BUNDLE.get());
+		storageRecipes(consumer, MISC, SUGAR, BUILDING_BLOCKS, SUGAR_SACK.get());
+		storageRecipes(consumer, MISC, COCOA_BEANS, BUILDING_BLOCKS, COCOA_BEAN_SACK.get());
 
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ADZUKI_CURRY).requires(ROASTED_ADZUKI_BEANS).requires(DRIED_BANANA).requires(CARROT).requires(BlueprintItemTags.PUMPKINS).requires(BOWL).unlockedBy(getHasName(ROASTED_ADZUKI_BEANS), has(ROASTED_ADZUKI_BEANS)).save(consumer);
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, CHOCOLATE_STRAWBERRIES).requires(NeapolitanItemTags.FOODS_STRAWBERRY).requires(NeapolitanItemTags.FOODS_CHOCOLATE_BAR).unlockedBy(getHasName(CHOCOLATE_BAR), has(NeapolitanItemTags.FOODS_CHOCOLATE_BAR)).unlockedBy(getHasName(STRAWBERRIES), has(STRAWBERRIES)).save(consumer);

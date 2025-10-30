@@ -13,6 +13,8 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import java.util.function.Function;
 
+import static com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks.*;
+
 
 public class NeapolitanBlockStateProvider extends BlueprintBlockStateProvider {
 
@@ -22,7 +24,11 @@ public class NeapolitanBlockStateProvider extends BlueprintBlockStateProvider {
 
 	@Override
 	protected void registerStatesAndModels() {
-		FlavoredCandleCakeBlock.getCandleCakes().forEach((block -> this.candleCake((FlavoredCandleCakeBlock) block)));
+		this.logBlock(SUGAR_CANE_BUNDLE);
+		this.directionalBlock(SUGAR_SACK);
+		this.directionalBlock(COCOA_BEAN_SACK);
+
+		FlavoredCandleCakeBlock.getCandleCakes().forEach(this::candleCake);
 	}
 
 	public void candleCake(FlavoredCandleCakeBlock block) {

@@ -75,7 +75,7 @@ public class IceCreamItem extends Item {
 	public Component getName(ItemStack stack) {
 		IceCream iceCream = stack.get(NeapolitanDataComponents.ICE_CREAM.get());
 		Component name = super.getName(stack);
-		if (Minecraft.getInstance().level != null && Minecraft.getInstance().level.registryAccess() != null) {
+		if (Minecraft.getInstance().level != null && iceCream != null) {
 			Optional<Reference<IceCreamOverride>> override = IceCreamOverride.getFromIceCream(Minecraft.getInstance().level.registryAccess(), iceCream);
 			if (override.isPresent()) {
 				IceCreamOverride value = override.get().value();

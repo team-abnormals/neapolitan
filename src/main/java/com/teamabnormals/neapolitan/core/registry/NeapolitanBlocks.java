@@ -94,12 +94,17 @@ public class NeapolitanBlocks {
 	public static final DeferredBlock<Block> DRIED_VANILLA_POD_BLOCK = BLOCKS.createBlock("dried_vanilla_pod_block", () -> new RotatedPillarBlock(NeapolitanBlockProperties.DRIED_VANILLA_POD_BLOCK));
 	public static final DeferredBlock<Block> BANANA_BUNDLE = BLOCKS.createBlock("banana_bundle", () -> new BananaBundleBlock(NeapolitanBlockProperties.BANANA_BUNDLE));
 
+	public static final DeferredBlock<Block> SUGAR_CANE_BUNDLE = BLOCKS.createBlock("sugar_cane_bundle", () -> new RotatedPillarBlock(NeapolitanBlockProperties.SUGAR_CANE_BUNDLE));
+
 	public static final DeferredBlock<Block> STRAWBERRY_BASKET = BLOCKS.createBlock("strawberry_basket", () -> new BlueprintDirectionalBlock(NeapolitanBlockProperties.STRAWBERRY_BASKET));
 	public static final DeferredBlock<Block> WHITE_STRAWBERRY_BASKET = BLOCKS.createBlock("white_strawberry_basket", () -> new BlueprintDirectionalBlock(NeapolitanBlockProperties.WHITE_STRAWBERRY_BASKET));
 	public static final DeferredBlock<Block> BANANA_CRATE = BLOCKS.createBlock("banana_crate", () -> new BlueprintDirectionalBlock(NeapolitanBlockProperties.BANANA_CRATE));
 	public static final DeferredBlock<Block> MINT_BASKET = BLOCKS.createBlock("mint_basket", () -> new BlueprintDirectionalBlock(NeapolitanBlockProperties.MINT_BASKET));
 	public static final DeferredBlock<Block> ADZUKI_CRATE = BLOCKS.createBlock("adzuki_crate", () -> new BlueprintDirectionalBlock(NeapolitanBlockProperties.ADZUKI_CRATE));
 	public static final DeferredBlock<Block> ROASTED_ADZUKI_CRATE = BLOCKS.createBlock("roasted_adzuki_crate", () -> new BlueprintDirectionalBlock(NeapolitanBlockProperties.ROASTED_ADZUKI_CRATE));
+
+	public static final DeferredBlock<Block> COCOA_BEAN_SACK = BLOCKS.createBlock("cocoa_bean_sack", () -> new BlueprintDirectionalBlock(NeapolitanBlockProperties.COCOA_BEAN_SACK));
+	public static final DeferredBlock<Block> SUGAR_SACK = BLOCKS.createBlock("sugar_sack", () -> new BlueprintDirectionalBlock(NeapolitanBlockProperties.SUGAR_SACK));
 
 	public static final DeferredBlock<Block> CHIMPANZEE_HEAD = BLOCKS.createBlockNoItem("chimpanzee_head", () -> new NeapolitanSkullBlock(NeapolitanSkullTypes.CHIMPANZEE, BlockBehaviour.Properties.of().strength(1.0F).pushReaction(PushReaction.DESTROY)));
 	public static final DeferredBlock<Block> CHIMPANZEE_WALL_HEAD = BLOCKS.createBlockNoItem("chimpanzee_wall_head", () -> new NeapolitanWallSkullBlock(NeapolitanSkullTypes.CHIMPANZEE, BlockBehaviour.Properties.of().strength(1.0F).pushReaction(PushReaction.DESTROY).lootFrom(() -> CHIMPANZEE_HEAD.get())));
@@ -229,8 +234,7 @@ public class NeapolitanBlocks {
 				.addItemsAfter(of(Items.COCOA_BEANS), MAGIC_BEANS)
 				.addItemsAfter(of(Blocks.CACTUS), BANANA_STALK, BANANA_FROND, BEANSTALK, BEANSTALK_THORNS)
 				.addItemsAfter(of(Blocks.MELON), BANANA_BUNDLE)
-				.addItemsAfter(of(Blocks.HAY_BLOCK), VANILLA_POD_BLOCK, DRIED_VANILLA_POD_BLOCK)
-				.addItemsAfter(of(Blocks.HAY_BLOCK), STRAWBERRY_BASKET, WHITE_STRAWBERRY_BASKET, MINT_BASKET, BANANA_CRATE, ADZUKI_CRATE, ROASTED_ADZUKI_CRATE);
+				.addItemsAfter(of(Blocks.HAY_BLOCK), SUGAR_CANE_BUNDLE, VANILLA_POD_BLOCK, DRIED_VANILLA_POD_BLOCK, SUGAR_SACK, COCOA_BEAN_SACK, STRAWBERRY_BASKET, WHITE_STRAWBERRY_BASKET, MINT_BASKET, BANANA_CRATE, ADZUKI_CRATE, ROASTED_ADZUKI_CRATE);
 	}
 
 	public enum NeapolitanSkullTypes implements SkullBlock.Type {
@@ -291,6 +295,7 @@ public class NeapolitanBlocks {
 		public static final BlockBehaviour.Properties MINT_CANDLE_CAKE = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GREEN).strength(0.5F).sound(SoundType.WOOL).pushReaction(PushReaction.DESTROY).lightLevel(litBlockEmission(3));
 		public static final BlockBehaviour.Properties ADZUKI_CANDLE_CAKE = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED).strength(0.5F).sound(SoundType.WOOL).pushReaction(PushReaction.DESTROY).lightLevel(litBlockEmission(3));
 
+		public static final BlockBehaviour.Properties SUGAR_CANE_BUNDLE = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GREEN).strength(0.5F, 2.5F).sound(SoundType.GRASS);
 		public static final BlockBehaviour.Properties VANILLA_POD_BLOCK = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GREEN).strength(0.5F, 2.5F).sound(SoundType.GRASS);
 		public static final BlockBehaviour.Properties DRIED_VANILLA_POD_BLOCK = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).strength(0.5F, 2.5F).sound(SoundType.GRASS);
 		public static final BlockBehaviour.Properties BANANA_BUNDLE = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_YELLOW).instrument(NoteBlockInstrument.DIDGERIDOO).strength(2.5F).sound(SoundType.WOOD).pushReaction(PushReaction.DESTROY);
@@ -301,6 +306,8 @@ public class NeapolitanBlocks {
 		public static final BlockBehaviour.Properties MINT_BASKET = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GREEN).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(1.5F).sound(SoundType.WOOD);
 		public static final BlockBehaviour.Properties ADZUKI_CRATE = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(1.5F).sound(SoundType.WOOD);
 		public static final BlockBehaviour.Properties ROASTED_ADZUKI_CRATE = BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_RED).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(1.5F).sound(SoundType.WOOD);
+		public static final BlockBehaviour.Properties SUGAR_SACK = BlockBehaviour.Properties.of().mapColor(MapColor.WOOL).ignitedByLava().instrument(NoteBlockInstrument.GUITAR).strength(0.8F).sound(SoundType.WOOL);
+		public static final BlockBehaviour.Properties COCOA_BEAN_SACK = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).ignitedByLava().instrument(NoteBlockInstrument.GUITAR).strength(0.8F).sound(SoundType.WOOL);
 
 		private static ToIntFunction<BlockState> litBlockEmission(int level) {
 			return (state) -> state.getValue(BlockStateProperties.LIT) ? level : 0;

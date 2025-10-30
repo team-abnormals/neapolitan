@@ -140,14 +140,16 @@ public class NeapolitanLootTableProvider extends LootTableProvider {
 			this.add(BANANA_FROND.get(), block -> LootTable.lootTable().withPool(LootPool.lootPool()
 					.setRolls(ConstantValue.exactly(1.0F))
 					.add(this.applyExplosionDecay(BANANA_FROND.get(), LootItem.lootTableItem(block).apply(List.of(2, 3), i -> SetItemCountFunction
-							.setCount(ConstantValue.exactly((float) i.intValue()))
+							.setCount(ConstantValue.exactly((float) i))
 							.when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties()
-									.hasProperty(BananaFrondBlock.SIZE, i.intValue())))))))
+									.hasProperty(BananaFrondBlock.SIZE, i)))))))
 			);
 
 			this.dropSelf(VANILLA_VINE.get());
 			this.dropSelf(VANILLA_VINE_PLANT.get());
 
+			this.dropSelf(SUGAR_SACK.get());
+			this.dropSelf(COCOA_BEAN_SACK.get());
 			this.dropSelf(BANANA_CRATE.get());
 			this.dropSelf(ADZUKI_CRATE.get());
 			this.dropSelf(ROASTED_ADZUKI_CRATE.get());
@@ -156,6 +158,7 @@ public class NeapolitanLootTableProvider extends LootTableProvider {
 			this.dropSelf(WHITE_STRAWBERRY_BASKET.get());
 			this.dropSelf(VANILLA_POD_BLOCK.get());
 			this.dropSelf(DRIED_VANILLA_POD_BLOCK.get());
+			this.dropSelf(SUGAR_CANE_BUNDLE.get());
 
 			this.dropPottedContents(POTTED_MINT.get());
 			this.dropPottedContents(POTTED_VANILLA_VINE.get());
