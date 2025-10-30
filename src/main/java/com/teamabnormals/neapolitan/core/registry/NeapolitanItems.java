@@ -4,11 +4,14 @@ import com.teamabnormals.blueprint.core.util.item.CreativeModeTabContentsPopulat
 import com.teamabnormals.blueprint.core.util.registry.ItemSubRegistryHelper;
 import com.teamabnormals.neapolitan.common.item.*;
 import com.teamabnormals.neapolitan.common.item.component.IceCream;
+import com.teamabnormals.neapolitan.common.item.component.IceCreamFlavor;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanBannerPatternTags;
+import com.teamabnormals.neapolitan.core.registry.datapack.NeapolitanIceCreamFlavors;
 import com.teamabnormals.neapolitan.core.registry.datapack.NeapolitanJukeboxSongs;
 import com.teamabnormals.neapolitan.core.registry.datapack.NeapolitanTrimPatterns;
 import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
@@ -17,7 +20,10 @@ import net.minecraft.world.item.CreativeModeTab.TabVisibility;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredItem;
+import org.apache.commons.compress.utils.Lists;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Supplier;
 
 import static net.minecraft.world.item.CreativeModeTabs.*;
@@ -110,8 +116,9 @@ public class NeapolitanItems {
 				.addItemsAfter(of(Items.PUMPKIN_PIE), MINT_CANDIES, STRAWBERRY_BEAN_BONBONS)
 				.addItemsAfter(of(Items.SPIDER_EYE), CHOCOLATE_SPIDER_EYE)
 				.addItemsBefore(of(Items.MILK_BUCKET), VANILLA_PUDDING)
+				.editor(NeapolitanItems::additionalIceCreamTypes)
+				.addStacksAfter(of(Items.MILK_BUCKET), NeapolitanItems.baseIceCreamTypes())
 				.addItemsAfter(of(Items.MILK_BUCKET), MILK_BOTTLE, VANILLA_MILKSHAKE, CHOCOLATE_MILKSHAKE, STRAWBERRY_MILKSHAKE, BANANA_MILKSHAKE, MINT_MILKSHAKE, ADZUKI_MILKSHAKE)
-				.editor(NeapolitanItems::generateIceCreamTypes)
 				.addItemsAfter(of(Items.HONEY_BOTTLE), STRAWBERRY_BANANA_SMOOTHIE)
 				.addItemsBefore(of(Items.POTION), ICE_CUBES)
 				.tab(COMBAT)
@@ -133,14 +140,22 @@ public class NeapolitanItems {
 				.addSpawnEggsAlphabetically(CHIMPANZEE_SPAWN_EGG, PLANTAIN_SPIDER_SPAWN_EGG);
 	}
 
-	private static void generateIceCreamTypes(BuildCreativeModeTabContentsEvent event) {
+	private static Supplier<ItemStack>[] baseIceCreamTypes() {
+		ArrayList<Supplier<ItemStack>> stacks = Lists.newArrayList();
+		stacks.add(() -> IceCream.setFlavors(ICE_CREAM, IceCream.neapolitan()));
+		stacks.add(() -> IceCream.setFlavors(ICE_CREAM_CONE, IceCream.neapolitan()));
+		for (ResourceKey<IceCreamFlavor> flavorKey : NeapolitanIceCreamFlavors.FLAVORS) {
+			stacks.add(() -> IceCream.setFlavor(ICE_CREAM, flavorKey));
+			stacks.add(() -> IceCream.setFlavor(ICE_CREAM_CONE, flavorKey));
+		}
+		return stacks.toArray(new Supplier[stacks.size()]);
+	}
+
+	private static void additionalIceCreamTypes(BuildCreativeModeTabContentsEvent event) {
 		event.getParameters().holders().lookup(NeapolitanRegistries.ICE_CREAM_FLAVOR).ifPresent(registry -> {
 			if (event.getTabKey().equals(FOOD_AND_DRINKS)) {
 				ItemStack honey = new ItemStack(Items.HONEY_BOTTLE);
-				event.insertBefore(honey, new ItemStack(ICE_CREAM.get()), TabVisibility.PARENT_AND_SEARCH_TABS);
-				event.insertBefore(honey, new ItemStack(ICE_CREAM_CONE.get()), TabVisibility.PARENT_AND_SEARCH_TABS);
-
-				registry.listElementIds().forEach(id -> {
+				registry.listElementIds().filter(id -> !id.location().getNamespace().equals(Neapolitan.MOD_ID)).forEach(id -> {
 					event.insertBefore(honey, IceCream.setFlavor(ICE_CREAM, registry.getOrThrow(id)), TabVisibility.PARENT_AND_SEARCH_TABS);
 					event.insertBefore(honey, IceCream.setFlavor(ICE_CREAM_CONE, registry.getOrThrow(id)), TabVisibility.PARENT_AND_SEARCH_TABS);
 				});

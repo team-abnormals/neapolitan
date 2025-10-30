@@ -50,7 +50,7 @@ public class NeapolitanItemTagsProvider extends ItemTagsProvider {
 		this.tag(HIDES_CHIMPANZEE_EARS).addOptional(NeapolitanConstants.GRIEFER_HELMET).addOptional(NeapolitanConstants.SANGUINE_HELMET);
 
 		this.tag(ICE_CREAM_INGREDIENTS).addTags(ICE_CREAM_FLAVORS, ICE_CREAM_SWEETENERS, ICE_CREAM_CONTAINERS, Tags.Items.DRINKS_MILK);
-		this.tag(ICE_CREAM_FLAVORS).add(DRIED_VANILLA_PODS.get(), CHOCOLATE_BAR.get(), STRAWBERRIES.get(), BANANA.get(), MINT_LEAVES.get(), ROASTED_ADZUKI_BEANS.get());
+		this.tag(ICE_CREAM_FLAVORS).add(Items.SNOWBALL, DRIED_VANILLA_PODS.get(), CHOCOLATE_BAR.get(), STRAWBERRIES.get(), BANANA.get(), MINT_LEAVES.get(), ROASTED_ADZUKI_BEANS.get());
 		this.tag(ICE_CREAM_SWEETENERS).add(Items.SUGAR);
 		this.tag(ICE_CREAM_CONTAINERS).add(Items.BOWL, WAFFLE_CONE.get());
 
