@@ -1,9 +1,6 @@
 package com.teamabnormals.neapolitan.core.other;
 
-import com.teamabnormals.blueprint.client.MemoizedBEWLR;
-import com.teamabnormals.neapolitan.client.renderer.blockentity.ChillboxBEWLR;
 import com.teamabnormals.neapolitan.client.renderer.item.IceCreamRenderer.IceCreamClientExtension;
-import com.teamabnormals.neapolitan.common.block.entity.ChillboxBlockEntity;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks.NeapolitanSkullTypes;
@@ -12,7 +9,6 @@ import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.SkullBlockRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.Items;
@@ -64,6 +60,5 @@ public class NeapolitanClientCompat {
 	public static void registerClientExtensions(RegisterClientExtensionsEvent event) {
 		event.registerItem(new IceCreamClientExtension(), NeapolitanItems.ICE_CREAM);
 		event.registerItem(new IceCreamClientExtension(), NeapolitanItems.ICE_CREAM_CONE);
-		event.registerItem(MemoizedBEWLR.asCustomItemRenderer((dispatcher, entityModelSet) -> new ChillboxBEWLR(dispatcher, entityModelSet, new ChillboxBlockEntity(BlockPos.ZERO, NeapolitanBlocks.CHILLBOX.get().defaultBlockState()))), NeapolitanBlocks.CHILLBOX.asItem());
 	}
 }

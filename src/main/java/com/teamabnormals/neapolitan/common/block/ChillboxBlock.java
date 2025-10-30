@@ -36,7 +36,7 @@ import javax.annotation.Nullable;
 
 public class ChillboxBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
 	public static final MapCodec<ChillboxBlock> CODEC = simpleCodec(ChillboxBlock::new);
-	private static final VoxelShape BOUNDING_BOX = Block.box(3.0, 0.0, 3.0, 13.0, 16.0, 13.0);
+	private static final VoxelShape BOUNDING_BOX = Block.box(1.0, 0.0, 1.0, 15.0, 16.0, 15.0);
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 

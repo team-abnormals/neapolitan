@@ -36,14 +36,14 @@ public class ChillboxRenderer implements BlockEntityRenderer<ChillboxBlockEntity
 	public static LayerDefinition createBaseLayer() {
 		MeshDefinition mesh = new MeshDefinition();
 		PartDefinition root = mesh.getRoot();
-		root.addOrReplaceChild("base", CubeListBuilder.create().texOffs(0, 0).addBox(3.0F, 0.0F, 3.0F, 10.0F, 16.0F, 10.0F), PartPose.offsetAndRotation(0.0F, 16.0F, 16.0F, (float) Math.PI, 0.0F, 0.0F));
+		root.addOrReplaceChild("base", CubeListBuilder.create().texOffs(0, 0).addBox(1.0F, 0.0F, 1.0F, 14.0F, 16.0F, 14.0F), PartPose.offsetAndRotation(0.0F, 16.0F, 16.0F, (float) Math.PI, 0.0F, 0.0F));
 		return LayerDefinition.create(mesh, 64, 64);
 	}
 
 	public static LayerDefinition createTopLayer() {
 		MeshDefinition mesh = new MeshDefinition();
 		PartDefinition root = mesh.getRoot();
-		root.addOrReplaceChild("top", CubeListBuilder.create().texOffs(-16, 0).addBox(4.0F, 16.0F, 4.0F, 8.0F, 0.0F, 8.0F), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F));
+		root.addOrReplaceChild("top", CubeListBuilder.create().texOffs(-22, 2).addBox(2.0F, 16.0F, 2.0F, 12.0F, 0.0F, 12.0F), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F));
 		return LayerDefinition.create(mesh, 16, 16);
 	}
 

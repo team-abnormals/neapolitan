@@ -2,6 +2,7 @@ package com.teamabnormals.neapolitan.core.data.client;
 
 import com.teamabnormals.blueprint.core.data.client.BlueprintItemModelProvider;
 import com.teamabnormals.neapolitan.core.Neapolitan;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.client.model.generators.ModelProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -24,7 +25,7 @@ public class NeapolitanItemModelProvider extends BlueprintItemModelProvider {
 	@Override
 	protected void registerModels() {
 		this.generatedItem(
-				PRIMAL_ARMOR_TRIM_SMITHING_TEMPLATE, WAFFLE_CONE,
+				PRIMAL_ARMOR_TRIM_SMITHING_TEMPLATE, WAFFLE_CONE, NeapolitanBlocks.CHILLBOX,
 				REFLECTION_POTTERY_SHERD, SCREAM_POTTERY_SHERD, SPIDER_POTTERY_SHERD, SNACK_POTTERY_SHERD
 		);
 
