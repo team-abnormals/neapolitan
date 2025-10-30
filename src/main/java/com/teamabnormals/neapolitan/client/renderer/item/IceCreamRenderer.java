@@ -2,9 +2,8 @@ package com.teamabnormals.neapolitan.client.renderer.item;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.teamabnormals.blueprint.client.model.DynamicItemModel;
-import com.teamabnormals.neapolitan.client.IceCreamOverride;
-import com.teamabnormals.neapolitan.client.IceCreamOverrideLoader;
 import com.teamabnormals.neapolitan.common.item.component.IceCream;
+import com.teamabnormals.neapolitan.common.item.component.IceCreamOverride;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanDataComponents;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
@@ -14,6 +13,7 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.core.Holder.Reference;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.item.ItemDisplayContext;
@@ -59,15 +59,18 @@ public class IceCreamRenderer extends BlockEntityWithoutLevelRenderer {
 			}
 
 			ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
-			Optional<IceCreamOverride> override = IceCreamOverrideLoader.INSTANCE.getFromIceCream(iceCream);
-			if (override.isPresent()) {
-				IceCreamOverride value = override.get();
-				Optional<ResourceLocation> location = cone ? value.coneItemModel() : value.bowlItemModel();
-				if (location.isPresent()) {
-					BakedModel model = itemRenderer.getItemModelShaper().getModelManager().getModel(ModelResourceLocation.standalone(location.get().withPrefix("item/ice_cream/")));
-					itemRenderer.render(stack, ItemDisplayContext.FIXED, true, poseStack, buffer, packedLight, packedOverlay, model);
-					poseStack.popPose();
-					return;
+			// TODO: Turn into a resource pack feature, not a data pack feature
+			if (Minecraft.getInstance().level != null && Minecraft.getInstance().level.registryAccess() != null) {
+				Optional<Reference<IceCreamOverride>> override = IceCreamOverride.getFromIceCream(Minecraft.getInstance().level.registryAccess(), iceCream);
+				if (override.isPresent()) {
+					IceCreamOverride value = override.get().value();
+					Optional<ResourceLocation> location = cone ? value.coneItemModel() : value.bowlItemModel();
+					if (location.isPresent()) {
+						BakedModel model = itemRenderer.getItemModelShaper().getModelManager().getModel(ModelResourceLocation.standalone(location.get().withPrefix("item/ice_cream/")));
+						itemRenderer.render(stack, ItemDisplayContext.FIXED, true, poseStack, buffer, packedLight, packedOverlay, model);
+						poseStack.popPose();
+						return;
+					}
 				}
 			}
 

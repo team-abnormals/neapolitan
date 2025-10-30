@@ -1,6 +1,5 @@
 package com.teamabnormals.neapolitan.core.other;
 
-import com.teamabnormals.neapolitan.client.IceCreamOverrideLoader;
 import com.teamabnormals.neapolitan.client.renderer.item.IceCreamRenderer.IceCreamClientExtension;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
@@ -17,7 +16,6 @@ import net.minecraft.world.item.component.ChargedProjectiles;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.client.event.RegisterClientReloadListenersEvent;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 
 
@@ -62,10 +60,5 @@ public class NeapolitanClientCompat {
 	public static void registerClientExtensions(RegisterClientExtensionsEvent event) {
 		event.registerItem(new IceCreamClientExtension(), NeapolitanItems.ICE_CREAM);
 		event.registerItem(new IceCreamClientExtension(), NeapolitanItems.ICE_CREAM_CONE);
-	}
-
-	@SubscribeEvent
-	public static void registerReloadListeners(RegisterClientReloadListenersEvent event) {
-		event.registerReloadListener(IceCreamOverrideLoader.INSTANCE);
 	}
 }

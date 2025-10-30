@@ -20,6 +20,7 @@ public class NeapolitanDatapackProvider extends DatapackBuiltinEntriesProvider {
 
 	public static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
 			.add(NeapolitanRegistries.ICE_CREAM_FLAVOR, NeapolitanIceCreamFlavors::bootstrap)
+			.add(NeapolitanRegistries.ICE_CREAM_OVERRIDE, NeapolitanIceCreamOverrides::bootstrap)
 			.add(NeapolitanRegistries.CHIMPANZEE_VARIANT, NeapolitanChimpanzeeVariants::bootstrap)
 			.add(Registries.JUKEBOX_SONG, NeapolitanJukeboxSongs::bootstrap)
 			.add(Registries.PAINTING_VARIANT, NeapolitanPaintingVariants::bootstrap)
