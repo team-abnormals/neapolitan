@@ -1,15 +1,14 @@
 package com.teamabnormals.neapolitan.common.item;
 
+import com.teamabnormals.neapolitan.client.IceCreamOverride;
+import com.teamabnormals.neapolitan.client.IceCreamOverrideLoader;
 import com.teamabnormals.neapolitan.common.item.component.IceCream;
 import com.teamabnormals.neapolitan.common.item.component.IceCreamFlavor;
-import com.teamabnormals.neapolitan.common.item.component.IceCreamOverride;
 import com.teamabnormals.neapolitan.common.item.component.effect.IceCreamFlavorEffect;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanDataComponents;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanRegistries;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanSoundEvents;
-import net.minecraft.client.Minecraft;
-import net.minecraft.core.Holder.Reference;
 import net.minecraft.core.HolderLookup.RegistryLookup;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
@@ -21,7 +20,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.common.CommonHooks;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -79,10 +77,10 @@ public class IceCreamItem extends Item {
 	public Component getName(ItemStack stack) {
 		IceCream iceCream = stack.get(NeapolitanDataComponents.ICE_CREAM.get());
 		Component name = super.getName(stack);
-		if (Minecraft.getInstance().level != null && iceCream != null) {
-			Optional<Reference<IceCreamOverride>> override = IceCreamOverride.getFromIceCream(Minecraft.getInstance().level.registryAccess(), iceCream);
+		if (iceCream != null) {
+			Optional<IceCreamOverride> override = IceCreamOverrideLoader.INSTANCE.getFromIceCream(iceCream);
 			if (override.isPresent()) {
-				IceCreamOverride value = override.get().value();
+				IceCreamOverride value = override.get();
 				return stack.is(NeapolitanItems.ICE_CREAM_CONE) ? value.coneDescription().orElse(name) : value.bowlDescription().orElse(name);
 			}
 		}
