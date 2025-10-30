@@ -47,9 +47,9 @@ public class IceCreamRenderer extends BlockEntityWithoutLevelRenderer {
 			poseStack.scale(-1.0F, 1.0F, -1.0F);
 
 			ResourceLocation[] flavors = new ResourceLocation[]{
-					iceCream.primaryFlavor().getKey().location(),
-					iceCream.secondaryFlavor().getKey().location(),
-					iceCream.tertiaryFlavor().getKey().location()
+					iceCream.primaryFlavor().key().location(),
+					iceCream.secondaryFlavor().key().location(),
+					iceCream.tertiaryFlavor().key().location()
 			};
 
 			String container = "bowl_";
@@ -59,6 +59,7 @@ public class IceCreamRenderer extends BlockEntityWithoutLevelRenderer {
 			}
 
 			ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
+			// TODO: Turn into a resource pack feature, not a data pack feature
 			if (Minecraft.getInstance().level != null && Minecraft.getInstance().level.registryAccess() != null) {
 				Optional<Reference<IceCreamOverride>> override = IceCreamOverride.getFromIceCream(Minecraft.getInstance().level.registryAccess(), iceCream);
 				if (override.isPresent()) {

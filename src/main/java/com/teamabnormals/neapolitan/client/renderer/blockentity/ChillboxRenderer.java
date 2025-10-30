@@ -19,7 +19,6 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Holder.Direct;
 import net.minecraft.world.phys.AABB;
 
 import java.util.EnumSet;
@@ -63,7 +62,7 @@ public class ChillboxRenderer implements BlockEntityRenderer<ChillboxBlockEntity
 		if (blockEntity.getItem(ChillboxBlockEntity.RESULT_SLOT).has(NeapolitanDataComponents.ICE_CREAM)) {
 			IceCream iceCream = blockEntity.getItem(ChillboxBlockEntity.RESULT_SLOT).get(NeapolitanDataComponents.ICE_CREAM);
 			for (int i = 1; i <= 3; i++) {
-				this.top.render(poseStack, NeapolitanMaterials.getChillboxMaterial(iceCream.flavor(i).getKey(), i).buffer(bufferSource, RenderType::entityCutout), packedLight, packedOverlay);
+				this.top.render(poseStack, NeapolitanMaterials.getChillboxMaterial(iceCream.flavor(i).key(), i).buffer(bufferSource, RenderType::entityCutout), packedLight, packedOverlay);
 			}
 		} else {
 			this.top.render(poseStack, NeapolitanMaterials.CHILLBOX_TOP.buffer(bufferSource, RenderType::entityCutout), packedLight, packedOverlay);

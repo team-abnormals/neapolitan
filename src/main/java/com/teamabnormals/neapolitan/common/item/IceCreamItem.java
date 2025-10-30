@@ -6,11 +6,13 @@ import com.teamabnormals.neapolitan.common.item.component.IceCreamOverride;
 import com.teamabnormals.neapolitan.common.item.component.effect.IceCreamFlavorEffect;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanDataComponents;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanRegistries;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanSoundEvents;
 import net.minecraft.client.Minecraft;
-import net.minecraft.core.Holder;
 import net.minecraft.core.Holder.Reference;
+import net.minecraft.core.HolderLookup.RegistryLookup;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.LivingEntity;
@@ -19,6 +21,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.neoforged.neoforge.common.CommonHooks;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -35,8 +38,8 @@ public class IceCreamItem extends Item {
 		// entity.setTicksFrozen(entity.getTicksFrozen() + 200);
 		if (stack.has(NeapolitanDataComponents.ICE_CREAM.get()) && entity.level() instanceof ServerLevel serverLevel) {
 			IceCream iceCream = stack.get(NeapolitanDataComponents.ICE_CREAM.get());
-			iceCream.distinctFlavors().forEach(flavor -> {
-				flavor.value().effects().forEach(effect -> {
+			iceCream.distinctFlavorKeys().forEach(flavor -> {
+				serverLevel.registryAccess().registryOrThrow(NeapolitanRegistries.ICE_CREAM_FLAVOR).getOrThrow(flavor).effects().forEach(effect -> {
 					effect.finishUsingItem(serverLevel, iceCream.flavorCount(flavor), stack, entity);
 				});
 			});
@@ -59,10 +62,11 @@ public class IceCreamItem extends Item {
 	@Override
 	public FoodProperties getFoodProperties(ItemStack stack, @Nullable LivingEntity entity) {
 		FoodProperties base = super.getFoodProperties(stack, entity);
-		if (stack.has(NeapolitanDataComponents.ICE_CREAM.get())) {
+		if (stack.has(NeapolitanDataComponents.ICE_CREAM.get()) && entity != null) {
+			RegistryLookup<IceCreamFlavor> registries = entity.level().registryAccess().lookupOrThrow(NeapolitanRegistries.ICE_CREAM_FLAVOR);
 			IceCream iceCream = stack.get(NeapolitanDataComponents.ICE_CREAM.get());
-			for (Holder<IceCreamFlavor> flavor : iceCream.distinctFlavors()) {
-				for (IceCreamFlavorEffect effect : flavor.value().effects()) {
+			for (ResourceKey<IceCreamFlavor> flavor : iceCream.distinctFlavorKeys()) {
+				for (IceCreamFlavorEffect effect : registries.getOrThrow(flavor).value().effects()) {
 					base = effect.modifyFoodProperties(base, iceCream.flavorCount(flavor), stack, entity);
 				}
 			}

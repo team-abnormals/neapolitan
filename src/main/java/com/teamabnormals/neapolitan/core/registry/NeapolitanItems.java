@@ -6,7 +6,6 @@ import com.teamabnormals.neapolitan.common.item.*;
 import com.teamabnormals.neapolitan.common.item.component.IceCream;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.other.tags.NeapolitanBannerPatternTags;
-import com.teamabnormals.neapolitan.core.registry.datapack.NeapolitanIceCreamFlavors;
 import com.teamabnormals.neapolitan.core.registry.datapack.NeapolitanJukeboxSongs;
 import com.teamabnormals.neapolitan.core.registry.datapack.NeapolitanTrimPatterns;
 import net.minecraft.core.Direction;
@@ -31,8 +30,8 @@ public class NeapolitanItems {
 	public static final DeferredItem<Item> ICE_CUBES = ITEMS.createItem("ice_cubes", () -> new IceCubesItem(new Item.Properties().food(NeapolitanFoods.ICE_CUBES)));
 	public static final DeferredItem<Item> WAFFLE_CONE = ITEMS.createItem("waffle_cone", () -> new Item(new Item.Properties().food(NeapolitanFoods.ICE_CUBES)));
 
-	public static final DeferredItem<Item> ICE_CREAM = ITEMS.createItem("ice_cream", () -> new IceCreamItem(new Item.Properties().food(NeapolitanFoods.ICE_CREAM).craftRemainder(Items.BOWL).stacksTo(1)));
-	public static final DeferredItem<Item> ICE_CREAM_CONE = ITEMS.createItem("ice_cream_cone", () -> new IceCreamItem(new Item.Properties().food(NeapolitanFoods.ICE_CREAM_CONE)));
+	public static final DeferredItem<Item> ICE_CREAM = ITEMS.createItem("ice_cream", () -> new IceCreamItem(new Item.Properties().food(NeapolitanFoods.ICE_CREAM).component(NeapolitanDataComponents.ICE_CREAM, IceCream.neapolitan()).craftRemainder(Items.BOWL).stacksTo(1)));
+	public static final DeferredItem<Item> ICE_CREAM_CONE = ITEMS.createItem("ice_cream_cone", () -> new IceCreamItem(new Item.Properties().food(NeapolitanFoods.ICE_CREAM_CONE).component(NeapolitanDataComponents.ICE_CREAM, IceCream.neapolitan())));
 
 	public static final DeferredItem<Item> VANILLA_PODS = ITEMS.createItem("vanilla_pods", () -> new ItemNameBlockItem(NeapolitanBlocks.VANILLA_VINE.get(), new Item.Properties()));
 	public static final DeferredItem<Item> DRIED_VANILLA_PODS = ITEMS.createItem("dried_vanilla_pods", () -> new Item(new Item.Properties().food(NeapolitanFoods.DRIED_VANILLA_PODS)));
@@ -138,8 +137,8 @@ public class NeapolitanItems {
 		event.getParameters().holders().lookup(NeapolitanRegistries.ICE_CREAM_FLAVOR).ifPresent(registry -> {
 			if (event.getTabKey().equals(FOOD_AND_DRINKS)) {
 				ItemStack honey = new ItemStack(Items.HONEY_BOTTLE);
-				event.insertBefore(honey, IceCream.setFlavors(ICE_CREAM, registry.getOrThrow(NeapolitanIceCreamFlavors.VANILLA), registry.getOrThrow(NeapolitanIceCreamFlavors.CHOCOLATE), registry.getOrThrow(NeapolitanIceCreamFlavors.STRAWBERRY)), TabVisibility.PARENT_AND_SEARCH_TABS);
-				event.insertBefore(honey, IceCream.setFlavors(ICE_CREAM_CONE, registry.getOrThrow(NeapolitanIceCreamFlavors.VANILLA), registry.getOrThrow(NeapolitanIceCreamFlavors.CHOCOLATE), registry.getOrThrow(NeapolitanIceCreamFlavors.STRAWBERRY)), TabVisibility.PARENT_AND_SEARCH_TABS);
+				event.insertBefore(honey, new ItemStack(ICE_CREAM.get()), TabVisibility.PARENT_AND_SEARCH_TABS);
+				event.insertBefore(honey, new ItemStack(ICE_CREAM_CONE.get()), TabVisibility.PARENT_AND_SEARCH_TABS);
 
 				registry.listElementIds().forEach(id -> {
 					event.insertBefore(honey, IceCream.setFlavor(ICE_CREAM, registry.getOrThrow(id)), TabVisibility.PARENT_AND_SEARCH_TABS);
