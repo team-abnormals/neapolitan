@@ -7,6 +7,7 @@ import com.teamabnormals.neapolitan.common.item.component.IceCreamOverride;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanDataComponents;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
+import com.teamabnormals.neapolitan.core.registry.NeapolitanRegistries;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -14,6 +15,7 @@ import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.core.Holder.Reference;
+import net.minecraft.core.HolderLookup.RegistryLookup;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.item.ItemDisplayContext;
@@ -23,6 +25,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
+import net.neoforged.neoforge.common.CommonHooks;
 
 import java.util.Optional;
 
@@ -59,9 +62,9 @@ public class IceCreamRenderer extends BlockEntityWithoutLevelRenderer {
 			}
 
 			ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
-			// TODO: Turn into a resource pack feature, not a data pack feature
-			if (Minecraft.getInstance().level != null && Minecraft.getInstance().level.registryAccess() != null) {
-				Optional<Reference<IceCreamOverride>> override = IceCreamOverride.getFromIceCream(Minecraft.getInstance().level.registryAccess(), iceCream);
+			RegistryLookup<IceCreamOverride> lookup = CommonHooks.resolveLookup(NeapolitanRegistries.ICE_CREAM_OVERRIDE);
+			if (lookup != null) {
+				Optional<Reference<IceCreamOverride>> override = IceCreamOverride.getFromIceCream(lookup, iceCream);
 				if (override.isPresent()) {
 					IceCreamOverride value = override.get().value();
 					Optional<ResourceLocation> location = cone ? value.coneItemModel() : value.bowlItemModel();
@@ -79,10 +82,6 @@ public class IceCreamRenderer extends BlockEntityWithoutLevelRenderer {
 				BakedModel model = itemRenderer.getItemModelShaper().getModelManager().getModel(ModelResourceLocation.standalone(loc));
 				itemRenderer.render(stack, ItemDisplayContext.FIXED, true, poseStack, buffer, packedLight, packedOverlay, model);
 			}
-
-//			ResourceLocation loc = ResourceLocation.fromNamespaceAndPath(flavors[0].getNamespace(), "item/ice_cream/" + container + flavors[0].getPath() + "_topping");
-//			BakedModel bowlItemModel = itemRenderer.getItemModelShaper().getModelManager().getModel(ModelResourceLocation.standalone(loc));
-//			itemRenderer.render(stack, ItemDisplayContext.FIXED, true, poseStack, buffer, packedLight, packedOverlay, bowlItemModel);
 
 			poseStack.popPose();
 		}

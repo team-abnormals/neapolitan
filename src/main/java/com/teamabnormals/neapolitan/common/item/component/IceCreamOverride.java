@@ -6,6 +6,7 @@ import com.teamabnormals.neapolitan.core.registry.NeapolitanRegistries;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Holder.Reference;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.HolderLookup.RegistryLookup;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.ComponentSerialization;
@@ -42,9 +43,7 @@ public record IceCreamOverride(IceCream iceCream, boolean strict, Optional<Compo
 	public static final Codec<Holder<IceCreamOverride>> CODEC = RegistryFileCodec.create(NeapolitanRegistries.ICE_CREAM_OVERRIDE, DIRECT_CODEC);
 	public static final StreamCodec<RegistryFriendlyByteBuf, Holder<IceCreamOverride>> STREAM_CODEC = ByteBufCodecs.holder(NeapolitanRegistries.ICE_CREAM_OVERRIDE, DIRECT_STREAM_CODEC);
 
-	public static Optional<Reference<IceCreamOverride>> getFromIceCream(HolderLookup.Provider registries, IceCream iceCream) {
-		return registries.lookupOrThrow(NeapolitanRegistries.ICE_CREAM_OVERRIDE).listElements().filter(ref -> {
-			return ref.value().strict() ? ref.value().iceCream().is(iceCream) : ref.value().iceCream().matches(iceCream);
-		}).findFirst();
+	public static Optional<Reference<IceCreamOverride>> getFromIceCream(RegistryLookup<IceCreamOverride> lookup, IceCream iceCream) {
+		return lookup.listElements().filter(ref -> ref.value().strict() ? ref.value().iceCream().is(iceCream) : ref.value().iceCream().matches(iceCream)).findFirst();
 	}
 }

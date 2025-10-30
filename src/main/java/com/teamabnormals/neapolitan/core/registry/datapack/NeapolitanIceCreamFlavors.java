@@ -36,7 +36,6 @@ public final class NeapolitanIceCreamFlavors {
 	public static final ResourceKey<IceCreamFlavor> ADZUKI = create("adzuki");
 
 	public static final List<ResourceKey<IceCreamFlavor>> FLAVORS = List.of(SNOW, VANILLA, CHOCOLATE, STRAWBERRY, BANANA, MINT, ADZUKI);
-	public static final List<ResourceKey<IceCreamFlavor>> TOPPINGS = List.of(VANILLA, CHOCOLATE, STRAWBERRY, BANANA, MINT, ADZUKI);
 
 	public static void bootstrap(BootstrapContext<IceCreamFlavor> context) {
 		register(context, SNOW, Items.SNOWBALL, Style.EMPTY.withColor(0xD2DFE0), null, addNutrition(2));

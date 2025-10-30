@@ -34,10 +34,6 @@ public class NeapolitanItemModelProvider extends BlueprintItemModelProvider {
 
 		for (ResourceKey<IceCreamFlavor> flavor : NeapolitanIceCreamFlavors.FLAVORS) {
 			for (String dish : new String[]{"bowl_", "cone_"}) {
-				if (NeapolitanIceCreamFlavors.TOPPINGS.contains(flavor)) {
-					this.withExistingParent("item/ice_cream/" + dish + flavor.location().getPath() + "_topping", "item/generated").texture("layer0", flavor.location().withPrefix("ice_cream/toppings/"));
-				}
-
 				for (int i = 1; i <= 3; i++) {
 					String name = dish + "layer" + i + "_" + flavor.location().getNamespace() + "_" + flavor.location().getPath();
 					this.withExistingParent("item/ice_cream/" + name, "item/generated").texture("layer0", Neapolitan.location("ice_cream/items/" + name));

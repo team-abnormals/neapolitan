@@ -8,7 +8,6 @@ import com.teamabnormals.neapolitan.core.registry.NeapolitanDataComponents;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanRegistries;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanSoundEvents;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.Holder.Reference;
 import net.minecraft.core.HolderLookup.RegistryLookup;
 import net.minecraft.network.chat.Component;
@@ -79,11 +78,14 @@ public class IceCreamItem extends Item {
 	public Component getName(ItemStack stack) {
 		IceCream iceCream = stack.get(NeapolitanDataComponents.ICE_CREAM.get());
 		Component name = super.getName(stack);
-		if (Minecraft.getInstance().level != null && iceCream != null) {
-			Optional<Reference<IceCreamOverride>> override = IceCreamOverride.getFromIceCream(Minecraft.getInstance().level.registryAccess(), iceCream);
-			if (override.isPresent()) {
-				IceCreamOverride value = override.get().value();
-				return stack.is(NeapolitanItems.ICE_CREAM_CONE) ? value.coneDescription().orElse(name) : value.bowlDescription().orElse(name);
+		if (iceCream != null) {
+			RegistryLookup<IceCreamOverride> lookup = CommonHooks.resolveLookup(NeapolitanRegistries.ICE_CREAM_OVERRIDE);
+			if (lookup != null) {
+				Optional<Reference<IceCreamOverride>> override = IceCreamOverride.getFromIceCream(lookup, iceCream);
+				if (override.isPresent()) {
+					IceCreamOverride value = override.get().value();
+					return stack.is(NeapolitanItems.ICE_CREAM_CONE) ? value.coneDescription().orElse(name) : value.bowlDescription().orElse(name);
+				}
 			}
 		}
 		return name;
