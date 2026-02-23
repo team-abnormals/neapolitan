@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:block/cake_slice3",
+  "textures": {
+    "bottom": "neapolitan:block/cinnamon_cake_bottom",
+    "inside": "neapolitan:block/cinnamon_cake_top",
+    "particle": "neapolitan:block/cinnamon_cake_side",
+    "side": "neapolitan:block/cinnamon_cake_side",
+    "top": "neapolitan:block/cinnamon_cake_top"
+  }
+}

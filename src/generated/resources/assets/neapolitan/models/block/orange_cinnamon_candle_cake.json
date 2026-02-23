@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:block/template_cake_with_candle",
+  "textures": {
+    "bottom": "neapolitan:block/cinnamon_cake_bottom",
+    "candle": "minecraft:block/orange_candle",
+    "particle": "neapolitan:block/cinnamon_cake_side",
+    "side": "neapolitan:block/cinnamon_cake_side",
+    "top": "neapolitan:block/cinnamon_cake_top"
+  }
+}

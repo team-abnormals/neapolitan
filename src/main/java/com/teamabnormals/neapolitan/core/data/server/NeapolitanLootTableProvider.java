@@ -85,6 +85,9 @@ public class NeapolitanLootTableProvider extends LootTableProvider {
 			this.add(BANANA_CAKE.get(), noDrop());
 			this.add(MINT_CAKE.get(), noDrop());
 			this.add(ADZUKI_CAKE.get(), noDrop());
+			this.add(MANGO_CAKE.get(), noDrop());
+			this.add(CINNAMON_CAKE.get(), noDrop());
+			this.add(BUBBLEGUM_CAKE.get(), noDrop());
 
 			this.dropSelf(ICE_CREAM_BLOCK.get());
 			this.dropSelf(VANILLA_ICE_CREAM_BLOCK.get());
@@ -93,6 +96,9 @@ public class NeapolitanLootTableProvider extends LootTableProvider {
 			this.dropSelf(BANANA_ICE_CREAM_BLOCK.get());
 			this.dropSelf(MINT_ICE_CREAM_BLOCK.get());
 			this.dropSelf(ADZUKI_ICE_CREAM_BLOCK.get());
+			this.dropSelf(MANGO_ICE_CREAM_BLOCK.get());
+			this.dropSelf(CINNAMON_ICE_CREAM_BLOCK.get());
+			this.dropSelf(BUBBLEGUM_ICE_CREAM_BLOCK.get());
 
 			this.dropOther(MILK_CAULDRON.get(), Blocks.CAULDRON);
 			this.dropOther(VANILLA_MILKSHAKE_CAULDRON.get(), Blocks.CAULDRON);
@@ -101,6 +107,9 @@ public class NeapolitanLootTableProvider extends LootTableProvider {
 			this.dropOther(BANANA_MILKSHAKE_CAULDRON.get(), Blocks.CAULDRON);
 			this.dropOther(MINT_MILKSHAKE_CAULDRON.get(), Blocks.CAULDRON);
 			this.dropOther(ADZUKI_MILKSHAKE_CAULDRON.get(), Blocks.CAULDRON);
+			this.dropOther(MANGO_MILKSHAKE_CAULDRON.get(), Blocks.CAULDRON);
+			this.dropOther(CINNAMON_MILKSHAKE_CAULDRON.get(), Blocks.CAULDRON);
+			this.dropOther(BUBBLEGUM_MILKSHAKE_CAULDRON.get(), Blocks.CAULDRON);
 
 			this.dropSelf(CHOCOLATE_BLOCK.get());
 			this.dropSelf(CHOCOLATE_BRICKS.get());

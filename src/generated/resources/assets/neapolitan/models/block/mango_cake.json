@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:block/cake",
+  "textures": {
+    "bottom": "neapolitan:block/mango_cake_bottom",
+    "inside": "neapolitan:block/mango_cake_top",
+    "particle": "neapolitan:block/mango_cake_side",
+    "side": "neapolitan:block/mango_cake_side",
+    "top": "neapolitan:block/mango_cake_top"
+  }
+}

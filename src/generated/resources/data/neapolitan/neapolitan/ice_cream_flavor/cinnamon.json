@@ -1,0 +1,8 @@
+{
+  "description": {
+    "color": "#CE6658",
+    "translate": "flavor.neapolitan.cinnamon"
+  },
+  "ingredient": "neapolitan:cinnamon_sticks",
+  "milkshake_cauldron": "neapolitan:cinnamon_milkshake_cauldron"
+}

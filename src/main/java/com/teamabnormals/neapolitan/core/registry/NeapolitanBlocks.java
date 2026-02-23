@@ -40,6 +40,9 @@ public class NeapolitanBlocks {
 	public static final DeferredBlock<Block> BANANA_ICE_CREAM_BLOCK = BLOCKS.createBlock("banana_ice_cream_block", () -> new Block(NeapolitanBlockProperties.BANANA_ICE_CREAM_BLOCK));
 	public static final DeferredBlock<Block> MINT_ICE_CREAM_BLOCK = BLOCKS.createBlock("mint_ice_cream_block", () -> new Block(NeapolitanBlockProperties.MINT_ICE_CREAM_BLOCK));
 	public static final DeferredBlock<Block> ADZUKI_ICE_CREAM_BLOCK = BLOCKS.createBlock("adzuki_ice_cream_block", () -> new Block(NeapolitanBlockProperties.ADZUKI_ICE_CREAM_BLOCK));
+	public static final DeferredBlock<Block> MANGO_ICE_CREAM_BLOCK = BLOCKS.createBlock("mango_ice_cream_block", () -> new Block(NeapolitanBlockProperties.MANGO_ICE_CREAM_BLOCK));
+	public static final DeferredBlock<Block> CINNAMON_ICE_CREAM_BLOCK = BLOCKS.createBlock("cinnamon_ice_cream_block", () -> new Block(NeapolitanBlockProperties.CINNAMON_ICE_CREAM_BLOCK));
+	public static final DeferredBlock<Block> BUBBLEGUM_ICE_CREAM_BLOCK = BLOCKS.createBlock("bubblegum_ice_cream_block", () -> new Block(NeapolitanBlockProperties.BUBBLEGUM_ICE_CREAM_BLOCK));
 
 	public static final DeferredBlock<Block> WAFFLE_CONE_BLOCK = BLOCKS.createBlock("waffle_cone_block", () -> new Block(NeapolitanBlockProperties.WAFFLE_CONE_BLOCK));
 	public static final DeferredBlock<Block> WAFFLE_CONE_TILES = BLOCKS.createBlock("waffle_cone_tiles", () -> new Block(NeapolitanBlockProperties.WAFFLE_CONE_BLOCK));
@@ -55,6 +58,9 @@ public class NeapolitanBlocks {
 	public static final DeferredBlock<Block> BANANA_MILKSHAKE_CAULDRON = BLOCKS.createBlockNoItem("banana_milkshake_cauldron", () -> new MilkshakeCauldronBlock(NeapolitanCauldronInteractions.BANANA_MILKSHAKE));
 	public static final DeferredBlock<Block> MINT_MILKSHAKE_CAULDRON = BLOCKS.createBlockNoItem("mint_milkshake_cauldron", () -> new MilkshakeCauldronBlock(NeapolitanCauldronInteractions.MINT_MILKSHAKE));
 	public static final DeferredBlock<Block> ADZUKI_MILKSHAKE_CAULDRON = BLOCKS.createBlockNoItem("adzuki_milkshake_cauldron", () -> new MilkshakeCauldronBlock(NeapolitanCauldronInteractions.ADZUKI_MILKSHAKE));
+	public static final DeferredBlock<Block> MANGO_MILKSHAKE_CAULDRON = BLOCKS.createBlockNoItem("mango_milkshake_cauldron", () -> new MilkshakeCauldronBlock(NeapolitanCauldronInteractions.MANGO_MILKSHAKE));
+	public static final DeferredBlock<Block> CINNAMON_MILKSHAKE_CAULDRON = BLOCKS.createBlockNoItem("cinnamon_milkshake_cauldron", () -> new MilkshakeCauldronBlock(NeapolitanCauldronInteractions.CINNAMON_MILKSHAKE));
+	public static final DeferredBlock<Block> BUBBLEGUM_MILKSHAKE_CAULDRON = BLOCKS.createBlockNoItem("bubblegum_milkshake_cauldron", () -> new MilkshakeCauldronBlock(NeapolitanCauldronInteractions.BUBBLEGUM_MILKSHAKE));
 
 	public static final DeferredBlock<Block> CHOCOLATE_BLOCK = BLOCKS.createBlock("chocolate_block", () -> new Block(NeapolitanBlockProperties.CHOCOLATE));
 
@@ -97,6 +103,9 @@ public class NeapolitanBlocks {
 	public static final DeferredBlock<Block> BANANA_CAKE = BLOCKS.createBlockNoItem("banana_cake", () -> new FlavoredCakeBlock(NeapolitanFoods.BANANA_CAKE, NeapolitanBlockProperties.BANANA_CAKE));
 	public static final DeferredBlock<Block> MINT_CAKE = BLOCKS.createBlockNoItem("mint_cake", () -> new FlavoredCakeBlock(NeapolitanFoods.MINT_CAKE, NeapolitanBlockProperties.MINT_CAKE));
 	public static final DeferredBlock<Block> ADZUKI_CAKE = BLOCKS.createBlockNoItem("adzuki_cake", () -> new FlavoredCakeBlock(NeapolitanFoods.ADZUKI_CAKE, NeapolitanBlockProperties.ADZUKI_CAKE));
+	public static final DeferredBlock<Block> MANGO_CAKE = BLOCKS.createBlockNoItem("mango_cake", () -> new FlavoredCakeBlock(NeapolitanFoods.MANGO_CAKE, NeapolitanBlockProperties.MANGO_CAKE));
+	public static final DeferredBlock<Block> CINNAMON_CAKE = BLOCKS.createBlockNoItem("cinnamon_cake", () -> new FlavoredCakeBlock(NeapolitanFoods.CINNAMON_CAKE, NeapolitanBlockProperties.CINNAMON_CAKE));
+	public static final DeferredBlock<Block> BUBBLEGUM_CAKE = BLOCKS.createBlockNoItem("bubblegum_cake", () -> new FlavoredCakeBlock(NeapolitanFoods.BUBBLEGUM_CAKE, NeapolitanBlockProperties.BUBBLEGUM_CAKE));
 
 	public static final DeferredBlock<Block> SUGAR_CANE_BLOCK = BLOCKS.createBlock("sugar_cane_block", () -> new RotatedPillarBlock(NeapolitanBlockProperties.SUGAR_CANE_BLOCK));
 	public static final DeferredBlock<Block> VANILLA_POD_BLOCK = BLOCKS.createBlock("vanilla_pod_block", () -> new RotatedPillarBlock(NeapolitanBlockProperties.VANILLA_POD_BLOCK));
@@ -224,13 +233,67 @@ public class NeapolitanBlocks {
 	public static final DeferredBlock<Block> RED_ADZUKI_CANDLE_CAKE = BLOCKS.createBlockNoItem("red_adzuki_candle_cake", () -> new FlavoredCandleCakeBlock(ADZUKI_CAKE, Blocks.RED_CANDLE, NeapolitanBlockProperties.ADZUKI_CANDLE_CAKE));
 	public static final DeferredBlock<Block> BLACK_ADZUKI_CANDLE_CAKE = BLOCKS.createBlockNoItem("black_adzuki_candle_cake", () -> new FlavoredCandleCakeBlock(ADZUKI_CAKE, Blocks.BLACK_CANDLE, NeapolitanBlockProperties.ADZUKI_CANDLE_CAKE));
 
+	public static final DeferredBlock<Block> MANGO_CANDLE_CAKE = BLOCKS.createBlockNoItem("mango_candle_cake", () -> new FlavoredCandleCakeBlock(MANGO_CAKE, Blocks.CANDLE, NeapolitanBlockProperties.MANGO_CANDLE_CAKE));
+	public static final DeferredBlock<Block> WHITE_MANGO_CANDLE_CAKE = BLOCKS.createBlockNoItem("white_mango_candle_cake", () -> new FlavoredCandleCakeBlock(MANGO_CAKE, Blocks.WHITE_CANDLE, NeapolitanBlockProperties.MANGO_CANDLE_CAKE));
+	public static final DeferredBlock<Block> ORANGE_MANGO_CANDLE_CAKE = BLOCKS.createBlockNoItem("orange_mango_candle_cake", () -> new FlavoredCandleCakeBlock(MANGO_CAKE, Blocks.ORANGE_CANDLE, NeapolitanBlockProperties.MANGO_CANDLE_CAKE));
+	public static final DeferredBlock<Block> MAGENTA_MANGO_CANDLE_CAKE = BLOCKS.createBlockNoItem("magenta_mango_candle_cake", () -> new FlavoredCandleCakeBlock(MANGO_CAKE, Blocks.MAGENTA_CANDLE, NeapolitanBlockProperties.MANGO_CANDLE_CAKE));
+	public static final DeferredBlock<Block> LIGHT_BLUE_MANGO_CANDLE_CAKE = BLOCKS.createBlockNoItem("light_blue_mango_candle_cake", () -> new FlavoredCandleCakeBlock(MANGO_CAKE, Blocks.LIGHT_BLUE_CANDLE, NeapolitanBlockProperties.MANGO_CANDLE_CAKE));
+	public static final DeferredBlock<Block> YELLOW_MANGO_CANDLE_CAKE = BLOCKS.createBlockNoItem("yellow_mango_candle_cake", () -> new FlavoredCandleCakeBlock(MANGO_CAKE, Blocks.YELLOW_CANDLE, NeapolitanBlockProperties.MANGO_CANDLE_CAKE));
+	public static final DeferredBlock<Block> LIME_MANGO_CANDLE_CAKE = BLOCKS.createBlockNoItem("lime_mango_candle_cake", () -> new FlavoredCandleCakeBlock(MANGO_CAKE, Blocks.LIME_CANDLE, NeapolitanBlockProperties.MANGO_CANDLE_CAKE));
+	public static final DeferredBlock<Block> PINK_MANGO_CANDLE_CAKE = BLOCKS.createBlockNoItem("pink_mango_candle_cake", () -> new FlavoredCandleCakeBlock(MANGO_CAKE, Blocks.PINK_CANDLE, NeapolitanBlockProperties.MANGO_CANDLE_CAKE));
+	public static final DeferredBlock<Block> GRAY_MANGO_CANDLE_CAKE = BLOCKS.createBlockNoItem("gray_mango_candle_cake", () -> new FlavoredCandleCakeBlock(MANGO_CAKE, Blocks.GRAY_CANDLE, NeapolitanBlockProperties.MANGO_CANDLE_CAKE));
+	public static final DeferredBlock<Block> LIGHT_GRAY_MANGO_CANDLE_CAKE = BLOCKS.createBlockNoItem("light_gray_mango_candle_cake", () -> new FlavoredCandleCakeBlock(MANGO_CAKE, Blocks.LIGHT_GRAY_CANDLE, NeapolitanBlockProperties.MANGO_CANDLE_CAKE));
+	public static final DeferredBlock<Block> CYAN_MANGO_CANDLE_CAKE = BLOCKS.createBlockNoItem("cyan_mango_candle_cake", () -> new FlavoredCandleCakeBlock(MANGO_CAKE, Blocks.CYAN_CANDLE, NeapolitanBlockProperties.MANGO_CANDLE_CAKE));
+	public static final DeferredBlock<Block> PURPLE_MANGO_CANDLE_CAKE = BLOCKS.createBlockNoItem("purple_mango_candle_cake", () -> new FlavoredCandleCakeBlock(MANGO_CAKE, Blocks.PURPLE_CANDLE, NeapolitanBlockProperties.MANGO_CANDLE_CAKE));
+	public static final DeferredBlock<Block> BLUE_MANGO_CANDLE_CAKE = BLOCKS.createBlockNoItem("blue_mango_candle_cake", () -> new FlavoredCandleCakeBlock(MANGO_CAKE, Blocks.BLUE_CANDLE, NeapolitanBlockProperties.MANGO_CANDLE_CAKE));
+	public static final DeferredBlock<Block> BROWN_MANGO_CANDLE_CAKE = BLOCKS.createBlockNoItem("brown_mango_candle_cake", () -> new FlavoredCandleCakeBlock(MANGO_CAKE, Blocks.BROWN_CANDLE, NeapolitanBlockProperties.MANGO_CANDLE_CAKE));
+	public static final DeferredBlock<Block> GREEN_MANGO_CANDLE_CAKE = BLOCKS.createBlockNoItem("green_mango_candle_cake", () -> new FlavoredCandleCakeBlock(MANGO_CAKE, Blocks.GREEN_CANDLE, NeapolitanBlockProperties.MANGO_CANDLE_CAKE));
+	public static final DeferredBlock<Block> RED_MANGO_CANDLE_CAKE = BLOCKS.createBlockNoItem("red_mango_candle_cake", () -> new FlavoredCandleCakeBlock(MANGO_CAKE, Blocks.RED_CANDLE, NeapolitanBlockProperties.MANGO_CANDLE_CAKE));
+	public static final DeferredBlock<Block> BLACK_MANGO_CANDLE_CAKE = BLOCKS.createBlockNoItem("black_mango_candle_cake", () -> new FlavoredCandleCakeBlock(MANGO_CAKE, Blocks.BLACK_CANDLE, NeapolitanBlockProperties.MANGO_CANDLE_CAKE));
+
+	public static final DeferredBlock<Block> CINNAMON_CANDLE_CAKE = BLOCKS.createBlockNoItem("cinnamon_candle_cake", () -> new FlavoredCandleCakeBlock(CINNAMON_CAKE, Blocks.CANDLE, NeapolitanBlockProperties.CINNAMON_CANDLE_CAKE));
+	public static final DeferredBlock<Block> WHITE_CINNAMON_CANDLE_CAKE = BLOCKS.createBlockNoItem("white_cinnamon_candle_cake", () -> new FlavoredCandleCakeBlock(CINNAMON_CAKE, Blocks.WHITE_CANDLE, NeapolitanBlockProperties.CINNAMON_CANDLE_CAKE));
+	public static final DeferredBlock<Block> ORANGE_CINNAMON_CANDLE_CAKE = BLOCKS.createBlockNoItem("orange_cinnamon_candle_cake", () -> new FlavoredCandleCakeBlock(CINNAMON_CAKE, Blocks.ORANGE_CANDLE, NeapolitanBlockProperties.CINNAMON_CANDLE_CAKE));
+	public static final DeferredBlock<Block> MAGENTA_CINNAMON_CANDLE_CAKE = BLOCKS.createBlockNoItem("magenta_cinnamon_candle_cake", () -> new FlavoredCandleCakeBlock(CINNAMON_CAKE, Blocks.MAGENTA_CANDLE, NeapolitanBlockProperties.CINNAMON_CANDLE_CAKE));
+	public static final DeferredBlock<Block> LIGHT_BLUE_CINNAMON_CANDLE_CAKE = BLOCKS.createBlockNoItem("light_blue_cinnamon_candle_cake", () -> new FlavoredCandleCakeBlock(CINNAMON_CAKE, Blocks.LIGHT_BLUE_CANDLE, NeapolitanBlockProperties.CINNAMON_CANDLE_CAKE));
+	public static final DeferredBlock<Block> YELLOW_CINNAMON_CANDLE_CAKE = BLOCKS.createBlockNoItem("yellow_cinnamon_candle_cake", () -> new FlavoredCandleCakeBlock(CINNAMON_CAKE, Blocks.YELLOW_CANDLE, NeapolitanBlockProperties.CINNAMON_CANDLE_CAKE));
+	public static final DeferredBlock<Block> LIME_CINNAMON_CANDLE_CAKE = BLOCKS.createBlockNoItem("lime_cinnamon_candle_cake", () -> new FlavoredCandleCakeBlock(CINNAMON_CAKE, Blocks.LIME_CANDLE, NeapolitanBlockProperties.CINNAMON_CANDLE_CAKE));
+	public static final DeferredBlock<Block> PINK_CINNAMON_CANDLE_CAKE = BLOCKS.createBlockNoItem("pink_cinnamon_candle_cake", () -> new FlavoredCandleCakeBlock(CINNAMON_CAKE, Blocks.PINK_CANDLE, NeapolitanBlockProperties.CINNAMON_CANDLE_CAKE));
+	public static final DeferredBlock<Block> GRAY_CINNAMON_CANDLE_CAKE = BLOCKS.createBlockNoItem("gray_cinnamon_candle_cake", () -> new FlavoredCandleCakeBlock(CINNAMON_CAKE, Blocks.GRAY_CANDLE, NeapolitanBlockProperties.CINNAMON_CANDLE_CAKE));
+	public static final DeferredBlock<Block> LIGHT_GRAY_CINNAMON_CANDLE_CAKE = BLOCKS.createBlockNoItem("light_gray_cinnamon_candle_cake", () -> new FlavoredCandleCakeBlock(CINNAMON_CAKE, Blocks.LIGHT_GRAY_CANDLE, NeapolitanBlockProperties.CINNAMON_CANDLE_CAKE));
+	public static final DeferredBlock<Block> CYAN_CINNAMON_CANDLE_CAKE = BLOCKS.createBlockNoItem("cyan_cinnamon_candle_cake", () -> new FlavoredCandleCakeBlock(CINNAMON_CAKE, Blocks.CYAN_CANDLE, NeapolitanBlockProperties.CINNAMON_CANDLE_CAKE));
+	public static final DeferredBlock<Block> PURPLE_CINNAMON_CANDLE_CAKE = BLOCKS.createBlockNoItem("purple_cinnamon_candle_cake", () -> new FlavoredCandleCakeBlock(CINNAMON_CAKE, Blocks.PURPLE_CANDLE, NeapolitanBlockProperties.CINNAMON_CANDLE_CAKE));
+	public static final DeferredBlock<Block> BLUE_CINNAMON_CANDLE_CAKE = BLOCKS.createBlockNoItem("blue_cinnamon_candle_cake", () -> new FlavoredCandleCakeBlock(CINNAMON_CAKE, Blocks.BLUE_CANDLE, NeapolitanBlockProperties.CINNAMON_CANDLE_CAKE));
+	public static final DeferredBlock<Block> BROWN_CINNAMON_CANDLE_CAKE = BLOCKS.createBlockNoItem("brown_cinnamon_candle_cake", () -> new FlavoredCandleCakeBlock(CINNAMON_CAKE, Blocks.BROWN_CANDLE, NeapolitanBlockProperties.CINNAMON_CANDLE_CAKE));
+	public static final DeferredBlock<Block> GREEN_CINNAMON_CANDLE_CAKE = BLOCKS.createBlockNoItem("green_cinnamon_candle_cake", () -> new FlavoredCandleCakeBlock(CINNAMON_CAKE, Blocks.GREEN_CANDLE, NeapolitanBlockProperties.CINNAMON_CANDLE_CAKE));
+	public static final DeferredBlock<Block> RED_CINNAMON_CANDLE_CAKE = BLOCKS.createBlockNoItem("red_cinnamon_candle_cake", () -> new FlavoredCandleCakeBlock(CINNAMON_CAKE, Blocks.RED_CANDLE, NeapolitanBlockProperties.CINNAMON_CANDLE_CAKE));
+	public static final DeferredBlock<Block> BLACK_CINNAMON_CANDLE_CAKE = BLOCKS.createBlockNoItem("black_cinnamon_candle_cake", () -> new FlavoredCandleCakeBlock(CINNAMON_CAKE, Blocks.BLACK_CANDLE, NeapolitanBlockProperties.CINNAMON_CANDLE_CAKE));
+
+	public static final DeferredBlock<Block> BUBBLEGUM_CANDLE_CAKE = BLOCKS.createBlockNoItem("bubblegum_candle_cake", () -> new FlavoredCandleCakeBlock(BUBBLEGUM_CAKE, Blocks.CANDLE, NeapolitanBlockProperties.BUBBLEGUM_CANDLE_CAKE));
+	public static final DeferredBlock<Block> WHITE_BUBBLEGUM_CANDLE_CAKE = BLOCKS.createBlockNoItem("white_bubblegum_candle_cake", () -> new FlavoredCandleCakeBlock(BUBBLEGUM_CAKE, Blocks.WHITE_CANDLE, NeapolitanBlockProperties.BUBBLEGUM_CANDLE_CAKE));
+	public static final DeferredBlock<Block> ORANGE_BUBBLEGUM_CANDLE_CAKE = BLOCKS.createBlockNoItem("orange_bubblegum_candle_cake", () -> new FlavoredCandleCakeBlock(BUBBLEGUM_CAKE, Blocks.ORANGE_CANDLE, NeapolitanBlockProperties.BUBBLEGUM_CANDLE_CAKE));
+	public static final DeferredBlock<Block> MAGENTA_BUBBLEGUM_CANDLE_CAKE = BLOCKS.createBlockNoItem("magenta_bubblegum_candle_cake", () -> new FlavoredCandleCakeBlock(BUBBLEGUM_CAKE, Blocks.MAGENTA_CANDLE, NeapolitanBlockProperties.BUBBLEGUM_CANDLE_CAKE));
+	public static final DeferredBlock<Block> LIGHT_BLUE_BUBBLEGUM_CANDLE_CAKE = BLOCKS.createBlockNoItem("light_blue_bubblegum_candle_cake", () -> new FlavoredCandleCakeBlock(BUBBLEGUM_CAKE, Blocks.LIGHT_BLUE_CANDLE, NeapolitanBlockProperties.BUBBLEGUM_CANDLE_CAKE));
+	public static final DeferredBlock<Block> YELLOW_BUBBLEGUM_CANDLE_CAKE = BLOCKS.createBlockNoItem("yellow_bubblegum_candle_cake", () -> new FlavoredCandleCakeBlock(BUBBLEGUM_CAKE, Blocks.YELLOW_CANDLE, NeapolitanBlockProperties.BUBBLEGUM_CANDLE_CAKE));
+	public static final DeferredBlock<Block> LIME_BUBBLEGUM_CANDLE_CAKE = BLOCKS.createBlockNoItem("lime_bubblegum_candle_cake", () -> new FlavoredCandleCakeBlock(BUBBLEGUM_CAKE, Blocks.LIME_CANDLE, NeapolitanBlockProperties.BUBBLEGUM_CANDLE_CAKE));
+	public static final DeferredBlock<Block> PINK_BUBBLEGUM_CANDLE_CAKE = BLOCKS.createBlockNoItem("pink_bubblegum_candle_cake", () -> new FlavoredCandleCakeBlock(BUBBLEGUM_CAKE, Blocks.PINK_CANDLE, NeapolitanBlockProperties.BUBBLEGUM_CANDLE_CAKE));
+	public static final DeferredBlock<Block> GRAY_BUBBLEGUM_CANDLE_CAKE = BLOCKS.createBlockNoItem("gray_bubblegum_candle_cake", () -> new FlavoredCandleCakeBlock(BUBBLEGUM_CAKE, Blocks.GRAY_CANDLE, NeapolitanBlockProperties.BUBBLEGUM_CANDLE_CAKE));
+	public static final DeferredBlock<Block> LIGHT_GRAY_BUBBLEGUM_CANDLE_CAKE = BLOCKS.createBlockNoItem("light_gray_bubblegum_candle_cake", () -> new FlavoredCandleCakeBlock(BUBBLEGUM_CAKE, Blocks.LIGHT_GRAY_CANDLE, NeapolitanBlockProperties.BUBBLEGUM_CANDLE_CAKE));
+	public static final DeferredBlock<Block> CYAN_BUBBLEGUM_CANDLE_CAKE = BLOCKS.createBlockNoItem("cyan_bubblegum_candle_cake", () -> new FlavoredCandleCakeBlock(BUBBLEGUM_CAKE, Blocks.CYAN_CANDLE, NeapolitanBlockProperties.BUBBLEGUM_CANDLE_CAKE));
+	public static final DeferredBlock<Block> PURPLE_BUBBLEGUM_CANDLE_CAKE = BLOCKS.createBlockNoItem("purple_bubblegum_candle_cake", () -> new FlavoredCandleCakeBlock(BUBBLEGUM_CAKE, Blocks.PURPLE_CANDLE, NeapolitanBlockProperties.BUBBLEGUM_CANDLE_CAKE));
+	public static final DeferredBlock<Block> BLUE_BUBBLEGUM_CANDLE_CAKE = BLOCKS.createBlockNoItem("blue_bubblegum_candle_cake", () -> new FlavoredCandleCakeBlock(BUBBLEGUM_CAKE, Blocks.BLUE_CANDLE, NeapolitanBlockProperties.BUBBLEGUM_CANDLE_CAKE));
+	public static final DeferredBlock<Block> BROWN_BUBBLEGUM_CANDLE_CAKE = BLOCKS.createBlockNoItem("brown_bubblegum_candle_cake", () -> new FlavoredCandleCakeBlock(BUBBLEGUM_CAKE, Blocks.BROWN_CANDLE, NeapolitanBlockProperties.BUBBLEGUM_CANDLE_CAKE));
+	public static final DeferredBlock<Block> GREEN_BUBBLEGUM_CANDLE_CAKE = BLOCKS.createBlockNoItem("green_bubblegum_candle_cake", () -> new FlavoredCandleCakeBlock(BUBBLEGUM_CAKE, Blocks.GREEN_CANDLE, NeapolitanBlockProperties.BUBBLEGUM_CANDLE_CAKE));
+	public static final DeferredBlock<Block> RED_BUBBLEGUM_CANDLE_CAKE = BLOCKS.createBlockNoItem("red_bubblegum_candle_cake", () -> new FlavoredCandleCakeBlock(BUBBLEGUM_CAKE, Blocks.RED_CANDLE, NeapolitanBlockProperties.BUBBLEGUM_CANDLE_CAKE));
+	public static final DeferredBlock<Block> BLACK_BUBBLEGUM_CANDLE_CAKE = BLOCKS.createBlockNoItem("black_bubblegum_candle_cake", () -> new FlavoredCandleCakeBlock(BUBBLEGUM_CAKE, Blocks.BLACK_CANDLE, NeapolitanBlockProperties.BUBBLEGUM_CANDLE_CAKE));
+
 	public static void setupTabEditors() {
 		CreativeModeTabContentsPopulator.mod(Neapolitan.MOD_ID)
 				.tab(BUILDING_BLOCKS)
 				.addItems(
 						BANANA_STALK, CARVED_BANANA_STALK, FROND_THATCH, FROND_THATCH_STAIRS, FROND_THATCH_SLAB,
 						CHOCOLATE_BLOCK, CHOCOLATE_BRICKS, CHOCOLATE_BRICK_STAIRS, CHOCOLATE_BRICK_SLAB, CHOCOLATE_BRICK_WALL, CHISELED_CHOCOLATE_BRICKS, CHOCOLATE_TILES, CHOCOLATE_TILE_STAIRS, CHOCOLATE_TILE_SLAB, CHOCOLATE_TILE_WALL,
-						ICE_CREAM_BLOCK, VANILLA_ICE_CREAM_BLOCK, CHOCOLATE_ICE_CREAM_BLOCK, STRAWBERRY_ICE_CREAM_BLOCK, BANANA_ICE_CREAM_BLOCK, MINT_ICE_CREAM_BLOCK, ADZUKI_ICE_CREAM_BLOCK,
+						ICE_CREAM_BLOCK, VANILLA_ICE_CREAM_BLOCK, CHOCOLATE_ICE_CREAM_BLOCK, STRAWBERRY_ICE_CREAM_BLOCK, BANANA_ICE_CREAM_BLOCK, MINT_ICE_CREAM_BLOCK, ADZUKI_ICE_CREAM_BLOCK, MANGO_ICE_CREAM_BLOCK, CINNAMON_ICE_CREAM_BLOCK, BUBBLEGUM_ICE_CREAM_BLOCK,
 						WAFFLE_CONE_BLOCK, WAFFLE_CONE_PILLAR, WAFFLE_CONE_TILES, WAFFLE_CONE_TILE_STAIRS, WAFFLE_CONE_TILE_SLAB, WAFFLE_CONE_TILE_WALL
 				)
 				.tab(FUNCTIONAL_BLOCKS)
@@ -269,6 +332,9 @@ public class NeapolitanBlocks {
 		public static final BlockBehaviour.Properties BANANA_ICE_CREAM_BLOCK = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_YELLOW).instrument(NoteBlockInstrument.CHIME).strength(0.2F).sound(SoundType.SNOW);
 		public static final BlockBehaviour.Properties MINT_ICE_CREAM_BLOCK = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GREEN).instrument(NoteBlockInstrument.CHIME).strength(0.2F).sound(SoundType.SNOW);
 		public static final BlockBehaviour.Properties ADZUKI_ICE_CREAM_BLOCK = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED).instrument(NoteBlockInstrument.CHIME).strength(0.2F).sound(SoundType.SNOW);
+		public static final BlockBehaviour.Properties MANGO_ICE_CREAM_BLOCK = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_ORANGE).instrument(NoteBlockInstrument.CHIME).strength(0.2F).sound(SoundType.SNOW);
+		public static final BlockBehaviour.Properties CINNAMON_ICE_CREAM_BLOCK = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED).instrument(NoteBlockInstrument.CHIME).strength(0.2F).sound(SoundType.SNOW);
+		public static final BlockBehaviour.Properties BUBBLEGUM_ICE_CREAM_BLOCK = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_BLUE).instrument(NoteBlockInstrument.CHIME).strength(0.2F).sound(SoundType.SNOW);
 
 		public static final BlockBehaviour.Properties CAULDRON = BlockBehaviour.Properties.of().mapColor(MapColor.STONE).requiresCorrectToolForDrops().strength(2.0F).noOcclusion();
 
@@ -292,19 +358,25 @@ public class NeapolitanBlocks {
 		public static final BlockBehaviour.Properties BEANSTALK = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GREEN).instrument(NoteBlockInstrument.BASS).strength(1.0F).isSuffocating((state, reader, pos) -> false).sound(SoundType.STEM).pushReaction(PushReaction.DESTROY);
 		public static final BlockBehaviour.Properties BEANSTALK_THORNS = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GREEN).noCollission().strength(0.2F).sound(SoundType.FUNGUS).pushReaction(PushReaction.DESTROY);
 
-		public static final BlockBehaviour.Properties CHOCOLATE_CAKE = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).strength(0.5F).sound(SoundType.WOOL).pushReaction(PushReaction.DESTROY);
-		public static final BlockBehaviour.Properties STRAWBERRY_CAKE = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PINK).strength(0.5F).sound(SoundType.WOOL).pushReaction(PushReaction.DESTROY);
-		public static final BlockBehaviour.Properties VANILLA_CAKE = BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(0.5F).sound(SoundType.WOOL).pushReaction(PushReaction.DESTROY);
-		public static final BlockBehaviour.Properties BANANA_CAKE = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_YELLOW).strength(0.5F).sound(SoundType.WOOL).pushReaction(PushReaction.DESTROY);
-		public static final BlockBehaviour.Properties MINT_CAKE = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GREEN).strength(0.5F).sound(SoundType.WOOL).pushReaction(PushReaction.DESTROY);
-		public static final BlockBehaviour.Properties ADZUKI_CAKE = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED).strength(0.5F).sound(SoundType.WOOL).pushReaction(PushReaction.DESTROY);
+		public static final BlockBehaviour.Properties CHOCOLATE_CAKE = cake(MapColor.COLOR_BROWN, false);
+		public static final BlockBehaviour.Properties STRAWBERRY_CAKE = cake(MapColor.COLOR_PINK, false);
+		public static final BlockBehaviour.Properties VANILLA_CAKE = cake(MapColor.TERRACOTTA_WHITE, false);
+		public static final BlockBehaviour.Properties BANANA_CAKE = cake(MapColor.COLOR_YELLOW, false);
+		public static final BlockBehaviour.Properties MINT_CAKE = cake(MapColor.COLOR_LIGHT_GREEN, false);
+		public static final BlockBehaviour.Properties ADZUKI_CAKE = cake(MapColor.COLOR_RED, false);
+		public static final BlockBehaviour.Properties MANGO_CAKE = cake(MapColor.COLOR_ORANGE, false);
+		public static final BlockBehaviour.Properties CINNAMON_CAKE = cake(MapColor.TERRACOTTA_WHITE, false);
+		public static final BlockBehaviour.Properties BUBBLEGUM_CAKE = cake(MapColor.COLOR_LIGHT_BLUE, false);
 
-		public static final BlockBehaviour.Properties CHOCOLATE_CANDLE_CAKE = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).strength(0.5F).sound(SoundType.WOOL).pushReaction(PushReaction.DESTROY).lightLevel(litBlockEmission(3));
-		public static final BlockBehaviour.Properties STRAWBERRY_CANDLE_CAKE = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PINK).strength(0.5F).sound(SoundType.WOOL).pushReaction(PushReaction.DESTROY).lightLevel(litBlockEmission(3));
-		public static final BlockBehaviour.Properties VANILLA_CANDLE_CAKE = BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(0.5F).sound(SoundType.WOOL).pushReaction(PushReaction.DESTROY).lightLevel(litBlockEmission(3));
-		public static final BlockBehaviour.Properties BANANA_CANDLE_CAKE = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_YELLOW).strength(0.5F).sound(SoundType.WOOL).pushReaction(PushReaction.DESTROY).lightLevel(litBlockEmission(3));
-		public static final BlockBehaviour.Properties MINT_CANDLE_CAKE = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GREEN).strength(0.5F).sound(SoundType.WOOL).pushReaction(PushReaction.DESTROY).lightLevel(litBlockEmission(3));
-		public static final BlockBehaviour.Properties ADZUKI_CANDLE_CAKE = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED).strength(0.5F).sound(SoundType.WOOL).pushReaction(PushReaction.DESTROY).lightLevel(litBlockEmission(3));
+		public static final BlockBehaviour.Properties CHOCOLATE_CANDLE_CAKE = cake(MapColor.COLOR_BROWN, true);
+		public static final BlockBehaviour.Properties STRAWBERRY_CANDLE_CAKE = cake(MapColor.COLOR_PINK, true);
+		public static final BlockBehaviour.Properties VANILLA_CANDLE_CAKE = cake(MapColor.TERRACOTTA_WHITE, true);
+		public static final BlockBehaviour.Properties BANANA_CANDLE_CAKE = cake(MapColor.COLOR_YELLOW, true);
+		public static final BlockBehaviour.Properties MINT_CANDLE_CAKE = cake(MapColor.COLOR_LIGHT_GREEN, true);
+		public static final BlockBehaviour.Properties ADZUKI_CANDLE_CAKE = cake(MapColor.COLOR_RED, true);
+		public static final BlockBehaviour.Properties MANGO_CANDLE_CAKE = cake(MapColor.COLOR_ORANGE, true);
+		public static final BlockBehaviour.Properties CINNAMON_CANDLE_CAKE = cake(MapColor.TERRACOTTA_WHITE, true);
+		public static final BlockBehaviour.Properties BUBBLEGUM_CANDLE_CAKE = cake(MapColor.COLOR_LIGHT_BLUE, true);
 
 		public static final BlockBehaviour.Properties SUGAR_CANE_BLOCK = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GREEN).strength(0.5F, 2.5F).sound(SoundType.GRASS);
 		public static final BlockBehaviour.Properties VANILLA_POD_BLOCK = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GREEN).strength(0.5F, 2.5F).sound(SoundType.GRASS);
@@ -322,6 +394,10 @@ public class NeapolitanBlocks {
 
 		private static ToIntFunction<BlockState> litBlockEmission(int level) {
 			return (state) -> state.getValue(BlockStateProperties.LIT) ? level : 0;
+		}
+
+		private static BlockBehaviour.Properties cake(MapColor color, boolean candle) {
+			return BlockBehaviour.Properties.of().mapColor(color).strength(0.5F).sound(SoundType.WOOL).pushReaction(PushReaction.DESTROY).lightLevel(candle ? litBlockEmission(3) : s -> 0);
 		}
 	}
 }

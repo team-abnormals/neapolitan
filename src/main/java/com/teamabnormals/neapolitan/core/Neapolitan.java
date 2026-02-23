@@ -4,6 +4,7 @@ import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import com.teamabnormals.gallery.core.data.client.GalleryItemModelProvider;
 import com.teamabnormals.neapolitan.core.data.client.NeapolitanBlockStateProvider;
 import com.teamabnormals.neapolitan.core.data.client.NeapolitanItemModelProvider;
+import com.teamabnormals.neapolitan.core.data.client.NeapolitanLanguageProvider;
 import com.teamabnormals.neapolitan.core.data.client.NeapolitanSpriteSourceProvider;
 import com.teamabnormals.neapolitan.core.data.server.*;
 import com.teamabnormals.neapolitan.core.data.server.tags.*;
@@ -98,7 +99,7 @@ public class Neapolitan {
 		generator.addProvider(client, new NeapolitanBlockStateProvider(output, helper));
 		generator.addProvider(client, new NeapolitanSpriteSourceProvider(output, provider, helper));
 		generator.addProvider(client, new NeapolitanItemModelProvider(output, helper));
-//		generator.addProvider(includeClient, new NeapolitanLanguageProvider(output));
+		// generator.addProvider(client, new NeapolitanLanguageProvider(output));
 
 		generator.addProvider(client, new GalleryItemModelProvider(MOD_ID, output, helper, provider));
 	}

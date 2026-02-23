@@ -33,6 +33,9 @@ public class NeapolitanCauldronInteractions {
 	public static InteractionMap BANANA_MILKSHAKE = CauldronInteraction.newInteractionMap("neapolitan:banana_milkshake");
 	public static InteractionMap MINT_MILKSHAKE = CauldronInteraction.newInteractionMap("neapolitan:mint_milkshake");
 	public static InteractionMap ADZUKI_MILKSHAKE = CauldronInteraction.newInteractionMap("neapolitan:adzuki_milkshake");
+	public static InteractionMap MANGO_MILKSHAKE = CauldronInteraction.newInteractionMap("neapolitan:mango_milkshake");
+	public static InteractionMap CINNAMON_MILKSHAKE = CauldronInteraction.newInteractionMap("neapolitan:cinnamon_milkshake");
+	public static InteractionMap BUBBLEGUM_MILKSHAKE = CauldronInteraction.newInteractionMap("neapolitan:bubblegum_milkshake");
 
 	public static void registerCauldronInteractions() {
 		if (NeapolitanConfig.COMMON.milkCauldron.get()) {
@@ -48,6 +51,9 @@ public class NeapolitanCauldronInteractions {
 			addMilkshakeInteractions(NeapolitanItems.BANANA_MILKSHAKE.get(), NeapolitanBlocks.BANANA_MILKSHAKE_CAULDRON.get(), BANANA_MILKSHAKE.map());
 			addMilkshakeInteractions(NeapolitanItems.MINT_MILKSHAKE.get(), NeapolitanBlocks.MINT_MILKSHAKE_CAULDRON.get(), MINT_MILKSHAKE.map());
 			addMilkshakeInteractions(NeapolitanItems.ADZUKI_MILKSHAKE.get(), NeapolitanBlocks.ADZUKI_MILKSHAKE_CAULDRON.get(), ADZUKI_MILKSHAKE.map());
+			addMilkshakeInteractions(NeapolitanItems.MANGO_MILKSHAKE.get(), NeapolitanBlocks.MANGO_MILKSHAKE_CAULDRON.get(), MANGO_MILKSHAKE.map());
+			addMilkshakeInteractions(NeapolitanItems.CINNAMON_MILKSHAKE.get(), NeapolitanBlocks.CINNAMON_MILKSHAKE_CAULDRON.get(), CINNAMON_MILKSHAKE.map());
+			addMilkshakeInteractions(NeapolitanItems.BUBBLEGUM_MILKSHAKE.get(), NeapolitanBlocks.BUBBLEGUM_MILKSHAKE_CAULDRON.get(), BUBBLEGUM_MILKSHAKE.map());
 
 			if (NeapolitanConfig.COMMON.milkCauldron.get()) {
 				MILK.map().put(NeapolitanItems.ICE_CREAM.get(), emptyIceCream(Items.BOWL));

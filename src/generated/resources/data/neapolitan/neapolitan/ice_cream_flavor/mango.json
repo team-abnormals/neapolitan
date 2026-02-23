@@ -1,0 +1,8 @@
+{
+  "description": {
+    "color": "#F48727",
+    "translate": "flavor.neapolitan.mango"
+  },
+  "ingredient": "neapolitan:mango",
+  "milkshake_cauldron": "neapolitan:mango_milkshake_cauldron"
+}

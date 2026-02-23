@@ -52,10 +52,42 @@
             },
             "trigger": "minecraft:consume_item"
           },
+          "neapolitan:banana_bubblegum": {
+            "conditions": {
+              "item": {
+                "items": "neapolitan:banana_bubblegum"
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
           "neapolitan:banana_milkshake": {
             "conditions": {
               "item": {
                 "items": "neapolitan:banana_milkshake"
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "neapolitan:berry_strudel": {
+            "conditions": {
+              "item": {
+                "items": "neapolitan:berry_strudel"
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "neapolitan:bubblegum": {
+            "conditions": {
+              "item": {
+                "items": "neapolitan:bubblegum"
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "neapolitan:bubblegum_milkshake": {
+            "conditions": {
+              "item": {
+                "items": "neapolitan:bubblegum_milkshake"
               }
             },
             "trigger": "minecraft:consume_item"
@@ -92,6 +124,46 @@
             },
             "trigger": "minecraft:consume_item"
           },
+          "neapolitan:cinnamon_bagel": {
+            "conditions": {
+              "item": {
+                "items": "neapolitan:cinnamon_bagel"
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "neapolitan:cinnamon_milkshake": {
+            "conditions": {
+              "item": {
+                "items": "neapolitan:cinnamon_milkshake"
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "neapolitan:cinnamon_roll": {
+            "conditions": {
+              "item": {
+                "items": "neapolitan:cinnamon_roll"
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "neapolitan:cinnamon_sticks": {
+            "conditions": {
+              "item": {
+                "items": "neapolitan:cinnamon_sticks"
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "neapolitan:cooked_mango_fish": {
+            "conditions": {
+              "item": {
+                "items": "neapolitan:cooked_mango_fish"
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
           "neapolitan:cooked_mint_chops": {
             "conditions": {
               "item": {
@@ -104,6 +176,14 @@
             "conditions": {
               "item": {
                 "items": "neapolitan:dried_banana"
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "neapolitan:dried_mango": {
+            "conditions": {
+              "item": {
+                "items": "neapolitan:dried_mango"
               }
             },
             "trigger": "minecraft:consume_item"
@@ -136,6 +216,46 @@
             "conditions": {
               "item": {
                 "items": "neapolitan:ice_cubes"
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "neapolitan:mango": {
+            "conditions": {
+              "item": {
+                "items": "neapolitan:mango"
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "neapolitan:mango_bubblegum": {
+            "conditions": {
+              "item": {
+                "items": "neapolitan:mango_bubblegum"
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "neapolitan:mango_fish": {
+            "conditions": {
+              "item": {
+                "items": "neapolitan:mango_fish"
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "neapolitan:mango_milkshake": {
+            "conditions": {
+              "item": {
+                "items": "neapolitan:mango_milkshake"
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "neapolitan:mint_bubblegum": {
+            "conditions": {
+              "item": {
+                "items": "neapolitan:mint_bubblegum"
               }
             },
             "trigger": "minecraft:consume_item"
@@ -208,6 +328,14 @@
             "conditions": {
               "item": {
                 "items": "neapolitan:strawberry_bean_bonbons"
+              }
+            },
+            "trigger": "minecraft:consume_item"
+          },
+          "neapolitan:strawberry_bubblegum": {
+            "conditions": {
+              "item": {
+                "items": "neapolitan:strawberry_bubblegum"
               }
             },
             "trigger": "minecraft:consume_item"
@@ -362,6 +490,54 @@
           ],
           [
             "neapolitan:adzuki_milkshake"
+          ],
+          [
+            "neapolitan:mango"
+          ],
+          [
+            "neapolitan:dried_mango"
+          ],
+          [
+            "neapolitan:mango_fish"
+          ],
+          [
+            "neapolitan:cooked_mango_fish"
+          ],
+          [
+            "neapolitan:mango_milkshake"
+          ],
+          [
+            "neapolitan:cinnamon_sticks"
+          ],
+          [
+            "neapolitan:cinnamon_bagel"
+          ],
+          [
+            "neapolitan:cinnamon_roll"
+          ],
+          [
+            "neapolitan:berry_strudel"
+          ],
+          [
+            "neapolitan:cinnamon_milkshake"
+          ],
+          [
+            "neapolitan:bubblegum"
+          ],
+          [
+            "neapolitan:bubblegum_milkshake"
+          ],
+          [
+            "neapolitan:strawberry_bubblegum"
+          ],
+          [
+            "neapolitan:banana_bubblegum"
+          ],
+          [
+            "neapolitan:mint_bubblegum"
+          ],
+          [
+            "neapolitan:mango_bubblegum"
           ],
           [
             "neapolitan:vanilla_chocolate_fingers"

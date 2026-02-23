@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "neapolitan:block/cinnamon_ice_cream_block"
+  }
+}

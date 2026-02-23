@@ -11,7 +11,10 @@
       "permutations": {
         "neapolitan_adzuki": "neapolitan:ice_cream/color_palettes/adzuki",
         "neapolitan_banana": "neapolitan:ice_cream/color_palettes/banana",
+        "neapolitan_bubblegum": "neapolitan:ice_cream/color_palettes/bubblegum",
         "neapolitan_chocolate": "neapolitan:ice_cream/color_palettes/chocolate",
+        "neapolitan_cinnamon": "neapolitan:ice_cream/color_palettes/cinnamon",
+        "neapolitan_mango": "neapolitan:ice_cream/color_palettes/mango",
         "neapolitan_mint": "neapolitan:ice_cream/color_palettes/mint",
         "neapolitan_snow": "neapolitan:ice_cream/color_palettes/snow",
         "neapolitan_strawberry": "neapolitan:ice_cream/color_palettes/strawberry",

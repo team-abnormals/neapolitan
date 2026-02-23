@@ -1,0 +1,14 @@
+{
+  "bowl_description": {
+    "translate": "item.neapolitan.mango_ice_cream"
+  },
+  "bowl_item_model": "neapolitan:mango_ice_cream",
+  "cone_description": {
+    "translate": "item.neapolitan.mango_ice_cream_cone"
+  },
+  "ice_cream": {
+    "primary_flavor": "neapolitan:mango",
+    "secondary_flavor": "neapolitan:mango",
+    "tertiary_flavor": "neapolitan:mango"
+  }
+}

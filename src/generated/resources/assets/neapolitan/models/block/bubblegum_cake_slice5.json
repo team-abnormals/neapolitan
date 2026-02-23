@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:block/cake_slice5",
+  "textures": {
+    "bottom": "neapolitan:block/bubblegum_cake_bottom",
+    "inside": "neapolitan:block/bubblegum_cake_top",
+    "particle": "neapolitan:block/bubblegum_cake_side",
+    "side": "neapolitan:block/bubblegum_cake_side",
+    "top": "neapolitan:block/bubblegum_cake_top"
+  }
+}

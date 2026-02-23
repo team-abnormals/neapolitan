@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "neapolitan:ice_cream/items/bowl_layer1_neapolitan_mango"
+  }
+}

@@ -34,7 +34,7 @@ public class NeapolitanItems {
 
 	public static final DeferredItem<Item> MILK_BOTTLE = ITEMS.createItem("milk_bottle", () -> new MilkBottleItem(new Item.Properties().stacksTo(16).craftRemainder(Items.GLASS_BOTTLE)));
 	public static final DeferredItem<Item> ICE_CUBES = ITEMS.createItem("ice_cubes", () -> new IceCubesItem(new Item.Properties().food(NeapolitanFoods.ICE_CUBES)));
-	public static final DeferredItem<Item> WAFFLE_CONE = ITEMS.createItem("waffle_cone", () -> new Item(new Item.Properties().food(NeapolitanFoods.ICE_CUBES)));
+	public static final DeferredItem<Item> WAFFLE_CONE = ITEMS.createItem("waffle_cone", () -> new Item(new Item.Properties().food(NeapolitanFoods.WAFFLE_CONE)));
 
 	public static final DeferredItem<Item> ICE_CREAM = ITEMS.createItem("ice_cream", () -> new IceCreamItem(new Item.Properties().food(NeapolitanFoods.ICE_CREAM).component(NeapolitanDataComponents.ICE_CREAM, IceCream.neapolitan()).craftRemainder(Items.BOWL).stacksTo(1)));
 	public static final DeferredItem<Item> ICE_CREAM_CONE = ITEMS.createItem("ice_cream_cone", () -> new IceCreamItem(new Item.Properties().food(NeapolitanFoods.ICE_CREAM_CONE).component(NeapolitanDataComponents.ICE_CREAM, IceCream.neapolitan())));
@@ -81,6 +81,29 @@ public class NeapolitanItems {
 	public static final DeferredItem<Item> ADZUKI_CAKE = ITEMS.createItem("adzuki_cake", () -> new BlockItem(NeapolitanBlocks.ADZUKI_CAKE.get(), new Item.Properties().stacksTo(1)));
 	public static final DeferredItem<Item> ADZUKI_MILKSHAKE = ITEMS.createItem("adzuki_milkshake", () -> new MilkshakeItem(new Item.Properties().food(NeapolitanFoods.ADZUKI_MILKSHAKE).craftRemainder(Items.GLASS_BOTTLE).stacksTo(16)));
 
+	public static final DeferredItem<Item> MANGO = ITEMS.createItem("mango", () -> new Item(new Item.Properties().food(NeapolitanFoods.MANGO)));
+	public static final DeferredItem<Item> DRIED_MANGO = ITEMS.createItem("dried_mango", () -> new Item(new Item.Properties().food(NeapolitanFoods.DRIED_BANANA)));
+	public static final DeferredItem<Item> MANGO_FISH = ITEMS.createItem("mango_fish", () -> new Item(new Item.Properties().food(NeapolitanFoods.MINT_CHOPS)));
+	public static final DeferredItem<Item> COOKED_MANGO_FISH = ITEMS.createItem("cooked_mango_fish", () -> new Item(new Item.Properties().food(NeapolitanFoods.COOKED_MINT_CHOPS)));
+	public static final DeferredItem<Item> MANGO_MILKSHAKE = ITEMS.createItem("mango_milkshake", () -> new MilkshakeItem(new Item.Properties().food(NeapolitanFoods.MANGO_MILKSHAKE).craftRemainder(Items.GLASS_BOTTLE).stacksTo(16)));
+	public static final DeferredItem<Item> MANGO_CAKE = ITEMS.createItem("mango_cake", () -> new BlockItem(NeapolitanBlocks.MANGO_CAKE.get(), new Item.Properties().stacksTo(1)));
+
+	public static final DeferredItem<Item> CINNAMON_STICKS = ITEMS.createItem("cinnamon_sticks", () -> new Item(new Item.Properties().food(NeapolitanFoods.CINNAMON_STICKS)));
+	public static final DeferredItem<Item> CINNAMON_BAGEL = ITEMS.createItem("cinnamon_bagel", () -> new Item(new Item.Properties().food(NeapolitanFoods.CINNAMON_STICKS)));
+	public static final DeferredItem<Item> CINNAMON_ROLL = ITEMS.createItem("cinnamon_roll", () -> new Item(new Item.Properties().food(NeapolitanFoods.CINNAMON_STICKS)));
+	public static final DeferredItem<Item> BERRY_STRUDEL = ITEMS.createItem("berry_strudel", () -> new Item(new Item.Properties().food(NeapolitanFoods.CINNAMON_STICKS)));
+	public static final DeferredItem<Item> CINNAMON_MILKSHAKE = ITEMS.createItem("cinnamon_milkshake", () -> new MilkshakeItem(new Item.Properties().food(NeapolitanFoods.CINNAMON_MILKSHAKE).craftRemainder(Items.GLASS_BOTTLE).stacksTo(16)));
+	public static final DeferredItem<Item> CINNAMON_CAKE = ITEMS.createItem("cinnamon_cake", () -> new BlockItem(NeapolitanBlocks.CINNAMON_CAKE.get(), new Item.Properties().stacksTo(1)));
+
+	public static final DeferredItem<Item> BUBBLEGUM = ITEMS.createItem("bubblegum", () -> new Item(new Item.Properties().food(NeapolitanFoods.BUBBLEGUM)));
+	public static final DeferredItem<Item> BUBBLEGUM_MILKSHAKE = ITEMS.createItem("bubblegum_milkshake", () -> new MilkshakeItem(new Item.Properties().food(NeapolitanFoods.BUBBLEGUM_MILKSHAKE).craftRemainder(Items.GLASS_BOTTLE).stacksTo(16)));
+	public static final DeferredItem<Item> BUBBLEGUM_CAKE = ITEMS.createItem("bubblegum_cake", () -> new BlockItem(NeapolitanBlocks.BUBBLEGUM_CAKE.get(), new Item.Properties().stacksTo(1)));
+
+	public static final DeferredItem<Item> STRAWBERRY_BUBBLEGUM = ITEMS.createItem("strawberry_bubblegum", () -> new Item(new Item.Properties().food(NeapolitanFoods.BUBBLEGUM)));
+	public static final DeferredItem<Item> BANANA_BUBBLEGUM = ITEMS.createItem("banana_bubblegum", () -> new Item(new Item.Properties().food(NeapolitanFoods.BUBBLEGUM)));
+	public static final DeferredItem<Item> MINT_BUBBLEGUM = ITEMS.createItem("mint_bubblegum", () -> new Item(new Item.Properties().food(NeapolitanFoods.BUBBLEGUM)));
+	public static final DeferredItem<Item> MANGO_BUBBLEGUM = ITEMS.createItem("mango_bubblegum", () -> new Item(new Item.Properties().food(NeapolitanFoods.BUBBLEGUM)));
+
 	public static final DeferredItem<Item> VANILLA_CHOCOLATE_FINGERS = ITEMS.createItem("vanilla_chocolate_fingers", () -> new Item(new Item.Properties().food(NeapolitanFoods.VANILLA_CHOCOLATE_FINGERS)));
 	public static final DeferredItem<Item> CHOCOLATE_STRAWBERRIES = ITEMS.createItem("chocolate_strawberries", () -> new HealingItem(1.0F, new Item.Properties().food(NeapolitanFoods.CHOCOLATE_STRAWBERRIES)));
 	public static final DeferredItem<Item> STRAWBERRY_BANANA_SMOOTHIE = ITEMS.createItem("strawberry_banana_smoothie", () -> new HealingDrinkItem(2.0F, new Item.Properties().food(NeapolitanFoods.STRAWBERRY_BANANA_SMOOTHIE).craftRemainder(Items.GLASS_BOTTLE).stacksTo(16)));
@@ -105,20 +128,20 @@ public class NeapolitanItems {
 	public static void setupTabEditors() {
 		CreativeModeTabContentsPopulator.mod(Neapolitan.MOD_ID)
 				.tab(FOOD_AND_DRINKS)
-				.addItemsAfter(of(Items.MELON_SLICE), STRAWBERRIES, CHOCOLATE_STRAWBERRIES, WHITE_STRAWBERRIES, BANANA, DRIED_BANANA)
+				.addItemsAfter(of(Items.MELON_SLICE), STRAWBERRIES, CHOCOLATE_STRAWBERRIES, WHITE_STRAWBERRIES, BANANA, DRIED_BANANA, MANGO, DRIED_MANGO)
 				.addItemsBefore(of(Items.DRIED_KELP), DRIED_VANILLA_PODS, VANILLA_CHOCOLATE_FINGERS, MINT_LEAVES, ROASTED_ADZUKI_BEANS)
-				.addItemsAfter(of(Items.COOKED_MUTTON), MINT_CHOPS, COOKED_MINT_CHOPS)
+				.addItemsAfter(of(Items.COOKED_MUTTON), MINT_CHOPS, COOKED_MINT_CHOPS, MANGO_FISH, COOKED_MANGO_FISH)
 				.addItemsAfter(of(Items.RABBIT_STEW), ADZUKI_STEW, ADZUKI_CURRY)
-				.addItemsAfter(of(Items.BREAD), BANANA_BREAD, ADZUKI_BUN)
+				.addItemsAfter(of(Items.BREAD), BANANA_BREAD, ADZUKI_BUN, CINNAMON_BAGEL)
 				.addItemsBefore(of(Items.COOKIE), VANILLA_FUDGE, CHOCOLATE_BAR, MINT_CHOCOLATE)
-				.addItemsAfter(of(Items.COOKIE), STRAWBERRY_SCONES, WAFFLE_CONE)
-				.addItemsAfter(of(Items.CAKE), VANILLA_CAKE, CHOCOLATE_CAKE, STRAWBERRY_CAKE, BANANA_CAKE, MINT_CAKE, ADZUKI_CAKE)
+				.addItemsAfter(of(Items.COOKIE), STRAWBERRY_SCONES, WAFFLE_CONE, BERRY_STRUDEL, CINNAMON_ROLL)
+				.addItemsAfter(of(Items.CAKE), VANILLA_CAKE, CHOCOLATE_CAKE, STRAWBERRY_CAKE, BANANA_CAKE, MINT_CAKE, ADZUKI_CAKE, MANGO_CAKE, CINNAMON_CAKE, BUBBLEGUM_CAKE)
 				.addItemsAfter(of(Items.PUMPKIN_PIE), MINT_CANDIES, STRAWBERRY_BEAN_BONBONS)
-				.addItemsAfter(of(Items.SPIDER_EYE), CHOCOLATE_SPIDER_EYE)
+				.addItemsAfter(of(Items.SPIDER_EYE), CHOCOLATE_SPIDER_EYE, BUBBLEGUM, STRAWBERRY_BUBBLEGUM, BANANA_BUBBLEGUM, MINT_BUBBLEGUM, MANGO_BUBBLEGUM)
 				.addItemsBefore(of(Items.MILK_BUCKET), VANILLA_PUDDING)
 				.editor(NeapolitanItems::additionalIceCreamTypes)
 				.addStacksAfter(of(Items.MILK_BUCKET), NeapolitanItems.baseIceCreamTypes())
-				.addItemsAfter(of(Items.MILK_BUCKET), MILK_BOTTLE, VANILLA_MILKSHAKE, CHOCOLATE_MILKSHAKE, STRAWBERRY_MILKSHAKE, BANANA_MILKSHAKE, MINT_MILKSHAKE, ADZUKI_MILKSHAKE)
+				.addItemsAfter(of(Items.MILK_BUCKET), MILK_BOTTLE, VANILLA_MILKSHAKE, CHOCOLATE_MILKSHAKE, STRAWBERRY_MILKSHAKE, BANANA_MILKSHAKE, MINT_MILKSHAKE, ADZUKI_MILKSHAKE, MANGO_MILKSHAKE, CINNAMON_MILKSHAKE, BUBBLEGUM_MILKSHAKE)
 				.addItemsAfter(of(Items.HONEY_BOTTLE), STRAWBERRY_BANANA_SMOOTHIE)
 				.addItemsBefore(of(Items.POTION), ICE_CUBES)
 				.tab(COMBAT)
@@ -165,6 +188,7 @@ public class NeapolitanItems {
 
 	public static final class NeapolitanFoods {
 		public static final FoodProperties ICE_CUBES = new FoodProperties.Builder().alwaysEdible().build();
+		public static final FoodProperties WAFFLE_CONE = createFood(1, 0.0F).alwaysEdible().build();
 		public static final FoodProperties ICE_CREAM = createFood(12, 0.3F).usingConvertsTo(Items.BOWL).build();
 		public static final FoodProperties ICE_CREAM_CONE = createFood(6, 0.3F).build();
 
@@ -203,6 +227,18 @@ public class NeapolitanItems {
 		public static final FoodProperties ADZUKI_STEW = createFood(8, 0.6F).effect(() -> new MobEffectInstance(NeapolitanMobEffects.HARMONY, 400), 1.0F).usingConvertsTo(Items.BOWL).build();
 		public static final FoodProperties ADZUKI_CAKE = createFood(1, 0.1F).effect(() -> new MobEffectInstance(NeapolitanMobEffects.HARMONY, 200), 1.0F).build();
 		public static final FoodProperties ADZUKI_MILKSHAKE = createMilkshake(() -> new MobEffectInstance(NeapolitanMobEffects.HARMONY, 300)).build();
+
+		public static final FoodProperties MANGO = createFood(1, 0.0F).alwaysEdible().build();
+		public static final FoodProperties MANGO_CAKE = createFood(1, 0.1F).build();
+		public static final FoodProperties MANGO_MILKSHAKE = createFood(2, 1.5F).alwaysEdible().build();
+		
+		public static final FoodProperties CINNAMON_STICKS = createFood(1, 0.0F).alwaysEdible().build();
+		public static final FoodProperties CINNAMON_CAKE = createFood(1, 0.1F).build();
+		public static final FoodProperties CINNAMON_MILKSHAKE = createFood(2, 1.5F).alwaysEdible().build();
+		
+		public static final FoodProperties BUBBLEGUM = createFood(1, 0.0F).alwaysEdible().build();
+		public static final FoodProperties BUBBLEGUM_CAKE = createFood(1, 0.1F).build();
+		public static final FoodProperties BUBBLEGUM_MILKSHAKE = createFood(2, 1.5F).alwaysEdible().build();
 
 		public static final FoodProperties CHOCOLATE_STRAWBERRIES = createFood(4, 0.1F).effect(() -> new MobEffectInstance(NeapolitanMobEffects.SUGAR_RUSH, 200), 1.0F).build();
 		public static final FoodProperties VANILLA_CHOCOLATE_FINGERS = createFood(6, 0.6F).effect(() -> new MobEffectInstance(NeapolitanMobEffects.SUGAR_RUSH, 200), 1.0F).effect(() -> new MobEffectInstance(NeapolitanMobEffects.VANILLA_SCENT, 100), 1.0F).build();

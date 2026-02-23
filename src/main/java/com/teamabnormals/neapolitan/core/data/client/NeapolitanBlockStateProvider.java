@@ -6,11 +6,13 @@ import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.other.NeapolitanBlockFamilies;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CakeBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.function.Function;
 
@@ -34,7 +36,32 @@ public class NeapolitanBlockStateProvider extends BlueprintBlockStateProvider {
 		this.directionalBlock(SUGAR_SACK);
 		this.directionalBlock(COCOA_BEAN_SACK);
 
+		this.block(MANGO_ICE_CREAM_BLOCK);
+		this.block(CINNAMON_ICE_CREAM_BLOCK);
+		this.block(BUBBLEGUM_ICE_CREAM_BLOCK);
+
+		this.cake(MANGO_CAKE);
+		this.cake(CINNAMON_CAKE);
+		this.cake(BUBBLEGUM_CAKE);
+
 		FlavoredCandleCakeBlock.getCandleCakes().forEach(this::candleCake);
+	}
+
+	public void cake(DeferredHolder<Block, ?> block) {
+		ModelFile base = cakeModel(block.get(), "", "block/cake");
+		this.getVariantBuilder(block.get()).forAllStates(state -> {
+			int bites = state.getValue(CakeBlock.BITES);
+			return ConfiguredModel.builder().modelFile(bites == 0 ? base : cakeModel(block.get(), "_slice" + bites, "block/cake_slice" + bites)).build();
+		});
+	}
+
+	public ModelFile cakeModel(Block block, String suffix, String parent) {
+		return models().withExistingParent(name(block) + suffix, parent)
+				.texture("bottom", suffix(blockTexture(block), "_bottom"))
+				.texture("side", suffix(blockTexture(block), "_side"))
+				.texture("top", suffix(blockTexture(block), "_top"))
+				.texture("inside", suffix(blockTexture(block), "_top"))
+				.texture("particle", suffix(blockTexture(block), "_side"));
 	}
 
 	public void candleCake(FlavoredCandleCakeBlock block) {

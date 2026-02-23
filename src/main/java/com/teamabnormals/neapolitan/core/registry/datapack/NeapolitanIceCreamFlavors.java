@@ -34,8 +34,11 @@ public final class NeapolitanIceCreamFlavors {
 	public static final ResourceKey<IceCreamFlavor> BANANA = create("banana");
 	public static final ResourceKey<IceCreamFlavor> MINT = create("mint");
 	public static final ResourceKey<IceCreamFlavor> ADZUKI = create("adzuki");
+	public static final ResourceKey<IceCreamFlavor> MANGO = create("mango");
+	public static final ResourceKey<IceCreamFlavor> CINNAMON = create("cinnamon");
+	public static final ResourceKey<IceCreamFlavor> BUBBLEGUM = create("bubblegum");
 
-	public static final List<ResourceKey<IceCreamFlavor>> FLAVORS = List.of(SNOW, VANILLA, CHOCOLATE, STRAWBERRY, BANANA, MINT, ADZUKI);
+	public static final List<ResourceKey<IceCreamFlavor>> FLAVORS = List.of(SNOW, VANILLA, CHOCOLATE, STRAWBERRY, BANANA, MINT, ADZUKI, MANGO, CINNAMON, BUBBLEGUM);
 
 	public static void bootstrap(BootstrapContext<IceCreamFlavor> context) {
 		register(context, SNOW, Items.SNOWBALL, Style.EMPTY.withColor(0xD2DFE0), null, addNutrition(2));
@@ -46,6 +49,9 @@ public final class NeapolitanIceCreamFlavors {
 		register(context, BANANA, NeapolitanItems.BANANA.get(), Style.EMPTY.withColor(0xF4B858), NeapolitanBlocks.BANANA_MILKSHAKE_CAULDRON.get(), applyMobEffect(NeapolitanMobEffects.AGILITY, 60));
 		register(context, MINT, NeapolitanItems.MINT_LEAVES.get(), Style.EMPTY.withColor(0x59B788), NeapolitanBlocks.MINT_MILKSHAKE_CAULDRON.get(), applyMobEffect(NeapolitanMobEffects.BERSERKING, 80));
 		register(context, ADZUKI, NeapolitanItems.ROASTED_ADZUKI_BEANS.get(), Style.EMPTY.withColor(0xED7D83), NeapolitanBlocks.ADZUKI_MILKSHAKE_CAULDRON.get(), applyMobEffect(NeapolitanMobEffects.HARMONY, 30));
+		register(context, MANGO, NeapolitanItems.MANGO.get(), Style.EMPTY.withColor(0xF48727), NeapolitanBlocks.MANGO_MILKSHAKE_CAULDRON.get());
+		register(context, CINNAMON, NeapolitanItems.CINNAMON_STICKS.get(), Style.EMPTY.withColor(0xCE6658), NeapolitanBlocks.CINNAMON_MILKSHAKE_CAULDRON.get());
+		register(context, BUBBLEGUM, NeapolitanItems.BUBBLEGUM.get(), Style.EMPTY.withColor(0x4F96DD), NeapolitanBlocks.BUBBLEGUM_MILKSHAKE_CAULDRON.get());
 	}
 
 	public static HealEntity healEntity(int amount) {

@@ -21,6 +21,9 @@ public final class NeapolitanIceCreamOverrides {
 	public static final ResourceKey<IceCreamOverride> BANANA = create("banana");
 	public static final ResourceKey<IceCreamOverride> MINT = create("mint");
 	public static final ResourceKey<IceCreamOverride> ADZUKI = create("adzuki");
+	public static final ResourceKey<IceCreamOverride> MANGO = create("mango");
+	public static final ResourceKey<IceCreamOverride> CINNAMON = create("cinnamon");
+	public static final ResourceKey<IceCreamOverride> BUBBLEGUM = create("bubblegum");
 	public static final ResourceKey<IceCreamOverride> SNOW = create("snow");
 	public static final ResourceKey<IceCreamOverride> NEAPOLITAN = create("neapolitan");
 
@@ -35,6 +38,9 @@ public final class NeapolitanIceCreamOverrides {
 		register(context, BANANA, NeapolitanIceCreamFlavors.BANANA);
 		register(context, MINT, NeapolitanIceCreamFlavors.MINT);
 		register(context, ADZUKI, NeapolitanIceCreamFlavors.ADZUKI);
+		register(context, MANGO, NeapolitanIceCreamFlavors.MANGO);
+		register(context, CINNAMON, NeapolitanIceCreamFlavors.CINNAMON);
+		register(context, BUBBLEGUM, NeapolitanIceCreamFlavors.BUBBLEGUM);
 		register(context, NEAPOLITAN, new IceCream(
 				flavors.getOrThrow(NeapolitanIceCreamFlavors.VANILLA),
 				flavors.getOrThrow(NeapolitanIceCreamFlavors.CHOCOLATE),

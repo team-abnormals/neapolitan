@@ -1,0 +1,8 @@
+{
+  "description": {
+    "color": "#4F96DD",
+    "translate": "flavor.neapolitan.bubblegum"
+  },
+  "ingredient": "neapolitan:bubblegum",
+  "milkshake_cauldron": "neapolitan:bubblegum_milkshake_cauldron"
+}
