@@ -63,7 +63,7 @@ public class NeapolitanAdvancementModifierProvider extends AdvancementModifierPr
 
 		RegistryLookup<Biome> biomes = provider.lookupOrThrow(Registries.BIOME);
 		this.entry("adventure/adventuring_time").selects("adventure/adventuring_time").addModifier(CriteriaModifier.builder(this.modId)
-				.addCriterion(NeapolitanBiomes.STRAWBERRY_FIELDS.location().toString(), PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder.inBiome(biomes.getOrThrow(NeapolitanBiomes.STRAWBERRY_FIELDS))))
+				.addCriterion(NeapolitanBiomes.STRAWBERRY_FIELDS.location().getPath(), PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder.inBiome(biomes.getOrThrow(NeapolitanBiomes.STRAWBERRY_FIELDS))))
 				.requirements(Strategy.AND).build());
 
 		this.entry("adventure/salvage_sherd").selects("adventure/salvage_sherd").addModifier(CriteriaModifier.builder(this.modId)
