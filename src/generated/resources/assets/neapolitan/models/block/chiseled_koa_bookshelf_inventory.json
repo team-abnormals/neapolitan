@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/chiseled_bookshelf_inventory",
+  "textures": {
+    "front": "neapolitan:block/chiseled_koa_bookshelf_empty",
+    "side": "neapolitan:block/chiseled_koa_bookshelf_side",
+    "top": "neapolitan:block/chiseled_koa_bookshelf_top"
+  }
+}

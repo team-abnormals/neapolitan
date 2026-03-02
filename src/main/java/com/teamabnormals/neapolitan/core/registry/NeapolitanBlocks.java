@@ -1,28 +1,46 @@
 package com.teamabnormals.neapolitan.core.registry;
 
-import com.teamabnormals.blueprint.common.block.BlueprintDirectionalBlock;
-import com.teamabnormals.blueprint.common.block.LogBlock;
+import com.mojang.datafixers.util.Pair;
+import com.teamabnormals.blueprint.common.block.*;
+import com.teamabnormals.blueprint.common.block.chest.BlueprintChestBlock;
+import com.teamabnormals.blueprint.common.block.chest.BlueprintTrappedChestBlock;
+import com.teamabnormals.blueprint.common.block.sign.BlueprintCeilingHangingSignBlock;
+import com.teamabnormals.blueprint.common.block.sign.BlueprintStandingSignBlock;
+import com.teamabnormals.blueprint.common.block.sign.BlueprintWallHangingSignBlock;
+import com.teamabnormals.blueprint.common.block.sign.BlueprintWallSignBlock;
 import com.teamabnormals.blueprint.common.block.thatch.ThatchBlock;
 import com.teamabnormals.blueprint.common.block.thatch.ThatchSlabBlock;
 import com.teamabnormals.blueprint.common.block.thatch.ThatchStairBlock;
+import com.teamabnormals.blueprint.core.api.BlockSetTypeRegistryHelper;
+import com.teamabnormals.blueprint.core.api.WoodTypeRegistryHelper;
 import com.teamabnormals.blueprint.core.util.PropertyUtil;
+import com.teamabnormals.blueprint.core.util.PropertyUtil.WoodSetProperties;
 import com.teamabnormals.blueprint.core.util.item.CreativeModeTabContentsPopulator;
 import com.teamabnormals.blueprint.core.util.registry.BlockSubRegistryHelper;
 import com.teamabnormals.neapolitan.common.block.*;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.other.NeapolitanCauldronInteractions;
+import com.teamabnormals.neapolitan.core.other.NeapolitanConstants;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems.NeapolitanFoods;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanSoundEvents.NeapolitanSoundTypes;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.grower.TreeGrower;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
+import java.util.function.Predicate;
 import java.util.function.ToIntFunction;
 
 import static net.minecraft.world.item.CreativeModeTabs.*;
@@ -96,6 +114,37 @@ public class NeapolitanBlocks {
 	public static final DeferredBlock<Block> MAGIC_BEANS = BLOCKS.createBlock("magic_beans", () -> new MagicBeansBlock(NeapolitanBlockProperties.MAGIC_BEANS));
 	public static final DeferredBlock<Block> BEANSTALK = BLOCKS.createBlock("beanstalk", () -> new BeanstalkBlock(NeapolitanBlockProperties.BEANSTALK));
 	public static final DeferredBlock<Block> BEANSTALK_THORNS = BLOCKS.createBlock("beanstalk_thorns", () -> new BeanstalkThornsBlock(NeapolitanBlockProperties.BEANSTALK_THORNS));
+
+	public static final DeferredBlock<Block> STRIPPED_KOA_LOG = BLOCKS.createBlock("stripped_koa_log", () -> new RotatedPillarBlock(NeapolitanBlockProperties.KOA.log()));
+	public static final DeferredBlock<Block> STRIPPED_KOA_WOOD = BLOCKS.createBlock("stripped_koa_wood", () -> new RotatedPillarBlock(NeapolitanBlockProperties.KOA.log()));
+	public static final DeferredBlock<Block> KOA_LOG = BLOCKS.createBlock("koa_log", () -> new LogBlock(STRIPPED_KOA_LOG, NeapolitanBlockProperties.KOA.log()));
+	public static final DeferredBlock<Block> KOA_WOOD = BLOCKS.createBlock("koa_wood", () -> new LogBlock(STRIPPED_KOA_WOOD, NeapolitanBlockProperties.KOA.log()));
+	public static final DeferredBlock<Block> KOA_PLANKS = BLOCKS.createBlock("koa_planks", () -> new Block(NeapolitanBlockProperties.KOA.planks()));
+	public static final DeferredBlock<Block> KOA_STAIRS = BLOCKS.createBlock("koa_stairs", () -> new StairBlock(KOA_PLANKS.get().defaultBlockState(), NeapolitanBlockProperties.KOA.planks()));
+	public static final DeferredBlock<Block> KOA_SLAB = BLOCKS.createBlock("koa_slab", () -> new SlabBlock(NeapolitanBlockProperties.KOA.planks()));
+	public static final DeferredBlock<Block> KOA_PRESSURE_PLATE = BLOCKS.createBlock("koa_pressure_plate", () -> new PressurePlateBlock(NeapolitanBlockProperties.KOA_BLOCK_SET, NeapolitanBlockProperties.KOA.pressurePlate()));
+	public static final DeferredBlock<Block> KOA_BUTTON = BLOCKS.createBlock("koa_button", () -> new ButtonBlock(NeapolitanBlockProperties.KOA_BLOCK_SET, 30, NeapolitanBlockProperties.KOA.button()));
+	public static final DeferredBlock<Block> KOA_FENCE = BLOCKS.createBlock("koa_fence", () -> new FenceBlock(NeapolitanBlockProperties.KOA.planks()));
+	public static final DeferredBlock<Block> KOA_FENCE_GATE = BLOCKS.createBlock("koa_fence_gate", () -> new FenceGateBlock(NeapolitanBlockProperties.KOA_WOOD_TYPE, NeapolitanBlockProperties.KOA.planks()));
+	public static final DeferredBlock<Block> KOA_DOOR = BLOCKS.createBlock("koa_door", () -> new DoorBlock(NeapolitanBlockProperties.KOA_BLOCK_SET, NeapolitanBlockProperties.KOA.door()));
+	public static final DeferredBlock<Block> KOA_TRAPDOOR = BLOCKS.createBlock("koa_trapdoor", () -> new TrapDoorBlock(NeapolitanBlockProperties.KOA_BLOCK_SET, NeapolitanBlockProperties.KOA.trapdoor()));
+	public static final Pair<DeferredBlock<BlueprintStandingSignBlock>, DeferredBlock<BlueprintWallSignBlock>> KOA_SIGNS = BLOCKS.createSignBlock("koa", NeapolitanBlockProperties.KOA_WOOD_TYPE, NeapolitanBlockProperties.KOA.sign());
+	public static final Pair<DeferredBlock<BlueprintCeilingHangingSignBlock>, DeferredBlock<BlueprintWallHangingSignBlock>> KOA_HANGING_SIGNS = BLOCKS.createHangingSignBlock("koa", NeapolitanBlockProperties.KOA_WOOD_TYPE, NeapolitanBlockProperties.KOA.hangingSign());
+
+	public static final DeferredBlock<Block> KOA_BOARDS = BLOCKS.createBlock("koa_boards", () -> new RotatedPillarBlock(NeapolitanBlockProperties.KOA.planks()));
+	public static final DeferredBlock<Block> KOA_BOOKSHELF = BLOCKS.createBlock("koa_bookshelf", () -> new Block(NeapolitanBlockProperties.KOA.bookshelf()));
+	public static final DeferredBlock<Block> CHISELED_KOA_BOOKSHELF = BLOCKS.createBlock("chiseled_koa_bookshelf", () -> new BlueprintChiseledBookShelfBlock(NeapolitanBlockProperties.KOA.chiseledBookshelf()));
+	public static final DeferredBlock<Block> KOA_LADDER = BLOCKS.createBlock("koa_ladder", () -> new LadderBlock(NeapolitanBlockProperties.KOA.ladder()));
+	public static final DeferredBlock<Block> KOA_BEEHIVE = BLOCKS.createBlock("koa_beehive", () -> new BlueprintBeehiveBlock(NeapolitanBlockProperties.KOA.beehive()));
+	public static final DeferredBlock<BlueprintChestBlock> KOA_CHEST = BLOCKS.createChestBlock("koa", NeapolitanBlockProperties.KOA.chest());
+	public static final DeferredBlock<BlueprintTrappedChestBlock> TRAPPED_KOA_CHEST = BLOCKS.createTrappedChestBlock("koa", NeapolitanBlockProperties.KOA.chest());
+
+	public static final DeferredBlock<Block> KOA_LEAVES = BLOCKS.createBlock("koa_leaves", () -> new LeavesBlock(NeapolitanBlockProperties.KOA.leaves()));
+	public static final DeferredBlock<Block> KOA_SAPLING = BLOCKS.createBlock("koa_sapling", () -> new SaplingBlock(TreeGrower.ACACIA, NeapolitanBlockProperties.KOA.sapling()));
+	public static final DeferredBlock<Block> POTTED_KOA_SAPLING = BLOCKS.createBlockNoItem("potted_koa_sapling", () -> new FlowerPotBlock(KOA_SAPLING.get(), PropertyUtil.flowerPot()));
+	public static final DeferredBlock<Block> KOA_LEAF_PILE = BLOCKS.createBlock("koa_leaf_pile", () -> new LeafPileBlock(NeapolitanBlockProperties.KOA.leafPile()));
+
+	public static final DeferredBlock<Block> CINNAMON_STALK = BLOCKS.createBlock("cinnamon_stalk", () -> new RotatedPillarBlock(NeapolitanBlockProperties.BANANA_STALK));
 
 	public static final DeferredBlock<Block> VANILLA_CAKE = BLOCKS.createBlockNoItem("vanilla_cake", () -> new FlavoredCakeBlock(NeapolitanFoods.VANILLA_CAKE, NeapolitanBlockProperties.VANILLA_CAKE));
 	public static final DeferredBlock<Block> CHOCOLATE_CAKE = BLOCKS.createBlockNoItem("chocolate_cake", () -> new FlavoredCakeBlock(NeapolitanFoods.CHOCOLATE_CAKE, NeapolitanBlockProperties.CHOCOLATE_CAKE));
@@ -290,6 +339,9 @@ public class NeapolitanBlocks {
 	public static void setupTabEditors() {
 		CreativeModeTabContentsPopulator.mod(Neapolitan.MOD_ID)
 				.tab(BUILDING_BLOCKS)
+				.addItemsBefore(of(Blocks.BAMBOO_BLOCK), KOA_LOG, KOA_WOOD, STRIPPED_KOA_LOG, STRIPPED_KOA_WOOD, KOA_PLANKS)
+				.addItemsBefore(modLoaded(Blocks.BAMBOO_BLOCK, "woodworks"), KOA_BOARDS)
+				.addItemsBefore(of(Blocks.BAMBOO_BLOCK), KOA_STAIRS, KOA_SLAB, KOA_FENCE, KOA_FENCE_GATE, KOA_DOOR, KOA_TRAPDOOR, KOA_PRESSURE_PLATE, KOA_BUTTON)
 				.addItems(
 						BANANA_STALK, CARVED_BANANA_STALK, FROND_THATCH, FROND_THATCH_STAIRS, FROND_THATCH_SLAB,
 						CHOCOLATE_BLOCK, CHOCOLATE_BRICKS, CHOCOLATE_BRICK_STAIRS, CHOCOLATE_BRICK_SLAB, CHOCOLATE_BRICK_WALL, CHISELED_CHOCOLATE_BRICKS, CHOCOLATE_TILES, CHOCOLATE_TILE_STAIRS, CHOCOLATE_TILE_SLAB, CHOCOLATE_TILE_WALL,
@@ -298,14 +350,36 @@ public class NeapolitanBlocks {
 				)
 				.tab(FUNCTIONAL_BLOCKS)
 				.addItemsAfter(of(Blocks.CAULDRON), CHILLBOX)
+				.addItemsBefore(of(Blocks.BAMBOO_SIGN), KOA_SIGNS.getFirst(), KOA_HANGING_SIGNS.getFirst())
 				.tab(REDSTONE_BLOCKS)
 				.addItemsAfter(of(Blocks.CAULDRON), CHILLBOX)
 				.tab(NATURAL_BLOCKS)
+				.addItemsBefore(of(Blocks.MUSHROOM_STEM), KOA_LOG)
+				.addItemsBefore(of(Blocks.AZALEA_LEAVES), KOA_LEAVES)
+				.addItemsBefore(modLoaded(Blocks.AZALEA_LEAVES, "woodworks"), KOA_LEAF_PILE)
+				.addItemsBefore(of(Blocks.AZALEA), KOA_SAPLING)
 				.addItemsAfter(of(Blocks.ROOTED_DIRT), ADZUKI_SOIL)
 				.addItemsAfter(of(Items.COCOA_BEANS), MAGIC_BEANS)
-				.addItemsAfter(of(Blocks.CACTUS), BANANA_STALK, BANANA_FROND, BEANSTALK, BEANSTALK_THORNS)
+				.addItemsAfter(of(Blocks.CACTUS), BANANA_STALK, BANANA_FROND, BEANSTALK, BEANSTALK_THORNS, CINNAMON_STALK)
 				.addItemsAfter(of(Blocks.MELON), BANANA_BUNDLE)
 				.addItemsAfter(of(Blocks.HAY_BLOCK), SUGAR_CANE_BLOCK, VANILLA_POD_BLOCK, DRIED_VANILLA_POD_BLOCK, SUGAR_SACK, COCOA_BEAN_SACK, STRAWBERRY_BASKET, WHITE_STRAWBERRY_BASKET, MINT_BASKET, BANANA_CRATE, ADZUKI_CRATE, ROASTED_ADZUKI_CRATE);
+
+		CreativeModeTabContentsPopulator.mod("woodworks_1")
+				.tab(FUNCTIONAL_BLOCKS)
+				.addItemsBefore(ofID(NeapolitanConstants.BAMBOO_LADDER), KOA_LADDER)
+				.addItemsBefore(ofID(NeapolitanConstants.BAMBOO_BEEHIVE), KOA_BEEHIVE)
+				.addItemsBefore(ofID(NeapolitanConstants.BAMBOO_BOOKSHELF), KOA_BOOKSHELF, CHISELED_KOA_BOOKSHELF)
+				.addItemsBefore(ofID(NeapolitanConstants.BAMBOO_CLOSET), KOA_CHEST)
+				.tab(REDSTONE_BLOCKS)
+				.addItemsBefore(ofID(NeapolitanConstants.TRAPPED_BAMBOO_CLOSET), TRAPPED_KOA_CHEST);
+	}
+	
+	public static Predicate<ItemStack> modLoaded(ItemLike item, String... modids) {
+		return stack -> of(item).test(stack) && BlockSubRegistryHelper.areModsLoaded(modids);
+	}
+
+	public static Predicate<ItemStack> ofID(ResourceLocation location, String... modids) {
+		return stack -> (BlockSubRegistryHelper.areModsLoaded(modids) && of(BuiltInRegistries.ITEM.get(location)).test(stack));
 	}
 
 	public enum NeapolitanSkullTypes implements SkullBlock.Type {
@@ -325,6 +399,10 @@ public class NeapolitanBlocks {
 	}
 
 	public static final class NeapolitanBlockProperties {
+		public static final WoodSetProperties KOA = WoodSetProperties.builder(MapColor.TERRACOTTA_ORANGE).build();
+		public static final BlockSetType KOA_BLOCK_SET = BlockSetTypeRegistryHelper.register(new BlockSetType(Neapolitan.MOD_ID + ":koa"));
+		public static final WoodType KOA_WOOD_TYPE = WoodTypeRegistryHelper.registerWoodType(new WoodType(Neapolitan.MOD_ID + ":koa", KOA_BLOCK_SET));
+
 		public static final BlockBehaviour.Properties ICE_CREAM_BLOCK = BlockBehaviour.Properties.of().mapColor(MapColor.WOOL).instrument(NoteBlockInstrument.CHIME).strength(0.2F).sound(SoundType.SNOW);
 		public static final BlockBehaviour.Properties VANILLA_ICE_CREAM_BLOCK = BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).instrument(NoteBlockInstrument.CHIME).strength(0.2F).sound(SoundType.SNOW);
 		public static final BlockBehaviour.Properties CHOCOLATE_ICE_CREAM_BLOCK = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).instrument(NoteBlockInstrument.CHIME).strength(0.2F).sound(SoundType.SNOW);

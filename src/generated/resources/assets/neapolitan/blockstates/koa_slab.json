@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "neapolitan:block/koa_slab"
+    },
+    "type=double": {
+      "model": "neapolitan:block/koa_planks"
+    },
+    "type=top": {
+      "model": "neapolitan:block/koa_slab_top"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "blueprint:block/template_boards_horizontal",
+  "textures": {
+    "all": "neapolitan:block/koa_boards"
+  }
+}

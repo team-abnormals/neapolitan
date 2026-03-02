@@ -1,5 +1,7 @@
 package com.teamabnormals.neapolitan.core.registry;
 
+import com.mojang.datafixers.util.Pair;
+import com.teamabnormals.blueprint.common.item.BlueprintBoatItem;
 import com.teamabnormals.blueprint.core.util.item.CreativeModeTabContentsPopulator;
 import com.teamabnormals.blueprint.core.util.registry.ItemSubRegistryHelper;
 import com.teamabnormals.neapolitan.common.item.*;
@@ -10,6 +12,7 @@ import com.teamabnormals.neapolitan.core.other.tags.NeapolitanBannerPatternTags;
 import com.teamabnormals.neapolitan.core.registry.datapack.NeapolitanIceCreamFlavors;
 import com.teamabnormals.neapolitan.core.registry.datapack.NeapolitanJukeboxSongs;
 import com.teamabnormals.neapolitan.core.registry.datapack.NeapolitanTrimPatterns;
+import com.teamabnormals.neapolitan.integration.boatload.NeapolitanBoatTypes;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -17,6 +20,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.CreativeModeTab.TabVisibility;
+import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -26,6 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
+import static com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks.modLoaded;
 import static net.minecraft.world.item.CreativeModeTabs.*;
 import static net.minecraft.world.item.crafting.Ingredient.of;
 
@@ -88,6 +93,10 @@ public class NeapolitanItems {
 	public static final DeferredItem<Item> MANGO_MILKSHAKE = ITEMS.createItem("mango_milkshake", () -> new MilkshakeItem(new Item.Properties().food(NeapolitanFoods.MANGO_MILKSHAKE).craftRemainder(Items.GLASS_BOTTLE).stacksTo(16)));
 	public static final DeferredItem<Item> MANGO_CAKE = ITEMS.createItem("mango_cake", () -> new BlockItem(NeapolitanBlocks.MANGO_CAKE.get(), new Item.Properties().stacksTo(1)));
 
+	public static final Pair<DeferredItem<BlueprintBoatItem>, DeferredItem<BlueprintBoatItem>> KOA_BOAT = ITEMS.createBoatAndChestBoatItem("koa", NeapolitanBlocks.KOA_PLANKS);
+	public static final DeferredItem<Item> KOA_FURNACE_BOAT = ITEMS.createItem("koa_furnace_boat", ModList.get().isLoaded("boatload") ? NeapolitanBoatTypes.KOA_FURNACE_BOAT : () -> new Item(new Item.Properties()));
+	public static final DeferredItem<Item> LARGE_KOA_BOAT = ITEMS.createItem("large_koa_boat", ModList.get().isLoaded("boatload") ? NeapolitanBoatTypes.LARGE_KOA_BOAT : () -> new Item(new Item.Properties()));
+
 	public static final DeferredItem<Item> CINNAMON_STICKS = ITEMS.createItem("cinnamon_sticks", () -> new Item(new Item.Properties().food(NeapolitanFoods.CINNAMON_STICKS)));
 	public static final DeferredItem<Item> CINNAMON_BAGEL = ITEMS.createItem("cinnamon_bagel", () -> new Item(new Item.Properties().food(NeapolitanFoods.CINNAMON_STICKS)));
 	public static final DeferredItem<Item> CINNAMON_ROLL = ITEMS.createItem("cinnamon_roll", () -> new Item(new Item.Properties().food(NeapolitanFoods.CINNAMON_STICKS)));
@@ -129,7 +138,7 @@ public class NeapolitanItems {
 		CreativeModeTabContentsPopulator.mod(Neapolitan.MOD_ID)
 				.tab(FOOD_AND_DRINKS)
 				.addItemsAfter(of(Items.MELON_SLICE), STRAWBERRIES, CHOCOLATE_STRAWBERRIES, WHITE_STRAWBERRIES, BANANA, DRIED_BANANA, MANGO, DRIED_MANGO)
-				.addItemsBefore(of(Items.DRIED_KELP), DRIED_VANILLA_PODS, VANILLA_CHOCOLATE_FINGERS, MINT_LEAVES, ROASTED_ADZUKI_BEANS)
+				.addItemsBefore(of(Items.DRIED_KELP), DRIED_VANILLA_PODS, VANILLA_CHOCOLATE_FINGERS, MINT_LEAVES, ROASTED_ADZUKI_BEANS, CINNAMON_STICKS)
 				.addItemsAfter(of(Items.COOKED_MUTTON), MINT_CHOPS, COOKED_MINT_CHOPS, MANGO_FISH, COOKED_MANGO_FISH)
 				.addItemsAfter(of(Items.RABBIT_STEW), ADZUKI_STEW, ADZUKI_CURRY)
 				.addItemsAfter(of(Items.BREAD), BANANA_BREAD, ADZUKI_BUN, CINNAMON_BAGEL)
@@ -153,6 +162,8 @@ public class NeapolitanItems {
 				.addItemsAfter(of(Items.GLOBE_BANNER_PATTERN), CHIMPANZEE_BANNER_PATTERN)
 				.tab(TOOLS_AND_UTILITIES)
 				.addItemsAfter(of(Items.MUSIC_DISC_WAIT), MUSIC_DISC_HULLABALOO)
+				.addItemsBefore(of(Items.BAMBOO_RAFT), KOA_BOAT.getFirst(), KOA_BOAT.getSecond())
+				.addItemsBefore(modLoaded(Items.BAMBOO_RAFT, "boatload"), KOA_FURNACE_BOAT, LARGE_KOA_BOAT)
 				.tab(FUNCTIONAL_BLOCKS)
 				.addItemsAfter(of(Items.CREEPER_HEAD), CHIMPANZEE_HEAD)
 				.tab(NATURAL_BLOCKS)

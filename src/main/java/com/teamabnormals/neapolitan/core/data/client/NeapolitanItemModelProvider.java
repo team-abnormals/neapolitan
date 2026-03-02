@@ -28,6 +28,7 @@ public class NeapolitanItemModelProvider extends BlueprintItemModelProvider {
 	@Override
 	protected void registerModels() {
 		this.generatedItem(
+				KOA_BOAT.getFirst(), KOA_BOAT.getSecond(), KOA_FURNACE_BOAT, LARGE_KOA_BOAT,
 				MANGO, MANGO_MILKSHAKE, MANGO_CAKE,
 				DRIED_MANGO, MANGO_FISH, COOKED_MANGO_FISH,
 				CINNAMON_STICKS, CINNAMON_MILKSHAKE, CINNAMON_CAKE,

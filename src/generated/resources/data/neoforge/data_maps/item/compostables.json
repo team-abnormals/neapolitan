@@ -102,6 +102,12 @@
     "neapolitan:frond_thatch_stairs": {
       "chance": 0.65
     },
+    "neapolitan:koa_leaves": {
+      "chance": 0.3
+    },
+    "neapolitan:koa_sapling": {
+      "chance": 0.3
+    },
     "neapolitan:mint_basket": {
       "chance": 1.0
     },

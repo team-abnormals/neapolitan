@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "neapolitan:block/koa_planks",
+    "side": "neapolitan:block/koa_planks",
+    "top": "neapolitan:block/koa_planks"
+  }
+}

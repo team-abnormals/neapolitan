@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "neapolitan:block/cinnamon_stalk_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "neapolitan:block/cinnamon_stalk"
+    },
+    "axis=z": {
+      "model": "neapolitan:block/cinnamon_stalk_horizontal",
+      "x": 90
+    }
+  }
+}

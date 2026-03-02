@@ -108,6 +108,9 @@ public class NeapolitanDataMapProvider extends DataMapProvider {
 				.add(NeapolitanBlocks.CHOCOLATE_TILES.getId(), new Compostable(0.85F), false)
 				.add(NeapolitanBlocks.CHOCOLATE_TILE_STAIRS.getId(), new Compostable(0.85F), false)
 				.add(NeapolitanBlocks.CHOCOLATE_TILE_SLAB.getId(), new Compostable(0.3F), false)
-				.add(NeapolitanBlocks.CHOCOLATE_TILE_WALL.getId(), new Compostable(0.85F), false);
+				.add(NeapolitanBlocks.CHOCOLATE_TILE_WALL.getId(), new Compostable(0.85F), false)
+
+				.add(NeapolitanBlocks.KOA_LEAVES.getId(), new Compostable(0.3F), false)
+				.add(NeapolitanBlocks.KOA_SAPLING.getId(), new Compostable(0.3F), false);
 	}
 }

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "neapolitan:block/koa_planks",
+    "side": "neapolitan:block/koa_bookshelf"
+  }
+}

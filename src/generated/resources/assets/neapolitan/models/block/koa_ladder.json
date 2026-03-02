@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/ladder",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "particle": "neapolitan:block/koa_ladder",
+    "texture": "neapolitan:block/koa_ladder"
+  }
+}

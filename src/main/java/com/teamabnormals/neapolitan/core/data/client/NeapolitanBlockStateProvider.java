@@ -36,6 +36,8 @@ public class NeapolitanBlockStateProvider extends BlueprintBlockStateProvider {
 		this.directionalBlock(SUGAR_SACK);
 		this.directionalBlock(COCOA_BEAN_SACK);
 
+		this.logBlock(CINNAMON_STALK);
+
 		this.block(MANGO_ICE_CREAM_BLOCK);
 		this.block(CINNAMON_ICE_CREAM_BLOCK);
 		this.block(BUBBLEGUM_ICE_CREAM_BLOCK);
@@ -43,6 +45,16 @@ public class NeapolitanBlockStateProvider extends BlueprintBlockStateProvider {
 		this.cake(MANGO_CAKE);
 		this.cake(CINNAMON_CAKE);
 		this.cake(BUBBLEGUM_CAKE);
+
+		this.blockFamily(NeapolitanBlockFamilies.KOA_PLANKS_FAMILY);
+
+		this.logBlocks(KOA_LOG, KOA_WOOD);
+		this.logBlocks(STRIPPED_KOA_LOG, STRIPPED_KOA_WOOD);
+		this.hangingSignBlocks(STRIPPED_KOA_LOG, KOA_HANGING_SIGNS.getFirst(), KOA_HANGING_SIGNS.getSecond());
+		this.leavesBlocks(KOA_LEAVES, KOA_LEAF_PILE);
+		this.crossBlockWithPot(KOA_SAPLING, POTTED_KOA_SAPLING);
+		this.woodworksBlocks(KOA_PLANKS, KOA_BOARDS, KOA_LADDER, KOA_BOOKSHELF, KOA_BEEHIVE, KOA_CHEST, TRAPPED_KOA_CHEST);
+		this.chiseledBookshelfBlock(CHISELED_KOA_BOOKSHELF);
 
 		FlavoredCandleCakeBlock.getCandleCakes().forEach(this::candleCake);
 	}

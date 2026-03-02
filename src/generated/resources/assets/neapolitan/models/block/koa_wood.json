@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "neapolitan:block/koa_log",
+    "side": "neapolitan:block/koa_log"
+  }
+}

@@ -7,6 +7,7 @@ import com.teamabnormals.neapolitan.core.other.NeapolitanLootTables;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanEntityTypes;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
+import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.core.HolderLookup.RegistryLookup;
@@ -40,8 +41,10 @@ import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemKilledByPlayerCondition;
+import net.minecraft.world.level.storage.loot.predicates.MatchTool;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+import net.neoforged.neoforge.common.Tags;
 
 import java.util.List;
 import java.util.Set;
@@ -165,6 +168,35 @@ public class NeapolitanLootTableProvider extends LootTableProvider {
 			this.dropSelf(VANILLA_VINE.get());
 			this.dropSelf(VANILLA_VINE_PLANT.get());
 
+			this.dropSelf(KOA_PLANKS.get());
+			this.dropSelf(KOA_LOG.get());
+			this.dropSelf(KOA_WOOD.get());
+			this.dropSelf(STRIPPED_KOA_LOG.get());
+			this.dropSelf(STRIPPED_KOA_WOOD.get());
+			this.dropSelf(KOA_SIGNS.getFirst().get());
+			this.dropSelf(KOA_HANGING_SIGNS.getFirst().get());
+			this.dropSelf(KOA_PRESSURE_PLATE.get());
+			this.dropSelf(KOA_TRAPDOOR.get());
+			this.dropSelf(KOA_BUTTON.get());
+			this.dropSelf(KOA_STAIRS.get());
+			this.dropSelf(KOA_FENCE.get());
+			this.dropSelf(KOA_FENCE_GATE.get());
+			this.dropSelf(KOA_BOARDS.get());
+			this.add(KOA_LEAF_PILE.get(), this::createLeafPileDrops);
+			this.dropSelf(KOA_SAPLING.get());
+			this.dropPottedContents(POTTED_KOA_SAPLING.get());
+			this.dropSelf(KOA_LADDER.get());
+			this.add(KOA_SLAB.get(), this::createSlabItemTable);
+			this.add(KOA_DOOR.get(), this::createDoorTable);
+			this.add(KOA_BEEHIVE.get(), this::createBeeHiveDrop);
+			this.add(KOA_CHEST.get(), this::createNameableBlockEntityTable);
+			this.add(TRAPPED_KOA_CHEST.get(), this::createNameableBlockEntityTable);
+			this.add(KOA_BOOKSHELF.get(), (block) -> createSingleItemTableWithSilkTouch(block, Items.BOOK, ConstantValue.exactly(3.0F)));
+			this.dropWhenSilkTouch(CHISELED_KOA_BOOKSHELF.get());
+			this.add(KOA_LEAVES.get(), (block) -> createLeavesDrops(block, KOA_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+			
+			this.dropSelf(CINNAMON_STALK.get());
+
 			this.dropSelf(SUGAR_SACK.get());
 			this.dropSelf(COCOA_BEAN_SACK.get());
 			this.dropSelf(BANANA_CRATE.get());
@@ -184,6 +216,10 @@ public class NeapolitanLootTableProvider extends LootTableProvider {
 			this.dropSelf(CHIMPANZEE_HEAD.get());
 
 			FlavoredCandleCakeBlock.getCandleCakes().forEach((block -> this.add(block, createCandleCakeDrops(block.getCandle()))));
+		}
+
+		protected LootTable.Builder createLeafPileDrops(Block block) {
+			return createMultifaceBlockDrops(block, MatchTool.toolMatches(ItemPredicate.Builder.item().of(Tags.Items.TOOLS_SHEAR)));
 		}
 
 		protected LootTable.Builder createStrawberryDrops(Block block) {

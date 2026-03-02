@@ -47,6 +47,11 @@ public class NeapolitanClientCompat {
 		ItemBlockRenderTypes.setRenderLayer(NeapolitanBlocks.FROND_THATCH.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(NeapolitanBlocks.FROND_THATCH_STAIRS.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(NeapolitanBlocks.FROND_THATCH_SLAB.get(), RenderType.cutout());
+
+		ItemBlockRenderTypes.setRenderLayer(NeapolitanBlocks.KOA_DOOR.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(NeapolitanBlocks.KOA_TRAPDOOR.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(NeapolitanBlocks.KOA_SAPLING.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(NeapolitanBlocks.POTTED_KOA_SAPLING.get(), RenderType.cutout());
 	}
 
 	public static void registerItemProperties() {

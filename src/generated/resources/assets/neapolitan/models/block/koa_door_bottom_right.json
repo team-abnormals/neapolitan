@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_bottom_right",
+  "textures": {
+    "bottom": "neapolitan:block/koa_door_bottom",
+    "top": "neapolitan:block/koa_door_top"
+  }
+}

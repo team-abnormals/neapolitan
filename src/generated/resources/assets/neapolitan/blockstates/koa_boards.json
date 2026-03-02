@@ -1,0 +1,14 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "neapolitan:block/koa_boards_horizontal",
+      "y": 270
+    },
+    "axis=y": {
+      "model": "neapolitan:block/koa_boards"
+    },
+    "axis=z": {
+      "model": "neapolitan:block/koa_boards_horizontal"
+    }
+  }
+}

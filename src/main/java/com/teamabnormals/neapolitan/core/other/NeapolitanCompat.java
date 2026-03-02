@@ -73,6 +73,21 @@ public class NeapolitanCompat {
 		DataUtil.registerFlammable(NeapolitanBlocks.CHOCOLATE_TILE_STAIRS.get(), 60, 100);
 		DataUtil.registerFlammable(NeapolitanBlocks.CHOCOLATE_TILE_SLAB.get(), 60, 100);
 		DataUtil.registerFlammable(NeapolitanBlocks.CHOCOLATE_TILE_WALL.get(), 60, 100);
+
+		DataUtil.registerFlammable(NeapolitanBlocks.KOA_LOG.get(), 5, 5);
+		DataUtil.registerFlammable(NeapolitanBlocks.KOA_WOOD.get(), 5, 5);
+		DataUtil.registerFlammable(NeapolitanBlocks.STRIPPED_KOA_LOG.get(), 5, 5);
+		DataUtil.registerFlammable(NeapolitanBlocks.STRIPPED_KOA_WOOD.get(), 5, 5);
+		DataUtil.registerFlammable(NeapolitanBlocks.KOA_PLANKS.get(), 5, 20);
+		DataUtil.registerFlammable(NeapolitanBlocks.KOA_STAIRS.get(), 5, 20);
+		DataUtil.registerFlammable(NeapolitanBlocks.KOA_SLAB.get(), 5, 20);
+		DataUtil.registerFlammable(NeapolitanBlocks.KOA_FENCE.get(), 5, 20);
+		DataUtil.registerFlammable(NeapolitanBlocks.KOA_FENCE_GATE.get(), 5, 20);
+		DataUtil.registerFlammable(NeapolitanBlocks.KOA_LEAVES.get(), 30, 60);
+		DataUtil.registerFlammable(NeapolitanBlocks.KOA_LEAF_PILE.get(), 30, 60);
+		DataUtil.registerFlammable(NeapolitanBlocks.KOA_BEEHIVE.get(), 5, 20);
+		DataUtil.registerFlammable(NeapolitanBlocks.KOA_BOARDS.get(), 5, 20);
+		DataUtil.registerFlammable(NeapolitanBlocks.KOA_BOOKSHELF.get(), 30, 20);
 	}
 
 	public static void registerDispenserBehaviors() {
