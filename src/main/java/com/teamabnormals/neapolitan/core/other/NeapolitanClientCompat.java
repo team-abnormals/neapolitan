@@ -5,6 +5,7 @@ import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanBlocks.NeapolitanSkullTypes;
 import com.teamabnormals.neapolitan.core.registry.NeapolitanItems;
+import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.SkullBlockRenderer;
@@ -13,9 +14,11 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.ChargedProjectiles;
+import net.minecraft.world.level.FoliageColor;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 
 
@@ -65,5 +68,17 @@ public class NeapolitanClientCompat {
 	public static void registerClientExtensions(RegisterClientExtensionsEvent event) {
 		event.registerItem(new IceCreamClientExtension(), NeapolitanItems.ICE_CREAM);
 		event.registerItem(new IceCreamClientExtension(), NeapolitanItems.ICE_CREAM_CONE);
+	}
+
+	@SubscribeEvent
+	public static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
+		event.register((state, level, pos, tintIndex) -> level != null && pos != null ? BiomeColors.getAverageFoliageColor(level, pos) : FoliageColor.get(0.5D, 1.0D),
+				NeapolitanBlocks.KOA_LEAVES.get(), NeapolitanBlocks.KOA_LEAF_PILE.get()
+		);
+	}
+
+	@SubscribeEvent
+	public static void registerItemColors(RegisterColorHandlersEvent.Item event) {
+		event.register((item, tintIndex) -> FoliageColor.get(0.5D, 1.0D), NeapolitanBlocks.KOA_LEAVES, NeapolitanBlocks.KOA_LEAF_PILE);
 	}
 }
