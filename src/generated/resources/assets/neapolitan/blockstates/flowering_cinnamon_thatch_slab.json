@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "neapolitan:block/flowering_cinnamon_thatch_slab"
+    },
+    "type=double": {
+      "model": "neapolitan:block/flowering_cinnamon_thatch"
+    },
+    "type=top": {
+      "model": "neapolitan:block/flowering_cinnamon_thatch_slab_top"
+    }
+  }
+}

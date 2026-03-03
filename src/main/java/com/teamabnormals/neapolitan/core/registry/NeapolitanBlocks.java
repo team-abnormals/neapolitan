@@ -144,7 +144,13 @@ public class NeapolitanBlocks {
 	public static final DeferredBlock<Block> POTTED_KOA_SAPLING = BLOCKS.createBlockNoItem("potted_koa_sapling", () -> new FlowerPotBlock(KOA_SAPLING.get(), PropertyUtil.flowerPot()));
 	public static final DeferredBlock<Block> KOA_LEAF_PILE = BLOCKS.createBlock("koa_leaf_pile", () -> new LeafPileBlock(NeapolitanBlockProperties.KOA.leafPile()));
 
-	public static final DeferredBlock<Block> CINNAMON_STALK = BLOCKS.createBlock("cinnamon_stalk", () -> new RotatedPillarBlock(NeapolitanBlockProperties.BANANA_STALK));
+	public static final DeferredBlock<Block> CINNAMON_STALK = BLOCKS.createBlock("cinnamon_stalk", () -> new RotatedPillarBlock(NeapolitanBlockProperties.CINNAMON_STALK));
+	public static final DeferredBlock<Block> CINNAMON_THATCH = BLOCKS.createBlock("cinnamon_thatch", () -> new ThatchBlock(NeapolitanBlockProperties.CINNAMON_THATCH));
+	public static final DeferredBlock<Block> CINNAMON_THATCH_SLAB = BLOCKS.createBlock("cinnamon_thatch_slab", () -> new ThatchSlabBlock(NeapolitanBlockProperties.CINNAMON_THATCH));
+	public static final DeferredBlock<Block> CINNAMON_THATCH_STAIRS = BLOCKS.createBlock("cinnamon_thatch_stairs", () -> new ThatchStairBlock(CINNAMON_THATCH.get().defaultBlockState(), NeapolitanBlockProperties.CINNAMON_THATCH));
+	public static final DeferredBlock<Block> FLOWERING_CINNAMON_THATCH = BLOCKS.createBlock("flowering_cinnamon_thatch", () -> new ThatchBlock(NeapolitanBlockProperties.CINNAMON_THATCH));
+	public static final DeferredBlock<Block> FLOWERING_CINNAMON_THATCH_SLAB = BLOCKS.createBlock("flowering_cinnamon_thatch_slab", () -> new ThatchSlabBlock(NeapolitanBlockProperties.CINNAMON_THATCH));
+	public static final DeferredBlock<Block> FLOWERING_CINNAMON_THATCH_STAIRS = BLOCKS.createBlock("flowering_cinnamon_thatch_stairs", () -> new ThatchStairBlock(FLOWERING_CINNAMON_THATCH.get().defaultBlockState(), NeapolitanBlockProperties.CINNAMON_THATCH));
 
 	public static final DeferredBlock<Block> VANILLA_CAKE = BLOCKS.createBlockNoItem("vanilla_cake", () -> new FlavoredCakeBlock(NeapolitanFoods.VANILLA_CAKE, NeapolitanBlockProperties.VANILLA_CAKE));
 	public static final DeferredBlock<Block> CHOCOLATE_CAKE = BLOCKS.createBlockNoItem("chocolate_cake", () -> new FlavoredCakeBlock(NeapolitanFoods.CHOCOLATE_CAKE, NeapolitanBlockProperties.CHOCOLATE_CAKE));
@@ -160,6 +166,7 @@ public class NeapolitanBlocks {
 	public static final DeferredBlock<Block> VANILLA_POD_BLOCK = BLOCKS.createBlock("vanilla_pod_block", () -> new RotatedPillarBlock(NeapolitanBlockProperties.VANILLA_POD_BLOCK));
 	public static final DeferredBlock<Block> DRIED_VANILLA_POD_BLOCK = BLOCKS.createBlock("dried_vanilla_pod_block", () -> new RotatedPillarBlock(NeapolitanBlockProperties.DRIED_VANILLA_POD_BLOCK));
 	public static final DeferredBlock<Block> BANANA_BUNDLE = BLOCKS.createBlock("banana_bundle", () -> new BananaBundleBlock(NeapolitanBlockProperties.BANANA_BUNDLE));
+	public static final DeferredBlock<Block> CINNAMON_STICK_BLOCK = BLOCKS.createBlock("cinnamon_stick_block", () -> new RotatedPillarBlock(NeapolitanBlockProperties.SUGAR_CANE_BLOCK));
 
 	public static final DeferredBlock<Block> STRAWBERRY_BASKET = BLOCKS.createBlock("strawberry_basket", () -> new BlueprintDirectionalBlock(NeapolitanBlockProperties.STRAWBERRY_BASKET));
 	public static final DeferredBlock<Block> WHITE_STRAWBERRY_BASKET = BLOCKS.createBlock("white_strawberry_basket", () -> new BlueprintDirectionalBlock(NeapolitanBlockProperties.WHITE_STRAWBERRY_BASKET));
@@ -167,6 +174,7 @@ public class NeapolitanBlocks {
 	public static final DeferredBlock<Block> MINT_BASKET = BLOCKS.createBlock("mint_basket", () -> new BlueprintDirectionalBlock(NeapolitanBlockProperties.MINT_BASKET));
 	public static final DeferredBlock<Block> ADZUKI_CRATE = BLOCKS.createBlock("adzuki_crate", () -> new BlueprintDirectionalBlock(NeapolitanBlockProperties.ADZUKI_CRATE));
 	public static final DeferredBlock<Block> ROASTED_ADZUKI_CRATE = BLOCKS.createBlock("roasted_adzuki_crate", () -> new BlueprintDirectionalBlock(NeapolitanBlockProperties.ROASTED_ADZUKI_CRATE));
+	public static final DeferredBlock<Block> MANGO_CRATE = BLOCKS.createBlock("mango_crate", () -> new BlueprintDirectionalBlock(NeapolitanBlockProperties.ADZUKI_CRATE));
 
 	public static final DeferredBlock<Block> COCOA_BEAN_SACK = BLOCKS.createBlock("cocoa_bean_sack", () -> new BlueprintDirectionalBlock(NeapolitanBlockProperties.COCOA_BEAN_SACK));
 	public static final DeferredBlock<Block> SUGAR_SACK = BLOCKS.createBlock("sugar_sack", () -> new BlueprintDirectionalBlock(NeapolitanBlockProperties.SUGAR_SACK));
@@ -344,6 +352,7 @@ public class NeapolitanBlocks {
 				.addItemsBefore(of(Blocks.BAMBOO_BLOCK), KOA_STAIRS, KOA_SLAB, KOA_FENCE, KOA_FENCE_GATE, KOA_DOOR, KOA_TRAPDOOR, KOA_PRESSURE_PLATE, KOA_BUTTON)
 				.addItems(
 						BANANA_STALK, CARVED_BANANA_STALK, FROND_THATCH, FROND_THATCH_STAIRS, FROND_THATCH_SLAB,
+						CINNAMON_STALK, CINNAMON_THATCH, CINNAMON_THATCH_STAIRS, CINNAMON_THATCH_SLAB, FLOWERING_CINNAMON_THATCH, FLOWERING_CINNAMON_THATCH_STAIRS, FLOWERING_CINNAMON_THATCH_SLAB,
 						CHOCOLATE_BLOCK, CHOCOLATE_BRICKS, CHOCOLATE_BRICK_STAIRS, CHOCOLATE_BRICK_SLAB, CHOCOLATE_BRICK_WALL, CHISELED_CHOCOLATE_BRICKS, CHOCOLATE_TILES, CHOCOLATE_TILE_STAIRS, CHOCOLATE_TILE_SLAB, CHOCOLATE_TILE_WALL,
 						ICE_CREAM_BLOCK, VANILLA_ICE_CREAM_BLOCK, CHOCOLATE_ICE_CREAM_BLOCK, STRAWBERRY_ICE_CREAM_BLOCK, BANANA_ICE_CREAM_BLOCK, MINT_ICE_CREAM_BLOCK, ADZUKI_ICE_CREAM_BLOCK, MANGO_ICE_CREAM_BLOCK, CINNAMON_ICE_CREAM_BLOCK, BUBBLEGUM_ICE_CREAM_BLOCK,
 						WAFFLE_CONE_BLOCK, WAFFLE_CONE_PILLAR, WAFFLE_CONE_TILES, WAFFLE_CONE_TILE_STAIRS, WAFFLE_CONE_TILE_SLAB, WAFFLE_CONE_TILE_WALL
@@ -362,7 +371,7 @@ public class NeapolitanBlocks {
 				.addItemsAfter(of(Items.COCOA_BEANS), MAGIC_BEANS)
 				.addItemsAfter(of(Blocks.CACTUS), BANANA_STALK, BANANA_FROND, BEANSTALK, BEANSTALK_THORNS, CINNAMON_STALK)
 				.addItemsAfter(of(Blocks.MELON), BANANA_BUNDLE)
-				.addItemsAfter(of(Blocks.HAY_BLOCK), SUGAR_CANE_BLOCK, VANILLA_POD_BLOCK, DRIED_VANILLA_POD_BLOCK, SUGAR_SACK, COCOA_BEAN_SACK, STRAWBERRY_BASKET, WHITE_STRAWBERRY_BASKET, MINT_BASKET, BANANA_CRATE, ADZUKI_CRATE, ROASTED_ADZUKI_CRATE);
+				.addItemsAfter(of(Blocks.HAY_BLOCK), SUGAR_CANE_BLOCK, VANILLA_POD_BLOCK, DRIED_VANILLA_POD_BLOCK, CINNAMON_STICK_BLOCK, SUGAR_SACK, COCOA_BEAN_SACK, STRAWBERRY_BASKET, WHITE_STRAWBERRY_BASKET, MINT_BASKET, BANANA_CRATE, ADZUKI_CRATE, ROASTED_ADZUKI_CRATE, MANGO_CRATE);
 
 		CreativeModeTabContentsPopulator.mod("woodworks_1")
 				.tab(FUNCTIONAL_BLOCKS)
@@ -435,7 +444,10 @@ public class NeapolitanBlocks {
 		public static final BlockBehaviour.Properties MAGIC_BEANS = BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_PURPLE).noCollission().instabreak().sound(SoundType.CROP).pushReaction(PushReaction.DESTROY);
 		public static final BlockBehaviour.Properties BEANSTALK = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GREEN).instrument(NoteBlockInstrument.BASS).strength(1.0F).isSuffocating((state, reader, pos) -> false).sound(SoundType.STEM).pushReaction(PushReaction.DESTROY);
 		public static final BlockBehaviour.Properties BEANSTALK_THORNS = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GREEN).noCollission().strength(0.2F).sound(SoundType.FUNGUS).pushReaction(PushReaction.DESTROY);
-
+		
+		public static final BlockBehaviour.Properties CINNAMON_STALK = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).strength(1.0F).sound(NeapolitanSoundTypes.BANANA_STALK);
+		public static final BlockBehaviour.Properties CINNAMON_THATCH = BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_RED).strength(0.5F).sound(SoundType.NETHER_SPROUTS);
+		
 		public static final BlockBehaviour.Properties CHOCOLATE_CAKE = cake(MapColor.COLOR_BROWN, false);
 		public static final BlockBehaviour.Properties STRAWBERRY_CAKE = cake(MapColor.COLOR_PINK, false);
 		public static final BlockBehaviour.Properties VANILLA_CAKE = cake(MapColor.TERRACOTTA_WHITE, false);

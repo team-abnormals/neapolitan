@@ -136,6 +136,13 @@ public class NeapolitanLootTableProvider extends LootTableProvider {
 			this.dropSelf(FROND_THATCH_STAIRS.get());
 			this.add(FROND_THATCH_SLAB.get(), this::createSlabItemTable);
 
+			this.dropSelf(CINNAMON_THATCH.get());
+			this.dropSelf(CINNAMON_THATCH_STAIRS.get());
+			this.add(CINNAMON_THATCH_SLAB.get(), this::createSlabItemTable);
+			this.dropSelf(FLOWERING_CINNAMON_THATCH.get());
+			this.dropSelf(FLOWERING_CINNAMON_THATCH_STAIRS.get());
+			this.add(FLOWERING_CINNAMON_THATCH_SLAB.get(), this::createSlabItemTable);
+
 			this.add(STRAWBERRY_BUSH.get(), this::createStrawberryDrops);
 			this.add(MINT.get(), this::createMintDrops);
 			this.add(ADZUKI_SPROUTS.get(), this::createAdzukiDrops);
@@ -207,6 +214,8 @@ public class NeapolitanLootTableProvider extends LootTableProvider {
 			this.dropSelf(WHITE_STRAWBERRY_BASKET.get());
 			this.dropSelf(VANILLA_POD_BLOCK.get());
 			this.dropSelf(DRIED_VANILLA_POD_BLOCK.get());
+			this.dropSelf(CINNAMON_STICK_BLOCK.get());
+			this.dropSelf(MANGO_CRATE.get());
 			this.dropSelf(SUGAR_CANE_BLOCK.get());
 
 			this.dropPottedContents(POTTED_MINT.get());

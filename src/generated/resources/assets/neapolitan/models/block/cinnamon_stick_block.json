@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "neapolitan:block/cinnamon_stick_block_top",
+    "side": "neapolitan:block/cinnamon_stick_block"
+  }
+}

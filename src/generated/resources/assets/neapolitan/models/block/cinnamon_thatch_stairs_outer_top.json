@@ -1,0 +1,8 @@
+{
+  "parent": "blueprint:block/template_thatch_stairs_outer_top",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "extrudes": "neapolitan:block/cinnamon_thatch_extrudes",
+    "thatch": "neapolitan:block/cinnamon_thatch"
+  }
+}
