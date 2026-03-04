@@ -4,7 +4,7 @@
       "type": "criteria",
       "config": {
         "criteria": {
-          "neapolitan:armor_trimmed_neapolitan:primal_armor_trim_smithing_template": {
+          "neapolitan:armor_trimmed_primal_armor_trim_smithing_template": {
             "conditions": {
               "recipe_id": "neapolitan:primal_armor_trim_smithing_template"
             },
@@ -16,7 +16,7 @@
             "index": 0,
             "replace": false,
             "requirements": [
-              "neapolitan:armor_trimmed_neapolitan:primal_armor_trim_smithing_template"
+              "neapolitan:armor_trimmed_primal_armor_trim_smithing_template"
             ]
           }
         ],

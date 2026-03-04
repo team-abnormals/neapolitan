@@ -4,7 +4,7 @@
       "type": "criteria",
       "config": {
         "criteria": {
-          "neapolitan:neapolitan:strawberry_fields": {
+          "neapolitan:strawberry_fields": {
             "conditions": {
               "player": [
                 {
@@ -24,7 +24,7 @@
         "indexed_requirements": [],
         "requirements": [
           [
-            "neapolitan:neapolitan:strawberry_fields"
+            "neapolitan:strawberry_fields"
           ]
         ],
         "should_replace_requirements": false

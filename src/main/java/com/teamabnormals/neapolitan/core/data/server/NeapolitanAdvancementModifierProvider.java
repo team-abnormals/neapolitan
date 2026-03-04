@@ -63,7 +63,7 @@ public class NeapolitanAdvancementModifierProvider extends AdvancementModifierPr
 
 		RegistryLookup<Biome> biomes = provider.lookupOrThrow(Registries.BIOME);
 		this.entry("adventure/adventuring_time").selects("adventure/adventuring_time").addModifier(CriteriaModifier.builder(this.modId)
-				.addCriterion(NeapolitanBiomes.STRAWBERRY_FIELDS.location().toString(), PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder.inBiome(biomes.getOrThrow(NeapolitanBiomes.STRAWBERRY_FIELDS))))
+				.addCriterion(NeapolitanBiomes.STRAWBERRY_FIELDS.location().getPath(), PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder.inBiome(biomes.getOrThrow(NeapolitanBiomes.STRAWBERRY_FIELDS))))
 				.requirements(Strategy.AND).build());
 
 		this.entry("adventure/salvage_sherd").selects("adventure/salvage_sherd").addModifier(CriteriaModifier.builder(this.modId)
@@ -71,7 +71,7 @@ public class NeapolitanAdvancementModifierProvider extends AdvancementModifierPr
 				.addCriterion("banana_plant_rare", LootTableTrigger.TriggerInstance.lootTableUsed(NeapolitanLootTables.BANANA_PLANT_ARCHAEOLOGY_RARE))
 				.addIndexedRequirements(0, false, "banana_plant_common", "banana_plant_rare").build());
 
-		String entry = "armor_trimmed_" + NeapolitanItems.PRIMAL_ARMOR_TRIM_SMITHING_TEMPLATE.getId();
+		String entry = "armor_trimmed_" + NeapolitanItems.PRIMAL_ARMOR_TRIM_SMITHING_TEMPLATE.getId().getPath();
 		this.entry("adventure/trim_with_any_armor_pattern").selects("adventure/trim_with_any_armor_pattern").addModifier(CriteriaModifier.builder(this.modId)
 				.addCriterion(entry, RecipeCraftedTrigger.TriggerInstance.craftedItem(NeapolitanItems.PRIMAL_ARMOR_TRIM_SMITHING_TEMPLATE.getId()))
 				.addIndexedRequirements(0, false, entry).build());
