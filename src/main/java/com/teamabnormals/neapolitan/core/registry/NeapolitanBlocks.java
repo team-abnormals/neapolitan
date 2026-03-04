@@ -105,9 +105,9 @@ public class NeapolitanBlocks {
 	public static final DeferredBlock<Block> BANANA_STALK = BLOCKS.createBlock("banana_stalk", () -> new LogBlock(() -> CARVED_BANANA_STALK.get(), NeapolitanBlockProperties.BANANA_STALK));
 	public static final DeferredBlock<Block> BANANA_FROND = BLOCKS.createBlock("banana_frond", () -> new BananaFrondBlock(NeapolitanBlockProperties.BANANA_FROND));
 	public static final DeferredBlock<Block> POTTED_BANANA_FROND = BLOCKS.createBlockNoItem("potted_banana_frond", () -> new FlowerPotBlock(BANANA_FROND.get(), PropertyUtil.flowerPot()));
-	public static final DeferredBlock<Block> FROND_THATCH = BLOCKS.createBlock("frond_thatch", () -> new ThatchBlock(NeapolitanBlockProperties.FROND_THATCH));
-	public static final DeferredBlock<Block> FROND_THATCH_SLAB = BLOCKS.createBlock("frond_thatch_slab", () -> new ThatchSlabBlock(NeapolitanBlockProperties.FROND_THATCH));
-	public static final DeferredBlock<Block> FROND_THATCH_STAIRS = BLOCKS.createBlock("frond_thatch_stairs", () -> new ThatchStairBlock(FROND_THATCH.get().defaultBlockState(), NeapolitanBlockProperties.FROND_THATCH));
+	public static final DeferredBlock<Block> FROND_THATCH = BLOCKS.createBlock("frond_thatch", () -> new TrimmableThatchBlock(NeapolitanBlockProperties.FROND_THATCH));
+	public static final DeferredBlock<Block> FROND_THATCH_SLAB = BLOCKS.createBlock("frond_thatch_slab", () -> new TrimmableThatchSlabBlock(NeapolitanBlockProperties.FROND_THATCH));
+	public static final DeferredBlock<Block> FROND_THATCH_STAIRS = BLOCKS.createBlock("frond_thatch_stairs", () -> new TrimmableThatchStairBlock(FROND_THATCH.get().defaultBlockState(), NeapolitanBlockProperties.FROND_THATCH));
 
 	public static final DeferredBlock<Block> ADZUKI_SPROUTS = BLOCKS.createBlockNoItem("adzuki_sprouts", () -> new AdzukiSproutsBlock(NeapolitanBlockProperties.ADZUKI_SPROUTS));
 	public static final DeferredBlock<Block> ADZUKI_SOIL = BLOCKS.createBlock("adzuki_soil", () -> new AdzukiSoilBlock(NeapolitanBlockProperties.ADZUKI_SOIL));
@@ -145,12 +145,12 @@ public class NeapolitanBlocks {
 	public static final DeferredBlock<Block> KOA_LEAF_PILE = BLOCKS.createBlock("koa_leaf_pile", () -> new LeafPileBlock(NeapolitanBlockProperties.KOA.leafPile()));
 
 	public static final DeferredBlock<Block> CINNAMON_STALK = BLOCKS.createBlock("cinnamon_stalk", () -> new RotatedPillarBlock(NeapolitanBlockProperties.CINNAMON_STALK));
-	public static final DeferredBlock<Block> CINNAMON_THATCH = BLOCKS.createBlock("cinnamon_thatch", () -> new ThatchBlock(NeapolitanBlockProperties.CINNAMON_THATCH));
-	public static final DeferredBlock<Block> CINNAMON_THATCH_SLAB = BLOCKS.createBlock("cinnamon_thatch_slab", () -> new ThatchSlabBlock(NeapolitanBlockProperties.CINNAMON_THATCH));
-	public static final DeferredBlock<Block> CINNAMON_THATCH_STAIRS = BLOCKS.createBlock("cinnamon_thatch_stairs", () -> new ThatchStairBlock(CINNAMON_THATCH.get().defaultBlockState(), NeapolitanBlockProperties.CINNAMON_THATCH));
-	public static final DeferredBlock<Block> FLOWERING_CINNAMON_THATCH = BLOCKS.createBlock("flowering_cinnamon_thatch", () -> new ThatchBlock(NeapolitanBlockProperties.CINNAMON_THATCH));
-	public static final DeferredBlock<Block> FLOWERING_CINNAMON_THATCH_SLAB = BLOCKS.createBlock("flowering_cinnamon_thatch_slab", () -> new ThatchSlabBlock(NeapolitanBlockProperties.CINNAMON_THATCH));
-	public static final DeferredBlock<Block> FLOWERING_CINNAMON_THATCH_STAIRS = BLOCKS.createBlock("flowering_cinnamon_thatch_stairs", () -> new ThatchStairBlock(FLOWERING_CINNAMON_THATCH.get().defaultBlockState(), NeapolitanBlockProperties.CINNAMON_THATCH));
+	public static final DeferredBlock<Block> CINNAMON_THATCH = BLOCKS.createBlock("cinnamon_thatch", () -> new TrimmableThatchBlock(NeapolitanBlockProperties.CINNAMON_THATCH));
+	public static final DeferredBlock<Block> CINNAMON_THATCH_SLAB = BLOCKS.createBlock("cinnamon_thatch_slab", () -> new TrimmableThatchSlabBlock(NeapolitanBlockProperties.CINNAMON_THATCH));
+	public static final DeferredBlock<Block> CINNAMON_THATCH_STAIRS = BLOCKS.createBlock("cinnamon_thatch_stairs", () -> new TrimmableThatchStairBlock(CINNAMON_THATCH.get().defaultBlockState(), NeapolitanBlockProperties.CINNAMON_THATCH));
+	public static final DeferredBlock<Block> FLOWERING_CINNAMON_THATCH = BLOCKS.createBlock("flowering_cinnamon_thatch", () -> new TrimmableThatchBlock(NeapolitanBlockProperties.CINNAMON_THATCH));
+	public static final DeferredBlock<Block> FLOWERING_CINNAMON_THATCH_SLAB = BLOCKS.createBlock("flowering_cinnamon_thatch_slab", () -> new TrimmableThatchSlabBlock(NeapolitanBlockProperties.CINNAMON_THATCH));
+	public static final DeferredBlock<Block> FLOWERING_CINNAMON_THATCH_STAIRS = BLOCKS.createBlock("flowering_cinnamon_thatch_stairs", () -> new TrimmableThatchStairBlock(FLOWERING_CINNAMON_THATCH.get().defaultBlockState(), NeapolitanBlockProperties.CINNAMON_THATCH));
 
 	public static final DeferredBlock<Block> VANILLA_CAKE = BLOCKS.createBlockNoItem("vanilla_cake", () -> new FlavoredCakeBlock(NeapolitanFoods.VANILLA_CAKE, NeapolitanBlockProperties.VANILLA_CAKE));
 	public static final DeferredBlock<Block> CHOCOLATE_CAKE = BLOCKS.createBlockNoItem("chocolate_cake", () -> new FlavoredCakeBlock(NeapolitanFoods.CHOCOLATE_CAKE, NeapolitanBlockProperties.CHOCOLATE_CAKE));

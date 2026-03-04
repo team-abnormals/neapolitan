@@ -3,6 +3,9 @@ package com.teamabnormals.neapolitan.core.data.client;
 import com.teamabnormals.blueprint.core.Blueprint;
 import com.teamabnormals.blueprint.core.data.client.BlueprintBlockStateProvider;
 import com.teamabnormals.neapolitan.common.block.FlavoredCandleCakeBlock;
+import com.teamabnormals.neapolitan.common.block.TrimmableThatchBlock;
+import com.teamabnormals.neapolitan.common.block.TrimmableThatchSlabBlock;
+import com.teamabnormals.neapolitan.common.block.TrimmableThatchStairBlock;
 import com.teamabnormals.neapolitan.core.Neapolitan;
 import com.teamabnormals.neapolitan.core.other.NeapolitanBlockFamilies;
 import net.minecraft.core.Direction;
@@ -15,6 +18,7 @@ import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.Half;
+import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.level.block.state.properties.StairsShape;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
@@ -65,8 +69,9 @@ public class NeapolitanBlockStateProvider extends BlueprintBlockStateProvider {
 		this.woodworksBlocks(KOA_PLANKS, KOA_BOARDS, KOA_LADDER, KOA_BOOKSHELF, KOA_BEEHIVE, KOA_CHEST, TRAPPED_KOA_CHEST);
 		this.chiseledBookshelfBlock(CHISELED_KOA_BOOKSHELF);
 
-		this.thatchBlocks(CINNAMON_THATCH, CINNAMON_THATCH_STAIRS, CINNAMON_THATCH_SLAB);
-		this.thatchBlocks(FLOWERING_CINNAMON_THATCH, FLOWERING_CINNAMON_THATCH_STAIRS, FLOWERING_CINNAMON_THATCH_SLAB);
+		this.trimmableThatchBlocks(FROND_THATCH, FROND_THATCH_STAIRS, FROND_THATCH_SLAB);
+		this.trimmableThatchBlocks(CINNAMON_THATCH, CINNAMON_THATCH_STAIRS, CINNAMON_THATCH_SLAB);
+		this.trimmableThatchBlocks(FLOWERING_CINNAMON_THATCH, FLOWERING_CINNAMON_THATCH_STAIRS, FLOWERING_CINNAMON_THATCH_SLAB);
 
 		FlavoredCandleCakeBlock.getCandleCakes().forEach(this::candleCake);
 	}
@@ -118,13 +123,23 @@ public class NeapolitanBlockStateProvider extends BlueprintBlockStateProvider {
 		this.thatchStairsBlock(thatchStairs, blockTexture(thatch.get()));
 		this.thatchSlabBlock(thatchSlab, blockTexture(thatch.get()));
 	}
+	
+	private void trimmableThatchBlocks(DeferredHolder<Block, ?> thatch, DeferredHolder<Block, ?> thatchStairs, DeferredHolder<Block, ?> thatchSlab) {
+		this.trimmableThatchBlock(thatch);
+		this.trimmableThatchStairsBlock(thatchStairs, blockTexture(thatch.get()));
+		this.trimmableThatchSlabBlock(thatchSlab, blockTexture(thatch.get()));
+	}
 
 	private void thatchBlock(DeferredHolder<Block, ?> thatch) {
 		String name = name(thatch.get());
 		ResourceLocation texture = this.blockTexture(thatch.get());
 		ResourceLocation extrudes = this.modLoc("block/" + name + "_extrudes");
-		this.simpleBlock(thatch.get(), this.models().withExistingParent(name, Blueprint.location("block/template_thatch")).texture("thatch", texture).texture("extrudes", extrudes).renderType("cutout"));
+		this.getVariantBuilder(thatch.get()).partialState().setModels(new ConfiguredModel(thatchBlockModel(name, texture, extrudes)));
 		this.blockItem(thatch);
+	}
+
+	private ModelFile thatchBlockModel(String name, ResourceLocation texture, ResourceLocation extrudes) {
+		return this.models().withExistingParent(name, Blueprint.location("block/template_thatch")).texture("thatch", texture).texture("extrudes", extrudes).renderType("cutout");
 	}
 
 	private void thatchSlabBlock(DeferredHolder<Block, ?> thatchSlab, ResourceLocation texture) {
@@ -165,5 +180,85 @@ public class NeapolitanBlockStateProvider extends BlueprintBlockStateProvider {
 					: shape == StairsShape.INNER_LEFT || shape == StairsShape.INNER_RIGHT ? (half == Half.BOTTOM ? inner : inner_top)
 					: (half == Half.BOTTOM ? outer : outer_top)).rotationY(yRot).uvLock(true).build();
 		}, StairBlock.WATERLOGGED);
+	}
+
+	private void trimmableThatchBlock(DeferredHolder<Block, ?> thatch) {
+		String name = name(thatch.get());
+		ResourceLocation texture = this.blockTexture(thatch.get());
+		ResourceLocation extrudes = this.modLoc("block/" + name + "_extrudes");
+
+		this.getVariantBuilder(thatch.get())
+				.partialState().with(TrimmableThatchBlock.TRIMMED, true)
+				.modelForState().modelFile(this.models().cubeAll(name + "_trimmed", blockTexture(thatch.get()))).addModel()
+				.partialState().with(TrimmableThatchBlock.TRIMMED, false)
+				.modelForState().modelFile(thatchBlockModel(name, texture, extrudes)).addModel();
+
+		this.blockItem(thatch);
+	}
+
+	private void trimmableThatchStairsBlock(DeferredHolder<Block, ?> thatch, ResourceLocation texture) {
+		String name = name(thatch.get());
+		ResourceLocation extrudes = ResourceLocation.fromNamespaceAndPath(texture.getNamespace(), texture.getPath() + "_extrudes");
+
+		ModelFile stairs = this.models().withExistingParent(name, Blueprint.location("block/template_thatch_stairs")).texture("thatch", texture).texture("extrudes", extrudes).renderType("cutout");
+		ModelFile inner = this.models().withExistingParent(name + "_inner", Blueprint.location("block/template_thatch_stairs_inner")).texture("thatch", texture).texture("extrudes", extrudes).renderType("cutout");
+		ModelFile outer = this.models().withExistingParent(name + "_outer", Blueprint.location("block/template_thatch_stairs_outer")).texture("thatch", texture).texture("extrudes", extrudes).renderType("cutout");
+		ModelFile inner_top = this.models().withExistingParent(name + "_inner_top", Blueprint.location("block/template_thatch_stairs_inner_top")).texture("thatch", texture).texture("extrudes", extrudes).renderType("cutout");
+		ModelFile outer_top = this.models().withExistingParent(name + "_outer_top", Blueprint.location("block/template_thatch_stairs_outer_top")).texture("thatch", texture).texture("extrudes", extrudes).renderType("cutout");
+		ModelFile top = this.models().withExistingParent(name + "_top", Blueprint.location("block/template_thatch_stairs_top")).texture("thatch", texture).texture("extrudes", extrudes).renderType("cutout");
+
+		ModelFile stairsTrimmed = models().stairs(name + "_trimmed", texture, texture, texture);
+		ModelFile stairsInnerTrimmed = models().stairsInner(name + "_inner_trimmed", texture, texture, texture);
+		ModelFile stairsOuterTrimmed = models().stairsOuter(name + "_outer_trimmed", texture, texture, texture);
+
+		this.blockItem(thatch);
+		this.getVariantBuilder(thatch.get()).forAllStatesExcept(state -> {
+			Direction facing = state.getValue(StairBlock.FACING);
+			Half half = state.getValue(StairBlock.HALF);
+			StairsShape shape = state.getValue(StairBlock.SHAPE);
+			int yRot = (int) facing.getClockWise().toYRot();
+			if (shape == StairsShape.INNER_LEFT || shape == StairsShape.OUTER_LEFT) yRot += 270;
+
+			if (state.getValue(TrimmableThatchStairBlock.TRIMMED)) {
+				if (shape != StairsShape.STRAIGHT && half == Half.TOP) {
+					yRot += 90;
+				}
+				yRot %= 360;
+				boolean uvlock = yRot != 0 || half == Half.TOP;
+				return ConfiguredModel.builder()
+						.modelFile(shape == StairsShape.STRAIGHT ? stairsTrimmed : shape == StairsShape.INNER_LEFT || shape == StairsShape.INNER_RIGHT ? stairsInnerTrimmed : stairsOuterTrimmed)
+						.rotationX(half == Half.BOTTOM ? 0 : 180)
+						.rotationY(yRot).uvLock(uvlock).build();
+			} else {
+				if (half == Half.TOP && shape == StairsShape.STRAIGHT) yRot += 180;
+				if (half == Half.TOP && (shape == StairsShape.INNER_LEFT || shape == StairsShape.INNER_RIGHT))
+					yRot += 90;
+
+				yRot %= 360;
+				boolean uvlock = yRot != 0 || half == Half.TOP;
+				return ConfiguredModel.builder().modelFile(shape == StairsShape.STRAIGHT ? (half == Half.BOTTOM ? stairs : top)
+						: shape == StairsShape.INNER_LEFT || shape == StairsShape.INNER_RIGHT ? (half == Half.BOTTOM ? inner : inner_top)
+						: (half == Half.BOTTOM ? outer : outer_top)).rotationY(yRot).uvLock(uvlock).build();
+			}
+		}, StairBlock.WATERLOGGED);
+	}
+	
+	private void trimmableThatchSlabBlock(DeferredHolder<Block, ?> thatchSlab, ResourceLocation texture) {
+		String name = name(thatchSlab.get());
+		ResourceLocation extrudes = ResourceLocation.fromNamespaceAndPath(texture.getNamespace(), texture.getPath() + "_extrudes");
+		ModelFile bottom = this.models().withExistingParent(name, Blueprint.location("block/template_thatch_slab")).texture("thatch", texture).texture("extrudes", extrudes).renderType("cutout");
+		ModelFile top = this.models().withExistingParent(name + "_top", Blueprint.location("block/template_thatch_slab_top")).texture("thatch", texture).texture("extrudes", extrudes).renderType("cutout");
+		ModelFile bottomTrimmed = this.models().slab(name + "_trimmed", texture, texture, texture);
+		ModelFile topTrimmed = this.models().slabTop(name + "_top_trimmed", texture, texture, texture);
+
+		getVariantBuilder(thatchSlab.get())
+				.partialState().with(SlabBlock.TYPE, SlabType.BOTTOM).with(TrimmableThatchSlabBlock.TRIMMED, true).addModels(new ConfiguredModel(bottomTrimmed))
+				.partialState().with(SlabBlock.TYPE, SlabType.TOP).with(TrimmableThatchSlabBlock.TRIMMED, true).addModels(new ConfiguredModel(topTrimmed))
+				.partialState().with(SlabBlock.TYPE, SlabType.DOUBLE).with(TrimmableThatchSlabBlock.TRIMMED, true).addModels(new ConfiguredModel(this.models().getExistingFile(texture.withSuffix("_trimmed"))))
+				.partialState().with(SlabBlock.TYPE, SlabType.BOTTOM).with(TrimmableThatchSlabBlock.TRIMMED, false).addModels(new ConfiguredModel(bottom))
+				.partialState().with(SlabBlock.TYPE, SlabType.TOP).with(TrimmableThatchSlabBlock.TRIMMED, false).addModels(new ConfiguredModel(top))
+				.partialState().with(SlabBlock.TYPE, SlabType.DOUBLE).with(TrimmableThatchSlabBlock.TRIMMED, false).addModels(new ConfiguredModel(this.models().getExistingFile(texture)));
+
+		this.blockItem(thatchSlab);
 	}
 }

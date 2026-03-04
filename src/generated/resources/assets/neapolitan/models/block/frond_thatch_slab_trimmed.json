@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "neapolitan:block/frond_thatch",
+    "side": "neapolitan:block/frond_thatch",
+    "top": "neapolitan:block/frond_thatch"
+  }
+}

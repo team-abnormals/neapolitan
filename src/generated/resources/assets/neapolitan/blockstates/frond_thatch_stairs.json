@@ -1,391 +1,391 @@
 {
   "variants": {
     "facing=east,half=bottom,shape=inner_left,trimmed=false": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_inner",
+      "model": "neapolitan:block/frond_thatch_stairs_inner",
       "uvlock": true,
       "y": 270
     },
     "facing=east,half=bottom,shape=inner_left,trimmed=true": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_inner_trimmed",
+      "model": "neapolitan:block/frond_thatch_stairs_inner_trimmed",
       "uvlock": true,
       "y": 270
     },
     "facing=east,half=bottom,shape=inner_right,trimmed=false": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_inner"
+      "model": "neapolitan:block/frond_thatch_stairs_inner"
     },
     "facing=east,half=bottom,shape=inner_right,trimmed=true": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_inner_trimmed"
+      "model": "neapolitan:block/frond_thatch_stairs_inner_trimmed"
     },
     "facing=east,half=bottom,shape=outer_left,trimmed=false": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_outer",
+      "model": "neapolitan:block/frond_thatch_stairs_outer",
       "uvlock": true,
       "y": 270
     },
     "facing=east,half=bottom,shape=outer_left,trimmed=true": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_outer_trimmed",
+      "model": "neapolitan:block/frond_thatch_stairs_outer_trimmed",
       "uvlock": true,
       "y": 270
     },
     "facing=east,half=bottom,shape=outer_right,trimmed=false": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_outer"
+      "model": "neapolitan:block/frond_thatch_stairs_outer"
     },
     "facing=east,half=bottom,shape=outer_right,trimmed=true": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_outer_trimmed"
+      "model": "neapolitan:block/frond_thatch_stairs_outer_trimmed"
     },
     "facing=east,half=bottom,shape=straight,trimmed=false": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs"
+      "model": "neapolitan:block/frond_thatch_stairs"
     },
     "facing=east,half=bottom,shape=straight,trimmed=true": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_trimmed"
+      "model": "neapolitan:block/frond_thatch_stairs_trimmed"
     },
     "facing=east,half=top,shape=inner_left,trimmed=false": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_inner_top",
+      "model": "neapolitan:block/frond_thatch_stairs_inner_top",
       "uvlock": true
     },
     "facing=east,half=top,shape=inner_left,trimmed=true": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_inner_trimmed",
+      "model": "neapolitan:block/frond_thatch_stairs_inner_trimmed",
       "uvlock": true,
       "x": 180
     },
     "facing=east,half=top,shape=inner_right,trimmed=false": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_inner_top",
+      "model": "neapolitan:block/frond_thatch_stairs_inner_top",
       "uvlock": true,
       "y": 90
     },
     "facing=east,half=top,shape=inner_right,trimmed=true": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_inner_trimmed",
+      "model": "neapolitan:block/frond_thatch_stairs_inner_trimmed",
       "uvlock": true,
       "x": 180,
       "y": 90
     },
     "facing=east,half=top,shape=outer_left,trimmed=false": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_outer_top",
+      "model": "neapolitan:block/frond_thatch_stairs_outer_top",
       "uvlock": true,
       "y": 270
     },
     "facing=east,half=top,shape=outer_left,trimmed=true": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_outer_trimmed",
+      "model": "neapolitan:block/frond_thatch_stairs_outer_trimmed",
       "uvlock": true,
       "x": 180
     },
     "facing=east,half=top,shape=outer_right,trimmed=false": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_outer_top",
+      "model": "neapolitan:block/frond_thatch_stairs_outer_top",
       "uvlock": true
     },
     "facing=east,half=top,shape=outer_right,trimmed=true": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_outer_trimmed",
+      "model": "neapolitan:block/frond_thatch_stairs_outer_trimmed",
       "uvlock": true,
       "x": 180,
       "y": 90
     },
     "facing=east,half=top,shape=straight,trimmed=false": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_top",
+      "model": "neapolitan:block/frond_thatch_stairs_top",
       "uvlock": true,
       "y": 180
     },
     "facing=east,half=top,shape=straight,trimmed=true": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_trimmed",
+      "model": "neapolitan:block/frond_thatch_stairs_trimmed",
       "uvlock": true,
       "x": 180
     },
     "facing=north,half=bottom,shape=inner_left,trimmed=false": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_inner",
+      "model": "neapolitan:block/frond_thatch_stairs_inner",
       "uvlock": true,
       "y": 180
     },
     "facing=north,half=bottom,shape=inner_left,trimmed=true": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_inner_trimmed",
+      "model": "neapolitan:block/frond_thatch_stairs_inner_trimmed",
       "uvlock": true,
       "y": 180
     },
     "facing=north,half=bottom,shape=inner_right,trimmed=false": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_inner",
+      "model": "neapolitan:block/frond_thatch_stairs_inner",
       "uvlock": true,
       "y": 270
     },
     "facing=north,half=bottom,shape=inner_right,trimmed=true": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_inner_trimmed",
+      "model": "neapolitan:block/frond_thatch_stairs_inner_trimmed",
       "uvlock": true,
       "y": 270
     },
     "facing=north,half=bottom,shape=outer_left,trimmed=false": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_outer",
+      "model": "neapolitan:block/frond_thatch_stairs_outer",
       "uvlock": true,
       "y": 180
     },
     "facing=north,half=bottom,shape=outer_left,trimmed=true": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_outer_trimmed",
+      "model": "neapolitan:block/frond_thatch_stairs_outer_trimmed",
       "uvlock": true,
       "y": 180
     },
     "facing=north,half=bottom,shape=outer_right,trimmed=false": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_outer",
+      "model": "neapolitan:block/frond_thatch_stairs_outer",
       "uvlock": true,
       "y": 270
     },
     "facing=north,half=bottom,shape=outer_right,trimmed=true": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_outer_trimmed",
+      "model": "neapolitan:block/frond_thatch_stairs_outer_trimmed",
       "uvlock": true,
       "y": 270
     },
     "facing=north,half=bottom,shape=straight,trimmed=false": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs",
+      "model": "neapolitan:block/frond_thatch_stairs",
       "uvlock": true,
       "y": 270
     },
     "facing=north,half=bottom,shape=straight,trimmed=true": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_trimmed",
+      "model": "neapolitan:block/frond_thatch_stairs_trimmed",
       "uvlock": true,
       "y": 270
     },
     "facing=north,half=top,shape=inner_left,trimmed=false": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_inner_top",
+      "model": "neapolitan:block/frond_thatch_stairs_inner_top",
       "uvlock": true,
       "y": 270
     },
     "facing=north,half=top,shape=inner_left,trimmed=true": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_inner_trimmed",
+      "model": "neapolitan:block/frond_thatch_stairs_inner_trimmed",
       "uvlock": true,
       "x": 180,
       "y": 270
     },
     "facing=north,half=top,shape=inner_right,trimmed=false": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_inner_top",
+      "model": "neapolitan:block/frond_thatch_stairs_inner_top",
       "uvlock": true
     },
     "facing=north,half=top,shape=inner_right,trimmed=true": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_inner_trimmed",
+      "model": "neapolitan:block/frond_thatch_stairs_inner_trimmed",
       "uvlock": true,
       "x": 180
     },
     "facing=north,half=top,shape=outer_left,trimmed=false": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_outer_top",
+      "model": "neapolitan:block/frond_thatch_stairs_outer_top",
       "uvlock": true,
       "y": 180
     },
     "facing=north,half=top,shape=outer_left,trimmed=true": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_outer_trimmed",
+      "model": "neapolitan:block/frond_thatch_stairs_outer_trimmed",
       "uvlock": true,
       "x": 180,
       "y": 270
     },
     "facing=north,half=top,shape=outer_right,trimmed=false": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_outer_top",
+      "model": "neapolitan:block/frond_thatch_stairs_outer_top",
       "uvlock": true,
       "y": 270
     },
     "facing=north,half=top,shape=outer_right,trimmed=true": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_outer_trimmed",
+      "model": "neapolitan:block/frond_thatch_stairs_outer_trimmed",
       "uvlock": true,
       "x": 180
     },
     "facing=north,half=top,shape=straight,trimmed=false": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_top",
+      "model": "neapolitan:block/frond_thatch_stairs_top",
       "uvlock": true,
       "y": 90
     },
     "facing=north,half=top,shape=straight,trimmed=true": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_trimmed",
+      "model": "neapolitan:block/frond_thatch_stairs_trimmed",
       "uvlock": true,
       "x": 180,
       "y": 270
     },
     "facing=south,half=bottom,shape=inner_left,trimmed=false": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_inner"
+      "model": "neapolitan:block/frond_thatch_stairs_inner"
     },
     "facing=south,half=bottom,shape=inner_left,trimmed=true": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_inner_trimmed"
+      "model": "neapolitan:block/frond_thatch_stairs_inner_trimmed"
     },
     "facing=south,half=bottom,shape=inner_right,trimmed=false": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_inner",
+      "model": "neapolitan:block/frond_thatch_stairs_inner",
       "uvlock": true,
       "y": 90
     },
     "facing=south,half=bottom,shape=inner_right,trimmed=true": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_inner_trimmed",
+      "model": "neapolitan:block/frond_thatch_stairs_inner_trimmed",
       "uvlock": true,
       "y": 90
     },
     "facing=south,half=bottom,shape=outer_left,trimmed=false": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_outer"
+      "model": "neapolitan:block/frond_thatch_stairs_outer"
     },
     "facing=south,half=bottom,shape=outer_left,trimmed=true": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_outer_trimmed"
+      "model": "neapolitan:block/frond_thatch_stairs_outer_trimmed"
     },
     "facing=south,half=bottom,shape=outer_right,trimmed=false": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_outer",
+      "model": "neapolitan:block/frond_thatch_stairs_outer",
       "uvlock": true,
       "y": 90
     },
     "facing=south,half=bottom,shape=outer_right,trimmed=true": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_outer_trimmed",
+      "model": "neapolitan:block/frond_thatch_stairs_outer_trimmed",
       "uvlock": true,
       "y": 90
     },
     "facing=south,half=bottom,shape=straight,trimmed=false": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs",
+      "model": "neapolitan:block/frond_thatch_stairs",
       "uvlock": true,
       "y": 90
     },
     "facing=south,half=bottom,shape=straight,trimmed=true": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_trimmed",
+      "model": "neapolitan:block/frond_thatch_stairs_trimmed",
       "uvlock": true,
       "y": 90
     },
     "facing=south,half=top,shape=inner_left,trimmed=false": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_inner_top",
+      "model": "neapolitan:block/frond_thatch_stairs_inner_top",
       "uvlock": true,
       "y": 90
     },
     "facing=south,half=top,shape=inner_left,trimmed=true": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_inner_trimmed",
+      "model": "neapolitan:block/frond_thatch_stairs_inner_trimmed",
       "uvlock": true,
       "x": 180,
       "y": 90
     },
     "facing=south,half=top,shape=inner_right,trimmed=false": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_inner_top",
+      "model": "neapolitan:block/frond_thatch_stairs_inner_top",
       "uvlock": true,
       "y": 180
     },
     "facing=south,half=top,shape=inner_right,trimmed=true": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_inner_trimmed",
+      "model": "neapolitan:block/frond_thatch_stairs_inner_trimmed",
       "uvlock": true,
       "x": 180,
       "y": 180
     },
     "facing=south,half=top,shape=outer_left,trimmed=false": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_outer_top",
+      "model": "neapolitan:block/frond_thatch_stairs_outer_top",
       "uvlock": true
     },
     "facing=south,half=top,shape=outer_left,trimmed=true": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_outer_trimmed",
+      "model": "neapolitan:block/frond_thatch_stairs_outer_trimmed",
       "uvlock": true,
       "x": 180,
       "y": 90
     },
     "facing=south,half=top,shape=outer_right,trimmed=false": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_outer_top",
+      "model": "neapolitan:block/frond_thatch_stairs_outer_top",
       "uvlock": true,
       "y": 90
     },
     "facing=south,half=top,shape=outer_right,trimmed=true": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_outer_trimmed",
+      "model": "neapolitan:block/frond_thatch_stairs_outer_trimmed",
       "uvlock": true,
       "x": 180,
       "y": 180
     },
     "facing=south,half=top,shape=straight,trimmed=false": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_top",
+      "model": "neapolitan:block/frond_thatch_stairs_top",
       "uvlock": true,
       "y": 270
     },
     "facing=south,half=top,shape=straight,trimmed=true": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_trimmed",
+      "model": "neapolitan:block/frond_thatch_stairs_trimmed",
       "uvlock": true,
       "x": 180,
       "y": 90
     },
     "facing=west,half=bottom,shape=inner_left,trimmed=false": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_inner",
+      "model": "neapolitan:block/frond_thatch_stairs_inner",
       "uvlock": true,
       "y": 90
     },
     "facing=west,half=bottom,shape=inner_left,trimmed=true": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_inner_trimmed",
+      "model": "neapolitan:block/frond_thatch_stairs_inner_trimmed",
       "uvlock": true,
       "y": 90
     },
     "facing=west,half=bottom,shape=inner_right,trimmed=false": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_inner",
+      "model": "neapolitan:block/frond_thatch_stairs_inner",
       "uvlock": true,
       "y": 180
     },
     "facing=west,half=bottom,shape=inner_right,trimmed=true": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_inner_trimmed",
+      "model": "neapolitan:block/frond_thatch_stairs_inner_trimmed",
       "uvlock": true,
       "y": 180
     },
     "facing=west,half=bottom,shape=outer_left,trimmed=false": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_outer",
+      "model": "neapolitan:block/frond_thatch_stairs_outer",
       "uvlock": true,
       "y": 90
     },
     "facing=west,half=bottom,shape=outer_left,trimmed=true": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_outer_trimmed",
+      "model": "neapolitan:block/frond_thatch_stairs_outer_trimmed",
       "uvlock": true,
       "y": 90
     },
     "facing=west,half=bottom,shape=outer_right,trimmed=false": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_outer",
+      "model": "neapolitan:block/frond_thatch_stairs_outer",
       "uvlock": true,
       "y": 180
     },
     "facing=west,half=bottom,shape=outer_right,trimmed=true": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_outer_trimmed",
+      "model": "neapolitan:block/frond_thatch_stairs_outer_trimmed",
       "uvlock": true,
       "y": 180
     },
     "facing=west,half=bottom,shape=straight,trimmed=false": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs",
+      "model": "neapolitan:block/frond_thatch_stairs",
       "uvlock": true,
       "y": 180
     },
     "facing=west,half=bottom,shape=straight,trimmed=true": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_trimmed",
+      "model": "neapolitan:block/frond_thatch_stairs_trimmed",
       "uvlock": true,
       "y": 180
     },
     "facing=west,half=top,shape=inner_left,trimmed=false": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_inner_top",
+      "model": "neapolitan:block/frond_thatch_stairs_inner_top",
       "uvlock": true,
       "y": 180
     },
     "facing=west,half=top,shape=inner_left,trimmed=true": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_inner_trimmed",
+      "model": "neapolitan:block/frond_thatch_stairs_inner_trimmed",
       "uvlock": true,
       "x": 180,
       "y": 180
     },
     "facing=west,half=top,shape=inner_right,trimmed=false": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_inner_top",
+      "model": "neapolitan:block/frond_thatch_stairs_inner_top",
       "uvlock": true,
       "y": 270
     },
     "facing=west,half=top,shape=inner_right,trimmed=true": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_inner_trimmed",
+      "model": "neapolitan:block/frond_thatch_stairs_inner_trimmed",
       "uvlock": true,
       "x": 180,
       "y": 270
     },
     "facing=west,half=top,shape=outer_left,trimmed=false": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_outer_top",
+      "model": "neapolitan:block/frond_thatch_stairs_outer_top",
       "uvlock": true,
       "y": 90
     },
     "facing=west,half=top,shape=outer_left,trimmed=true": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_outer_trimmed",
+      "model": "neapolitan:block/frond_thatch_stairs_outer_trimmed",
       "uvlock": true,
       "x": 180,
       "y": 180
     },
     "facing=west,half=top,shape=outer_right,trimmed=false": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_outer_top",
+      "model": "neapolitan:block/frond_thatch_stairs_outer_top",
       "uvlock": true,
       "y": 180
     },
     "facing=west,half=top,shape=outer_right,trimmed=true": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_outer_trimmed",
+      "model": "neapolitan:block/frond_thatch_stairs_outer_trimmed",
       "uvlock": true,
       "x": 180,
       "y": 270
     },
     "facing=west,half=top,shape=straight,trimmed=false": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_top",
+      "model": "neapolitan:block/frond_thatch_stairs_top",
       "uvlock": true
     },
     "facing=west,half=top,shape=straight,trimmed=true": {
-      "model": "neapolitan:block/cinnamon_thatch_stairs_trimmed",
+      "model": "neapolitan:block/frond_thatch_stairs_trimmed",
       "uvlock": true,
       "x": 180,
       "y": 180

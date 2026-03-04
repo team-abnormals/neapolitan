@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "trimmed=false": {
+      "model": "neapolitan:block/frond_thatch"
+    },
+    "trimmed=true": {
+      "model": "neapolitan:block/frond_thatch_trimmed"
+    }
+  }
+}

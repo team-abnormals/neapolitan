@@ -1,7 +1,0 @@
-{
-  "parent": "blueprint:block/template_thatch_stairs_top",
-  "textures": {
-    "thatch": "neapolitan:block/frond_thatch",
-    "extrudes": "neapolitan:block/frond_thatch_extrudes"
-  }
-}

@@ -22,6 +22,7 @@ import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.ItemAbility;
 
 public class AdzukiSoilBlock extends Block implements BonemealableBlock {
+
 	public AdzukiSoilBlock(Properties properties) {
 		super(properties);
 	}

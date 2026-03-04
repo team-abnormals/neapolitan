@@ -1,13 +1,22 @@
 {
   "variants": {
-    "type=bottom": {
+    "trimmed=false,type=bottom": {
       "model": "neapolitan:block/cinnamon_thatch_slab"
     },
-    "type=double": {
+    "trimmed=false,type=double": {
       "model": "neapolitan:block/cinnamon_thatch"
     },
-    "type=top": {
+    "trimmed=false,type=top": {
       "model": "neapolitan:block/cinnamon_thatch_slab_top"
+    },
+    "trimmed=true,type=bottom": {
+      "model": "neapolitan:block/cinnamon_thatch_slab_trimmed"
+    },
+    "trimmed=true,type=double": {
+      "model": "neapolitan:block/cinnamon_thatch_trimmed"
+    },
+    "trimmed=true,type=top": {
+      "model": "neapolitan:block/cinnamon_thatch_slab_top_trimmed"
     }
   }
 }

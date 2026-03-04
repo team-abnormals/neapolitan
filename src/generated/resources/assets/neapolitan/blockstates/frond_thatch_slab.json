@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "trimmed=false,type=bottom": {
+      "model": "neapolitan:block/frond_thatch_slab"
+    },
+    "trimmed=false,type=double": {
+      "model": "neapolitan:block/frond_thatch"
+    },
+    "trimmed=false,type=top": {
+      "model": "neapolitan:block/frond_thatch_slab_top"
+    },
+    "trimmed=true,type=bottom": {
+      "model": "neapolitan:block/frond_thatch_slab_trimmed"
+    },
+    "trimmed=true,type=double": {
+      "model": "neapolitan:block/frond_thatch_trimmed"
+    },
+    "trimmed=true,type=top": {
+      "model": "neapolitan:block/frond_thatch_slab_top_trimmed"
+    }
+  }
+}

@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
+    "trimmed=false": {
       "model": "neapolitan:block/flowering_cinnamon_thatch"
+    },
+    "trimmed=true": {
+      "model": "neapolitan:block/flowering_cinnamon_thatch_trimmed"
     }
   }
 }
